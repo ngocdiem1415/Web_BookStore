@@ -1,0 +1,56 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.bold{
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+.boldGreen{
+    color: #117C6F;
+    font-family: 'Cormorant Garamond', sans-serif;
+    font-weight: bold;
+    font-size: 55px;
+}
+.container {
+    margin: 0;
+    padding: 0;
+    .subIntro {
+        p {
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+    }
+    .subAddress{
+        p {
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+    }
+
+    .welcome  {
+        margin-top: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .BackToHome {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        text-align: center;
+        line-height: 1;
+    }
+    .BackToHome .back{
+        font-size: 1.5rem;
+        font-weight: lighter;
+        font-family: 'Pink Chicken', sans-serif;
+        color: #AAAAAA;
+        text-decoration: none;
+    }
+    .BackToHome .back:hover{
+        color: #289C8E;
+    }
+}
