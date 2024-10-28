@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+.footer {
+    position: relative;
+    width: 100%;
+    background: #117C6F;
+    border-radius: 6px 6px 0 0; /* Only rounded at the top for a cleaner look */
+    margin-top: auto;
+}
+
+.footer .footer-row {
+    max-width: 1280px;
+    margin: 0 auto; /* Center-align content */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3.5rem;
+    padding: 40px;
+}
+
+.footer .footer-row .footer-col img {
+    width: 250px;
+    margin-bottom: -20px;
+    margin-left: 30px;
+    font-size: 13px;
+    margin-top: -28px;
+}
+
+.footer .footer-row .footer-col .detail{
+    margin-top: -10px;
+}
+
+.footer .footer-row .footer-col .detail-icons i{
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    margin-top: -15px;
+}
+
+.footer .footer-row .footer-col .detail-icons p{
+    margin-top: -10px;
+}
+
+
+
+
+.footer-row .footer-col h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.footer-col .links {
+    margin-top: 20px;
+}
+.footer-col .links li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+.footer-col .links li a {
+    text-decoration: none;
+    color: #bfbfbf;
+}
+.footer-col .links li a:hover {
+    color: #fff;
+}
+.footer-col p {
+    margin: 20px 0;
+    color: #bfbfbf;
+    max-width: 300px;
+    font-size: 14px;
+}
+.footer-col form {
+    display: flex;
+    gap: 5px;
+}
+.footer-col input {
+    height: 40px;
+    border-radius: 6px;
+    background: none;
+    width: 100%;
+    outline: none;
+    border: 1px solid #7489C6 ;
+    caret-color: #fff;
+    color: #fff;
+    padding-left: 10px;
+}
+.footer-col input::placeholder {
+    color: #ccc;
+}
+.footer-col form button {
+    background: #fff;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+.footer-col form button:hover {
+    background: #4cd6f4;
+}
+
+.footer-col .icons {
+    display: flex;
+    margin-top: 30px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+
+/*Icon facebook*/
+.footer-col .icons i {
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.footer-col .icons .fa-facebook-f {
+    border-radius: 10px;
+    background-color: #3b5999;
+    border: 1px solid #117C6F;
+    transition: 0.4s ease;
+}
+
+.footer-col .icons .fa-facebook-f:hover {
+    background-color: #ffffff;
+    color: #3b5999;
+}
+
+.footer-col .icons .fa-twitter {
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #4cd6f4;
+    transition: 0.4s ease;
+}
+
+.footer-col .icons .fa-twitter:hover {
+    background-color: #ffffff;
+    color: #4cd6f4;
+}
+
+.footer-col .icons .fa-linkedin {
+    border-radius: 10px;
+    background-color: #0976b4;
+    transition: 0.4s ease;
+}
+
+.footer-col .icons .fa-linkedin:hover {
+    background-color: #ffffff;
+    color: #0976b4;
+}
+
+.footer-col .icons .fa-github {
+    border-radius: 10px;
+    background-color: black;
+    transition: 0.4s ease;
+}
+
+.footer-col .icons .fa-github:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+
+.footer-col button i{
+    color: #117C6F;
+}
+
+.footer-col .icons i {
+    color: #afb6c7;
+}
+
+.footer .footer-copyright{
+    border-top: 2px solid #fff;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px;
+    color: #afbfbf;
+}
+
+
+
+@media (max-width: 768px) {
+    .footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        border-radius: 0;
+    }
+    .footer .footer-row {
+        padding: 20px;
+        gap: 1rem;
+    }
+    .footer-col form {
+        display: block;
+    }
+    .footer-col form :where(input, button) {
+        width: 100%;
+    }
+    .footer-col form button {
+        margin: 10px 0 0 0;
+    }
+}
