@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Web_BookStore:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Web_BookStore_jar</output-path>
+    <root id="archive" name="Web_BookStore.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
