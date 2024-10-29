@@ -11,7 +11,7 @@ p {
     font-family: 'Open Sans', sans-serif;
 }
 .boldGreen{
-    color: #117C6F;
+    color: #4B908E;
     font-family: 'Cormorant Garamond', sans-serif;
     font-weight: bold;
     font-size: 55px;
@@ -51,6 +51,6 @@ p {
         text-decoration: none;
     }
     .BackToHome .back:hover{
-        color: #289C8E;
+        color: #4B908E;
     }
 }
