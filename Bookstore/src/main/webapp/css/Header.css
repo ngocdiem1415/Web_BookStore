@@ -1,0 +1,95 @@
+
+#header{
+    /*background: #dee4c8;*/
+    background: linear-gradient(to bottom, #B8D7D5, #f9fbf9);
+    /*background: #B8D7D5;*/
+    height: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.header-search{
+    padding-top: 7px;
+    height: 20px;
+}
+
+.header-search i{
+    font-size: 10px;
+}
+
+.header-search .input-group{
+   position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header-search i{
+    position: absolute;
+    left: 10px;
+    color: black;
+}
+
+.header-search .input{
+    border: 0.2px solid gray;
+    padding: 10px 10px 10px 40px;
+    height: 20px;
+    font-size: 10px;
+}
+.account-menu {
+    position: relative;
+    padding-left: 0px;
+}
+
+.account-menu .account:hover .subnav{
+    display: block;
+}
+
+.account-menu .subnav a:hover,
+.account-menu .account a:hover {
+    color: #117C6F;
+}
+
+.account-menu .account a{
+    text-decoration: none;
+    color: black;
+    padding-left: 3px;
+    font-size: 12px;
+}
+
+.account-menu .account i{
+    font-size: 10px;
+}
+
+.account-menu .account a:hover .subnav,
+.account-menu .account i:hover .subnav{
+    display: block;
+}
+
+
+.account-menu .subnav{
+    display: none;
+    position: absolute;
+    background: #f3f6f7;
+    padding: 2px 12px 5px 2px;
+    /*border: 0.1px solid black;*/
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.account-menu .subnav a{
+    display: block;
+    font-size: 10px;
+    line-height: 30px;
+}
+.shopping-cart{
+    padding-left: 20px;
+}
+
+.shopping-cart i{
+    background: #236844;
+    border-radius: 50%;
+    padding: 8px 7px 7px 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
