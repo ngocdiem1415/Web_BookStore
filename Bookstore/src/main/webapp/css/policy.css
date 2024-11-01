@@ -115,6 +115,69 @@ body {
     padding-right: 0;
 }
 
+/* Đối với máy tính bảng (từ 768px đến 1024px) */
+@media (max-width: 1024px) {
+    .container .content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .container .form {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .footer .footer-content {
+        border-right: none; /* Ẩn border khi chuyển sang cột */
+        padding: 0;
+    }
+}
+
+/* Đối với thiết bị di động (dưới 768px) */
+@media (max-width: 768px) {
+    /* Đặt lại chiều rộng của nội dung */
+    .container .content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Đặt các phần tử thành cột thay vì hàng ngang */
+    .container .form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .container .explore {
+        padding: 20px;
+    }
+
+    .container .footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .footer-list > li {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    /* Điều chỉnh kích thước font chữ cho phần title */
+    .container .explore h4, .container .content h2 {
+        font-size: 1.2rem;
+    }
+
+    .container .explore .phone {
+        width: 80%;
+    }
+}
+
 
 
 
