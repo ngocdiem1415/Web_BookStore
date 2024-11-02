@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
 
@@ -16,23 +16,20 @@
     <!--    css-->
     <link rel="stylesheet" href="../css/Style.css">
     <link rel="stylesheet" href="../css/Home.css">
+    <link rel="stylesheet" href="../css/Header.css">
     <title>Home</title>
 </head>
 <body>
 
 <!--Header-->
-
+<div id="header"></div>
 <!--/Header-->
-
-<!-- NAVIGATION -->
-
-<!-- /NAVIGATION -->
 
 <!--SECTION-->
 <div class="section">
     <!--container-->
     <div class="mt-5" id="slider">
-        <img src="../img/slider1.png" alt="">
+<!--        <img src="../img/slider1.png" alt="">-->
     </div>
 
     <div id="flash_sale">
@@ -44,6 +41,15 @@
 </div>
 <!--container-->
 <!--/SECTION-->
-
+<script>
+    // Tải nội dung của header từ tệp Header.html
+    fetch('Header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.text();
+        })
+        .then(data => document.getElementById('header').innerHTML = data)
+        .catch(error => console.error('Error:', error));
+</script>
 </body>
 </html>
