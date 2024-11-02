@@ -5,10 +5,37 @@
     <title>Category</title>
     <link rel="stylesheet" href="css/category.css">
     <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 </head>
 <body>
 <div class="app__container">
+    <!--    head -->
+    <div class="grid">
+        <div class="head">
+            <h2 class="head__title">Tất cả sách</h2>
+            <div class="head-filter">
+                <p>Ưu tiên xem:</p>
+                <ul class="head-filter__list">
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Hàng mới nhất">Hàng mới nhất</a>
+                    </li>
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Hàng cũ nhất">Hàng cũ nhất</a>
+                    </li>
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Giá tăng dần">Giá tăng dần</a>
+                    </li>
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Giá giảm dần">Giá giảm dần</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--        category and product-->
     <div class="grid">
         <div class="grid__row">
             <div class="col-md-2">
@@ -23,7 +50,27 @@
                                 <a href="WEB-INF/AboutUs.html" class="category-item__link">Giới Thiệu</a>
                             </li>
                             <li class="category-item category-item--active">
-                                <a href="" class="category-item__link">Sản phẩm</a>
+                                <a href="" class="category-item__link">Sản phẩm <i class="fa-solid fa-chevron-down"></i></a>
+                                <!--drop down-->
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><a href="" class="dropdown-link">Sách khuyến mãi</a></li>
+                                    <li class="dropdown-item">
+                                        <a href="" class="dropdown-link">Sách nổi bật <i
+                                                class="fa-solid fa-chevron-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-item"><a href="" class="dropdown-link">Sách kỹ năng</a>
+                                            </li>
+                                            <li class="dropdown-item"><a href="" class="dropdown-link">Sách thiếu
+                                                nhi</a>
+                                            </li>
+                                            <li class="dropdown-item"><a href="" class="dropdown-link">Sách tuổi
+                                                teen</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-link"><a href="" class="dropdown-link">Sách tâm lý</a></li>
+                                </ul>
+
                             </li>
                             <li class="category-item">
                                 <a href="" class="category-item__link">Tin tức</a>
@@ -35,34 +82,75 @@
                     </div>
                     <div class="category-form">
                         <h4 class="category__heading">Nhà xuất bản</h4>
-                        <div class="category-inform">
-                            <input type="checkbox" id="adam-khoo">
-                            <label class="checkbox-label" for="adam-khoo">Adam Khoo</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="astrid-lindgren">
-                            <label class="checkbox-label" for="astrid-lindgren">Atrid Lindgren</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="barry-nalebuft">
-                            <label class="checkbox-label" for="barry-nalebuft">Barry Nalebuft</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="brian-tracy">
-                            <label class="checkbox-label" for="brian-tracy">Brian Tracy</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="cloud-pillow-studio">
-                            <label class="checkbox-label" for="cloud-pillow-studio">Cloud Pillow Studio</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="Cuu-ba-dao">
-                            <label class="checkbox-label" for="Cuu-ba-dao">Cửu Bả Đao</label>
+                        <div class="category-scroll">
+                            <div class="category-inform">
+                                <input type="checkbox" id="adam-khoo">
+                                <label class="checkbox-label" for="adam-khoo">Adam Khoo</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="astrid-lindgren">
+                                <label class="checkbox-label" for="astrid-lindgren">Atrid Lindgren</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="barry-nalebuft">
+                                <label class="checkbox-label" for="barry-nalebuft">Barry Nalebuft</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="brian-tracy">
+                                <label class="checkbox-label" for="brian-tracy">Brian Tracy</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="cloud-pillow-studio">
+                                <label class="checkbox-label" for="cloud-pillow-studio">Cloud Pillow Studio</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="nguyen-nhat-anh">
+                                <label class="checkbox-label" for="nguyen-nhat-anh">Nguyễn Nhật Ánh</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="do-hong-ngoc">
+                                <label class="checkbox-label" for="do-hong-ngoc">Đỗ Hồng Ngọc</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="gao">
+                                <label class="checkbox-label" for="gao">Gào</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="cuu-ba-dao">
+                                <label class="checkbox-label" for="cuu-ba-dao">Cửu Bả Đao</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="dale">
+                                <label class="checkbox-label" for="dale">Dale Carnegie</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="dinh-hang">
+                                <label class="checkbox-label" for="dinh-hang">Đinh Hằng</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="harvard">
+                                <label class="checkbox-label" for="harvard">Harvard</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="hoang-mai-quyen">
+                                <label class="checkbox-label" for="hoang-mai-quyen">Hoàng Mai Quyên</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="ichi">
+                                <label class="checkbox-label" for="ichi">Ichikawa Takuji</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="ling-trang">
+                                <label class="checkbox-label" for="ling-trang">Linh Trang</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="minh-duc">
+                                <label class="checkbox-label" for="minh-duc">Minh Đức</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="more">
+                                <label class="checkbox-label" for="more">Nhiều tác giả</label>
+                            </div>
                         </div>
                     </div>
                     <div class="category-form">
@@ -131,11 +219,14 @@
                     </div>
                 </nav>
             </div>
+        </div>
+        <div class="grid__row">
             <div class="col-md-10">
-
             </div>
         </div>
     </div>
+
+
 </div>
 </body>
 </html>
