@@ -1,16 +1,232 @@
-body{
-    margin: 0px;
-    padding: 0px;
+body {
+    margin: 0;
+    padding: 0;
     background: white;
 }
 
-
-#slider .img{
-    margin-top: 50px;
-    padding-top: 50%;
-    height: 540px;
+.container {
+    max-width: 1140px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-#flash_sale{
+.pt-100 {
+    padding-top: 100px;
+}
 
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+
+/*----------------------------------------*/
+/*  4. Slider area
+/*----------------------------------------*/
+
+
+
+
+/*----------------------------------------*/
+/*  4. Slider area
+/*----------------------------------------*/
+
+/*<!-- featured-area-start -->*/
+
+.section-title h2 {
+    display: inline-block;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 30px;
+    position: relative;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.product-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.owl-carousel.owl-loaded {
+    display: block;
+}
+
+.tab-active {
+    overflow: hidden;
+}
+
+.owl-carousel {
+    display: none;
+    width: 100%;
+    z-index: 1;
+}
+
+.owl-carousel, .owl-carousel .owl-item {
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.product-img, .most-product-img {
+    position: relative;
+    overflow: hidden;
+}
+.product-img img {
+    width: 100%; /* Đặt chiều rộng của ảnh tự động */
+    height: auto; /* Giữ tỷ lệ ảnh */
+    object-fit: contain; /* Giữ nguyên tỷ lệ mà không cắt ảnh */
+}
+
+.overlay {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.product-img:hover .overlay {
+    top: 0;
+}
+
+
+.quick-view {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.product-img:hover .quick-view {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+.quick-view a {
+    background-color: #316064;
+    border-radius: 50px;
+    color: #fff;
+    display: inline-block;
+    font-size: 22px;
+    height: 61px;
+    line-height: 61px;
+    width: 61px;
+    transform: scale(0);
+    transition: all .5s ease 0s;
+}
+
+.product-flag {
+    left: 0;
+    position: absolute;
+    top: 0;
+
+}
+
+.product-flag li {
+    line-height: 16px;
+}
+
+.product-flag ul li>span {
+    background: #f07c29 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 6px;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 100;
+    font-weight: 400;
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.product-rating ul li {
+    display: inline-block;
+}
+
+.product-details h4 {
+    margin-bottom: 10px;
+    margin-top: 13px;
+}
+
+.product-details h4 a {
+    color: #333333;
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    overflow: hidden;
+    padding: 0;
+    text-transform: capitalize;
+    transition: .3s;
+    font-family: 'Rufina', serif;
+    text-decoration: none;
+}
+
+.product-price {
+    transition: all 0.5s ease 0s;
+}
+
+.product-price ul li {
+    display: inline-block;
+    color: #f07c29;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Rufina', serif;
+    font-style: italic;
+}
+
+.product-link {
+    bottom: 0px;
+    left: 0;
+    overflow: hidden;
+    padding-bottom: 8px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+    margin-bottom: 1px;
+}
+/* Hiệu ứng hover cho quick view */
+.product-wrapper:hover .quick-view {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+.quick-view a {
+    transform: scale(1); /* Phóng to nút khi hover */
+}
+
+.quick-view {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Điều chỉnh để gắn các thông tin sản phẩm trong wrapper */
+.product-details {
+    padding: 10px;
+}
+
+/*<!-- featured-area-end -->*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .container {
+        max-width: 460px;
+    }
 }
