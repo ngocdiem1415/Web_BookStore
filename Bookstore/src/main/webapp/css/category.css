@@ -9,6 +9,8 @@
     border-radius: 3px;
     background-color: white;
     line-height: 1.6rem;
+    padding: 0;
+    margin: 0;
 
 }
 
@@ -102,16 +104,45 @@
     right: -5px;
 }
 
-.row .col-md-2 {
-    padding-left: 12px;
-    padding-right: 12px;
-    width: 16.6667%;
+ .col-md-2 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 270px;
 }
 
-.row .col-md-10 {
-    padding-left: 12px;
-    padding-right: 12px;
-    width: 83.3334%;
+ .col-md-10 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 921px;
+}
+
+.grid-md-2-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 25%;
+}
+
+
+.grid__head {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__row {
+    display: flex;
+    margin-left: 5px;
+    margin-right: -5px;
+
+}
+
+.grid {
+    display: flex;
+}
+
+.home-product-item {
+    margin-top: 0;
+    flex-basis: 100%; /* or adjust width to match the design */
 }
 
 /*head*/
@@ -189,3 +220,137 @@
 .category-item.active .dropdown-menu {
     display: block;
 }
+
+/* Product item */
+.home-product-item {
+    margin-top: 21px;
+    margin-left: 10px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+
+}
+
+.home-product-item {
+    margin-top: 21px;
+    margin-left: 10px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden; /* Để ẩn phần hình ảnh khi phóng to */
+    transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
+}
+
+.home-product-item:hover {
+    transform: scale(1.05); /* Phóng to hình ảnh khi hover */
+}
+
+.home-product-item .home-product-item__img {
+    padding-top: 100%;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-top: 14px !important ;
+    transition: transform 0.3s ease; /* Thêm hiệu ứng cho hình ảnh */
+}
+
+.home-product-item:hover .home-product-item__img {
+    transform: scale(1.1); /* Phóng to hình ảnh bên trong khi hover */
+}
+
+.home-product-item__img {
+    padding-top: 100%;
+    width: 100%;
+    height: 100%; /* Adjust height to fill the div completely */
+    background-size: contain; /* Adjust to contain the image within bounds */
+    background-position: center center; /* Center the image horizontally and vertically */
+    background-repeat: no-repeat;
+    margin: 0 auto; /* Center the div if it’s within a larger grid */
+}
+
+.home-product-item__name {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.8rem;
+    height: 1.8rem;
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    text-overflow: ellipsis; /* Hiển thị dấu ... nếu tên quá dài */
+    white-space: nowrap; /* Giữ trên một dòng, sẽ cắt bớt nếu quá dài */
+    -webkit-box-orient: vertical;
+}
+
+.home-product-item__price {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding-bottom: 12px;
+}
+
+.home-product-item__price-old {
+    font-size: 1.4rem;
+    color: #666666;
+    text-decoration: line-through;
+}
+
+.home-product-item__price-current {
+    font-size: 1.5rem;
+    color: #f96a0b;
+    margin-right: 10px;
+}
+
+/*pagnigation*/
+.home-filter__paginate {
+    display: flex;
+    justify-content: flex-end; /* Aligns pagination to the right */
+    padding: 20px 0; /* Adds some spacing */
+}
+
+.home-filter__paginate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.home-filter__paginate-item {
+    display: inline; /* Makes the list items inline */
+    margin: 0 5px; /* Adds some space between items */
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 0.5px solid #cccccc; /* Adds a border around each item */
+    border-radius: 44%; /* Rounds the corners */
+}
+
+.home-filter__paginate-item:hover {
+    border-color: #73C0B0; /* Thay đổi màu viền */
+    color: #73C0B0; /* Thay đổi màu chữ */
+    cursor: pointer; /* Thêm hiệu ứng trỏ chuột */
+}
+
+
+.home-filter__paginate-item a {
+    text-decoration: none; /* Removes underline */
+    color: #333; /* Change color as needed */
+}
+
+.home-filter__paginate-item:first-child a{
+    color: #117C6F;
+}
+
+
+.home-filter__paginate-item a:hover {
+    border-color: #73C0B0;
+    color: #73C0B0;
+    text-decoration: none; /* Xóa gạch chân khi hover */
+}
+
+
+.home-filter__paginate-item--active{
+    color: #73C0B0 ;
+    border: 0.5px solid #73C0B0
+}
+
+
+
