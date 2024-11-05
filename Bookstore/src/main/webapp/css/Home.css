@@ -13,6 +13,9 @@ body {
 .pt-100 {
     padding-top: 100px;
 }
+.pl-100 {
+    padding-left: 100px;
+}
 
 .mb-30 {
     margin-bottom: 30px;
@@ -26,8 +29,39 @@ body {
 /*----------------------------------------*/
 /*  4. Slider area
 /*----------------------------------------*/
+.container {
+    position: relative;
+}
 
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+}
 
+.slider-sale .sale1{
+    font-size: 25px;
+    background: #eeb900;
+}
+
+.slider-sale .sale2 {
+    display: inline-block;
+    text-align: center;
+}
+
+.sale2 .old-price {
+    display: block;
+    font-size: 1rem;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+.sale2 .new-price {
+    display: block; /* Đặt giá mới dưới */
+    font-size: 1.2rem; /* Kích thước chữ lớn hơn một chút */
+    color: #316064; /* Màu sắc nổi bật cho giá mới */
+    font-weight: bold;
+}
 
 
 /*----------------------------------------*/
@@ -51,7 +85,7 @@ body {
     overflow: hidden;
 }
 
-.owl-carousel.owl-loaded {
+.owl-stage-outer{
     display: block;
 }
 
@@ -146,7 +180,6 @@ body {
     text-align: center;
     text-transform: uppercase;
     z-index: 100;
-    font-weight: 400;
     position: relative;
     font-family: "Open Sans", sans-serif;
 }
@@ -192,7 +225,7 @@ body {
 }
 
 .product-link {
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     overflow: hidden;
     padding-bottom: 8px;
