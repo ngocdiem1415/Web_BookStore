@@ -13,8 +13,8 @@ body {
 }
 
 .container {
-    width: 80%;
-    margin: 50px auto;
+    width: 90%;
+    margin: 20px auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -23,16 +23,20 @@ body {
 
 .row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.col-md-6 {
+    flex: 1;
+    min-width: 300px; /* Ensures columns don't get too narrow */
+    margin: 10px 0;
 }
 
 .form {
     text-align: center;
     color: #3B4F60;
-}
-
-.form .row {
-    margin: 20px 0;
+    padding: 10px;
 }
 
 h3 {
@@ -80,9 +84,30 @@ h3 {
 }
 
 iframe {
-    width: 800px;
-    height: 450px;
+    width: 100%;
+    height: 467px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 7px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h3 {
+        font-size: 1.5em;
+    }
+
+    .container {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    iframe {
+        height: 300px;
+    }
+
+    #submitBtn {
+        width: 100%;
+        padding: 12px;
+    }
 }
