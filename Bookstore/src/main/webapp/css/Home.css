@@ -13,6 +13,7 @@ body {
 .pt-100 {
     padding-top: 100px;
 }
+
 .pl-100 {
     padding-left: 100px;
 }
@@ -25,11 +26,15 @@ body {
     margin-top: 30px;
 }
 
+.text-center {
+    text-align: center !important;
+}
+
 
 /*----------------------------------------*/
 /*  4. Slider area
 /*----------------------------------------*/
-.container {
+.carousel .container {
     position: relative;
 }
 
@@ -38,7 +43,13 @@ body {
     position: absolute;
 }
 
-.slider-sale .sale1{
+.slider-sale {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa sale1 và sale2 */
+}
+
+.slider-sale .sale1 {
     font-size: 25px;
     background: #eeb900;
 }
@@ -59,7 +70,7 @@ body {
 .sale2 .new-price {
     display: block; /* Đặt giá mới dưới */
     font-size: 1.2rem; /* Kích thước chữ lớn hơn một chút */
-    color: #316064; /* Màu sắc nổi bật cho giá mới */
+    color: #f07c29; /* Màu sắc nổi bật cho giá mới */
     font-weight: bold;
 }
 
@@ -85,33 +96,25 @@ body {
     overflow: hidden;
 }
 
-.owl-stage-outer{
-    display: block;
-}
-
-.tab-active {
-    overflow: hidden;
-}
-
 .owl-carousel {
-    display: none;
+    display: block;
     width: 100%;
     z-index: 1;
 }
 
-.owl-carousel, .owl-carousel .owl-item {
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
+.owl-carousel .owl-item {
+    /*position: relative;*/
 }
 
 .product-img, .most-product-img {
     position: relative;
     overflow: hidden;
 }
+
 .product-img img {
-    width: 100%; /* Đặt chiều rộng của ảnh tự động */
-    height: auto; /* Giữ tỷ lệ ảnh */
-    object-fit: contain; /* Giữ nguyên tỷ lệ mà không cắt ảnh */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .overlay {
@@ -160,6 +163,10 @@ body {
     transition: all .5s ease 0s;
 }
 
+.product-img:hover .quick-view a{
+    transform: scale(1); /* Phóng to nút khi hover */
+}
+
 .product-flag {
     left: 0;
     position: absolute;
@@ -171,7 +178,7 @@ body {
     line-height: 16px;
 }
 
-.product-flag ul li>span {
+.product-flag ul li > span {
     background: #f07c29 none repeat scroll 0 0;
     color: #fff;
     font-size: 12px;
@@ -182,10 +189,6 @@ body {
     z-index: 100;
     position: relative;
     font-family: "Open Sans", sans-serif;
-}
-
-.text-center {
-    text-align: center !important;
 }
 
 .product-rating ul li {
@@ -237,26 +240,109 @@ body {
     transition: .5s;
     margin-bottom: 1px;
 }
-/* Hiệu ứng hover cho quick view */
-.product-wrapper:hover .quick-view {
-    opacity: 1;
-    transform: translateY(-50%);
-}
-
-.quick-view a {
-    transform: scale(1); /* Phóng to nút khi hover */
-}
-
-.quick-view {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* Điều chỉnh để gắn các thông tin sản phẩm trong wrapper */
-.product-details {
-    padding: 10px;
-}
 
 /*<!-- featured-area-end -->*/
+
+/*<!-- bestseller-area-start -->*/
+.single-deal {
+    overflow: hidden;
+}
+
+.deal-off-day {
+    float: left;
+    padding: 0 15px 0 0;
+    text-align: right;
+    width: 50%;
+}
+.deal-off-day {
+    float: left;
+    padding: 0 15px 0 0;
+    text-align: right;
+    width: 50%;
+}
+.deal-off-day-title h1 {
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    float: left;
+}
+
+.deal-off-day h2 {
+    margin-top: 85px;
+    margin-bottom: 0;
+}
+
+.deal-off-day h2 a {
+    color: #333;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.15;
+    text-transform: capitalize;
+    text-decoration: none;
+    font-family: 'Rufina', serif;
+    transition: .3s;
+}
+
+.deal-off-day .sale-area {
+    overflow: hidden;
+}
+.deal-off-day .sale-area .price-box {
+    font-style: italic;
+    margin-top: 22px;
+}
+
+.deal-off-day .sale-area .price-box span.old-sale {
+    color: #333;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: line-through;
+    font-family: 'Rufina', serif;
+}
+
+.deal-off-day .sale-area .price-box span.new-sale {
+    color: #f07c29;
+    display: block;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.deal-off-day p {
+    clear: both;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 30px 0;
+    color: #333;
+}
+
+.timer .cdown {
+    color: #666;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    text-transform: capitalize;
+    text-align: center;
+}
+.timer .cdown span {
+    border: 1px solid #CECECE;
+    border-radius: 4px;
+    color: #333;
+    display: block;
+    font-size: 30px;
+    height: 58px;
+    line-height: 55px;
+    text-align: center;
+    width: 70px;
+    text-decoration: none;
+}
+.banner-img-3 {
+    float: right;
+    padding-left: 15px;
+}
+
+.banner-img-3 img {
+    display: block;
+    width: 100%;
+}
+/*<!-- /bestseller-area-start -->*/
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
     .container {
