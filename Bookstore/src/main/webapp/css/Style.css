@@ -2,10 +2,16 @@
     box-sizing: inherit;
 }
 
-html {
-    font-size: 62.5%;
+body {
     font-family: 'Open Sans', sans-serif;
-    box-sizing: border-box;
+    font-weight: 400;
+    color: black;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none
 }
 
 .grid{
