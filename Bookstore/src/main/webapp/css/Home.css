@@ -18,12 +18,21 @@ body {
     padding-left: 100px;
 }
 
+.pb-100{
+    padding-bottom: 100px;
+}
+.pt-95 {
+    padding-top: 95px;
+}
 .mb-30 {
     margin-bottom: 30px;
 }
 
 .mt-30 {
     margin-top: 30px;
+}
+.bt-3 {
+    border-top: 1px solid #e5e5e5;
 }
 
 .text-center {
@@ -261,7 +270,7 @@ body {
     width: 50%;
 }
 .deal-off-day-title h1 {
-    font-size: 18px;
+    font-size: 25px;
     text-transform: uppercase;
     display: inline-block;
     float: left;
@@ -335,7 +344,10 @@ body {
 }
 .banner-img-3 {
     float: right;
-    padding-left: 15px;
+    padding-left: 10px;
+    margin-top: 50px;
+    padding-top: 40px;
+    border: 1px solid #316064;
 }
 
 .banner-img-3 img {
@@ -343,6 +355,96 @@ body {
     width: 100%;
 }
 /*<!-- /bestseller-area-start -->*/
+
+.bestseller-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.bestseller-details h4 a {
+    color: #333333;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    overflow: hidden;
+    text-transform: capitalize;
+    transition: .3s;
+    text-decoration: none;
+}
+
+.price-box .old-sale {
+    display: block;
+    font-size: 1rem;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+
+/*<!-- /bestseller-area-end -->*/
+
+/*<!-- most-product-area-start -->*/
+.most-product-content {
+    float: left;
+    width: 75%;
+    padding-left: 15px;
+}
+
+.single-most-product {
+    overflow: hidden;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e5e5e5;
+
+}
+
+.product-img, .most-product-img {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/*<!-- most-product-area-end -->*/
+
+
+/*<!-- banner-area-start -->*/
+.single-banner {
+    display: flex;
+}
+
+.single-banner .banner-img {
+    margin-right: 12px;
+    margin-top: 4px;
+}
+
+.banner-img a {
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+}
+
+.banner-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.single-banner .banner-text h4 {
+    color: #222;
+    font-family: "Rufina", serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.single-banner .banner-text p {
+    color: #333;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/*<!-- banner-area-end -->*/
+
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
     .container {
