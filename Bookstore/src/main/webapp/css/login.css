@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-image: url('../img/product/background-login.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.container-login {
+    width: 100%;
+    max-width: 600px;
+    height: 570px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    /*position: relative;*/
+    /*left: 300px;*/
+}
+
+.form-panel {
+    width: 100%;
+}
+
+.form-header {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-header-inner {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.form-link {
+    font-weight: bold;
+    color: #555; /* Default text color */
+    text-decoration: none;
+    padding: 10px 30px; /* Adjusted padding for a larger clickable area */
+    font-size: 16px;
+    border-radius: 25px; /* Pill shape for active effect */
+    transition: all 0.3s ease;
+}
+
+.form-link.active {
+    background-color: #28a745; /* Active tab background color */
+    color: #fff; /* Active tab text color */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15); /* Slight shadow on active tab */
+    transform: scale(1.05); /* Slightly larger to emphasize active state */
+}
+
+.form-link:not(.active):hover {
+    background-color: #28a745; /* Light gray on hover for inactive links */
+    color: #fff; /* Darker text color on hover */
+}
+
+.form-title {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-check {
+    display: flex;
+}
+
+.form-check label {
+    margin-top: 5px;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.form-submit {
+    padding: 18px 30px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: #218838;
+}
+
+.form-footer {
+    margin-top: 15px;
+}
+
+.forgot-password {
+    font-size: 15px;
+    color: #28a745;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
