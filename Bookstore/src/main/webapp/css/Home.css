@@ -31,14 +31,21 @@ body {
 .mt-30 {
     margin-top: 30px;
 }
-.bt-3 {
+.bt-1 {
     border-top: 1px solid #e5e5e5;
+}
+
+.bl-10{
+    border-left: 10px solid #0a3622;
 }
 
 .text-center {
     text-align: center !important;
 }
 
+.cl-o{
+    color: #f07c29;
+}
 
 /*----------------------------------------*/
 /*  4. Slider area
@@ -253,6 +260,9 @@ body {
 /*<!-- featured-area-end -->*/
 
 /*<!-- bestseller-area-start -->*/
+.bestseller-area{
+    border-bottom: 1px solid #dad7d7;
+}
 .single-deal {
     overflow: hidden;
 }
@@ -386,24 +396,42 @@ body {
 /*<!-- /bestseller-area-end -->*/
 
 /*<!-- most-product-area-start -->*/
-.most-product-content {
-    float: left;
-    width: 75%;
-    padding-left: 15px;
-}
-
-.single-most-product {
-    overflow: hidden;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #e5e5e5;
-
-}
-
-.product-img, .most-product-img {
+.title_top_menu_index .heading1 h2 {
+    font-size: 24px;
+    text-align: left;
     position: relative;
-    overflow: hidden;
+    padding-left: 14px;
+    padding-right: 15px;
+    background: #f3f3f5;
+    display: block;
+}
+.most-product .product-wrapper:hover{
+    box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
+.title_top_menu_index .d-md-block .see-more{
+    padding: 10px;
+    display: inline-block;
+    box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title_top_menu_index .d-md-block .see-more:hover{
+    background: #b7d6d4;
+
+}
+.price-most-product .price-box .old-price {
+    display: block;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+    top: 50%;
+}
+
+.price-box .old-price .price{
+   color: #999;
+    padding-left:10px;
+    font-size: 12px;
+}
 
 /*<!-- most-product-area-end -->*/
 
@@ -444,6 +472,8 @@ body {
 }
 
 /*<!-- banner-area-end -->*/
+
+
 
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
