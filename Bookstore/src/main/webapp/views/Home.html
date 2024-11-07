@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../css/Style.css">
     <link rel="stylesheet" href="../css/Home.css">
     <link rel="stylesheet" href="../css/Header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <title>Home</title>
 
 </head>
@@ -32,7 +33,7 @@
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="container mt-30">
             <div class="carousel-inner">
-                <div class="carousel-item">
+                <div class="carousel-item active">
                     <img src="../img/slider/13.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-md-block text-start custom-caption">
                         <h1 class="fs-1 fs-md-2 fs-lg-3">A Game <br>Fuck up</h1>
@@ -52,7 +53,7 @@
                         <a href="#">Shop now!</a>
                     </div>
                 </div>
-                <div class="carousel-item active">
+                <div class="carousel-item ">
                     <img src="../img/slider/12.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-md-block text-start custom-caption">
                         <h1 class="fs-1 fs-md-2 fs-lg-3">Wake The <br>of Thrones</h1>
@@ -300,24 +301,23 @@
     <!-- featured-area-end -->
 
     <!-- bestseller-area-start -->
-    <div class="bestseller-area pb-100">
+    <div class="bestseller-area mb-30">
         <div class="container">
             <div class="row">
+                <!-- Cột chính cho ưu đãi -->
                 <div class="col-lg-8 col-md-12 col-12">
-                    <div class="single-deal pt-100">
-                        <div class="deal-off-day ">
+                    <div class="single-deal pt-100 d-flex flex-wrap">
+                        <div class="deal-off-day">
                             <div class="deal-off-day-title mb-30">
                                 <h1>CÁC ƯU ĐÃI TRONG NGÀY</h1>
                             </div>
-                            <h2><a href="#">Harry Potter </a></h2>
+                            <h2><a href="#">Harry Potter</a></h2>
                             <div class="sale-area">
                                 <div class="price-box">
-                                    <span class="old-sale">
-                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #000;"></i>
-                                        38 000</span>
+                                <span class="old-sale">
+                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #000;"></i> 38 000</span>
                                     <span class="new-sale">
-                                       <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                        36 000</span>
+                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i> 36 000</span>
                                 </div>
                             </div>
                             <p>Harry Potter là tên của bộ truyện (gồm bảy phần) của nữ nhà văn nước Anh J. K. Rowling.
@@ -326,132 +326,106 @@
                             <div class="timer">
                                 <div data-countdown="2023/5/15">
                                     <div class="cdown days">
-                                        <span class="counting counting-2">0</span>
-                                        "Ngày"
+                                        <span class="counting counting-2">0</span> Ngày
                                     </div>
                                     <div class="cdown hours">
-                                        <span class="counting counting-2">0</span>
-                                        "Giờ"
+                                        <span class="counting counting-2">0</span> Giờ
                                     </div>
                                     <div class="cdown minutes">
-                                        <span class="counting counting-2">00</span>
-                                        "Phút"
+                                        <span class="counting counting-2">00</span> Phút
                                     </div>
                                     <div class="cdown seconds">
-                                        <span class="counting counting-2">00</span>
-                                        "Giây"
+                                        <span class="counting counting-2">00</span> Giây
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Hình ảnh -->
                         <div class="banner-img-3">
-                            <a href="#"><img src="../img/product/HarryPotter.png" alt="banner"/></a>
+                            <a href="#"><img src="../img/product/HarryPotter.png" alt="banner" class="img-fluid"/></a>
                         </div>
-
                     </div>
                 </div>
+                <!-- Cột bestseller -->
                 <div class="col-lg-4 col-md-12 col-12">
-                    <div class="bestseller d-flex pt-100 mt-30">
-                        <div class="bestseller-total ">
-                            <div class="item" style="width: 150px; margin-right: 5px">
+                    <div class="bestseller pt-100 mt-30">
+                        <div class="bestseller-total d-flex flex-wrap">
+                            <div class="item col-6 col-sm-4 col-lg-6 mb-3" style="max-width: 150px;">
                                 <div class="tab-total">
-                                    <!-- bestseller-product-start -->
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="#">
-                                                <img src="../img/product/1.jpg" alt="book" class="primary"/>
-                                            </a>
+                                            <a href="#"><img src="../img/product/1.jpg" alt="book"
+                                                             class="img-fluid"/></a>
                                         </div>
                                         <div class="bestseller-details text-center">
                                             <h4><a href="#">Joust Duffle Bag</a></h4>
                                             <div class="sale-area">
                                                 <div class="price-box">
-                                                    <span class="new-sale">
-                                                            <i class="fa-solid fa-dong-sign fa-xs"
-                                                               style="color: #f07c29;"></i>
-                                                            70 000</span>
-                                                    </span>
+                                                <span class="new-sale cl-o">
+                                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i> 70 000
+                                                </span>
                                                 </div>
                                             </div>
-                                            <!-- bestseller-product-end -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item" style="width: 150px; margin-right: 5px">
+                            <div class="item col-6 col-sm-4 col-lg-6 mb-3" style="max-width: 150px;">
                                 <div class="tab-total">
-                                    <!-- bestseller-product-start -->
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="#">
-                                                <img src="../img/product/1.jpg" alt="book" class="primary"/>
-                                            </a>
+                                            <a href="#"><img src="../img/product/1.jpg" alt="book"
+                                                             class="img-fluid"/></a>
                                         </div>
                                         <div class="bestseller-details text-center">
                                             <h4><a href="#">Joust Duffle Bag</a></h4>
                                             <div class="sale-area">
                                                 <div class="price-box">
-                                                    <span class="new-sale">
-                                                            <i class="fa-solid fa-dong-sign fa-xs"
-                                                               style="color: #f07c29;"></i>
-                                                            70 000</span>
-                                                    </span>
+                                                <span class="new-sale cl-o">
+                                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i> 70 000
+                                                </span>
                                                 </div>
                                             </div>
-                                            <!-- bestseller-product-end -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="bestseller-total ">
-                            <div class="item" style="width: 150px; margin-right: 5px">
+                            <div class="item col-6 col-sm-4 col-lg-6 mb-3" style="max-width: 150px;">
                                 <div class="tab-total">
-                                    <!-- bestseller-product-start -->
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="#">
-                                                <img src="../img/product/1.jpg" alt="book" class="primary"/>
-                                            </a>
+                                            <a href="#"><img src="../img/product/1.jpg" alt="book"
+                                                             class="img-fluid"/></a>
                                         </div>
                                         <div class="bestseller-details text-center">
                                             <h4><a href="#">Joust Duffle Bag</a></h4>
                                             <div class="sale-area">
                                                 <div class="price-box">
-                                                    <span class="new-sale">
-                                                            <i class="fa-solid fa-dong-sign fa-xs"
-                                                               style="color: #f07c29;"></i>
-                                                            70 000</span>
-                                                    </span>
+                                                <span class="new-sale cl-o">
+                                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i> 70 000
+                                                </span>
                                                 </div>
                                             </div>
-                                            <!-- bestseller-product-end -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item" style="width: 150px; margin-right: 5px">
+                            <div class="item col-6 col-sm-4 col-lg-6 mb-3" style="max-width: 150px;">
                                 <div class="tab-total">
-                                    <!-- bestseller-product-start -->
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="#">
-                                                <img src="../img/product/1.jpg" alt="book" class="primary"/>
-                                            </a>
+                                            <a href="#"><img src="../img/product/1.jpg" alt="book"
+                                                             class="img-fluid"/></a>
                                         </div>
                                         <div class="bestseller-details text-center">
                                             <h4><a href="#">Joust Duffle Bag</a></h4>
                                             <div class="sale-area">
                                                 <div class="price-box">
-                                                    <span class="new-sale">
-                                                            <i class="fa-solid fa-dong-sign fa-xs"
-                                                               style="color: #f07c29;"></i>
-                                                            70 000</span>
-                                                    </span>
+                                                <span class="new-sale cl-o">
+                                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i> 70 000
+                                                </span>
                                                 </div>
                                             </div>
-                                            <!-- bestseller-product-end -->
                                         </div>
                                     </div>
                                 </div>
@@ -465,7 +439,905 @@
     <!-- bestseller-area-end -->
 
     <!-- most-product-area-start -->
-    <!-- most-product-area-end -->
+    <div class="most-product ">
+        <div class="literary-books mb-30">
+            <div class="container">
+                <div class="row row-noGutter-2">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_top_menu_index row mb-30">
+                        <div class="heading1 col-10 ">
+                            <h2 class="title-head bl-10"><a href="#" class="text-dec">Sách văn học</a></h2>
+                        </div>
+                        <div class="d-md-block d-none col-12 col-md-2">
+                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="d-flex flex-wrap">
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="novels mb-30">
+            <div class="container">
+                <div class="row row-noGutter-2">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_top_menu_index row mb-30">
+                        <div class="heading1 col-10 ">
+                            <h2 class="title-head bl-10"><a href="#" class="text-dec">Tiểu thuyết</a></h2>
+                        </div>
+                        <div class="d-md-block d-none col-12 col-md-2">
+                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="d-flex flex-wrap">
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stories mb-30">
+            <div class="container">
+                <div class="row row-noGutter-2">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_top_menu_index row mb-30">
+                        <div class="heading1 col-10 ">
+                            <h2 class="title-head bl-10"><a href="#" class="text-dec">Truyện</a></h2>
+                        </div>
+                        <div class="d-md-block d-none col-12 col-md-2">
+                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="d-flex flex-wrap">
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="other-books mb-30">
+            <div class="container">
+                <div class="row row-noGutter-2">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_top_menu_index row mb-30">
+                        <div class="heading1 col-10 ">
+                            <h2 class="title-head bl-10"><a href="#" class="text-dec">Sách khác</a></h2>
+                        </div>
+                        <div class="d-md-block d-none col-12 col-md-2">
+                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="d-flex flex-wrap">
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+                        <div class="most-product mb-30" style="width: 205px">
+                            <div class="tab-total">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper ">
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img src="../img/product/1.jpg" alt="book" class="primary"/>
+                                        </a>
+                                        <div class="overlay"></div>
+                                        <div class="quick-view">
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="action-view" href="#" data-bs-target="#productModal"
+                                               data-bs-toggle="modal"
+                                               title="Quick View">
+                                                <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="price-most-product text-center">
+                                        <h5><a href="#" class="text-dec">Joust Duffle Bag</a></h5>
+                                        <div class="price-box clearfix d-flex justify-content-center">
+                                            <div class="special-price">
+                                            <span class="price product-price cl-o">
+                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                71 000</span>
+                                            </div>
+                                            <div class="old-price">
+						                <span class="price product-price-old">
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
+							                95 000
+						                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-end -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--     most-product-area-end -->
 </div>
 
 <!--/SECTION-->
