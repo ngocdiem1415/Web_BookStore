@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Policy</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
-            integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--    all css files-->
     <link rel="stylesheet" href="../css/policy.css">
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/Header.css">
+    <link rel="stylesheet" href="../css/Style.css">
 </head>
 <body>
+<!--header-->
+<div id="header"></div>
+
 <div class="container">
     <div class="content">
         <div class="col-md-6">
@@ -146,5 +150,26 @@
     </div>
 </div>
 
+
+<!--footer-->
+<div id="footer"></div>
+
+<!--all script files-->
+<script>
+    fetch('Header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.text();
+        })
+        .then(data => document.getElementById('header').innerHTML = data)
+        .catch(error => console.error('Error:', error));
+
+    // Tải nội dung của footer từ tệp Footer.html
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+</script>
 </body>
 </html>
