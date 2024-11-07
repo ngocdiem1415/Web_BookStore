@@ -1,0 +1,43 @@
+
+.header{
+    background: linear-gradient(to bottom, #B8D7D5, #edfdf2);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-toggle-btn #menu-toggle{
+    border-radius: 5px;
+}
+
+.profile-box{
+    float: right;
+}
+
+.header .header-right .profile-box .profile-info .info {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.profile-info .info .image {
+    font-size: 10px;
+}
+.header .header-right .profile-box .profile-info .info .image {
+    border: 3px solid black;
+    width: 48px;
+    height: 46px;
+    border-radius: 50%;
+    margin-left: 16px;
+    position: relative;
+}
+
+.header .header-right .profile-box .profile-info .info .image .status {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid #e5e5e5;
+    background: #219653;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: auto;
+}

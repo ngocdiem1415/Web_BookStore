@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+<!--  all css files-->
+  <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/Style.css">
+  <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="../css/Dashboard.css">
+
+
+</head>
+<body>
+<!--header start-->
+<header class="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-6">
+        <div class="header-left d-flex align-items-center">
+          <div class="menu-toggle-btn ">
+            <button id="menu-toggle" class="main-btn btn-hover">
+              <i class="fas fa-bars"></i> Menu
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-7 col-6">
+        <div class="header-right">
+          <!-- profile start -->
+          <div class="profile-box" >
+            <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="profile-info">
+                <div class="info ">
+                  <h5>Ngọc Diễm</h5>
+                  <div class="image">
+                    <img src="../img/Sample_User_Icon.png" style="width: 52px; height: 53px">
+                    <span class="status"></span>
+                  </div>
+                </div>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+              <li>
+                <a href="#0">Trở về Trang mua hàng </a>
+              </li>
+              <li>
+                <a href="#0">Đăng xuất</a>
+              </li>
+            </ul>
+          </div>
+          <!-- profile end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!--header end-->
+
+
+<!--all script files-->
+<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
