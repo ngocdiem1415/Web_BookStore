@@ -15,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    flex-direction: column;
 }
 
 .container-login {
@@ -32,7 +33,7 @@ body {
 }
 
 .container-login .form-header {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
 }
@@ -187,26 +188,26 @@ body {
 }
 
 /* Facebook icon */
-.form-body .icons .fa-facebook-f {
-    background-color: #0a53be;
-}
+/*.form-body .icons .fa-facebook-f {*/
+/*    background-color: #0a53be;*/
+/*}*/
 
-.form-body .icons .fa-facebook-f:hover {
-    background-color: #fff;
-    color: #0a53be;
-    border: 1px solid #0a53be; /* Đường viền khi hover */
-}
+/*.form-body .icons .fa-facebook-f:hover {*/
+/*    background-color: #fff;*/
+/*    color: #0a53be;*/
+/*    border: 1px solid #0a53be; !* Đường viền khi hover *!*/
+/*}*/
 
-/* Google icon */
-.form-body .icons .fa-google {
-    background-color: #db4437;
-}
+/*!* Google icon *!*/
+/*.form-body .icons .fa-google {*/
+/*    background-color: #db4437;*/
+/*}*/
 
-.form-body .icons .fa-google:hover {
-    background-color: #fff;
-    color: #db4437;
-    border: 1px solid #db4437; /* Đường viền khi hover */
-}
+/*.form-body .icons .fa-google:hover {*/
+/*    background-color: #fff;*/
+/*    color: #db4437;*/
+/*    border: 1px solid #db4437; !* Đường viền khi hover *!*/
+/*}*/
 
 
 /*------*/
@@ -224,3 +225,29 @@ body {
 .forgot-password:hover {
     text-decoration: underline;
 }
+
+.footer-login {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #28a745; /* Màu nền cho footer */
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
+    z-index: 1000; /* Đảm bảo footer luôn ở trên các thành phần khác */
+}
+
+.footer-login-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-login p {
+    margin: 0;
+    font-size: 14px;
+    color: white;
+    width: 100%; /* Để <p> kéo dài hết chiều ngang footer */
+    background-color: #28a745
+}
+
