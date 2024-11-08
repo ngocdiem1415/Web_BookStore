@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login/Register</title>
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
 
 </head>
 <body>
@@ -12,43 +13,86 @@
         <div class="form-panel">
             <div class="form-header">
                 <div class="form-header-inner">
-                    <a href="#" class="form-link" id="sign-up-form-link">Sign Up</a>
-                    <a href="#" class="form-link active" id="login-form-link">Login</a>
+                    <a href="#" class="form-link" id="sign-up-form-link">Đăng ký</a>
+                    <a href="#" class="form-link active" id="login-form-link">Đăng nhập</a>
                 </div>
             </div>
             <div class="form-body">
-                <h3 class="form-title">Login</h3>
-
+                <!-- Login Form -->
                 <form id="login-form" action="" method="post">
+                    <h3 class="form-title">Đăng nhập</h3>
                     <div class="form-group">
-                        <label for="username">Username or email <span class="required">*</span></label>
-                        <input type="text" name="username" id="username" class="form-control">
+                        <label for="username">Tên đăng nhập hoặc email<span class="required">*</span></label>
+                        <input type="text" name="username" id="username" class="form-control" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="password">Password <span class="required">*</span></label>
-                        <input type="password" name="password" id="password" class="form-control">
+                        <label for="password">Mật khẩu<span class="required">*</span></label>
+                        <input type="password" name="password" id="password" class="form-control" required>
                     </div>
-
-
                     <div class="form-group form-check">
                         <input type="checkbox" name="remember" id="remember">
-                        <label for="remember">Remember me</label>
+                        <label for="remember">Ghi nhớ mật khẩu</label>
                     </div>
-
-                    <div class="btn">
-                        <button type="submit" class="form-submit">Log In</button>
+                    <button type="submit" class="form-submit">Đăng nhập</button>
+                    <!--                   icons-->
+                    <div class="icons">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-google"></i></a>
                     </div>
-
 
                     <div class="form-footer">
-                        <a href="#" id="forgot-password-link" class="forgot-password">Forget your password?</a>
+                        <a href="#" id="forgot-password-link" class="forgot-password">Quên mật khẩu?</a>
                     </div>
+                </form>
+
+                <!-- Register Form  -->
+                <form id="register-form" action="" method="post">
+                    <h3 class="form-title">Đăng ký</h3>
+                    <div class="form-group">
+                        <label for="email">Email<span class="required">*</span></label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-register">Mật khẩu<span class="required">*</span></label>
+                        <input type="password" name="password-register" id="password-register" class="form-control"
+                               required>
+                    </div>
+                    <button type="submit" class="form-submit">Đăng ký</button>
                 </form>
             </div>
         </div>
     </div>
-
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const loginLink = document.getElementById("login-form-link");
+        const registerLink = document.getElementById("sign-up-form-link");
+
+        // Hiển thị form đăng nhập mặc định
+        loginForm.classList.add("active");
+
+        // Xử lý khi bấm vào liên kết Đăng nhập
+        loginLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            loginForm.classList.add("active");
+            registerForm.classList.remove("active");
+            loginLink.classList.add("active");
+            registerLink.classList.remove("active");
+        });
+
+        // Xử lý khi bấm vào liên kết Đăng ký
+        registerLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            registerForm.classList.add("active");
+            loginForm.classList.remove("active");
+            registerLink.classList.add("active");
+            loginLink.classList.remove("active");
+        });
+    });
+</script>
+
 </body>
 </html>
