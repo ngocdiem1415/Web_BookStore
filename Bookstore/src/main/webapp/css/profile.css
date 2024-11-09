@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+    /*PS: co the loi*/
+    background-color: #f5f5f5;
+    /*    */
+
+}
+
+/*Lớp bao trùm */
+.container-profile {
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+}
+
+.container-profile-content-inner {
+    display: flex;
+    padding: 1.25rem 0 3.125rem;
+}
+
+
+/*Lớp phía tay trái*/
+.container-profile-content-inner__left {
+    display: block;
+    flex-shrink: 0;
+    width: 180px;
+}
+
+.profile-info {
+    border-bottom: 1px solid #efefef;
+    display: flex;
+    padding: 15px 0;
+}
+
+/*Thông tin logo tay trais*/
+.profile-info .profile-info-logo {
+}
+
+.profile-info-logo, .profile-info-avatar-img {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-info-avatar-img {
+    border: .0625rem solid rgba(0, 0, 0, .09);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    color: #9b9b9b;
+}
+
+.profile-info-avatar_img__placeholder img {
+    stroke: #c6c6c6;
+    font-size: 1.5rem;
+    font-weight: 400;
+    left: 50%;
+    line-height: 2rem;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    color: #ccc;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
+    --webkit-font-smoothing: antialiased;
+}
+
+.profile-info-username {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding-left: 15px;
+}
+
+.profile-info-username .profile-info-username__text {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 5px;
+    min-height: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-info-username .profile-info-username__edit {
+    color: #888;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+/* *Thông tin logo tay trais ben duoi*/
+
+/*dropdown*/
+.container-profile-content-inner__left .profile-stardust-dropdown {
+    cursor: pointer;
+    list-style: none;
+    margin: 27px 0 0;
+    padding: 0;
+}
+
+.stardust-dropdown {
+    position: relative;
+}
+
+.stardust-dropdown__item-header {
+    vertical-align: baseline;
+}
+
+.stardust-dropdown__item-header .stardust-dropdown__item-header-menu {
+    align-items: center;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.stardust-dropdown__item-header-account-img {
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    flex-shrink: 0;
+    height: 1.25rem;
+    justify-content: center;
+    line-height: 1.25rem;
+    text-align: center;
+    width: 1.25rem;
+
+}
+
+.stardust-dropdown__item-header-account-img > img {
+    height: 100%;
+    width: 100%;
+}
+
+.stardust-dropdown__item-header-account-name {
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+.stardust-dropdown__item-header-account-name-text {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.stardust-dropdown__item-body__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 26px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.stardust-dropdown__item-body__content > a {
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #898888;
+}
+
+.stardust-dropdown__item-body__content-item-active > span {
+    color: #04655d;
+}
+
+
+/*Phần content của phía bên phải*/
+.container-profile-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 42px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-profile-content-inner__right-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+}
+
+.container-profile-content-inner__right-main-inner {
+    padding: 0 24px 18px;
+}
+
+/*Hồ sơ của tôi chi tiết phần header*/
+.container-profile-content-inner__right-main-header {
+    border-bottom: 0.5px solid #efefef;
+    padding: 12px 0;
+    margin: 12px 0;
+}
+
+/*tieu de*/
+.container-profile-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.container-profile-content-inner__right-main-header__description {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+/*Phần content của phía bên phải*/
+.container-profile-content-inner__right-main-content {
+    padding-top: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.container-profile-content-inner__right-main-content-center {
+    padding-right: 50px;
+}
+
+/*form thông tin account*/
+/*Dùng table để phân chia các thông tin*/
+
+.container-profile-content-inner__right-main-content-center__table {
+    width:  602px;
+}
