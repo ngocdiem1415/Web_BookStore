@@ -167,8 +167,13 @@ body {
     color: #898888;
 }
 
+.stardust-dropdown__item-body__content-item {
+    color: #333333;
+    text-decoration: none;
+}
+
 .stardust-dropdown__item-body__content-item-active > span {
-    color: #04655d;
+    color: #117C6F;
 }
 
 
@@ -234,5 +239,347 @@ body {
 /*Dùng table để phân chia các thông tin*/
 
 .container-profile-content-inner__right-main-content-center__table {
-    width:  602px;
+    width: 602px;
 }
+
+
+.container-profile-content-inner__right-main-content-center__table > tr {
+    vertical-align: middle;
+}
+
+.container-profile-content-inner__right-main-content-center__table .table__row-label {
+    color: #333333;
+    min-width: 20%;
+    overflow: hidden;
+    padding-bottom: 30px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.container-profile-content-inner__right-main-content-center__table .table__row-input {
+    box-sizing: border-box;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+
+.container-profile-content-inner__right-main-content-center__table .table__row-input__text {
+    align-items: center;
+    display: flex;
+}
+
+.table__row-input__text .table__row-input__text-name {
+    color: #333;
+    font-size: 14px;
+}
+
+.table__row-input__text .table__row-input__text-button {
+    background: none;
+    border: 0;
+    color: #117C6F;
+    outline: none;
+    text-decoration: underline;
+    text-transform: capitalize;
+    margin-left: 10px;
+}
+
+.table__row-input .table__row-input__field {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .14);
+    border-radius: 2px;
+    box-shadow: inset 0 2px rgba(0, 0, 0, .07);
+    box-sizing: border-box;
+    display: flex;
+    height: 40px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.table__row-input .table__row-input__field .table__row-input__field-text {
+    background: none;
+    border: 0;
+    filter: none;
+    flex: 1;
+    flex-shrink: 0;
+    outline: none;
+    padding: 12px;
+}
+
+.table__row-input__text .table__row-input-stardust-radio-group {
+    display: flex;
+}
+
+.table__row-input__text .stardust-radio {
+    margin-right: 12px;
+    padding: 0;
+    color: #333333;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.table__row-input__text .stardust-radio-button {
+    flex-shrink: 0;
+    height: 18px;
+    margin-right: 8px;
+    position: relative;
+    width: 18px;
+}
+
+/*Tao ra cac radio box*/
+.stardust-radio-button__outer-circle {
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, .26);
+    border-radius: 100%;
+    box-sizing: border-box;
+    display: flex;
+    height: 18px;
+    justify-content: center;
+    width: 18px;
+}
+
+/*GT Nam*/
+.stardust-radio-checked .stardust-radio-button__outer-circle {
+    border-color: #117C6F;
+}
+
+.stardust-radio-button--checked > .stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {
+    opacity: 1;
+    background: #117C6F;
+    height: 6px;
+    border-radius: 100%;
+    width: 6px;
+}
+
+/*GT Nu*/
+.stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {
+    background: #117C6F;
+    border-radius: 100%;
+    height: 6px;
+    opacity: 0;
+    width: 6px
+}
+
+/*Nut Luu thong tin*/
+.container-profile-content-inner__right-main-content-center__table .btn {
+    background-color: #117C6F;
+    color: #fff;
+    outline: 0;
+    overflow: visible;
+    position: relative;
+    border: 0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container-profile-content-inner__right-main-content-center__table .btn--m {
+    height: 40px;
+    max-width: 220px;
+    min-width: 70px;
+    padding: 5px 25px;
+}
+
+.container-profile-content-inner__right-main-content-center__table .btn--inline {
+    display: inline-block;
+}
+
+/*upload image */
+.container-profile-content-inner__right-main-content-upload {
+    border-left: 1px solid #efefef;
+    overflow: hidden;
+    width: 280px;
+    justify-content: center;
+    display: flex;
+}
+
+.right-main-content-upload-header {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.right-main-content-upload-header-focus {
+    height: 100px;
+    margin: 20px 0;
+    position: relative;
+    width: 100px;
+    justify-content: center;
+}
+
+.right-main-content-upload-header-focus-image {
+    background-color: #efefef;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.right-main-content-upload-header-focus-image img {
+    overflow: hidden;
+    stroke: #c6c6c6;
+    width: 90px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    font-size: 24px;
+    position: absolute;
+    font-weight: 400;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
+}
+
+.right-main-content-upload-header-focus-input {
+    display: none;
+}
+
+.right-main-content-upload-header .btn-light {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .09);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .03);
+    color: #555;
+    outline: 0;
+    overflow: visible;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    justify-content: center;
+    text-transform: capitalize;
+    align-items: center;
+}
+
+.right-main-content-upload-header .btn--m {
+    height: 40px;
+    max-width: 220px;
+    min-width: 70px;
+    padding: 5px 25px;
+    display: inline-block;
+}
+
+.right-main-content-upload-header-text {
+    display: block;
+    margin-top: 12px;
+}
+
+.right-main-content-upload-header-text .right-main-content-upload-header-text-same {
+    color: #999;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/*Bank account*/
+/* Styling for the Right Bank Information Details Section */
+.container-bank-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 42px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-bank-content-inner__right-main {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 24px 18px;
+}
+
+.container-bank-content-inner__right-main-inner {
+    max-width: 920px;
+    margin: auto;
+
+}
+
+.container-bank-content-inner__right-main-header {
+    border-bottom: 0.5px solid #efefef;
+    padding: 12px 0;
+    margin: 12px 0;
+}
+
+.container-bank-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.container-bank-content-inner__right-main-header__description {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.bank-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.bank-section h2 {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.bank-section p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.bank-section .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #117C6F;
+}
+
+.bank-section .btn-light {
+    color: #fff;
+}
+
+.bank-section .btn--m {
+    font-size: 14px;
+}
+
+.bank-section .btn--inline {
+    display: inline-block;
+}
+
+.bank-section .btn:hover {
+    background-color: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
