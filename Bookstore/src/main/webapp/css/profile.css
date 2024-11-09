@@ -280,6 +280,7 @@ body {
     text-decoration: underline;
     text-transform: capitalize;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .table__row-input .table__row-input__field {
@@ -569,6 +570,247 @@ body {
 .hidden {
     display: none;
 }
+
+
+/*Address*/
+.container-address-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 42px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-address-content-inner__right-main {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 24px 18px;
+}
+
+.container-address-content-inner__right-main-inner {
+    max-width: 920px;
+    margin: auto;
+}
+
+.container-address-content-inner__right-main-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #efefef;
+    padding: 10px;
+    margin: 12px 0;
+    margin-left: -5px;
+}
+
+.container-address-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+
+.container-address-content-inner__right-main-header__description {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+
+.address-section {
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.btn.add-address {
+    background-color: #117C6F;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn.add-address:hover {
+    background-color: #04c3a9;
+}
+
+
+/* Address List Styling */
+.address-list {
+    background: #fff;
+    padding: 12px 30px 0;
+}
+
+.address-list .address-list-name-title {
+    font-size: 18px;
+    line-height: 1.75rem;
+    margin-bottom: 8px;
+}
+
+
+.address-item {
+    padding: 18px 0 20px;
+    background: #fff;
+    border-bottom: 1px solid #efefef;
+    display: flex;
+}
+
+.address-item:last-child {
+    border-bottom: none;
+}
+
+.address-details {
+    min-width: 0;
+    width: 100%;
+}
+
+.address-details-heading-head {
+    margin-bottom: 4px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.address-details-heading-address {
+    margin-right: 8px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    display: flex;
+}
+
+.address-details-heading-address-text {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.address-details-heading-text-name {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.address-details-heading-address-empty {
+    border-left: 3px solid rgba(0, 0, 0, 0.26);
+    margin: 0 8px;
+}
+
+.address-details-heading-address-phone {
+    font-size: 14px;
+    line-height: 20px;
+rgba(0, 0, 0, 0.54);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+/*button*/
+.address-details-heading-address-button {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.address-details-heading-address-button-edit {
+    background: none;
+    border: 0;
+    color: #117C6F;
+    outline: none;
+    padding: 4px;
+    font-size: 16px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/*content*/
+.address-details-heading-content {
+    margin-bottom: 5px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.address-details-current-content-inner {
+    margin-right: 8px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    color: #8f8d8d;
+}
+
+.address-details-current-content-inner__address {
+    display: flex;
+    align-items: center;
+}
+
+/*button thiet lap*/
+.address-details-heading-content-button {
+    padding-top: 4px;
+    flex-basis: 40px;
+    justify-content: flex-end;
+    display: flex;
+}
+
+/*Vết ngăn hai button*/
+.address-details-heading-address-empty-button {
+    border-left: 1px solid rgba(0, 0, 0, 0.26);
+    margin: 0 8px;
+}
+
+.address-details-heading-content-button-default {
+    border: 1px solid rgba(0, 0, 0, .26);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .03);
+    font-size: .875rem;
+    height: 28px;
+    line-height: 1.25rem;
+    min-width: 0;
+    padding: 4px 12px;
+    white-space: nowrap;
+    background: #fff;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.address-details-heading-content-button-default-active {
+    color: rgba(0, 0, 0, .87);
+}
+
+
+
+/*Thhe mac dinh*/
+.address-details-default {
+    margin-top: 4px;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+}
+
+.address-details-default-text {
+    color: #117C6F;
+    margin: 0 4px 4px 0;
+    padding: 2px 4px;
+    border: 1.5px solid #117C6F;
+    border-radius: 1px;
+}
+
+
+
+
+
+
 
 
 

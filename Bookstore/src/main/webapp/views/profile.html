@@ -52,7 +52,7 @@
                                         class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
                                 <a href="#" id="bank-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Ngân Hàng</span></a>
-                                <a href="" class="stardust-dropdown__item-body__content-item"><span
+                                <a href="" id="address-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Địa chỉ</span></a>
                                 <a href="" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
@@ -91,7 +91,7 @@
 
 
             <!--            right: thong tin chi tiet-->
-            <div id="profile-section" class="container-profile-content-inner__right">
+            <div id="profile-section" class="container-profile-content-inner__right" style="display: none;">
                 <div class="container-profile-content-inner__right-main" role="main">
                     <div style="display: contents">
                         <div class="container-profile-content-inner__right-main-inner">
@@ -311,6 +311,185 @@
                     </div>
                 </div>
             </div>
+
+            <!--  Right: Addres information-->
+            <div id="address-section" class="container-address-content-inner__right">
+                <div class="container-address-content-inner__right-main" role="main">
+                    <div class="container-address-content-inner__right-main-inner">
+                        <!-- Header section -->
+                        <div class="container-address-content-inner__right-main-header">
+                            <div class="container-address-content-inner__right-main-header-left">
+                                <h1 class="container-address-content-inner__right-main-header__title">Địa chỉ của
+                                    tôi</h1>
+                                <div class="container-address-content-inner__right-main-header__description">
+                                    Quản lý các địa chỉ giao hàng của bạn
+                                </div>
+                            </div>
+                            <div class="container-address-content-inner__right-main-header-right">
+                                <button class="btn btn-light btn--m btn--inline add-address">+ Thêm địa chỉ mới</button>
+                            </div>
+                        </div>
+
+
+                        <!-- Address List Section -->
+                        <div class="address-section">
+                            <!-- Button to add a new address -->
+                            <!-- Address table list -->
+                            <div class="address-list">
+                                <div class="address-list-name-title">Địa chỉ</div>
+
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <div class="address-details-heading-head" role="heading">
+                                            <div id="address-details-current-heading"
+                                                 class="address-details-heading-address">
+                                                <span class="address-details-heading-address-text">
+                                                    <div class="address-details-heading-text-name">Nguyễn Hữu Thịnh</div>
+                                                </span>
+                                                <div class="address-details-heading-address-empty"></div>
+                                                <div class="address-details-heading-address-phone">(+84) 347 132 905
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-address-button">
+                                                <button type="submit"
+                                                        class="address-details-heading-address-button-edit">
+                                                    Cập nhật
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="address-details-current-content"
+                                             class="address-details-heading-content" role="heading">
+                                            <div class="address-details-current-content-inner">
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    22 Đường Số 22
+                                                </div>
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    Phường Phước Long B, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-content-button">
+                                                <button class="address-details-heading-content-button-default address-details-heading-content-button-default-active">
+                                                    Thiết lập mặc định
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="address-details-first-default" class="address-details-default">
+                                            <span role="mark" class="address-details-default-text">
+                                                Mặc định
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <div class="address-details-heading-head" role="heading">
+                                            <div class="address-details-heading-address">
+                                                <span class="address-details-heading-address-text">
+                                                    <div class="address-details-heading-text-name">Nguyễn Thị Ngọc Diễm</div>
+                                                </span>
+                                                <div class="address-details-heading-address-empty"></div>
+                                                <div class="address-details-heading-address-phone">(+84) 342 132 904
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-address-button">
+                                                <button type="submit"
+                                                        class="address-details-heading-address-button-edit">
+                                                    Cập nhật
+                                                </button>
+                                                <div class="address-details-heading-address-empty-button"></div>
+                                                <button class="address-details-heading-address-button-edit">
+                                                    Xóa
+                                                </button>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-heading-content" role="heading">
+                                            <div class="address-details-current-content-inner">
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    27 Đường Số 2
+                                                </div>
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    Phường Phước Long A, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-content-button">
+                                                <button class="address-details-heading-content-button-default">
+                                                    Thiết lập mặc định
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-default">
+                                            <span role="mark" class="address-details-default-text">
+                                                Mặc định
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <div class="address-details-heading-head" role="heading">
+                                            <div class="address-details-heading-address">
+                                                <span class="address-details-heading-address-text">
+                                                    <div class="address-details-heading-text-name">Võ Nguyễn Thanh Diệu</div>
+                                                </span>
+                                                <div class="address-details-heading-address-empty"></div>
+                                                <div class="address-details-heading-address-phone">(+84) 346 122 915
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-address-button">
+                                                <button type="submit"
+                                                        class="address-details-heading-address-button-edit">
+                                                    Cập nhật
+                                                </button>
+                                                <div class="address-details-heading-address-empty-button"></div>
+                                                <button class="address-details-heading-address-button-edit">
+                                                    Xóa
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-heading-content" role="heading">
+                                            <div class="address-details-current-content-inner">
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    31 Đường Số 3
+                                                </div>
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    Phường Hiệp Bình, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-content-button">
+                                                <button class="address-details-heading-content-button-default">
+                                                    Thiết lập mặc định
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-default">
+                                            <span role="mark" class="address-details-default-text">
+                                                Mặc định
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -322,6 +501,7 @@
         // Show profile section and hide bank section
         document.getElementById('profile-section').style.display = 'flex';
         document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'none';
 
         // Set active class on profile link
         this.classList.add('stardust-dropdown__item-body__content-item-active');
@@ -334,14 +514,26 @@
         // Show bank section and hide profile section
         document.getElementById('profile-section').style.display = 'none';
         document.getElementById('bank-section').style.display = 'block';
+        document.getElementById('address-section').style.display = 'none';
 
         // Set active class on bank link
         this.classList.add('stardust-dropdown__item-body__content-item-active');
         document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
     });
 
+    document.getElementById('address-section').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show address section and hide bank section
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'block';
+        document.getElementById('bank-section').style.display = 'none';
+
+        // Set active class on address link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
 </script>
-
-
 </body>
 </html>
