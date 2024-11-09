@@ -47,10 +47,10 @@
                         <!--dropdown menu detail-->
                         <div class="stardust-dropdown__item-body stardust-dropdown__item-body--open">
                             <div class="stardust-dropdown__item-body__content">
-                                <a href=""
+                                <a href="#" id="profile-link"
                                    class="stardust-dropdown__item-body__content-item stardust-dropdown__item-body__content-item-active"><span
                                         class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
-                                <a href="" class="stardust-dropdown__item-body__content-item"><span
+                                <a href="#" id="bank-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Ngân Hàng</span></a>
                                 <a href="" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Địa chỉ</span></a>
@@ -73,14 +73,26 @@
                             </a>
                         </div>
                     </div>
+
+                    <!--yeu thich-->
+                    <div class="stardust-dropdown">
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/Heart-icon.png"/></div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Yêu Thích</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
 
-
             <!--            right: thong tin chi tiet-->
-            <div class="container-profile-content-inner__right">
-                <div class="container-profile-content-inner__right-main">
+            <div id="profile-section" class="container-profile-content-inner__right">
+                <div class="container-profile-content-inner__right-main" role="main">
                     <div style="display: contents">
                         <div class="container-profile-content-inner__right-main-inner">
                             <!--  Hồ sơ của tôi chi tiết phần header-->
@@ -161,54 +173,53 @@
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
                                                         <!--div chua cac radioBox-->
-                                                        <div class="table__row-input__text-box">
-                                                            <div class="table__row-input-stardust-radio-group">
-                                                                <!--  GT Nam-->
-                                                                <div class="stardust-radio stardust-radio-checked"
-                                                                     tabindex="0" role="radio" aria-checked="true">
-                                                                    <!--                                                                    RadioBox GTN Nam-->
-                                                                    <div class="stardust-radio-button stardust-radio-button--checked">
-                                                                        <div class="stardust-radio-button__outer-circle">
-                                                                            <div class="stardust-radio-button__inner-circle"></div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!--Ten gioi tinh-->
-                                                                    <div class="stardust-radio__content">
-                                                                        <div class="stardust-radio__label">Nam</div>
+                                                        <div class="table__row-input-stardust-radio-group">
+                                                            <!--  GT Nam-->
+                                                            <div class="stardust-radio stardust-radio-checked"
+                                                                 tabindex="0" role="radio" aria-checked="true">
+                                                                <!--                                                                    RadioBox GTN Nam-->
+                                                                <div class="stardust-radio-button stardust-radio-button--checked">
+                                                                    <div class="stardust-radio-button__outer-circle">
+                                                                        <div class="stardust-radio-button__inner-circle"></div>
                                                                     </div>
                                                                 </div>
-                                                                <!--  GT Nu-->
-                                                                <div class="stardust-radio" tabindex="0" role="radio"
-                                                                     aria-checked="true">
-                                                                    <div class="stardust-radio-button stardust-radio-button--checked">
-                                                                        <div class="stardust-radio-button__outer-circle">
-                                                                            <div class="stardust-radio-button__inner-circle"></div>
-                                                                        </div>
-                                                                    </div>
 
-                                                                    <!--Ten gioi tinh-->
-                                                                    <div class="stardust-radio__content">
-                                                                        <div class="stardust-radio__label">Nữ</div>
+                                                                <!--Ten gioi tinh-->
+                                                                <div class="stardust-radio__content">
+                                                                    <div class="stardust-radio__label">Nam</div>
+                                                                </div>
+                                                            </div>
+                                                            <!--  GT Nu-->
+                                                            <div class="stardust-radio" tabindex="0" role="radio"
+                                                                 aria-checked="true">
+                                                                <div class="stardust-radio-button">
+                                                                    <div class="stardust-radio-button__outer-circle">
+                                                                        <div class="stardust-radio-button__inner-circle"></div>
                                                                     </div>
                                                                 </div>
-                                                                <!--  GT Khac-->
-                                                                <div class="stardust-radio" tabindex="0" role="radio"
-                                                                     aria-checked="true">
-                                                                    <div class="stardust-radio-button stardust-radio-button--checked">
-                                                                        <div class="stardust-radio-button__outer-circle">
-                                                                            <div class="stardust-radio-button__inner-circle"></div>
-                                                                        </div>
-                                                                    </div>
 
-                                                                    <!--Ten gioi tinh-->
-                                                                    <div class="stardust-radio__content">
-                                                                        <div class="stardust-radio__label">Khác</div>
+                                                                <!--Ten gioi tinh-->
+                                                                <div class="stardust-radio__content">
+                                                                    <div class="stardust-radio__label">Nữ</div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <!--  GT Khac-->
+                                                            <div class="stardust-radio" tabindex="0" role="radio"
+                                                                 aria-checked="true">
+                                                                <div class="stardust-radio-button">
+                                                                    <div class="stardust-radio-button__outer-circle">
+                                                                        <div class="stardust-radio-button__inner-circle"></div>
                                                                     </div>
+                                                                </div>
+
+                                                                <!--Ten gioi tinh-->
+                                                                <div class="stardust-radio__content">
+                                                                    <div class="stardust-radio__label">Khác</div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button class="table__row-input__text-button">Thay Đổi</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -232,7 +243,8 @@
                                                     <label></label>
                                                 </td>
                                                 <td class="table__row-input">
-                                                    <button class="btn btn-solid-primary" type="button"
+                                                    <button class="btn btn-solid-primary btn--m btn--inline"
+                                                            type="button"
                                                             aria-disabled="false">Lưu
                                                     </button>
                                                 </td>
@@ -259,7 +271,7 @@
                                             <div class="right-main-content-upload-header-text-same">Dung lượng file tối
                                                 đa 1 MB
                                             </div>
-                                            <div class="right-main-content-upload-header-text-on">Định dạng:.JPPEG,
+                                            <div class="right-main-content-upload-header-text-same">Định dạng:.JPPEG,
                                                 .PNG
                                             </div>
                                         </div>
@@ -270,8 +282,66 @@
                     </div>
                 </div>
             </div>
+
+            <!--    Right: Bank Information Details -->
+            <div id="bank-section" class="container-bank-content-inner__right" style="display: none;">
+                <div class="container-bank-content-inner__right-main" role="main">
+                    <div class="container-bank-content-inner__right-main-inner">
+                        <div class="container-bank-content-inner__right-main-header">
+                            <h1 class="container-bank-content-inner__right-main-header__title">Ngân Hàng</h1>
+                            <div class="container-bank-content-inner__right-main-header__description">Quản lý tài khoản
+                                ngân hàng và thẻ của bạn
+                            </div>
+                        </div>
+
+                        <!-- Credit/Debit Card Section -->
+                        <div class="bank-section">
+                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>
+                            <p>Bạn chưa liên kết thẻ.</p>
+                            <button class="btn btn-light btn--m btn--inline">+ Thêm Thẻ Mới</button>
+                        </div>
+
+                        <!-- Bank Account Section -->
+                        <div class="bank-section">
+                            <h2>Tài Khoản Ngân Hàng Của Tôi</h2>
+                            <p>Bạn chưa có tài khoản ngân hàng.</p>
+                            <button class="btn btn-light btn--m btn--inline">+ Thêm Tài Khoản Ngân Hàng Liên Kết
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('profile-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show profile section and hide bank section
+        document.getElementById('profile-section').style.display = 'flex';
+        document.getElementById('bank-section').style.display = 'none';
+
+        // Set active class on profile link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+    document.getElementById('bank-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show bank section and hide profile section
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'block';
+
+        // Set active class on bank link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+</script>
+
+
 </body>
 </html>
