@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+
+    <!--    all css files-->
+    <link rel="stylesheet" href="../css/category.css">
+    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/Header.css">
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+
+</head>
+<body>
+
+<!--header-->
+<div id="header"></div>
+
+<!--content-->
+<div class="app__container">
+    <!--    head -->
+    <div class="grid__head">
+        <div class="head">
+            <h2 class="head__title">Tất cả sách</h2>
+            <div class="head-filter">
+                <p>Ưu tiên xem:</p>
+                <ul class="head-filter__list">
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Hàng mới nhất">Hàng mới nhất</a>
+                    </li>
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Hàng cũ nhất">Hàng cũ nhất</a>
+                    </li>
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Giá tăng dần">Giá tăng dần</a>
+                    </li>
+                    <li class="head-filter__item">
+                        <a href="" class="head-filter__link" title="Giá giảm dần">Giá giảm dần</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--        category and product-->
+    <div class="grid">
+        <div class="grid__row">
+            <div class="col-md-2">
+                <nav class="category">
+                    <div class="category-form">
+                        <h4 class="category__heading">Danh mục sách</h4>
+                        <ul class="category-list">
+                            <li class="category-item">
+                                <a href="Home.html" class="category-item__link">Trang chủ</a>
+                            </li>
+                            <li class="category-item">
+                                <a href="WEB-INF/AboutUs.html" class="category-item__link">Giới Thiệu</a>
+                            </li>
+                            <li class="category-item category-item--active">
+                                <a href="" class="category-item__link">Sản phẩm <i class="fa-solid fa-chevron-down"></i></a>
+                                <!--drop down-->
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><a href="" class="dropdown-link">Sách khuyến mãi</a></li>
+                                    <li class="dropdown-item">
+                                        <a href="" class="dropdown-link">Sách nổi bật <i
+                                                class="fa-solid fa-chevron-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-item"><a href="" class="dropdown-link">Sách kỹ năng</a>
+                                            </li>
+                                            <li class="dropdown-item"><a href="" class="dropdown-link">Sách thiếu
+                                                nhi</a>
+                                            </li>
+                                            <li class="dropdown-item"><a href="" class="dropdown-link">Sách tuổi
+                                                teen</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-link"><a href="" class="dropdown-link">Sách tâm lý</a></li>
+                                </ul>
+
+                            </li>
+                            <li class="category-item">
+                                <a href="" class="category-item__link">Tin tức</a>
+                            </li>
+                            <li class="category-item">
+                                <a href="" class="category-item__link">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="category-form">
+                        <h4 class="category__heading">Nhà xuất bản</h4>
+                        <div class="category-scroll">
+                            <div class="category-inform">
+                                <input type="checkbox" id="adam-khoo">
+                                <label class="checkbox-label" for="adam-khoo">Adam Khoo</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="astrid-lindgren">
+                                <label class="checkbox-label" for="astrid-lindgren">Atrid Lindgren</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="barry-nalebuft">
+                                <label class="checkbox-label" for="barry-nalebuft">Barry Nalebuft</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="brian-tracy">
+                                <label class="checkbox-label" for="brian-tracy">Brian Tracy</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="cloud-pillow-studio">
+                                <label class="checkbox-label" for="cloud-pillow-studio">Cloud Pillow Studio</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="nguyen-nhat-anh">
+                                <label class="checkbox-label" for="nguyen-nhat-anh">Nguyễn Nhật Ánh</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="do-hong-ngoc">
+                                <label class="checkbox-label" for="do-hong-ngoc">Đỗ Hồng Ngọc</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="gao">
+                                <label class="checkbox-label" for="gao">Gào</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="cuu-ba-dao">
+                                <label class="checkbox-label" for="cuu-ba-dao">Cửu Bả Đao</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="dale">
+                                <label class="checkbox-label" for="dale">Dale Carnegie</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="dinh-hang">
+                                <label class="checkbox-label" for="dinh-hang">Đinh Hằng</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="harvard">
+                                <label class="checkbox-label" for="harvard">Harvard</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="hoang-mai-quyen">
+                                <label class="checkbox-label" for="hoang-mai-quyen">Hoàng Mai Quyên</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="ichi">
+                                <label class="checkbox-label" for="ichi">Ichikawa Takuji</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="ling-trang">
+                                <label class="checkbox-label" for="ling-trang">Linh Trang</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="minh-duc">
+                                <label class="checkbox-label" for="minh-duc">Minh Đức</label>
+                            </div>
+                            <div class="category-inform">
+                                <input type="checkbox" id="more">
+                                <label class="checkbox-label" for="more">Nhiều tác giả</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-form">
+                        <h4 class="category__heading">Tác giả</h4>
+                        <div class="category-inform">
+                            <input type="checkbox" id="kinh-te">
+                            <label class="checkbox-label" for="kinh-te">Sách kinh tế</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="ky-nang">
+                            <label class="checkbox-label" for="ky-nang">Sách kỹ năng</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="thieu-nhi">
+                            <label class="checkbox-label" for="thieu-nhi">Sách thiếu nhi</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="thuong-thuc">
+                            <label class="checkbox-label" for="thuong-thuc">Sách thường thức</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="tuoi-teen">
+                            <label class="checkbox-label" for="tuoi-teen">Sách tuổi teen</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="van-hoc">
+                            <label class="checkbox-label" for="van-hoc">Sách văn học</label>
+                        </div>
+                    </div>
+                    <div class="category-form">
+                        <h4 class="category__heading">Giá cả</h4>
+                        <div class="category-inform">
+                            <input type="checkbox" id="100k">
+                            <label class="checkbox-label" for="100k">Giá dưới 100.000đ</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="200k">
+                            <label class="checkbox-label" for="200k">100.000đ - 200.000đ</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="300k">
+                            <label class="checkbox-label" for="300k">200.000đ - 300.000đ</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="500k">
+                            <label class="checkbox-label" for="500k">300.000đ - 500.000đ</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="1000k">
+                            <label class="checkbox-label" for="1000k">500.000đ - 1.000.000đ</label>
+                        </div>
+
+                        <div class="category-inform">
+                            <input type="checkbox" id="hon1tr">
+                            <label class="checkbox-label" for="hon1tr">Giá trên 1.000.000đ</label>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="grid__row">
+            <div class="col-md-10">
+                <div class="home-product">
+                    <!-- Sản phẩm hiển thị bên phải -->
+                    <div class="grid__row">
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/Mua 13 Nguyên Tắc Nghĩ Giàu Làm Giàu - Think And Grow Rich (Bản Gốc, Được Phục Hồi Và Chỉnh Sửa) tại AHABOOKS.jpg')"></div>
+                                <h4 class="home-product-item__name">13 nguyên tắc nghĩ giàu làm giàu</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">86.000đ</span>
+                                    <span class="home-product-item__price-old">115.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/conduongchuyenhoa1.webp')"></div>
+                                <h4 class="home-product-item__name">Con đường hoa</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">34.000đ</span>
+                                    <span class="home-product-item__price-old">45.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/chuyenbaycuocdoi1.webp')"></div>
+                                <h4 class="home-product-item__name">Chuyến bay cuộc đời</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">26.000đ</span>
+                                    <span class="home-product-item__price-old">37.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/dungbaogiodianmotminhtaiban1.webp')"></div>
+                                <h4 class="home-product-item__name">Đừng bao giờ đi ăn một mình</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">71.000đ</span>
+                                    <span class="home-product-item__price-old">95.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/thucdayvamodi1.webp')"></div>
+                                <h4 class="home-product-item__name">Thức dậy và mơ đi</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">62.000đ</span>
+                                    <span class="home-product-item__price-old">89.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/kienvachauchau1.webp')"></div>
+                                <h4 class="home-product-item__name">Kiến và châu chấu</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">17.000đ</span>
+                                    <span class="home-product-item__price-old">25.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/nhenanansivachiectuithongthai1.webp')"></div>
+                                <h4 class="home-product-item__name">Nhện Anansi</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">17.500đ</span>
+                                    <span class="home-product-item__price-old">25.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/ChuaDat.webp')"></div>
+                                <h4 class="home-product-item__name">Chúa Đất</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">38.000đ</span>
+                                    <span class="home-product-item__price-old">76.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/songcauchuyencuanguoigiatricua.webp')"></div>
+                                <h4 class="home-product-item__name">Sống</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">34.000đ</span>
+                                    <span class="home-product-item__price-old">45.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/Nhà_giả_kim_(sách).jpg')"></div>
+                                <h4 class="home-product-item__name">Nhà giả kim</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">102.000đ</span>
+                                    <span class="home-product-item__price-old">140.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/DoiVoiVaVaCangNenSongCham.webp')"></div>
+                                <h4 class="home-product-item__name">Đời vội vã và càng nên sống chậm</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">91.800đ</span>
+                                    <span class="home-product-item__price-old">108.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid-md-2-4">
+                            <div class="home-product-item">
+                                <div class="home-product-item__img"
+                                     style="background-image: url('../img/25DoAm.webp')"></div>
+                                <h4 class="home-product-item__name">25 Độ Ẩm</h4>
+                                <div class="home-product-item__price">
+                                    <span class="home-product-item__price-current">134.300đ</span>
+                                    <span class="home-product-item__price-old">158.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="grid__row">
+                <div class="col-md-10">
+                    <div class="home-filter__paginate" style="text-align: right;">
+                        <ul class="home-filter__paginate-list">
+                            <li class="home-filter__paginate-item home-filter__paginate-item--active"><a href="">1</a>
+                            </li>
+                            <li class="home-filter__paginate-item"><a href="">2</a></li>
+                            <li class="home-filter__paginate-item"><a href="">3</a></li>
+                            <li class="home-filter__paginate-item"><a href="">4</a></li>
+                            <li class="home-filter__paginate-item"><a href="">5</a></li>
+                            <li class="home-filter__paginate-item"><a href=""><i class="fa-solid fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<div id="footer"></div>
+
+
+<!--script-->
+<script>
+    fetch('Header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.text();
+        })
+        .then(data => document.getElementById('header').innerHTML = data)
+        .catch(error => console.error('Error:', error));
+
+    // Tải nội dung của footer từ tệp Footer.html
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+</script>
+<!--all script files-->
+
+
+</body>
+</html>

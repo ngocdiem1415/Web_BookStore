@@ -1,3 +1,7 @@
+* {
+    box-sizing: inherit;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -9,4 +13,28 @@ ul, ol {
     padding: 0;
     list-style: none
 }
+
+.text-dec{
+    text-decoration: none;
+    color: black;
+}
+
+.grid{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 921px;
+}
+
+
+
 
