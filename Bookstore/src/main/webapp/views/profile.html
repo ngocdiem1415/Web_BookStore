@@ -54,9 +54,9 @@
                                         class="stardust-dropdown__item-body__content-item--text">Ngân Hàng</span></a>
                                 <a href="" id="address-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Địa chỉ</span></a>
-                                <a href="" class="stardust-dropdown__item-body__content-item"><span
+                                <a href="" id="password-change-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
-                                <a href="" class="stardust-dropdown__item-body__content-item"><span
+                                <a href="" id="privacy-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Những Thiết Lập Riêng Tư</span></a>
                             </div>
                         </div>
@@ -313,7 +313,7 @@
             </div>
 
             <!--  Right: Addres information-->
-            <div id="address-section" class="container-address-content-inner__right">
+            <div id="address-section" class="container-address-content-inner__right" style="display: none;">
                 <div class="container-address-content-inner__right-main" role="main">
                     <div class="container-address-content-inner__right-main-inner">
                         <!-- Header section -->
@@ -490,6 +490,110 @@
                 </div>
             </div>
 
+            <!--Right: Change password-->
+            <div id="password-change-section" class="container-profile-content-inner__right" style="display: none;">
+                <div class="container-profile-content-inner__right-main" role="main">
+                    <div style="display: contents">
+                        <div class="container-profile-content-inner__right-main-inner">
+                            <!-- Header của trang thay đổi mật khẩu -->
+                            <div class="container-profile-content-inner__right-main-header">
+                                <h1 class="container-profile-content-inner__right-main-header__title">Thay Đổi Mật
+                                    Khẩu</h1>
+                                <div class="container-profile-content-inner__right-main-header__description">
+                                    Để bảo vệ tài khoản của bạn, vui lòng thay đổi mật khẩu định kỳ.
+                                </div>
+                            </div>
+
+                            <!-- Nội dung của trang thay đổi mật khẩu -->
+                            <div class="container-profile-content-inner__right-main-content">
+                                <div class="container-profile-content-inner__right-main-content-center">
+                                    <!-- Form thay đổi mật khẩu -->
+                                    <form action="">
+                                        <table class="container-profile-content-inner__right-main-content-center__table">
+                                            <!-- Mật khẩu hiện tại -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Mật khẩu hiện tại</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__field">
+                                                        <input type="password" placeholder="Nhập mật khẩu hiện tại"
+                                                               class="table__row-input__field-text">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Mật khẩu mới -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Mật khẩu mới</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__field">
+                                                        <input type="password" placeholder="Nhập mật khẩu mới"
+                                                               class="table__row-input__field-text">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Xác nhận mật khẩu mới -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Xác nhận mật khẩu mới</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__field">
+                                                        <input type="password" placeholder="Nhập lại mật khẩu mới"
+                                                               class="table__row-input__field-text">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Nút lưu thay đổi -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label></label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <button type="submit"
+                                                            class="btn btn-solid-primary btn--m btn--inline"
+                                                            type="button" aria-disabled="false">
+                                                        Lưu Thay Đổi
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Right: function else-->
+            <div id="privacy-section" class="container-privacy-content-inner__right" style="display: none">
+                <div class="container-privacy-content-inner__right-main" role="main">
+                    <div class="container-privacy-content-inner__right-main-inner">
+                        <!-- Header Section -->
+                        <div class="container-privacy-content-inner__right-main-header">
+                            <h1 class="container-privacy-content-inner__right-main-header__title">Privacy Settings</h1>
+                        </div>
+
+                        <!-- Content Section -->
+                        <div class="container-privacy-content-inner__right-main-content">
+                            <div class="container-privacy-content-inner__right-main-content-center">
+                                <!-- Account Deletion Request Row -->
+                                <div class="privacy-row">
+                                    <div class="privacy-row-label">Yêu cầu xóa tài khoản</div>
+                                    <button class="btn btn-danger btn-delete" type="button">Xóa bỏ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -498,42 +602,95 @@
     document.getElementById('profile-link').addEventListener('click', function (event) {
         event.preventDefault();
 
-        // Show profile section and hide bank section
-        document.getElementById('profile-section').style.display = 'flex';
+        // Show profile section and hide others
+        document.getElementById('profile-section').style.display = 'block';
         document.getElementById('bank-section').style.display = 'none';
         document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
 
         // Set active class on profile link
         this.classList.add('stardust-dropdown__item-body__content-item-active');
         document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
     });
 
     document.getElementById('bank-link').addEventListener('click', function (event) {
         event.preventDefault();
 
-        // Show bank section and hide profile section
+        // Show bank section and hide others
         document.getElementById('profile-section').style.display = 'none';
         document.getElementById('bank-section').style.display = 'block';
         document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
+
 
         // Set active class on bank link
         this.classList.add('stardust-dropdown__item-body__content-item-active');
         document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
     });
 
-    document.getElementById('address-section').addEventListener('click', function (event) {
+    document.getElementById('address-link').addEventListener('click', function (event) {
         event.preventDefault();
 
-        // Show address section and hide bank section
+        // Show address section and hide others
         document.getElementById('profile-section').style.display = 'none';
-        document.getElementById('address-section').style.display = 'block';
         document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'block';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
+
 
         // Set active class on address link
         this.classList.add('stardust-dropdown__item-body__content-item-active');
-        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
     });
 
+    document.getElementById('password-change-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show password change section and hide others
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'block';
+        document.getElementById('privacy-section').style.display = 'none';
+
+        // Set active class on password change link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+
+    document.getElementById('privacy-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show privacy change section and hide others
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'block';
+
+        // Set privacy class on password change link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-section').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-section').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
 </script>
 </body>
 </html>

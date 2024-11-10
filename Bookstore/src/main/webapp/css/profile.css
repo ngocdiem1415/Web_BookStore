@@ -789,7 +789,6 @@ rgba(0, 0, 0, 0.54);
 }
 
 
-
 /*Thhe mac dinh*/
 .address-details-default {
     margin-top: 4px;
@@ -805,6 +804,81 @@ rgba(0, 0, 0, 0.54);
     border: 1.5px solid #117C6F;
     border-radius: 1px;
 }
+
+
+/*function else*/
+/* General Container Styling */
+.container-privacy-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 42px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-privacy-content-inner__right-main {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.container-privacy-content-inner__right-main-header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 0.5px solid #efefef;
+}
+
+.container-privacy-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Content Section */
+.container-privacy-content-inner__right-main-content-center {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Privacy Row Styling */
+.privacy-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.privacy-row-label {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: #fff;
+    color: #000;
+    border: 0.5px solid #117C6F;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    color: #fff;
+    background-color: #117C6F;
+}
+
 
 
 
