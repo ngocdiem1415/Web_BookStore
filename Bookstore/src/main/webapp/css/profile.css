@@ -31,13 +31,16 @@ body {
 .container-profile-content-inner__left {
     display: block;
     flex-shrink: 0;
-    width: 180px;
+    background: #fff;
+    width: 240px;
+    height: 550px;
 }
 
 .profile-info {
     border-bottom: 1px solid #efefef;
     display: flex;
     padding: 15px 0;
+    margin-left: 15px;
 }
 
 /*Thông tin logo tay trais*/
@@ -104,7 +107,7 @@ body {
 .container-profile-content-inner__left .profile-stardust-dropdown {
     cursor: pointer;
     list-style: none;
-    margin: 27px 0 0;
+    margin: 27px 15px 0;
     padding: 0;
 }
 
@@ -176,6 +179,26 @@ body {
     color: #117C6F;
 }
 
+/* Ẩn nội dung dropdown theo mặc định */
+.stardust-dropdown__item-body {
+    display: block;
+}
+
+/* Hiển thị dropdown khi mở */
+.stardust-dropdown__item-body--open {
+    display: none;
+}
+
+/* Xoay mũi tên khi mở */
+.rotate-icon {
+    transform: rotate(180deg);
+}
+
+/* Hiệu ứng chuyển đổi cho icon */
+.stardust-dropdown__item-header-account-name i {
+    transition: transform 0.3s ease;
+}
+
 
 /*Phần content của phía bên phải*/
 .container-profile-content-inner__right {
@@ -184,7 +207,7 @@ body {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     /*flex-grow: 1;*/
-    margin-left: 42px;
+    margin-left: 14px;
     min-width: 0;
     position: relative;
     width: 980px;
@@ -480,7 +503,7 @@ body {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     /*flex-grow: 1;*/
-    margin-left: 42px;
+    margin-left: 14px;
     min-width: 0;
     position: relative;
     width: 980px;
@@ -489,7 +512,6 @@ body {
 .container-bank-content-inner__right-main {
     background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 0 24px 18px;
 }
 
@@ -579,7 +601,7 @@ body {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     /*flex-grow: 1;*/
-    margin-left: 42px;
+    margin-left: 14px;
     min-width: 0;
     position: relative;
     width: 980px;
@@ -814,7 +836,7 @@ rgba(0, 0, 0, 0.54);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     /*flex-grow: 1;*/
-    margin-left: 42px;
+    margin-left: 14px;
     min-width: 0;
     position: relative;
     width: 980px;
