@@ -10,13 +10,13 @@ p {
 }
 
 .bold {
-    font-weight: bold;
+    font-weight: 300;
     font-family: 'Open Sans', sans-serif;
 }
 
 .boldGreen {
     color: #4B908E;
-    font-family: 'Cormorant Garamond', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     font-size: 50px;
 }
