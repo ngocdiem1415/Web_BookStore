@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     box-sizing: border-box;
 }
@@ -12,7 +12,7 @@ body {
     color: #8c8c8c;
 }
 
-.container {
+.container-contact {
     width: 90%;
     margin: 20px auto;
     padding: 20px;
@@ -21,46 +21,46 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.row {
+.row-contact {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.col-md-6 {
+.row-contact .col-md-6 {
     flex: 1;
     min-width: 300px; /* Ensures columns don't get too narrow */
     margin: 10px 0;
 }
 
-.form {
+.container-contact .row-contact .form {
     text-align: center;
     color: #3B4F60;
     padding: 10px;
 }
 
-h3 {
+.container-contact .row-contact .form h3 {
     font-size: 2em;
     color: #333;
     font-weight: normal;
 }
 
-.form .tel {
+.container-contact .row-contact .form .tel {
     font-size: 1.4rem;
     color: #fa8b56;
 }
 
-.form .detail {
+.container-contact .row-contact .form.detail {
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
 
-.form .mess {
+.container-contact .row-contact .form .mess {
     color: black;
     margin-bottom: 28px;
 }
 
-.form-control {
+.container-contact .row-contact .form .form-control {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -68,7 +68,7 @@ h3 {
     border-radius: 5px;
 }
 
-#submitBtn {
+.row-contact .form .row #submitBtn {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -79,11 +79,11 @@ h3 {
     transition: background-color 0.3s ease;
 }
 
-#submitBtn:hover {
+.row-contact .form .row #submitBtn:hover {
     background-color: #45a049;
 }
 
-iframe {
+.container-contact .row-contact iframe {
     width: 100%;
     height: 467px;
     border-radius: 5px;
@@ -93,20 +93,20 @@ iframe {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    h3 {
+    .container-contact .row-contact .form h3 {
         font-size: 1.5em;
     }
 
-    .container {
+    .container-contact {
         width: 100%;
         margin: 10px auto;
     }
 
-    iframe {
+    .container-contact .row-contact iframe {
         height: 300px;
     }
 
-    #submitBtn {
+    .row-contact .form .row #submitBtn {
         width: 100%;
         padding: 12px;
     }

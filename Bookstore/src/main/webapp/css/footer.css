@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 * {
     margin: 0;
@@ -49,37 +50,37 @@
     font-weight: 600;
 }
 
-.footer-col .links {
+.footer-row .footer-col .links {
     margin-top: 20px;
 }
 
-.footer-col .links li {
+.footer-row .footer-col .links li {
     list-style: none;
     margin-bottom: 10px;
 }
 
-.footer-col .links li a {
+.footer-row .footer-col .links li a {
     text-decoration: none;
     color: #000000;
 }
 
-.footer-col .links li a:hover {
+.footer-row .footer-col .links li a:hover {
     color: #fff;
 }
 
-.footer-col p {
+.footer-row .footer-col p {
     margin: 20px 0;
     color: #000000;
     max-width: 300px;
     font-size: 14px;
 }
 
-.footer-col form {
+.footer-row .footer-col form {
     display: flex;
     gap: 5px;
 }
 
-.footer-col input {
+.footer-row .footer-col input {
     height: 40px;
     border-radius: 6px;
     background: none;
@@ -90,11 +91,11 @@
     padding-left: 10px;
 }
 
-.footer-col input::placeholder {
+.footer-row .footer-col input::placeholder {
     color: #000000;
 }
 
-.footer-col form button {
+.footer-row .footer-col form button {
     background: #fff;
     outline: none;
     border: none;
@@ -105,82 +106,82 @@
     transition: 0.2s ease;
 }
 
-.footer-col form button:hover {
+.footer-row .footer-col form button:hover {
     background: #0991e1;
 }
 
-.footer-col .icons {
+.footer-row .footer-col .icons {
     display: flex;
     margin-top: 30px;
     gap: 10px;
     cursor: pointer;
 }
 
-.footer-col .icons i {
+.footer-row .footer-col .icons i {
     height: 36px;
     width: 36px;
     text-align: center;
     line-height: 36px;
 }
 
-.footer-col .icons .fa-facebook-f,
-.footer-col .icons .fa-twitter,
-.footer-col .icons .fa-linkedin,
-.footer-col .icons .fa-github {
+.footer-row .footer-col .icons .fa-facebook-f,
+.footer-row .footer-col .icons .fa-twitter,
+.footer-row .footer-col .icons .fa-linkedin,
+.footer-row .footer-col .icons .fa-github {
     border-radius: 10px;
     transition: 0.4s ease;
 }
 
-.footer-col .icons .fa-facebook-f {
+.footer-row .footer-col .icons .fa-facebook-f {
     background-color: #0b4eea;
     color: #ffffff;
     border: 1px solid #117C6F;
 }
 
-.footer-col .icons .fa-facebook-f:hover {
+.footer-row .footer-col .icons .fa-facebook-f:hover {
     background-color: #ffffff;
     color: #3b5999;
 }
 
-.footer-col .icons .fa-twitter {
+.footer-row .footer-col .icons .fa-twitter {
     background-color: #62d5f4;
     color: #ffffff;
 }
 
-.footer-col .icons .fa-twitter:hover {
+.footer-row .footer-col .icons .fa-twitter:hover {
     background-color: #ffffff;
     color: #4cd6f4;
 }
 
-.footer-col .icons .fa-linkedin {
+.footer-row .footer-col .icons .fa-linkedin {
     background-color: #0991e1;
     color: #ffffff;
 }
 
-.footer-col .icons .fa-linkedin:hover {
+.footer-row .footer-col .icons .fa-linkedin:hover {
     background-color: #ffffff;
     color: #0976b4;
 }
 
-.footer-col .icons .fa-github {
+.footer-row .footer-col .icons .fa-github {
     background-color: black;
     color: #ffffff;
 }
 
-.footer-col .icons .fa-github:hover {
+.footer-row .footer-col .icons .fa-github:hover {
     background-color: #ffffff;
     color: black;
 }
 
-.footer-col button i {
+.footer-row .footer-col button i {
     color: #117C6F;
 }
 
-.footer-col .icons i {
+.footer-row.footer-col .icons i {
     color: #afb6c7;
 }
 
-.footer .footer-copyright {
+.footer-row .footer .footer-copyright {
     border-top: 2px solid #000;
     text-align: center;
     font-size: 13px;
