@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-image: url('../img/product/background-login.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.container-login {
+    width: 100%;
+    max-width: 768px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container-login .form-panel {
+    width: 100%;
+}
+
+.container-login .form-header {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-login .form-header .form-header-inner {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+
+.container-login .form-link {
+    font-weight: bold;
+    color: #555; /* Default text color */
+    text-decoration: none;
+    padding: 10px 30px; /* Adjusted padding for a larger clickable area */
+    font-size: 16px;
+    border-radius: 25px; /* Pill shape for active effect */
+    transition: all 0.3s ease;
+}
+
+.container-login .form-link.active {
+    background-color: #28a745; /* Active tab background color */
+    color: #fff; /* Active tab text color */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15); /* Slight shadow on active tab */
+    transform: scale(1.05); /* Slightly larger to emphasize active state */
+}
+
+.container-login .form-link:not(.active):hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/*Transition*/
+.container-login .form-panel .form-body {
+    position: relative;
+}
+
+.form-body form {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40%);
+    visibility: hidden; /* Ẩn hoàn toàn */
+    transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.form-body form.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+#login-form.active {
+    transform: translateY(0);
+}
+
+#register-form.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-group input[type="checkbox"] {
+    z-index: 1; /* Đảm bảo checkbox nằm trên các phần tử khác */
+}
+
+/*------*/
+
+.form-title {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group label span {
+    color: #28a745;
+    margin-left: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center; /* Canh đều label với checkbox */
+}
+
+.form-check label {
+    margin-top: 5px;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.form-submit {
+    padding: 18px 30px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: #218838;
+}
+
+/*icon*/
+.form-body .icons {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-body .icons a {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%; /* Bo tròn hoàn toàn */
+    transition: background-color 0.4s ease, color 0.4s ease; /* Hiệu ứng hover */
+}
+
+.form-body .icons i {
+    font-size: 18px; /* Kích thước icon */
+    padding: 18px;
+    color: #fff; /* Màu chữ của icon */
+    border-radius: 42%;
+}
+
+/* Facebook icon */
+/*.form-body .icons .fa-facebook-f {*/
+/*    background-color: #0a53be;*/
+/*}*/
+
+/*.form-body .icons .fa-facebook-f:hover {*/
+/*    background-color: #fff;*/
+/*    color: #0a53be;*/
+/*    border: 1px solid #0a53be; !* Đường viền khi hover *!*/
+/*}*/
+
+/*!* Google icon *!*/
+/*.form-body .icons .fa-google {*/
+/*    background-color: #db4437;*/
+/*}*/
+
+/*.form-body .icons .fa-google:hover {*/
+/*    background-color: #fff;*/
+/*    color: #db4437;*/
+/*    border: 1px solid #db4437; !* Đường viền khi hover *!*/
+/*}*/
+
+
+/*------*/
+
+.form-footer {
+    margin-top: 25px;
+}
+
+.forgot-password {
+    font-size: 15px;
+    color: #28a745;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.footer-login {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #28a745; /* Màu nền cho footer */
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
+    z-index: 1000; /* Đảm bảo footer luôn ở trên các thành phần khác */
+}
+
+.footer-login-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-login p {
+    margin: 0;
+    font-size: 14px;
+    color: white;
+    width: 100%; /* Để <p> kéo dài hết chiều ngang footer */
+    background-color: #28a745
+}
+
