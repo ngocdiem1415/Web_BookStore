@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+<div class="content-profile" class="container-profile">
+    <div class="container-profile-content">
+        <div class="container-profile container-profile-content-inner">
+            <!--content left-->
+            <div class="container-profile-content-inner__left">
+
+                <div class="profile-info">
+                    <a href="" class="profile-info-logo">
+                        <div class="profile-info-avatar-img">
+                            <div class="profile-info-avatar_img__placeholder">
+                                <img src="../admin/img/Sample_User_Icon.png" class="icon-user"/>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="profile-info-username">
+                        <div class="profile-info-username__text">Thinhquadz</div>
+                        <div>
+                            <a href="" class="profile-info-username__edit">
+                                <i class="fa-solid fa-pencil"></i>
+                                <span>Sửa Hồ Sơ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--Drop down account -->
+                <div class="profile-stardust-dropdown">
+                    <div class="stardust-dropdown stardust-dropdown--open ">
+                        <!--img + name-->
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/Sample_user_icon_profile.png" height="48" width="48"/></div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Tài Khoản Của Tôi</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <!--dropdown menu detail-->
+                        <div class="stardust-dropdown__item-body stardust-dropdown__item-body--open">
+                            <div class="stardust-dropdown__item-body__content">
+                                <a href="#" id="profile-link"
+                                   class="stardust-dropdown__item-body__content-item stardust-dropdown__item-body__content-item-active"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
+                                <a href="#" id="bank-link" class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Ngân Hàng</span></a>
+                                <a href="" id="address-link" class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Địa chỉ</span></a>
+                                <a href="" id="password-change-link" class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
+                                <a href="" id="privacy-link" class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Những Thiết Lập Riêng Tư</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stardust-dropdown">
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/sample_Menu_Icon.png"/>
+                                </div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Đơn Mua</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--yeu thich-->
+                    <div class="stardust-dropdown">
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/Heart-icon.png"/></div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Yêu Thích</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--            right: thong tin chi tiet-->
+            <div id="profile-section" class="container-profile-content-inner__right">
+                <div class="container-profile-content-inner__right-main" role="main">
+                    <div style="display: contents">
+                        <div class="container-profile-content-inner__right-main-inner">
+                            <!--  Hồ sơ của tôi chi tiết phần header-->
+                            <div class="container-profile-content-inner__right-main-header">
+                                <h1 class="container-profile-content-inner__right-main-header__title">Hồ Sơ Của Tôi</h1>
+                                <div class="container-profile-content-inner__right-main-header__description">Quản lý
+                                    thông tin hồ sơ để bảo mật tài khoản
+                                </div>
+                            </div>
+
+                            <!-- Phần content của phía bên phải-->
+                            <div class="container-profile-content-inner__right-main-content">
+                                <div class="container-profile-content-inner__right-main-content-center">
+                                    <!--form thông tin account-->
+                                    <!--Dùng table để phân chia các thông tin-->
+                                    <form action="">
+                                        <table class="container-profile-content-inner__right-main-content-center__table">
+                                            <!--Các hang lưu trữ thông tin-->
+                                            <!--Ten Dang Nhap-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Tên đăng nhập</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__text">
+                                                        <div class="table__row-input__text-name">thinhquadz</div>
+                                                        <button class="table__row-input__text-button"></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!--Tên-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Tên</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div>
+                                                        <div class="table__row-input__field">
+                                                            <input type="text" placeholder=""
+                                                                   class="table__row-input__field-text">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!--Email-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Email</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__text">
+                                                        <div class="table__row-input__text-name">th****@gmail.com</div>
+                                                        <button class="table__row-input__text-button">Thay Đổi</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- phone-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Số điện thoại</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__text">
+                                                        <div class="table__row-input__text-name">012*****89</div>
+                                                        <button class="table__row-input__text-button">Thay Đổi</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!--Gioi Tinh-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Giới tính</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__text">
+                                                        <!--div chua cac radioBox-->
+                                                        <div class="table__row-input-stardust-radio-group">
+                                                            <!--  GT Nam-->
+                                                            <div class="stardust-radio stardust-radio-checked"
+                                                                 tabindex="0" role="radio" aria-checked="true">
+                                                                <!--                                                                    RadioBox GTN Nam-->
+                                                                <div class="stardust-radio-button stardust-radio-button--checked">
+                                                                    <div class="stardust-radio-button__outer-circle">
+                                                                        <div class="stardust-radio-button__inner-circle"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--Ten gioi tinh-->
+                                                                <div class="stardust-radio__content">
+                                                                    <div class="stardust-radio__label">Nam</div>
+                                                                </div>
+                                                            </div>
+                                                            <!--  GT Nu-->
+                                                            <div class="stardust-radio" tabindex="0" role="radio"
+                                                                 aria-checked="true">
+                                                                <div class="stardust-radio-button">
+                                                                    <div class="stardust-radio-button__outer-circle">
+                                                                        <div class="stardust-radio-button__inner-circle"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--Ten gioi tinh-->
+                                                                <div class="stardust-radio__content">
+                                                                    <div class="stardust-radio__label">Nữ</div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <!--  GT Khac-->
+                                                            <div class="stardust-radio" tabindex="0" role="radio"
+                                                                 aria-checked="true">
+                                                                <div class="stardust-radio-button">
+                                                                    <div class="stardust-radio-button__outer-circle">
+                                                                        <div class="stardust-radio-button__inner-circle"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!--Ten gioi tinh-->
+                                                                <div class="stardust-radio__content">
+                                                                    <div class="stardust-radio__label">Khác</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!--Ngay Sinh-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Ngày sinh</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__text">
+                                                        <div class="table__row-input__text-name">23/**/20**</div>
+                                                        <button class="table__row-input__text-button">Thay Đổi</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!--Button-->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label></label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <button class="btn btn-solid-primary btn--m btn--inline"
+                                                            type="button"
+                                                            aria-disabled="false">Lưu
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+
+                                <!--upload ảnh-->
+                                <div class="container-profile-content-inner__right-main-content-upload">
+                                    <div class="right-main-content-upload-header">
+                                        <div class="right-main-content-upload-header-focus" role="header">
+                                            <div class="right-main-content-upload-header-focus-image">
+                                                <img src="../admin/img/Sample_User_Icon.png"/>
+                                            </div>
+                                        </div>
+                                        <!--  Mô tả chọn ảnh-->
+                                        <input type="file" accept=".jpg,.jpeg,.png"
+                                               class="right-main-content-upload-header-focus-input">
+                                        <!-- nút upload -->
+                                        <button class="btn btn-light btn--m btn--inline">Chọn ảnh</button>
+                                        <!-- Hướng dẫn upload-->
+                                        <div class="right-main-content-upload-header-text">
+                                            <div class="right-main-content-upload-header-text-same">Dung lượng file tối
+                                                đa 1 MB
+                                            </div>
+                                            <div class="right-main-content-upload-header-text-same">Định dạng:.JPPEG,
+                                                .PNG
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--    Right: Bank Information Details -->
+            <div id="bank-section" class="container-bank-content-inner__right" style="display: none;">
+                <div class="container-bank-content-inner__right-main" role="main">
+                    <div class="container-bank-content-inner__right-main-inner">
+                        <div class="container-bank-content-inner__right-main-header">
+                            <h1 class="container-bank-content-inner__right-main-header__title">Ngân Hàng</h1>
+                            <div class="container-bank-content-inner__right-main-header__description">Quản lý tài khoản
+                                ngân hàng và thẻ của bạn
+                            </div>
+                        </div>
+
+                        <!-- Credit/Debit Card Section -->
+                        <div class="bank-section">
+                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>
+                            <p>Bạn chưa liên kết thẻ.</p>
+                            <button class="btn btn-light btn--m btn--inline">+ Thêm Thẻ Mới</button>
+                        </div>
+
+                        <!-- Bank Account Section -->
+                        <div class="bank-section">
+                            <h2>Tài Khoản Ngân Hàng Của Tôi</h2>
+                            <p>Bạn chưa có tài khoản ngân hàng.</p>
+                            <button class="btn btn-light btn--m btn--inline">+ Thêm Tài Khoản Ngân Hàng Liên Kết
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  Right: Addres information-->
+            <div id="address-section" class="container-address-content-inner__right" style="display: none;">
+                <div class="container-address-content-inner__right-main" role="main">
+                    <div class="container-address-content-inner__right-main-inner">
+                        <!-- Header section -->
+                        <div class="container-address-content-inner__right-main-header">
+                            <div class="container-address-content-inner__right-main-header-left">
+                                <h1 class="container-address-content-inner__right-main-header__title">Địa chỉ của
+                                    tôi</h1>
+                                <div class="container-address-content-inner__right-main-header__description">
+                                    Quản lý các địa chỉ giao hàng của bạn
+                                </div>
+                            </div>
+                            <div class="container-address-content-inner__right-main-header-right">
+                                <button class="btn btn-light btn--m btn--inline add-address">+ Thêm địa chỉ mới</button>
+                            </div>
+                        </div>
+
+
+                        <!-- Address List Section -->
+                        <div class="address-section">
+                            <!-- Button to add a new address -->
+                            <!-- Address table list -->
+                            <div class="address-list">
+                                <div class="address-list-name-title">Địa chỉ</div>
+
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <div class="address-details-heading-head" role="heading">
+                                            <div id="address-details-current-heading"
+                                                 class="address-details-heading-address">
+                                                <span class="address-details-heading-address-text">
+                                                    <div class="address-details-heading-text-name">Nguyễn Hữu Thịnh</div>
+                                                </span>
+                                                <div class="address-details-heading-address-empty"></div>
+                                                <div class="address-details-heading-address-phone">(+84) 347 132 905
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-address-button">
+                                                <button type="submit"
+                                                        class="address-details-heading-address-button-edit">
+                                                    Cập nhật
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="address-details-current-content"
+                                             class="address-details-heading-content" role="heading">
+                                            <div class="address-details-current-content-inner">
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    22 Đường Số 22
+                                                </div>
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    Phường Phước Long B, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-content-button">
+                                                <button class="address-details-heading-content-button-default address-details-heading-content-button-default-active">
+                                                    Thiết lập mặc định
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="address-details-first-default" class="address-details-default">
+                                            <span role="mark" class="address-details-default-text">
+                                                Mặc định
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <div class="address-details-heading-head" role="heading">
+                                            <div class="address-details-heading-address">
+                                                <span class="address-details-heading-address-text">
+                                                    <div class="address-details-heading-text-name">Nguyễn Thị Ngọc Diễm</div>
+                                                </span>
+                                                <div class="address-details-heading-address-empty"></div>
+                                                <div class="address-details-heading-address-phone">(+84) 342 132 904
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-address-button">
+                                                <button type="submit"
+                                                        class="address-details-heading-address-button-edit">
+                                                    Cập nhật
+                                                </button>
+                                                <div class="address-details-heading-address-empty-button"></div>
+                                                <button class="address-details-heading-address-button-edit">
+                                                    Xóa
+                                                </button>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-heading-content" role="heading">
+                                            <div class="address-details-current-content-inner">
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    27 Đường Số 2
+                                                </div>
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    Phường Phước Long A, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-content-button">
+                                                <button class="address-details-heading-content-button-default">
+                                                    Thiết lập mặc định
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-default">
+                                            <span role="mark" class="address-details-default-text">
+                                                Mặc định
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <div class="address-details-heading-head" role="heading">
+                                            <div class="address-details-heading-address">
+                                                <span class="address-details-heading-address-text">
+                                                    <div class="address-details-heading-text-name">Võ Nguyễn Thanh Diệu</div>
+                                                </span>
+                                                <div class="address-details-heading-address-empty"></div>
+                                                <div class="address-details-heading-address-phone">(+84) 346 122 915
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-address-button">
+                                                <button type="submit"
+                                                        class="address-details-heading-address-button-edit">
+                                                    Cập nhật
+                                                </button>
+                                                <div class="address-details-heading-address-empty-button"></div>
+                                                <button class="address-details-heading-address-button-edit">
+                                                    Xóa
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-heading-content" role="heading">
+                                            <div class="address-details-current-content-inner">
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    31 Đường Số 3
+                                                </div>
+                                                <div role="row" class="address-details-current-content-inner__address">
+                                                    Phường Hiệp Bình, Thành Phố Thủ Đức, TP. Hồ Chí Minh
+                                                </div>
+                                            </div>
+
+                                            <div class="address-details-heading-content-button">
+                                                <button class="address-details-heading-content-button-default">
+                                                    Thiết lập mặc định
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="address-details-default">
+                                            <span role="mark" class="address-details-default-text">
+                                                Mặc định
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Right: Change password-->
+            <div id="password-change-section" class="container-profile-content-inner__right" style="display: none;">
+                <div class="container-profile-content-inner__right-main" role="main">
+                    <div style="display: contents">
+                        <div class="container-profile-content-inner__right-main-inner">
+                            <!-- Header của trang thay đổi mật khẩu -->
+                            <div class="container-profile-content-inner__right-main-header">
+                                <h1 class="container-profile-content-inner__right-main-header__title">Thay Đổi Mật
+                                    Khẩu</h1>
+                                <div class="container-profile-content-inner__right-main-header__description">
+                                    Để bảo vệ tài khoản của bạn, vui lòng thay đổi mật khẩu định kỳ.
+                                </div>
+                            </div>
+
+                            <!-- Nội dung của trang thay đổi mật khẩu -->
+                            <div class="container-profile-content-inner__right-main-content">
+                                <div class="container-profile-content-inner__right-main-content-center">
+                                    <!-- Form thay đổi mật khẩu -->
+                                    <form action="">
+                                        <table class="container-profile-content-inner__right-main-content-center__table">
+                                            <!-- Mật khẩu hiện tại -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Mật khẩu hiện tại</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__field">
+                                                        <input type="password" placeholder="Nhập mật khẩu hiện tại"
+                                                               class="table__row-input__field-text">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Mật khẩu mới -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Mật khẩu mới</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__field">
+                                                        <input type="password" placeholder="Nhập mật khẩu mới"
+                                                               class="table__row-input__field-text">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Xác nhận mật khẩu mới -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label>Xác nhận mật khẩu mới</label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <div class="table__row-input__field">
+                                                        <input type="password" placeholder="Nhập lại mật khẩu mới"
+                                                               class="table__row-input__field-text">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Nút lưu thay đổi -->
+                                            <tr>
+                                                <td class="table__row-label">
+                                                    <label></label>
+                                                </td>
+                                                <td class="table__row-input">
+                                                    <button type="submit"
+                                                            class="btn btn-solid-primary btn--m btn--inline"
+                                                            type="button" aria-disabled="false">
+                                                        Lưu Thay Đổi
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Right: function else-->
+            <div id="privacy-section" class="container-privacy-content-inner__right" style="display: none">
+                <div class="container-privacy-content-inner__right-main" role="main">
+                    <div class="container-privacy-content-inner__right-main-inner">
+                        <!-- Header Section -->
+                        <div class="container-privacy-content-inner__right-main-header">
+                            <h1 class="container-privacy-content-inner__right-main-header__title">Privacy Settings</h1>
+                        </div>
+
+                        <!-- Content Section -->
+                        <div class="container-privacy-content-inner__right-main-content">
+                            <div class="container-privacy-content-inner__right-main-content-center">
+                                <!-- Account Deletion Request Row -->
+                                <div class="privacy-row">
+                                    <div class="privacy-row-label">Yêu cầu xóa tài khoản</div>
+                                    <button class="btn btn-danger btn-delete" type="button">Xóa bỏ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('profile-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show profile section and hide others
+        document.getElementById('profile-section').style.display = 'block';
+        document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
+
+        // Set active class on profile link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+    document.getElementById('bank-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show bank section and hide others
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'block';
+        document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
+
+
+        // Set active class on bank link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+    document.getElementById('address-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show address section and hide others
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'block';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'none';
+
+
+        // Set active class on address link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+    document.getElementById('password-change-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show password change section and hide others
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'block';
+        document.getElementById('privacy-section').style.display = 'none';
+
+        // Set active class on password change link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('privacy-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+
+
+    document.getElementById('privacy-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Show privacy change section and hide others
+        document.getElementById('profile-section').style.display = 'none';
+        document.getElementById('bank-section').style.display = 'none';
+        document.getElementById('address-section').style.display = 'none';
+        document.getElementById('password-change-section').style.display = 'none';
+        document.getElementById('privacy-section').style.display = 'block';
+
+        // Set privacy class on password change link
+        this.classList.add('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('profile-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('bank-link').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('password-change-section').classList.remove('stardust-dropdown__item-body__content-item-active');
+        document.getElementById('address-section').classList.remove('stardust-dropdown__item-body__content-item-active');
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accountDropdownHeader = document.querySelector('.stardust-dropdown__item-header-menu');
+        const dropdownBody = document.querySelector('.stardust-dropdown__item-body');
+        const icon = document.querySelector('.stardust-dropdown__item-header-account-name i');
+
+        accountDropdownHeader.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngăn chặn load lại trang
+            dropdownBody.classList.toggle('stardust-dropdown__item-body--open');
+            icon.classList.toggle('rotate-icon');
+        });
+    });
+
+
+</script>
+</body>
+</html>
