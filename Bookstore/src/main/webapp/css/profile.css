@@ -1,0 +1,923 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+    /*PS: co the loi*/
+    background-color: #f5f5f5;
+    /*    */
+
+}
+
+/*Lớp bao trùm */
+.container-profile {
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+}
+
+.container-profile-content-inner {
+    display: flex;
+    padding: 1.25rem 0 3.125rem;
+}
+
+
+/*Lớp phía tay trái*/
+.container-profile-content-inner__left {
+    display: block;
+    flex-shrink: 0;
+    background: #fff;
+    width: 240px;
+    height: 550px;
+}
+
+.profile-info {
+    border-bottom: 1px solid #efefef;
+    display: flex;
+    padding: 15px 0;
+    margin-left: 15px;
+}
+
+/*Thông tin logo tay trais*/
+.profile-info .profile-info-logo {
+}
+
+.profile-info-logo, .profile-info-avatar-img {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-info-avatar-img {
+    border: .0625rem solid rgba(0, 0, 0, .09);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    color: #9b9b9b;
+}
+
+.profile-info-avatar_img__placeholder img {
+    stroke: #c6c6c6;
+    font-size: 1.5rem;
+    font-weight: 400;
+    left: 50%;
+    line-height: 2rem;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    color: #ccc;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
+    --webkit-font-smoothing: antialiased;
+}
+
+.profile-info-username {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding-left: 15px;
+}
+
+.profile-info-username .profile-info-username__text {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 5px;
+    min-height: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-info-username .profile-info-username__edit {
+    color: #888;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+/* *Thông tin logo tay trais ben duoi*/
+
+/*dropdown*/
+.container-profile-content-inner__left .profile-stardust-dropdown {
+    cursor: pointer;
+    list-style: none;
+    margin: 27px 15px 0;
+    padding: 0;
+}
+
+.stardust-dropdown {
+    position: relative;
+}
+
+.stardust-dropdown__item-header {
+    vertical-align: baseline;
+}
+
+.stardust-dropdown__item-header .stardust-dropdown__item-header-menu {
+    align-items: center;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.stardust-dropdown__item-header-account-img {
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    flex-shrink: 0;
+    height: 1.25rem;
+    justify-content: center;
+    line-height: 1.25rem;
+    text-align: center;
+    width: 1.25rem;
+
+}
+
+.stardust-dropdown__item-header-account-img > img {
+    height: 100%;
+    width: 100%;
+}
+
+.stardust-dropdown__item-header-account-name {
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+.stardust-dropdown__item-header-account-name-text {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.stardust-dropdown__item-body__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 26px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.stardust-dropdown__item-body__content > a {
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #898888;
+}
+
+.stardust-dropdown__item-body__content-item {
+    color: #333333;
+    text-decoration: none;
+}
+
+.stardust-dropdown__item-body__content-item-active > span {
+    color: #117C6F;
+}
+
+/* Ẩn nội dung dropdown theo mặc định */
+.stardust-dropdown__item-body {
+    display: block;
+}
+
+/* Hiển thị dropdown khi mở */
+.stardust-dropdown__item-body--open {
+    display: none;
+}
+
+/* Xoay mũi tên khi mở */
+.rotate-icon {
+    transform: rotate(180deg);
+}
+
+/* Hiệu ứng chuyển đổi cho icon */
+.stardust-dropdown__item-header-account-name i {
+    transition: transform 0.3s ease;
+}
+
+
+/*Phần content của phía bên phải*/
+.container-profile-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 14px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-profile-content-inner__right-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+}
+
+.container-profile-content-inner__right-main-inner {
+    padding: 0 24px 18px;
+}
+
+/*Hồ sơ của tôi chi tiết phần header*/
+.container-profile-content-inner__right-main-header {
+    border-bottom: 0.5px solid #efefef;
+    padding: 12px 0;
+    margin: 12px 0;
+}
+
+/*tieu de*/
+.container-profile-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.container-profile-content-inner__right-main-header__description {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+/*Phần content của phía bên phải*/
+.container-profile-content-inner__right-main-content {
+    padding-top: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.container-profile-content-inner__right-main-content-center {
+    padding-right: 50px;
+}
+
+/*form thông tin account*/
+/*Dùng table để phân chia các thông tin*/
+
+.container-profile-content-inner__right-main-content-center__table {
+    width: 602px;
+}
+
+
+.container-profile-content-inner__right-main-content-center__table > tr {
+    vertical-align: middle;
+}
+
+.container-profile-content-inner__right-main-content-center__table .table__row-label {
+    color: #333333;
+    min-width: 20%;
+    overflow: hidden;
+    padding-bottom: 30px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.container-profile-content-inner__right-main-content-center__table .table__row-input {
+    box-sizing: border-box;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+
+.container-profile-content-inner__right-main-content-center__table .table__row-input__text {
+    align-items: center;
+    display: flex;
+}
+
+.table__row-input__text .table__row-input__text-name {
+    color: #333;
+    font-size: 14px;
+}
+
+.table__row-input__text .table__row-input__text-button {
+    background: none;
+    border: 0;
+    color: #117C6F;
+    outline: none;
+    text-decoration: underline;
+    text-transform: capitalize;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.table__row-input .table__row-input__field {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .14);
+    border-radius: 2px;
+    box-shadow: inset 0 2px rgba(0, 0, 0, .07);
+    box-sizing: border-box;
+    display: flex;
+    height: 40px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.table__row-input .table__row-input__field .table__row-input__field-text {
+    background: none;
+    border: 0;
+    filter: none;
+    flex: 1;
+    flex-shrink: 0;
+    outline: none;
+    padding: 12px;
+}
+
+.table__row-input__text .table__row-input-stardust-radio-group {
+    display: flex;
+}
+
+.table__row-input__text .stardust-radio {
+    margin-right: 12px;
+    padding: 0;
+    color: #333333;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.table__row-input__text .stardust-radio-button {
+    flex-shrink: 0;
+    height: 18px;
+    margin-right: 8px;
+    position: relative;
+    width: 18px;
+}
+
+/*Tao ra cac radio box*/
+.stardust-radio-button__outer-circle {
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, .26);
+    border-radius: 100%;
+    box-sizing: border-box;
+    display: flex;
+    height: 18px;
+    justify-content: center;
+    width: 18px;
+}
+
+/*GT Nam*/
+.stardust-radio-checked .stardust-radio-button__outer-circle {
+    border-color: #117C6F;
+}
+
+.stardust-radio-button--checked > .stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {
+    opacity: 1;
+    background: #117C6F;
+    height: 6px;
+    border-radius: 100%;
+    width: 6px;
+}
+
+/*GT Nu*/
+.stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {
+    background: #117C6F;
+    border-radius: 100%;
+    height: 6px;
+    opacity: 0;
+    width: 6px
+}
+
+/*Nut Luu thong tin*/
+.container-profile-content-inner__right-main-content-center__table .btn {
+    background-color: #117C6F;
+    color: #fff;
+    outline: 0;
+    overflow: visible;
+    position: relative;
+    border: 0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container-profile-content-inner__right-main-content-center__table .btn--m {
+    height: 40px;
+    max-width: 220px;
+    min-width: 70px;
+    padding: 5px 25px;
+}
+
+.container-profile-content-inner__right-main-content-center__table .btn--inline {
+    display: inline-block;
+}
+
+/*upload image */
+.container-profile-content-inner__right-main-content-upload {
+    border-left: 1px solid #efefef;
+    overflow: hidden;
+    width: 280px;
+    justify-content: center;
+    display: flex;
+}
+
+.right-main-content-upload-header {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.right-main-content-upload-header-focus {
+    height: 100px;
+    margin: 20px 0;
+    position: relative;
+    width: 100px;
+    justify-content: center;
+}
+
+.right-main-content-upload-header-focus-image {
+    background-color: #efefef;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.right-main-content-upload-header-focus-image img {
+    overflow: hidden;
+    stroke: #c6c6c6;
+    width: 90px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    font-size: 24px;
+    position: absolute;
+    font-weight: 400;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
+}
+
+.right-main-content-upload-header-focus-input {
+    display: none;
+}
+
+.right-main-content-upload-header .btn-light {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .09);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .03);
+    color: #555;
+    outline: 0;
+    overflow: visible;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    justify-content: center;
+    text-transform: capitalize;
+    align-items: center;
+}
+
+.right-main-content-upload-header .btn--m {
+    height: 40px;
+    max-width: 220px;
+    min-width: 70px;
+    padding: 5px 25px;
+    display: inline-block;
+}
+
+.right-main-content-upload-header-text {
+    display: block;
+    margin-top: 12px;
+}
+
+.right-main-content-upload-header-text .right-main-content-upload-header-text-same {
+    color: #999;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/*Bank account*/
+/* Styling for the Right Bank Information Details Section */
+.container-bank-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 14px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-bank-content-inner__right-main {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 0 24px 18px;
+}
+
+.container-bank-content-inner__right-main-inner {
+    max-width: 920px;
+    margin: auto;
+
+}
+
+.container-bank-content-inner__right-main-header {
+    border-bottom: 0.5px solid #efefef;
+    padding: 12px 0;
+    margin: 12px 0;
+}
+
+.container-bank-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.container-bank-content-inner__right-main-header__description {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.bank-section {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.bank-section h2 {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.bank-section p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.bank-section .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #117C6F;
+}
+
+.bank-section .btn-light {
+    color: #fff;
+}
+
+.bank-section .btn--m {
+    font-size: 14px;
+}
+
+.bank-section .btn--inline {
+    display: inline-block;
+}
+
+.bank-section .btn:hover {
+    background-color: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*Address*/
+.container-address-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 14px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-address-content-inner__right-main {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 24px 18px;
+}
+
+.container-address-content-inner__right-main-inner {
+    max-width: 920px;
+    margin: auto;
+}
+
+.container-address-content-inner__right-main-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #efefef;
+    padding: 10px;
+    margin: 12px 0;
+    margin-left: -5px;
+}
+
+.container-address-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+
+.container-address-content-inner__right-main-header__description {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+
+.address-section {
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.btn.add-address {
+    background-color: #117C6F;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn.add-address:hover {
+    background-color: #04c3a9;
+}
+
+
+/* Address List Styling */
+.address-list {
+    background: #fff;
+    padding: 12px 30px 0;
+}
+
+.address-list .address-list-name-title {
+    font-size: 18px;
+    line-height: 1.75rem;
+    margin-bottom: 8px;
+}
+
+
+.address-item {
+    padding: 18px 0 20px;
+    background: #fff;
+    border-bottom: 1px solid #efefef;
+    display: flex;
+}
+
+.address-item:last-child {
+    border-bottom: none;
+}
+
+.address-details {
+    min-width: 0;
+    width: 100%;
+}
+
+.address-details-heading-head {
+    margin-bottom: 4px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.address-details-heading-address {
+    margin-right: 8px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    display: flex;
+}
+
+.address-details-heading-address-text {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.address-details-heading-text-name {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.address-details-heading-address-empty {
+    border-left: 3px solid rgba(0, 0, 0, 0.26);
+    margin: 0 8px;
+}
+
+.address-details-heading-address-phone {
+    font-size: 14px;
+    line-height: 20px;
+rgba(0, 0, 0, 0.54);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+/*button*/
+.address-details-heading-address-button {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.address-details-heading-address-button-edit {
+    background: none;
+    border: 0;
+    color: #117C6F;
+    outline: none;
+    padding: 4px;
+    font-size: 16px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/*content*/
+.address-details-heading-content {
+    margin-bottom: 5px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.address-details-current-content-inner {
+    margin-right: 8px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    color: #8f8d8d;
+}
+
+.address-details-current-content-inner__address {
+    display: flex;
+    align-items: center;
+}
+
+/*button thiet lap*/
+.address-details-heading-content-button {
+    padding-top: 4px;
+    flex-basis: 40px;
+    justify-content: flex-end;
+    display: flex;
+}
+
+/*Vết ngăn hai button*/
+.address-details-heading-address-empty-button {
+    border-left: 1px solid rgba(0, 0, 0, 0.26);
+    margin: 0 8px;
+}
+
+.address-details-heading-content-button-default {
+    border: 1px solid rgba(0, 0, 0, .26);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .03);
+    font-size: .875rem;
+    height: 28px;
+    line-height: 1.25rem;
+    min-width: 0;
+    padding: 4px 12px;
+    white-space: nowrap;
+    background: #fff;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.address-details-heading-content-button-default-active {
+    color: rgba(0, 0, 0, .87);
+}
+
+
+/*Thhe mac dinh*/
+.address-details-default {
+    margin-top: 4px;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+}
+
+.address-details-default-text {
+    color: #117C6F;
+    margin: 0 4px 4px 0;
+    padding: 2px 4px;
+    border: 1.5px solid #117C6F;
+    border-radius: 1px;
+}
+
+
+/*function else*/
+/* General Container Styling */
+.container-privacy-content-inner__right {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /*flex-grow: 1;*/
+    margin-left: 14px;
+    min-width: 0;
+    position: relative;
+    width: 980px;
+}
+
+.container-privacy-content-inner__right-main {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.container-privacy-content-inner__right-main-header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 0.5px solid #efefef;
+}
+
+.container-privacy-content-inner__right-main-header__title {
+    color: #333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Content Section */
+.container-privacy-content-inner__right-main-content-center {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Privacy Row Styling */
+.privacy-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.privacy-row-label {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: #fff;
+    color: #000;
+    border: 0.5px solid #117C6F;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    color: #fff;
+    background-color: #117C6F;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
