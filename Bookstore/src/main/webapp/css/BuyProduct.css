@@ -1,0 +1,126 @@
+/* Custom CSS */
+
+.container-product-content-inner__right {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-left: 28px;
+}
+
+.product-search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-search>i {
+    margin-right: 10px;
+    color: #888;
+}
+
+.product-search-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.container-product-content-inner__right-inner-center-product {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 12px 24px;
+}
+
+.product-status {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #eaeaea;
+}
+
+.product-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: #333;
+}
+
+.product-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.product-details {
+    flex-grow: 1;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.product-quantity {
+    font-size: 14px;
+    color: #666;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e53935;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.price-amount {
+    color: #e53935;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.rating-prompt {
+    font-size: 14px;
+    color: #666;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+}
