@@ -41,6 +41,7 @@
                                     <img src="../admin/img/Sample_user_icon_profile.png" height="48" width="48"/></div>
                                 <div class="stardust-dropdown__item-header-account-name">
                                     <span class="stardust-dropdown__item-header-account-name-text">Tài Khoản Của Tôi</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
                                 </div>
                             </a>
                         </div>
@@ -91,7 +92,7 @@
 
 
             <!--            right: thong tin chi tiet-->
-            <div id="profile-section" class="container-profile-content-inner__right" style="display: none;">
+            <div id="profile-section" class="container-profile-content-inner__right">
                 <div class="container-profile-content-inner__right-main" role="main">
                     <div style="display: contents">
                         <div class="container-profile-content-inner__right-main-inner">
@@ -691,6 +692,22 @@
         document.getElementById('password-change-section').classList.remove('stardust-dropdown__item-body__content-item-active');
         document.getElementById('address-section').classList.remove('stardust-dropdown__item-body__content-item-active');
     });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accountDropdownHeader = document.querySelector('.stardust-dropdown__item-header-menu');
+        const dropdownBody = document.querySelector('.stardust-dropdown__item-body');
+        const icon = document.querySelector('.stardust-dropdown__item-header-account-name i');
+
+        accountDropdownHeader.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngăn chặn load lại trang
+            dropdownBody.classList.toggle('stardust-dropdown__item-body--open');
+            icon.classList.toggle('rotate-icon');
+        });
+    });
+
+
 </script>
 </body>
 </html>
