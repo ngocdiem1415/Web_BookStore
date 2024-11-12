@@ -1,39 +1,59 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.col-3{
+.content-main{
+
+}
+.col-3 {
     box-sizing: border-box;
 }
+
+.bt-cl-o {
+    background: #f07c29;
+!important;
+    border: none;
+}
+
+.text-dec {
+    text-decoration: none;
+}
+
+.br-gray {
+    border: 1px solid #dee2e6;
+}
+
+/*Dashboard start*/
 /*sidebar*/
 #offcanvasWithBothOptions {
     width: 300px;
 }
 
-.offcanvas{
+.offcanvas {
     background: #B8D7D5;
 }
-.offcanvas-header .btn-close{
+
+.offcanvas-header .btn-close {
     float: right;
     margin-top: -190px;
 }
 
-.offcanvas-header{
+.offcanvas-header {
     margin-left: 30px;
 }
 
-.offcanvas-body .nav-item{
+.offcanvas-body .nav-item {
     margin: 20px;
 }
 
-.offcanvas-body .nav-item .icon{
+.offcanvas-body .nav-item .icon {
     margin-right: 12px;
 }
 
 /*header*/
-.header{
+.header {
     padding: 10px 0;
     background: linear-gradient(to bottom, #B8D7D5, #edfdf2);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
@@ -55,7 +75,8 @@
     background-color: #4B908E;
 }
 
-.profile-box{
+
+.profile-box {
     float: right;
 }
 
@@ -67,6 +88,7 @@
 .profile-info .info .image {
     font-size: 10px;
 }
+
 .header .header-right .profile-box .profile-info .info .image {
     border: 3px solid black;
     width: 45px;
@@ -154,26 +176,39 @@
 .fa-arrow-up {
     margin-right: 8px;
 }
-.card-stats .card-title{
-    margin: 40px 0 20px 20px;
-}
 
 #revenue-card {
     border: 1px solid #dee2e6;
     border-radius: 10px;
 }
-.card-footer-stats{
+
+.card-footer-stats {
     box-sizing: border-box;
     padding: 10px 0;
     margin: 0 8px;
-    border: 1px solid #dee2e6;
-    border-top: none ;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+}
+
+/*Dashboard end*/
+
+/*user-management*/
+.main-listUser-table{
+    margin: 10px;
+}
+.addUser{
+    text-align: right;
+}
+
+.addUser .btn {
+    padding: 5px;
+    background: #4B908E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    pointer-events: none;
 
 }
 
-.page-item.active .page-link{
-    color: #0a3622; !important;
-}
+.addUser .btn:hover {
+    background: #316064;
 
+}
