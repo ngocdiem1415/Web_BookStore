@@ -9,7 +9,7 @@ body {
     color: rgba(0, 0, 0, 0.8);
     line-height: 1.2;
     /*PS: co the loi*/
-    background-color: #f5f5f5;
+    background-color: #f5f5f5 !important;
     /*    */
 
 }
@@ -152,7 +152,7 @@ body {
 }
 
 .stardust-dropdown__item-header-account-name-text {
-    font-weight: 500;
+    font-weight: 400 !important;
     margin-right: 5px;
 }
 
@@ -409,6 +409,11 @@ body {
 
 .container-profile-content-inner__right-main-content-center__table .btn--inline {
     display: inline-block;
+}
+
+.container-profile-content-inner__right-main-content-center__table .btn:hover {
+    background-color: #28e8b8 !important;
+
 }
 
 /*upload image */
