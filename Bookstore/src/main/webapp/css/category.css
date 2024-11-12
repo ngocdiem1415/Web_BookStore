@@ -15,7 +15,7 @@
 }
 
 .grid__row-left .category__heading {
-    font-size: 32px;
+    font-size: 22px;
     padding: 26px 16px;
     border-bottom: 0.5px solid #ccc;
     font-weight: 500;
@@ -35,6 +35,7 @@
 
 .category-inform {
     padding: 4px 16px;
+    font-size: 16px;
 }
 
 /* Thiết lập phần cuộn cho danh sách */
@@ -94,7 +95,7 @@
     position: relative;
     right: 0;
     text-decoration: none;
-    font-size: 1.6rem;
+    font-size: 18px;
     padding: 8px 16px;
     color: #000;
     transition: right linear 0.1s;
@@ -108,7 +109,7 @@
 .grid__row-left .col-md-2 {
     padding-left: 5px;
     padding-right: 5px;
-    width: 280px;
+    width: 240px;
 }
 
 .col-md-10 {
@@ -133,7 +134,7 @@
     display: flex;
     margin-left: 5px;
     margin-right: -5px;
-    width: 920px !important;
+    width: 960px !important;
 
 }
 
@@ -161,9 +162,10 @@
 }
 
 .head__title {
-    font-size: 3.5rem;
+    font-size: 42px;
     font-weight: bold;
     color: #333;
+    margin-left: 12px;
 }
 
 .head-filter {
