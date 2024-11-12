@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+.content-main{
+
+}
 .col-3 {
     box-sizing: border-box;
 }
@@ -14,8 +17,12 @@
     border: none;
 }
 
-.text-dec{
+.text-dec {
     text-decoration: none;
+}
+
+.br-gray {
+    border: 1px solid #dee2e6;
 }
 
 /*Dashboard start*/
@@ -170,14 +177,6 @@
     margin-right: 8px;
 }
 
-.card-stats {
-    box-sizing: border-box;
-}
-
-.card-stats .card-title {
-    margin: 40px 0 20px 20px;
-}
-
 #revenue-card {
     border: 1px solid #dee2e6;
     border-radius: 10px;
@@ -187,20 +186,29 @@
     box-sizing: border-box;
     padding: 10px 0;
     margin: 0 8px;
-    border: 1px solid #dee2e6;
-    border-top: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-
 }
-
 
 /*Dashboard end*/
 
 /*user-management*/
-.table .active a{
-    padding: 2px 5px;
-    background: #baecd3;
-    border-radius: 15px;
+.main-listUser-table{
+    margin: 10px;
+}
+.addUser{
+    text-align: right;
 }
 
+.addUser .btn {
+    padding: 5px;
+    background: #4B908E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    pointer-events: none;
+
+}
+
+.addUser .btn:hover {
+    background: #316064;
+
+}
