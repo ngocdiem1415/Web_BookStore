@@ -1,0 +1,92 @@
+/* Container tổng cho khu vực yêu thích */
+.container-profile-content-inner__right {
+    padding: 20px;
+    width: 960px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: -18px;
+    margin-left: 28px;
+}
+
+/* Sản phẩm yêu thích */
+.container-product-content-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container-product-content-inner:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Ảnh sản phẩm */
+.container-product-content-inner-infor-img {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+/* Thông tin sản phẩm */
+.container-product-content-inner-infor {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.content-inner__right-inner-infor__text-content-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Thông tin số lượng và đã bán */
+.container-product-content-inner-infor__text-content-quanlity {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    flex-direction: column;
+}
+
+.container-product-content-inner-infor__text-content-quanlity-available,
+.container-product-content-inner-infor__text-content-quanlity-sold {
+    font-size: 13px;
+    color: #888;
+}
+
+/* Giá sản phẩm */
+.container-product-content-inner-infor__price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5a5a;
+    margin-right: 15px;
+}
+
+/* Đánh giá sản phẩm */
+.container-product-content-inner-infor__vote {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffbf00;
+}
+
+.container-product-content-inner-infor__vote-star i {
+    margin-right: 4px;
+}
+
+.container-product-content-inner-infor__vote-review {
+    font-size: 13px;
+    color: #666;
+}
