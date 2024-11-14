@@ -12,12 +12,11 @@
     <link rel="stylesheet" href="../css/Dashboard.css">
 </head>
 <body>
-
 <!--curtain menu-->
 <aside class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
        aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
-        <a href="#">
+        <a href="Dashboard.html">
             <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
         </a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -33,67 +32,75 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="User-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Khách hàng</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Order-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-shopping-cart"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Đơn Hàng</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Category-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-tags"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Danh Mục</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Product-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-archive"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Sản phẩm</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Supplier-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="far fa-newspaper"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Blog</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Slider-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-store"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Nhà cung cấp</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Discount-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-percent"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Khuyến mãi</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Admin-Management." class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users-cog"></i>
             </span>
                     <span class="text" style="color: black; font-weight: bold">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users-cog"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
                 </a>
             </li>
         </ul>
@@ -102,7 +109,7 @@
 <div class="overlay"></div>
 
 <!--header start-->
-<header class="header">
+<header id="header">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
@@ -200,7 +207,7 @@
                                             <th>Hành động</th>
                                         </tr>
                                         </thead>
-                                        <tbody style="font-weight: normal">
+                                        <tbody style="font-weight: lighter">
                                         <tr>
                                             <th scope="row">1</th>
                                             <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
