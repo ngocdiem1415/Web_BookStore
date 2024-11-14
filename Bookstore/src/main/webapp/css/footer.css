@@ -65,7 +65,7 @@
 }
 
 .footer-row .footer-col .links li a:hover {
-    color: #fff;
+    color: #117C6F;
 }
 
 .footer-row .footer-col p {
@@ -115,6 +115,16 @@
     margin-top: 30px;
     gap: 10px;
     cursor: pointer;
+}
+
+.footer-row .footer-col ul > li {
+    right: 0;
+    position: relative;
+    transition: right 0.4s ease;
+}
+
+.footer-row .footer-col ul > li:hover {
+    right: -10px;
 }
 
 .footer-row .footer-col .icons i {
