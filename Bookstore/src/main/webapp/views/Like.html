@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/Header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/Style.css">
-
+    <link rel="stylesheet" href="../css/Like.css">
 </head>
 <body>
 <!--header-->
@@ -104,15 +104,74 @@
                     </div>
                 </div>
             </div>
+
+            <!--content right-->
+            <div class="container-profile-content-inner__right">
+                <div style="display: contents">
+                    <div class="container-product-content-inner__right-inner">
+                        <!-- Phần sản phẩm yêu thích -->
+                        <section>
+                            <a href="">
+                                <div class="container-product-content-inner">
+                                    <div class="container-product-content-inner-infor">
+                                        <img src="../img/cauchuyencuatho1.webp" alt=""
+                                             class="container-product-content-inner-infor-img">
+                                        <div class="container-product-content-inner-infor__text">
+                                            <div>
+                                                <div class="content-inner__right-inner-infor__text-content">
+                                                    <span class="content-inner__right-inner-infor__text-content-name">
+                                                                        Câu chuyện của thỏ
+                                                    </span>
+                                                </div>
+                                                <div class="container-product-content-inner-infor__price"
+                                                     tabindex="0">
+                                                    <span class="container-product-content-inner-infor__price-text">
+                                                            100.000đ
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-product-content-inner-infor__text">
+                                        <div>
+                                            <div class="container-product-content-inner-infor__text-content">
+                                                <div class="container-product-content-inner-infor__text-content-quanlity"
+                                                     tabindex="0">
+                                                        <span class="container-product-content-inner-infor__text-content-quanlity-available">
+                                                                        Số lượng: 120
+                                                        </span>
+                                                    <span class="container-product-content-inner-infor__text-content-quanlity-sold">
+                                                                        Đã bán: 20
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-product-content-inner-infor__vote"
+                                         tabindex="0">
+                                        <div class="container-product-content-inner-infor__vote-star">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span class="container-product-content-inner-infor__vote-star-text">4.5</span>
+                                        </div>
+                                        <span class="container-product-content-inner-infor__vote-review">19 lượt đánh giá</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
 
-
-
 <!--footer-->
-<div id="footer"></div>
+<div id=" footer
+                                                    ">
+</div>
 
 <!--script-->
 <script>
@@ -132,5 +191,20 @@
         });
 </script>
 <!--all script files-->
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accountDropdownHeader = document.querySelector('.stardust-dropdown__item-header-menu');
+        const dropdownBody = document.querySelector('.stardust-dropdown__item-body');
+        const icon = document.querySelector('.stardust-dropdown__item-header-account-name i');
+
+        accountDropdownHeader.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngăn chặn load lại trang
+            dropdownBody.classList.toggle('stardust-dropdown__item-body--open');
+            icon.classList.toggle('rotate-icon');
+        });
+    });
+</script>
 </body>
 </html>
