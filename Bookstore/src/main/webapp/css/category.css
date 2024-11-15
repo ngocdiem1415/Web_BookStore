@@ -38,6 +38,10 @@
     font-size: 16px;
 }
 
+.category-inform .fa-star {
+    color: #ef552f;
+}
+
 /* Thiết lập phần cuộn cho danh sách */
 .category-scroll {
     max-height: 200px; /* Đặt chiều cao cố định theo ý muốn */
@@ -311,9 +315,10 @@
 /*pagnigation*/
 .grid__row--footer {
     display: flex;
-   justify-content: flex-end;
+    justify-content: flex-end;
     margin-top: 16px;
 }
+
 .home-filter__paginate {
     display: flex;
     justify-content: flex-end; /* Aligns pagination to the right */
