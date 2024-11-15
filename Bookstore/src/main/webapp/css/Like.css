@@ -1,3 +1,13 @@
+
+/*.active-buy-product {*/
+/*    color: #000000;*/
+/*    transition: color 0.3s ease;*/
+/*}*/
+
+/*.active-buy-product:hover {*/
+/*    color: #117C6F;*/
+/*}*/
+
 /* Container tổng cho khu vực yêu thích */
 .container-profile-content-inner__right {
     padding: 20px;
@@ -19,12 +29,10 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.container-product-content-inner:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+.container-product-content-inner__right-inner a {
+    text-decoration: none;
 }
 
 /* Ảnh sản phẩm */
@@ -40,12 +48,11 @@
 .container-product-content-inner-infor {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
+    width: 320px;
 }
 
 .content-inner__right-inner-infor__text-content-name {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 15px;
     color: #333;
     margin-bottom: 5px;
 }
@@ -53,23 +60,21 @@
 /* Thông tin số lượng và đã bán */
 .container-product-content-inner-infor__text-content-quanlity {
     display: flex;
-    gap: 10px;
     font-size: 14px;
     color: #666;
-    margin-top: 5px;
+    margin-top: -46px;
     flex-direction: column;
 }
 
 .container-product-content-inner-infor__text-content-quanlity-available,
 .container-product-content-inner-infor__text-content-quanlity-sold {
-    font-size: 13px;
+    font-size: 16px;
     color: #888;
 }
 
 /* Giá sản phẩm */
 .container-product-content-inner-infor__price {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
     color: #ff5a5a;
     margin-right: 15px;
 }
@@ -80,6 +85,13 @@
     align-items: center;
     gap: 8px;
     color: #ffbf00;
+    margin-top: -46px;
+}
+
+.container-product-content-inner-infor__vote-star {
+    padding: 5px 12px;
+    border: 1px solid #ffbf00;
+    border-radius: 50px;
 }
 
 .container-product-content-inner-infor__vote-star i {
@@ -87,6 +99,6 @@
 }
 
 .container-product-content-inner-infor__vote-review {
-    font-size: 13px;
+    font-size: 15px;
     color: #666;
 }
