@@ -4,3 +4,13 @@
     font-weight: bold;
     /*font-size: 50px;*/
 }
+.MUA{
+    width: 200px;
+    background-color: #316064;
+    color: white;
+}
+.MUA:hover{
+    background-color: #B8D7D5;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
