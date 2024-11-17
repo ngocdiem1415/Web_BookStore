@@ -17,7 +17,7 @@
 <aside class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
        aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
-        <a href="#">
+        <a href="Dashboard.html">
             <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
         </a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -33,67 +33,75 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="User-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Khách hàng</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Order-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-shopping-cart"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Đơn Hàng</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Category-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-tags"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Danh Mục</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Product-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-archive"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Sản phẩm</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Supplier-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="far fa-newspaper"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Blog</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Slider-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-store"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Nhà cung cấp</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Discount-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-percent"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Khuyến mãi</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="text-dec">
+                <a href="Admin-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users-cog"></i>
             </span>
                     <span class="text" style="color: black; font-weight: bold">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                    <i class="fa-solid fa-gear"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
                 </a>
             </li>
         </ul>
@@ -102,15 +110,15 @@
 <div class="overlay"></div>
 
 <!--header start-->
-<header class="header">
+<header id="header">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
                 <div class="header-left">
                     <div class="menu-toggle-btn ">
-                        <button id="menu-toggle" class="main-btn btn-hover bt-cl-o" data-bs-toggle="offcanvas"
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
-                                class="fas fa-bars "></i> Menu
+                                class="fas fa-bars"></i> Menu
                         </button>
                     </div>
                 </div>
@@ -133,7 +141,7 @@
                             </div>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Trang bán hàng</a></li>
+                            <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
                             <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                         </ul>
                     </div>
@@ -200,14 +208,14 @@
                                             <th>Hành động</th>
                                         </tr>
                                         </thead>
-                                        <tbody style="font-weight: normal">
+                                        <tbody style="font-weight: lighter">
                                         <tr>
                                             <th scope="row">1</th>
                                             <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
                                             <td>Nguyễn Văn A</td>
                                             <td>08333333331</td>
                                             <td>a123@gmail.com</td>
-                                            <td>Active</td>
+                                            <td>hoạt động</td>
                                             <td>
                                                 <i class="fa-regular fa-pen-to-square fa-lg mx-2"
                                                    style="color: #236844"></i>
@@ -221,7 +229,7 @@
                                             <td>Nguyễn Thị B</td>
                                             <td>08333333332</td>
                                             <td>b123@gmail.com</td>
-                                            <td>Active</td>
+                                            <td>hoạt động</td>
                                             <td>
                                                 <i class="fa-regular fa-pen-to-square fa-lg mx-2"
                                                    style="color: #236844"></i>
@@ -235,7 +243,7 @@
                                             <td>Trần Văn C</td>
                                             <td>08333333333</td>
                                             <td>c123@gmail.com</td>
-                                            <td>Active</td>
+                                            <td>hoạt động</td>
                                             <td>
                                                 <i class="fa-regular fa-pen-to-square fa-lg mx-2"
                                                    style="color: #236844"></i>
@@ -249,7 +257,7 @@
                                             <td>Nguyễn Hoàng D</td>
                                             <td>08333333334</td>
                                             <td>d123@gmail.com</td>
-                                            <td>Active</td>
+                                            <td>hoạt động</td>
                                             <td>
                                                 <i class="fa-regular fa-pen-to-square fa-lg mx-2"
                                                    style="color: #236844"></i>
@@ -263,7 +271,7 @@
                                             <td>Nguyễn Văn E</td>
                                             <td>08333333335</td>
                                             <td>e123@gmail.com</td>
-                                            <td>Active</td>
+                                            <td>hoạt động</td>
                                             <td>
                                                 <i class="fa-regular fa-pen-to-square fa-lg mx-2"
                                                    style="color: #236844"></i>

@@ -4,9 +4,14 @@
     box-sizing: border-box;
 }
 
-.content-main{
+.section {
+    padding-top: 60px;
+}
+
+.content-main {
 
 }
+
 .col-3 {
     box-sizing: border-box;
 }
@@ -53,18 +58,22 @@
 }
 
 /*header*/
-.header {
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     padding: 10px 0;
     background: linear-gradient(to bottom, #B8D7D5, #edfdf2);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-.header .container-fluid {
+#header .container-fluid {
     padding-left: 40px;
     padding-right: 40px;
 }
 
-.header .header-left .menu-toggle-btn .main-btn {
+#header .header-left .menu-toggle-btn .main-btn {
     padding: 0px 15px;
     height: 46px;
     line-height: 46px;
@@ -80,7 +89,7 @@
     float: right;
 }
 
-.header .header-right .profile-box .profile-info .info {
+#header .header-right .profile-box .profile-info .info {
     display: flex;
     align-items: center;
 }
@@ -89,7 +98,7 @@
     font-size: 10px;
 }
 
-.header .header-right .profile-box .profile-info .info .image {
+#header .header-right .profile-box .profile-info .info .image {
     border: 3px solid black;
     width: 45px;
     height: 40px;
@@ -98,7 +107,7 @@
     position: relative;
 }
 
-.header .header-right .profile-box .profile-info .info .image .status {
+#header .header-right .profile-box .profile-info .info .image .status {
     width: 13px;
     height: 13px;
     border-radius: 50%;
@@ -191,10 +200,11 @@
 /*Dashboard end*/
 
 /*user-management*/
-.main-listUser-table{
+.main-listUser-table {
     margin: 10px;
 }
-.addUser{
+
+.addUser {
     text-align: right;
 }
 
