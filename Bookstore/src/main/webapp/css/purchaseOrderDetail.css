@@ -1,0 +1,64 @@
+/*Phan detail cua don mua khi click vaof san pham*/
+.container-product-content-inner__right-inner-container__header {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    line-height: 16px;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.right-inner-container__header__back {
+    background: none;
+    border: 0;
+    color: rgba(0, 0, 0, .54);
+    display: flex;
+    margin-right: 16px;
+    padding: 0;
+}
+
+.right-inner-container__header__back span {
+    margin-left: 8px;
+}
+
+.right-inner-container__header__title {
+    display: flex;
+    text-align: right;
+}
+
+.right-inner-container__header__title-complete {
+    color: #ee4d2d;
+    text-transform: uppercase;
+}
+
+/*Thong tin ca nhan*/
+.right-inner-container--content {
+    padding: 20px 24px 24px;
+    display: flex;
+}
+
+.right-inner-container--content-address {
+    max-width: 50%;
+}
+
+.right-inner-container--content-address__title {
+    color: rgba(0, 0, 0, .8);
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+}
+
+.right-inner-container--content-address__name {
+    color: rgba(0, 0, 0, .8);
+    margin: 0 0 7px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.right-inner-container--content-address__address {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+}
