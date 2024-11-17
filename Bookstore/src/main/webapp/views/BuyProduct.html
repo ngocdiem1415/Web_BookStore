@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/BuyProduct.css">
+
+</head>
+<body>
+<div class="content-profile" class="container-profile">
+    <div class="container-profile-content">
+        <div class="container-profile container-profile-content-inner">
+            <!--content left-->
+            <div class="container-profile-content-inner__left">
+
+                <div class="profile-info">
+                    <a href="" class="profile-info-logo">
+                        <div class="profile-info-avatar-img">
+                            <div class="profile-info-avatar_img__placeholder">
+                                <img src="../admin/img/Sample_User_Icon.png" class="icon-user"/>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="profile-info-username">
+                        <div class="profile-info-username__text">Thinhquadz</div>
+                        <div>
+                            <a href="" class="profile-info-username__edit">
+                                <i class="fa-solid fa-pencil"></i>
+                                <span>Sửa Hồ Sơ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--Drop down account -->
+                <div class="profile-stardust-dropdown">
+                    <div class="stardust-dropdown stardust-dropdown--open ">
+                        <!--img + name-->
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/Sample_user_icon_profile.png" height="48" width="48"/></div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Tài Khoản Của Tôi</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <!--dropdown menu detail-->
+                        <div class="stardust-dropdown__item-body stardust-dropdown__item-body--open">
+                            <div class="stardust-dropdown__item-body__content">
+                                <a href="../views/profile.html#profile-section" id="profile-link"
+                                   class="stardust-dropdown__item-body__content-item stardust-dropdown__item-body__content-item-active"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
+                                <a href="../views/profile.html#bank-section" id="bank-link"
+                                   class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Ngân Hàng</span></a>
+                                <a href="../views/profile.html#address-section" id="address-link"
+                                   class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Địa chỉ</span></a>
+                                <a href="../views/profile.html#password-change-section" id="password-change-link"
+                                   class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
+                                <a href="../views/profile.html#privacy-section" id="privacy-link"
+                                   class="stardust-dropdown__item-body__content-item"><span
+                                        class="stardust-dropdown__item-body__content-item--text">Những Thiết Lập Riêng Tư</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Dơn mua-->
+                    <div class="stardust-dropdown">
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/sample_Menu_Icon.png"/>
+                                </div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Đơn Mua</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--yeu thich-->
+                    <div class="stardust-dropdown">
+                        <div class="stardust-dropdown__item-header">
+                            <a href="" class="stardust-dropdown__item-header-menu">
+                                <div class="stardust-dropdown__item-header-account-img">
+                                    <img src="../admin/img/Heart-icon.png"/></div>
+                                <div class="stardust-dropdown__item-header-account-name">
+                                    <span class="stardust-dropdown__item-header-account-name-text">Yêu Thích</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--content right-->
+            <div class="container-product-content-inner__right">
+                <div style="display: contents">
+                    <div class="container-product-content-inner__right-inner">
+                        <!--Phần tìm kiếm sản phẩm đã mua-->
+                        <section>
+                            <div class="container-product-content-inner__right-inner__header">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input autocomplete="false" placeholder="Bạn có thể tìm kiếm tên Sản phẩm" type="text"
+                                       class="container-product-content-inner__right-inner__header-search">
+                            </div>
+                        </section>
+                        <!--Nội dung của đơn mua bên dưới-->
+                        <main id="container-product-content-inner__right-inner-center">
+                            <!--Cac noi dung khac-->
+                            <div class="container-product-content-inner__right-inner-center-product">
+                                <div>
+                                    <div class="container-product-content-inner__right-inner-center-product__header">
+                                        <h3 class="container-product-content-inner__right-inner-center-product__header-title">
+                                            HOÀN THÀNH
+                                        </h3>
+                                        <div class="container-product-content-inner__right-inner-center-product__header__empty"></div>
+                                        <!--Header phần link của sản phẩm số lượng hình ảnh và giá cả-->
+                                        <section>
+                                            <a href="">
+                                                <div class="container-product-content-inner__right-inner-center-product__header__link">
+                                                    <div class="content-inner__right-inner-infor">
+                                                        <img src="../img/cauchuyencuatho1.webp" alt=""
+                                                             class="content-inner__right-inner-infor-img">
+                                                        <div class="content-inner__right-inner-infor__text">
+                                                            <div>
+                                                                <div class="content-inner__right-inner-infor__text-content">
+                                                                    <span class="content-inner__right-inner-infor__text-content-name">
+                                                                        Câu chuyện của thỏ
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="content-inner__right-inner-infor__text-content">
+                                                                    <div class="content-inner__right-inner-infor__text-content-quanlity"
+                                                                         tabindex="0">
+                                                                        x1
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content-inner__right-inner-infor__price"
+                                                         tabindex="0">
+                                                            <span class="content-inner__right-inner-infor__price-text">
+                                                                19.500đ
+                                                            </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="container-product-content-inner__right-inner-center-product__header__empty"></div>
+                                <!--Phần thông tin của sản phẩm hiện tổng giá tiền-->
+                                <div class="right-inner-center-product__header__total-price">
+                                    <div class="right-inner-center-product__header__total-price-contain">
+                                        <label class="right-inner-center-product__header__total-price-contain">
+                                            Thành tiền:
+                                        </label>
+                                        <div class="right-inner-center-product__header__total-price-contain-cost"
+                                             tabindex="0" aria-label="Thành tiền: 0đ">19.500đ
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right-inner-center-product__header__date-and-rating">
+                                    <div class="right-inner-center-product__header__date-contain">
+                                        <div>
+                                                <span class="date__text"
+                                                      aria-label="Đánh giá sản phẩm trước ngày 10-11-2024" tabindex="0">
+                                                    Đánh giá sản phẩm trước ngày
+                                                    <div class="date-buy__text-date" id="rating-date-index-0">
+                                                        <u class="date-buy__text-date-previous">10-11-2024</u>
+                                                    </div>
+                                                </span>
+                                        </div>
+                                    </div>
+                                    <section class="right-inner-center-product__header__rating">
+                                        <div class="right-inner-center-product__header__rating-vote">
+                                            <div>
+                                                <button class="stardust-button stardust-button--primary">
+                                                    Đánh giá
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="right-inner-center-product__header__rating-buy-again">
+                                            <div>
+                                                <button class="stardust-button stardust-button--secondary">
+                                                    Mua lại
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="container-product-content-inner__right-inner-center-product">
+                                <div>
+                                    <div class="container-product-content-inner__right-inner-center-product__header">
+                                        <h3 class="container-product-content-inner__right-inner-center-product__header-title">
+                                            HOÀN THÀNH
+                                        </h3>
+                                        <div class="container-product-content-inner__right-inner-center-product__header__empty"></div>
+                                        <!--Header phần link của sản phẩm số lượng hình ảnh và giá cả-->
+                                        <section>
+                                            <a href="">
+                                                <div class="container-product-content-inner__right-inner-center-product__header__link">
+                                                    <div class="content-inner__right-inner-infor">
+                                                        <img src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"
+                                                             alt=""
+                                                             class="content-inner__right-inner-infor-img">
+                                                        <div class="content-inner__right-inner-infor__text">
+                                                            <div>
+                                                                <div class="content-inner__right-inner-infor__text-content">
+                                                                    <span class="content-inner__right-inner-infor__text-content-name">
+                                                                        Mèo Mèo Mèo Bí Mật Giao Tiếp Từ Cái Vây Dưới Đen Tiếng Gru Gru
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="content-inner__right-inner-infor__text-content">
+                                                                    <div class="content-inner__right-inner-infor__text-content-quanlity"
+                                                                         tabindex="0">
+                                                                        x1
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content-inner__right-inner-infor__price"
+                                                         tabindex="0">
+                                                            <span class="content-inner__right-inner-infor__price-text">
+                                                                129.000đ
+                                                            </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="container-product-content-inner__right-inner-center-product__header__empty"></div>
+                                <!--Phần thông tin của sản phẩm hiện tổng giá tiền-->
+                                <div class="right-inner-center-product__header__total-price">
+                                    <div class="right-inner-center-product__header__total-price-contain">
+                                        <label class="right-inner-center-product__header__total-price-contain">
+                                            Thành tiền:
+                                        </label>
+                                        <div class="right-inner-center-product__header__total-price-contain-cost"
+                                             tabindex="0" aria-label="Thành tiền: 129.000đ">129.000đ
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right-inner-center-product__header__date-and-rating">
+                                    <div class="right-inner-center-product__header__date-contain">
+                                        <div>
+                                                <span class="date__text"
+                                                      aria-label="Đánh giá sản phẩm trước ngày 10-11-2024" tabindex="0">
+                                                    Đánh giá sản phẩm trước ngày
+                                                    <div class="date-buy__text-date" id="rating-date-index-1">
+                                                        <u class="date-buy__text-date-previous">10-11-2024</u>
+                                                    </div>
+                                                </span>
+                                        </div>
+                                    </div>
+                                    <section class="right-inner-center-product__header__rating">
+                                        <div class="right-inner-center-product__header__rating-vote">
+                                            <div>
+                                                <button class="stardust-button stardust-button--primary">
+                                                    Đánh giá
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="right-inner-center-product__header__rating-buy-again">
+                                            <div>
+                                                <button class="stardust-button stardust-button--secondary">
+                                                    Mua lại
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="container-product-content-inner__right-inner-center-product">
+                                <div>
+                                    <div class="container-product-content-inner__right-inner-center-product__header">
+                                        <h3 class="container-product-content-inner__right-inner-center-product__header-title">
+                                            HOÀN THÀNH
+                                        </h3>
+                                        <div class="container-product-content-inner__right-inner-center-product__header__empty"></div>
+                                        <!--Header phần link của sản phẩm số lượng hình ảnh và giá cả-->
+                                        <section>
+                                            <a href="">
+                                                <div class="container-product-content-inner__right-inner-center-product__header__link">
+                                                    <div class="content-inner__right-inner-infor">
+                                                        <img src="../img/Chicanbantothon1%25.webp" alt=""
+                                                             class="content-inner__right-inner-infor-img">
+                                                        <div class="content-inner__right-inner-infor__text">
+                                                            <div>
+                                                                <div class="content-inner__right-inner-infor__text-content">
+                                                                    <span class="content-inner__right-inner-infor__text-content-name">
+                                                                        Chỉ cần bạn tốt hơn 1%
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="content-inner__right-inner-infor__text-content">
+                                                                    <div class="content-inner__right-inner-infor__text-content-quanlity"
+                                                                         tabindex="0">
+                                                                        x1
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content-inner__right-inner-infor__price"
+                                                         tabindex="0">
+                                                            <span class="content-inner__right-inner-infor__price-text">
+                                                                80.100đ
+                                                            </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="container-product-content-inner__right-inner-center-product__header__empty"></div>
+                                <!--Phần thông tin của sản phẩm hiện tổng giá tiền-->
+                                <div class="right-inner-center-product__header__total-price">
+                                    <div class="right-inner-center-product__header__total-price-contain">
+                                        <label class="right-inner-center-product__header__total-price-contain">
+                                            Thành tiền:
+                                        </label>
+                                        <div class="right-inner-center-product__header__total-price-contain-cost"
+                                             tabindex="0" aria-label="Thành tiền: 80.100đ">80.100đ
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right-inner-center-product__header__date-and-rating">
+                                    <div class="right-inner-center-product__header__date-contain">
+                                        <div>
+                                                <span class="date__text"
+                                                      aria-label="Đánh giá sản phẩm trước ngày 10-11-2024" tabindex="0">
+                                                    Đánh giá sản phẩm trước ngày
+                                                    <div class="date-buy__text-date" id="rating-date-index-2">
+                                                        <u class="date-buy__text-date-previous">10-11-2024</u>
+                                                    </div>
+                                                </span>
+                                        </div>
+                                    </div>
+                                    <section class="right-inner-center-product__header__rating">
+                                        <div class="right-inner-center-product__header__rating-vote">
+                                            <div>
+                                                <button class="stardust-button stardust-button--primary">
+                                                    Đánh giá
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="right-inner-center-product__header__rating-buy-again">
+                                            <div>
+                                                <button class="stardust-button stardust-button--secondary">
+                                                    Mua lại
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accountDropdownHeader = document.querySelector('.stardust-dropdown__item-header-menu');
+        const dropdownBody = document.querySelector('.stardust-dropdown__item-body');
+        const icon = document.querySelector('.stardust-dropdown__item-header-account-name i');
+
+        accountDropdownHeader.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngăn chặn load lại trang
+            dropdownBody.classList.toggle('stardust-dropdown__item-body--open');
+            icon.classList.toggle('rotate-icon');
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hash = window.location.hash;
+        if (hash) {
+            const targetSection = document.querySelector(hash);
+            if (targetSection) {
+                targetSection.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>
