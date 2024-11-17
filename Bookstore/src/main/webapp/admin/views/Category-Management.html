@@ -2,9 +2,351 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lí doanh mục</title>
+    <title>Quản lí danh mục</title>
+    <!--  all css files-->
+    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../../css/Style.css">
+    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+
 </head>
 <body>
+
+<!--curtain menu-->
+<aside class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+       aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <a href="Dashboard.html">
+            <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
+        </a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <nav class="offcanvas-body">
+        <ul class="links">
+            <li class="nav-item">
+                <a href="Dashboard.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tachometer-alt"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="User-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Order-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Category-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tags"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Product-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-archive"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Supplier-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="far fa-newspaper"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Slider-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-store"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Discount-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-percent"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Admin-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users-cog"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                    <i class="fa-solid fa-gear"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+<div class="overlay"></div>
+
+<!--header start-->
+<header id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
+                <div class="header-left">
+                    <div class="menu-toggle-btn ">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
+                                class="fas fa-bars"></i> Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-7 col-6 ">
+                <div class="header-right">
+                    <!-- profile start -->
+                    <div class="profile-box">
+                        <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
+                                id="profile"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-info">
+                                <div class="info ">
+                                    <h5 class="pt-3">Ngọc Diễm</h5>
+                                    <div class="image">
+                                        <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
+                                        <span class="status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
+                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    <!-- profile end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+<section class="section">
+    <div class="container-fluid mb-5">
+        <div class="title-wrapper pt-3">
+            <div class="d-flex align-items-center">
+                <!-- end col -->
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb mx-4">
+                        <li class="breadcrumb-item">
+                            <a href="#" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="#" class="text-dec" style="color: gray"> / </a>
+                            <a href="#" class="text-dec" style="color: #f07c29">Quản lí danh mục</a>
+                        </li>
+                    </ol>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <div id="performance-stats">
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="content-main d-flex justify-content-center">
+                        <table class="main-listUser-table table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="row">
+                                        <div class="col-9 main-card-title my-3">
+                                            <h3>Quản lí danh mục</h3>
+                                        </div>
+                                        <div class="addUser col-3 my-4">
+                                            <button class="btn btn-primary ">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Thêm danh mục
+                                            </button>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <table class="table" id="orderTable">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th>Tên danh mục</th>
+                                            <th>Số lượng</th>
+                                            <th>Ngày cập nhật</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody style="font-weight: lighter">
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Văn học</td>
+                                            <td>3204</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <a href=""><i class="fa-regular fa-eye fa-lg mx-2"
+                                                              style="color: #f07c29;"></i></a>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Kinh tế</td>
+                                            <td>2354</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Tâm lí-Kĩ năng sống</td>
+                                            <td>243</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>Sách thiếu nhi</td>
+                                            <td>325</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Tiểu sử-hồi kí</td>
+                                            <td>243</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Sách giáo khoa</td>
+                                            <td>3254</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Nuôi dạy con</td>
+                                            <td>435</td>
+                                            <td>11/11/2024</td>
+                                            <td>
+                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                   style="color: #236844"></i>
+                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                   style="color: #ef5f5f"></i>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--all script files-->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+
+<!--script-->
+<script>
+    $(document).ready(function () {
+        // Khởi tạo DataTable cho bảng với id 'orderTable'
+        var table = $('#orderTable').DataTable({
+            language: {
+                processing: "đang tải",
+                search: "Tìm kiếm",
+                lengthMenu: "Số dòng hiển thị _MENU_ ",
+                info: "Bài viết từ _START_ đến _END_ trong _TOTAL_ danh mục",
+                infoEmpty: "",
+                loadingRecords: "",
+                infoFiltered: "",
+                zeroRecords: "Không tìm thấy",
+                emptyTable: "Không có dữ liệu",
+                paginate: {
+                    next: "2",
+                },
+            },
+            columnDefs: [
+                {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
+            ],
+        });
+    });
+</script>
 
 </body>
 </html>
