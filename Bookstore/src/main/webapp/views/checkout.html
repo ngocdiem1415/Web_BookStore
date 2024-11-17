@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh toán</title>
+
+    <!--    font awesome-->
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+
+    <!--    bootstrap-->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+
+    <!--    CSS-->
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../css/Cart.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Thông tin nhận hàng</h2>
+    <form id="shipping-info" class="mb-4">
+        <div class="mb-3">
+            <label for="name" class="form-label">Họ và Tên</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <input type="tel" class="form-control" id="phone" required>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="address" required>
+        </div>
+    </form>
+
+    <h2>Sản phẩm đã chọn</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+        </tr>
+        </thead>
+        <tbody id="checkout-products">
+        <!-- Sản phẩm sẽ được thêm tại đây -->
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <h5>Tổng tiền: <span id="total-price" class="text-danger">0</span> VND</h5>
+    </div>
+
+    <button class="btn btn-primary">Xác nhận thanh toán</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productsData = localStorage.getItem('checkoutProducts');
+
+        if (productsData) {
+            // Chuyển dữ liệu JSON thành mảng sản phẩm
+            const products = JSON.parse(productsData);
+
+            // Hiển thị sản phẩm trên trang
+            const productList = document.getElementById('product-list');
+            const totalPriceElement = document.getElementById('total-price');
+            let totalPrice = 0;
+
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${product.name}</td>
+                <td>${product.quantity}</td>
+                <td>${product.price.toLocaleString()} VND</td>
+                <td>${product.total.toLocaleString()} VND</td>
+            `;
+                productList.appendChild(row);
+                totalPrice += product.total;
+            });
+
+            // Cập nhật tổng tiền
+            totalPriceElement.textContent = totalPrice.toLocaleString();
+        } else {
+            alert('Không có sản phẩm nào để hiển thị.');
+        }
+    });
+
+</script>
+
+</body>
+</html>

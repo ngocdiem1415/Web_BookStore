@@ -1,3 +1,4 @@
+
 .boldGreen {
     color: #4B908E;
     font-family: 'Quicksand', sans-serif;
@@ -13,4 +14,19 @@
     background-color: #B8D7D5;
     color: black;
     transition: background-color 0.3s, color 0.3s;
+}
+.cart-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000; /* Đảm bảo footer không bị che khuất */
+    border-top: 1px solid #ddd; /* Đường viền trên footer */
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng cho footer */
+    box-sizing: border-box; /* Đảm bảo padding và border không làm thay đổi chiều rộng */
+}
+.container-cart {
+    padding-bottom: 80px; /* Đảm bảo có khoảng trống cho footer */
 }
