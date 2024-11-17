@@ -23,17 +23,14 @@
 <div id="header"></div>
 
 <!-- Cart Content-->
-<div class="container-cart">
+<div class="container-cart container">
     <div class="cart-title m-4">
         <h3 class="boldGreen">Giỏ hàng</h3>
     </div>
     <div class="cart">
         <!--header of cart-->
-        <section class="cart-header row text-muted bg-light border-bottom m-2 py-3">
+        <section class="cart-header row text-muted bg-light border-bottom m-1 py-3">
             <div class="col-5">
-<!--                <label class="me-4">-->
-<!--                    <input type="checkbox" class="select-all" onclick="toggleSelectAll(this)">-->
-<!--                </label>-->
                 Sản phẩm
             </div>
             <div class="col-2 text-center">Đơn giá</div>
@@ -306,9 +303,9 @@
     </div>
 
     <!--footer of cart-->
-    <div class="cart-footer row m-2 py-3 border-top d-flex align-items-center">
+    <div class="cart-footer row py-3 border-top d-flex align-items-center">
         <div class="col-2 text-muted">
-            <label class="me-2">
+            <label class="mx-3">
                 <input type="checkbox" class="select-all" onclick="toggleSelectAll(this)">
             </label>
             Chọn tất cả
@@ -329,30 +326,12 @@
             </strong>
         </div>
         <div class="col-2 d-flex justify-content-center">
-            <button class="MUA btn px-3" type="button">
+            <button id="buy-button" class="MUA btn px-3" type="button">
                 Mua hàng
             </button>
         </div>
     </div>
 
-    <!-- Modal Thông báo -->
-<!--    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>-->
-<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                <div class="modal-body" id="notificationBody">-->
-<!--                    &lt;!&ndash; Nội dung thông báo sẽ thay đổi ở đây &ndash;&gt;-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>-->
-<!--                    <button type="button" class="btn btn-primary" id="modalActionButton">Xóa</button> &lt;!&ndash; Nút hành động sẽ thay đổi &ndash;&gt;-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
 
 <!--SCRIPT-->
@@ -510,7 +489,6 @@
         }
 
 
-
         // Gán sự kiện cho nút "Xóa"
         deleteCheckButton.addEventListener('click', function () {
             const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
@@ -542,17 +520,6 @@
             });
             alert('Đã thêm sản phẩm vào danh sách yêu thích!');
             updateCartSummary();
-        });
-
-        // Sự kiện khi nhấn nút "Mua hàng"
-        muaButton.addEventListener('click', function () {
-            const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
-            if (selectedProducts.length === 0) {
-                alert('Vui lòng chọn ít nhất một sản phẩm để mua.');
-            } else {
-                // Chuyển hướng đến trang thanh toán (ví dụ: checkout.html)
-                window.location.href = 'OrderPayment.html';
-            }
         });
 
         // Gán sự kiện cập nhật khi checkbox trong sản phẩm thay đổi
@@ -594,6 +561,42 @@
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buyButton = document.getElementById('buy-button');
+
+        if (buyButton) {
+            buyButton.addEventListener('click', function () {
+                const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
+
+                if (selectedProducts.length === 0) {
+                    alert('Vui lòng chọn ít nhất một sản phẩm để mua.');
+                } else {
+                    // Tạo danh sách sản phẩm để lưu
+                    const productsToCheckout = [];
+
+                    selectedProducts.forEach(productCheckbox => {
+                        const productElement = productCheckbox.closest('.product');
+                        const productInfo = {
+                            // name: productElement.querySelector('.product-name').textContent.trim(),
+                            quantity: parseInt(productElement.querySelector('.quantity').value),
+                            price: parseInt(productElement.querySelector('.unit-price').getAttribute('data-original-price')),
+                            total: parseInt(productElement.querySelector('.total-price').textContent.replace(/\./g, ''))
+                        };
+                        productsToCheckout.push(productInfo);
+                    });
+
+                    // Lưu thông tin sản phẩm vào LocalStorage
+                    localStorage.setItem('checkoutProducts', JSON.stringify(productsToCheckout));
+
+                    // Chuyển hướng sang trang checkout.html
+                    window.location.href = './checkout.html';
+                }
+            });
+        }
+    });
+
+</script>
 
 </body>
 </html>
