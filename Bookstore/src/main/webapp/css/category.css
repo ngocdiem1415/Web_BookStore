@@ -127,6 +127,11 @@
     width: 25%;
 }
 
+.grid-md-2-4 a {
+    text-decoration: none;
+    color: #000000;
+}
+
 
 .grid__head {
     width: 1200px;

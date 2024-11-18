@@ -24,6 +24,7 @@ body {
 .container-profile-content-inner {
     display: flex;
     padding: 1.25rem 0 3.125rem;
+    margin-top: 32px;
 }
 
 
