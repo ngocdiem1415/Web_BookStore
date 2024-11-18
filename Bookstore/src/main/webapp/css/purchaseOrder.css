@@ -15,6 +15,53 @@
     margin-top: 20px;
 }
 
+/*Phan dieu huong cac san pham*/
+.container-product-content-inner__right-inner-list {
+    background-color: #fff;
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    display: flex;
+    margin-bottom: 12px;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container-product-content-inner__right-inner-item {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.09);
+    color: rgba(0, 0, 0, .8);
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    font-size: 16px;
+    justify-content: center;
+    line-height: 19px;
+    overflow: hidden;
+    padding: 16px 0;
+    text-align: center;
+    transition: color .2s;
+    user-select: none;
+    text-decoration: none;
+}
+
+.container-product-content-inner__right-inner-item--active {
+    color: #ee4d2d;
+    border-bottom: 2px solid #ee4d2d;
+}
+
+.container-product-content-inner__right-inner-item .right-inner-item-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*Phan search*/
 .container-product-content-inner__right-inner-center-product__title {
     font-size: 24px;
     font-weight: 600;

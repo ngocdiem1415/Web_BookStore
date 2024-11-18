@@ -35,7 +35,8 @@ body {
 .container-login .form-header {
     margin-bottom: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    position: relative;
 }
 
 .container-login .form-header .form-header-inner {
@@ -45,6 +46,18 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
+}
+
+.form-header-back-button {
+    color: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 20px;
+    left: 18px;
+    transition: color 0.3s ease;
+}
+
+.form-header-back-button:hover {
+    color: #117C6F;
 }
 
 
@@ -137,8 +150,9 @@ body {
 }
 
 .form-check {
-    display: flex;
+    display: flex !important;
     align-items: center; /* Canh đều label với checkbox */
+    padding-left: 0 !important;
 }
 
 .form-check label {
