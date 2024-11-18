@@ -32,7 +32,6 @@ ul, ol {
 .grid__row {
     display: flex;
     flex-wrap: wrap;
-    width: 921px;
 }
 
 

@@ -24,6 +24,7 @@ body {
 .container-profile-content-inner {
     display: flex;
     padding: 1.25rem 0 3.125rem;
+    margin-top: 32px;
 }
 
 
@@ -412,7 +413,7 @@ body {
 }
 
 .container-profile-content-inner__right-main-content-center__table .btn:hover {
-    background-color: #28e8b8 !important;
+    background-color: #04c3a9;
 
 }
 
@@ -591,7 +592,7 @@ body {
 }
 
 .bank-section .btn:hover {
-    background-color: #ddd;
+    background-color: #04c3a9;
 }
 
 .hidden {

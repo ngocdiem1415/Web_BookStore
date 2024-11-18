@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +13,10 @@
     background: #B8D7D5;
     border-radius: 6px 6px 0 0;
     margin-top: auto;
+}
+
+.footer ul {
+    padding-left: 0 !important;
 }
 
 .footer .footer-row {
@@ -65,7 +69,7 @@
 }
 
 .footer-row .footer-col .links li a:hover {
-    color: #fff;
+    color: #117C6F;
 }
 
 .footer-row .footer-col p {
@@ -86,7 +90,7 @@
     background: none;
     width: 100%;
     outline: none;
-    border: 1px solid #7489C6;
+    border: 1px solid #4B908E;
     color: #000000;
     padding-left: 10px;
 }
@@ -115,6 +119,16 @@
     margin-top: 30px;
     gap: 10px;
     cursor: pointer;
+}
+
+.footer-row .footer-col ul > li {
+    right: 0;
+    position: relative;
+    transition: right 0.4s ease;
+}
+
+.footer-row .footer-col ul > li:hover {
+    right: -10px;
 }
 
 .footer-row .footer-col .icons i {
@@ -181,13 +195,13 @@
     color: #afb6c7;
 }
 
-.footer-row .footer .footer-copyright {
-    border-top: 2px solid #000;
+.footer .footer-copyright {
+    border-top: 1px solid #fff;
+    padding: 12px 0 0 0;
     text-align: center;
-    font-size: 13px;
-    padding: 8px;
-    color: #000000;
+    font-size: 14px;
 }
+
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
