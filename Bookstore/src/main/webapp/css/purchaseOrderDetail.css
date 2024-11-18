@@ -33,10 +33,82 @@
     text-transform: uppercase;
 }
 
+/*Cho biet trang thai don hang*/
+.container-product-content-inner__right-inner-container--process {
+    padding: 40px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.right-inner-container--process__step {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+.right-inner-container--process__step-finish {
+    cursor: default;
+    text-align: center;
+    user-select: none;
+    width: 140px;
+    z-index: 1;
+}
+
+.right-inner-container--process__step-finish-icon {
+    border: #2dc258;
+    color: #2dc258;
+    align-items: center;
+    background-color: #fff;
+    border: 4px solid;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    height: 60px;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    transition: background-color .3s cubic-bezier(.4, 0, .2, 1) .7s,
+    border-color .3s cubic-bezier(.4, 0, .2, 1) .7s,
+    color .3s cubic-bezier(.4, 0, .2, 1) .7s;
+    width: 60px;
+}
+
+.right-inner-container--process__step-finish-icon i {
+    overflow: hidden;
+}
+
+.right-inner-container--process__step-finish-text {
+    color: rgba(0, 0, 0, .8);
+    font-size: 14px;
+    line-height: 20px;
+    margin: 20px 0 4px;
+    text-transform: capitalize;
+}
+
+.right-inner-container--process__step-line {
+    height: 4px;
+    position: absolute;
+    top: 29px;
+    width: 100%;
+}
+
+.right-inner-container--process__step-line-background,
+.right-inner-container--process__step-line-foreground {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 70px;
+    position: absolute;
+    width: calc(100% - 140px);
+}
+
+
 /*Thong tin ca nhan*/
 .right-inner-container--content {
     padding: 20px 24px 24px;
     display: flex;
+    margin: 24px 0;
 }
 
 .right-inner-container--content-address {
@@ -59,9 +131,8 @@
 
 .right-inner-container--content-address__name {
     color: rgba(0, 0, 0, .8);
-    margin: 0 0 10px;
+    margin: 0 0 16px;
     max-width: 100%;
-    overflow: hidden;
     font-size: 16px;
     text-overflow: ellipsis;
 }
@@ -115,6 +186,7 @@
     flex-wrap: nowrap;
     padding: 14px 0;
     text-decoration: none;
+    margin: 24px 0 12px 8px;
 }
 
 .right-inner-detail-link-content {
