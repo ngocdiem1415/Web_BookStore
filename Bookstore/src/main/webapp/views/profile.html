@@ -6,8 +6,15 @@
     <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/Header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/Style.css">
+
+
 </head>
 <body>
+<div id="header"></div>
+
 <div class="content-profile" class="container-profile">
     <div class="container-profile-content">
         <div class="container-profile container-profile-content-inner">
@@ -65,7 +72,7 @@
                     </div>
                     <div class="stardust-dropdown">
                         <div class="stardust-dropdown__item-header">
-                            <a href="../views/BuyProduct.html" class="stardust-dropdown__item-header-menu">
+                            <a href="purchaseOrder.html" class="stardust-dropdown__item-header-menu">
                                 <div class="stardust-dropdown__item-header-account-img">
                                     <img src="../admin/img/sample_Menu_Icon.png"/>
                                 </div>
@@ -79,7 +86,7 @@
                     <!--yeu thich-->
                     <div class="stardust-dropdown">
                         <div class="stardust-dropdown__item-header">
-                            <a href="" class="stardust-dropdown__item-header-menu">
+                            <a href="../views/Like.html" class="stardust-dropdown__item-header-menu">
                                 <div class="stardust-dropdown__item-header-account-img">
                                     <img src="../admin/img/Heart-icon.png"/></div>
                                 <div class="stardust-dropdown__item-header-account-name">
@@ -297,11 +304,11 @@
                         </div>
 
                         <!-- Credit/Debit Card Section -->
-                        <div class="bank-section">
-                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>
-                            <p>Bạn chưa liên kết thẻ.</p>
-                            <button class="btn btn-light btn--m btn--inline">+ Thêm Thẻ Mới</button>
-                        </div>
+<!--                        <div class="bank-section">-->
+<!--                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>-->
+<!--                            <p>Bạn chưa liên kết thẻ.</p>-->
+<!--                            <button class="btn btn-light btn&#45;&#45;m btn&#45;&#45;inline">+ Thêm Thẻ Mới</button>-->
+<!--                        </div>-->
 
                         <!-- Bank Account Section -->
                         <div class="bank-section">
@@ -599,6 +606,29 @@
         </div>
     </div>
 </div>
+
+<!--footer-->
+<div id="footer"></div>
+
+<!--script-->
+<script>
+    fetch('Header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.text();
+        })
+        .then(data => document.getElementById('header').innerHTML = data)
+        .catch(error => console.error('Error:', error));
+
+    // Tải nội dung của footer từ tệp Footer.html
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+</script>
+<!--all script files-->
+
 
 <script>
     document.getElementById('profile-link').addEventListener('click', function (event) {
