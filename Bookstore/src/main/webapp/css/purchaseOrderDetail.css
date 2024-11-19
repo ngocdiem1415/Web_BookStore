@@ -47,6 +47,7 @@
     position: relative;
 }
 
+
 .right-inner-container--process__step-finish {
     cursor: default;
     text-align: center;
@@ -85,6 +86,12 @@
     line-height: 20px;
     margin: 20px 0 4px;
     text-transform: capitalize;
+}
+
+.right-inner-container--process__step-finish-date {
+    color: rgba(0, 0, 0, .56);
+    font-size: 12px;
+    line-height: 16px;
 }
 
 .right-inner-container--process__step-line {

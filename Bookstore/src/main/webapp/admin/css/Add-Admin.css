@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: black;
+}
+
+.add-admin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+.add-admin-container-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    height: 80%; /* Set a fixed height */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.add-admin-container-content-inner {
+    padding: 20px 30px;
+    overflow-y: auto; /* Enable scrolling for content */
+    flex: 1; /* Make it expand within container */
+}
+
+.add-admin-container-content-inner-header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: sticky;
+    top: -20px;
+    background-color: #fff; /* Match the background */
+    z-index: 10; /* Ensure it stays above content */
+    padding-top: 10px; /* Optional spacing */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.add-admin-container-content-inner-header-title {
+    font-weight: bold;
+    color: #333;
+    margin-top: 12px;
+    padding: 0 12px;
+    font-size: 24px;
+    text-align: left;
+}
+
+.add-admin-container-content-inner-body {
+    margin-top: 10px;
+}
+
+.form-add-admin-group {
+    margin-bottom: 20px;
+}
+.form-add-admin-group .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid rgba(33, 37, 41, 0.5);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.add-admin-container .form-add-admin-group input:focus,
+.add-admin-container .form-add-admin-group select:focus {
+    border-color: #117C6F;
+    box-shadow: 0 0 5px #117C6F;
+    outline: none;
+}
+
+.form-add-admin-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-add-admin-group .require {
+    margin-left: 3px;
+    color: #117C6F;
+}
+
+.form-add-admin-group,
+.form-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s;
+}
+
+/*.form-add-admin-group:focus,*/
+/*.form-select:focus {*/
+/*    border-color: #117C6F; !* Đặt màu border tùy chỉnh *!*/
+/*    box-shadow: none; !* Xóa hiệu ứng bóng *!*/
+/*    outline: none; !* Xóa outline mặc định *!*/
+/*}*/
+
+
+.add-admin-container-content-inner-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto; /* Push buttons to the bottom */
+    gap: 10px;
+    position: sticky; /* Stick to bottom when scrolling */
+    bottom: -20px;
+    background-color: #fff; /* Match background */
+    z-index: 10;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.add-admin-container-content-inner-button-save,
+.add-admin-container-content-inner-button-cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-admin-container-content-inner-button-save {
+    background-color: #4B908E;
+    color: #fff;
+}
+
+.add-admin-container-content-inner-button-save:hover {
+    background-color: #117C6F;
+}
+
+.add-admin-container-content-inner-button-cancel {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.add-admin-container-content-inner-button-cancel:hover {
+    background-color: #5a6268;
+}
+
+/*!* Tùy chỉnh thanh cuộn cho toàn bộ trang hoặc container cụ thể *!*/
+/*.add-admin-container-content-inner::-webkit-scrollbar {*/
+/*    width: 8px; !* Chiều rộng của thanh cuộn dọc *!*/
+/*    height: 8px; !* Chiều cao của thanh cuộn ngang (nếu có) *!*/
+/*}*/
+
+/*.add-admin-container-content-inner::-webkit-scrollbar-thumb {*/
+/*    background-color: #117C6F; !* Màu thanh cuộn *!*/
+/*    border-radius: 10px; !* Bo tròn thanh cuộn *!*/
+/*}*/
+
+/*.add-admin-container-content-inner::-webkit-scrollbar-thumb:hover {*/
+/*    background-color: #4B908E; !* Màu khi hover vào thanh cuộn *!*/
+/*}*/
+
+/*.add-admin-container-content-inner::-webkit-scrollbar-track {*/
+/*    background-color: #f1f1f1; !* Màu nền của thanh cuộn *!*/
+/*    border-radius: 10px; !* Bo tròn nền thanh cuộn *!*/
+/*}*/
+
+/*!* Áp dụng cho các trình duyệt không hỗ trợ -webkit- *!*/
+/*.add-admin-container-content-inner {*/
+/*    scrollbar-width: thin; !* Giảm kích thước thanh cuộn *!*/
+/*    scrollbar-color: #117C6F #f1f1f1; !* Màu thanh cuộn và nền *!*/
+/*}*/
+
+
+@media (max-width: 768px) {
+    .add-admin-container-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .add-admin-container-content-inner {
+        padding: 15px;
+    }
+
+    .add-admin-container-content-inner-header-title {
+        font-size: 20px;
+    }
+
+    .form-add-admin-group,
+    .form-select {
+        font-size: 13px;
+    }
+}
