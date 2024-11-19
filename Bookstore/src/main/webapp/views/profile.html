@@ -314,15 +314,14 @@
                                     <div class="right-main-content-upload-header">
                                         <div class="right-main-content-upload-header-focus" role="header">
                                             <div class="right-main-content-upload-header-focus-image">
-                                                <img src="../admin/img/Sample_User_Icon.png"/>
+                                                <img src="../admin/img/Sample_User_Icon.png" id="previewImage"/>
                                             </div>
                                         </div>
-                                        <!--  Mô tả chọn ảnh-->
+                                        <!-- Nút upload -->
                                         <input type="file" accept=".jpg,.jpeg,.png"
-                                               class="right-main-content-upload-header-focus-input">
-                                        <!-- nút upload -->
-                                        <button class="btn btn-light btn--m btn--inline">Chọn ảnh</button>
-                                        <!-- Hướng dẫn upload-->
+                                               class="right-main-content-upload-header-focus-input" id="fileInput">
+                                        <label for="fileInput" class="btn btn-light btn--m btn--inline">Chọn ảnh</label>
+                                        <!-- Hướng dẫn upload -->
                                         <div class="right-main-content-upload-header-text">
                                             <div class="right-main-content-upload-header-text-same">Dung lượng file tối
                                                 đa 1 MB
@@ -333,6 +332,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -727,6 +727,22 @@
         });
 </script>
 <!--all script files-->
+<script>
+    document.getElementById("fileInput").addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            // Đọc file và gán vào phần hiển thị
+            reader.onload = function (e) {
+                const previewImage = document.getElementById("previewImage");
+                previewImage.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 
 <script>
