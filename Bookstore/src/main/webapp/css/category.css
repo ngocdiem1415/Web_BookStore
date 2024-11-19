@@ -42,6 +42,19 @@
     color: #ef552f;
 }
 
+.checkbox-label i {
+    font-size: 18px;
+    color: #ddd; /* Màu sao mặc định */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.checkbox-label input:checked + i, /* Sao đã chọn */
+.checkbox-label:hover i {
+    color: #ffc107; /* Màu vàng */
+}
+
+
 /* Thiết lập phần cuộn cho danh sách */
 .category-scroll {
     max-height: 200px; /* Đặt chiều cao cố định theo ý muốn */
