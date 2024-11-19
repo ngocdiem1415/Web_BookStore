@@ -10,15 +10,15 @@ p {
 }
 
 .bold {
-    font-weight: 300;
+    font-weight: bold;
     font-family: 'Open Sans', sans-serif;
 }
 
 .boldGreen {
     color: #4B908E;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
-    font-size: 50px;
+    font-family: 'Lobster', sans-serif;
+    font-weight: 100;
+    font-size: 56px;
 }
 
 .section {

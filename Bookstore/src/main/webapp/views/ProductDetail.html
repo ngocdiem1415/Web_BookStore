@@ -25,24 +25,43 @@
 <!--Product detail content-->
 <div class="container_productDetail mx-4">
     <!--Thanh điều hướng-->
-    <div class="breadcrumbNAV">
+    <div class="breadcrumbNAV ">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-light p-1">
+            <ol class="breadcrumb bg-white shadow p-3">
                 <li class="breadcrumb item">
-                    <a href="Home.html">Trang chủ</a>
+                    <!-- Liên kết đến trang chủ -->
+                    <a href="Home.html" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
                     <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>
                 </li>
                 <li class="breadcrumb item">
-                    <a href="#">Sách</a>
+                    <!-- Liên kết đến trang danh mục sách -->
+                    <a href="category.html" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
                     <span class="fas fa-chevron-right text-muted mx-3"></span>
                 </li>
-                <li class="breadcrumb item active" aria-current="page">Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi
-                    Đến
-                    Tiếng Grừ Grừ
+                <li class="breadcrumb item active" aria-current="page">
+                    Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ Grừ
                 </li>
             </ol>
         </nav>
     </div>
+<!--    <div class="breadcrumbNAV">-->
+<!--        <nav aria-label="breadcrumb">-->
+<!--            <ol class="breadcrumb bg-white shadow p-3">-->
+<!--                <li class="breadcrumb item">-->
+<!--                    <a href="Home.html">Trang chủ</a>-->
+<!--                    <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>-->
+<!--                </li>-->
+<!--                <li class="breadcrumb item">-->
+<!--                    <a href="category.html">Sách</a>-->
+<!--                    <span class="fas fa-chevron-right text-muted mx-3"></span>-->
+<!--                </li>-->
+<!--                <li class="breadcrumb item active" aria-current="page">Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi-->
+<!--                    Đến-->
+<!--                    Tiếng Grừ Grừ-->
+<!--                </li>-->
+<!--            </ol>-->
+<!--        </nav>-->
+<!--    </div>-->
 
     <section class="product py-5">
         <div class="row m-0">
@@ -102,13 +121,13 @@
                     <div class="d-flex flex-row my-3">
 
                         <!-- Xếp hạng -->
-                        <div class="text-warning mb-1 me-2">
+                        <div id="average-rating" class="text-warning mb-1 me-2">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <span class="ms-1"> 5.0 </span>
+                            <span id="average-rating-value" class="ms-1"> 5.0 </span>
                         </div>
 
                         <!-- Lượt mua -->
@@ -119,11 +138,21 @@
                     </div>
 
                     <!-- Giá tiền -->
-                    <div class="mb-3 text-danger ps-3">
-                        <span class="h4">
-                            129.000
+                    <div class="mb-3 text-danger ps-3 d-flex align-items-center">
+                        <!--giá đã giảm-->
+                        <div class="h4 d-flex align-items-center justify-content-center text-center">
+                            <span class="unit-price">99330</span>
                             <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </span>
+                        </div>
+
+                        <!--giá gốc-->
+                        <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
+                            <span class="original-price">120000</span>
+                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                        </div>
+
+                        <!--Số % được giảm-->
+                        <span class="h5 small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-23%</span>
                     </div>
 
                     <p>
@@ -231,6 +260,10 @@
                                 <tr>
                                     <th class="py-2">Kích thước:</th>
                                     <td class="py-2">14cm x 17.8cm</td>
+                                </tr>
+                                <tr>
+                                    <th class="py-2">Trong lượng (gr):</th>
+                                    <td class="py-2">180</td>
                                 </tr>
                                 <tr>
                                     <th class="py-2">Số trang:</th>
@@ -349,10 +382,22 @@
                                     <a href="ProductDetail.html" class="nav-link mb-1">
                                         Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
                                     </a>
-                                    <strong class="text-danger fw-semibold">
-                                        180.000
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </strong>
+                                    <div class="mb-3 text-danger d-flex align-items-center">
+                                        <!--giá đã giảm-->
+                                        <div class="d-flex align-items-center justify-content-center text-center">
+                                            <strong class="unit-price fw-semibold">147600</strong>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--giá gốc-->
+                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                            <span class="original-price">180000</span>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--Số % được giảm-->
+                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -365,10 +410,22 @@
                                     <a href="ProductDetail.html" class="nav-link mb-1">
                                         Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt
                                     </a>
-                                    <strong class="text-danger fw-semibold">
-                                        129.000
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </strong>
+                                    <div class="mb-3 text-danger d-flex align-items-center">
+                                        <!--giá đã giảm-->
+                                        <div class="d-flex align-items-center justify-content-center text-center">
+                                            <strong class="unit-price fw-semibold">105780</strong>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--giá gốc-->
+                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                            <span class="original-price">129000</span>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--Số % được giảm-->
+                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -378,12 +435,25 @@
                                          style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                                 </a>
                                 <div class="info">
-                                    <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng Khoảnh Khắc Trong
+                                    <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng
+                                        Khoảnh Khắc Trong
                                         Cuộc Sống </a>
-                                    <strong class="text-danger fw-semibold">
-                                        99.000
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </strong>
+                                    <div class="mb-3 text-danger d-flex align-items-center">
+                                        <!--giá đã giảm-->
+                                        <div class="d-flex align-items-center justify-content-center text-center">
+                                            <strong class="unit-price fw-semibold">76230</strong>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--giá gốc-->
+                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                            <span class="original-price">99000</span>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--Số % được giảm-->
+                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-23%</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -393,11 +463,24 @@
                                          style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                                 </a>
                                 <div class="info">
-                                    <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản 2023) </a>
-                                    <strong class="text-danger fw-semibold">
-                                        108.000
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </strong>
+                                    <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản
+                                        2023) </a>
+                                    <div class="mb-3 text-danger d-flex align-items-center">
+                                        <!--giá đã giảm-->
+                                        <div class="d-flex align-items-center justify-content-center text-center">
+                                            <strong class="unit-price fw-semibold">88560</strong>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--giá gốc-->
+                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                            <span class="original-price">108000</span>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
+
+                                        <!--Số % được giảm-->
+                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -421,7 +504,7 @@
                         </a>
                         <ul class="comment-list">
                             <li class="my-4 row">
-                                <!--                                Khách hàng-->
+                                <!--Khách hàng-->
                                 <div class="comment-header col-2 d-flex align-items-start">
 
                                     <img src="../img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
@@ -528,6 +611,57 @@
                 }
             });
         });
+    });
+</script>
+
+<!--Script xếp hạng-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Lấy danh sách các phần tử nhận xét
+        const comments = document.querySelectorAll(".comment-list .rating-box .text-warning");
+
+        // Nếu không có nhận xét, giữ nguyên giá trị mặc định
+        if (comments.length === 0) return;
+
+        let totalRating = 0;
+
+        // Tính tổng điểm xếp hạng
+        comments.forEach(comment => {
+            const stars = comment.querySelectorAll(".fa-star");
+            totalRating += stars.length; // Mỗi ngôi sao trong `.text-warning` là một điểm
+        });
+
+        // Tính trung bình
+        const averageRating = totalRating / comments.length;
+
+        // Cập nhật số sao và giá trị trung bình hiển thị
+        const averageRatingElement = document.getElementById("average-rating");
+        const averageRatingValueElement = document.getElementById("average-rating-value");
+
+        // Làm tròn đến 1 chữ số thập phân
+        averageRatingValueElement.textContent = averageRating.toFixed(1);
+
+        // Cập nhật số sao hiển thị
+        averageRatingElement.innerHTML = '';
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement("i");
+            star.classList.add("fa", i < Math.round(averageRating) ? "fa-star" : "fa-star-o", "text-warning");
+            averageRatingElement.appendChild(star);
+        }
+
+        // Thêm lại phần điểm trung bình
+        averageRatingElement.appendChild(averageRatingValueElement);
+    });
+</script>
+
+<!--format tiền tệ-->
+<script src="../js/FormatMoney.js"></script>
+<script>
+    document.querySelectorAll('.unit-price, .original-price').forEach(element => {
+        const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
+        if (!isNaN(amount)) {
+            element.textContent = formatCurrencyVN(amount);
+        }
     });
 </script>
 
