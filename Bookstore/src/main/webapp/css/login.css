@@ -20,7 +20,7 @@ body {
 
 .container-login {
     width: 100%;
-    max-width: 768px;
+    max-width: 620px;
     height: 600px;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 8px;
@@ -57,7 +57,7 @@ body {
 }
 
 .form-header-back-button:hover {
-    color: #117C6F;
+    color: #316064;
 }
 
 
@@ -72,14 +72,14 @@ body {
 }
 
 .container-login .form-link.active {
-    background-color: #28a745; /* Active tab background color */
+    background-color: #4B908E; /* Active tab background color */
     color: #fff; /* Active tab text color */
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15); /* Slight shadow on active tab */
     transform: scale(1.05); /* Slightly larger to emphasize active state */
 }
 
 .container-login .form-link:not(.active):hover {
-    background-color: #28a745;
+    background-color: #4B908E;
     color: #fff;
 }
 
@@ -137,7 +137,7 @@ body {
 }
 
 .form-group label span {
-    color: #28a745;
+    color: #4B908E;
     margin-left: 5px;
 }
 
@@ -165,8 +165,8 @@ body {
 }
 
 .form-submit {
-    padding: 18px 30px;
-    background-color: #28a745;
+    padding: 12px 22px;
+    background-color: #4B908E;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -176,7 +176,7 @@ body {
 }
 
 .form-submit:hover {
-    background-color: #218838;
+    background-color: #316064;
 }
 
 /*icon*/
@@ -201,27 +201,25 @@ body {
     border-radius: 42%;
 }
 
-/* Facebook icon */
-/*.form-body .icons .fa-facebook-f {*/
-/*    background-color: #0a53be;*/
-/*}*/
+.form-group-container-infor {
+    display: flex;
+}
 
-/*.form-body .icons .fa-facebook-f:hover {*/
-/*    background-color: #fff;*/
-/*    color: #0a53be;*/
-/*    border: 1px solid #0a53be; !* Đường viền khi hover *!*/
-/*}*/
+.form-group-left {
+    width: 50%;
+    float: left;
+    margin-right: 2px;
+}
 
-/*!* Google icon *!*/
-/*.form-body .icons .fa-google {*/
-/*    background-color: #db4437;*/
-/*}*/
+.form-group-right {
+    width: 50%;
+    float: right;
+    margin-bottom: 2px;
+}
 
-/*.form-body .icons .fa-google:hover {*/
-/*    background-color: #fff;*/
-/*    color: #db4437;*/
-/*    border: 1px solid #db4437; !* Đường viền khi hover *!*/
-/*}*/
+.form-group-container-infor .infor {
+    padding: 12px 0;
+}
 
 
 /*------*/
@@ -232,7 +230,7 @@ body {
 
 .forgot-password {
     font-size: 15px;
-    color: #28a745;
+    color: #73C0B0;
     text-decoration: none;
 }
 
@@ -245,7 +243,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #28a745; /* Màu nền cho footer */
+    background-color: #316064; /* Màu nền cho footer */
     text-align: center;
     padding: 10px 0;
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
@@ -262,6 +260,6 @@ body {
     font-size: 14px;
     color: white;
     width: 100%; /* Để <p> kéo dài hết chiều ngang footer */
-    background-color: #28a745
+    background-color: #316064
 }
 

@@ -13,8 +13,56 @@
 
 </head>
 <body>
-<div id="header"></div>
+<!--header-->
+<!--<div id="header"></div>-->
+<header id="header">
+    <!-- MAIN HEADER -->
+    <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
+    <!--        <a href="#" class="content">Freeship đơn từ 45k, giảm nhiều hơn cùng FREESHIP XTRA</a>-->
+    <!--    </div>-->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- LOGO -->
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <img src="../img/logo/logo2.png" height="100" width="120"/></div>
+            </div>
+            <!-- /LOGO -->
 
+            <!-- SEARCH BAR -->
+            <div class="col-md-6">
+                <div class="header-search">
+                    <form class="d-flex mt-2">
+                        <input class="input flex-grow-1" placeholder="Search product">
+                        <button class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /SEARCH BAR -->
+
+            <!-- ACCOUNT -->
+            <div class="col-md-3 clearfix d-flex">
+                <ul class="account-menu mr-1">
+                    <li class="account box mt-4">
+                        <a href="#">Tài khoản</a>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <ul class="subnav">
+                            <li class="border-bottom border-gray"><a href="login.html">Đăng nhập</a></li>
+                            <li><a href="login.html">Đăng kí</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="shopping-cart mt-3 ">
+                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!--Content-->
 <div class="content-profile" class="container-profile">
     <div class="container-profile-content">
         <div class="container-profile container-profile-content-inner">
@@ -97,7 +145,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!--            right: thong tin chi tiet-->
             <div id="profile-section" class="container-profile-content-inner__right">
@@ -304,11 +351,11 @@
                         </div>
 
                         <!-- Credit/Debit Card Section -->
-<!--                        <div class="bank-section">-->
-<!--                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>-->
-<!--                            <p>Bạn chưa liên kết thẻ.</p>-->
-<!--                            <button class="btn btn-light btn&#45;&#45;m btn&#45;&#45;inline">+ Thêm Thẻ Mới</button>-->
-<!--                        </div>-->
+                        <!--                        <div class="bank-section">-->
+                        <!--                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>-->
+                        <!--                            <p>Bạn chưa liên kết thẻ.</p>-->
+                        <!--                            <button class="btn btn-light btn&#45;&#45;m btn&#45;&#45;inline">+ Thêm Thẻ Mới</button>-->
+                        <!--                        </div>-->
 
                         <!-- Bank Account Section -->
                         <div class="bank-section">
@@ -608,7 +655,59 @@
 </div>
 
 <!--footer-->
-<div id="footer"></div>
+<!--<div id="footer"></div>-->
+<section class="footer">
+    <div class="footer-row">
+        <div class="footer-col">
+            <a href=""><img src="../img/logo/logo1.png" height="270" width="386"/></a>
+            <p class="detail">Nơi cung cấp trí thức cho bạn.</p>
+            <div class="detail-icons">
+                <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
+                <p><i class="fa-solid fa-phone"></i>0123456789</p>
+                <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Về chúng tôi</h4>
+            <ul class="links">
+                <li><a href="#">Nguyễn Thị Ngọc Diễm</a></li>
+                <li><a href="#">Võ Nguyễn Thanh Diệu</a></li>
+                <li><a href="#">Nguyễn Hữu Thịnh</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Chính sách</h4>
+            <ul class="links">
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="#">Sản phẩm</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Gửi Email</h4>
+            <p>
+                Đăng ký nhận thông tin mới nhất từ chúng tôi.
+            </p>
+            <form action="#">
+                <input type="text" placeholder="Email" required>
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            <div class="icons">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-github"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer-copyright d-flex justify-content-center">
+        <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
+    </div>
+</section>
 
 <!--script-->
 <script>
