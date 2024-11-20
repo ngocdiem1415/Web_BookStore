@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lí danh mục</title>
+
     <!--  all css files-->
     <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
     <link rel="stylesheet" href="../../css/Style.css">
     <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../css/Dashboard.css">
@@ -14,8 +15,7 @@
 <body>
 
 <!--curtain menu-->
-<aside class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-       aria-labelledby="offcanvasWithBothOptionsLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <a href="Dashboard.html">
             <img src="../../img/logo/logo1.png" height="200px" width="200px"/>
@@ -106,7 +106,7 @@
             </li>
         </ul>
     </nav>
-</aside>
+</div>
 <div class="overlay"></div>
 
 <!--header start-->
@@ -116,9 +116,10 @@
             <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
                 <div class="header-left">
                     <div class="menu-toggle-btn ">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
-                                class="fas fa-bars"></i> Menu
+                        <button class="btn" type="button" style="background-color: #4B908E; color: white"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
+                                class="fas fa-bars" style="color:white"></i> Menu
                         </button>
                     </div>
                 </div>
@@ -161,7 +162,7 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb mx-4">
                         <li class="breadcrumb-item">
-                            <a href="#" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
                             <a href="#" class="text-dec" style="color: #f07c29">Quản lí danh mục</a>
                         </li>
@@ -184,10 +185,40 @@
                                             <h3>Quản lí danh mục</h3>
                                         </div>
                                         <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary ">
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCaterory">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Thêm danh mục
                                             </button>
+                                        </div>
+
+                                        <div class="modal fade" id="addCaterory" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="catLabel">Thêm danh mục</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="idCat" class="labels">ID Danh mục</label>
+                                                            <fieldset disabled>
+                                                                <input id="idCat" type="text" class="form-control" placeholder="ID" value="">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="nameCat" class="labels">Tên danh mục</label>
+                                                            <input id="nameCat" type="text" class="form-control" placeholder="Danh Mục" value="">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="despCat" class="labels">Mô tả Danh Mục</label>
+                                                            <textarea id="despCat" class="form-control" rows="6"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-orange" id="saveCategoryBtn">Lưu</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </th>
@@ -274,7 +305,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">5</th>
+                                            <th scope="row">6</th>
                                             <td>Sách giáo khoa</td>
                                             <td>3254</td>
                                             <td>11/11/2024</td>
@@ -287,7 +318,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">5</th>
+                                            <th scope="row">7</th>
                                             <td>Nuôi dạy con</td>
                                             <td>435</td>
                                             <td>11/11/2024</td>
@@ -315,15 +346,14 @@
 
 
 <!--all script files-->
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
 <script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/datatables.min.js"></script>
 
 <!--script-->
 <script>
+    var myModalEl = document.getElementById('addCaterory');
     $(document).ready(function () {
         // Khởi tạo DataTable cho bảng với id 'orderTable'
         var table = $('#orderTable').DataTable({
@@ -345,6 +375,49 @@
                 {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
             ],
         });
+    });
+
+    // Xử lý sự kiện nút
+    $(document).ready(function () {
+        // Mở Modal khi nhấn nút Thêm danh mục
+        $('#addCaterory').on('show.bs.modal', function (event) {
+            // Reset các trường trong modal
+            $('#catLabel').html("Thêm danh mục");
+            $('#idCat').val("");
+            $('#nameCat').val("");
+            $('#despCat').val("");
+        });
+
+        // Đảm bảo sự kiện này được đăng ký khi modal được mở
+        $('#saveCategoryBtn').click(function() {
+            // Thực hiện các thao tác khi nút "Lưu" được nhấn
+            var nameCat = $('#nameCat').val();
+            var despCat = $('#despCat').val();
+            if (nameCat && despCat) {
+                // Ví dụ: Lưu dữ liệu vào nơi bạn cần
+                alert("Danh mục đã được lưu");
+                $('#addCaterory').modal('hide');  // Đóng modal sau khi lưu
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+            }
+        });
+    });
+
+
+    function deleteCat(id) {
+        if (confirm("Press a button!") === true) {
+            alert("Da xoa");
+        }
+    }
+
+
+    $('#tableCat tbody').on('click', '.btn.btn-warning', function () {
+        var data = table.row($(this).parents('tr')).data();
+        $('#catLabel').html("Sửa danh mục");
+        $('#idCat').val(data[0]);
+        $('#nameCat').val(data[1]);
+        $('#despCat').val(data[5]);
+        $('#addCaterory').modal('show');
     });
 </script>
 
