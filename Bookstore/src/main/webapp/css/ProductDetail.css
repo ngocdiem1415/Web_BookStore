@@ -1,29 +1,68 @@
-.icon-hover:hover {
-    border-color: #3b71ca !important;
-    background-color: white !important;
-    color: #3b71ca !important;
+body, html {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
 }
 
-.icon-hover:hover i {
-    color: #3b71ca !important;
+#buy-now {
+
 }
 
-.btn:hover {
-    background-color: #B8D7D5;
-    color: black;
-    transition: background-color 0.3s, color 0.3s;
+.container_productDetail {
+    .breadcrumbNAV {
+        margin-top: 20px;
+        margin-bottom: 0;
+        margin-left: 20px;
+
+        a {
+        !important;
+            text-decoration: none;
+            color: #4B908E;
+            font-weight: bold;
+        }
+
+        .breadcrumb {
+            margin-bottom: 0;
+        }
+    }
+
+    .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        /*display: var(--fa-display, inline-block);*/
+        font-style: normal;
+        font-variant: normal;
+        line-height: 1.5;
+        text-rendering: auto;
+    }
 }
 
-.btn {
-    background-color: #316064;
-    color: white;
+.product {
+    .item-thumb {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .btn {
+        background-color: #316064;
+        color: white;
+    }
+
+    .btn:hover {
+        background-color: #B8D7D5;
+        color: black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
 }
+
 
 .content-limited {
     max-height: 300px; /* Giới hạn chiều cao */
-    overflow: hidden;  /* Ẩn nội dung vượt quá chiều cao */
+    overflow: hidden; /* Ẩn nội dung vượt quá chiều cao */
     position: relative; /* Thiết lập vị trí tương đối */
 }
+
 .content-limited::after {
     content: ""; /* Tạo một phần tử giả */
     position: absolute; /* Đặt nó tuyệt đối trong khối cha */
@@ -31,30 +70,26 @@
     left: 0; /* Bắt đầu từ bên trái */
     right: 0; /* Kéo dài đến bên phải */
     height: 100px; /* Chiều cao của gradient */
-    background: linear-gradient(to bottom,transparent, white); /* Gradient từ trắng đến trong suốt */
+    background: linear-gradient(to bottom, transparent, white); /* Gradient từ trắng đến trong suốt */
     pointer-events: none; /* Không cho phép tương tác với phần tử này */
 }
+
 .hidden {
-    display: none;     /* Ẩn nội dung khi không cần thiết */
+    display: none; /* Ẩn nội dung khi không cần thiết */
 }
 
 #toggleContent {
-    display: block;              /* Hiển thị nút như một khối */
-    margin: 20px auto;          /* Căn giữa nút */
-    padding: 10px 20px;         /* Thêm khoảng cách bên trong */
+    display: block; /* Hiển thị nút như một khối */
+    margin: 20px auto; /* Căn giữa nút */
+    padding: 10px 20px; /* Thêm khoảng cách bên trong */
     background-color: transparent; /* Nền trong suốt */
-    color: blue;                /* Màu chữ xanh */
-    border: none;               /* Không có đường viền */
-    cursor: pointer;            /* Con trỏ khi di chuột là con trỏ bấm */
-    font-size: 16px;            /* Kích thước chữ */
+    color: blue; /* Màu chữ xanh */
+    border: none; /* Không có đường viền */
+    cursor: pointer; /* Con trỏ khi di chuột là con trỏ bấm */
+    font-size: 16px; /* Kích thước chữ */
 }
 
-.nav-link{
-    margin-top: 20px;
-}
-
-.comment-list {
-    list-style-type: none; /* Loại bỏ chấm tròn */
-    padding: 0;
+.nav-link {
     margin-top: 10px;
 }
+

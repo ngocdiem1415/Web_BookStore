@@ -1,0 +1,300 @@
+/*Phan detail cua don mua khi click vaof san pham*/
+.container-product-content-inner__right-inner-container__header {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    line-height: 16px;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.right-inner-container__header__back {
+    background: none;
+    border: 0;
+    color: rgba(0, 0, 0, .54);
+    display: flex;
+    margin-right: 16px;
+    padding: 0;
+    text-decoration: none;
+}
+
+.right-inner-container__header__back span {
+    margin-left: 8px;
+}
+
+.right-inner-container__header__title {
+    display: flex;
+    text-align: right;
+}
+
+.right-inner-container__header__title-complete {
+    color: #ee4d2d;
+    text-transform: uppercase;
+}
+
+/*Cho biet trang thai don hang*/
+.container-product-content-inner__right-inner-container--process {
+    padding: 40px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.right-inner-container--process__step {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+
+.right-inner-container--process__step-finish {
+    cursor: default;
+    text-align: center;
+    user-select: none;
+    width: 140px;
+    z-index: 1;
+}
+
+.right-inner-container--process__step-finish-icon {
+    border: #2dc258;
+    color: #2dc258;
+    align-items: center;
+    background-color: #fff;
+    border: 4px solid;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    height: 60px;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    transition: background-color .3s cubic-bezier(.4, 0, .2, 1) .7s,
+    border-color .3s cubic-bezier(.4, 0, .2, 1) .7s,
+    color .3s cubic-bezier(.4, 0, .2, 1) .7s;
+    width: 60px;
+}
+
+.right-inner-container--process__step-finish-icon i {
+    overflow: hidden;
+}
+
+.right-inner-container--process__step-finish-text {
+    color: rgba(0, 0, 0, .8);
+    font-size: 14px;
+    line-height: 20px;
+    margin: 20px 0 4px;
+    text-transform: capitalize;
+}
+
+.right-inner-container--process__step-finish-date {
+    color: rgba(0, 0, 0, .56);
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.right-inner-container--process__step-line {
+    height: 4px;
+    position: absolute;
+    top: 29px;
+    width: 100%;
+}
+
+.right-inner-container--process__step-line-background,
+.right-inner-container--process__step-line-foreground {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 70px;
+    position: absolute;
+    width: calc(100% - 140px);
+}
+
+
+/*Thong tin ca nhan*/
+.right-inner-container--content {
+    padding: 20px 24px 24px;
+    display: flex;
+    margin: 24px 0;
+}
+
+.right-inner-container--content-address {
+    padding: 0 12px 0 0;
+    text-align: left;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, .54);
+    font-size: 12px;
+    line-height: 16px;
+    flex: 1;
+}
+
+.right-inner-container--content-address__title {
+    color: rgba(0, 0, 0, .8);
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+    margin-bottom: 24px;
+}
+
+.right-inner-container--content-address__name {
+    color: rgba(0, 0, 0, .8);
+    margin: 0 0 16px;
+    max-width: 100%;
+    font-size: 16px;
+    text-overflow: ellipsis;
+}
+
+.right-inner-container--content-address__address {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+    width: 50%;
+}
+
+/*Nut danh gia san pham*/
+.right-inner-container--content-vote button {
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 220px;
+    height: 45px;
+    background: #ee4d2d;
+    color: white;
+    border: none;
+    text-transform: capitalize;
+    transition: background-color 0.3s ease;
+}
+
+.right-inner-container--content-vote button:hover {
+    background: #d73211;
+}
+
+/*Dong phan hai muc*/
+.container-product-content-inner__right-inner-container .right-effect {
+    padding: 3px 0;
+}
+
+.right-effect .right-effect-straight {
+    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    background-position: 30px;
+    background-size: 116px 3px;
+    height: 3px;
+    width: 100%;
+}
+
+/*San pham*/
+.container-product-content-inner__right-inner-detail-link, .right-inner-detail-link-content {
+    display: flex;
+    word-wrap: break-word;
+}
+
+.container-product-content-inner__right-inner-detail-link {
+    align-items: center;
+    color: rgba(0, 0, 0, 0.87);
+    flex-wrap: nowrap;
+    padding: 14px 0;
+    text-decoration: none;
+    margin: 24px 0 12px 8px;
+}
+
+.right-inner-detail-link-content {
+    align-items: flex-start;
+    flex: 1;
+    flex-wrap: nowrap;
+    padding: 0 12px 0 16px;
+}
+
+.right-inner-detail-link-content-img {
+    background: #e1e1e1;
+    border: 1px solid #e1e1e1;
+    flex-shrink: 0;
+    height: 100px;
+    width: 80px;
+}
+
+.right-inner-detail-link-content-title-and-quanlity {
+    align-items: flex-start;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    padding: 0 0 0 16px;
+    word-wrap: break-word;
+}
+
+.right-inner-detail-link-content-title {
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    line-height: 22px;
+    margin: 0 0 0 5px;
+    max-height: 48px;
+}
+
+/*Tien thanh toan*/
+.right-inner-detail-link-content-price {
+    text-align: right;
+    padding: 0 26px 0;
+}
+
+/*Khi chua giam gia*/
+.right-inner-detail-link-content-price-text-old {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: line-through;
+}
+
+/*Gia moi*/
+.right-inner-detail-link-content-price-text-new {
+    color: #ee4d2d;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+/*Tong thanh tien va phi van chuyen*/
+.container-profile-content-inner__right-inner-total {
+    background-color: #fafafa;
+    border-top: 1px solid rgba(0, 0, 0, .09);
+}
+
+.container-profile-content-inner__right-inner-cost {
+    align-items: center;
+    border-bottom: 1px dotted rgba(0, 0, 0, .09);
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 24px;
+    text-align: right;
+}
+
+.container-profile-content-inner__right-inner-cost__title {
+    color: rgba(0, 0, 0, .54);
+    font-size: 16px;
+    padding: 13px 10px;
+}
+
+.container-profile-content-inner__right-inner-cost__title-active {
+    display: flex;
+}
+
+.container-profile-content-inner__right-inner-cost__price {
+    border-left: 1px dotted rgba(0, 0, 0, .09);
+    padding: 13px 0 13px 10px;
+    width: 240px;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, .8);
+}
+
+.container-profile-content-inner__right-inner-cost--discount {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 0 4px;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+

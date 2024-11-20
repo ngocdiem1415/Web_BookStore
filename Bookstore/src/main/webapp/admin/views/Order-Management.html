@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lí đơn hàng</title>
+
+    <!--  all css files-->
+    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../../css/Style.css">
+    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+</head>
+<body>
+
+<!--curtain menu-->
+<aside class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+       aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <a href="Dashboard.html">
+            <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
+        </a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <nav class="offcanvas-body">
+        <ul class="links">
+            <li class="nav-item">
+                <a href="Dashboard.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tachometer-alt"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="User-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Order-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Category-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tags"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Product-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-archive"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Supplier-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="far fa-newspaper"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Slider-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-store"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Discount-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-percent"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Admin-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users-cog"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                    <i class="fa-solid fa-gear"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+<div class="overlay"></div>
+
+<!--header start-->
+<header id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
+                <div class="header-left">
+                    <div class="menu-toggle-btn ">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
+                                class="fas fa-bars"></i> Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-7 col-6 ">
+                <div class="header-right">
+                    <!-- profile start -->
+                    <div class="profile-box">
+                        <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
+                                id="profile"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-info">
+                                <div class="info ">
+                                    <h5 class="pt-3">Ngọc Diễm</h5>
+                                    <div class="image">
+                                        <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
+                                        <span class="status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
+                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    <!-- profile end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+
+<section class="section">
+    <div class="container-fluid mb-5">
+        <div class="title-wrapper pt-3">
+            <div class="d-flex align-items-center">
+                <!-- end col -->
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb mx-4">
+                        <li class="breadcrumb-item">
+                            <a href="#" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="#" class="text-dec" style="color: gray"> / </a>
+                            <a href="#" class="text-dec" style="color: #f07c29">Quản lí đơn hàng</a>
+                        </li>
+                    </ol>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card my-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h4 class="card-title mb-2">Đã thanh toán</h4>
+                                        <p class="text-muted fw-medium fs-22 mb-0">490</p>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-md bg-primary bg-opacity-10 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 style="color:#f07c29; background-color: white" width=35px"
+                                                 height="35px" viewBox="0 0 24 24">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                   stroke-width="1.5">
+                                                    <path d="M12 15.333c1.105 0 2-.746 2-1.666S13.105 12 12 12s-2-.746-2-1.667c0-.92.895-1.666 2-1.666m0 6.666c-1.105 0-2-.746-2-1.666m2 1.666V16m0-8v.667m0 0c1.105 0 2 .746 2 1.666"></path>
+                                                    <path d="M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"></path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card my-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h4 class="card-title mb-2">Đã hủy đơn</h4>
+                                        <p class="text-muted fw-medium fs-22 mb-0">241</p>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-md bg-primary bg-opacity-10 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 style="color:#f07c29; background-color: white" width="40px"
+                                                 height="40px" viewBox="0 0 24 24">
+                                                <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                                    <path d="M7.5 18a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3Zm9 0a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3Z"/>
+                                                    <path stroke-linecap="round"
+                                                          d="m11.5 12.5l3-3m0 3l-3-3M2 3l.261.092c1.302.457 1.953.686 2.325 1.231s.372 1.268.372 2.715V9.76c0 2.942.063 3.912.93 4.826c.866.914 2.26.914 5.05.914H12m4.24 0c1.561 0 2.342 0 2.894-.45c.551-.45.709-1.214 1.024-2.743l.5-2.424c.347-1.74.52-2.609.076-3.186c-.443-.577-1.96-.577-3.645-.577h-6.065m-6.066 0H7"/>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card my-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h4 class="card-title mb-2">Đang giao</h4>
+                                        <p class="text-muted fw-medium fs-22 mb-0">170</p>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-md bg-primary bg-opacity-10 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 style="color:#f07c29; background-color: white" width="40px"
+                                                 height="40px" viewBox="0 0 24 24">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                   stroke-width="1.5">
+                                                    <path d="M20 10v2c0 3.771 0 5.657-1.172 6.828S15.771 20 12 20s-5.657 0-6.828-1.172S4 15.771 4 12v-2c0-3.771 0-5.657 1.172-6.828S8.229 2 12 2s5.657 0 6.828 1.172c.654.653.943 1.528 1.07 2.828"></path>
+                                                    <path stroke-linejoin="round"
+                                                          d="M15.5 16H17M7 16h1.5M7 20l-1 2m11-2l1 2M10 2v.5a2 2 0 1 0 4 0V2m6 11h-4M4 13h8"></path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h4 class="card-title mb-2">Đang chờ thanh toán</h4>
+                                        <p class="text-muted fw-medium fs-22 mb-0">608</p>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-md bg-primary bg-opacity-10 rounded">
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             style="color:#f07c29; background-color: white" width="40px"
+                                             height="40px" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                               stroke-width="1.5">
+                                                <path stroke-linejoin="round" d="M12 8v4l2.5 2.5"></path>
+                                                <path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h4 class="card-title mb-2">Đang xem xét</h4>
+                                        <p class="text-muted fw-medium fs-22 mb-0">210</p>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-md bg-primary bg-opacity-10 rounded">
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             style="color:#f07c29; background-color: white" width="40px"
+                                             height="40px" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                               stroke-width="1.5">
+                                                <path stroke-linejoin="round" d="M12 8v4l2.5 2.5"></path>
+                                                <path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h4 class="card-title mb-2">Đã giao</h4>
+                                        <p class="text-muted fw-medium fs-22 mb-0">200</p>
+                                    </div>
+                                    <div>
+                                        <div class="avatar-md bg-primary bg-opacity-10 rounded">
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             style="color:#f07c29; background-color: white" width="40px"
+                                             height="40px" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="m9 13.4l1.714 1.6L15 11"></path>
+                                                <path stroke-linecap="round"
+                                                      d="M21 16c0 2.829 0 4.243-.879 5.122C19.243 22 17.828 22 15 22H9c-2.828 0-4.243 0-5.121-.878C3 20.242 3 18.829 3 16v-3m13-8.998c2.175.012 3.353.109 4.121.877C21 5.758 21 7.172 21 10v2M8 4.002c-2.175.012-3.353.109-4.121.877S3.014 6.825 3.002 9"></path>
+                                                <path d="M8 3.5A1.5 1.5 0 0 1 9.5 2h5A1.5 1.5 0 0 1 16 3.5v1A1.5 1.5 0 0 1 14.5 6h-5A1.5 1.5 0 0 1 8 4.5z"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="card-stats">
+                <div class="card-title mt-5 mb-4">
+                    <h3>Tất cả danh sách đặt hàng</h3>
+                </div>
+            </div>
+            <div class="card-body mx-2">
+                <table class="table" id="orderTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th>Ngày đặt</th>
+                        <th>Khách hàng</th>
+                        <th>SDT</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái thanh toán</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-weight: lighter">
+                    <tr>
+                        <td>001</td>
+                        <td>22/02/2024</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>0901234567</td>
+                        <td>1.500.000 đ</td>
+                        <td>Đã thanh toán</td>
+                        <td>Đang xử lý</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>22/02/2024</td>
+                        <td>Trần Thị B</td>
+                        <td>0902345678</td>
+                        <td>2.000.000 đ</td>
+                        <td>Chưa thanh toán</td>
+                        <td>Chưa xử lý</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>11/03/2024</td>
+                        <td>Lê Văn C</td>
+                        <td>0903456789</td>
+                        <td>3.200.000 đ</td>
+                        <td>Đã thanh toán</td>
+                        <td>Hoàn tất</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>11/04/2024</td>
+                        <td>Phạm Minh D</td>
+                        <td>0904567890</td>
+                        <td>1.250.000 đ</td>
+                        <td>Chưa thanh toán</td>
+                        <td>Đang giao</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>11/05/2024</td>
+                        <td>Ngô Thị E</td>
+                        <td>0905678901</td>
+                        <td>4.500.000 đ</td>
+                        <td>Đã thanh toán</td>
+                        <td>Đã hủy</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td>11/06/2024</td>
+                        <td>Đỗ Văn F</td>
+                        <td>0906789012</td>
+                        <td>2.750.000 đ</td>
+                        <td>Chưa thanh toán</td>
+                        <td>Đang xử lý</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td>11/07/2024</td>
+                        <td>Vũ Minh G</td>
+                        <td>0907890123</td>
+                        <td>5.600.000 đ</td>
+                        <td>Đã thanh toán</td>
+                        <td>Hoàn tất</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>11/08/2024</td>
+                        <td>Mai Thị H</td>
+                        <td>0908901234</td>
+                        <td>3.900.000 đ</td>
+                        <td>Chưa thanh toán</td>
+                        <td>Đang giao</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>009</td>
+                        <td>11/09/2024</td>
+                        <td>Trần Văn I</td>
+                        <td>0909012345</td>
+                        <td>1.800.000 đ</td>
+                        <td>Đã thanh toán</td>
+                        <td>Đã hủy</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>010</td>
+                        <td>11/10/2024</td>
+                        <td>Hà Minh J</td>
+                        <td>0910123456</td>
+                        <td>4.100.000 đ</td>
+                        <td>Chưa thanh toán</td>
+                        <td>Đang xử lý</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>011</td>
+                        <td>11/11/2024</td>
+                        <td>Nguyễn Thị K</td>
+                        <td>0911234567</td>
+                        <td>3.300.000 đ</td>
+                        <td>Đã thanh toán</td>
+                        <td>Đang giao</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>012</td>
+                        <td>11/12/2024</td>
+                        <td>Phạm Văn L</td>
+                        <td>0912345678</td>
+                        <td>2.200.000 đ</td>
+                        <td>Chưa thanh toán</td>
+                        <td>Đang xử lý</td>
+                        <td>
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                               style="color: #236844"></i>
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--all script files-->
+<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+
+<!--script-->
+
+<script>
+    $(document).ready(function () {
+        // Khởi tạo DataTable cho bảng với id 'orderTable'
+        var table = $('#orderTable').DataTable({
+            language: {
+                processing: "đang tải",
+                search: "Tìm kiếm",
+                lengthMenu: "Số dòng hiển thị _MENU_ ",
+                info: "Bài viết từ _START_ đến _END_ trong _TOTAL_ đơn hàng",
+                infoEmpty: "",
+                loadingRecords: "",
+                infoFiltered: "",
+                zeroRecords: "Không tìm thấy",
+                emptyTable: "Không có dữ liệu",
+
+            },
+            columnDefs: [
+                {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
+            ],
+        });
+    });
+</script>
+</body>
+</html>
