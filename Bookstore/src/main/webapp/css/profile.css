@@ -464,7 +464,30 @@ body {
 }
 
 .right-main-content-upload-header-focus-input {
-    display: none;
+    display: none; /* Ẩn input file */
+}
+
+label[for="fileInput"] {
+    display: inline-block;
+    cursor: pointer;
+    background: #f0f0f0;
+    color: #555;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+label[for="fileInput"]:hover {
+    background: #e0e0e0;
+}
+
+.right-main-content-upload-header-focus-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .right-main-content-upload-header .btn-light {

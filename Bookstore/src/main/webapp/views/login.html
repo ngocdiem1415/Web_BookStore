@@ -40,14 +40,10 @@
                         <label for="remember">Ghi nhớ mật khẩu</label>
                     </div>
                     <button type="submit" class="form-submit">Đăng nhập</button>
-                    <!--                   icons-->
-                    <!--                    <div class="icons">-->
-                    <!--                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>-->
-                    <!--                        <a href=""><i class="fa-brands fa-google"></i></a>-->
-                    <!--                    </div>-->
+                    <button type="submit" class="form-submit"><i class="fa-brands fa-google"></i></button>
 
                     <div class="form-footer">
-                        <a href="#" id="forgot-password-link" class="forgot-password">Quên mật khẩu?</a>
+                        <a href="../views/ForgetPassword.html" id="forgot-password-link" class="forgot-password">Quên mật khẩu?</a>
                     </div>
                 </form>
 
@@ -63,7 +59,24 @@
                         <input type="password" name="password-register" id="password-register" class="form-control"
                                required>
                     </div>
-                    <button type="submit" class="form-submit">Đăng ký</button>
+                    <div class="form-group form-group-container-infor">
+                        <div class="form-group-left">
+                            <label for="gender">Giới Tính<span class="required">*</span></label>
+                            <select class="form-select infor" id="gender" name="gender" required>
+                                <option value="0">--Hãy chọn--</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                                <option value="3">Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group-right">
+                            <label for="birthdate">Ngày sinh<span class="required">*</span></label>
+                            <input type="date" id="birthdate" name="birthdate" class="form-control infor" required>
+                        </div>
+                    </div>
+                    <div class="form-group-button-login">
+                        <button type="submit" class="form-submit">Đăng ký</button>
+                    </div>
                 </form>
             </div>
         </div>
