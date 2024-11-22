@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../../css/Style.css">
     <link rel="stylesheet" href="../../../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../../css/Dashboard.css">
+    <link rel="stylesheet" href="../../css/Edit-Admin.css">
 </head>
 <body>
 
@@ -150,6 +151,75 @@
         </div>
     </div>
 </header>
+
+<!-- Container -->
+<div class="edit-admin-container">
+    <div class="edit-admin-container-content">
+        <div style="display: contents">
+            <div class="edit-admin-container-content-inner">
+                <div class="edit-admin-container-content-inner-header">
+                    <h2 class="edit-user-container-content-inner-header-title">Sửa Thông Tin Người Dùng</h2>
+                    <div class="edit-admin--container-content-inner-button">
+                        <button class="edit-admin-container-content-inner-button-save">
+                            Lưu
+                        </button>
+                        <button class="edit-admin-container-content-inner-button-cancel">
+                            Hủy
+                        </button>
+                    </div>
+                </div>
+                <div class="edit-admin-container-content-inner-body">
+                    <form action="#" method="post">
+                        <div class="form-edit-admin-group">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control form-control-fit" id="id" name="id" value="1" readonly required>
+                        </div>
+                        <div class="form-edit-admin-group">
+                            <label for="ten">Tên Đăng Nhập</label>
+                            <input type="text" class="form-control" id="ten" name="ten" required>
+                        </div>
+                        <div class="form-edit-admin-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-edit-admin-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-edit-admin-group">
+                            <label for="address">Địa chỉ</label>
+                            <input type="text" class="form-control" id="address" name="address" required>
+                        </div>
+
+                        <div class="form-edit-admin-group">
+                            <label for="city">Tỉnh/Thành phố<span class="require">*</span></label>
+                            <select class="form-select" id="city" name="city" required>
+                                <option value="0">--Hãy chọn Tỉnh/Thành phố--</option>
+                                <option value="1">Hồ Chí Minh</option>
+                                <option value="2">Bình Định</option>
+                                <option value="3">Lâm Đồng</option>
+                                <option value="4">Bình Dương</option>
+                            </select>
+                        </div>
+
+                        <div class="form-edit-admin-group">
+                            <label for="distinct">Huyện<span class="require">*</span></label>
+                            <select class="form-select" id="distinct" name="distinct" required>
+                                <option value="0">--Hãy chọn quận/huyện--</option>
+                                <option value="1">Quận 9</option>
+                                <option value="2">Quận 10</option>
+                                <option value="3">Quận 11</option>
+                                <option value="4">Quận 12</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--header end-->
 <!--all script files-->
