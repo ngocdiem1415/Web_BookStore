@@ -230,25 +230,6 @@
     top: -6px;
 }
 
-/* Đặt trạng thái ban đầu cho biểu tượng */
-.category-item .fa-chevron-down {
-    transition: transform 0.3s ease;
-}
-
-/* Khi mục dropdown mở, quay biểu tượng lên trên */
-.category-item.active .fa-chevron-down {
-    transform: rotate(180deg);
-}
-
-/* Đặt ẩn menu dropdown khi không hiển thị */
-.dropdown-menu {
-    display: none;
-}
-
-/* Hiển thị menu dropdown khi thêm lớp active */
-.category-item.active .dropdown-menu {
-    display: block;
-}
 
 /* Product item */
 .home-product-item {
@@ -328,6 +309,20 @@
     font-size: 16px;
     color: #f96a0b;
     margin-right: 10px;
+}
+
+.home-product-btn {
+    padding: 10px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.home-product-btn:hover {
+    background-color: #0056b3;
 }
 
 /*pagnigation*/
