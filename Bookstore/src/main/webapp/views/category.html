@@ -281,7 +281,7 @@
             <div class="col-md-10">
                 <div class="home-product">
                     <!-- Sản phẩm hiển thị bên phải -->
-                    <div class="grid__row">
+                    <div id="product-container" class="grid__row">
                         <!--0-->
                         <div class="grid-md-2-4">
                             <a href="">
@@ -725,6 +725,7 @@
 <script>
     // Dữ liệu sản phẩm bổ sung (có thể thay thế bằng dữ liệu từ API)
     const additionalProducts = [
+        // 20
         {
             name: "Bà Nội Găngxtơ Tái Xuất!",
             image: "../img/product/product-category/ba-noi-gangxto-tai-xuat (1).jpg",
@@ -732,18 +733,254 @@
             oldPrice: "155.000đ",
         },
         {
-            name: "Hành trình thay đổi",
-            image: "../img/hanhtrinhthaydoi.jpg",
-            currentPrice: "75.000đ",
-            oldPrice: "105.000đ",
+            name: "Những Chiếc Cầu Ở Quận Madison (Tái bản năm 2022)",
+            image: "../img/product/product-category/madison.jpg",
+            currentPrice: "71.200đ",
+            oldPrice: "89.000đ",
         },
         {
-            name: "Tự lực cánh sinh",
-            image: "../img/tuluccanhsinh.jpg",
-            currentPrice: "88.000đ",
-            oldPrice: "99.000đ",
+            name: "Người Trồng Rừng",
+            image: "../img/product/product-category/nguoi-trong-rung.jpg",
+            currentPrice: "80.500đ",
+            oldPrice: "103.000đ",
+        },
+        {
+            name: "Người Tị Nạn (Giải Pulitzer) (Bìa mềm)",
+            image: "../img/product/product-category/nguoi-ti-nan.jpg",
+            currentPrice: "80.500đ",
+            oldPrice: "103.000đ",
+        },
+        {
+            name: "Atomic Habits - Thay Đổi Tí Hon, Hiệu Quả Bất Ngờ",
+            image: "../img/product/product-category/thay-doi-ti-hon-hieu-qua-bat-ngo-tb-2022.jpg",
+            currentPrice: "132.000đ",
+            oldPrice: "189.000đ",
+        },
+
+        //25
+        {
+            name: "Trở Về Không - Trải Nghiệm Ho'oponopono",
+            image: "../img/product/product-category/tro-ve-khong-trai-nghiem-ho-oponopono.jpg",
+            currentPrice: "113.300đ",
+            oldPrice: "159.000đ",
+        },
+        {
+            name: "Heidi (Song ngữ Việt-Anh)",
+            image: "../img/product/product-category/sach-song-ngu-heidi.jpg",
+            currentPrice: "119.000đ",
+            oldPrice: "119.000đ",
+        },
+        {
+            name: "Tình Yêu Ở Thành Phố Lớn",
+            image: "../img/product/product-category/tinh-yeu-o-thanh-pho-lon.jpg",
+            currentPrice: "139.000đ",
+            oldPrice: "139.000đ",
+        },
+        {
+            name: "Nỗi Đau Của Chàng Werther (Tái bản năm 2024",
+            image: "../img/product/product-category/noi-dau-cua-chang-werther.jpg",
+            currentPrice: "100.000đ",
+            oldPrice: "110.000đ",
+        },
+        {
+            name: "Chàng Chó",
+            image: "../img/product/product-category/chang-cho.jpg",
+            currentPrice: "115.000đ",
+            oldPrice: "119.000đ",
+        },
+        //30
+        {
+            name: "Trắng Án",
+            image: "../img/product/product-category/trang-an.jpg",
+            currentPrice: "169.000đ",
+            oldPrice: "169.000đ",
+        },
+        {
+            name: "Showbiz Là Của Tôi - Tập 3",
+            image: "../img/product/product-category/showbiz-la-cua-toi-tap-3.jpg",
+            currentPrice: "222.000đ",
+            oldPrice: "222.000đ",
+        },
+        {
+            name: "Sau Cánh Cửa Khóa Kín",
+            image: "../img/product/product-category/sau-canh-cua-khoa-kin.jpg",
+            currentPrice: "162.000đ",
+            oldPrice: "162.000đ",
+        },
+        {
+            name: "Storytelling - Lay Động Lòng Người Bằng Chuyện kể",
+            image: "../img/product/product-category/storytelling-lay-dong-long-nguoi-bang-chuyen-ke.jpg",
+            currentPrice: "103.000đ",
+            oldPrice: "246.000đ",
+        },
+        {
+            name: "Chim Sẻ Serafino Và Những Chuyến Ngao Du Kì Thú",
+            image: "../img/product/product-category/chim-se-serafino.jpg",
+            currentPrice: "90.000đ",
+            oldPrice: "100.000đ",
+        },
+        // 35
+        {
+            name: "Carrie - Vũ Hội Đẫm Máu!",
+            image: "../img/product/product-category/vu-hoi-dam-mau.jpg",
+            currentPrice: "146.000đ",
+            oldPrice: "146.000đ",
+        },
+        {
+            name: "Hành Trình Người Viết - Cấu Trúc Thần Thoại Kinh Điển Trong Sáng Tác (Ấn bản kỷ niệm 25 năm)",
+            image: "../img/product/product-category/hanh-trinh-nguoi-viet.jpg",
+            currentPrice: "322.000đ",
+            oldPrice: "369.000đ",
+        },
+        {
+            name: "Một Thử Nghiệm Phê Bình",
+            image: "../img/product/product-category/storytelling-lay-dong-long-nguoi-bang-chuyen-ke.jpg",
+            currentPrice: "95.000đ",
+            oldPrice: "95.000đ",
+        },
+        {
+            name: "Lĩnh Nam Chích Quái: Khảo Luận - Dịch Chú Nguyên Bản Chữ Hán",
+            image: "../img/product/product-category/linh-nam-chich-quai.jpg",
+            currentPrice: "789.000đ",
+            oldPrice: "789.000đ",
+        },
+        //40
+        {
+            name: "Cái Vội Của Người Mình",
+            image: "../img/product/product-category/cai-voi-cua-nguoi-minh.jpg",
+            currentPrice: "159.000đ",
+            oldPrice: "159.000đ",
+        },
+        {
+            name: "The Exorcist - Quỷ Ám",
+            image: "../img/product/product-category/quy-am.jpg",
+            currentPrice: "229.000đ",
+            oldPrice: "229.000đ",
+        },
+        {
+            name: "39 Cuộc Đối Thoại Tri Thức",
+            image: "../img/product/product-category/39-cuoc-doi-thoai-tri-thuc.jpg",
+            currentPrice: "159.000đ",
+            oldPrice: "246.000đ",
+        },
+
+        {
+            name: "Holly - Tù Nhân Dưới Tầng Hầm",
+            image: "../img/product/product-category/holly-tu-nhan-duoi-tang-ham.jpg",
+            currentPrice: "350.000đ",
+            oldPrice: "350.000đ",
+        },
+        {
+            name: "Mỗi Từ Là Một Chú Chim Đang Chờ Ta Dạy Hót",
+            image: "../img/product/product-category/moi-tu-la-mot-chu-chim-dang-cho-ta-day-hot.jpg",
+            currentPrice: "120.000đ",
+            oldPrice: "120.000đ",
+        },
+        // 45
+        {
+            name: "Trước Nhà Có Cây Hoàng Mai",
+            image: "../img/product/product-category/truoc-nha-co-cay-hoang-mai.jpg",
+            currentPrice: "130.000đ",
+            oldPrice: "139.000đ",
+        },
+        {
+            name: "Những Câu Chuyện Hãi Hùng Và Kì Bí 1 - Lô Số 249",
+            image: "../img/product/product-category/lo-so-249.jpg",
+            currentPrice: "145.000đ",
+            oldPrice: "145.000đ",
+        },
+        {
+            name: "Chuyện Kể Lúc Hoàng Hôn (Tuyển tập truyện ma Charles Dickens)",
+            image: "../img/product/product-category/chuyen-ke-luc-hoang-hon.jpg",
+            currentPrice: "60.000đ",
+            oldPrice: "69.000đ",
+        },
+        {
+            name: "Hai Vạn Dặm Dưới Biển (Tái bản năm 2024) (Sách Đinh Tị)",
+            image: "../img/product/product-category/hai-van-dam-duoi-bien-tb-2024.jpg",
+            currentPrice: "90.000đ",
+            oldPrice: "119.000đ",
+        },
+        {
+            name: "Tội Phạm Tâm Thần Và Những Lỗ Hổng Công Lý",
+            image: "../img/product/product-category/toi-pham-tam-than-va-nhung-lo-hong-cong-ly.jpg",
+            currentPrice: "140.000đ",
+            oldPrice: "159.000đ",
+        },
+
+        // 50
+        {
+            name: "Những Mảnh Ký Ức 1979-1989: Chuyện Kể Từ Biên Giới Phía Bắc",
+            image: "../img/product/product-category/nhung-manh-ky-uc-1979-1989.jpg",
+            currentPrice: "335.000đ",
+            oldPrice: "360.000đ",
+        },
+        {
+            name: "Kẻ Ăn Hồn",
+            image: "../img/product/product-category/ke-an-hon.jpg",
+            currentPrice: "209.000đ",
+            oldPrice: "239.000đ",
+        },
+        {
+            name: "Sự Trung Thực Của Xác Chết - Ghi Chép Của Một Nhà Pháp Y",
+            image: "../img/product/product-category/su-trung-thuc-cua-xac-chet.jpg",
+            currentPrice: "99.000đ",
+            oldPrice: "155.000đ",
+        },
+        {
+            name: "Bước Vào Bóng Tối 2 - Những Vụ Án Rung Chuyển Dư Luận Qua Góc Nhìn Của Bat Saber",
+            image: "../img/product/product-category/buoc-vao-bong-toi-tap-2.jpg",
+            currentPrice: "99.000đ",
+            oldPrice: "125.000đ",
+        },
+        {
+            name: "Vừa Vặn Hạnh Phúc, Vừa Vặn Bình Yên",
+            image: "../img/product/product-category/vua-van-hanh-phuc-vua-van-binh-yen.jpg",
+            currentPrice: "99.000đ",
+            oldPrice: "109.000đ",
+        },
+        // 55
+        {
+            name: "Đến Cuối Ngày Ai Cũng Cần Một Điều Để Tin",
+            image: "../img/product/product-category/den-cuoi-ngay-ai-cung-can-mot-dieu-de-tin.jpg",
+            currentPrice: "112.000đ",
+            oldPrice: "125.000đ"
+        },
+        {
+            name: "Góc Sân Và Khoảng Trời (Tinh tuyển) (Tái bản năm 2024)",
+            image: "../img/product/product-category/goc-san-va-khoang-troi-tinh-tuyen.jpg",
+            currentPrice: "75.000đ",
+            oldPrice: "125.000đ"
+        },
+        {
+            name: "Thơ Tố Hữu (Tái bản năm 2024) (Sách Huy Hoàng)",
+            image: "../img/product/product-category/tho-to-huu-tb-2024.jpg",
+            currentPrice: "55.000đ",
+            oldPrice: "55.000đ"
+        },
+        {
+            name: "“Chúng Ta” Chỉ Là Chuyện Đã Từng",
+            image: "../img/product/product-category/chung-ta-chi-la-chuyen-da-tung.jpg",
+            currentPrice: "85.000đ",
+            oldPrice: "85.000đ"
+        },
+        {
+            name: "Zenlam Du Hành Vào Cõi Xanh",
+            image: "../img/product/product-category/zenlam-du-hanh-vao-coi-xanh.jpg",
+            currentPrice: "135.000đ",
+            oldPrice: "135.000đ"
+        },
+        {
+            name: "Tần Số Cô Đơn",
+            image: "../img/product/product-category/tan-so-co-don.jpg",
+            currentPrice: "95.000đ",
+            oldPrice: "95.000đ"
         },
     ];
+    // Biến theo dõi trạng thái
+    let currentBatchIndex = 0; // Lô sản phẩm hiện tại
+    const batchSize = 8; // Số lượng sản phẩm mỗi lô
+
 
     // Hàm hiển thị sản phẩm
     function renderProducts(products) {
@@ -770,15 +1007,23 @@
 
     // Sự kiện nhấp vào nút "Xem thêm"
     document.getElementById('load-more').addEventListener('click', () => {
-        renderProducts(additionalProducts);
+        // Tinhs toan san pham can hien thi
+        const start = currentBatchIndex * batchSize;
+        const end = start + batchSize;
+        const productsToShow = additionalProducts.slice(start, end);
 
-        // Ẩn nút nếu không còn sản phẩm nào
-        document.getElementById('load-more').style.display = 'none';
+        // Hiển thị sản phẩm
+        renderProducts(productsToShow);
+
+        // Cập nhật chỉ số lô sản phẩm
+        currentBatchIndex++;
+
+        // Ktra neu không còn san pham thi Ẩn nút
+        if (end >= additionalProducts.length) {
+            document.getElementById('load-more').style.display = 'none';
+        }
     });
 </script>
-
-
-
 
 </body>
 </html>
