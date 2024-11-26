@@ -15,6 +15,9 @@
 .col-3 {
     box-sizing: border-box;
 }
+.cl-black{
+    color: black;
+}
 
 .bt-cl-o {
     background: #f07c29;
@@ -29,17 +32,34 @@
 .br-gray {
     border: 1px solid #dee2e6;
 }
-.ml-4{
+
+.ml-4 {
     margin-left: 1.5rem
 }
-.mr-4{
+
+.mr-4 {
     margin-right: 1.5rem
 }
 
-.float-l{
+.float-l {
     float: left;
 }
 
+.btn-green {
+    color: #fff;
+    background-color: #4b8f8d;
+    border: #4b8f8d;
+}
+
+.btn-green:hover {
+    color: #fff;
+    background-color: #4b8f8d;
+    border: #4b8f8d;
+}
+
+.text-normal{
+    font-weight: normal;
+}
 /*Dashboard start*/
 /*sidebar*/
 #offcanvasExample {

@@ -180,42 +180,61 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <div class="row">
-                                        <div class="col-9 main-card-title my-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div class=" main-card-title my-3">
                                             <h3>Quản lí danh mục</h3>
                                         </div>
-                                        <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCaterory">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Thêm danh mục
-                                            </button>
-                                        </div>
-
-                                        <div class="modal fade" id="addCaterory" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <button type="button" class="btn btn-green my-4 border rounded"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#addCategory">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Thêm danh mục
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="addCategory" tabindex="-1"
+                                             aria-labelledby="staticBackdropLabel"
+                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="catLabel">Thêm danh mục</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="idCat" class="labels">ID Danh mục</label>
+                                                            <label for="#id" class="labels">ID Danh mục</label>
                                                             <fieldset disabled>
-                                                                <input id="idCat" type="text" class="form-control" placeholder="ID" value="">
+                                                                <input id="idCat" type="text"
+                                                                       class="form-control disabled" placeholder="ID"
+                                                                       value="">
                                                             </fieldset>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="nameCat" class="labels">Tên danh mục</label>
-                                                            <input id="nameCat" type="text" class="form-control" placeholder="Danh Mục" value="">
+                                                            <label for="#id" class="labels">Tên danh mục</label>
+                                                            <input id="nameCat" type="text" class="form-control"
+                                                                   placeholder="Danh Mục" value="">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="despCat" class="labels">Mô tả Danh Mục</label>
-                                                            <textarea id="despCat" class="form-control" rows="6"></textarea>
+                                                            <label class="form-label" for="textArea1">Danh sách thể
+                                                                loại</label>
+                                                            <div class="form-group d-flex">
+                                                                <label class="idGenre text-normal mx-2" for="textArea1">Thể
+                                                                    loại
+                                                                </label>
+                                                                <input id="idGenre" type="text" style="width: 50px">
+                                                                <label class="nameGenre text-normal mx-2"
+                                                                       for="textArea1">Tên thể loại
+                                                                </label>
+                                                                <input id="nameGenre" type="text" style="width: 200px">
+                                                                <button class="btn">
+                                                                <i class="fa-solid fa-plus"></i>
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-orange" id="saveCategoryBtn">Lưu</button>
+                                                        <button type="button" class="btn btn-green border">Lưu</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -244,12 +263,18 @@
                                             <td>3204</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <a href=""><i class="fa-regular fa-eye fa-lg mx-2"
-                                                              style="color: #f07c29;"></i></a>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -258,11 +283,18 @@
                                             <td>2354</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -271,11 +303,18 @@
                                             <td>243</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -284,11 +323,18 @@
                                             <td>325</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -297,11 +343,18 @@
                                             <td>243</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -310,11 +363,18 @@
                                             <td>3254</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -323,11 +383,18 @@
                                             <td>435</td>
                                             <td>11/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-view m-0 p-0">
+                                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
 
@@ -338,6 +405,25 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa tài khoản</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
                 </div>
             </div>
         </div>
@@ -353,7 +439,7 @@
 
 <!--script-->
 <script>
-    var myModalEl = document.getElementById('addCaterory');
+    var myModalEl = document.getElementById('addCategory');
     $(document).ready(function () {
         // Khởi tạo DataTable cho bảng với id 'orderTable'
         var table = $('#orderTable').DataTable({
@@ -375,49 +461,52 @@
                 {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
             ],
         });
-    });
 
-    // Xử lý sự kiện nút
-    $(document).ready(function () {
-        // Mở Modal khi nhấn nút Thêm danh mục
-        $('#addCaterory').on('show.bs.modal', function (event) {
-            // Reset các trường trong modal
+        myModalEl.addEventListener('hidden.bs.modal', function (event) {
+            // Reset lại tiêu đề và các giá trị trong modal khi modal đóng
             $('#catLabel').html("Thêm danh mục");
             $('#idCat').val("");
             $('#nameCat').val("");
             $('#despCat').val("");
+            $('#idGenre').val("");
+            $('#nameGenre').val("");
+
+            // Reset lại trạng thái disabled cho các trường nhập liệu
+            $('#nameCat').prop('disabled', false);
+            $('#despCat').prop('disabled', false);
+            $('#idGenre').prop('disabled', false);
+            $('#nameGenre').prop('disabled', false);
         });
 
-        // Đảm bảo sự kiện này được đăng ký khi modal được mở
-        $('#saveCategoryBtn').click(function() {
-            // Thực hiện các thao tác khi nút "Lưu" được nhấn
-            var nameCat = $('#nameCat').val();
-            var despCat = $('#despCat').val();
-            if (nameCat && despCat) {
-                // Ví dụ: Lưu dữ liệu vào nơi bạn cần
-                alert("Danh mục đã được lưu");
-                $('#addCaterory').modal('hide');  // Đóng modal sau khi lưu
-            } else {
-                alert("Vui lòng nhập đầy đủ thông tin!");
-            }
+        $('#orderTable tbody').on('click', '.btn-edit', function () {
+            var data = table.row($(this).parents('tr')).data();
+
+            // Đặt tiêu đề modal và điền dữ liệu vào các trường trong modal
+            $('#catLabel').html("Sửa danh mục");
+            $('#idCat').val(data[0]);
+            $('#nameCat').val(data[1]);
+            $('#despCat').val(data[5]);
+            $('#idGenre').val('01');
+            $('#nameGenre').val('truyện tranh');
+
+            // Mở modal cho phép chỉnh sửa
+            $('#addCategory').modal('show');
         });
-    });
 
+        $('#orderTable tbody').on('click', '.btn-view', function () {
+            var data = table.row($(this).parents('tr')).data();
 
-    function deleteCat(id) {
-        if (confirm("Press a button!") === true) {
-            alert("Da xoa");
-        }
-    }
+            // Đặt tiêu đề modal và điền dữ liệu vào các trường trong modal
+            $('#catLabel').html("Xem danh mục");
+            $('#idCat').val(data[0]);
+            $('#nameCat').val(data[1]).prop('disabled', true);
+            $('#despCat').val(data[5]).prop('disabled', true);
+            $('#idGenre').val('01').prop('disabled', true);
+            $('#nameGenre').val('truyện tranh').prop('disabled', true);
 
-
-    $('#tableCat tbody').on('click', '.btn.btn-warning', function () {
-        var data = table.row($(this).parents('tr')).data();
-        $('#catLabel').html("Sửa danh mục");
-        $('#idCat').val(data[0]);
-        $('#nameCat').val(data[1]);
-        $('#despCat').val(data[5]);
-        $('#addCaterory').modal('show');
+            // Mở modal chỉ để xem
+            $('#addCategory').modal('show');
+        });
     });
 </script>
 
