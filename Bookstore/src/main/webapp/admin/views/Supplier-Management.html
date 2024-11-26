@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lí nhà cung cấp</title>
+    <title>Quản lí nhà xuất bản</title>
 
     <!--  all css files-->
     <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
@@ -69,7 +69,7 @@
             <span class="icon" style="font-size: 25px">
               <i class="far fa-newspaper"></i>
             </span>
-                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà xuất bản</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -171,102 +171,238 @@
                 <!-- end col -->
             </div>
             <!-- end row -->
-        </div>
-        <div id="performance-stats">
-            <div class="container-fluid">
-                <div class="row ">
-                    <div class="content-main d-flex justify-content-center">
-                        <table class="main-listUser-table table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>
-                                    <div class="row">
-                                        <div class="col-9 main-card-title my-3">
-                                            <h3>Quản lí nhà xuất bản</h3>
-                                        </div>
-                                        <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary ">
+
+            <div id="performance-stats">
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="content-main d-flex justify-content-center">
+                            <table class="main-listUser-table table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div class=" d-flex justify-content-between">
+                                            <div class=" main-card-title my-3">
+                                                <h3>Quản lí nhà xuất bản</h3>
+                                            </div>
+                                            <button type="button" class="btn btn-green my-4 border rounded"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#addSupplier">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Thêm nhà xuất bản
                                             </button>
                                         </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <table class="table" id="orderTable">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th>Tên NXB</th>
-                                            <th>Địa chỉ</th>
-                                            <th>SDT</th>
-                                            <th>Hoạt động</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody style="font-weight: lighter">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Nhà xuất bản Trẻ</td>
-                                            <td>161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh</td>
-                                            <td> 028 3931 6289</td>
-                                            <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Nhà xuất bản giáo dục Việt Nam</td>
-                                            <td>Số 81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội</td>
-                                            <td> 024 3822 0801</td>
-                                            <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Nhà xuất bản Kim Đồng</td>
-                                            <td>55 Quang Trung, Hai Bà Trưng, Hà Nội</td>
-                                            <td> 1900571595</td>
-                                            <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Nhà xuất bản Hội Nhà văn</td>
-                                            <td>Số 65 Nguyễn Du, Hà Nội</td>
-                                            <td>024 3822 2135</td>
-                                            <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </th>
-                            </tr>
-                            </tbody>
-                        </table>
+                                        <div class="modal fade" id="addSupplier" tabindex="-1"
+                                             aria-labelledby="staticBackdropLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="labelSupp">Thêm nhà xuất bản</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                                <div class="form-add-supplier-group mt-2 mb-2">
+                                                                    <label for="#idSupp">ID</label>
+                                                                    <input class="form-control"
+                                                                           id="id" name="email" disabled>
+                                                                </div>
+
+                                                                <div class="form-add-supplier-group mt-2 mb-2">
+                                                                    <label for="#tenSupp">Tên nhà xuất bản <span
+                                                                            class="require">*</span></label>
+                                                                    <input type="text" class="form-control" id="ten"
+                                                                           name="ten" required>
+                                                                </div>
+
+                                                                <div class="form-add-supplier-group mb-2">
+                                                                    <label for="#phoneSupp">Số điện thoại<span
+                                                                            class="require">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="phone" name="phone" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                                <div class="form-add-supplier-group mt-2 mb-2">
+                                                                    <label for="#addressSupp">Địa chỉ<span
+                                                                            class="require">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="address" name="address" required>
+                                                                </div>
+
+                                                                <div class="form-add-supplier-group mt-2 mb-2">
+                                                                    <label for="#distinctSupp">Huyện<span
+                                                                            class="require">*</span></label>
+                                                                    <select class="form-select" id="distinct"
+                                                                            name="distinct" required>
+                                                                        <option value="0">--Hãy chọn quận/huyện--
+                                                                        </option>
+                                                                        <option value="1">Quận 1</option>
+                                                                        <option value="2">Quận 2</option>
+                                                                        <option value="3">Quận 3</option>
+                                                                        <option value="4">Quận 4</option>
+                                                                        <option value="5">Quận 5</option>
+                                                                        <option value="6">Quận 6</option>
+                                                                        <option value="7">Quận 7</option>
+                                                                        <option value="8">Quận 8</option>
+                                                                        <option value="9">Quận 9</option>
+                                                                        <option value="10">Quận 10</option>
+                                                                        <option value="11">Quận 11</option>
+                                                                        <option value="12">Quận 12</option>
+                                                                        <option value="13">Hoàn Kiếm</option>
+                                                                        <option value="14">Hai Bà Trưng</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-add-supplier-group mt-2 mb-2">
+                                                                    <label for="#citySupp">Tỉnh/Thành phố<span
+                                                                            class="require">*</span></label>
+                                                                    <select class="form-select" id="city"
+                                                                            name="city" required>
+                                                                        <option value="0">--Hãy chọn Tỉnh/Thành
+                                                                            phố--
+                                                                        </option>
+                                                                        <option value="1">Hồ Chí Minh</option>
+                                                                        <option value="2">Bình Định</option>
+                                                                        <option value="3">Lâm Đồng</option>
+                                                                        <option value="4">Bình Dương</option>
+                                                                        <option value="1">Hà Nội</option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-active m-4 d-flex justify-content-center">
+                                                        <button type="button" class="btn btn-green save-supplier mx-4">
+                                                            Lưu
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger cancel-supplier">
+                                                            Hủy
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <table class="table" id="supplierTable">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th>Tên NXB</th>
+                                                <th>Địa chỉ</th>
+                                                <th>SDT</th>
+                                                <th>Hoạt động</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody style="font-weight: lighter">
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Nhà xuất bản Trẻ</td>
+                                                <td>161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh</td>
+                                                <td> 028 3931 6289</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-edit m-0 p-0">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                           style="color: #236844"></i>
+                                                    </button>
+                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal">
+                                                        <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                           style="color: #ef5f5f"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Nhà xuất bản giáo dục Việt Nam</td>
+                                                <td>Số 81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội</td>
+                                                <td> 024 3822 0801</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-edit m-0 p-0">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                           style="color: #236844"></i>
+                                                    </button>
+                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal">
+                                                        <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                           style="color: #ef5f5f"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Nhà xuất bản Kim Đồng</td>
+                                                <td>55 Quang Trung, Hai Bà Trưng, Hà Nội</td>
+                                                <td> 1900571595</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-edit m-0 p-0">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                           style="color: #236844"></i>
+                                                    </button>
+                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal">
+                                                        <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                           style="color: #ef5f5f"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>Nhà xuất bản Hội Nhà văn</td>
+                                                <td>Số 65 Nguyễn Du, Hà Nội</td>
+                                                <td>024 3822 2135</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-edit m-0 p-0">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                           style="color: #236844"></i>
+                                                    </button>
+                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal">
+                                                        <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                           style="color: #ef5f5f"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa nhà xuất bản </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 
@@ -278,9 +414,9 @@
 
 <!--script-->
 <script>
+    var myModalEl = document.getElementById("addSupplier")
     $(document).ready(function () {
-        // Khởi tạo DataTable cho bảng với id 'orderTable'
-        var table = $('#orderTable').DataTable({
+        var table = $('#supplierTable').DataTable({
             language: {
                 processing: "đang tải",
                 search: "Tìm kiếm",
@@ -297,7 +433,40 @@
                 {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
             ],
         });
+
+        myModalEl.addEventListener('hidden.bs.modal', function (event) {
+            $('#labelSupp').html("Thêm nhà xuất bản")
+            $('#idSupp').val("")
+            $('#tenSupp').val("");
+            $('#phoneSupp').val("");
+            $('#addressSupp').val("");
+            $('#distinctSupp').val("");
+            $('#citySupp').val("");
+        });
+
+        $('#supplierTable tbody').on('click', '.btn-edit', function () {
+            var data = table.row($(this).parent('str')).data();
+            // Lấy hàng gần nhất
+            // var row = $(this).closest('tr');
+            // var data = table.row(row).data(); // Lấy dữ liệu từ DataTable
+            //
+            // if (!data) {
+            //     console.error("Không tìm thấy dữ liệu cho hàng được chọn.");
+            //     return;
+            // }
+
+            $('#labelSupp').html("Sửa nhà xuất bản")
+            $('#idSupp').val(data[0])
+            $('#tenSupp').val(data[1]);
+            $('#phoneSupp').val(data[3]);
+            $('#addressSupp').val(data[2]);
+            $('#distinctSupp').closest('.form-add-supplier-group').hide();
+            $('#citySupp').closest('.form-add-supplier-group').hide();
+
+            $('#addSupplier').modal('show');
+        });
     });
+
 </script>
 </body>
 </html>
