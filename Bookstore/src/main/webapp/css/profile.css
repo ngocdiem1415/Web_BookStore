@@ -351,39 +351,90 @@ body {
     width: 18px;
 }
 
-/*Tao ra cac radio box*/
-.stardust-radio-button__outer-circle {
-    align-items: center;
-    border: 2px solid rgba(0, 0, 0, .26);
-    border-radius: 100%;
-    box-sizing: border-box;
-    display: flex;
-    height: 18px;
-    justify-content: center;
+.editable-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    width: 90%;
+    margin-top: 5px;
+}
+
+
+/*!*Tao ra cac radio box*!*/
+/*.stardust-radio-button__outer-circle {*/
+/*    align-items: center;*/
+/*    border: 2px solid rgba(0, 0, 0, .26);*/
+/*    border-radius: 100%;*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    height: 18px;*/
+/*    justify-content: center;*/
+/*    width: 18px;*/
+/*}*/
+
+/*!*GT Nam*!*/
+/*.stardust-radio-checked .stardust-radio-button__outer-circle {*/
+/*    border-color: #117C6F;*/
+/*}*/
+
+/*.stardust-radio-button--checked > .stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {*/
+/*    opacity: 1;*/
+/*    background: #117C6F;*/
+/*    height: 6px;*/
+/*    border-radius: 100%;*/
+/*    width: 6px;*/
+/*}*/
+
+/*!*GT Nu*!*/
+/*.stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {*/
+/*    background: #117C6F;*/
+/*    border-radius: 100%;*/
+/*    height: 6px;*/
+/*    opacity: 0;*/
+/*    width: 6px*/
+/*}*/
+
+/* Đặt kiểu dáng mặc định cho các radio */
+.stardust-radio input[type="radio"] {
+    display: none; /* Ẩn nút radio mặc định */
+}
+
+/* Vòng ngoài của radio */
+.stardust-radio span {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    line-height: 20px;
+    color: #333; /* Màu chữ */
+}
+
+/* Hình dạng vòng tròn bên ngoài */
+.stardust-radio span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 18px;
+    height: 18px;
+    border: 2px solid #ccc; /* Màu viền mặc định */
+    border-radius: 50%;
+    background: white;
+    transition: all 0.3s ease;
 }
 
-/*GT Nam*/
-.stardust-radio-checked .stardust-radio-button__outer-circle {
-    border-color: #117C6F;
+/* Vòng tròn bên trong khi được chọn */
+.stardust-radio input[type="radio"]:checked + span::before {
+    border-color: #117C6F; /* Màu viền xanh lục */
+    background: #117C6F; /* Màu nền xanh lục */
 }
 
-.stardust-radio-button--checked > .stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {
-    opacity: 1;
-    background: #117C6F;
-    height: 6px;
-    border-radius: 100%;
-    width: 6px;
+/* Thêm hiệu ứng màu chữ khi được chọn */
+.stardust-radio input[type="radio"]:checked + span {
+    color: #117C6F;
 }
 
-/*GT Nu*/
-.stardust-radio-button__outer-circle > .stardust-radio-button__inner-circle {
-    background: #117C6F;
-    border-radius: 100%;
-    height: 6px;
-    opacity: 0;
-    width: 6px
-}
 
 /*Nut Luu thong tin*/
 .container-profile-content-inner__right-main-content-center__table .btn {
