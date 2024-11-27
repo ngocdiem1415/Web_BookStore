@@ -18,7 +18,7 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <a href="Dashboard.html">
-            <img src="../../img/logo/logo.png" height="200px" width="200px"/>
+            <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
         </a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -180,11 +180,11 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9 main-card-title my-3 ps-5">
+                                    <div class="d-flex justify-content-between">
+                                        <div class=" main-card-title my-3">
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
-                                        <button id="addProductBtn" class="col-3 btn btn-primary">
+                                        <button id="addProductBtn" class="btn btn-green my-4 border rounded">
                                             <i class="fa-solid fa-plus"></i>
                                             Thêm sản phẩm
                                         </button>
@@ -333,7 +333,7 @@
 <script>
     // Thêm sự kiện click cho nút
     document.getElementById('addProductBtn').addEventListener('click', function () {
-        window.location.href = '../views/edit/Add-Product.html'; // Chuyển hướng đến Add-Product.html
+        window.location.href = 'Add-Product.html'; // Chuyển hướng đến Add-Product.html
     });
 </script>
 
@@ -397,7 +397,7 @@
         const editButtons = document.querySelectorAll('.edit-button');
         editButtons.forEach(function (button) {
             button.addEventListener('click', function () {
-                window.location.href = 'edit/Edit-product.html';
+                window.location.href = 'Edit-product.html';
             });
         });
     });
