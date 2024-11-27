@@ -184,7 +184,7 @@
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
                                         <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary ">
+                                            <button id="addProductBtn" class="btn btn-primary">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Thêm sản phẩm
                                             </button>
@@ -223,10 +223,17 @@
                                             <td>1</td>
                                             <td>15/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <div class="row px-3">
+                                                    <!-- Nút Chỉnh Sửa -->
+                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;" title="Chỉnh sửa">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                                                    </button>
+
+                                                    <!-- Nút Xóa -->
+                                                    <button class="delete-button col-6 btn px-0" style="color: #ef5f5f;" title="Xóa">
+                                                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -237,16 +244,24 @@
                                                 Steve Harvey, Denenne Millner, Trần Mạnh Hà
                                             </td>
                                             <td>
-                                                04/2015</td>
+                                                2015
+                                            </td>
                                             <td>212</td>
                                             <td>80.000 đ</td>
                                             <td></td>
                                             <td>15/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <div class="row px-3">
+                                                    <!-- Nút Chỉnh Sửa -->
+                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;" title="Chỉnh sửa">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                                                    </button>
+
+                                                    <!-- Nút Xóa -->
+                                                    <button class="delete-button col-6 btn px-0" style="color: #ef5f5f;" title="Xóa">
+                                                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -294,5 +309,41 @@
         });
     });
 </script>
+
+<script>
+    // Thêm sự kiện click cho nút
+    document.getElementById('addProductBtn').addEventListener('click', function () {
+        window.location.href = '../views/edit/Add-Product.html'; // Chuyển hướng đến Add-Product.html
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lấy tất cả các nút xóa
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function () {
+                // Xác nhận trước khi xóa
+                if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
+                    // Tìm hàng (tr) chứa nút được nhấn
+                    const row = this.closest('tr');
+                    if (row) {
+                        row.remove();
+                    }
+                }
+            });
+        });
+        const editButtons = document.querySelectorAll('.edit-button');
+
+        editButtons.forEach(function(button) {
+            button.addEventListener('click', function () {
+                window.location.href = '../views/edit/Edit-Product.html';
+            });
+        });
+
+    });
+</script>
+
 </body>
 </html>
