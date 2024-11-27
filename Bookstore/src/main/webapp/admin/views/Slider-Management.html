@@ -180,16 +180,14 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <div class="row">
+                                    <div class=" d-flex justify-content-between">
                                         <div class="col-9 main-card-title my-3">
                                             <h3>Quản lí slider</h3>
                                         </div>
-                                        <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary ">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Thêm slider
-                                            </button>
-                                        </div>
+                                        <a href="Add-Slider.html" class="btn btn-green my-4 border rounded addSlider">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Thêm khuyến mãi
+                                        </a>
                                     </div>
                                 </th>
                             </tr>
@@ -218,10 +216,15 @@
                                             <td> 1</td>
                                             <td>productDetail?id=100</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -229,14 +232,19 @@
                                             <td>
                                                 <img src="../../img/slider/13.jpg" height="120" width="269"/>
                                             </td>
-                                            <td>Chương trình giảm giá sách 1</td>
+                                            <td>Chương trình giảm giá sách 2</td>
                                             <td> 1</td>
                                             <td>productDetail?id=1001</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -244,14 +252,20 @@
                                             <td>
                                                 <img src="../../img/slider/slider_KM2.png" height="120" width="269"/>
                                             </td>
-                                            <td>Chương trình giảm giá sách 2</td>
+                                            <td>Chương trình giảm giá sách 3</td>
                                             <td> 2</td>
                                             <td>productDetail?id=1010</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-edit m-0 p-0"
+                                                        onclick="goToEditpage(true)">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -265,6 +279,26 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa nhà xuất bản </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 
@@ -295,7 +329,18 @@
                 {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
             ],
         });
+
+
     });
+
+    function goToEditpage(isEditMode) {
+        // Truyền tham số qua URL
+        let url = 'Add-Slider.html?edit=' + isEditMode;
+        window.location.href = url;  //
+    }
+
+
+
 </script>
 </body>
 </html>
