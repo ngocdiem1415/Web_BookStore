@@ -219,15 +219,16 @@
                     <textarea class="form-control" id="moTaSanPham" rows="3" placeholder="Type here"></textarea>
                 </div>
 
-                <!-- Image Upload -->
                 <div class="mb-3">
                     <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
                     <input type="file" class="form-control" id="anhTrungBay">
+                    <div id="anhTrungBayPreview" class="image-container"></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
-                    <input type="file" class="form-control" id="themAnhKhac">
+                    <input type="file" class="form-control" id="themAnhKhac" multiple>
+                    <div id="themAnhKhacPreview" class="image-container"></div>
                 </div>
             </div>
 
