@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/Style.css">
     <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Product-Management.css">
 
 </head>
 <body>
@@ -225,12 +226,14 @@
                                             <td>
                                                 <div class="row px-3">
                                                     <!-- Nút Chỉnh Sửa -->
-                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;" title="Chỉnh sửa">
+                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                                            title="Chỉnh sửa">
                                                         <i class="fa-regular fa-pen-to-square fa-lg"></i>
                                                     </button>
 
                                                     <!-- Nút Xóa -->
-                                                    <button class="delete-button col-6 btn px-0" style="color: #ef5f5f;" title="Xóa">
+                                                    <button type="button" class="delete-button col-6 btn px-0"
+                                                            style="color: #ef5f5f;" title="Xóa">
                                                         <i class="fa-regular fa-trash-can fa-lg"></i>
                                                     </button>
                                                 </div>
@@ -253,12 +256,14 @@
                                             <td>
                                                 <div class="row px-3">
                                                     <!-- Nút Chỉnh Sửa -->
-                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;" title="Chỉnh sửa">
+                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                                            title="Chỉnh sửa">
                                                         <i class="fa-regular fa-pen-to-square fa-lg"></i>
                                                     </button>
 
                                                     <!-- Nút Xóa -->
-                                                    <button class="delete-button col-6 btn px-0" style="color: #ef5f5f;" title="Xóa">
+                                                    <button class="delete-button col-6 btn px-0" style="color: #ef5f5f;"
+                                                            title="Xóa">
                                                         <i class="fa-regular fa-trash-can fa-lg"></i>
                                                     </button>
                                                 </div>
@@ -275,6 +280,25 @@
             </div>
         </div>
     </div>
+
+    <!--confirm-->
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-message">Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+            <div class="modal-buttons">
+                <button id="confirm-delete" class="btn btn-danger">Xóa</button>
+                <button id="cancel-delete" class="btn btn-secondary">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo -->
+    <div id="notification"
+         class="alert alert-success text-center position-fixed top-50 start-50 translate-middle hidden"
+         role="alert">
+        Đây là thông báo mặc định.
+    </div>
+
 </section>
 
 <!--all script files-->
@@ -319,29 +343,67 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+        // Hiển thị thông báo
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `alert alert-${type} text-center position-fixed top-50 start-50 translate-middle show`;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+
         // Lấy tất cả các nút xóa
         const deleteButtons = document.querySelectorAll('.delete-button');
-
-        deleteButtons.forEach(function(button) {
+        deleteButtons.forEach(function (button) {
             button.addEventListener('click', function () {
-                // Xác nhận trước khi xóa
-                if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
-                    // Tìm hàng (tr) chứa nút được nhấn
+                // Hiển thị modal xác nhận
+                const modal = document.getElementById('confirm-modal');
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+
+                // Xử lý khi người dùng xác nhận xóa
+                const confirmButton = document.getElementById('confirm-delete');
+                const cancelButton = document.getElementById('cancel-delete');
+
+                // xử lý sự kiện xóa
+                const onConfirm = () => {
                     const row = this.closest('tr');
                     if (row) {
                         row.remove();
                     }
+                    showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
+                    closeModal();
+                };
+
+                // Xử lý sự kiện Hủy
+                const onCancel = () => {
+                    closeModal();
+                };
+
+                // Thêm sự kiện cho nút Xóa và Hủy
+                confirmButton.addEventListener('click', onConfirm, {once: true});
+                cancelButton.addEventListener('click', onCancel, {once: true});
+
+                // Hàm đóng modal
+                function closeModal() {
+                    modal.classList.add('hidden');
+                    modal.style.display = 'none';
                 }
             });
         });
-        const editButtons = document.querySelectorAll('.edit-button');
+    });
 
-        editButtons.forEach(function(button) {
+    document.addEventListener('DOMContentLoaded', function () {
+        const editButtons = document.querySelectorAll('.edit-button');
+        editButtons.forEach(function (button) {
             button.addEventListener('click', function () {
-                window.location.href = '../views/edit/Edit-Product.html';
+                window.location.href = 'edit/Edit-product.html';
             });
         });
-
     });
 </script>
 
