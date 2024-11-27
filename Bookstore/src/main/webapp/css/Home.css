@@ -47,6 +47,18 @@ body {
     color: #f07c29;
 }
 
+.limited-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;          /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.max-width-150{
+    max-width: 150px;
+}
+
 /*----------------------------------------*/
 /*  4. Slider area
 /*----------------------------------------*/
@@ -375,10 +387,9 @@ body {
 .bestseller-details h4 a {
     color: #333333;
     display: block;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     line-height: 1;
-    overflow: hidden;
     text-transform: capitalize;
     transition: .3s;
     text-decoration: none;
