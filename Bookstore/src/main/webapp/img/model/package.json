@@ -1,0 +1,325 @@
+{
+  "name": "model",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ngocdiem1415/Web_BookStore.git"
+  },
+  "private": true,
+  "book": [
+    {
+      "title": "Giếng Độc",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/296/gieng-doc.jpg",
+      "price-current": "103.000đ",
+      "price-old": "103.000đ"
+    },
+    {
+      "title": "Một Trái Tim Nhạy Cảm, Một Cái Đầu Nghĩ Nhiều",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/mot-trai-tim-nhay-cam-mot-cai-dau-nghi-nhieu.jpg",
+      "price-current": "95.000đ",
+      "price-old": "95.000đ"
+    },
+    {
+      "title": "The Journey Into Summer - Chưa Kịp Lớn Đã Phải Trưởng Thành - Quyển 2: Phiên Bản Mùa Hè (Song ngữ Anh-Việt)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/chua-kip-lon-da-phai-truong-thanh-quyen-2-song-ngu.jpg",
+      "price-current": "79.000đ",
+      "price-old": "79.000đ"
+    },
+    {
+      "title": "Lúc Biết Xuyên Không Thì Đã Muộn!",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/luc-biet-xuyen-khong-thi-da-muon.jpg",
+      "price-current": "239.000đ",
+      "price-old": "239.000đ"
+    },
+    {
+      "title": "Tuyển Tập Kawabata - Truyện Ngắn Trong Lòng Bàn Tay",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/tuyen-tap-kawabata-truyen-ngan-trong-long-ban-tay.jpg",
+      "price-current": "380.000đ",
+      "price-old": "380.000đ"
+    },
+    {
+      "title": "Xứ Tuyết",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/252/Untitled-1_os68-2n.jpg",
+      "price-current": "59.500đ",
+      "price-old": "59.500đ"
+    },
+    {
+      "title": "Define The Relationship - Định Rõ Mối Quan Hệ - Tập 2",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/dinh-ro-moi-quan-he-tap-2.jpg",
+      "price-current": "265.000đ",
+      "price-old": "265.000đ"
+    },
+    {
+      "title": "Storytelling - Lay Động Lòng Người Bằng Chuyện Kể",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/storytelling-lay-dong-long-nguoi-bang-chuyen-ke.jpg",
+      "price_current": "246.000đ",
+      "price-old": "103.000đ"
+    },
+    {
+      "title": "Người Trồng Rừng",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/185/nguoi-trong-rung.jpg",
+      "price_current": "80.500đ",
+      "price-old": "103.000đ"
+    },
+    {
+      "title": "Sức Mạnh Của Sự Tử Tế (Tái bản năm 2022)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/227/suc-manh-cua-su-tu-te-tb-2022.jpg",
+      "price_current": "72.800đ",
+      "price-old": "104.000đ"
+    },
+    {
+      "title": "Những Chiếc Cầu Ở Quận Madison (Tái bản năm 2022)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/253/Untitled-1_c8z2-gj.jpg",
+      "price_current": "71.200đ",
+      "price-old": "89.000đ"
+    },
+    {
+      "title": "Atomic Habits - Thay Đổi Tí Hon, Hiệu Quả Bất Ngờ",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/270/atomic_habit.jpg",
+      "price_current": "132.300đ",
+      "price-old": "189.000đ"
+    },
+    {
+      "title": "Người Tị Nạn (Giải Pulitzer) (Bìa mềm)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/252/Untitled-1_jg3j-6d.jpg",
+      "price_current": "92.400đ",
+      "price-old": "132.000đ"
+    },
+    {
+      "title": "Trở Về Không - Trải Nghiệm Ho'oponopono",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/176/tro-ve-khong-trai-nghiem-ho-oponopono.jpg",
+      "price_current": "111.300đ",
+      "price-old": "159.000đ"
+    },
+    {
+      "title": "Atomic Habits - Thay Đổi Tí Hon, Hiệu Quả Bất Ngờ (Tái bản năm 2022)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/227/thay-doi-ti-hon-hieu-qua-bat-ngo-tb-2022.jpg",
+      "price_current": "132.000đ",
+      "price-old": "189.300đ"
+    },
+    {
+      "title": "Heidi (Song ngữ Việt-Anh)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/296/sach-song-ngu-heidi.jpg",
+      "price_current": "119.000đ",
+      "price-old": "119.000đ"
+    },
+    {
+      "title": "Tình Yêu Ở Thành Phố Lớn",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/296/tinh-yeu-o-thanh-pho-lon.jpg",
+      "price_current": "139.000đ",
+      "price-old": "139.000đ"
+    },
+    {
+      "title": "Nỗi Đau Của Chàng Werther (Tái bản năm 2024)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/296/noi-dau-cua-chang-werther.jpg",
+      "price_current": "100.000đ",
+      "price-old": "100.000đ"
+    },
+    {
+      "title": "Bà Nội Găngxtơ Tái Xuất!",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/296/ba-noi-gangxto-tai-xuat.jpg",
+      "price_current": "155.000đ",
+      "price-old": "155.000đ"
+    },
+    {
+      "title": "Chàng Chó",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/chang-cho.jpg",
+      "price_current": "115.000đ",
+      "price-old": "115.000đ"
+    },
+    {
+      "title": "Trắng Án",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/trang-an.jpg",
+      "price_current": "169.000đ",
+      "price-old": "169.000đ"
+    },
+    {
+      "title": "Showbiz Là Của Tôi - Tập 3",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/showbiz-la-cua-toi-tap-3.jpg",
+      "price_current": "222.000đ",
+      "price-old": "222.000đ"
+    },
+    {
+      "title": "Sau Cánh Cửa Khóa Kín",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/sau-canh-cua-khoa-kin.jpg",
+      "price_current": "162.000đ",
+      "price-old": "162.000đ"
+    },
+    {
+      "title": "Chim Sẻ Serafino Và Những Chuyến Ngao Du Kì Thú",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/chim-se-serafino.jpg",
+      "price_current": "90.000đ",
+      "price-old": "90.000đ"
+    },
+    {
+      "title": "Carrie - Vũ Hội Đẫm Máu!",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/293/vu-hoi-dam-mau.jpg",
+      "price_current": "146.000đ",
+      "price-old": "146.000đ"
+    },
+    {
+      "title": "Mùa Rễ Ngọt",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/296/ba-noi-gangxto-tai-xuat.jpg",
+      "price_current": "40.000đ",
+      "price-old": "40.000đ"
+    },
+    {
+      "title": "Hành Trình Người Viết - Cấu Trúc Thần Thoại Kinh Điển Trong Sáng Tác (Ấn bản kỷ niệm 25 năm)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/hanh-trinh-nguoi-viet.jpg",
+      "price_current": "332.100đ",
+      "price-old": "369.000đ"
+    },
+    {
+      "title": "Một Thử Nghiệm Phê Bình",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/294/mot-thu-nghiem-phe-binh.jpg",
+      "price_current": "95.000đ",
+      "price-old": "95.000đ"
+    },
+    {
+      "title": "Lĩnh Nam Chích Quái: Khảo Luận - Dịch Chú Nguyên Bản Chữ Hán",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/293/linh-nam-chich-quai.jpg",
+      "price_current": "789.000đ",
+      "price-old": "789.000đ"
+    },
+    {
+      "title": "Cái Vội Của Người Mình",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/293/cai-voi-cua-nguoi-minh.jpg",
+      "price_current": "159.000đ",
+      "price-old": "159.000đ"
+    },
+    {
+      "title": "The Exorcist - Quỷ Ám",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/291/quy-am.jpg",
+      "price_current": "229.000đ",
+      "price-old": "229.000đ"
+    },
+    {
+      "title": "39 Cuộc Đối Thoại Tri Thức",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/292/39-cuoc-doi-thoai-tri-thuc.jpg",
+      "price_current": "159.000đ",
+      "price-old": "159.000đ"
+    },
+    {
+      "title": "Holly - Tù Nhân Dưới Tầng Hầm",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/290/holly-tu-nhan-duoi-tang-ham.jpg",
+      "price_current": "350.000đ",
+      "price-old": "350.000đ"
+    },
+    {
+      "title": "Mỗi Từ Là Một Chú Chim Đang Chờ Ta Dạy Hót",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/289/moi-tu-la-mot-chu-chim-dang-cho-ta-day-hot.jpg",
+      "price_current": "120.000đ",
+      "price-old": "120.000đ"
+    },
+    {
+      "title": "Trước Nhà Có Cây Hoàng Mai",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/288/truoc-nha-co-cay-hoang-mai.jpg",
+      "price_current": "130.000đ",
+      "price-old": "130.000đ"
+    },
+    {
+      "title": "Những Câu Chuyện Hãi Hùng Và Kì Bí 1 - Lô Số 249",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/295/lo-so-249.jpg",
+      "price_current": "145.000đ",
+      "price-old": "145.000đ"
+    },
+    {
+      "title": "Chuyện Kể Lúc Hoàng Hôn (Tuyển tập truyện ma Charles Dickens)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/295/chuyen-ke-luc-hoang-hon.jpg",
+      "price_current": "60.000đ",
+      "price-old": "60.000đ"
+    },
+    {
+      "title": "Hai Vạn Dặm Dưới Biển (Tái bản năm 2024) (Sách Đinh Tị)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/294/hai-van-dam-duoi-bien-tb-2024.jpg",
+      "price_current": "90.000đ",
+      "price-old": "90.000đ"
+    },
+    {
+      "title": "Tội Phạm Tâm Thần Và Những Lỗ Hổng Công Lý",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/291/toi-pham-tam-than-va-nhung-lo-hong-cong-ly.jpg",
+      "price_current": "140.000đ",
+      "price-old": "140.000đ"
+    },
+    {
+      "title": "Những Mảnh Ký Ức 1979-1989: Chuyện Kể Từ Biên Giới Phía Bắc",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/287/nhung-manh-ky-uc-1979-1989.jpg",
+      "price_current": "335.000đ",
+      "price-old": "335.000đ"
+    },
+    {
+      "title": "Kẻ Ăn Hồn",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/290/ke-an-hon.jpg",
+      "price_current": "209.000đ",
+      "price-old": "209.000đ"
+    },
+    {
+      "title": "Sự Trung Thực Của Xác Chết - Ghi Chép Của Một Nhà Pháp Y",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/286/su-trung-thuc-cua-xac-chet.jpg",
+      "price_current": "99.000đ",
+      "price-old": "155.000đ"
+    },
+    {
+      "title": "Bước Vào Bóng Tối 2 - Những Vụ Án Rung Chuyển Dư Luận Qua Góc Nhìn Của Bat Saber",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/284/buoc-vao-bong-toi-tap-2.jpg",
+      "price_current": "99.000đ",
+      "price-old": "125.000đ"
+    },
+    {
+      "title": "Vừa Vặn Hạnh Phúc, Vừa Vặn Bình Yên",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/296/vua-van-hanh-phuc-vua-van-binh-yen.jpg",
+      "price_current": "99.000đ",
+      "price-old": "99.000đ"
+    },
+
+    {
+      "title": "Đến Cuối Ngày Ai Cũng Cần Một Điều Để Tin",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/290/den-cuoi-ngay-ai-cung-can-mot-dieu-de-tin.jpg",
+      "price_current": "112.000đ",
+      "price-old": "125.000đ"
+    },
+    {
+      "title": "Góc Sân Và Khoảng Trời (Tinh tuyển) (Tái bản năm 2024)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/288/goc-san-va-khoang-troi-tinh-tuyen.jpg",
+      "price_current": "75.000đ",
+      "price-old": "125.000đ"
+    },
+    {
+      "title": "Thơ Tố Hữu (Tái bản năm 2024) (Sách Huy Hoàng)",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/286/tho-to-huu-tb-2024.jpg",
+      "price_current": "55.000đ",
+      "price-old": "55.000đ"
+    },
+    {
+      "title": "“Chúng Ta” Chỉ Là Chuyện Đã Từng",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/283/chung-ta-chi-la-chuyen-da-tung.jpg",
+      "price_current": "85.000đ",
+      "price-old": "85.000đ"
+    },
+    {
+      "title": "Zenlam Du Hành Vào Cõi Xanh",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/272/zenlam-du-hanh-vao-coi-xanh.jpg",
+      "price_current": "135.000đ",
+      "price-old": "135.000đ"
+    },
+    {
+      "title": "Tần Số Cô Đơn",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/266/tan-so-co-don.jpg",
+      "price_current": "95.000đ",
+      "price-old": "95.000đ"
+    },
+    {
+      "title": "Trần Triều Nhàn Thoại",
+      "image": "https://nhasachphuongnam.com/images/thumbnails/170/205/detailed/293/tran-trieu-nhan-thoai.jpg",
+      "price_current": "119.000đ",
+      "price-old": "119.000đ"
+    }
+  ]
+}
+
+
