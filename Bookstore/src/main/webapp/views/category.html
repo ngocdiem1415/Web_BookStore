@@ -62,9 +62,21 @@
         </div>
     </div>
 </header>
-<!-- /HEADER -->
-
 <!-- NAVIGATION-->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container ">
+        <!-- NAV -->
+        <ul class="main-nav nav ">
+            <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
+            <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
+            <li class="nav-item "><a href="category.html">Sản phẩm</a></li>
+            <li class="nav-item "><a href="policy.html">Chính sách</a></li>
+            <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
+        </ul>
+        <!-- /NAV -->
+    </div>
+</nav>
 
 <!--content-->
 <div class="app__container">
@@ -281,7 +293,8 @@
             <div class="col-md-10">
                 <div class="home-product">
                     <!-- Sản phẩm hiển thị bên phải -->
-                    <div class="grid__row">
+                    <div id="product-container" class="grid__row">
+                        <!--0-->
                         <div class="grid-md-2-4">
                             <a href="">
                                 <div class="home-product-item">
@@ -340,20 +353,21 @@
 
                         </div>
 
-
                         <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/thucdayvamodi1.webp')"></div>
-                                <h4 class="home-product-item__name">Thức dậy và mơ đi</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">62.000đ</span>
-                                    <span class="home-product-item__price-old">89.000đ</span>
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/thucdayvamodi1.webp')"></div>
+                                    <h4 class="home-product-item__name">Thức dậy và mơ đi</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">62.000đ</span>
+                                        <span class="home-product-item__price-old">89.000đ</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
-
+                        <!--  5-->
                         <div class="grid-md-2-4">
                             <a href="#">
                                 <div class="home-product-item">
@@ -368,87 +382,220 @@
                             </a>
                         </div>
 
-
                         <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/noiNaoCoMeNoiAyLaNha.webp')"></div>
-                                <h4 class="home-product-item__name">Nơi Nào Có Mẹ, Nơi Ấy Là Nhà</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">59.000đ</span>
-                                    <span class="home-product-item__price-old">90.000đ</span>
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/noiNaoCoMeNoiAyLaNha.webp')"></div>
+                                    <h4 class="home-product-item__name">Nơi Nào Có Mẹ, Nơi Ấy Là Nhà</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">59.000đ</span>
+                                        <span class="home-product-item__price-old">90.000đ</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </a>
 
-
-                        <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/ChuaDat.webp')"></div>
-                                <h4 class="home-product-item__name">Chúa Đất</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">38.000đ</span>
-                                    <span class="home-product-item__price-old">76.000đ</span>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/songcauchuyencuanguoigiatricua.webp')"></div>
-                                <h4 class="home-product-item__name">Sống</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">34.000đ</span>
-                                    <span class="home-product-item__price-old">45.000đ</span>
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/ChuaDat.webp')"></div>
+                                    <h4 class="home-product-item__name">Chúa Đất</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">38.000đ</span>
+                                        <span class="home-product-item__price-old">76.000đ</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </a>
 
+                        </div>
 
                         <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/Nhà_giả_kim_(sách).jpg')"></div>
-                                <h4 class="home-product-item__name">Nhà giả kim</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">102.000đ</span>
-                                    <span class="home-product-item__price-old">140.000đ</span>
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/songcauchuyencuanguoigiatricua.webp')"></div>
+                                    <h4 class="home-product-item__name">Sống</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">34.000đ</span>
+                                        <span class="home-product-item__price-old">45.000đ</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-
 
                         <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/DoiVoiVaVaCangNenSongCham.webp')"></div>
-                                <h4 class="home-product-item__name">Đời vội vã và càng nên sống chậm</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">91.800đ</span>
-                                    <span class="home-product-item__price-old">108.000đ</span>
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/Nhà_giả_kim_(sách).jpg')"></div>
+                                    <h4 class="home-product-item__name">Nhà giả kim</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">102.000đ</span>
+                                        <span class="home-product-item__price-old">140.000đ</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
+
+                        <!--  10  -->
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/DoiVoiVaVaCangNenSongCham.webp')"></div>
+                                    <h4 class="home-product-item__name">Đời vội vã và càng nên sống chậm</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">91.800đ</span>
+                                        <span class="home-product-item__price-old">108.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
 
                         <div class="grid-md-2-4">
-                            <div class="home-product-item">
-                                <div class="home-product-item__img"
-                                     style="background-image: url('../img/25DoAm.webp')"></div>
-                                <h4 class="home-product-item__name">25 Độ Ẩm</h4>
-                                <div class="home-product-item__price">
-                                    <span class="home-product-item__price-current">134.300đ</span>
-                                    <span class="home-product-item__price-old">158.000đ</span>
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/25DoAm.webp')"></div>
+                                    <h4 class="home-product-item__name">25 Độ Ẩm</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">134.300đ</span>
+                                        <span class="home-product-item__price-old">158.000đ</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/gieng-doc.jpg')"></div>
+                                    <h4 class="home-product-item__name">Giếng Độc</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">103.000đ</span>
+                                        <span class="home-product-item__price-old">103.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/mot-trai-tim-nhay-cam-mot-cai-dau-nghi-nhieu.jpg')"></div>
+                                    <h4 class="home-product-item__name">Một Trái Tim Nhạy Cảm, Một Cái Đầu Nghĩ
+                                        Nhiều</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">95.000đ</span>
+                                        <span class="home-product-item__price-old">95.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/chua-kip-lon-da-phai-truong-thanh-quyen-2-song-ngu.jpg')"></div>
+                                    <h4 class="home-product-item__name">The Journey Into Summer - Chưa Kịp Lớn Đã Phải
+                                        Trưởng Thành - Quyển 2: Phiên Bản Mùa Hè (Song ngữ Anh-Việt)</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">79.000đ</span>
+                                        <span class="home-product-item__price-old">79.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!--  15 -->
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/luc-biet-xuyen-khong-thi-da-muon.jpg')"></div>
+                                    <h4 class="home-product-item__name">Lúc Biết Xuyên Không Thì Đã Muộn!</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">239.000đ</span>
+                                        <span class="home-product-item__price-old">239.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/suc-manh-cua-su-tu-te-tb-2022.jpg')"></div>
+                                    <h4 class="home-product-item__name">Sức Mạnh Của Sự Tử Tế (Tái bản năm 2022)</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">72.800đ</span>
+                                        <span class="home-product-item__price-old">104.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/tuyen-tap-kawabata-truyen-ngan-trong-long-ban-tay.jpg')"></div>
+                                    <h4 class="home-product-item__name">Tuyển Tập Kawabata - Truyện Ngắn Trong Lòng Bàn
+                                        Tay</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">380.000đ</span>
+                                        <span class="home-product-item__price-old">380.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/xu-tuyet.jpg')"></div>
+                                    <h4 class="home-product-item__name">Xứ Tuyết</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">59.500đ</span>
+                                        <span class="home-product-item__price-old">59.500đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid-md-2-4">
+                            <a href="">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img"
+                                         style="background-image: url('../img/product/product-category/dinh-ro-moi-quan-he-tap-2.jpg')"></div>
+                                    <h4 class="home-product-item__name">Define The Relationship - Định Rõ Mối Quan Hệ -
+                                        Tập 2</h4>
+                                    <div class="home-product-item__price">
+                                        <span class="home-product-item__price-current">265.000đ</span>
+                                        <span class="home-product-item__price-old">265.000đ</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 36px;">
+                        <button id="load-more" class="home-product-btn btn-primary">Xem thêm</button>
                     </div>
                 </div>
             </div>
 
-
+            <!-- Phân trang -->
             <div class="grid__row--footer">
                 <div class="col-md-10">
                     <div class="home-filter__paginate" style="text-align: right;">
@@ -526,22 +673,22 @@
 
 
 <!--script-->
-<script>
-    fetch('Header.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.text();
-        })
-        .then(data => document.getElementById('header').innerHTML = data)
-        .catch(error => console.error('Error:', error));
+<!--<script>-->
+<!--    fetch('Header.html')-->
+<!--        .then(response => {-->
+<!--            if (!response.ok) throw new Error('Network response was not ok');-->
+<!--            return response.text();-->
+<!--        })-->
+<!--        .then(data => document.getElementById('header').innerHTML = data)-->
+<!--        .catch(error => console.error('Error:', error));-->
 
-    // Tải nội dung của footer từ tệp Footer.html
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer').innerHTML = data;
-        });
-</script>
+<!--    // Tải nội dung của footer từ tệp Footer.html-->
+<!--    fetch('footer.html')-->
+<!--        .then(response => response.text())-->
+<!--        .then(data => {-->
+<!--            document.getElementById('footer').innerHTML = data;-->
+<!--        });-->
+<!--</script>-->
 <!--all script files-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -586,7 +733,309 @@
     });
 
 </script>
+<!--load more-->
+<script>
+    // Dữ liệu sản phẩm bổ sung (có thể thay thế bằng dữ liệu từ API)
+    const additionalProducts = [
+        // 20
+        {
+            name: "Bà Nội Găngxtơ Tái Xuất!",
+            image: "../img/product/product-category/ba-noi-gangxto-tai-xuat (1).jpg",
+            currentPrice: "155.000đ",
+            oldPrice: "155.000đ",
+        },
+        {
+            name: "Những Chiếc Cầu Ở Quận Madison (Tái bản năm 2022)",
+            image: "../img/product/product-category/madison.jpg",
+            currentPrice: "71.200đ",
+            oldPrice: "89.000đ",
+        },
+        {
+            name: "Người Trồng Rừng",
+            image: "../img/product/product-category/nguoi-trong-rung.jpg",
+            currentPrice: "80.500đ",
+            oldPrice: "103.000đ",
+        },
+        {
+            name: "Người Tị Nạn (Giải Pulitzer) (Bìa mềm)",
+            image: "../img/product/product-category/nguoi-ti-nan.jpg",
+            currentPrice: "80.500đ",
+            oldPrice: "103.000đ",
+        },
+        {
+            name: "Atomic Habits - Thay Đổi Tí Hon, Hiệu Quả Bất Ngờ",
+            image: "../img/product/product-category/thay-doi-ti-hon-hieu-qua-bat-ngo-tb-2022.jpg",
+            currentPrice: "132.000đ",
+            oldPrice: "189.000đ",
+        },
 
+        //25
+        {
+            name: "Trở Về Không - Trải Nghiệm Ho'oponopono",
+            image: "../img/product/product-category/tro-ve-khong-trai-nghiem-ho-oponopono.jpg",
+            currentPrice: "113.300đ",
+            oldPrice: "159.000đ",
+        },
+        {
+            name: "Heidi (Song ngữ Việt-Anh)",
+            image: "../img/product/product-category/sach-song-ngu-heidi.jpg",
+            currentPrice: "119.000đ",
+            oldPrice: "119.000đ",
+        },
+        {
+            name: "Tình Yêu Ở Thành Phố Lớn",
+            image: "../img/product/product-category/tinh-yeu-o-thanh-pho-lon.jpg",
+            currentPrice: "139.000đ",
+            oldPrice: "139.000đ",
+        },
+        {
+            name: "Nỗi Đau Của Chàng Werther (Tái bản năm 2024",
+            image: "../img/product/product-category/noi-dau-cua-chang-werther.jpg",
+            currentPrice: "100.000đ",
+            oldPrice: "110.000đ",
+        },
+        {
+            name: "Chàng Chó",
+            image: "../img/product/product-category/chang-cho.jpg",
+            currentPrice: "115.000đ",
+            oldPrice: "119.000đ",
+        },
+        //30
+        {
+            name: "Trắng Án",
+            image: "../img/product/product-category/trang-an.jpg",
+            currentPrice: "169.000đ",
+            oldPrice: "169.000đ",
+        },
+        {
+            name: "Showbiz Là Của Tôi - Tập 3",
+            image: "../img/product/product-category/showbiz-la-cua-toi-tap-3.jpg",
+            currentPrice: "222.000đ",
+            oldPrice: "222.000đ",
+        },
+        {
+            name: "Sau Cánh Cửa Khóa Kín",
+            image: "../img/product/product-category/sau-canh-cua-khoa-kin.jpg",
+            currentPrice: "162.000đ",
+            oldPrice: "162.000đ",
+        },
+        {
+            name: "Storytelling - Lay Động Lòng Người Bằng Chuyện kể",
+            image: "../img/product/product-category/storytelling-lay-dong-long-nguoi-bang-chuyen-ke.jpg",
+            currentPrice: "103.000đ",
+            oldPrice: "246.000đ",
+        },
+        {
+            name: "Chim Sẻ Serafino Và Những Chuyến Ngao Du Kì Thú",
+            image: "../img/product/product-category/chim-se-serafino.jpg",
+            currentPrice: "90.000đ",
+            oldPrice: "100.000đ",
+        },
+        // 35
+        {
+            name: "Carrie - Vũ Hội Đẫm Máu!",
+            image: "../img/product/product-category/vu-hoi-dam-mau.jpg",
+            currentPrice: "146.000đ",
+            oldPrice: "146.000đ",
+        },
+        {
+            name: "Hành Trình Người Viết - Cấu Trúc Thần Thoại Kinh Điển Trong Sáng Tác (Ấn bản kỷ niệm 25 năm)",
+            image: "../img/product/product-category/hanh-trinh-nguoi-viet.jpg",
+            currentPrice: "322.000đ",
+            oldPrice: "369.000đ",
+        },
+        {
+            name: "Một Thử Nghiệm Phê Bình",
+            image: "../img/product/product-category/storytelling-lay-dong-long-nguoi-bang-chuyen-ke.jpg",
+            currentPrice: "95.000đ",
+            oldPrice: "95.000đ",
+        },
+        {
+            name: "Lĩnh Nam Chích Quái: Khảo Luận - Dịch Chú Nguyên Bản Chữ Hán",
+            image: "../img/product/product-category/linh-nam-chich-quai.jpg",
+            currentPrice: "789.000đ",
+            oldPrice: "789.000đ",
+        },
+        //40
+        {
+            name: "Cái Vội Của Người Mình",
+            image: "../img/product/product-category/cai-voi-cua-nguoi-minh.jpg",
+            currentPrice: "159.000đ",
+            oldPrice: "159.000đ",
+        },
+        {
+            name: "The Exorcist - Quỷ Ám",
+            image: "../img/product/product-category/quy-am.jpg",
+            currentPrice: "229.000đ",
+            oldPrice: "229.000đ",
+        },
+        {
+            name: "39 Cuộc Đối Thoại Tri Thức",
+            image: "../img/product/product-category/39-cuoc-doi-thoai-tri-thuc.jpg",
+            currentPrice: "159.000đ",
+            oldPrice: "246.000đ",
+        },
+
+        {
+            name: "Holly - Tù Nhân Dưới Tầng Hầm",
+            image: "../img/product/product-category/holly-tu-nhan-duoi-tang-ham.jpg",
+            currentPrice: "350.000đ",
+            oldPrice: "350.000đ",
+        },
+        {
+            name: "Mỗi Từ Là Một Chú Chim Đang Chờ Ta Dạy Hót",
+            image: "../img/product/product-category/moi-tu-la-mot-chu-chim-dang-cho-ta-day-hot.jpg",
+            currentPrice: "120.000đ",
+            oldPrice: "120.000đ",
+        },
+        // 45
+        {
+            name: "Trước Nhà Có Cây Hoàng Mai",
+            image: "../img/product/product-category/truoc-nha-co-cay-hoang-mai.jpg",
+            currentPrice: "130.000đ",
+            oldPrice: "139.000đ",
+        },
+        {
+            name: "Những Câu Chuyện Hãi Hùng Và Kì Bí 1 - Lô Số 249",
+            image: "../img/product/product-category/lo-so-249.jpg",
+            currentPrice: "145.000đ",
+            oldPrice: "145.000đ",
+        },
+        {
+            name: "Chuyện Kể Lúc Hoàng Hôn (Tuyển tập truyện ma Charles Dickens)",
+            image: "../img/product/product-category/chuyen-ke-luc-hoang-hon.jpg",
+            currentPrice: "60.000đ",
+            oldPrice: "69.000đ",
+        },
+        {
+            name: "Hai Vạn Dặm Dưới Biển (Tái bản năm 2024) (Sách Đinh Tị)",
+            image: "../img/product/product-category/hai-van-dam-duoi-bien-tb-2024.jpg",
+            currentPrice: "90.000đ",
+            oldPrice: "119.000đ",
+        },
+        {
+            name: "Tội Phạm Tâm Thần Và Những Lỗ Hổng Công Lý",
+            image: "../img/product/product-category/toi-pham-tam-than-va-nhung-lo-hong-cong-ly.jpg",
+            currentPrice: "140.000đ",
+            oldPrice: "159.000đ",
+        },
+
+        // 50
+        {
+            name: "Những Mảnh Ký Ức 1979-1989: Chuyện Kể Từ Biên Giới Phía Bắc",
+            image: "../img/product/product-category/nhung-manh-ky-uc-1979-1989.jpg",
+            currentPrice: "335.000đ",
+            oldPrice: "360.000đ",
+        },
+        {
+            name: "Kẻ Ăn Hồn",
+            image: "../img/product/product-category/ke-an-hon.jpg",
+            currentPrice: "209.000đ",
+            oldPrice: "239.000đ",
+        },
+        {
+            name: "Sự Trung Thực Của Xác Chết - Ghi Chép Của Một Nhà Pháp Y",
+            image: "../img/product/product-category/su-trung-thuc-cua-xac-chet.jpg",
+            currentPrice: "99.000đ",
+            oldPrice: "155.000đ",
+        },
+        {
+            name: "Bước Vào Bóng Tối 2 - Những Vụ Án Rung Chuyển Dư Luận Qua Góc Nhìn Của Bat Saber",
+            image: "../img/product/product-category/buoc-vao-bong-toi-tap-2.jpg",
+            currentPrice: "99.000đ",
+            oldPrice: "125.000đ",
+        },
+        {
+            name: "Vừa Vặn Hạnh Phúc, Vừa Vặn Bình Yên",
+            image: "../img/product/product-category/vua-van-hanh-phuc-vua-van-binh-yen.jpg",
+            currentPrice: "99.000đ",
+            oldPrice: "109.000đ",
+        },
+        // 55
+        {
+            name: "Đến Cuối Ngày Ai Cũng Cần Một Điều Để Tin",
+            image: "../img/product/product-category/den-cuoi-ngay-ai-cung-can-mot-dieu-de-tin.jpg",
+            currentPrice: "112.000đ",
+            oldPrice: "125.000đ"
+        },
+        {
+            name: "Góc Sân Và Khoảng Trời (Tinh tuyển) (Tái bản năm 2024)",
+            image: "../img/product/product-category/goc-san-va-khoang-troi-tinh-tuyen.jpg",
+            currentPrice: "75.000đ",
+            oldPrice: "125.000đ"
+        },
+        {
+            name: "Thơ Tố Hữu (Tái bản năm 2024) (Sách Huy Hoàng)",
+            image: "../img/product/product-category/tho-to-huu-tb-2024.jpg",
+            currentPrice: "55.000đ",
+            oldPrice: "55.000đ"
+        },
+        {
+            name: "“Chúng Ta” Chỉ Là Chuyện Đã Từng",
+            image: "../img/product/product-category/chung-ta-chi-la-chuyen-da-tung.jpg",
+            currentPrice: "85.000đ",
+            oldPrice: "85.000đ"
+        },
+        {
+            name: "Zenlam Du Hành Vào Cõi Xanh",
+            image: "../img/product/product-category/zenlam-du-hanh-vao-coi-xanh.jpg",
+            currentPrice: "135.000đ",
+            oldPrice: "135.000đ"
+        },
+        {
+            name: "Tần Số Cô Đơn",
+            image: "../img/product/product-category/tan-so-co-don.jpg",
+            currentPrice: "95.000đ",
+            oldPrice: "95.000đ"
+        },
+    ];
+    // Biến theo dõi trạng thái
+    let currentBatchIndex = 0; // Lô sản phẩm hiện tại
+    const batchSize = 8; // Số lượng sản phẩm mỗi lô
+
+
+    // Hàm hiển thị sản phẩm
+    function renderProducts(products) {
+        const container = document.getElementById('product-container');
+        products.forEach(product => {
+            const productHTML = `
+                <div class="grid-md-2-4">
+                    <a href="">
+                        <div class="home-product-item">
+                            <div class="home-product-item__img"
+                                 style="background-image: url('${product.image}')"></div>
+                            <h4 class="home-product-item__name">${product.name}</h4>
+                            <div class="home-product-item__price">
+                                <span class="home-product-item__price-current">${product.currentPrice}</span>
+                                <span class="home-product-item__price-old">${product.oldPrice}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+            container.innerHTML += productHTML;
+        });
+    }
+
+    // Sự kiện nhấp vào nút "Xem thêm"
+    document.getElementById('load-more').addEventListener('click', () => {
+        // Tinhs toan san pham can hien thi
+        const start = currentBatchIndex * batchSize;
+        const end = start + batchSize;
+        const productsToShow = additionalProducts.slice(start, end);
+
+        // Hiển thị sản phẩm
+        renderProducts(productsToShow);
+
+        // Cập nhật chỉ số lô sản phẩm
+        currentBatchIndex++;
+
+        // Ktra neu không còn san pham thi Ẩn nút
+        if (end >= additionalProducts.length) {
+            document.getElementById('load-more').style.display = 'none';
+        }
+    });
+</script>
 
 </body>
 </html>

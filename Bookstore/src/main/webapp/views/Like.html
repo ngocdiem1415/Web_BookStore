@@ -60,6 +60,21 @@
         </div>
     </div>
 </header>
+<!-- NAVIGATION-->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container ">
+        <!-- NAV -->
+        <ul class="main-nav nav ">
+            <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
+            <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
+            <li class="nav-item "><a href="category.html">Sản phẩm</a></li>
+            <li class="nav-item "><a href="policy.html">Chính sách</a></li>
+            <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
+        </ul>
+        <!-- /NAV -->
+    </div>
+</nav>
 
 
 <!--Content-->
@@ -454,22 +469,22 @@
 
 
 <!--script-->
-<script>
-    fetch('Header.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.text();
-        })
-        .then(data => document.getElementById('header').innerHTML = data)
-        .catch(error => console.error('Error:', error));
+<!--<script>-->
+<!--    fetch('Header.html')-->
+<!--        .then(response => {-->
+<!--            if (!response.ok) throw new Error('Network response was not ok');-->
+<!--            return response.text();-->
+<!--        })-->
+<!--        .then(data => document.getElementById('header').innerHTML = data)-->
+<!--        .catch(error => console.error('Error:', error));-->
 
-    // Tải nội dung của footer từ tệp Footer.html
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer').innerHTML = data;
-        });
-</script>
+<!--    // Tải nội dung của footer từ tệp Footer.html-->
+<!--    fetch('footer.html')-->
+<!--        .then(response => response.text())-->
+<!--        .then(data => {-->
+<!--            document.getElementById('footer').innerHTML = data;-->
+<!--        });-->
+<!--</script>-->
 <!--all script files-->
 
 
