@@ -202,86 +202,43 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                                                <div class="form-add-supplier-group mt-2 mb-2">
-                                                                    <label for="#idSupp">ID</label>
-                                                                    <input class="form-control"
-                                                                           id="id" name="email" disabled>
-                                                                </div>
-
-                                                                <div class="form-add-supplier-group mt-2 mb-2">
-                                                                    <label for="#tenSupp">Tên nhà xuất bản <span
-                                                                            class="require">*</span></label>
-                                                                    <input type="text" class="form-control" id="ten"
-                                                                           name="ten" required>
-                                                                </div>
-
-                                                                <div class="form-add-supplier-group mb-2">
-                                                                    <label for="#phoneSupp">Số điện thoại<span
-                                                                            class="require">*</span></label>
-                                                                    <input type="text" class="form-control"
-                                                                           id="phone" name="phone" required>
-                                                                </div>
+                                                        <div>
+                                                            <label for="idSupp" class="labels">ID Nhà xuất bản</label>
+                                                            <fieldset disabled>
+                                                                <input id="idSupp" type="text"
+                                                                       class="form-control disabled" placeholder="ID"
+                                                                       value="">
+                                                            </fieldset>
+                                                            <div class=" mt-2 mb-2">
+                                                                <label for="tenSupp">Tên nhà xuất bản <span
+                                                                        class="require">*</span></label>
+                                                                <input type="text" class="form-control" id="tenSupp"
+                                                                       name="ten" required>
                                                             </div>
-                                                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                                                <div class="form-add-supplier-group mt-2 mb-2">
-                                                                    <label for="#addressSupp">Địa chỉ<span
-                                                                            class="require">*</span></label>
-                                                                    <input type="text" class="form-control"
-                                                                           id="address" name="address" required>
-                                                                </div>
 
-                                                                <div class="form-add-supplier-group mt-2 mb-2">
-                                                                    <label for="#distinctSupp">Huyện<span
-                                                                            class="require">*</span></label>
-                                                                    <select class="form-select" id="distinct"
-                                                                            name="distinct" required>
-                                                                        <option value="0">--Hãy chọn quận/huyện--
-                                                                        </option>
-                                                                        <option value="1">Quận 1</option>
-                                                                        <option value="2">Quận 2</option>
-                                                                        <option value="3">Quận 3</option>
-                                                                        <option value="4">Quận 4</option>
-                                                                        <option value="5">Quận 5</option>
-                                                                        <option value="6">Quận 6</option>
-                                                                        <option value="7">Quận 7</option>
-                                                                        <option value="8">Quận 8</option>
-                                                                        <option value="9">Quận 9</option>
-                                                                        <option value="10">Quận 10</option>
-                                                                        <option value="11">Quận 11</option>
-                                                                        <option value="12">Quận 12</option>
-                                                                        <option value="13">Hoàn Kiếm</option>
-                                                                        <option value="14">Hai Bà Trưng</option>
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="form-add-supplier-group mt-2 mb-2">
-                                                                    <label for="#citySupp">Tỉnh/Thành phố<span
-                                                                            class="require">*</span></label>
-                                                                    <select class="form-select" id="city"
-                                                                            name="city" required>
-                                                                        <option value="0">--Hãy chọn Tỉnh/Thành
-                                                                            phố--
-                                                                        </option>
-                                                                        <option value="1">Hồ Chí Minh</option>
-                                                                        <option value="2">Bình Định</option>
-                                                                        <option value="3">Lâm Đồng</option>
-                                                                        <option value="4">Bình Dương</option>
-                                                                        <option value="1">Hà Nội</option>
-
-                                                                    </select>
-                                                                </div>
+                                                            <div class=" mb-2">
+                                                                <label for="phoneSupp">Số điện thoại <span
+                                                                        class="require">*</span></label>
+                                                                <input type="text" class="form-control"
+                                                                       id="phoneSupp" name="phone" required>
+                                                            </div>
+                                                            <div class=" mb-2">
+                                                                <label for="addressSupp">Địa chỉ <span
+                                                                        class="require">*</span></label>
+                                                                <input type="text" class="form-control"
+                                                                       id="addressSupp" name="phone" required>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="btn-active m-4 d-flex justify-content-center">
-                                                        <button type="button" class="btn btn-green save-supplier mx-4">
-                                                            Lưu
-                                                        </button>
-                                                        <button type="button" class="btn btn-danger cancel-supplier">
-                                                            Hủy
-                                                        </button>
+                                                        <div class="d-flex justify-content-center">
+                                                            <button type="button"
+                                                                    class="btn btn-green save-supplier mx-4">
+                                                                Lưu
+                                                            </button>
+                                                            <button type="button"
+                                                                    class="btn btn-danger cancel-supplier">
+                                                                Hủy
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -414,7 +371,7 @@
 
 <!--script-->
 <script>
-    var myModalEl = document.getElementById("addSupplier")
+    var myModalEl = document.getElementById('addSupplier');
     $(document).ready(function () {
         var table = $('#supplierTable').DataTable({
             language: {
@@ -440,29 +397,20 @@
             $('#tenSupp').val("");
             $('#phoneSupp').val("");
             $('#addressSupp').val("");
-            $('#distinctSupp').val("");
-            $('#citySupp').val("");
+
         });
 
         $('#supplierTable tbody').on('click', '.btn-edit', function () {
-            var data = table.row($(this).parent('str')).data();
-            // Lấy hàng gần nhất
-            // var row = $(this).closest('tr');
-            // var data = table.row(row).data(); // Lấy dữ liệu từ DataTable
-            //
-            // if (!data) {
-            //     console.error("Không tìm thấy dữ liệu cho hàng được chọn.");
-            //     return;
-            // }
+            var data = table.row($(this).parents('tr')).data();
 
-            $('#labelSupp').html("Sửa nhà xuất bản")
-            $('#idSupp').val(data[0])
+            // Đặt tiêu đề modal và điền dữ liệu vào các trường trong modal
+            $('#labelSupp').html("Sửa nhà xuất bản");
+            $('#idSupp').val(data[0]);
             $('#tenSupp').val(data[1]);
             $('#phoneSupp').val(data[3]);
             $('#addressSupp').val(data[2]);
-            $('#distinctSupp').closest('.form-add-supplier-group').hide();
-            $('#citySupp').closest('.form-add-supplier-group').hide();
 
+            // Mở modal cho phép chỉnh sửa
             $('#addSupplier').modal('show');
         });
     });
