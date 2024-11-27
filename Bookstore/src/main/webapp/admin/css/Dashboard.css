@@ -32,6 +32,12 @@
 .br-gray {
     border: 1px solid #dee2e6;
 }
+.b-1 {
+    border: 1px solid #e5e5e5;
+}
+.bb-1 {
+    border-bottom: 1px solid #e5e5e5;
+}
 
 .ml-4 {
     margin-left: 1.5rem
