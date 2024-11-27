@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/Style.css">
     <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Product-Management.css">
 
 </head>
 <body>
@@ -179,16 +180,14 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <div class="row">
-                                        <div class="col-9 main-card-title my-3">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-9 main-card-title my-3 ps-5">
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
-                                        <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary ">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Thêm sản phẩm
-                                            </button>
-                                        </div>
+                                        <button id="addProductBtn" class="col-3 btn btn-primary">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Thêm sản phẩm
+                                        </button>
                                     </div>
                                 </th>
                             </tr>
@@ -223,10 +222,19 @@
                                             <td>1</td>
                                             <td>15/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <div class="row px-3">
+                                                    <!-- Nút Chỉnh Sửa -->
+                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                                            title="Chỉnh sửa">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                                                    </button>
+
+                                                    <!-- Nút Xóa -->
+                                                    <button type="button" class="delete-button col-6 btn px-0"
+                                                            style="color: #ef5f5f;" title="Xóa">
+                                                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -237,16 +245,26 @@
                                                 Steve Harvey, Denenne Millner, Trần Mạnh Hà
                                             </td>
                                             <td>
-                                                04/2015</td>
+                                                2015
+                                            </td>
                                             <td>212</td>
                                             <td>80.000 đ</td>
                                             <td></td>
                                             <td>15/11/2024</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <div class="row px-3">
+                                                    <!-- Nút Chỉnh Sửa -->
+                                                    <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                                            title="Chỉnh sửa">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                                                    </button>
+
+                                                    <!-- Nút Xóa -->
+                                                    <button class="delete-button col-6 btn px-0" style="color: #ef5f5f;"
+                                                            title="Xóa">
+                                                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -260,6 +278,25 @@
             </div>
         </div>
     </div>
+
+    <!--confirm-->
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-message">Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+            <div class="modal-buttons">
+                <button id="confirm-delete" class="btn btn-danger">Xóa</button>
+                <button id="cancel-delete" class="btn btn-secondary">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo -->
+    <div id="notification"
+         class="alert alert-success text-center position-fixed top-50 start-50 translate-middle hidden"
+         role="alert">
+        Đây là thông báo mặc định.
+    </div>
+
 </section>
 
 <!--all script files-->
@@ -294,5 +331,79 @@
         });
     });
 </script>
+
+<script>
+    // Thêm sự kiện click cho nút
+    document.getElementById('addProductBtn').addEventListener('click', function () {
+        window.location.href = '../views/edit/Add-Product.html'; // Chuyển hướng đến Add-Product.html
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // Hiển thị thông báo
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `alert alert-${type} text-center position-fixed top-50 start-50 translate-middle show`;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Lấy tất cả các nút xóa
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Hiển thị modal xác nhận
+                const modal = document.getElementById('confirm-modal');
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+
+                // Xử lý khi người dùng xác nhận xóa
+                const confirmButton = document.getElementById('confirm-delete');
+                const cancelButton = document.getElementById('cancel-delete');
+
+                // xử lý sự kiện xóa
+                const onConfirm = () => {
+                    const row = this.closest('tr');
+                    if (row) {
+                        row.remove();
+                    }
+                    showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
+                    closeModal();
+                };
+
+                // Xử lý sự kiện Hủy
+                const onCancel = () => {
+                    closeModal();
+                };
+
+                // Thêm sự kiện cho nút Xóa và Hủy
+                confirmButton.addEventListener('click', onConfirm, {once: true});
+                cancelButton.addEventListener('click', onCancel, {once: true});
+
+                // Hàm đóng modal
+                function closeModal() {
+                    modal.classList.add('hidden');
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const editButtons = document.querySelectorAll('.edit-button');
+        editButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                window.location.href = 'edit/Edit-product.html';
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
