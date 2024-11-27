@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lí khuyến mãi</title>
+
     <!--  all css files-->
     <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
     <link rel="stylesheet" href="../../css/Style.css">
     <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../css/Dashboard.css">
+
 
 </head>
 <body>
 
 <!--curtain menu-->
-<aside class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-       aria-labelledby="offcanvasWithBothOptionsLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <a href="Dashboard.html">
-            <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
+            <img src="../../img/logo/logo.png" height="200px" width="200px"/>
         </a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -106,7 +107,7 @@
             </li>
         </ul>
     </nav>
-</aside>
+</div>
 <div class="overlay"></div>
 
 <!--header start-->
@@ -116,9 +117,10 @@
             <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
                 <div class="header-left">
                     <div class="menu-toggle-btn ">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
-                                class="fas fa-bars"></i> Menu
+                        <button class="btn" type="button" style="background-color: #4B908E; color: white"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
+                                class="fas fa-bars" style="color:white"></i> Menu
                         </button>
                     </div>
                 </div>
@@ -161,7 +163,7 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb mx-4">
                         <li class="breadcrumb-item">
-                            <a href="#" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
                             <a href="#" class="text-dec" style="color: #f07c29">Quản lí khuyến mãi</a>
                         </li>
@@ -179,15 +181,70 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <div class="row">
-                                        <div class="col-9 main-card-title my-3">
+                                    <div class=" d-flex justify-content-between">
+                                        <div class="main-card-title my-3">
                                             <h3>Quản lí khuyến mãi</h3>
                                         </div>
-                                        <div class="addUser col-3 my-4">
-                                            <button class="btn btn-primary ">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Thêm khuyến mãi
-                                            </button>
+                                        <button type="button" class="btn btn-green my-4 border rounded"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#addDiscount">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Thêm khuyến mãi
+                                        </button>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addDiscount" tabindex="-1"
+                                         aria-labelledby="staticBackdropLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="discountLabel">Thêm CTKM</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div>
+                                                        <div class="mb-3">
+                                                            <label for="idDis" class="labels">ID CTKM</label>
+                                                            <fieldset disabled>
+                                                                <input id="idDis" type="text"
+                                                                       class="form-control disabled" placeholder="ID"
+                                                                       value="">
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="nameDis" class="labels">Tên khuyến mãi</label>
+                                                            <input id="nameDis" type="text" class="form-control">
+                                                        </div>
+                                                        <div class=" mb-2">
+                                                            <label for="discount">Giá trị khuyến mãi </label>
+                                                            <input type="text" class="form-control"
+                                                                   id="discount" name="phone" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="fromDate">Ngày bắt đầu </label>
+                                                            <input type="date" class="form-control"
+                                                                   id="fromDate" name="phone" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="toDate">Ngày bắt đầu </label>
+                                                            <input type="date" class="form-control"
+                                                                   id="toDate" name="phone" required>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center mb-2">
+                                                            <button type="button"
+                                                                    class="btn btn-green save-supplier mx-4">
+                                                                Lưu
+                                                            </button>
+                                                            <button type="button"
+                                                                    class="btn btn-danger cancel-supplier">
+                                                                Hủy
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </th>
@@ -196,7 +253,7 @@
                             <tbody>
                             <tr>
                                 <th scope="row">
-                                    <table class="table" id="orderTable">
+                                    <table class="table" id="discountTable">
                                         <thead>
                                         <tr>
                                             <th scope="col">ID</th>
@@ -217,10 +274,15 @@
                                             <td>11/11/2024</td>
                                             <td>hết hạn</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -231,10 +293,15 @@
                                             <td>11/12/2024</td>
                                             <td>hoạt động</td>
                                             <td>
-                                                <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                   style="color: #236844"></i>
-                                                <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                   style="color: #ef5f5f"></i>
+                                                <button type="button" class="btn btn-edit m-0 p-0">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                       style="color: #236844"></i>
+                                                </button>
+                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -248,21 +315,40 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa nhà xuất bản </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 <!--all script files-->
 <script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+<script src="../../js/datatables.min.js"></script>
 
 <!--script-->
 <script>
+    var myModalEl = document.getElementById('addDiscount');
     $(document).ready(function () {
         // Khởi tạo DataTable cho bảng với id 'orderTable'
-        var table = $('#orderTable').DataTable({
+        var table = $('#discountTable').DataTable({
             language: {
                 processing: "đang tải",
                 search: "Tìm kiếm",
@@ -278,6 +364,37 @@
             columnDefs: [
                 {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
             ],
+        });
+
+        myModalEl.addEventListener('hidden.bs.modal', function (event) {
+            $('#discountLabel').html("Thêm CTKM")
+            $('#idDis').val("")
+            $('#nameDis').val("");
+            $('#discount').val("");
+            $('#fromDate').val("");
+            $('#toDate').val("");
+
+        });
+
+        $('#discountTable tbody').on('click', '.btn-edit', function () {
+            var data = table.row($(this).parents('tr')).data();
+
+            // Đặt tiêu đề modal và điền dữ liệu vào các trường trong modal
+            $('#discountLabel').html("Sửa CTKM");
+            $('#idDis').val(data[0]);
+            $('#nameDis').val(data[1]);
+            $('#discount').val(data[2]);
+
+            let fromDate = new Date(data[3]);
+            let toDate = new Date(data[4]);
+
+            // Format lại dữ liệu về đúng dạng YYYY-MM-DD trước khi gán vào input
+            $('#fromDate').val(fromDate.toISOString().split('T')[0]);
+            $('#toDate').val(toDate.toISOString().split('T')[0]);
+
+
+            // Mở modal cho phép chỉnh sửa
+            $('#addDiscount').modal('show');
         });
     });
 </script>
