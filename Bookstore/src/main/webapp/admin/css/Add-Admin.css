@@ -16,14 +16,13 @@ body {
     align-items: center;
     height: 100vh;
     padding: 0;
-    background-color: #f5f5f5;
     position: relative;
 }
 
 .add-admin-container-content {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 800px;
     height: 80%; /* Set a fixed height */
@@ -66,6 +65,7 @@ body {
 .form-add-admin-group {
     margin-bottom: 20px;
 }
+
 .form-add-admin-group .form-control {
     display: block;
     width: 100%;
@@ -110,14 +110,6 @@ body {
     transition: border-color 0.3s;
 }
 
-/*.form-add-admin-group:focus,*/
-/*.form-select:focus {*/
-/*    border-color: #117C6F; !* Đặt màu border tùy chỉnh *!*/
-/*    box-shadow: none; !* Xóa hiệu ứng bóng *!*/
-/*    outline: none; !* Xóa outline mặc định *!*/
-/*}*/
-
-
 .add-admin-container-content-inner-button {
     display: flex;
     justify-content: flex-end;
@@ -158,33 +150,6 @@ body {
 .add-admin-container-content-inner-button-cancel:hover {
     background-color: #5a6268;
 }
-
-/*!* Tùy chỉnh thanh cuộn cho toàn bộ trang hoặc container cụ thể *!*/
-/*.add-admin-container-content-inner::-webkit-scrollbar {*/
-/*    width: 8px; !* Chiều rộng của thanh cuộn dọc *!*/
-/*    height: 8px; !* Chiều cao của thanh cuộn ngang (nếu có) *!*/
-/*}*/
-
-/*.add-admin-container-content-inner::-webkit-scrollbar-thumb {*/
-/*    background-color: #117C6F; !* Màu thanh cuộn *!*/
-/*    border-radius: 10px; !* Bo tròn thanh cuộn *!*/
-/*}*/
-
-/*.add-admin-container-content-inner::-webkit-scrollbar-thumb:hover {*/
-/*    background-color: #4B908E; !* Màu khi hover vào thanh cuộn *!*/
-/*}*/
-
-/*.add-admin-container-content-inner::-webkit-scrollbar-track {*/
-/*    background-color: #f1f1f1; !* Màu nền của thanh cuộn *!*/
-/*    border-radius: 10px; !* Bo tròn nền thanh cuộn *!*/
-/*}*/
-
-/*!* Áp dụng cho các trình duyệt không hỗ trợ -webkit- *!*/
-/*.add-admin-container-content-inner {*/
-/*    scrollbar-width: thin; !* Giảm kích thước thanh cuộn *!*/
-/*    scrollbar-color: #117C6F #f1f1f1; !* Màu thanh cuộn và nền *!*/
-/*}*/
-
 
 @media (max-width: 768px) {
     .add-admin-container-content {
