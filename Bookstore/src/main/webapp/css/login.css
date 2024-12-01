@@ -189,22 +189,11 @@ body {
     margin-top: 16px;
 }
 
-.form-submit:hover {
+
+
+.form-submit:hover, .form-submit-sign-in:hover {
     background-color: #316064;
 }
-
-.stardust-dropdown a .btn-dangxuat {
-    color: #fff;
-    background-color: #4B908E;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin-top: 16px;
-    padding: 12px 22px;
-}
-
 
 /*icon*/
 .form-body .icons {
