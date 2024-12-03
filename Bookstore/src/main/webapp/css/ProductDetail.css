@@ -8,6 +8,10 @@ body, html {
 
 }
 
+.p-o{
+    padding: 0;
+}
+
 .container_productDetail {
     .breadcrumbNAV {
         margin-top: 20px;
