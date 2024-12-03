@@ -9,7 +9,9 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.pt-0 {
+    padding: 0;
+}
 .pt-100 {
     padding-top: 100px;
 }
