@@ -12,11 +12,14 @@
     <script src="../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
 
+
     <!--    CSS-->
     <link rel="stylesheet" href="../css/ProductDetail.css">
     <link rel="stylesheet" href="../css/Header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/Style.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <!--Header-->
@@ -87,14 +90,27 @@
         <ul class="main-nav nav ">
             <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
-            <li class="nav-item "><a href="category.html">Sản phẩm</a></li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle p-0 m-0" href="category.html" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sản phẩm
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                    <li><a class="dropdown-item" href="category.html">Sách văn học</a></li>
+                    <li><a class="dropdown-item" href="category.html">Kinh tế</a></li>
+                    <li><a class="dropdown-item" href="category.html">Sách thiếu nhi</a></li>
+                    <li><a class="dropdown-item" href="category.html">Tiểu sử - Hồi ký</a></li>
+                    <li><a class="dropdown-item" href="category.html">Tâm lí - Kĩ năng sống</a></li>
+                    <li><a class="dropdown-item" href="category.html">Nuôi dạy con</a></li>
+                    <li><a class="dropdown-item" href="category.html">Sách giáo khoa</a></li>
+                </ul>
+            </li>
             <li class="nav-item "><a href="policy.html">Chính sách</a></li>
             <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
         </ul>
         <!-- /NAV -->
     </div>
 </nav>
-<!--/Header-->
+<!--/nav end-->
 
 <!--Product detail content-->
 <div class="container_productDetail mx-4">

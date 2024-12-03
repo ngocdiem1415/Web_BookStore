@@ -89,7 +89,21 @@
         <ul class="main-nav nav ">
             <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
-            <li class="nav-item "><a href="category.html">Sản phẩm</a></li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.html" id="productDropdown"
+                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sản phẩm
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                    <li><a class="dropdown-item" href="category.html">Sách văn học</a></li>
+                    <li><a class="dropdown-item" href="category.html">Kinh tế</a></li>
+                    <li><a class="dropdown-item" href="category.html">Sách thiếu nhi</a></li>
+                    <li><a class="dropdown-item" href="category.html">Tiểu sử - Hồi ký</a></li>
+                    <li><a class="dropdown-item" href="category.html">Tâm lí - Kĩ năng sống</a></li>
+                    <li><a class="dropdown-item" href="category.html">Nuôi dạy con</a></li>
+                    <li><a class="dropdown-item" href="category.html">Sách giáo khoa</a></li>
+                </ul>
+            </li>
             <li class="nav-item "><a href="policy.html">Chính sách</a></li>
             <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
         </ul>
@@ -148,8 +162,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html" data-bs-target="#productModal"
-                                   data-bs-toggle="modal"
+                                <a class="action-view" href="ProductDetail.html"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -187,8 +200,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html" data-bs-target="#productModal"
-                                   data-bs-toggle="modal"
+                                <a class="action-view" href="ProductDetail.html"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -226,8 +238,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html" data-bs-target="#productModal"
-                                   data-bs-toggle="modal"
+                                <a class="action-view" href="ProductDetail.html"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -265,8 +276,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html" data-bs-target="#productModal"
-                                   data-bs-toggle="modal"
+                                <a class="action-view" href="ProductDetail.html"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -304,8 +314,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html" data-bs-target="#productModal"
-                                   data-bs-toggle="modal"
+                                <a class="action-view" href="ProductDetail.html"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -434,26 +443,26 @@
                                 </div>
                             </div>
                             <div class="item col-6 col-sm-4 col-lg-6 mb-30 max-width-150">
-                            <div class="tab-total">
-                                <div class="bestseller-wrapper mb-30">
-                                    <div class="product-img">
-                                        <a href="ProductDetail.html"><img src="../img/product/Heidi.png"
-                                                                          alt="book"
-                                                                          class="img-fluid"/></a>
-                                    </div>
-                                    <div class="bestseller-details text-center mt-2">
-                                        <h4><a href="#">Heidi</a></h4>
-                                        <div class="sale-area">
-                                            <div class="price-box">
+                                <div class="tab-total">
+                                    <div class="bestseller-wrapper mb-30">
+                                        <div class="product-img">
+                                            <a href="ProductDetail.html"><img src="../img/product/Heidi.png"
+                                                                              alt="book"
+                                                                              class="img-fluid"/></a>
+                                        </div>
+                                        <div class="bestseller-details text-center mt-2">
+                                            <h4><a href="#">Heidi</a></h4>
+                                            <div class="sale-area">
+                                                <div class="price-box">
                                                 <span class="new-sale cl-o">127.000
                                                     <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
                                                 </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                             <div class="item col-6 col-sm-4 col-lg-6 mb-30 max-width-150">
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
@@ -493,7 +502,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Sách văn học</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -509,14 +518,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -525,13 +532,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -550,14 +557,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -566,13 +571,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -591,14 +596,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -607,13 +610,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -632,14 +635,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -648,13 +649,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -673,14 +674,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -689,13 +688,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -704,7 +703,6 @@
                                 <!-- single-product-end -->
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -717,7 +715,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Tiểu thuyết</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -733,14 +731,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -749,13 +745,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -774,14 +770,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -790,13 +784,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -815,14 +809,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -831,13 +823,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -856,14 +848,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -872,13 +862,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -897,14 +887,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -913,13 +901,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -941,7 +929,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Truyện</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -957,14 +945,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -973,13 +959,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -998,14 +984,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1014,13 +998,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1039,14 +1023,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1055,13 +1037,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1080,14 +1062,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1096,13 +1076,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1121,14 +1101,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1137,13 +1115,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1165,7 +1143,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Sách khác</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="#" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -1181,14 +1159,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1197,13 +1173,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1222,14 +1198,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1238,13 +1212,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1263,14 +1237,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1279,13 +1251,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1304,14 +1276,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1320,13 +1290,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1345,14 +1315,12 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
+                                            <a class="action-view" href="ProductDetail.html"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="#" data-bs-target="#productModal"
-                                               data-bs-toggle="modal"
-                                               title="Quick View">
+                                            <a class="action-view" href="Cart.html"
+                                               title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
                                     </div>
@@ -1361,13 +1329,13 @@
                                         <div class="price-box clearfix d-flex justify-content-center">
                                             <div class="special-price">
                                             <span class="price product-price cl-o">
-                                                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                71 000</span>
+                                                71 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                             </div>
                                             <div class="old-price">
 						                <span class="price product-price-old">
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i>
 							                95 000
+                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
 						                </span>
                                             </div>
                                         </div>
@@ -1449,6 +1417,7 @@
 <script src="../js/owl.carousel.min.js"></script>
 <!--    bootstrap-->
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
 
 <!--<script>-->
 <!--    fetch('Header.html')-->
