@@ -52,8 +52,29 @@
         text-decoration: underline;
     }
 }
+.payment-btn{
+    border: #4B908E 1px solid; !important;
+    color: #4B908E; !important;
+    transition: all 0.3s ease; !important;
+}
+
+.payment-btn:hover {
+    background-color: #4B908E; !important;
+    color: white; !important;
+    border-color: #4B908E; !important;
+}
+
 .payment-btn.active {
-    background-color: #198754; /* Màu nền nổi bật */
+    background-color: #4B908E; /* Màu nền nổi bật */
     color: white;            /* Màu chữ trắng */
-    border-color: #198754;   /* Màu viền đồng bộ */
+    border-color: #4B908E;   /* Màu viền đồng bộ */
+}
+
+/* Đảm bảo modal luôn nằm phía trên */
+.modal {
+    z-index: 1055; /* Mặc định Bootstrap */
+}
+/* Làm tối nền phía sau */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* Điều chỉnh độ mờ của nền */
 }

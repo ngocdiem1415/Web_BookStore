@@ -49,13 +49,55 @@
         <div class="address-detail row">
             <div class="col-11 d-flex align-items-center">
                 <strong class="name">Thanh Diệu</strong>
-                <strong class="phone ps-2">(+84) 903456789</strong>
+                <strong class="phone ps-2">(+84) 903 456 789</strong>
                 <span class="address ms-3">VQCR+GP6, khu phố 6, Thủ Đức, Hồ Chí Minh</span>
                 <span class="default-badge ms-auto">Mặc Định</span>
             </div>
             <div class="col-1 d-flex align-items-center justify-content-end">
+                <a href="#" class="change-link d-block" data-bs-toggle="modal" data-bs-target="#addressModal">Thay Đổi</a>
 
-                <a href="#" class="change-link d-block">Thay Đổi</a>
+                <!-- Modal -->
+                <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addressModalLabel">Địa Chỉ Của Tôi</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="address" id="address1" checked>
+                                        <label class="form-check-label" for="address1">
+                                            <strong class="name">Thanh Diệu</strong>
+                                            <strong class="phone ps-2">(+84) 903 456 789</strong>
+                                            <span class="default-badge ms-auto">Mặc Định</span>
+                                            <br>
+                                            <span class="address ms-3">VQCR+GP6, khu phố 6, Thủ Đức, Hồ Chí Minh</span>
+
+                                        </label>
+<!--                                        <a href="#" class="float-end text-primary">Cập nhật</a>-->
+                                    </div>
+                                    <hr>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="address" id="address2">
+                                        <label class="form-check-label" for="address2">
+                                            <strong class="name">Thanh Diệu</strong>
+                                            <strong class="phone ps-2">(+84) 903 456 789</strong>
+                                            <br>
+                                            <span class="address ms-3">Cư xá D Trường Đại học Nông Lâm, khu phố 6, Thủ Đức, Hồ Chí Minh</span>
+                                        </label>
+<!--                                        <a href="#" class="float-end text-primary">Cập nhật</a>-->
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="confirmButton" style="background: #4B908E">Xác nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -220,7 +262,7 @@
         </div>
 
         <div class="buy-now mx-5 my-3">
-            <button id="buy-now" class="btn btn-success w-100">Đặt hàng</button>
+            <button id="buy-now" class="btn btn-success w-100" style="background: #4B908E">Đặt hàng</button>
         </div>
     </div>
 
@@ -232,7 +274,7 @@
     <section class="footer">
         <div class="footer-row">
             <div class="footer-col">
-                <a href=""><img src="../img/logo/logo1.png" height="200" width="350"/></a>
+                <a href=""><img src="../img/logo/new_logo.png" height="200" width="350"/></a>
                 <p class="detail">Nơi cung cấp trí thức cho bạn.</p>
                 <div class="detail-icons">
                     <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
@@ -391,5 +433,6 @@
         });
     });
 </script>
+
 </body>
 </html>
