@@ -258,6 +258,367 @@
     text-overflow: ellipsis;
 }
 
+/*hidden*/
+.hidden {
+    display: none !important;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.rating-container {
+    left: 50%;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: visible;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rating-container-form {
+    max-height: calc(100vh - 120px);
+    width: 730px !important;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 20px 40px;
+}
+
+.rating-container-form__header {
+    height: unset;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.rating-container-form-header-title {
+    align-items: center;
+    color: #222222;
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.rating-container-form__main {
+    flex: 1;
+    margin-left: -50px;
+    margin-right: -50px;
+    overflow-y: auto;
+    position: relative;
+    padding: 0 40px;
+}
+
+
+.rating-container-form__main-container {
+    margin-bottom: 84px;
+    border-bottom: 0;
+}
+
+.rating-proc {
+    margin-top: 1.25rem;
+}
+
+.rating-infor {
+    color: rgba(0, 0, 0, .87);
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration: none;
+}
+
+.rating-infor__product {
+    display: flex;
+    flex: 1;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+}
+
+.rating-infor__product--img {
+    border: 1px solid rgba(0, 0, 0, .09);
+    display: inline-block;
+    flex-shrink: 0;
+    height: 56px !important;
+    margin-right: 40px;
+    position: relative;
+    width: 56px !important;
+}
+
+.rating-infor__product--name {
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.rating-infor__product--name-text {
+    color: rgba(0, 0, 0, .8);
+    font-size: 17px;
+    font-weight: 400;
+}
+
+
+.rating-infor__product--quantity {
+    color: rgba(0, 0, 0, .26);
+    font-size: 16px;
+}
+
+/*Chat luong san pham va star*/
+.rating-infor__star {
+    align-items: center;
+    display: flex;
+}
+
+.rating-infor__star--text {
+    min-width: 180px;
+}
+
+.rating-infor__star--star {
+    color: #ffcc00;
+}
+
+.rating-infor-cmt {
+    background-color: #f5f5f5;
+    padding: 1.25rem 1.5625rem .9375rem;
+    position: relative;
+}
+
+.rating-infor-cmt-inner {
+    background-color: #fff;
+    border-radius: .125rem;
+    box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .05);
+    box-sizing: border-box;
+    margin: 0 0 .75rem;
+    padding: .75rem;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, .26);
+}
+
+.rating-infor-cmt-inner__wrap {
+    margin: 0 0 .75rem;
+    padding: 0;
+    position: relative;
+}
+
+.rating-infor-cmt-inner__wrap--text {
+    background-color: #fff;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    top: 0;
+    color: rgba(0, 0, 0, .87);
+    left: 0;
+    margin-bottom: .25rem;
+    position: relative;
+}
+
+.rating-infor-cmt-inner--textarea {
+    border: 1px solid rgba(0, 0, 0, .26);
+    color: rgba(0, 0, 0, .87);
+    font-size: 16px;
+    line-height: 22px;
+    padding: 12px;
+    margin: 0;
+    overflow: hidden;
+    resize: none;
+    width: 100%;
+    text-transform: capitalize;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.rating-infor-cmt-inner--textarea:focus {
+    border-color: #4b908e;
+    outline: none;
+}
+
+.rating-infor-cmt-inner__line {
+    background-color: rgba(0, 0, 0, .09);
+    height: 1px;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    width: 100%;
+}
+
+.rating-vote-img {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 12px;
+}
+
+.rating-vote-img--infor {
+    background: #f1f9f8;
+    border: 1px dashed #4b908e;;
+    box-sizing: border-box;
+    color: #4b908e;
+    cursor: pointer;
+    display: inline-flex;
+    height: 30px;
+    margin-right: 8px;
+    padding: 0 12px;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.rating-vote-img--infor:hover {
+    background: #4b908e;
+    color: #fff;
+}
+
+
+.rating-vote-img-add {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    margin-left: 6px;
+}
+
+.rating-file__input {
+    display: none;
+    border: 0;
+    flex: 1;
+    padding: 0;
+    word-break: break-all;
+    line-height: normal;
+    color: #316064;
+    margin: 0;
+}
+
+.rating-vote-anonymous-wrapper {
+    align-items: center;
+    display: flex;
+    margin-top: 1.25rem;
+}
+
+.stardust-checkbox {
+    align-items: center;
+    color: rgba(0, 0, 0, .54);
+    cursor: default;
+    display: flex;
+    font-size: 12px;
+    font-weight: 300;
+    max-width: 400px;
+    position: relative;
+    top: -14px;
+}
+
+input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 20px;
+}
+
+.stardust-checkbox__input {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    transition: border-color 0.3s, background-color 0.3s;
+    position: absolute;
+}
+
+.stardust-checkbox__input:checked {
+    background-color: #4b908e;
+    border-color: #4b908e;
+}
+
+
+.rating-vote-anonymous-hint {
+    color: rgba(0, 0, 0, .87);
+    cursor: pointer;
+    font-size: .875rem;
+    margin-bottom: .25rem;
+}
+
+.rating-vote-anonymous-username {
+    color: rgba(0, 0, 0, .54);
+    cursor: pointer;
+    font-size: .75rem;
+}
+
+.rating-container-form__footer {
+    align-items: center;
+    background: linear-gradient(hsla(0, 0%, 100%, .9), #fff);
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 84px;
+    justify-content: flex-end;
+    left: 0;
+    padding: 22px 30px;
+    position: absolute;
+    right: 0;
+    text-transform: capitalize;
+}
+
+.rating-cancel-btn {
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #555555;
+    cursor: pointer;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-right: 6px;
+    padding: 10px 0;
+    text-transform: uppercase;
+    transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
+    width: 140px;
+}
+
+.rating-cancel-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-solid-primary {
+    background: #4b908e;
+    color: #fff;
+    outline: 0;
+    overflow: visible;
+    position: relative;
+}
+
+.btn--s {
+    height: 34px;
+    max-width: 190px;
+    min-width: 60px;
+    padding: 0 15px;
+}
+
+.rating-submit-btn {
+    width: 140px;
+    transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
+}
+
+.rating-submit-btn:hover {
+    background-color: #316064 !important;
+    color: #fff !important;
+}
+
+
 
 
 
