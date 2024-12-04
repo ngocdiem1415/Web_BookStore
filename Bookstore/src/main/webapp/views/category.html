@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="../css/Header.css">
     <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
 
 <!--header-->
 <!--<div id="header"></div>-->
+<!--Header-->
 <header id="header">
     <!-- MAIN HEADER -->
     <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
@@ -26,14 +28,16 @@
         <!-- row -->
         <div class="row">
             <!-- LOGO -->
-            <div class="col-md-3">
-                <div class="header-logo">
-                </div>
+            <div class="col-md-2 d-flex justify-content-center align-items-end">
+                <a href="Home.html">
+                    <div class="header-logo">
+                        <img src="../img/logo/logo-header.png" height="80" width="100"/></div>
+                </a>
             </div>
             <!-- /LOGO -->
 
             <!-- SEARCH BAR -->
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="header-search">
                     <form class="d-flex mt-2">
                         <input class="input flex-grow-1" placeholder="Search product">
@@ -47,7 +51,7 @@
             <div class="col-md-3 clearfix d-flex">
                 <ul class="account-menu mr-1">
                     <li class="account box mt-4">
-                        <a href="#">Tài khoản</a>
+                        <a href="profile.html">Tài khoản</a>
                         <i class="fa-solid fa-angle-down"></i>
                         <ul class="subnav">
                             <li class="border-bottom border-gray"><a href="login.html">Đăng nhập</a></li>
@@ -55,13 +59,23 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="shopping-cart mt-3 ">
-                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>
+                <div class="shopping-cart mt-4 ">
+                    <a href="Cart.html" style="color: black">
+                        <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
+                             class="bi bi-bag-check" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<!-- /HEADER -->
+
 <!-- NAVIGATION-->
 <nav id="navigation">
     <!-- container -->
@@ -70,13 +84,27 @@
         <ul class="main-nav nav ">
             <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
-            <li class="nav-item "><a href="category.html">Sản phẩm</a></li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.html" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sản phẩm
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                    <li><a class="dropdown-item" href="category.html">Sách văn học</a></li>
+                    <li><a class="dropdown-item" href="category.html">Kinh tế</a></li>
+                    <li><a class="dropdown-item" href="category.html">Sách thiếu nhi</a></li>
+                    <li><a class="dropdown-item" href="category.html">Tiểu sử - Hồi ký</a></li>
+                    <li><a class="dropdown-item" href="category.html">Tâm lí - Kĩ năng sống</a></li>
+                    <li><a class="dropdown-item" href="category.html">Nuôi dạy con</a></li>
+                    <li><a class="dropdown-item" href="category.html">Sách giáo khoa</a></li>
+                </ul>
+            </li>
             <li class="nav-item "><a href="policy.html">Chính sách</a></li>
             <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
         </ul>
         <!-- /NAV -->
     </div>
 </nav>
+<!--/nav end-->
 
 <!--content-->
 <div class="app__container">
@@ -296,14 +324,29 @@
                     <div id="product-container" class="grid__row">
                         <!--0-->
                         <div class="grid-md-2-4">
-                            <a href="">
+                            <a href="../views/ProductDetail.html">
                                 <div class="home-product-item">
                                     <div class="home-product-item__img"
-                                         style="background-image: url('../img/Mua 13 Nguyên Tắc Nghĩ Giàu Làm Giàu - Think And Grow Rich (Bản Gốc, Được Phục Hồi Và Chỉnh Sửa) tại AHABOOKS.jpg')"></div>
-                                    <h4 class="home-product-item__name">13 nguyên tắc nghĩ giàu làm giàu</h4>
+                                         style="background-image: url('../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp')"></div>
+                                    <h4 class="home-product-item__name">Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ
+                                        Grừ</h4>
                                     <div class="home-product-item__price">
                                         <span class="home-product-item__price-current">86.000đ</span>
                                         <span class="home-product-item__price-old">115.000đ</span>
+                                    </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
                                     </div>
                                 </div>
                             </a>
@@ -319,6 +362,21 @@
                                         <span class="home-product-item__price-current">34.000đ</span>
                                         <span class="home-product-item__price-old">45.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -333,6 +391,22 @@
                                         <span class="home-product-item__price-current">26.000đ</span>
                                         <span class="home-product-item__price-old">37.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
                             </a>
 
@@ -348,7 +422,23 @@
                                         <span class="home-product-item__price-current">71.000đ</span>
                                         <span class="home-product-item__price-old">95.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
+
                             </a>
 
                         </div>
@@ -363,6 +453,21 @@
                                         <span class="home-product-item__price-current">62.000đ</span>
                                         <span class="home-product-item__price-old">89.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -378,6 +483,21 @@
                                         <span class="home-product-item__price-current">88.000đ</span>
                                         <span class="home-product-item__price-old">135.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -392,6 +512,21 @@
                                         <span class="home-product-item__price-current">59.000đ</span>
                                         <span class="home-product-item__price-old">90.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
 
@@ -407,6 +542,21 @@
                                         <span class="home-product-item__price-current">38.000đ</span>
                                         <span class="home-product-item__price-old">76.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
 
@@ -422,6 +572,19 @@
                                         <span class="home-product-item__price-current">34.000đ</span>
                                         <span class="home-product-item__price-old">45.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -436,6 +599,21 @@
                                         <span class="home-product-item__price-current">102.000đ</span>
                                         <span class="home-product-item__price-old">140.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -452,6 +630,21 @@
                                         <span class="home-product-item__price-current">91.800đ</span>
                                         <span class="home-product-item__price-old">108.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
 
@@ -467,6 +660,21 @@
                                         <span class="home-product-item__price-current">134.300đ</span>
                                         <span class="home-product-item__price-old">158.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -481,6 +689,21 @@
                                         <span class="home-product-item__price-current">103.000đ</span>
                                         <span class="home-product-item__price-old">103.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -496,6 +719,21 @@
                                         <span class="home-product-item__price-current">95.000đ</span>
                                         <span class="home-product-item__price-old">95.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -511,6 +749,21 @@
                                         <span class="home-product-item__price-current">79.000đ</span>
                                         <span class="home-product-item__price-old">79.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -526,6 +779,21 @@
                                         <span class="home-product-item__price-current">239.000đ</span>
                                         <span class="home-product-item__price-old">239.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -540,6 +808,21 @@
                                         <span class="home-product-item__price-current">72.800đ</span>
                                         <span class="home-product-item__price-old">104.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -555,6 +838,21 @@
                                         <span class="home-product-item__price-current">380.000đ</span>
                                         <span class="home-product-item__price-old">380.000đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -569,6 +867,21 @@
                                         <span class="home-product-item__price-current">59.500đ</span>
                                         <span class="home-product-item__price-old">59.500đ</span>
                                     </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </a>
                         </div>
@@ -583,6 +896,19 @@
                                     <div class="home-product-item__price">
                                         <span class="home-product-item__price-current">265.000đ</span>
                                         <span class="home-product-item__price-old">265.000đ</span>
+                                    </div>
+                                    <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                        <div class="home-product-item__rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -621,9 +947,9 @@
 <section class="footer">
     <div class="footer-row">
         <div class="footer-col">
-            <a href=""><img src="../img/logo/new_logo.png" height="270" width="386"/></a>
-            <p class="detail">Nơi cung cấp trí thức cho bạn.</p>
-            <div class="detail-icons">
+            <a href="" class="mb-4"><img src="../img/logo/logo1.png"/></a>
+            <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
+            <div class="detail-icons ">
                 <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
                 <p><i class="fa-solid fa-phone"></i>0123456789</p>
                 <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
@@ -670,67 +996,42 @@
         <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
     </div>
 </section>
+<!-- /FOOTER -->
 
 
-<!--script-->
-<!--<script>-->
-<!--    fetch('Header.html')-->
-<!--        .then(response => {-->
-<!--            if (!response.ok) throw new Error('Network response was not ok');-->
-<!--            return response.text();-->
-<!--        })-->
-<!--        .then(data => document.getElementById('header').innerHTML = data)-->
-<!--        .catch(error => console.error('Error:', error));-->
-
-<!--    // Tải nội dung của footer từ tệp Footer.html-->
-<!--    fetch('footer.html')-->
-<!--        .then(response => response.text())-->
-<!--        .then(data => {-->
-<!--            document.getElementById('footer').innerHTML = data;-->
-<!--        });-->
-<!--</script>-->
-<!--all script files-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        const starInputs = document.querySelectorAll("input[name='rating']");
         const starLabels = document.querySelectorAll(".category-inform label");
 
+        // Gắn sự kiện click cho từng label
         starLabels.forEach((label, index) => {
-            label.addEventListener("mouseover", () => {
-                highlightStars(index);
-            });
-
-            label.addEventListener("mouseout", () => {
-                clearStars();
-            });
-
             label.addEventListener("click", () => {
-                selectStars(index);
+                updateStars(index);
             });
         });
 
-        function highlightStars(index) {
+        // Hàm cập nhật màu của các ngôi sao dựa trên chỉ số được chọn
+        function updateStars(selectedIndex) {
             starLabels.forEach((label, i) => {
-                if (i <= index) {
-                    label.querySelector("i").style.color = "#ffc107"; // Màu vàng khi hover
+                if (i <= selectedIndex) {
+                    label.querySelector("i").style.color = "#ffc107"; // Vàng
+                } else {
+                    label.querySelector("i").style.color = "#ddd"; // Xám
                 }
             });
+
+            // Đánh dấu radio button tương ứng là được chọn
+            starInputs[selectedIndex].checked = true;
         }
 
-        function clearStars() {
-            starLabels.forEach((label) => {
-                label.querySelector("i").style.color = "#ddd"; // Reset về màu mặc định
-            });
-        }
-
-        function selectStars(index) {
-            clearStars();
-            starLabels.forEach((label, i) => {
-                if (i <= index) {
-                    label.querySelector("i").style.color = "#ffc107"; // Ghi nhận màu vàng
-                }
-            });
+        // Kiểm tra trạng thái khi tải lại trang
+        const checkedInputIndex = Array.from(starInputs).findIndex((input) => input.checked);
+        if (checkedInputIndex !== -1) {
+            updateStars(checkedInputIndex); // Cập nhật màu nếu đã chọn trước đó
         }
     });
+
 
 </script>
 <!--load more-->
@@ -999,23 +1300,37 @@
         const container = document.getElementById('product-container');
         products.forEach(product => {
             const productHTML = `
-                <div class="grid-md-2-4">
-                    <a href="">
-                        <div class="home-product-item">
-                            <div class="home-product-item__img"
-                                 style="background-image: url('${product.image}')"></div>
-                            <h4 class="home-product-item__name">${product.name}</h4>
-                            <div class="home-product-item__price">
-                                <span class="home-product-item__price-current">${product.currentPrice}</span>
-                                <span class="home-product-item__price-old">${product.oldPrice}</span>
+            <div class="grid-md-2-4">
+                <a href="">
+                    <div class="home-product-item">
+                        <div class="home-product-item__img"
+                             style="background-image: url('${product.image}')"></div>
+                        <h4 class="home-product-item__name">${product.name}</h4>
+                        <div class="home-product-item__price">
+                            <span class="home-product-item__price-current">${product.currentPrice}</span>
+                            <span class="home-product-item__price-old">${product.oldPrice}</span>
+                        </div>
+                        <div class="home-product-item__action">
+                            <span class="home-product-item__like">
+                                <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                            </span>
+                            <div class="home-product-item__rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
                             </div>
                         </div>
-                    </a>
-                </div>
-            `;
+                    </div>
+                </a>
+            </div>
+        `;
             container.innerHTML += productHTML;
         });
     }
+
 
     // Sự kiện nhấp vào nút "Xem thêm"
     document.getElementById('load-more').addEventListener('click', () => {

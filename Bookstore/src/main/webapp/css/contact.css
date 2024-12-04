@@ -69,7 +69,7 @@ body {
 }
 
 .row-contact .form .row #submitBtn {
-    background-color: #4CAF50;
+    background-color: #4B908E;
     color: white;
     padding: 10px 20px;
     font-size: 1rem;
@@ -80,7 +80,7 @@ body {
 }
 
 .row-contact .form .row #submitBtn:hover {
-    background-color: #45a049;
+    background-color: #316064;
 }
 
 .container-contact .row-contact iframe {
