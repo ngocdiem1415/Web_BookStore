@@ -35,7 +35,23 @@
         <artifactId>junit-jupiter-engine</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
-      </dependency>  </dependencies>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>8.0.30</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-core -->
+      <dependency>
+          <groupId>org.jdbi</groupId>
+          <artifactId>jdbi3-core</artifactId>
+          <version>3.47.0</version>
+      </dependency>
+
+  </dependencies>
 
   <build>
     <plugins>
