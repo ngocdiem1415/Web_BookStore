@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable {
     private int bId;
     private String title;
     private int authorId;
