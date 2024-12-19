@@ -11,9 +11,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login/Register</title>
-    <link rel="stylesheet" href="../../css/login.css">
-    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
 
 </head>
@@ -23,7 +23,7 @@
         <div class="form-panel">
             <div class="form-header">
                 <div class="form-header-back">
-                    <a href="../views/Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
+                    <a href="Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="form-header-inner">
                     <a href="#" class="form-link" id="sign-up-form-link">Đăng ký</a>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-body">
                 <!-- Login Form -->
-                <form id="login-form" action="Login" method="post">
+                <form id="login-form" action="login" method="post">
                     <h3 class="form-title">Đăng nhập</h3>
                     <div class="form-group">
                         <label for="username">Tên đăng nhập <span class="required">*</span></label>
@@ -60,7 +60,7 @@
 
 
                     <div class="form-footer">
-                        <a href="../views/ForgetPassword.jsp" id="forgot-password-link" class="forgot-password">Quên
+                        <a href="WEB-INF/views/ForgetPassword.jsp" id="forgot-password-link" class="forgot-password">Quên
                             mật khẩu?</a>
                     </div>
                 </form>

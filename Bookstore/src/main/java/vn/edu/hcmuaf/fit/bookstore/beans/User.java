@@ -16,7 +16,13 @@ public class User {
     private Date createAt;
     private Date updateAt;
 
-    public User() {}
+    public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, String role, Date createAt, Date updateAt) {
         this.uid = uid;

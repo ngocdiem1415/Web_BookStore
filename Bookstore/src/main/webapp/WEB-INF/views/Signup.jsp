@@ -23,7 +23,7 @@
         <div class="form-panel">
             <div class="form-header">
                 <div class="form-header-back">
-                    <a href="../views/Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
+                    <a href="../../Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="form-header-inner">
                     <a href="#" class="form-link" id="sign-up-form-link">Đăng ký</a>
