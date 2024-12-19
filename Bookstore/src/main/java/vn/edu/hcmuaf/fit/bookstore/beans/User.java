@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class User {
@@ -13,8 +14,8 @@ public class User {
     private String password;
     private int status; // 1 là kích hoạt, 0 là không kích hoạt
     private String role; // "user" hoặc "admin"
-    private Date createAt;
-    private Date updateAt;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     public User() {
     }
@@ -24,7 +25,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, String role, Date createAt, Date updateAt) {
+    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, String role, LocalDateTime createAt, LocalDateTime updateAt) {
         this.uid = uid;
         this.username = username;
         this.avatar = avatar;
@@ -137,19 +138,19 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreateAt() {
+    public LocalDateTime getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Date createAt) {
+    public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
     }
 
-    public Date getUpdateAt() {
+    public LocalDateTime getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
+    public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
 }
