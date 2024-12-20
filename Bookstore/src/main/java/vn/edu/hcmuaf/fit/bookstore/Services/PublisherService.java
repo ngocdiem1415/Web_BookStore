@@ -1,0 +1,28 @@
+package vn.edu.hcmuaf.fit.bookstore.Services;
+
+import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.bookstore.beans.Category;
+import vn.edu.hcmuaf.fit.bookstore.beans.Publisher;
+import vn.edu.hcmuaf.fit.bookstore.dao.CategoryDao;
+import vn.edu.hcmuaf.fit.bookstore.dao.PublisherDao;
+import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
+
+import java.util.List;
+
+public class PublisherService {
+    private static PublisherService instance = null;
+    Jdbi connect = JDBIConnector.getJdbi();
+
+    public static PublisherService getInstance() {
+        if(instance == null) instance = new PublisherService();
+        return instance;
+    }
+
+    public List<Publisher> listPublisher(){
+        return connect.withExtension(PublisherDao.class, handle -> handle.list());
+    }
+
+    public Publisher getCategoryById(int id){
+        return connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
+    }
+}
