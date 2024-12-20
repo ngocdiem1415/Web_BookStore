@@ -11,19 +11,19 @@
     <meta charset="UTF-8">
 
     <!--    bootstrap-->
-    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
     <!--     OwlCarousel-->
-    <link rel="stylesheet" href="../../css/OwlCarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/OwlCarousel/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../../css/OwlCarousel/owl.theme.green.min.css">
+    <link rel="stylesheet" href="css/OwlCarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/OwlCarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/OwlCarousel/owl.theme.green.min.css">
 
     <!--    css-->
-    <link rel="stylesheet" href="../../css/Style.css">
-    <link rel="stylesheet" href="../../css/Home.css">
-    <link rel="stylesheet" href="../../css/Header.css">
-    <link rel="stylesheet" href="../../css/footer.css">
-    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/Home.css">
+    <link rel="stylesheet" href="css/Header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
     <title>Home</title>
 
 </head>
@@ -46,11 +46,11 @@
         <div class="container mt-30  d-flex justify-content-center" style="width: 990px; height:496px">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../../img/slider/Banner-Sách-hay-tặng-thầy-cô-ngày-20.11-890x396.jpg" class="d-block w-100"
+                    <img src="img/slider/Banner-Sách-hay-tặng-thầy-cô-ngày-20.11-890x396.jpg" class="d-block w-100"
                          alt="...">
                 </div>
                 <div class="carousel-item ">
-                    <img src="../../img/slider/Banner-TBPH-2-Sách-Anh-Khang-v2-890x396.jpg" class="d-block w-100"
+                    <img src="img/slider/Banner-TBPH-2-Sách-Anh-Khang-v2-890x396.jpg" class="d-block w-100"
                          alt="...">
                 </div>
             </div>
@@ -84,7 +84,7 @@
                     <!-- single-product-start -->
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <img src="../../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"
+                            <img src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
@@ -122,7 +122,7 @@
                     <!-- single-product-start -->
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <img src="../../img/product/Haivanduoidaybien.png"
+                            <img src="img/product/Haivanduoidaybien.png"
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
@@ -160,7 +160,7 @@
                     <!-- single-product-start -->
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <img src="../../img/product/Luyhoa.png"
+                            <img src="img/product/Luyhoa.png"
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
@@ -198,7 +198,7 @@
                     <!-- single-product-start -->
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <img src="../../img/product/Laudaithanbi.png"
+                            <img src="img/product/Laudaithanbi.png"
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
@@ -236,7 +236,7 @@
                     <!-- single-product-start -->
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <img src="../../img/product/Lehoitrencanhdong.png"
+                            <img src="img/product/Lehoitrencanhdong.png"
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
@@ -317,7 +317,7 @@
                         </div>
                         <!-- Hình ảnh -->
                         <div class="banner-img-3">
-                            <a href="ProductDetail.html"><img src="../../img/product/HarryPotter.png" alt="banner"
+                            <a href="ProductDetail.html"><img src="img/product/HarryPotter.png" alt="banner"
                                                               class="img-fluid"/></a>
                         </div>
                     </div>
@@ -330,7 +330,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="../../img/product/Ngaytroivephiacu.png"
+                                            <a href="ProductDetail.html"><img src="img/product/Ngaytroivephiacu.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -351,7 +351,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="../../img/product/Nguoitrongrung.png"
+                                            <a href="ProductDetail.html"><img src="img/product/Nguoitrongrung.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -372,7 +372,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="../../img/product/Heidi.png"
+                                            <a href="ProductDetail.html"><img src="img/product/Heidi.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -393,7 +393,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="../../img/product/Nguoitv.png"
+                                            <a href="ProductDetail.html"><img src="img/product/Nguoitv.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -440,7 +440,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -479,7 +479,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -518,7 +518,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -557,7 +557,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -596,7 +596,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -653,7 +653,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -692,7 +692,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -731,7 +731,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -770,7 +770,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -809,7 +809,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -867,7 +867,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -906,7 +906,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -945,7 +945,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -984,7 +984,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1023,7 +1023,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1081,7 +1081,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1120,7 +1120,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1159,7 +1159,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1198,7 +1198,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1237,7 +1237,7 @@
                                 <div class="product-wrapper ">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="../../img/product/1.jpg" alt="book" class="primary"/>
+                                            <img src="img/product/1.jpg" alt="book" class="primary"/>
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
@@ -1284,7 +1284,7 @@
 <section class="footer">
     <div class="footer-row">
         <div class="footer-col">
-            <a href="" class="mb-4"><img src="../../img/logo/new_logo.png"/></a>
+            <a href="" class="mb-4"><img src="img/logo/new_logo.png"/></a>
             <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
             <div class="detail-icons ">
                 <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
@@ -1336,14 +1336,14 @@
 <!--footer end-->
 
 <!--jquery-->
-<script src="../../js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <!--     OwlCarousel-->
 <!--<script src="../js/OwlCarousel.js"></script>-->
-<script src="../../js/owl.carousel.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
 <!--    bootstrap-->
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 <script>
     fetch('Header.html')
