@@ -44,6 +44,13 @@
           <version>8.0.30</version>
       </dependency>
 
+      <!-- JDBI SQL Object -->
+      <dependency>
+          <groupId>org.jdbi</groupId>
+          <artifactId>jdbi3-sqlobject</artifactId>
+          <version>3.38.0</version>
+      </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-core -->
       <dependency>
           <groupId>org.jdbi</groupId>
@@ -68,6 +75,8 @@
           <artifactId>jakarta.servlet.jsp.jstl</artifactId>
           <version>3.0.1</version>
       </dependency>
+
+      
 
   </dependencies>
 
