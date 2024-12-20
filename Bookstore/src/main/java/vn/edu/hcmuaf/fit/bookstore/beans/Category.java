@@ -1,15 +1,16 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Category {
     private int categoryId;
     private String name;
-    private Date update_at;
+    private LocalDateTime update_at;
 
     public Category() {}
 
-    public Category(int categoryId, String name, Date update_at) {
+    public Category(int categoryId, String name, LocalDateTime update_at) {
         this.categoryId = categoryId;
         this.name = name;
         this.update_at = update_at;
@@ -40,11 +41,11 @@ public class Category {
         this.name = name;
     }
 
-    public Date getUpdate_at() {
+    public LocalDateTime getUpdate_at() {
         return update_at;
     }
 
-    public void setUpdate_at(Date update_at) {
+    public void setUpdate_at(LocalDateTime update_at) {
         this.update_at = update_at;
     }
 }
