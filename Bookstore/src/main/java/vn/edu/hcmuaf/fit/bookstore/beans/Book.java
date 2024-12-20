@@ -1,14 +1,19 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Book implements Serializable {
     private int bId;
     private String title;
-    private int authorId;
+    private String author;
     private int categoryId;
     private int publisherId;
+    private int promotionId;
+//    private Category category;
+//    private Publisher publisher;
+//    private Promotion promotion;
     private int publishYear;
     private String dimensions;
     private double weight;
@@ -16,21 +21,24 @@ public class Book implements Serializable {
     private String format;
     private double originalPrice;
     private String description;
-    private int promotionId;
     private int soldQuantity;
     private int stockQuantity;
-    private Date create_at;
-    private Date update_at;
+    private LocalDateTime create_at;
+    private LocalDateTime update_at;
     private int status;
 
     public Book() {}
 
-    public Book(int bId, String title, int authorId, int categoryId, int publisherId, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int promotionId, int soldQuantity, int stockQuantity, Date create_at, Date update_at, int status) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status) {
         this.bId = bId;
         this.title = title;
-        this.authorId = authorId;
+        this.author = author;
         this.categoryId = categoryId;
         this.publisherId = publisherId;
+        this.promotionId = promotionId;
+//        this.category = category;
+//        this.publisher = publisher;
+//        this.promotion = promotion;
         this.publishYear = publishYear;
         this.dimensions = dimensions;
         this.weight = weight;
@@ -38,7 +46,6 @@ public class Book implements Serializable {
         this.format = format;
         this.originalPrice = originalPrice;
         this.description = description;
-        this.promotionId = promotionId;
         this.soldQuantity = soldQuantity;
         this.stockQuantity = stockQuantity;
         this.create_at = create_at;
@@ -51,9 +58,13 @@ public class Book implements Serializable {
         return "Book{" +
                 "bId=" + bId +
                 ", title='" + title + '\'' +
-                ", authorId=" + authorId +
+                ", author='" + author + '\'' +
                 ", categoryId=" + categoryId +
                 ", publisherId=" + publisherId +
+                ", promotionId=" + promotionId +
+//                ", category=" + category +
+//                ", publisher=" + publisher +
+//                ", promotion=" + promotion +
                 ", publishYear=" + publishYear +
                 ", dimensions='" + dimensions + '\'' +
                 ", weight=" + weight +
@@ -61,7 +72,6 @@ public class Book implements Serializable {
                 ", format='" + format + '\'' +
                 ", originalPrice=" + originalPrice +
                 ", description='" + description + '\'' +
-                ", promotionId=" + promotionId +
                 ", soldQuantity=" + soldQuantity +
                 ", stockQuantity=" + stockQuantity +
                 ", create_at=" + create_at +
@@ -84,14 +94,6 @@ public class Book implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
     }
 
     public int getCategoryId() {
@@ -198,19 +200,51 @@ public class Book implements Serializable {
         this.status = status;
     }
 
-    public Date getCreate_at() {
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
+//
+//    public Publisher getPublisher() {
+//        return publisher;
+//    }
+//
+//    public void setPublisher(Publisher publisher) {
+//        this.publisher = publisher;
+//    }
+//
+//    public Promotion getPromotion() {
+//        return promotion;
+//    }
+//
+//    public void setPromotion(Promotion promotion) {
+//        this.promotion = promotion;
+//    }
+
+    public LocalDateTime getCreate_at() {
         return create_at;
     }
 
-    public void setCreate_at(Date create_at) {
+    public void setCreate_at(LocalDateTime create_at) {
         this.create_at = create_at;
     }
 
-    public Date getUpdate_at() {
+    public LocalDateTime getUpdate_at() {
         return update_at;
     }
 
-    public void setUpdate_at(Date update_at) {
+    public void setUpdate_at(LocalDateTime update_at) {
         this.update_at = update_at;
     }
 }
