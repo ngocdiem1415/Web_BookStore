@@ -1,18 +1,19 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Promotion {
     private int promotionId;
     private String promotionName;
     private double discount;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private boolean isActive;
 
     public Promotion() {}
 
-    public Promotion(int promotionId, String promotionName, double discount, Date startDate, Date endDate, boolean isActive) {
+    public Promotion(int promotionId, String promotionName, double discount, LocalDateTime startDate, LocalDateTime endDate, boolean isActive) {
         this.promotionId = promotionId;
         this.promotionName = promotionName;
         this.discount = discount;
@@ -45,19 +46,19 @@ public class Promotion {
         this.discount = discount;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

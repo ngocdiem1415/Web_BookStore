@@ -19,17 +19,17 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserServices userServices = new UserServices();
-        //
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        // Check login
-        boolean login = userServices.login(username, password);
-        if (login) {
-            response.sendRedirect("Home.jsp");
-        } else {
-            response.sendRedirect("Login.jsp");
-        }
+//        UserServices userServices = new UserServices();
+//        //
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+//
+//        // Check login
+//        boolean login = userServices.login(username, password);
+//        if (login) {
+//            response.sendRedirect("Home.jsp");
+//        } else {
+//            response.sendRedirect("Login.jsp");
+//        }
     }
 }

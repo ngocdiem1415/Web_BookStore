@@ -1,17 +1,20 @@
 package vn.edu.hcmuaf.fit.bookstore.dao;
 
+import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
+import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
-import java.util.Map;
+import java.util.List;
 
-public class UserDao {
-    static Map<String, User> data = Map.of("thinh", new User("thinh", "123"));
+@RegisterBeanMapper(User.class)
+public interface UserDao {
 
-    public User getUser(String username) {
-        if (!data.containsKey(username)) {
-            return null;
-        }
-        return data.get(username);
-    }
+    @SqlQuery("select * from users")
+    List<User> list();
+
+    @SqlQuery("select * from users where uid = :id")
+    User findById(@Bind("id") int id);
+
 
 }
