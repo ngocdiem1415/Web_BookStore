@@ -11,9 +11,9 @@ public class Book implements Serializable {
     private int categoryId;
     private int publisherId;
     private int promotionId;
-//    private Category category;
-//    private Publisher publisher;
-//    private Promotion promotion;
+    private Category category;
+    private Publisher publisher;
+    private Promotion promotion;
     private int publishYear;
     private String dimensions;
     private double weight;
@@ -36,9 +36,9 @@ public class Book implements Serializable {
         this.categoryId = categoryId;
         this.publisherId = publisherId;
         this.promotionId = promotionId;
-//        this.category = category;
-//        this.publisher = publisher;
-//        this.promotion = promotion;
+        this.category = category;
+        this.publisher = publisher;
+        this.promotion = promotion;
         this.publishYear = publishYear;
         this.dimensions = dimensions;
         this.weight = weight;
@@ -62,9 +62,9 @@ public class Book implements Serializable {
                 ", categoryId=" + categoryId +
                 ", publisherId=" + publisherId +
                 ", promotionId=" + promotionId +
-//                ", category=" + category +
-//                ", publisher=" + publisher +
-//                ", promotion=" + promotion +
+                ", category=" + category +
+                ", publisher=" + publisher +
+                ", promotion=" + promotion +
                 ", publishYear=" + publishYear +
                 ", dimensions='" + dimensions + '\'' +
                 ", weight=" + weight +
@@ -208,29 +208,29 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
-//
-//    public Publisher getPublisher() {
-//        return publisher;
-//    }
-//
-//    public void setPublisher(Publisher publisher) {
-//        this.publisher = publisher;
-//    }
-//
-//    public Promotion getPromotion() {
-//        return promotion;
-//    }
-//
-//    public void setPromotion(Promotion promotion) {
-//        this.promotion = promotion;
-//    }
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
+    }
 
     public LocalDateTime getCreate_at() {
         return create_at;
