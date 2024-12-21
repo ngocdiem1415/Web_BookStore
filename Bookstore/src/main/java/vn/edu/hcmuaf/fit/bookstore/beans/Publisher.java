@@ -1,60 +1,60 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 public class Publisher {
-    private int publisherId;
-    private String name;
-    private String address;
-    private String phone;
+    private int p_id;
+    private String p_name;
+    private String p_address;
+    private String p_phone;
 
     public Publisher() {}
 
     public Publisher(int publisherId, String name, String address, String phone) {
-        this.publisherId = publisherId;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
+        this.p_id = publisherId;
+        this.p_name = name;
+        this.p_address = address;
+        this.p_phone = phone;
     }
 
     @Override
     public String toString() {
         return "Publisher{" +
-                "publisherId=" + publisherId +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
+                "publisherId=" + p_id +
+                ", name='" + p_name + '\'' +
+                ", address='" + p_address + '\'' +
+                ", phone='" + p_phone + '\'' +
                 '}';
     }
 
-    public int getPublisherId() {
-        return publisherId;
+    public int getP_id() {
+        return p_id;
     }
 
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
+    public void setP_id(int p_id) {
+        this.p_id = p_id;
     }
 
-    public String getName() {
-        return name;
+    public String getP_name() {
+        return p_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setP_name(String p_name) {
+        this.p_name = p_name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getP_address() {
+        return p_address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setP_address(String p_address) {
+        this.p_address = p_address;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getP_phone() {
+        return p_phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setP_phone(String p_phone) {
+        this.p_phone = p_phone;
     }
 }
 
