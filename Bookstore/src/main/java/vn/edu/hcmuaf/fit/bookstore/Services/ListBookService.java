@@ -6,19 +6,18 @@ import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ListProductService {
-    private static ListProductService instance = null;
+public class ListBookService {
+    private static ListBookService instance = null;
     Jdbi connect = JDBIConnector.getJdbi();
 
-    public static ListProductService getInstance() {
-        if(instance == null) instance = new ListProductService();
+    public static ListBookService getInstance() {
+        if(instance == null) instance = new ListBookService();
         return instance;
     }
 
     public List<Book> listProduct(){
-        return connect.withExtension(ProductDao.class, handle -> handle.listProduct());
+        return connect.withExtension(BookDao.class, handle -> handle.listProduct());
 //            return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
         }
 
