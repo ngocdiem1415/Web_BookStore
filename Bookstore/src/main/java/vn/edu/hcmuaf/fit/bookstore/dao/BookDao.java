@@ -9,13 +9,13 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import java.util.List;
 
 @RegisterBeanMapper(Book.class)
-public interface ProductDao {
+public interface BookDao {
 
     @SqlQuery("select * from books")
     List<Book> listProduct();
 
     @SqlQuery("select * from books where b_id = :id")
-    Book findByID(@Bind("id") int id);
+    Book findById(@Bind("id") int id);
 
     @SqlQuery("select * from books where status = 1")
     List<Book> listClient();
