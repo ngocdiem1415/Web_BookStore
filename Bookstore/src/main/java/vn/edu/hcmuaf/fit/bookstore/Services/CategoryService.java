@@ -1,11 +1,13 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 import vn.edu.hcmuaf.fit.bookstore.dao.CategoryDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoryService {
     private static CategoryService instance = null;
