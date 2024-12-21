@@ -13,7 +13,7 @@ public interface PublisherDao {
     @SqlQuery("select * from publishers")
     List<Publisher> list();
 
-    @SqlQuery("select p_id, p_name, p_address, p_phone from publishers where p_id = :id")
+    @SqlQuery("select * from publishers where p_id = :id")
     Publisher findById(@Bind("id") int id);
 
 }

@@ -13,7 +13,7 @@ public interface PromotionDao {
     @SqlQuery("select * from promotions")
     List<Promotion> list();
 
-    @SqlQuery("select * from promotions where promotion_id = : id")
+    @SqlQuery("select * from promotions where promotion_id = :id")
     Promotion findById(@Bind("id") int id);
 
 }
