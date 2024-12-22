@@ -14,6 +14,9 @@ public interface BookDao {
     @SqlQuery("select * from books")
     List<Book> listProduct();
 
+    @SqlQuery("select * from books limit 20")
+    List<Book> list20Product();
+
     @SqlQuery("select * from books where b_id = :id")
     Book findById(@Bind("id") int id);
 

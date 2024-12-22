@@ -63,43 +63,6 @@
             <div class="col-md-2">
                 <nav class="category">
                     <div class="category-form">
-                        <h4 class="category__heading">Tác Giả</h4>
-                        <div class="category-scroll">
-                            <div class="category-inform">
-                                <input type="checkbox" id="ho-anh-thai">
-                                <label class="checkbox-label" for="ho-anh-thai">Hồ Anh Thái</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="nguyen-vinh-nguyen">
-                                <label class="checkbox-label" for="nguyen-vinh-nguyen">Nguyễn Vĩnh Nguyên</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="bach-to">
-                                <label class="checkbox-label" for="bach-to">Bạch Tô</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="nguyen-an-dung">
-                                <label class="checkbox-label" for="nguyen-an-dung">Nguyễn Anh Dũng</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="lily-truong">
-                                <label class="checkbox-label" for="lily-truong">Lily Trương</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="ha-mer">
-                                <label class="checkbox-label" for="ha-mer">Hạ Mer</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="that-thien">
-                                <label class="checkbox-label" for="that-thien">Thất Thiên</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="mieu-cong-tu">
-                                <label class="checkbox-label" for="mieu-cong-tu">Miêu Công Tử</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="category-form">
                         <h4 class="category__heading">Nhà xuất bản</h4>
                         <div class="category-scroll">
                             <div class="category-inform">
@@ -250,33 +213,40 @@
                     <div id="product-container" class="grid__row">
                         <!--0-->
                         <c:forEach var="p" items="${books}">
-                        <div class="grid-md-2-4">
-                            <a href="bookDetail.jsp">
-                                <div class="home-product-item">
-                                    <div class="home-product-item__img"
-                                         style="background-image: url('img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp')"></div>
-                                    <h4 class="home-product-item__name">${p.title}</h4>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-current">86.000đ</span>
-                                        <span class="home-product-item__price-old">115.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
+                            <div class="grid-md-2-4">
+                                <a href="bookDetail.jsp">
+                                    <div class="home-product-item">
+                                        <div class="home-product-item__img"
+                                             style="background-image: url('${not empty p.image.sourceImg ? p.image.sourceImg : '../img/path_to_default_image.png'}');">
+                                        </div>
+                                        <h4 class="home-product-item__name">${p.title}</h4>
+                                        <div class="home-product-item__price">
+                                            <c:if test="${p.promotionId == 0}">
+                                                <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
+                                                <span class="home-product-item__price-current original-price">${p.originalPrice}đ</span>
+                                            </c:if>
+                                            <c:if test="${p.promotionId != 0}">
+                                                <span class="home-product-item__price-current">${p.originalPrice-(p.originalPrice * p.promotion.discount)}</span>
+                                                <span class="home-product-item__price-old">${p.originalPrice}đ</span>                                                <span class="home-product-item__price-current original-price">
+                                            </c:if>
+                                        </div>
+                                        <div class="home-product-item__action">
                                         <span class="home-product-item__like home-product-item__like--liked">
                                             <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
                                             <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
                                         </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
+                                            <div class="home-product-item__rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
 
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
                         </c:forEach>
                         <div style="text-align: center; margin-top: 36px;">
                             <button id="load-more" class="home-product-btn btn-primary">Xem thêm</button>
@@ -306,48 +276,58 @@
             </div>
         </div>
     </div>
+</div>
+<!--footer-->
+<!--<div id="footer"></div>-->
+<jsp:include page="footer.jsp"></jsp:include>
+<!-- /FOOTER -->
+<!--format tiền tệ-->
+<script src="js/FormatMoney.js"></script>
+<script>
+    document.querySelectorAll('.unit-price, .original-price').forEach(element => {
+        const rawText = element.textContent.split('.')[0];
+        const amount = parseInt(rawText.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
+        if (!isNaN(amount)) {
+            element.textContent = formatCurrencyVN(amount);
+        }
+    });
+</script>
 
-    <!--footer-->
-    <!--<div id="footer"></div>-->
-    <jsp:include page="footer.jsp"></jsp:include>
-    <!-- /FOOTER -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const starInputs = document.querySelectorAll("input[name='rating']");
+        const starLabels = document.querySelectorAll(".category-inform label");
 
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const starInputs = document.querySelectorAll("input[name='rating']");
-            const starLabels = document.querySelectorAll(".category-inform label");
-
-            // Gắn sự kiện click cho từng label
-            starLabels.forEach((label, index) => {
-                label.addEventListener("click", () => {
-                    updateStars(index);
-                });
+        // Gắn sự kiện click cho từng label
+        starLabels.forEach((label, index) => {
+            label.addEventListener("click", () => {
+                updateStars(index);
             });
-
-            // Hàm cập nhật màu của các ngôi sao dựa trên chỉ số được chọn
-            function updateStars(selectedIndex) {
-                starLabels.forEach((label, i) => {
-                    if (i <= selectedIndex) {
-                        label.querySelector("i").style.color = "#ffc107"; // Vàng
-                    } else {
-                        label.querySelector("i").style.color = "#ddd"; // Xám
-                    }
-                });
-
-                // Đánh dấu radio button tương ứng là được chọn
-                starInputs[selectedIndex].checked = true;
-            }
-
-            // Kiểm tra trạng thái khi tải lại trang
-            const checkedInputIndex = Array.from(starInputs).findIndex((input) => input.checked);
-            if (checkedInputIndex !== -1) {
-                updateStars(checkedInputIndex); // Cập nhật màu nếu đã chọn trước đó
-            }
         });
 
+        // Hàm cập nhật màu của các ngôi sao dựa trên chỉ số được chọn
+        function updateStars(selectedIndex) {
+            starLabels.forEach((label, i) => {
+                if (i <= selectedIndex) {
+                    label.querySelector("i").style.color = "#ffc107"; // Vàng
+                } else {
+                    label.querySelector("i").style.color = "#ddd"; // Xám
+                }
+            });
 
-    </script>
+            // Đánh dấu radio button tương ứng là được chọn
+            starInputs[selectedIndex].checked = true;
+        }
+
+        // Kiểm tra trạng thái khi tải lại trang
+        const checkedInputIndex = Array.from(starInputs).findIndex((input) => input.checked);
+        if (checkedInputIndex !== -1) {
+            updateStars(checkedInputIndex); // Cập nhật màu nếu đã chọn trước đó
+        }
+    });
+
+
+</script>
 
 </body>
 </html>
