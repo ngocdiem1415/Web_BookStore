@@ -1,0 +1,275 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 20/12/2024
+  Time: 9:28 CH
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Admin</title>
+    <!--  all css files-->
+    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
+    <link rel="stylesheet" href="../../css/Style.css">
+    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Add-Admin.css">
+
+
+</head>
+<body>
+<!--curtain menu-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <a href="Dashboard.html">
+            <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
+        </a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <nav class="offcanvas-body">
+        <ul class="links">
+            <li class="nav-item">
+                <a href="Dashboard.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tachometer-alt"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="User-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Order-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Category-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tags"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Product-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-archive"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Supplier-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="far fa-newspaper"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà xuất bản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Slider-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-store"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Discount-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-percent"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Admin-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users-cog"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                    <i class="fa-solid fa-gear"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="overlay"></div>
+
+<!--header start-->
+<header id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
+                <div class="header-left">
+                    <div class="menu-toggle-btn ">
+                        <button class="btn" type="button" style="background-color: #4B908E; color: white"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
+                                class="fas fa-bars" style="color:white"></i> Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-7 col-6 ">
+                <div class="header-right">
+                    <!-- profile start -->
+                    <div class="profile-box">
+                        <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
+                                id="profile"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-info">
+                                <div class="info ">
+                                    <h5 class="pt-3">Ngọc Diễm</h5>
+                                    <div class="image">
+                                        <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
+                                        <span class="status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
+                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    <!-- profile end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header end-->
+<!-- Container -->
+
+
+<section class="section">
+    <div class="container-fluid mb-5">
+        <div class="title-wrapper pt-3">
+            <div class="d-flex align-items-center">
+                <!-- end col -->
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb mx-4">
+                        <li class="breadcrumb-item">
+                            <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="#" class="text-dec" style="color: gray"> / </a>
+                            <a href="#" class="text-dec" style="color: #f07c29">Add admin</a>
+                        </li>
+                    </ol>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <div class="add-admin-container">
+            <div class="add-admin-container-content">
+                <div style="display: contents">
+                    <div class="add-admin-container-content-inner">
+                        <div class="add-admin-container-content-inner-header">
+                            <h2 class="add-admin-container-content-inner-header-title">Thêm admin</h2>
+                        </div>
+                        <div class="add-admin-container-content-inner-body">
+                            <form action="#" method="post">
+                                <div class="form-add-admin-group">
+                                    <label for="ho">Họ <span class="require">*</span></label>
+                                    <input type="text" class="form-control" id="ho" name="ho" required>
+                                </div>
+                                <div class="form-add-admin-group">
+                                    <label for="ten">Tên <span class="require">*</span></label>
+                                    <input type="text" class="form-control" id="ten" name="ten" required>
+                                </div>
+                                <div class="form-add-admin-group">
+                                    <label for="email">Email<span class="require">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+
+                                <div class="form-add-admin-group">
+                                    <label for="phone">Số điện thoại<span class="require">*</span></label>
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <!-- Cap nhap hinh anh-->
+                                <div class="form-add-admin-group">
+                                    <label for="image">Hình ảnh<span class="require">*</span></label>
+                                    <input type="file" class="form-control" id="image" name="image" required>
+                                </div>
+
+                                <div class="form-add-admin-group">
+                                    <label for="password">Mật khẩu<span class="require">*</span></label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+
+                                <div class="form-add-admin-group">
+                                    <label for="address">Địa chỉ<span class="require">*</span></label>
+                                    <input type="text" class="form-control" id="address" name="address" required>
+                                </div>
+
+                                <div class="form-add-admin-group">
+                                    <label for="distinct">Huyện<span class="require">*</span></label>
+                                    <select class="form-select" id="distinct" name="distinct" required>
+                                        <option value="0">--Hãy chọn quận/huyện--</option>
+                                        <option value="1">Quận 9</option>
+                                        <option value="2">Quận 10</option>
+                                        <option value="3">Quận 11</option>
+                                        <option value="4">Quận 12</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-add-admin-group">
+                                    <label for="city">Tỉnh/Thành phố<span class="require">*</span></label>
+                                    <select class="form-select" id="city" name="city" required>
+                                        <option value="0">--Hãy chọn Tỉnh/Thành phố--</option>
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Bình Định</option>
+                                        <option value="3">Lâm Đồng</option>
+                                        <option value="4">Bình Dương</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="add-admin-container-content-inner-button">
+                            <button class="add-admin-container-content-inner-button-save">
+                                Lưu
+                            </button>
+                            <button class="add-admin-container-content-inner-button-cancel">
+                                Hủy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--header end-->
+<!--all script files-->
+<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/datatables.min.js"></script>
+
+
+</body>
+</html>

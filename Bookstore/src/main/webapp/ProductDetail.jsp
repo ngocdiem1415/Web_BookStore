@@ -13,20 +13,20 @@
   <title>Chi tiết sản phẩm</title>
 
   <!--    font awesome-->
-  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
 
   <!--    bootstrap-->
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
 
   <!--    CSS-->
-  <link rel="stylesheet" href="../css/ProductDetail.css">
-  <link rel="stylesheet" href="../css/Header.css">
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="../css/Style.css">
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/ProductDetail.css">
+  <link rel="stylesheet" href="css/Header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/Style.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -43,9 +43,9 @@
     <div class="row">
       <!-- LOGO -->
       <div class="col-md-2 d-flex justify-content-center align-items-end">
-        <a href="Home.html">
+        <a href="Home.jsp">
           <div class="header-logo">
-            <img src="../img/logo/logo-header.png" height="80" width="100"/></div>
+            <img src="img/logo/logo-header.png" height="80" width="100"/></div>
         </a>
       </div>
       <!-- /LOGO -->
@@ -65,16 +65,16 @@
       <div class="col-md-3 clearfix d-flex">
         <ul class="account-menu mr-1">
           <li class="account box mt-4">
-            <a href="profile.html">Tài khoản</a>
+            <a href="profile.jsp">Tài khoản</a>
             <i class="fa-solid fa-angle-down"></i>
             <ul class="subnav">
-              <li class="border-bottom border-gray"><a href="login.html">Đăng nhập</a></li>
-              <li><a href="login.html">Đăng kí</a></li>
+              <li class="border-bottom border-gray"><a href="login.jsp">Đăng nhập</a></li>
+              <li><a href="login.jsp">Đăng kí</a></li>
             </ul>
           </li>
         </ul>
         <div class="shopping-cart mt-4 ">
-          <a href="Cart.html" style="color: black">
+          <a href="Cart.jsp" style="color: black">
             <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
                  class="bi bi-bag-check" viewBox="0 0 16 16">
@@ -96,24 +96,24 @@
   <div class="container ">
     <!-- NAV -->
     <ul class="main-nav nav ">
-      <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
-      <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
+      <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
+      <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
       <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle p-0 m-0" href="category.html" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle p-0 m-0" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Sản phẩm
         </a>
         <ul class="dropdown-menu" aria-labelledby="productDropdown">
-          <li><a class="dropdown-item" href="category.html">Sách văn học</a></li>
-          <li><a class="dropdown-item" href="category.html">Kinh tế</a></li>
-          <li><a class="dropdown-item" href="category.html">Sách thiếu nhi</a></li>
-          <li><a class="dropdown-item" href="category.html">Tiểu sử - Hồi ký</a></li>
-          <li><a class="dropdown-item" href="category.html">Tâm lí - Kĩ năng sống</a></li>
-          <li><a class="dropdown-item" href="category.html">Nuôi dạy con</a></li>
-          <li><a class="dropdown-item" href="category.html">Sách giáo khoa</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
         </ul>
       </li>
-      <li class="nav-item "><a href="policy.html">Chính sách</a></li>
-      <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
+      <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
+      <li class="nav-item "><a href="contact.jsp">Liên hệ</a></li>
     </ul>
     <!-- /NAV -->
   </div>
@@ -128,12 +128,12 @@
       <ol class="breadcrumb bg-white shadow p-3">
         <li class="breadcrumb item">
           <!-- Liên kết đến trang chủ -->
-          <a href="Home.html" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
+          <a href="Home.jsp" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
           <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>
         </li>
         <li class="breadcrumb item">
           <!-- Liên kết đến trang danh mục sách -->
-          <a href="category.html" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
+          <a href="category.jsp" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
           <span class="fas fa-chevron-right text-muted mx-3"></span>
         </li>
         <li class="breadcrumb item active" aria-current="page">
@@ -146,11 +146,11 @@
   <!--        <nav aria-label="breadcrumb">-->
   <!--            <ol class="breadcrumb bg-white shadow p-3">-->
   <!--                <li class="breadcrumb item">-->
-  <!--                    <a href="Home.html">Trang chủ</a>-->
+  <!--                    <a href="Home.jsp">Trang chủ</a>-->
   <!--                    <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>-->
   <!--                </li>-->
   <!--                <li class="breadcrumb item">-->
-  <!--                    <a href="category.html">Sách</a>-->
+  <!--                    <a href="category.jsp">Sách</a>-->
   <!--                    <span class="fas fa-chevron-right text-muted mx-3"></span>-->
   <!--                </li>-->
   <!--                <li class="breadcrumb item active" aria-current="page">Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi-->
@@ -168,40 +168,40 @@
         <!-- Thumbnail (Ảnh lớn) -->
         <div class="rounded-4 d-flex justify-content-center">
           <img id="mainImage" style="width: 100%; height: 100vh; margin: auto;" class="rounded-4 fit"
-               src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
+               src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
         </div>
 
         <!-- Ảnh chi tiết -->
         <div class="border rounded-4 d-flex justify-content-center m-3 p-2" style="border: 1px solid #ddd;">
           <div class="item-thumb"
-               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp">
+               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
+                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp">
+               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp"/>
+                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp">
+               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp"/>
+                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp">
+               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp"/>
+                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp">
+               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp"/>
+                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp">
+               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp"/>
+                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp"/>
           </div>
         </div>
       </aside>
@@ -292,7 +292,7 @@
           </div>
 
           <!--mua ngay-->
-          <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 "
+          <a href="Cart.jsp" id="buy-now" class="btn btn-danger border border-secondary py-2 "
              style="background-color: red">
             Mua ngay </a>
 
@@ -472,12 +472,12 @@
             <div class="card-body">
               <h5 class="card-title mb-3">Sản phẩm liên quan</h5>
               <div class="d-flex mb-3">
-                <a href="ProductDetail.html" class="me-3">
-                  <img src="../img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
+                <a href="ProductDetail.jsp" class="me-3">
+                  <img src="img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.html" class="nav-link mb-1">
+                  <a href="ProductDetail.jsp" class="nav-link mb-1">
                     Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
                   </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
@@ -500,12 +500,12 @@
               </div>
 
               <div class="d-flex mb-3">
-                <a href="ProductDetail.html" class="me-3">
-                  <img src="../img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
+                <a href="ProductDetail.jsp" class="me-3">
+                  <img src="img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.html" class="nav-link mb-1">
+                  <a href="ProductDetail.jsp" class="nav-link mb-1">
                     Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt
                   </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
@@ -528,12 +528,12 @@
               </div>
 
               <div class="d-flex mb-3">
-                <a href="ProductDetail.html" class="me-3">
-                  <img src="../img/product/NhacNhoAnCan_1.webp"
+                <a href="ProductDetail.jsp" class="me-3">
+                  <img src="img/product/NhacNhoAnCan_1.webp"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng
+                  <a href="ProductDetail.jsp" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng
                     Khoảnh Khắc Trong
                     Cuộc Sống </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
@@ -556,12 +556,12 @@
               </div>
 
               <div class="d-flex">
-                <a href="ProductDetail.html" class="me-3">
-                  <img src="../img/product/NoiLuonChoNoVuong_1.jpg"
+                <a href="ProductDetail.jsp" class="me-3">
+                  <img src="img/product/NoiLuonChoNoVuong_1.jpg"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản
+                  <a href="ProductDetail.jsp" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản
                     2023) </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
                     <!--giá đã giảm-->
@@ -605,7 +605,7 @@
                 <!--Khách hàng-->
                 <div class="comment-header col-2 d-flex align-items-start">
 
-                  <img src="../img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
+                  <img src="img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
                        style="width: 50px; height: 50px;">
                   <div>
                     <div class="comment-name" style="font-weight: bold">Như</div>
@@ -663,7 +663,7 @@
 <section class="footer">
   <div class="footer-row">
     <div class="footer-col">
-      <a href="" class="mb-4"><img src="../img/logo/new_logo.png"/></a>
+      <a href="" class="mb-4"><img src="img/logo/new_logo.png"/></a>
       <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
       <div class="detail-icons ">
         <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
@@ -716,7 +716,7 @@
 
 <!--SCRIPT-->
 <!--<script>-->
-<!--    fetch('Header.html')-->
+<!--    fetch('Header.jsp')-->
 <!--        .then(response => {-->
 <!--            if (!response.ok) throw new Error('Network response was not ok');-->
 <!--            return response.text();-->
@@ -724,8 +724,8 @@
 <!--        .then(data => document.getElementById('header').innerHTML = data)-->
 <!--        .catch(error => console.error('Error:', error));-->
 
-<!--    // Tải nội dung của footer từ tệp Footer.html-->
-<!--    fetch('footer.html')-->
+<!--    // Tải nội dung của footer từ tệp Footer.jsp-->
+<!--    fetch('footer.jsp')-->
 <!--        .then(response => response.text())-->
 <!--        .then(data => {-->
 <!--            document.getElementById('footer').innerHTML = data;-->
@@ -806,7 +806,7 @@
 </script>
 
 <!--format tiền tệ-->
-<script src="../js/FormatMoney.js"></script>
+<script src="js/FormatMoney.js"></script>
 <script>
   document.querySelectorAll('.unit-price, .original-price').forEach(element => {
     const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ

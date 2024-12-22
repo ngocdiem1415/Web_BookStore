@@ -12,20 +12,20 @@
   <meta charset="UTF-8">
   <title>Về chúng tôi - Rimberio</title>
   <!--    Boostrap-->
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 
-  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
   <!-- Font awesome-->
-  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
 
   <!--    CSS-->
-  <link rel="stylesheet" href="../css/AboutUs.css">
-  <link rel="stylesheet" href="../css/Header.css">
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="../css/Style.css">
+  <link rel="stylesheet" href="css/AboutUs.css">
+  <link rel="stylesheet" href="css/Header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/Style.css">
 
   <!--    Font-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
       <div class="col-md-2 d-flex justify-content-center align-items-end">
         <a href="Home.html">
           <div class="header-logo">
-            <img src="../img/logo/logo-header.png" height="80" width="100"/></div>
+            <img src="img/logo/logo-header.png" height="80" width="100"/></div>
         </a>
       </div>
       <!-- /LOGO -->
@@ -130,7 +130,7 @@
   <div class="container m-5">
     <div class="introduction row gx-5">
       <div class="image col-6 d-flex flex-column justify-content-center align-items-center">
-        <img src="../img/introduction.jpg" class="card-img"
+        <img src="img/introduction.jpg" class="card-img"
              style="box-shadow: -25px -25px 0px 0px rgba(184,215,213,1);
                         -webkit-box-shadow: -25px -25px 0px 0px rgba(184,215,213,1);
                         -moz-box-shadow: -25px -25px 0px 0px rgba(184,215,213,1);"
@@ -182,7 +182,7 @@
 <section class="footer">
   <div class="footer-row">
     <div class="footer-col">
-      <a href="" class="mb-4"><img src="../img/logo/new_logo.png"/></a>
+      <a href="" class="mb-4"><img src="img/logo/new_logo.png"/></a>
       <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
       <div class="detail-icons ">
         <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
