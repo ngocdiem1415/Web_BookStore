@@ -30,16 +30,16 @@
                 </div>
                 <div class="form-header-inner-empty"></div>
             </div>
-            <div class="form-body"><!-- Register Form  -->
-                <form id="register-form" style="display: block" action="" method="post">
+            <div class="form-body">
+                <form id="register-form" style="display: block" action="signup" method="post">
                     <div class="form-group">
                         <label for="username">Tên người dùng<span class="required">*</span></label>
-                        <input type="text" name="username" id="name" class="form-control" required>
+                        <input type="text" name="username" id="username" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="password-register">Mật khẩu<span class="required">*</span></label>
-                        <input type="password" name="password-register" id="password-register" class="form-control"
+                        <label for="password">Mật khẩu<span class="required">*</span></label>
+                        <input type="password" name="password" id="password" class="form-control" onkeyup="checkPass()"
                                required>
                     </div>
 
@@ -48,7 +48,7 @@
                         <input type="email" name="email" id="email" class="form-control" required>
                     </div>
 
-                    <div class="form-group form-group-container-infor">
+                    <div class="form-group form-group-container-inform ">
                         <div class="form-group-left">
                             <label for="gender">Giới Tính<span class="required">*</span></label>
                             <select class="form-select infor" id="gender" name="gender" required>
@@ -60,13 +60,13 @@
                         </div>
                         <div class="form-group-right">
                             <label for="birthdate">Ngày sinh<span class="required">*</span></label>
-                            <input type="date" id="birthdate" name="birthdate" class="form-control infor" required>
+                            <input type="date" id="birthdate" name="birthdate" class="form-control inform" required>
                         </div>
 
                     </div>
                     <div class="form-group">
-                        <label for="password-register">Số Điện Thoại<span class="required">*</span></label>
-                        <input type="tel" name="password-register" id="tel" class="form-control"
+                        <label for="tel">Số Điện Thoại<span class="required">*</span></label>
+                        <input type="tel" name="phone" id="tel" class="form-control"
                                required>
                     </div>
                     <div class="form-group-button-login" style="text-align: center">
@@ -85,7 +85,9 @@
     </div>
 </div>
 
+<script>
 
+</script>
 
 </body>
 </html>

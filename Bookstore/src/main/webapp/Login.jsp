@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.bookstore.beans.User" %><%--
   Created by IntelliJ IDEA.
   User: ngocd
   Date: 12/16/2024
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,6 @@
     <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
-
 </head>
 <body>
 <div id="content-login" class="container-login">
@@ -23,11 +23,11 @@
         <div class="form-panel">
             <div class="form-header">
                 <div class="form-header-back">
-                    <a href="Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
+                    <a href="home" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="form-header-inner">
-                    <a href="Signup.jsp" class="form-link" id="sign-up-form-link">Đăng ký</a>
-                    <a href="Login.jsp" class="form-link active" id="login-form-link">Đăng nhập</a>
+                    <a href="signup" class="form-link" id="sign-up-form-link">Đăng ký</a>
+                    <a href="login" class="form-link active" id="login-form-link">Đăng nhập</a>
                 </div>
                 <div class="form-header-inner-empty"></div>
             </div>
@@ -42,6 +42,13 @@
                         <label for="password">Mật khẩu<span class="required">*</span></label>
                         <input type="password" name="password" id="password" class="form-control" required>
                     </div>
+                    <%
+                        String baoloi = request.getAttribute("baoloi") == null ? "" : (String) request.getAttribute("baoloi");
+                    %>
+                    <div class="text-center">
+                        <span class="text-danger"><%=baoloi%></span>
+                    </div>
+
                     <div class="form-group form-check">
                         <input type="checkbox" name="remember" id="remember">
                         <label for="remember">Ghi nhớ mật khẩu</label>
@@ -52,10 +59,10 @@
                         <button type="submit" class="form-submit form-submit-email"><i class="fa-solid fa-envelope"></i>
                         </button>
                     </div>
+
                     <div class="form-group-button-login">
                         <button type="submit" class="form-submit-sign-in">Đăng nhập</button>
                     </div>
-
 
                     <div class="form-footer">
                         <a href="ForgetPassword.jsp" id="forgot-password-link" class="forgot-password">Quên
