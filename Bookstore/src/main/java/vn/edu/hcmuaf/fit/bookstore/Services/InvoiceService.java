@@ -1,7 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
-import sun.misc.Signal;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
 import vn.edu.hcmuaf.fit.bookstore.beans.InvoiceDetail;
@@ -34,12 +33,54 @@ public class InvoiceService {
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
 
-    public List<Invoice> findByBookTitle(String title, int userId) {
-        return connect.withExtension(InvoiceDao.class, handle -> handle.findByBookTitle(title, userId).stream()
+    public List<Invoice> findByBookTitle(int userId, String title) {
+        return connect.withExtension(InvoiceDao.class, handle -> handle.findByBookTitle(userId, title).stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
 
-    private InvoiceDetail mapInvoiceDetail(InvoiceDetail invoiceDetail){
+    public List<Invoice> findByStatus(int userId, String status) {
+        return connect.withExtension(InvoiceDao.class, handle -> handle.findByBookTitle(userId, status).stream()
+                .map(this::mapInvoice).collect(Collectors.toList()));
+    }
+
+    synchronized public int insert(Invoice invoice) {
+        int status = (int) connect.withExtension(InvoiceDao.class, handle -> handle.insert(invoice));
+        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()) {
+            connect.withExtension(InvoiceDetailDao.class, handle -> handle.insert(invoiceDetail));
+            connect.useExtension(BookDao.class, handle -> {
+                Book book = invoiceDetail.getBook();
+                book.setStockQuantity(book.getStockQuantity() - invoiceDetail.getQuantity());
+                book.setSoldQuantity(book.getSoldQuantity() + invoiceDetail.getQuantity());
+                handle.update(book);
+            });
+        }
+        return status;
+    }
+
+    synchronized public int cancelInvoice(Invoice invoice) {
+        invoice.setStatus("Canceled");
+        System.out.println(invoice);
+        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
+        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
+            connect.useExtension(BookDao.class, handle -> {
+                Book book = invoiceDetail.getBook();
+                book.setStockQuantity(book.getStockQuantity() + invoiceDetail.getQuantity());
+                book.setSoldQuantity(book.getSoldQuantity() - invoiceDetail.getQuantity());
+                handle.update(book);
+            });
+        }
+        return status;
+    }
+
+    public int update(Invoice invoice){
+        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
+        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
+            connect.withExtension(InvoiceDetailDao.class, handle -> handle.update(invoiceDetail));
+        }
+        return status;
+    }
+
+    private InvoiceDetail mapInvoiceDetail(InvoiceDetail invoiceDetail) {
         Book book = connect.withExtension(BookDao.class, handle -> handle.findById(invoiceDetail.getBookId()));
         invoiceDetail.setBook(book);
         return invoiceDetail;

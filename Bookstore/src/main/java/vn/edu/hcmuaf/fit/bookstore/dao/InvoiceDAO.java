@@ -13,15 +13,15 @@ import java.util.List;
 public interface InvoiceDao {
 
     //Lấy tất cả các đơn hàng (admin)
-    @SqlQuery("select * from invoices order by i.order_date desc")
+    @SqlQuery("select * from invoices order by order_date desc")
     List<Invoice> listAll();
 
     //Lấy tất cả các đơn hàng của 1 user // Tìm đơn hàng theo user
-    @SqlQuery("select * from invoices where i.uid = :id order by i.order_date desc")
+    @SqlQuery("select * from invoices where uid = :id order by order_date desc")
     List<Invoice> findByUser(@Bind("id") int id);
 
     //Lấy đơn hàng theo ID
-    @SqlQuery("select * from invoices where i.invoice_id = :id")
+    @SqlQuery("select * from invoices where invoice_id = :id")
     Invoice findById(@Bind("id") int id);
 
     //Tìm đơn hàng theo tên sách đã mua
@@ -29,21 +29,22 @@ public interface InvoiceDao {
             "(select id.invoice_id from invoice_details id join books b on id.b_id = b.b_id" +
             " where b.title LIKE Concat('%', :title, '%'))" +
             " AND i.uid = :id")
-    List<Invoice> findByBookTitle(@Bind("title") String title, @Bind("id") int id);
+    List<Invoice> findByBookTitle(@Bind("id") int id, @Bind("title") String title);
+
+    //Tìm đơn hàng theo status
+    @SqlQuery("select * from invoices where uid = :id and status = :status order by i.order_date desc")
+    List<Invoice> findByStatus(@Bind("id") int id, @Bind("status") String status);
 
     //Thêm đơn hàng
     @SqlUpdate(" INSERT INTO invoices ( uid, recipient_name, recipient_phone, address, order_date, status, shipping_fee, completion_date) " +
             "VALUES ( :uid, :recipientName, :recipientPhone, :address, :orderDate, :status, :shippingFee, :completionDate)")
-    void insert(@BindBean Invoice invoice);
+    int insert(@BindBean Invoice invoice);
 
     //Cập nhật đơn hàng
     @SqlUpdate(" UPDATE invoices SET recipient_name = :recipientName, " +
             "recipient_phone = :recipientPhone, address = :address, order_date = :orderDate, " +
             "status = :status, shipping_fee = :shippingFee, completion_date = :completionDate " +
             "WHERE invoice_id = :invoiceId ")
-    void update(@BindBean Invoice invoice);
+    int update(@BindBean Invoice invoice);
 
-    //Hủy đơn hàng
-    @SqlUpdate("update invoices set status = 'Cancelled' where invoice_id = :id")
-    void cancelInvoice(@Bind("id") int id);
 }
