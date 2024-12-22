@@ -26,10 +26,11 @@ public class Book implements Serializable {
     private LocalDateTime create_at;
     private LocalDateTime update_at;
     private int status;
+    private Image image;
 
     public Book() {}
 
-    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status,Image image) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -51,6 +52,7 @@ public class Book implements Serializable {
         this.create_at = create_at;
         this.update_at = update_at;
         this.status = status;
+        this.image = image;
     }
 
     @Override
@@ -71,13 +73,21 @@ public class Book implements Serializable {
                 ", pageCount=" + pageCount +
                 ", format='" + format + '\'' +
                 ", originalPrice=" + originalPrice +
-                ", description='" + description + '\'' +
                 ", soldQuantity=" + soldQuantity +
                 ", stockQuantity=" + stockQuantity +
                 ", create_at=" + create_at +
                 ", update_at=" + update_at +
                 ", status=" + status +
+                ", image=" + image +
                 '}';
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public int getbId() {
