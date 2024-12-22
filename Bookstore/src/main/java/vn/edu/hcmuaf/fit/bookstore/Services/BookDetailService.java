@@ -1,14 +1,8 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.hcmuaf.fit.bookstore.beans.Book;
-import vn.edu.hcmuaf.fit.bookstore.beans.Category;
-import vn.edu.hcmuaf.fit.bookstore.beans.Promotion;
-import vn.edu.hcmuaf.fit.bookstore.beans.Publisher;
-import vn.edu.hcmuaf.fit.bookstore.dao.CategoryDao;
-import vn.edu.hcmuaf.fit.bookstore.dao.BookDao;
-import vn.edu.hcmuaf.fit.bookstore.dao.PromotionDao;
-import vn.edu.hcmuaf.fit.bookstore.dao.PublisherDao;
+import vn.edu.hcmuaf.fit.bookstore.beans.*;
+import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.util.List;
@@ -28,6 +22,11 @@ public class BookDetailService {
         return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
     }
 
+    public List<Book> list20Product() {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.list20Product());
+        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+    }
+
     public Book findById(int id){
         return connect.withExtension(BookDao.class, handle -> mapOtherBean(findById(id)));
     }
@@ -37,15 +36,17 @@ public class BookDetailService {
             System.out.println("Book is null");
             return new Book();
         }
-        System.out.println("Book: " + book.getTitle());
         Category category = connect.withExtension(CategoryDao.class, handle -> handle.findById(book.getCategoryId()));
         Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
         Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(book.getPromotionId()));
+        Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
 //    System.out.println("Category: " + category.getName());
 //    System.out.println("Publisher: " + publisher.getName());
         book.setCategory(category);
         book.setPublisher(publisher);
         book.setPromotion(promotion);
+        book.setImage(image);
+        System.out.println(book.toString());
         return book;
     }
 

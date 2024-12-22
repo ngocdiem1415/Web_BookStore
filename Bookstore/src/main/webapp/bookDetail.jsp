@@ -635,7 +635,7 @@
 </script>
 
 <!--format tiền tệ-->
-<script src="../js/FormatMoney.js"></script>
+<script src="js/FormatMoney.js"></script>
 <script>
   document.querySelectorAll('.unit-price, .original-price').forEach(element => {
     const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
