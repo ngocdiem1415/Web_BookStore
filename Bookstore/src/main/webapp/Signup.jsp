@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +23,11 @@
         <div class="form-panel">
             <div class="form-header">
                 <div class="form-header-back">
-                    <a href="Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
+                    <a href="home" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="form-header-inner">
-                    <a href="Signup.jsp" class="form-link active" id="sign-up-form-link">Đăng ký</a>
-                    <a href="Login.jsp" class="form-link js-only" id="login-form-link">Đăng nhập</a>
+                    <a href="signup" class="form-link active" id="sign-up-form-link">Đăng ký</a>
+                    <a href="login" class="form-link js-only" id="login-form-link">Đăng nhập</a>
                 </div>
                 <div class="form-header-inner-empty"></div>
             </div>
@@ -35,6 +36,9 @@
                     <div class="form-group">
                         <label for="username">Tên người dùng<span class="required">*</span></label>
                         <input type="text" name="username" id="username" class="form-control" required>
+                        <c:if test="${not empty baoloi}">
+                            <p class="error">${baoloi}</p>
+                        </c:if>
                     </div>
 
                     <div class="form-group">
@@ -52,10 +56,10 @@
                         <div class="form-group-left">
                             <label for="gender">Giới Tính<span class="required">*</span></label>
                             <select class="form-select infor" id="gender" name="gender" required>
-                                <option value="0">--Hãy chọn--</option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
-                                <option value="3">Khác</option>
+                                <option value="">--Hãy chọn--</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="other">Khác</option>
                             </select>
                         </div>
                         <div class="form-group-right">

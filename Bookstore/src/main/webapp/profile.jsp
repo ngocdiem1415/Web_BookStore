@@ -8,22 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="vn.edu.hcmuaf.fit.bookstore.beans.User" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="static vn.edu.hcmuaf.fit.bookstore.util.MailVerify.username" %> <%--import User class--%>
-<%@ page session="true" %>
-<%
 
-    User currentUser = (User) session.getAttribute("currentUser");
-    if (currentUser != null) {
-        String username = currentUser.getUsername();
-        String email = currentUser.getEmail();
-        String phone = currentUser.getPhone();
-        String gender = currentUser.getGender();
-        Date birthday = currentUser.getDob();
-    } else {
-        // Nếu không có user trong session, redirect về trang login hoặc trang khác.
-        response.sendRedirect("login");
-    }
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,65 +26,7 @@
 </head>
 <body>
 <!--Header-->
-<header id="header">
-    <!-- MAIN HEADER -->
-    <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
-    <!--        <a href="#" class="content">Freeship đơn từ 45k, giảm nhiều hơn cùng FREESHIP XTRA</a>-->
-    <!--    </div>-->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <!-- LOGO -->
-            <div class="col-md-2 d-flex justify-content-center align-items-end">
-                <a href="Home.jsp">
-                    <div class="header-logo">
-                        <img src="img/logo/logo-header.png" height="80" width="100"/></div>
-                </a>
-            </div>
-            <!-- /LOGO -->
-
-            <!-- SEARCH BAR -->
-            <div class="col-md-7">
-                <div class="header-search">
-                    <form class="d-flex mt-2">
-                        <input class="input flex-grow-1" placeholder="Search product">
-                        <button class="search-btn">Search</button>
-                    </form>
-                </div>
-            </div>
-            <!-- /SEARCH BAR -->
-
-            <!-- ACCOUNT -->
-            <div class="col-md-3 clearfix d-flex">
-                <ul class="account-menu mr-1">
-                    <li class="account box mt-4">
-                        <a href="profile.jsp">Tài khoản</a>
-                        <i class="fa-solid fa-angle-down"></i>
-                        <ul class="subnav">
-                            <li class="border-bottom border-gray"><a href="login.jsp">Đăng nhập</a></li>
-                            <li><a href="login.jsp">Đăng kí</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="shopping-cart mt-4 ">
-                    <a href="Cart.jsp" style="color: black">
-                        <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
-                             class="bi bi-bag-check" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                  d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- /HEADER -->
-
-<!-- NAVIGATION-->
-<nav id="navigation">
+<%@ include file="Header.jsp" %>
     <!-- container -->
     <div class="container ">
         <!-- NAV -->
@@ -107,8 +34,7 @@
             <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
             <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown"
-                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sản phẩm
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="productDropdown">
@@ -126,8 +52,6 @@
         </ul>
         <!-- /NAV -->
     </div>
-</nav>
-<!--/nav end-->
 
 
 <!--Content-->
@@ -141,15 +65,22 @@
                     <a href="" class="profile-info-logo">
                         <div class="profile-info-avatar-img">
                             <div class="profile-info-avatar_img__placeholder">
-                                <img src="admin/img/Sample_User_Icon.png" class="icon-user"/>
+                                <img
+                                        <c:if test="${userSession.getAvatar() != null}">
+                                            src="${userSession.getAvatar()}"
+                                        </c:if>
+                                        class="icon-user"/>
                             </div>
                         </div>
                     </a>
                     <div class="profile-info-username">
-                        <div class="profile-info-username__text"><%= currentUser.getUsername() %>
+                        <div class="profile-info-username__text">
+                            <span class="profile-info-username__text-name">
+                                    ${userSession.getUsername()}
+                            </span>
                         </div>
                         <div>
-                            <a href="" class="profile-info-username__edit">
+                            <a href="profile" class="profile-info-username__edit">
                                 <i class="fa-solid fa-pencil"></i>
                                 <span>Sửa Hồ Sơ</span>
                             </a>
@@ -176,11 +107,7 @@
                                 <a href="#" id="profile-link"
                                    class="stardust-dropdown__item-body__content-item stardust-dropdown__item-body__content-item-active"><span
                                         class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
-                                <a href="#" id="bank-link" class="stardust-dropdown__item-body__content-item"><span
-                                        class="stardust-dropdown__item-body__content-item--text">Ngân Hàng</span></a>
-                                <a href="" id="address-link" class="stardust-dropdown__item-body__content-item"><span
-                                        class="stardust-dropdown__item-body__content-item--text">Địa chỉ</span></a>
-                                <a href="" id="password-change-link" class="stardust-dropdown__item-body__content-item"><span
+                                <a href="change-password.jsp" id="password-change-link" class="stardust-dropdown__item-body__content-item "><span
                                         class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
                                 <a href="" id="privacy-link" class="stardust-dropdown__item-body__content-item"><span
                                         class="stardust-dropdown__item-body__content-item--text">Những Thiết Lập Riêng Tư</span></a>
@@ -203,7 +130,7 @@
                     <!--yeu thich-->
                     <div class="stardust-dropdown">
                         <div class="stardust-dropdown__item-header">
-                            <a href="views/Like.jsp" class="stardust-dropdown__item-header-menu">
+                            <a href="Like.jsp" class="stardust-dropdown__item-header-menu">
                                 <div class="stardust-dropdown__item-header-account-img">
                                     <img src="admin/img/Heart-icon.png"/></div>
                                 <div class="stardust-dropdown__item-header-account-name">
@@ -216,7 +143,7 @@
                     <!--Dang Xuat-->
                     <div class="stardust-dropdown">
                         <div class="stardust-dropdown__item-header">
-                            <a href="views/Home.jsp" class="stardust-dropdown__item-header-menu">
+                            <a href="Home.jsp" class="stardust-dropdown__item-header-menu">
                                 <div class="stardust-dropdown__item-header-account-img">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                 </div>
@@ -228,19 +155,23 @@
                     </div>
 
                     <!--Ve admin-->
-                    <div class="stardust-dropdown">
-                        <div class="stardust-dropdown__item-header">
-                            <a href="Dashboard.jsp" class="stardust-dropdown__item-header-menu">
-                                <div class="stardust-dropdown__item-header-account-img">
-                                    <img src="admin/img/Sample_User_Icon.png"/></div>
-                                <div class="stardust-dropdown__item-header-account-name">
-                                    <span class="stardust-dropdown__item-header-account-name-text">Admin</span>
-                                </div>
-                            </a>
+                    <c:if test="${userSession.getRole() == 'admin'}">
+                        <div class="stardust-dropdown">
+                            <div class="stardust-dropdown__item-header">
+                                <a href="admin.jsp" class="stardust-dropdown__item-header-menu">
+                                    <div class="stardust-dropdown__item-header-account-img">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </div>
+                                    <div class="stardust-dropdown__item-header-account-name">
+                                        <span class="stardust-dropdown__item-header-account-name-text">Admin</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                 </div>
             </div>
+
 
             <!--            right: thong tin chi tiet-->
             <div id="profile-section" class="container-profile-content-inner__right">
@@ -270,8 +201,7 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name"><%= currentUser.getUsername() %>
-                                                        </div>
+                                                        <div class="table__row-input__text-name">${userSession.getUsername()}</div>
                                                         <button type="button" id="edit-name"
                                                                 class="table__row-input__text-button">Thay Đổi
                                                         </button>
@@ -279,16 +209,13 @@
                                                 </td>
                                             </tr>
 
-
-                                            <!--Email-->
                                             <tr>
                                                 <td class="table__row-label">
                                                     <label>Email</label>
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name"><%= currentUser.getEmail()%>
-                                                        </div>
+                                                        <div class="table__row-input__text-name">${userSession.getEmail()}</div>
                                                         <button type="button" id="edit-email"
                                                                 class="table__row-input__text-button">Thay Đổi
                                                         </button>
@@ -303,8 +230,7 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name"><%= currentUser.getPhone() %>
-                                                        </div>
+                                                        <div class="table__row-input__text-name">${userSession.getPhone()}</div>
                                                         <button type="button" id="edit-phone"
                                                                 class="table__row-input__text-button">Thay Đổi
                                                         </button>
@@ -319,24 +245,26 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <!--div chua cac radioBox-->
+                                                        <!-- div chứa các radioBox -->
                                                         <div class="table__row-input-stardust-radio-group">
-                                                            <!--  GT Nam-->
+                                                            <!-- GT Nam -->
                                                             <label class="stardust-radio">
-                                                                <input type="radio" name="gender" value="Nam"
-                                                                       class="gender-radio" <%="Nam".equals(currentUser.getGender())? "checked":""%> >
+                                                                <input type="radio" name="gender" value="Nam" class="gender-radio"
+                                                                       <c:if test="${userSession.getGender() == 'male'}">checked</c:if>>
                                                                 <span class="stardust-radio__label">Nam</span>
                                                             </label>
+
                                                             <!-- Radio Nữ -->
                                                             <label class="stardust-radio">
-                                                                <input type="radio" name="gender" value="Nữ"
-                                                                       class="gender-radio" <%="Nữ".equals(currentUser.getGender())?"checked":""%>>
+                                                                <input type="radio" name="gender" value="Nữ" class="gender-radio"
+                                                                       <c:if test="${userSession.getGender() == 'female'}">checked</c:if>>
                                                                 <span class="stardust-radio__label">Nữ</span>
                                                             </label>
+
                                                             <!-- Radio Khác -->
                                                             <label class="stardust-radio">
-                                                                <input type="radio" name="gender" value="Khác"
-                                                                       class="gender-radio"  <%="Khác".equals(currentUser.getGender())?"checked":""%>>
+                                                                <input type="radio" name="gender" value="Khác" class="gender-radio"
+                                                                       <c:if test="${userSession.getGender() == 'other'}">checked</c:if>>
                                                                 <span class="stardust-radio__label">Khác</span>
                                                             </label>
                                                         </div>
@@ -351,7 +279,11 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name"><%=currentUser.getDob()%></div>
+                                                        <div class="table__row-input__text-name">
+                                                            <c:if test="${userSession.getDob() != null}">
+                                                                ${userSession.getDob()}
+                                                            </c:if>
+                                                        </div>
                                                         <button type="button" id="edit-birthday"
                                                                 class="table__row-input__text-button">Thay Đổi
                                                         </button>
@@ -405,318 +337,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--    Right: Bank Information Details -->
-            <div id="bank-section" class="container-bank-content-inner__right" style="display: none;">
-                <div class="container-bank-content-inner__right-main" role="main">
-                    <div class="container-bank-content-inner__right-main-inner">
-                        <div class="container-bank-content-inner__right-main-header">
-                            <h1 class="container-bank-content-inner__right-main-header__title">Ngân Hàng</h1>
-                            <div class="container-bank-content-inner__right-main-header__description">Quản lý tài khoản
-                                ngân hàng và thẻ của bạn
-                            </div>
-                        </div>
-
-                        <!-- Credit/Debit Card Section -->
-                        <!--                        <div class="bank-section">-->
-                        <!--                            <h2>Thẻ Tín Dụng/Ghi Nợ</h2>-->
-                        <!--                            <p>Bạn chưa liên kết thẻ.</p>-->
-                        <!--                            <button class="btn btn-light btn&#45;&#45;m btn&#45;&#45;inline">+ Thêm Thẻ Mới</button>-->
-                        <!--                        </div>-->
-
-                        <!-- Bank Account Section -->
-                        <div class="bank-section">
-                            <h2>Tài Khoản Ngân Hàng Của Tôi</h2>
-                            <p>Bạn chưa có tài khoản ngân hàng.</p>
-                            <button class="btn btn-light btn--m btn--inline">+ Thêm Tài Khoản Ngân Hàng Liên Kết
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--  Right: Addres information-->
-            <div id="address-section" class="container-address-content-inner__right" style="display: none;">
-                <div class="container-address-content-inner__right-main" role="main">
-                    <div class="container-address-content-inner__right-main-inner">
-                        <!-- Header section -->
-                        <div class="container-address-content-inner__right-main-header">
-                            <div class="container-address-content-inner__right-main-header-left">
-                                <h1 class="container-address-content-inner__right-main-header__title">Địa chỉ của
-                                    tôi</h1>
-                                <div class="container-address-content-inner__right-main-header__description">
-                                    Quản lý các địa chỉ giao hàng của bạn
-                                </div>
-                            </div>
-                            <div class="container-address-content-inner__right-main-header-right">
-                                <button class="btn btn-light btn--m btn--inline add-address">+ Thêm địa chỉ mới</button>
-                            </div>
-                        </div>
-
-
-                        <!-- Address List Section -->
-                        <div class="address-section">
-                            <!-- Button to add a new address -->
-                            <!-- Address table list -->
-                            <div class="address-list">
-                                <div class="address-list-name-title">Địa chỉ</div>
-
-                                <div class="address-item">
-                                    <div class="address-details">
-                                        <div class="address-details-heading-head" role="heading">
-                                            <div id="address-details-current-heading"
-                                                 class="address-details-heading-address">
-                                                <span class="address-details-heading-address-text">
-                                                    <div class="address-details-heading-text-name">Nguyễn Hữu Thịnh</div>
-                                                </span>
-                                                <div class="address-details-heading-address-empty"></div>
-                                                <div class="address-details-heading-address-phone">(+84) 347 132 905
-                                                </div>
-                                            </div>
-
-                                            <div class="address-details-heading-address-button">
-                                                <button type="submit"
-                                                        class="address-details-heading-address-button-edit">
-                                                    Cập nhật
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div id="address-details-current-content"
-                                             class="address-details-heading-content" role="heading">
-                                            <div class="address-details-current-content-inner">
-                                                <div role="row" class="address-details-current-content-inner__address">
-                                                    22 Đường Số 22
-                                                </div>
-                                                <div role="row" class="address-details-current-content-inner__address">
-                                                    Phường Phước Long B, Thành Phố Thủ Đức, TP. Hồ Chí Minh
-                                                </div>
-                                            </div>
-
-                                            <div class="address-details-heading-content-button">
-                                                <button class="address-details-heading-content-button-default address-details-heading-content-button-default-active">
-                                                    Thiết lập mặc định
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div id="address-details-first-default" class="address-details-default">
-                                            <span role="mark" class="address-details-default-text">
-                                                Mặc định
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="address-item">
-                                    <div class="address-details">
-                                        <div class="address-details-heading-head" role="heading">
-                                            <div class="address-details-heading-address">
-                                                <span class="address-details-heading-address-text">
-                                                    <div class="address-details-heading-text-name">Nguyễn Thị Ngọc Diễm</div>
-                                                </span>
-                                                <div class="address-details-heading-address-empty"></div>
-                                                <div class="address-details-heading-address-phone">(+84) 342 132 904
-                                                </div>
-                                            </div>
-
-                                            <div class="address-details-heading-address-button">
-                                                <button type="submit"
-                                                        class="address-details-heading-address-button-edit">
-                                                    Cập nhật
-                                                </button>
-                                                <div class="address-details-heading-address-empty-button"></div>
-                                                <button class="address-details-heading-address-button-edit">
-                                                    Xóa
-                                                </button>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="address-details-heading-content" role="heading">
-                                            <div class="address-details-current-content-inner">
-                                                <div role="row" class="address-details-current-content-inner__address">
-                                                    27 Đường Số 2
-                                                </div>
-                                                <div role="row" class="address-details-current-content-inner__address">
-                                                    Phường Phước Long A, Thành Phố Thủ Đức, TP. Hồ Chí Minh
-                                                </div>
-                                            </div>
-
-                                            <div class="address-details-heading-content-button">
-                                                <button class="address-details-heading-content-button-default">
-                                                    Thiết lập mặc định
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!--                                        <div class="address-details-default">-->
-                                        <!--                                            <span role="mark" class="address-details-default-text">-->
-                                        <!--                                                Mặc định-->
-                                        <!--                                            </span>-->
-                                        <!--                                        </div>-->
-                                    </div>
-                                </div>
-
-                                <div class="address-item">
-                                    <div class="address-details">
-                                        <div class="address-details-heading-head" role="heading">
-                                            <div class="address-details-heading-address">
-                                                <span class="address-details-heading-address-text">
-                                                    <div class="address-details-heading-text-name">Võ Nguyễn Thanh Diệu</div>
-                                                </span>
-                                                <div class="address-details-heading-address-empty"></div>
-                                                <div class="address-details-heading-address-phone">(+84) 346 122 915
-                                                </div>
-                                            </div>
-
-                                            <div class="address-details-heading-address-button">
-                                                <button type="submit"
-                                                        class="address-details-heading-address-button-edit">
-                                                    Cập nhật
-                                                </button>
-                                                <div class="address-details-heading-address-empty-button"></div>
-                                                <button class="address-details-heading-address-button-edit">
-                                                    Xóa
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="address-details-heading-content" role="heading">
-                                            <div class="address-details-current-content-inner">
-                                                <div role="row" class="address-details-current-content-inner__address">
-                                                    31 Đường Số 3
-                                                </div>
-                                                <div role="row" class="address-details-current-content-inner__address">
-                                                    Phường Hiệp Bình, Thành Phố Thủ Đức, TP. Hồ Chí Minh
-                                                </div>
-                                            </div>
-
-                                            <div class="address-details-heading-content-button">
-                                                <button class="address-details-heading-content-button-default">
-                                                    Thiết lập mặc định
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!--                                        <div class="address-details-default">-->
-                                        <!--                                            <span role="mark" class="address-details-default-text">-->
-                                        <!--                                                Mặc định-->
-                                        <!--                                            </span>-->
-                                        <!--                                        </div>-->
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Right: Change password-->
-            <div id="password-change-section" class="container-profile-content-inner__right" style="display: none;">
-                <div class="container-profile-content-inner__right-main" role="main">
-                    <div style="display: contents">
-                        <div class="container-profile-content-inner__right-main-inner">
-                            <!-- Header của trang thay đổi mật khẩu -->
-                            <div class="container-profile-content-inner__right-main-header">
-                                <h1 class="container-profile-content-inner__right-main-header__title">Thay Đổi Mật
-                                    Khẩu</h1>
-                                <div class="container-profile-content-inner__right-main-header__description">
-                                    Để bảo vệ tài khoản của bạn, vui lòng thay đổi mật khẩu định kỳ.
-                                </div>
-                            </div>
-
-                            <!-- Nội dung của trang thay đổi mật khẩu -->
-                            <div class="container-profile-content-inner__right-main-content">
-                                <div class="container-profile-content-inner__right-main-content-center">
-                                    <!-- Form thay đổi mật khẩu -->
-                                    <form action="">
-                                        <table class="container-profile-content-inner__right-main-content-center__table">
-                                            <!-- Mật khẩu hiện tại -->
-                                            <tr>
-                                                <td class="table__row-label">
-                                                    <label>Mật khẩu hiện tại</label>
-                                                </td>
-                                                <td class="table__row-input">
-                                                    <div class="table__row-input__field">
-                                                        <input type="password" placeholder="Nhập mật khẩu hiện tại"
-                                                               class="table__row-input__field-text">
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <!-- Mật khẩu mới -->
-                                            <tr>
-                                                <td class="table__row-label">
-                                                    <label>Mật khẩu mới</label>
-                                                </td>
-                                                <td class="table__row-input">
-                                                    <div class="table__row-input__field">
-                                                        <input type="password" placeholder="Nhập mật khẩu mới"
-                                                               class="table__row-input__field-text">
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <!-- Xác nhận mật khẩu mới -->
-                                            <tr>
-                                                <td class="table__row-label">
-                                                    <label>Xác nhận mật khẩu mới</label>
-                                                </td>
-                                                <td class="table__row-input">
-                                                    <div class="table__row-input__field">
-                                                        <input type="password" placeholder="Nhập lại mật khẩu mới"
-                                                               class="table__row-input__field-text">
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <!-- Nút lưu thay đổi -->
-                                            <tr>
-                                                <td class="table__row-label">
-                                                    <label></label>
-                                                </td>
-                                                <td class="table__row-input">
-                                                    <button type="submit"
-                                                            class="btn btn-solid-primary btn--m btn--inline"
-                                                            type="button" aria-disabled="false">
-                                                        Lưu Thay Đổi
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Right: function else-->
-            <div id="privacy-section" class="container-privacy-content-inner__right" style="display: none">
-                <div class="container-privacy-content-inner__right-main" role="main">
-                    <div class="container-privacy-content-inner__right-main-inner">
-                        <!-- Header Section -->
-                        <div class="container-privacy-content-inner__right-main-header">
-                            <h1 class="container-privacy-content-inner__right-main-header__title">Privacy Settings</h1>
-                        </div>
-
-                        <!-- Content Section -->
-                        <div class="container-privacy-content-inner__right-main-content">
-                            <div class="container-privacy-content-inner__right-main-content-center">
-                                <!-- Account Deletion Request Row -->
-                                <div class="privacy-row">
-                                    <div class="privacy-row-label">Yêu cầu xóa tài khoản</div>
-                                    <button class="btn btn-danger btn-delete" type="button">Xóa bỏ</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

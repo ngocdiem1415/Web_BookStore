@@ -438,24 +438,6 @@
 </section>
 <!--footer end-->
 
-<!--script-->
-<!--<script>-->
-<!--    fetch('Header.jsp')-->
-<!--        .then(response => {-->
-<!--            if (!response.ok) throw new Error('Network response was not ok');-->
-<!--            return response.text();-->
-<!--        })-->
-<!--        .then(data => document.getElementById('header').innerHTML = data)-->
-<!--        .catch(error => console.error('Error:', error));-->
-
-<!--    // Tải nội dung của footer từ tệp Footer.jsp-->
-<!--    fetch('footer.jsp')-->
-<!--        .then(response => response.text())-->
-<!--        .then(data => {-->
-<!--            document.getElementById('footer').innerHTML = data;-->
-<!--        });-->
-<!--</script>-->
-<!--all script files-->
 
 
 <script>
