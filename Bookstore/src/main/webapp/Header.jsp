@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <!-- HEADER -->
 <body>
@@ -48,14 +48,14 @@
                             <a href="">${userSession.username}</a>
                             <i class="fa-solid fa-angle-down"></i>
                             <ul class="subnav">
-                                <li class="border-bottom border-gray"><a href="profile.jsp">Hồ sơ</a></li>
+                                <li class="border-bottom border-gray"><a href="profile">Hồ sơ</a></li>
                                 <li class="border-bottom border-gray"><a href="logout">Đăng xuất</a></li>
                             </ul>
                         </li>
                     </c:if>
                     <c:if test="${empty userSession}">
                         <li class="account box mt-4">
-                            <a href="profile.jsp">Tài khoản</a>
+                            <a href="#">Tài khoản</a>
                             <i class="fa-solid fa-angle-down"></i>
                             <ul class="subnav">
                                 <li class="border-bottom border-gray"><a href="login">Đăng nhập</a></li>
