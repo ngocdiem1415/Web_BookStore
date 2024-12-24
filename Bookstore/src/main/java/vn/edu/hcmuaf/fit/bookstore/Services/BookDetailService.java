@@ -17,13 +17,8 @@ public class BookDetailService {
         return instance;
     }
 
-    public List<Book> listProduct() {
-        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProduct());
-        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
-    }
-
-    public List<Book> list20Product() {
-        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.list20Product());
+    public List<Book> listProducts(int limit) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProduct(limit));
         return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
     }
 
