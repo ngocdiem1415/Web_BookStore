@@ -4,16 +4,20 @@ import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import vn.edu.hcmuaf.fit.bookstore.beans.Publisher;
+import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
 import java.util.List;
 
 @RegisterBeanMapper(Publisher.class)
 public interface PublisherDao {
 
-    @SqlQuery("select * from publishers")
+    @SqlQuery(QUERIES.PUBLISHER.SELECT_ALL_PUBLISHER)
     List<Publisher> list();
 
-    @SqlQuery("select * from publishers where p_id = :id")
+    @SqlQuery(QUERIES.PUBLISHER.FIND_BY_PUBLISHERID)
     Publisher findById(@Bind("id") int id);
+
+    @SqlQuery(QUERIES.PUBLISHER.DELETE)
+    void delete(@Bind("id") int id);
 
 }
