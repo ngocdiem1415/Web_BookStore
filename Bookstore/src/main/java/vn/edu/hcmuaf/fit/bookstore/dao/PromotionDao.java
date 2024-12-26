@@ -4,16 +4,20 @@ import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import vn.edu.hcmuaf.fit.bookstore.beans.Promotion;
+import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
 import java.util.List;
 
 @RegisterBeanMapper(Promotion.class)
 public interface PromotionDao {
 
-    @SqlQuery("select * from promotions")
+    @SqlQuery(QUERIES.PROMOTION.SELECT_ALL_PROMOTION)
     List<Promotion> list();
 
-    @SqlQuery("select * from promotions where promotion_id = :id")
+    @SqlQuery(QUERIES.PROMOTION.FIND_BY_PROMOTIONID)
     Promotion findById(@Bind("id") int id);
+
+    @SqlQuery(QUERIES.PROMOTION.DELETE)
+    void delete(@Bind("id") int id);
 
 }
