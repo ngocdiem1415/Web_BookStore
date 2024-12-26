@@ -19,7 +19,7 @@ public interface InvoiceDetailDao {
     //Thêm chi tiết đơn hàng
     @SqlUpdate(" INSERT INTO invoice_details ( invoice_id, b_id, quantity, unit_price) " +
             "VALUES ( :invoiceId, :bookId, :quantity, :unitPrice) ")
-    int insert(InvoiceDetail invoiceDetail);
+    int insert(@BindBean InvoiceDetail invoiceDetail);
 
     //Cập nhật chi tiết đơn hàng
     @SqlUpdate(" UPDATE invoice_details SET quantity = :quantity, unit_price = :unitPrice " +
