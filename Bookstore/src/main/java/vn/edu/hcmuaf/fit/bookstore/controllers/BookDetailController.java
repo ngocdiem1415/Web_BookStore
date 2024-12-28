@@ -20,7 +20,7 @@ public class BookDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId = String.valueOf(request.getParameter("id"));
         Book book = bookService.findById(Integer.parseInt(productId));
-        request.setAttribute("bookDetail", book);
+        request.setAttribute("book", book);
         request.getRequestDispatcher("bookDetail.jsp").forward(request, response);
     }
 

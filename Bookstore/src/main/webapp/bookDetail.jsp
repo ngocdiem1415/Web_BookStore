@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chi tiết sản phẩm</title>
+  <title>Book detail</title>
 
   <!--    font awesome-->
   <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
@@ -44,17 +44,15 @@
       <ol class="breadcrumb bg-white shadow p-3">
         <li class="breadcrumb item">
           <!-- Liên kết đến trang chủ -->
-          <a href="Home.jsp" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
+          <a href="/Home" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
           <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>
         </li>
         <li class="breadcrumb item">
           <!-- Liên kết đến trang danh mục sách -->
-          <a href="listBook.jsp" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
+          <a href="/listBook" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
           <span class="fas fa-chevron-right text-muted mx-3"></span>
         </li>
-        <li class="breadcrumb item active" aria-current="page">
-          Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ Grừ
-        </li>
+        <li class="breadcrumb item active" aria-current="page">${book.title}</li>
       </ol>
     </nav>
   </div>
@@ -65,7 +63,7 @@
         <!-- Thumbnail (Ảnh lớn) -->
         <div class="rounded-4 d-flex justify-content-center">
           <img id="mainImage" style="width: 100%; height: 100vh; margin: auto;" class="rounded-4 fit"
-               src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
+               src="${books.image}"/>
         </div>
 
         <!-- Ảnh chi tiết -->
@@ -108,11 +106,7 @@
 
         <div>
           <!--Title-->
-          <h4 class="title text-dark">
-            Méo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ Grừ - Tặng Kèm Thẻ Đeo Mica Cá
-            Nhân
-            Hóa + Bộ Sticker Mèo Dễ Thương
-          </h4>
+          <h4 class="title text-dark">${book.title}</h4>
           <div class="d-flex flex-row my-3">
 
             <!-- Xếp hạng -->
@@ -142,7 +136,7 @@
 
             <!--giá gốc-->
             <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
-              <span class="original-price">120000</span>
+              <span class="original-price">${book.originalPrice}</span>
               <i class="fa-solid fa-dong-sign fa-xs"></i>
             </div>
 
@@ -183,7 +177,7 @@
 
             <!--Số lượng hàng tồn kho-->
             <label class=" pt-1 d-block col-3">
-              <span>12</span>
+              <span>${book.stockQuantity}</span>
               sản phẩm có sẵn
             </label>
           </div>
@@ -237,36 +231,28 @@
                  aria-labelledby="ex1-tab-1">
               <table class="table border mt-3 mb-2">
                 <tr>
-                  <th class="py-2">Nhà cung cấp:</th>
-                  <td class="py-2">Sài Gòn Books</td>
-                </tr>
-                <tr>
                   <th class="py-2">Tác giả:</th>
-                  <td class="py-2">LiLi Chin</td>
+                  <td class="py-2">${book.author}</td>
                 </tr>
                 <tr>
                   <th class="py-2">NXB:</th>
-                  <td class="py-2">NXB Thế Giới</td>
-                </tr>
-                <tr>
-                  <th class="py-2">Năm XB:</th>
-                  <td class="py-2">2024</td>
+                  <td class="py-2">${book.publisher.p_name}</td>
                 </tr>
                 <tr>
                   <th class="py-2">Kích thước:</th>
-                  <td class="py-2">14cm x 17.8cm</td>
+                  <td class="py-2">${book.dimension}</td>
                 </tr>
                 <tr>
                   <th class="py-2">Trong lượng (gr):</th>
-                  <td class="py-2">180</td>
+                  <td class="py-2">${book.wweight}</td>
                 </tr>
                 <tr>
                   <th class="py-2">Số trang:</th>
-                  <td class="py-2">160 trang</td>
+                  <td class="py-2">${book.pageCount} trang</td>
                 </tr>
                 <tr>
                   <th class="py-2">Hình thức:</th>
-                  <td class="py-2">Bìa mềm</td>
+                  <td class="py-2">${book.format}</td>
                 </tr>
               </table>
 

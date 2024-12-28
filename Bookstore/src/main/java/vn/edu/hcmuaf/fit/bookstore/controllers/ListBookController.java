@@ -28,10 +28,12 @@ public class ListBookController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Book> books = bookDetailService.listProducts(20);// biến  limit
-        List<Category> categoryServices = categoryService.listCategory();
-        List<Publisher> publisherServices = publisherService.listPublisher();
+        List<Book> books = bookDetailService.listProducts(20,0);// biến  limit
+        List<Category> categories= categoryService.listCategory();
+        List<Publisher> publishers = publisherService.listPublisher();
         request.setAttribute("books", books);
+        request.setAttribute("categories", categories);
+        request.setAttribute("publishers", publishers);
         request.getRequestDispatcher("listBook.jsp").forward(request, response);
     }
 
