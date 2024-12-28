@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="css/Header.css">
     <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -66,61 +65,28 @@
                         <h4 class="category__heading">Nhà xuất bản</h4>
                         <div class="category-scroll">
                             <div class="category-inform">
-                                <input type="checkbox" id="kim-dong">
-                                <label class="checkbox-label" for="kim-dong">NXB Kim Đồng</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="tre">
-                                <label class="checkbox-label" for="tre">NXB Trẻ</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="phu-nu">
-                                <label class="checkbox-label" for="phu-nu">NXB Phụ Nữ</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="lao-dong">
-                                <label class="checkbox-label" for="lao-dong">NXB Lao Động</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="nha-nam">
-                                <label class="checkbox-label" for="nha-nam">NXB Nhã Nam</label>
-                            </div>
-                            <div class="category-inform">
-                                <input type="checkbox" id="van-hoa">
-                                <label class="checkbox-label" for="van-hoc">NXB Văn Học</label>
+                                <c:forEach var="publisher" items="${publishers}">
+                                    <div class="category-item">
+                                        <input type="checkbox" id="${publisher.p_id}" name="publisher"
+                                               value="${publisher.p_id}">
+                                        <label class="checkbox-label"
+                                               for="${publisher.p_id}">${publisher.p_name}</label>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
                     <div class="category-form">
                         <h4 class="category__heading">Loại sách</h4>
                         <div class="category-inform">
-                            <input type="checkbox" id="kinh-te">
-                            <label class="checkbox-label" for="kinh-te">Sách kinh tế</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="ky-nang">
-                            <label class="checkbox-label" for="ky-nang">Sách kỹ năng</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="thieu-nhi">
-                            <label class="checkbox-label" for="thieu-nhi">Sách thiếu nhi</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="thuong-thuc">
-                            <label class="checkbox-label" for="thuong-thuc">Sách thường thức</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="tuoi-teen">
-                            <label class="checkbox-label" for="tuoi-teen">Sách tuổi teen</label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="checkbox" id="van-hoc">
-                            <label class="checkbox-label" for="van-hoc">Sách văn học</label>
+                            <c:forEach var="category" items="${categories}">
+                                <div class="category-item">
+                                    <input type="checkbox" id="${category.categoryId}" name="category"
+                                           value="${category.categoryId}">
+                                    <label class="checkbox-label"
+                                           for="${category.categoryId}">${category.category_name}</label>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="category-form">
@@ -212,22 +178,22 @@
                     <!-- Sản phẩm hiển thị bên phải -->
                     <div id="product-container" class="grid__row">
                         <!--0-->
-                        <c:forEach var="p" items="${books}">
+                        <c:forEach var="book" items="${books}">
                             <div class="grid-md-2-4">
-                                <a href="bookDetail.jsp">
+                                <a href="/BookDetail?id=${book.bId}">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
-                                             style="background-image: url('${not empty p.image.sourceImg ? p.image.sourceImg : '../img/path_to_default_image.png'}');">
+                                             style="background-image: url('${not empty book.image.sourceImg ? book.image.sourceImg : '../img/path_to_default_image.png'}');">
                                         </div>
-                                        <h4 class="home-product-item__name">${p.title}</h4>
+                                        <h4 class="home-product-item__name">${book.title}</h4>
                                         <div class="home-product-item__price">
-                                            <c:if test="${p.promotionId == 0}">
-                                                <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
-                                                <span class="home-product-item__price-current original-price">${p.originalPrice}đ</span>
+                                            <c:if test="${book.promotionId == 0}">
+                                                <span class="home-product-item__price-current original-price">${book.originalPrice} đ</span>
                                             </c:if>
-                                            <c:if test="${p.promotionId != 0}">
-                                                <span class="home-product-item__price-current">${p.originalPrice-(p.originalPrice * p.promotion.discount)}</span>
-                                                <span class="home-product-item__price-old">${p.originalPrice}đ</span>                                                <span class="home-product-item__price-current original-price">
+                                            <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
+                                            <c:if test="${book.promotionId != 0}">
+                                                <span class="home-product-item__price-current unit-price">${book.originalPrice-(book.originalPrice * book.promotion.discount)}</span>
+                                                <span class="home-product-item__price-old original-price">${book.originalPrice}</span>
                                             </c:if>
                                         </div>
                                         <div class="home-product-item__action">
@@ -248,36 +214,51 @@
                                 </a>
                             </div>
                         </c:forEach>
-                        <div style="text-align: center; margin-top: 36px;">
-                            <button id="load-more" class="home-product-btn btn-primary">Xem thêm</button>
-                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 36px;">
+                        <button id="load-more" onclick="loadMore()" class="home-product-btn btn-primary">Xem thêm
+                        </button>
                     </div>
                 </div>
 
                 <!-- Phân trang -->
-                <div class="grid__row--footer">
-                    <div class="col-md-10">
-                        <div class="home-filter__paginate" style="text-align: right;">
-                            <ul class="home-filter__paginate-list">
-                                <li class="home-filter__paginate-item home-filter__paginate-item--active"><a
-                                        href="">1</a>
-                                </li>
-                                <li class="home-filter__paginate-item"><a href="">2</a></li>
-                                <li class="home-filter__paginate-item"><a href="">3</a></li>
-                                <li class="home-filter__paginate-item"><a href="">4</a></li>
-                                <li class="home-filter__paginate-item"><a href="">5</a></li>
-                                <li class="home-filter__paginate-item"><a href=""><i
-                                        class="fa-solid fa-chevron-right"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <%--                <div class="grid__row--footer">--%>
+                <%--                    <div class="col-md-10">--%>
+                <%--                        <div class="home-filter__paginate" style="text-align: right;">--%>
+                <%--                            <ul class="home-filter__paginate-list">--%>
+                <%--                                <li class="home-filter__paginate-item home-filter__paginate-item--active"><a--%>
+                <%--                                        href="">1</a>--%>
+                <%--                                </li>--%>
+                <%--                                <li class="home-filter__paginate-item"><a href="">2</a></li>--%>
+                <%--                                <li class="home-filter__paginate-item"><a href="">3</a></li>--%>
+                <%--                                <li class="home-filter__paginate-item"><a href="">4</a></li>--%>
+                <%--                                <li class="home-filter__paginate-item"><a href="">5</a></li>--%>
+                <%--                                <li class="home-filter__paginate-item"><a href=""><i--%>
+                <%--                                        class="fa-solid fa-chevron-right"></i></a>--%>
+                <%--                                </li>--%>
+                <%--                            </ul>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
         </div>
     </div>
 </div>
 <!--footer-->
+
+
+<!--jquery-->
+<script src="js/jquery.min.js"></script>
+
+<!--     OwlCarousel-->
+<!--<script src="../js/OwlCarousel.js"></script>-->
+<script src="js/owl.carousel.min.js"></script>
+<!--    bootstrap-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+
+
 <!--<div id="footer"></div>-->
 <jsp:include page="footer.jsp"></jsp:include>
 <!-- /FOOTER -->
@@ -285,12 +266,34 @@
 <script src="js/FormatMoney.js"></script>
 <script>
     document.querySelectorAll('.unit-price, .original-price').forEach(element => {
-        const rawText = element.textContent.split('.')[0];
-        const amount = parseInt(rawText.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
+        const amount = parseInt(element.textContent);
         if (!isNaN(amount)) {
             element.textContent = formatCurrencyVN(amount);
+            console.log(element.textContent);
         }
     });
+</script>
+
+<script>
+    function loadMore() {
+        var amount = document.querySelectorAll(".home-product-item").length;
+        console.log(amount);
+        $.ajax({
+            url: "/load",
+            type: "GET",
+            data: {
+                exitsBook: amount
+            },
+            success: function (data) {
+                var row = document.getElementById("product-container")
+                row.innerHTML += data;
+            },
+            error: function () {
+                alert("error");
+            }
+        })
+    }
+
 </script>
 
 <script>

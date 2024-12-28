@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.dao;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
+import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.bookstore.beans.Promotion;
 import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
@@ -17,7 +18,7 @@ public interface PromotionDao {
     @SqlQuery(QUERIES.PROMOTION.FIND_BY_PROMOTIONID)
     Promotion findById(@Bind("id") int id);
 
-    @SqlQuery(QUERIES.PROMOTION.DELETE)
+    @SqlUpdate(QUERIES.PROMOTION.DELETE)
     void delete(@Bind("id") int id);
 
 }

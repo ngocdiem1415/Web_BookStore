@@ -3,7 +3,12 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 public class QUERIES {
     public class BOOK{
         public static final String SELECT_ALL_BOOK =  "select * from books";
-        public static final String SELECT_ALL_BOOK_LIMIT =  "select * from books limit = :limit";
+        public static final String SELECT_ALL_BOOK_LIMIT =  "select * from books limit :limit OFFSET :offset";
+        public static final String SELECT_BOOK_PAGE_NEWEST = "select * from books ";
+//        public static final String SELECT_PRODUCTS_OLDEST =
+//        public static final String SELECT_PRODUCT_PAGE_PRICE_ASC =
+//        public static final String SELECT_PRODUCT_PAGE_PRICE_DESC =
+//        public static final String SELECT_PRODUCT_PAGE_NAME_ASC =
         public static final String FIND_BY_BID =  "select * from books where b_id = :id";
         public static final String FIND_BY_CATEGORYID =  "select * from books where b_id = :id";
         public static final String FIND_BY_BOOKNAME =  "select * from books where b_id = :id";
@@ -22,7 +27,7 @@ public class QUERIES {
 
     public class IMAGE{
         public static final String SELECT_ALL_IMAGE_THUMBNAIL =  "select * from images where is_thumbnail = 1";
-        public static final String SELECT_ALL_IMAGE_THUMBNAIL_LIMIT =  "select * from images where is_thumbnail = 1  limit = :limit";
+        public static final String SELECT_ALL_IMAGE_THUMBNAIL_LIMIT =  "select * from images where is_thumbnail = 1  limit :limit";
         public static final String FIND_IMAGE_THUMBNAIL_BY_ID = "select * from images where b_id = :id and is_thumbnail = 1";
         public static final String DELETE =  "delete from images where b_id = :id";
 
