@@ -11,14 +11,14 @@
 <head>
   <meta charset="UTF-8">
   <title>forgetPassword</title>
-  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
-  <link rel="stylesheet" href="../css/profile.css">
-  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/Header.css">
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="../css/Style.css">
-  <link rel="stylesheet" href="../css/ForgetPassword.css">
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/Header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/Style.css">
+  <link rel="stylesheet" href="css/ForgetPassword.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -33,9 +33,9 @@
     <div class="row">
       <!-- LOGO -->
       <div class="col-md-2 d-flex justify-content-center align-items-end">
-        <a href="Home.html">
+        <a href="Home.jsp">
           <div class="header-logo">
-            <img src="../img/logo/logo-header.png" height="80" width="100"/></div>
+            <img src="img/logo/logo-header.png" height="80" width="100"/></div>
         </a>
       </div>
       <!-- /LOGO -->
@@ -55,16 +55,16 @@
       <div class="col-md-3 clearfix d-flex">
         <ul class="account-menu mr-1">
           <li class="account box mt-4">
-            <a href="profile.html">Tài khoản</a>
+            <a href="profile.jsp">Tài khoản</a>
             <i class="fa-solid fa-angle-down"></i>
             <ul class="subnav">
-              <li class="border-bottom border-gray"><a href="login.html">Đăng nhập</a></li>
-              <li><a href="login.html">Đăng kí</a></li>
+              <li class="border-bottom border-gray"><a href="login.jsp">Đăng nhập</a></li>
+              <li><a href="login.jsp">Đăng kí</a></li>
             </ul>
           </li>
         </ul>
         <div class="shopping-cart mt-4 ">
-          <a href="Cart.html" style="color: black">
+          <a href="Cart.jsp" style="color: black">
             <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
                  class="bi bi-bag-check" viewBox="0 0 16 16">
@@ -86,24 +86,24 @@
   <div class="container ">
     <!-- NAV -->
     <ul class="main-nav nav ">
-      <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
-      <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
+      <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
+      <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
       <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.html" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Sản phẩm
         </a>
         <ul class="dropdown-menu" aria-labelledby="productDropdown">
-          <li><a class="dropdown-item" href="category.html">Sách văn học</a></li>
-          <li><a class="dropdown-item" href="category.html">Kinh tế</a></li>
-          <li><a class="dropdown-item" href="category.html">Sách thiếu nhi</a></li>
-          <li><a class="dropdown-item" href="category.html">Tiểu sử - Hồi ký</a></li>
-          <li><a class="dropdown-item" href="category.html">Tâm lí - Kĩ năng sống</a></li>
-          <li><a class="dropdown-item" href="category.html">Nuôi dạy con</a></li>
-          <li><a class="dropdown-item" href="category.html">Sách giáo khoa</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
+          <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
         </ul>
       </li>
-      <li class="nav-item "><a href="policy.html">Chính sách</a></li>
-      <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
+      <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
+      <li class="nav-item "><a href="contact.jsp">Liên hệ</a></li>
     </ul>
     <!-- /NAV -->
   </div>
@@ -135,7 +135,7 @@
 <section class="footer">
   <div class="footer-row">
     <div class="footer-col">
-      <a href="" class="mb-4"><img src="../img/logo/logo1.png"/></a>
+      <a href="" class="mb-4"><img src="img/logo/logo1.png"/></a>
       <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
       <div class="detail-icons ">
         <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>

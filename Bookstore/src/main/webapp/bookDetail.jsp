@@ -6,35 +6,119 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Book detail</title>
+  <title>Chi tiết sản phẩm</title>
 
   <!--    font awesome-->
-  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
 
   <!--    bootstrap-->
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
 
 
   <!--    CSS-->
-  <link rel="stylesheet" href="css/ProductDetail.css">
-  <link rel="stylesheet" href="css/Header.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/Style.css">
-  <script src="js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../css/ProductDetail.css">
+  <link rel="stylesheet" href="../css/Header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/Style.css">
+  <script src="../js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
 <!--Header-->
-<jsp:include page="Header.jsp"></jsp:include>
+<!--<div id="header"></div>-->
+<!--Header-->
+<header id="header">
+  <!-- MAIN HEADER -->
+  <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
+  <!--        <a href="#" class="content">Freeship đơn từ 45k, giảm nhiều hơn cùng FREESHIP XTRA</a>-->
+  <!--    </div>-->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- LOGO -->
+      <div class="col-md-2 d-flex justify-content-center align-items-end">
+        <a href="Home.html">
+          <div class="header-logo">
+            <img src="../img/logo/logo-header.png" height="80" width="100"/></div>
+        </a>
+      </div>
+      <!-- /LOGO -->
+
+      <!-- SEARCH BAR -->
+      <div class="col-md-7">
+        <div class="header-search">
+          <form class="d-flex mt-2">
+            <input class="input flex-grow-1" placeholder="Search product">
+            <button class="search-btn">Search</button>
+          </form>
+        </div>
+      </div>
+      <!-- /SEARCH BAR -->
+
+      <!-- ACCOUNT -->
+      <div class="col-md-3 clearfix d-flex">
+        <ul class="account-menu mr-1">
+          <li class="account box mt-4">
+            <a href="profile.html">Tài khoản</a>
+            <i class="fa-solid fa-angle-down"></i>
+            <ul class="subnav">
+              <li class="border-bottom border-gray"><a href="login.html">Đăng nhập</a></li>
+              <li><a href="login.html">Đăng kí</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="shopping-cart mt-4 ">
+          <a href="Cart.html" style="color: black">
+            <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
+                 class="bi bi-bag-check" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <!-- /HEADER -->
+
+<!-- NAVIGATION-->
+<nav id="navigation">
+  <!-- container -->
+  <div class="container ">
+    <!-- NAV -->
+    <ul class="main-nav nav ">
+      <li class="nav-item "><a href="Home.html">Trang chủ</a></li>
+      <li class="nav-item "><a href="AboutUs.html">Giới thiệu</a></li>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle p-0 m-0" href="category.html" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Sản phẩm
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="productDropdown">
+          <li><a class="dropdown-item" href="category.html">Sách văn học</a></li>
+          <li><a class="dropdown-item" href="category.html">Kinh tế</a></li>
+          <li><a class="dropdown-item" href="category.html">Sách thiếu nhi</a></li>
+          <li><a class="dropdown-item" href="category.html">Tiểu sử - Hồi ký</a></li>
+          <li><a class="dropdown-item" href="category.html">Tâm lí - Kĩ năng sống</a></li>
+          <li><a class="dropdown-item" href="category.html">Nuôi dạy con</a></li>
+          <li><a class="dropdown-item" href="category.html">Sách giáo khoa</a></li>
+        </ul>
+      </li>
+      <li class="nav-item "><a href="policy.html">Chính sách</a></li>
+      <li class="nav-item "><a href="contact.html">Liên hệ</a></li>
+    </ul>
+    <!-- /NAV -->
+  </div>
+</nav>
+<!--/nav end-->
 
 <!--Product detail content-->
 <div class="container_productDetail mx-4">
@@ -44,18 +128,39 @@
       <ol class="breadcrumb bg-white shadow p-3">
         <li class="breadcrumb item">
           <!-- Liên kết đến trang chủ -->
-          <a href="/Home" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
+          <a href="Home.html" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
           <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>
         </li>
         <li class="breadcrumb item">
           <!-- Liên kết đến trang danh mục sách -->
-          <a href="/listBook" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
+          <a href="category.html" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
           <span class="fas fa-chevron-right text-muted mx-3"></span>
         </li>
-        <li class="breadcrumb item active" aria-current="page">${book.title}</li>
+        <li class="breadcrumb item active" aria-current="page">
+          Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ Grừ
+        </li>
       </ol>
     </nav>
   </div>
+  <!--    <div class="breadcrumbNAV">-->
+  <!--        <nav aria-label="breadcrumb">-->
+  <!--            <ol class="breadcrumb bg-white shadow p-3">-->
+  <!--                <li class="breadcrumb item">-->
+  <!--                    <a href="Home.html">Trang chủ</a>-->
+  <!--                    <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>-->
+  <!--                </li>-->
+  <!--                <li class="breadcrumb item">-->
+  <!--                    <a href="category.html">Sách</a>-->
+  <!--                    <span class="fas fa-chevron-right text-muted mx-3"></span>-->
+  <!--                </li>-->
+  <!--                <li class="breadcrumb item active" aria-current="page">Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi-->
+  <!--                    Đến-->
+  <!--                    Tiếng Grừ Grừ-->
+  <!--                </li>-->
+  <!--            </ol>-->
+  <!--        </nav>-->
+  <!--    </div>-->
+
   <section class="product py-5">
     <div class="row m-0">
       <!--Ảnh sản phẩm-->
@@ -63,7 +168,7 @@
         <!-- Thumbnail (Ảnh lớn) -->
         <div class="rounded-4 d-flex justify-content-center">
           <img id="mainImage" style="width: 100%; height: 100vh; margin: auto;" class="rounded-4 fit"
-               src="${books.image}"/>
+               src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
         </div>
 
         <!-- Ảnh chi tiết -->
@@ -106,7 +211,11 @@
 
         <div>
           <!--Title-->
-          <h4 class="title text-dark">${book.title}</h4>
+          <h4 class="title text-dark">
+            Méo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ Grừ - Tặng Kèm Thẻ Đeo Mica Cá
+            Nhân
+            Hóa + Bộ Sticker Mèo Dễ Thương
+          </h4>
           <div class="d-flex flex-row my-3">
 
             <!-- Xếp hạng -->
@@ -136,7 +245,7 @@
 
             <!--giá gốc-->
             <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
-              <span class="original-price">${book.originalPrice}</span>
+              <span class="original-price">120000</span>
               <i class="fa-solid fa-dong-sign fa-xs"></i>
             </div>
 
@@ -177,7 +286,7 @@
 
             <!--Số lượng hàng tồn kho-->
             <label class=" pt-1 d-block col-3">
-              <span>${book.stockQuantity}</span>
+              <span>12</span>
               sản phẩm có sẵn
             </label>
           </div>
@@ -231,28 +340,36 @@
                  aria-labelledby="ex1-tab-1">
               <table class="table border mt-3 mb-2">
                 <tr>
+                  <th class="py-2">Nhà cung cấp:</th>
+                  <td class="py-2">Sài Gòn Books</td>
+                </tr>
+                <tr>
                   <th class="py-2">Tác giả:</th>
-                  <td class="py-2">${book.author}</td>
+                  <td class="py-2">LiLi Chin</td>
                 </tr>
                 <tr>
                   <th class="py-2">NXB:</th>
-                  <td class="py-2">${book.publisher.p_name}</td>
+                  <td class="py-2">NXB Thế Giới</td>
+                </tr>
+                <tr>
+                  <th class="py-2">Năm XB:</th>
+                  <td class="py-2">2024</td>
                 </tr>
                 <tr>
                   <th class="py-2">Kích thước:</th>
-                  <td class="py-2">${book.dimension}</td>
+                  <td class="py-2">14cm x 17.8cm</td>
                 </tr>
                 <tr>
                   <th class="py-2">Trong lượng (gr):</th>
-                  <td class="py-2">${book.wweight}</td>
+                  <td class="py-2">180</td>
                 </tr>
                 <tr>
                   <th class="py-2">Số trang:</th>
-                  <td class="py-2">${book.pageCount} trang</td>
+                  <td class="py-2">160 trang</td>
                 </tr>
                 <tr>
                   <th class="py-2">Hình thức:</th>
-                  <td class="py-2">${book.format}</td>
+                  <td class="py-2">Bìa mềm</td>
                 </tr>
               </table>
 
@@ -543,10 +660,78 @@
 
 <!--Footer-->
 <!--<div id="footer"></div>-->
-<jsp:include page="footer.jsp"></jsp:include>
+<section class="footer">
+  <div class="footer-row">
+    <div class="footer-col">
+      <a href="" class="mb-4"><img src="../img/logo/new_logo.png"/></a>
+      <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
+      <div class="detail-icons ">
+        <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
+        <p><i class="fa-solid fa-phone"></i>0123456789</p>
+        <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Về chúng tôi</h4>
+      <ul class="links">
+        <li><a href="#">Nguyễn Thị Ngọc Diễm</a></li>
+        <li><a href="#">Võ Nguyễn Thanh Diệu</a></li>
+        <li><a href="#">Nguyễn Hữu Thịnh</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Chính sách</h4>
+      <ul class="links">
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Tin tức</a></li>
+        <li><a href="#">Liên hệ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Gửi Email</h4>
+      <p>
+        Đăng ký nhận thông tin mới nhất từ chúng tôi.
+      </p>
+      <form action="#">
+        <input type="text" placeholder="Email" required>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+      <div class="icons">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-github"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="footer-copyright d-flex justify-content-center">
+    <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
+  </div>
+</section>
 <!-- /FOOTER -->
 
 <!--SCRIPT-->
+<!--<script>-->
+<!--    fetch('Header.html')-->
+<!--        .then(response => {-->
+<!--            if (!response.ok) throw new Error('Network response was not ok');-->
+<!--            return response.text();-->
+<!--        })-->
+<!--        .then(data => document.getElementById('header').innerHTML = data)-->
+<!--        .catch(error => console.error('Error:', error));-->
+
+<!--    // Tải nội dung của footer từ tệp Footer.html-->
+<!--    fetch('footer.html')-->
+<!--        .then(response => response.text())-->
+<!--        .then(data => {-->
+<!--            document.getElementById('footer').innerHTML = data;-->
+<!--        });-->
+<!--</script>-->
+
 <!--Script chọn ảnh thumbnail-->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -621,7 +806,7 @@
 </script>
 
 <!--format tiền tệ-->
-<script src="js/FormatMoney.js"></script>
+<script src="../js/FormatMoney.js"></script>
 <script>
   document.querySelectorAll('.unit-price, .original-price').forEach(element => {
     const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ

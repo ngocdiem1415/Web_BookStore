@@ -88,7 +88,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html"
+                                <a class="action-view" href="ProductDetail.jsp"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="product-details text-center pt-2">
                             <div class="limited-lines">
-                                <h4><a href="ProductDetail.html">Mèo Méo Meo Bí mật ...</a></h4>
+                                <h4><a href="ProductDetail.jsp">Mèo Méo Meo Bí mật ...</a></h4>
                             </div>
                             <div class="product-price">
                                 <ul>
@@ -126,7 +126,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html"
+                                <a class="action-view" href="ProductDetail.jsp"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="product-details text-center pt-2">
                             <div class="limited-lines">
-                                <h4><a href="ProductDetail.html">Hai vạn dặm dưới biển</a></h4>
+                                <h4><a href="ProductDetail.jsp">Hai vạn dặm dưới biển</a></h4>
                             </div>
                             <div class="product-price">
                                 <ul>
@@ -164,7 +164,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html"
+                                <a class="action-view" href="ProductDetail.jsp"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -178,7 +178,7 @@
                         </div>
                         <div class="product-details text-center pt-2">
                             <div class="limited-lines">
-                                <h4><a href="ProductDetail.html">Lũy hoa</a></h4>
+                                <h4><a href="ProductDetail.jsp">Lũy hoa</a></h4>
                             </div>
                             <div class="product-price">
                                 <ul>
@@ -202,7 +202,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html"
+                                <a class="action-view" href="ProductDetail.jsp"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -216,7 +216,7 @@
                         </div>
                         <div class="product-details text-center pt-2">
                             <div class="limited-lines">
-                                <h4><a href="ProductDetail.html">Lâu đài thần bí</a></h4>
+                                <h4><a href="ProductDetail.jsp">Lâu đài thần bí</a></h4>
                             </div>
                             <div class="product-price">
                                 <ul>
@@ -240,7 +240,7 @@
                                  alt="book" class="primary" style="width: 220px;height: 240px"/>
                             <div class="overlay"></div>
                             <div class="quick-view">
-                                <a class="action-view" href="ProductDetail.html"
+                                <a class="action-view" href="ProductDetail.jsp"
                                    title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
@@ -254,7 +254,7 @@
                         </div>
                         <div class="product-details text-center pt-2">
                             <div class="limited-lines">
-                                <h4><a href="ProductDetail.html">Lễ hội trên cánh đồng</a></h4>
+                                <h4><a href="ProductDetail.jsp">Lễ hội trên cánh đồng</a></h4>
                             </div>
                             <div class="product-price">
                                 <ul>
@@ -317,7 +317,7 @@
                         </div>
                         <!-- Hình ảnh -->
                         <div class="banner-img-3">
-                            <a href="ProductDetail.html"><img src="img/product/HarryPotter.png" alt="banner"
+                            <a href="ProductDetail.jsp"><img src="img/product/HarryPotter.png" alt="banner"
                                                               class="img-fluid"/></a>
                         </div>
                     </div>
@@ -330,7 +330,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="img/product/Ngaytroivephiacu.png"
+                                            <a href="ProductDetail.jsp"><img src="img/product/Ngaytroivephiacu.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -351,7 +351,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="img/product/Nguoitrongrung.png"
+                                            <a href="ProductDetail.jsp"><img src="img/product/Nguoitrongrung.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -372,7 +372,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="img/product/Heidi.png"
+                                            <a href="ProductDetail.jsp"><img src="img/product/Heidi.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -393,7 +393,7 @@
                                 <div class="tab-total">
                                     <div class="bestseller-wrapper mb-30">
                                         <div class="product-img">
-                                            <a href="ProductDetail.html"><img src="img/product/Nguoitv.png"
+                                            <a href="ProductDetail.jsp"><img src="img/product/Nguoitv.png"
                                                                               alt="book"
                                                                               class="img-fluid"/></a>
                                         </div>
@@ -428,7 +428,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Sách văn học</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.jsp" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -444,11 +444,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -483,11 +483,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -522,11 +522,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -561,11 +561,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -600,11 +600,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -641,7 +641,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Tiểu thuyết</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.jsp" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -657,11 +657,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -696,11 +696,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -735,11 +735,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -774,11 +774,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -813,11 +813,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -855,7 +855,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Truyện</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.jsp" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -871,11 +871,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -910,11 +910,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -949,11 +949,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -988,11 +988,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1027,11 +1027,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1069,7 +1069,7 @@
                             <h2 class="title-head bl-10"><a href="#" class="text-dec">Sách khác</a></h2>
                         </div>
                         <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="category.html" title="Xem thêm">Xem thêm</a>
+                            <a class="see-more text-dec" href="category.jsp" title="Xem thêm">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -1085,11 +1085,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1124,11 +1124,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1163,11 +1163,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1202,11 +1202,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1241,11 +1241,11 @@
                                         </a>
                                         <div class="overlay"></div>
                                         <div class="quick-view">
-                                            <a class="action-view" href="ProductDetail.html"
+                                            <a class="action-view" href="ProductDetail.jsp"
                                                title="Quick View">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="action-view" href="Cart.html"
+                                            <a class="action-view" href="Cart.jsp"
                                                title="Add Product">
                                                 <i class="fa-solid fa-cart-shopping fa-xs"></i> </a>
                                         </div>
@@ -1346,7 +1346,7 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 
 <script>
-    fetch('Header.html')
+    fetch('Header.jsp')
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.text();
@@ -1354,8 +1354,8 @@
         .then(data => document.getElementById('header').innerHTML = data)
         .catch(error => console.error('Error:', error));
 
-    // Tải nội dung của footer từ tệp Footer.html
-    fetch('footer.html')
+    // Tải nội dung của footer từ tệp Footer.jsp
+    fetch('footer.jsp')
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer').innerHTML = data;
