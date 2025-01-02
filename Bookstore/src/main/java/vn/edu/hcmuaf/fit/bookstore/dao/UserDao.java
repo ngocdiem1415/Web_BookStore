@@ -22,17 +22,15 @@ public interface UserDao {
     @SqlQuery("select * from users where username = :username")
     User findByName(@Bind("username") String username);
 
-    @SqlUpdate("insert into `users` (`uid` ,`username` ,`avatar` ,`gender` ,`dob` ,`phone` ,`email` ,`password`, `status`, now(), now()) values (:uid, :username, :avatar, :gender, :dob, :phone, :email, :password, :status, :admin, now(), now())")
-    int signUp(@Bind User user);
-
-    @SqlQuery("select * from users where username = :username and password = :password")
-    User loginUser(@Bind("username") String username, @Bind("password") String password);
-
-    @SqlQuery("select * from users where username = :username and password = :password and role = 'admin'")
-    User loginAdmin(@Bind("username") String username, @Bind("password") String password);
+    @SqlUpdate("insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , 'user')")
+    void register(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password);
 
     @SqlQuery("select * from users where username = :username and password = :password")
     List<User> findByUserByIdAndPassword(@Bind("username") String username, @Bind("password")String password);
+
+    @SqlQuery("select * from users where email = :email")
+    User findByEmail(@Bind("email") String email);
+
 
 
 }
