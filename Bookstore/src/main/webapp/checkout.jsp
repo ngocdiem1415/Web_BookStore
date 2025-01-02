@@ -13,18 +13,18 @@
   <title>Thanh toán</title>
 
   <!--    font awesome-->
-  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
 
   <!--    bootstrap-->
-  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 
   <!--    CSS-->
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="../css/Style.css">
-  <link rel="stylesheet" href="../css/Cart.css">
-  <link rel="stylesheet" href="../css/checkout.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/Style.css">
+  <link rel="stylesheet" href="css/Cart.css">
+  <link rel="stylesheet" href="css/checkout.css">
 </head>
 <body>
 <!--    header-->
@@ -34,8 +34,8 @@
     <div class="row">
       <div class="col bg-white d-flex justify-content-start align-items-center ps-5 py-3">
         <div class="logo">
-          <a href="Home.html">
-            <img src="../img/logo/new_logo.png" height="90" width="100" alt="logo" class="logo"/>
+          <a href="Home.jsp">
+            <img src="img/logo/new_logo.png" height="90" width="100" alt="logo" class="logo"/>
           </a>
         </div>
         <div class="title ps-3">
@@ -125,12 +125,12 @@
       <div class="product row m-2 py-3 border-bottom">
         <div class="col-6 d-flex align-items-center">
           <div class="d-flex align-items-center">
-            <a href="ProductDetail.html" class="me-3">
-              <img src="../img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
+            <a href="ProductDetail.jsp" class="me-3">
+              <img src="img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
                    style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
             </a>
             <div class="info">
-              <a href="ProductDetail.html" class="nav-link mb-1 text-wrap">
+              <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
                 Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
               </a>
             </div>
@@ -162,12 +162,12 @@
       <div class="product row m-2 py-3 border-bottom">
         <div class="col-6 d-flex align-items-center">
           <div class="d-flex align-items-center">
-            <a href="ProductDetail.html" class="me-3">
-              <img src="../img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
+            <a href="ProductDetail.jsp" class="me-3">
+              <img src="img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
                    style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
             </a>
             <div class="info">
-              <a href="ProductDetail.html" class="nav-link mb-1 text-wrap">
+              <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
                 Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt
               </a>
             </div>
@@ -282,7 +282,7 @@
   <section class="footer">
     <div class="footer-row">
       <div class="footer-col">
-        <a href=""><img src="../img/logo/new_logo.png" height="200" width="350"/></a>
+        <a href=""><img src="img/logo/new_logo.png" height="200" width="350"/></a>
         <p class="detail">Nơi cung cấp trí thức cho bạn.</p>
         <div class="detail-icons">
           <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
@@ -335,8 +335,8 @@
 
 <!--<script>-->
 
-<!--    // Tải nội dung của footer từ tệp Footer.html-->
-<!--    fetch('footer.html')-->
+<!--    // Tải nội dung của footer từ tệp Footer.jsp-->
+<!--    fetch('footer.jsp')-->
 <!--        .then(response => response.text())-->
 <!--        .then(data => {-->
 <!--            document.getElementById('footer').innerHTML = data;-->
@@ -344,7 +344,7 @@
 <!--</script>-->
 
 <!--format tiền tệ-->
-<script src="../js/FormatMoney.js"></script>
+<script src="js/FormatMoney.js"></script>
 
 <script>
   function applyCurrencyFormat() {
@@ -436,8 +436,8 @@
 
     // Thêm sự kiện click để chuyển trang
     orderButton.addEventListener("click", function () {
-      // Chuyển hướng sang trang BuyProduct.html
-      window.location.href = "purchaseOrder.html";
+      // Chuyển hướng sang trang BuyProduct.jsp
+      window.location.href = "purchaseOrder.jsp";
     });
   });
 </script>

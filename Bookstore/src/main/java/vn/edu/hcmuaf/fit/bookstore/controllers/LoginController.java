@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,17 +20,30 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        UserServices userServices = new UserServices();
-//        //
-//        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
-//
-//        // Check login
-//        boolean login = userServices.login(username, password);
-//        if (login) {
-//            response.sendRedirect("Home.jsp");
-//        } else {
-//            response.sendRedirect("Login.jsp");
-//        }
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        UserServices userServices = new UserServices();
+        User user = userServices.findByUsernameAndPassword(username, password);
+        System.out.println(user);
+        String baoloi = "";
+        if (user == null) {
+            baoloi = "Sai tên đăng nhập hoặc mật khẩu";
+            request.setAttribute("baoloi", baoloi);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        } else if (user.getStatus() == 0) {
+            baoloi = "Tài khoản chưa được kích hoạt";
+            request.setAttribute("baoloi", baoloi);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        } else {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("userSession", user);
+
+            if (user.getRole().equals("user")) {
+                response.sendRedirect(request.getContextPath() + "/home");
+            } else if (user.getRole().equals("admin")) {
+                response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+            }
+
+        }
     }
 }
