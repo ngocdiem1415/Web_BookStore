@@ -91,32 +91,30 @@ body {
 .form-body form {
     position: absolute;
     width: 100%;
-    opacity: 0;
-    transform: translateY(5%);
-    visibility: hidden; /* Ẩn hoàn toàn */
+    opacity: 1 !important;
+    visibility: visible !important;
     transition: opacity 0.5s ease, transform 0.6s ease;
 }
 
-.form-body form.active {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-#login-form.active {
-    transform: translateY(0);
-}
-
-#register-form.active {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 .form-group input[type="checkbox"] {
     z-index: 1; /* Đảm bảo checkbox nằm trên các phần tử khác */
 }
 
 /*------*/
+#login-form {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Khi form active */
+.form-body form.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
 .form-title {
     font-size: 42px;
