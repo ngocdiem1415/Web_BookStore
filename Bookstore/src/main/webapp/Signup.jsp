@@ -37,7 +37,7 @@
                         <label for="username">Tên người dùng<span class="required">*</span></label>
                         <input type="text" name="username" id="username" class="form-control" required>
                         <c:if test="${not empty baoloi}">
-                            <p class="error">${baoloi}</p>
+                            <p class="error text-danger">${baoloi}</p>
                         </c:if>
                     </div>
 

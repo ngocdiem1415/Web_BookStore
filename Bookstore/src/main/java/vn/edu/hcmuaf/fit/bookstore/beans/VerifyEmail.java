@@ -6,7 +6,6 @@ import java.util.Date;
 public class VerifyEmail {
     private int id;                 // ID của token
     private String email;
-    private String verificationCode; // Email của người dùng
     private String token;           // Token dùng để reset password
     private Date createdAt;         // Thời gian tạo token
     private Date expiresAt;         // Thời gian hết hạn của token
@@ -14,10 +13,9 @@ public class VerifyEmail {
     public VerifyEmail() {
     }
 
-    public VerifyEmail(int id, String email, String verificationCode, String token, Date createdAt, Date expiresAt) {
+    public VerifyEmail(int id, String email, String token, Date createdAt, Date expiresAt) {
         this.id = id;
         this.email = email;
-        this.verificationCode = verificationCode;
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
@@ -73,7 +71,7 @@ public class VerifyEmail {
                 ", token='" + token + '\'' +
                 ", createdAt=" + createdAt +
                 ", expiresAt=" + expiresAt +
-                ", verificationCode='" + verificationCode + '\'' +
+                ", verificationCode='" + '\'' +
                 '}';
     }
 }
