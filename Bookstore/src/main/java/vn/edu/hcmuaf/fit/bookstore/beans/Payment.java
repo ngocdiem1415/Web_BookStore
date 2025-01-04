@@ -1,19 +1,20 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 public class Payment {
     private int paymentId;
     private int invoiceId;
     private BigDecimal amount;
-    private Date paymentDate;
+    private LocalDateTime paymentDate;
     private int paymentMethod;
     private String paymentStatus;
 
     public Payment() {}
 
-    public Payment(int paymentId, int invoiceId, BigDecimal amount, Date paymentDate, int paymentMethod, String paymentStatus) {
+    public Payment(int paymentId, int invoiceId, BigDecimal amount, LocalDateTime paymentDate, int paymentMethod, String paymentStatus) {
         this.paymentId = paymentId;
         this.invoiceId = invoiceId;
         this.amount = amount;
@@ -46,11 +47,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Date getPaymentDate() {
+    public LocalDateTime getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(LocalDateTime paymentDate) {
         this.paymentDate = paymentDate;
     }
 

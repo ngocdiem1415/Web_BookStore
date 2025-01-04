@@ -1,0 +1,138 @@
+package vn.edu.hcmuaf.fit.bookstore.controllers;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
+
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet(name = "InvoiceController", value = "/Invoice")
+public class InvoiceController extends HttpServlet {
+
+    private final InvoiceService invoiceService = InvoiceService.getInstance();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) action = "list";
+
+        switch (action){
+            case "list":
+                listInvoices(request, response);
+                break;
+            case "detail":
+                detailInvoice(request, response);
+                break;
+            case "filterByStatus":
+                filterInvoicesByStatus(request, response);
+                break;
+            case "search":
+                searchInvoicesByBookTitle(request, response);
+                break;
+            default: response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+    private void searchInvoicesByBookTitle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String searchKeyword = request.getParameter("searchKeyword");
+        if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
+            response.sendRedirect("/Invoice?action=list");
+            return;
+        }
+
+        List<Invoice> invoices = invoiceService.findByBookTitle(userId, searchKeyword);
+        request.setAttribute("invoices", invoices);
+        request.setAttribute("searchKeyword", searchKeyword);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void filterInvoicesByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String status = request.getParameter("status");
+        List<Invoice> invoices = invoiceService.findByStatus(userId, status);
+        request.setAttribute("invoices", invoices);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void detailInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Invoice invoices = invoiceService.findById(id);
+        if (invoices == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        request.setAttribute("invoice", invoices);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrderDetail.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listInvoices(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        List<Invoice> invoices = invoiceService.findByUser(id);
+        request.setAttribute("invoices", invoices);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) action ="";
+
+        switch (action){
+//            case "create":
+//                createInvoiceFromCart(request, response);
+//                break;
+            case "cancel":
+                int id = Integer.parseInt(request.getParameter("id"));
+                Invoice invoice = invoiceService.findById(id);
+                if (invoice == null) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    return;
+                }
+                invoiceService.cancelInvoice(invoice);
+                response.sendRedirect("/Invoice?action=list");
+                break;
+            default: response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        }
+
+    }
+
+//    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//        List<InvoiceDetail> cart = (List<InvoiceDetail>) session.getAttribute("cart");
+//
+//        if (cart == null || cart.isEmpty()) {
+//            request.setAttribute("error", "Your cart is empty. Cannot create an invoice.");
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
+//            dispatcher.forward(request, response);
+//            return;
+//        }
+//
+//        try {
+//            Invoice newInvoice = new Invoice();
+//            newInvoice.setListInvoiceDetails(cart);
+//            // Set other properties of Invoice as needed, e.g., userId, totalAmount, etc.
+//
+//            int result = invoiceService.insert(newInvoice);
+//
+//            if (result > 0) {
+//                session.removeAttribute("cart"); // Clear the cart after creating the invoice
+//                response.sendRedirect("/Invoice?action=list");
+//            } else {
+//                request.setAttribute("error", "Failed to create invoice.");
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
+//                dispatcher.forward(request, response);
+//            }
+//        } catch (Exception e) {
+//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+}

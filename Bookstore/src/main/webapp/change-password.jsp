@@ -28,32 +28,32 @@
 <!--header-->
 <%@ include file="Header.jsp" %>
 
-    <!-- container -->
- <div class="container ">
-        <!-- NAV -->
-        <ul class="main-nav nav ">
-            <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
-            <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
-            <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown"
-                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sản phẩm
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                    <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
-                </ul>
-            </li>
-            <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
-            <li class="nav-item "><a href="contact.jsp">Liên hệ</a></li>
-        </ul>
-        <!-- /NAV -->
-    </div>
+<!-- container -->
+<div class="container ">
+    <!-- NAV -->
+    <ul class="main-nav nav ">
+        <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
+        <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown"
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sản phẩm
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
+                <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
+                <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
+                <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
+                <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
+                <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
+                <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
+            </ul>
+        </li>
+        <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
+        <li class="nav-item "><a href="contact.jsp">Liên hệ</a></li>
+    </ul>
+    <!-- /NAV -->
+</div>
 <!--/nav end-->
 
 
@@ -62,109 +62,7 @@
     <div class="container-profile-content">
         <div class="container-profile container-profile-content-inner">
             <!--content left-->
-            <div class="container-profile-content-inner__left">
-
-                <div class="profile-info">
-                    <a href="" class="profile-info-logo">
-                        <div class="profile-info-avatar-img">
-                            <div class="profile-info-avatar_img__placeholder">
-
-                            </div>
-                        </div>
-                    </a>
-                    <div class="profile-info-username">
-                        <div class="profile-info-username__text">${userSession.getUsername()}</div>
-                        <div>
-                            <a href="" class="profile-info-username__edit">
-                                <i class="fa-solid fa-pencil"></i>
-                                <span>Sửa Hồ Sơ</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--Drop down account -->
-                <div class="profile-stardust-dropdown">
-                    <div class="stardust-dropdown stardust-dropdown--open ">
-                        <!--img + name-->
-                        <div class="stardust-dropdown__item-header">
-                            <a href="" class="stardust-dropdown__item-header-menu">
-                                <div class="stardust-dropdown__item-header-account-img">
-                                    <img src="admin/img/Sample_user_icon_profile.png" height="48" width="48"/></div>
-                                <div class="stardust-dropdown__item-header-account-name">
-                                    <span class="stardust-dropdown__item-header-account-name-text">Tài Khoản Của Tôi</span>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <!--dropdown menu detail-->
-                        <div class="stardust-dropdown__item-body stardust-dropdown__item-body--open">
-                            <div class="stardust-dropdown__item-body__content">
-                                <a href="profile" id="profile-link"
-                                   class="stardust-dropdown__item-body__content-item"><span
-                                        class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
-                                <a href="change-password" id="password-change-link"
-                                   class="stardust-dropdown__item-body__content-item stardust-dropdown__item-body__content-item-active"><span
-                                        class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
-                                <a href="" id="privacy-link" class="stardust-dropdown__item-body__content-item"><span
-                                        class="stardust-dropdown__item-body__content-item--text">Những Thiết Lập Riêng Tư</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stardust-dropdown">
-                        <div class="stardust-dropdown__item-header">
-                            <a href="purchase-order" class="stardust-dropdown__item-header-menu">
-                                <div class="stardust-dropdown__item-header-account-img">
-                                    <img src="admin/img/sample_Menu_Icon.png"/>
-                                </div>
-                                <div class="stardust-dropdown__item-header-account-name">
-                                    <span class="stardust-dropdown__item-header-account-name-text">Đơn Mua</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!--yeu thich-->
-                    <div class="stardust-dropdown">
-                        <div class="stardust-dropdown__item-header">
-                            <a href="Like.jsp" class="stardust-dropdown__item-header-menu">
-                                <div class="stardust-dropdown__item-header-account-img">
-                                    <img src="admin/img/Heart-icon.png"/></div>
-                                <div class="stardust-dropdown__item-header-account-name">
-                                    <span class="stardust-dropdown__item-header-account-name-text">Yêu Thích</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!--Dang Xuat-->
-                    <div class="stardust-dropdown">
-                        <div class="stardust-dropdown__item-header">
-                            <a href="Home.jsp" class="stardust-dropdown__item-header-menu">
-                                <div class="stardust-dropdown__item-header-account-img">
-                                    <i class="fa-solid fa-circle-xmark"></i>
-                                </div>
-                                <div class="stardust-dropdown__item-header-account-name">
-                                    <span class="stardust-dropdown__item-header-account-name-text">Đăng Xuất</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!--Ve admin-->
-                    <div class="stardust-dropdown">
-                        <div class="stardust-dropdown__item-header">
-                            <a href="admin/Dashboard.jsp" class="stardust-dropdown__item-header-menu">
-                                <div class="stardust-dropdown__item-header-account-img">
-                                    <img src="admin/img/Sample_User_Icon.png"/></div>
-                                <div class="stardust-dropdown__item-header-account-name">
-                                    <span class="stardust-dropdown__item-header-account-name-text">Admin</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="content-left-profile.jsp" %>
 
             <!--Right: Change password-->
             <div id="password-change-section" class="container-profile-content-inner__right">
@@ -184,7 +82,7 @@
                             <div class="container-profile-content-inner__right-main-content">
                                 <div class="container-profile-content-inner__right-main-content-center">
                                     <!-- Form thay đổi mật khẩu -->
-                                    <form action="">
+                                    <form action="change-password">
                                         <table class="container-profile-content-inner__right-main-content-center__table">
                                             <!-- Mật khẩu hiện tại -->
                                             <tr>
@@ -194,7 +92,7 @@
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__field">
                                                         <input type="password" placeholder="Nhập mật khẩu hiện tại"
-                                                               class="table__row-input__field-text">
+                                                               class="table__row-input__field-text" name="password">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -207,7 +105,7 @@
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__field">
                                                         <input type="password" placeholder="Nhập mật khẩu mới"
-                                                               class="table__row-input__field-text">
+                                                               class="table__row-input__field-text" name="new-password">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -220,7 +118,7 @@
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__field">
                                                         <input type="password" placeholder="Nhập lại mật khẩu mới"
-                                                               class="table__row-input__field-text">
+                                                               class="table__row-input__field-text" name="re-password">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -251,61 +149,8 @@
 </div>
 
 <!--footer-->
-<!--<div id="footer"></div>-->
-<!--    footer start -->
-<section class="footer">
-    <div class="footer-row">
-        <div class="footer-col">
-            <a href="" class="mb-4"><img src="img/logo/logo1.png"/></a>
-            <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
-            <div class="detail-icons ">
-                <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
-                <p><i class="fa-solid fa-phone"></i>0123456789</p>
-                <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Về chúng tôi</h4>
-            <ul class="links">
-                <li><a href="#">Nguyễn Thị Ngọc Diễm</a></li>
-                <li><a href="#">Võ Nguyễn Thanh Diệu</a></li>
-                <li><a href="#">Nguyễn Hữu Thịnh</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Chính sách</h4>
-            <ul class="links">
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Sản phẩm</a></li>
-                <li><a href="#">Tin tức</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Gửi Email</h4>
-            <p>
-                Đăng ký nhận thông tin mới nhất từ chúng tôi.
-            </p>
-            <form action="#">
-                <input type="text" placeholder="Email" required>
-                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-            </form>
-            <div class="icons">
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-linkedin"></i>
-                <i class="fa-brands fa-github"></i>
-            </div>
-        </div>
-    </div>
+<%@ include file="footer.jsp" %>
 
-
-    <div class="footer-copyright d-flex justify-content-center">
-        <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
-    </div>
-</section>
-<!--footer end-->
 
 <script>
     document.getElementById("fileInput").addEventListener("change", function (event) {
