@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.bookstore.dao;
 
-import org.jdbi.v3.core.statement.Update;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
