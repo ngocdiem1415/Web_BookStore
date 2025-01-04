@@ -34,6 +34,7 @@ public class ListBookController extends HttpServlet {
         request.setAttribute("books", books);
         request.setAttribute("categories", categories);
         request.setAttribute("publishers", publishers);
+        String categoryId = (String) request.getAttribute("categoryId");
         request.getRequestDispatcher("listBook.jsp").forward(request, response);
     }
 

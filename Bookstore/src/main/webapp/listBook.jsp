@@ -221,6 +221,7 @@
                         </button>
                     </div>
                 </div>
+                <div id="pagination"></div>
 
                 <!-- Phân trang -->
                 <%--                <div class="grid__row--footer">--%>
@@ -246,6 +247,9 @@
     </div>
 </div>
 <!--footer-->
+<!--<div id="footer"></div>-->
+<jsp:include page="footer.jsp"></jsp:include>
+<!-- /FOOTER -->
 
 
 <!--jquery-->
@@ -257,11 +261,8 @@
 <!--    bootstrap-->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.twbspagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
-
-<!--<div id="footer"></div>-->
-<jsp:include page="footer.jsp"></jsp:include>
-<!-- /FOOTER -->
 <!--format tiền tệ-->
 <script src="js/FormatMoney.js"></script>
 <script>
@@ -273,7 +274,27 @@
         }
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        let curentPage = 1;
+        let totalPages = $(totalPages);
+        const limit = 20;
 
+
+        $('#pagination').twbsPagination({
+            totalPages: ${totalPages},
+            visiblePages: 5,
+            startPage: ${currentPage},
+            first: 'Đầu',
+            prev: 'Trước',
+            next: 'Sau',
+            last: 'Cuối',
+            onPageClick: function (event, page) {
+                window.location.href = "/category?page=" + page;
+            }
+        });
+    });
+</script>
 <script>
     function loadMore() {
         var amount = document.querySelectorAll(".home-product-item").length;
