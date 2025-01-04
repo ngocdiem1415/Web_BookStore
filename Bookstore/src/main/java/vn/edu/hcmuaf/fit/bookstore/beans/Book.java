@@ -11,9 +11,9 @@ public class Book implements Serializable {
     private int categoryId;
     private int publisherId;
     private int promotionId;
-//    private Category category;
-//    private Publisher publisher;
-//    private Promotion promotion;
+    private Category category;
+    private Publisher publisher;
+    private Promotion promotion;
     private int publishYear;
     private String dimensions;
     private double weight;
@@ -26,19 +26,20 @@ public class Book implements Serializable {
     private LocalDateTime create_at;
     private LocalDateTime update_at;
     private int status;
+    private Image image;
 
     public Book() {}
 
-    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status,Image image) {
         this.bId = bId;
         this.title = title;
         this.author = author;
         this.categoryId = categoryId;
         this.publisherId = publisherId;
         this.promotionId = promotionId;
-//        this.category = category;
-//        this.publisher = publisher;
-//        this.promotion = promotion;
+        this.category = category;
+        this.publisher = publisher;
+        this.promotion = promotion;
         this.publishYear = publishYear;
         this.dimensions = dimensions;
         this.weight = weight;
@@ -51,6 +52,7 @@ public class Book implements Serializable {
         this.create_at = create_at;
         this.update_at = update_at;
         this.status = status;
+        this.image = image;
     }
 
     @Override
@@ -62,22 +64,30 @@ public class Book implements Serializable {
                 ", categoryId=" + categoryId +
                 ", publisherId=" + publisherId +
                 ", promotionId=" + promotionId +
-//                ", category=" + category +
-//                ", publisher=" + publisher +
-//                ", promotion=" + promotion +
+                ", category=" + category +
+                ", publisher=" + publisher +
+                ", promotion=" + promotion +
                 ", publishYear=" + publishYear +
                 ", dimensions='" + dimensions + '\'' +
                 ", weight=" + weight +
                 ", pageCount=" + pageCount +
                 ", format='" + format + '\'' +
                 ", originalPrice=" + originalPrice +
-                ", description='" + description + '\'' +
                 ", soldQuantity=" + soldQuantity +
                 ", stockQuantity=" + stockQuantity +
                 ", create_at=" + create_at +
                 ", update_at=" + update_at +
                 ", status=" + status +
+                ", image=" + image +
                 '}';
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public int getbId() {
@@ -208,29 +218,29 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
-//
-//    public Publisher getPublisher() {
-//        return publisher;
-//    }
-//
-//    public void setPublisher(Publisher publisher) {
-//        this.publisher = publisher;
-//    }
-//
-//    public Promotion getPromotion() {
-//        return promotion;
-//    }
-//
-//    public void setPromotion(Promotion promotion) {
-//        this.promotion = promotion;
-//    }
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
+    }
 
     public LocalDateTime getCreate_at() {
         return create_at;
