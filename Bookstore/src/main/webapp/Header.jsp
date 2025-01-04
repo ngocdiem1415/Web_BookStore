@@ -103,20 +103,16 @@
     <div class="container ">
         <!-- NAV -->
         <ul class="main-nav nav ">
-            <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
+            <li class="nav-item "><a href="/home">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
             <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sản phẩm
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                    <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
-                    <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
+                    <c:forEach var="c" items="${categoryList}">
+                    <li><a class="dropdown-item" href="/listBook?categoryId=${c.categoryId}">c.category_name</a></li>
+                    </c:forEach>
                 </ul>
             </li>
             <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
