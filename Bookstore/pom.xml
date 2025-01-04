@@ -44,12 +44,13 @@
             <version>8.0.30</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-core -->
-        <dependency>
-            <groupId>org.jdbi</groupId>
-            <artifactId>jdbi3-core</artifactId>
-            <version>3.34.0</version>
-        </dependency>
+      <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-core -->
+      <dependency>
+          <groupId>org.jdbi</groupId>
+          <artifactId>jdbi3-core</artifactId>
+          <version>3.34.0</version>
+      </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-sqlobject -->
         <dependency>
@@ -69,11 +70,24 @@
             <version>3.0.1</version>
         </dependency>
 
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10</version>
         </dependency>
+
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.11</version>
+      </dependency>
+
+
+
+
+  </dependencies>
+
 
     </dependencies>
 

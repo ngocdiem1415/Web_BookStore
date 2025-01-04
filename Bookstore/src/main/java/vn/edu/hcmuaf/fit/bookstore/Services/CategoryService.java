@@ -20,6 +20,7 @@ public class CategoryService {
 
     public List<Category> listCategory(){
         return connect.withExtension(CategoryDao.class, handle -> handle.list());
+
     }
 
     public Category getCategoryById(int id){

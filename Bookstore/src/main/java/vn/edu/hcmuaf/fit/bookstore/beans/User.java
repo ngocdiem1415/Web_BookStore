@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 public class User {
     private int uid;
@@ -152,6 +154,19 @@ public class User {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return uid == user.uid && Objects.equals(username, user.username) && Objects.equals(avatar, user.avatar) && Objects.equals(gender, user.gender) && Objects.equals(dob, user.dob) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(createAt, user.createAt) && Objects.equals(updateAt, user.updateAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uid, username, avatar, gender, dob, phone, email, password, status, role, createAt, updateAt);
     }
 }
 
