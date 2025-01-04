@@ -26,26 +26,57 @@ public class InvoiceController extends HttpServlet {
             case "detail":
                 detailInvoice(request, response);
                 break;
+            case "filterByStatus":
+                filterInvoicesByStatus(request, response);
+                break;
+            case "search":
+                searchInvoicesByBookTitle(request, response);
+                break;
             default: response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 
+    private void searchInvoicesByBookTitle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String searchKeyword = request.getParameter("searchKeyword");
+        if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
+            response.sendRedirect("/Invoice?action=list");
+            return;
+        }
+
+        List<Invoice> invoices = invoiceService.findByBookTitle(userId, searchKeyword);
+        request.setAttribute("invoices", invoices);
+        request.setAttribute("searchKeyword", searchKeyword);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void filterInvoicesByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String status = request.getParameter("status");
+        List<Invoice> invoices = invoiceService.findByStatus(userId, status);
+        request.setAttribute("invoices", invoices);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private void detailInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Invoice invoice = invoiceService.findById(id);
-        if (invoice == null) {
+        Invoice invoices = invoiceService.findById(id);
+        if (invoices == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        request.setAttribute("invoice", invoice);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/purchaseOrder.jsp");
+        request.setAttribute("invoice", invoices);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
 
     private void listInvoices(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Invoice> invoices = invoiceService.listAll();
+        int id = Integer.parseInt(request.getParameter("userId"));
+        List<Invoice> invoices = invoiceService.findByUser(id);
         request.setAttribute("invoices", invoices);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/purchaseOrderDetail.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
         dispatcher.forward(request, response);
     }
 

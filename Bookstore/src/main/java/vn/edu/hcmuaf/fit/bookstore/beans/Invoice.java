@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Invoice {
@@ -10,16 +10,17 @@ public class Invoice {
     private String recipientName;
     private String recipientPhone;
     private String address;
-    private Date orderDate;
+    private LocalDateTime orderDate;
     private String status;
     private BigDecimal shippingFee;
-    private Date completionDate;
+    private LocalDateTime completionDate;
     private List<InvoiceDetail> listInvoiceDetails;
+    private Payment payment;
 
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, Date orderDate, String status, BigDecimal shippingFee, Date completionDate, List<InvoiceDetail> listInvoiceDetails) {
+    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, LocalDateTime orderDate, String status, BigDecimal shippingFee, LocalDateTime completionDate, List<InvoiceDetail> listInvoiceDetails, Payment payment) {
         this.invoiceId = invoiceId;
         this.uid = uid;
         this.recipientName = recipientName;
@@ -30,6 +31,7 @@ public class Invoice {
         this.shippingFee = shippingFee;
         this.completionDate = completionDate;
         this.listInvoiceDetails = listInvoiceDetails;
+        this.payment = payment;
     }
 
     public int getInvoiceId() {
@@ -72,11 +74,11 @@ public class Invoice {
         this.address = address;
     }
 
-    public Date getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -96,11 +98,11 @@ public class Invoice {
         this.shippingFee = shippingFee;
     }
 
-    public Date getCompletionDate() {
+    public LocalDateTime getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(Date completionDate) {
+    public void setCompletionDate(LocalDateTime completionDate) {
         this.completionDate = completionDate;
     }
 
@@ -110,6 +112,14 @@ public class Invoice {
 
     public void setListInvoiceDetails(List<InvoiceDetail> listInvoiceDetails) {
         this.listInvoiceDetails = listInvoiceDetails;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     @Override
