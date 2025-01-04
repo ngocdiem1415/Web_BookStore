@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,94 +32,8 @@
 </head>
 <body>
 <!--Header-->
-<!--<div id="header"></div>-->
-<!--Header-->
-<header id="header">
-  <!-- MAIN HEADER -->
-  <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
-  <!--        <a href="#" class="content">Freeship đơn từ 45k, giảm nhiều hơn cùng FREESHIP XTRA</a>-->
-  <!--    </div>-->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <!-- LOGO -->
-      <div class="col-md-2 d-flex justify-content-center align-items-end">
-        <a href="Home.jsp">
-          <div class="header-logo">
-            <img src="img/logo/logo-header.png" height="80" width="100"/></div>
-        </a>
-      </div>
-      <!-- /LOGO -->
-
-      <!-- SEARCH BAR -->
-      <div class="col-md-7">
-        <div class="header-search">
-          <form class="d-flex mt-2">
-            <input class="input flex-grow-1" placeholder="Search product">
-            <button class="search-btn">Search</button>
-          </form>
-        </div>
-      </div>
-      <!-- /SEARCH BAR -->
-
-      <!-- ACCOUNT -->
-      <div class="col-md-3 clearfix d-flex">
-        <ul class="account-menu mr-1">
-          <li class="account box mt-4">
-            <a href="profile.jsp">Tài khoản</a>
-            <i class="fa-solid fa-angle-down"></i>
-            <ul class="subnav">
-              <li class="border-bottom border-gray"><a href="login.jsp">Đăng nhập</a></li>
-              <li><a href="login.jsp">Đăng kí</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="shopping-cart mt-4 ">
-          <a href="Cart.jsp" style="color: black">
-            <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
-            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
-                 class="bi bi-bag-check" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<jsp:include page="Home.jsp"></jsp:include>
 <!-- /HEADER -->
-
-<!-- NAVIGATION-->
-<nav id="navigation">
-  <!-- container -->
-  <div class="container ">
-    <!-- NAV -->
-    <ul class="main-nav nav ">
-      <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
-      <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle p-0 m-0" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Sản phẩm
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="productDropdown">
-          <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
-        </ul>
-      </li>
-      <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
-      <li class="nav-item "><a href="contact.jsp">Liên hệ</a></li>
-    </ul>
-    <!-- /NAV -->
-  </div>
-</nav>
-<!--/nav end-->
 
 <!--Product detail content-->
 <div class="container_productDetail mx-4">
@@ -128,12 +43,12 @@
       <ol class="breadcrumb bg-white shadow p-3">
         <li class="breadcrumb item">
           <!-- Liên kết đến trang chủ -->
-          <a href="Home.jsp" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
+          <a href="Home.html" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
           <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>
         </li>
         <li class="breadcrumb item">
           <!-- Liên kết đến trang danh mục sách -->
-          <a href="category.jsp" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
+          <a href="category.html" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
           <span class="fas fa-chevron-right text-muted mx-3"></span>
         </li>
         <li class="breadcrumb item active" aria-current="page">
@@ -146,11 +61,11 @@
   <!--        <nav aria-label="breadcrumb">-->
   <!--            <ol class="breadcrumb bg-white shadow p-3">-->
   <!--                <li class="breadcrumb item">-->
-  <!--                    <a href="Home.jsp">Trang chủ</a>-->
+  <!--                    <a href="Home.html">Trang chủ</a>-->
   <!--                    <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>-->
   <!--                </li>-->
   <!--                <li class="breadcrumb item">-->
-  <!--                    <a href="category.jsp">Sách</a>-->
+  <!--                    <a href="category.html">Sách</a>-->
   <!--                    <span class="fas fa-chevron-right text-muted mx-3"></span>-->
   <!--                </li>-->
   <!--                <li class="breadcrumb item active" aria-current="page">Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi-->
@@ -168,40 +83,40 @@
         <!-- Thumbnail (Ảnh lớn) -->
         <div class="rounded-4 d-flex justify-content-center">
           <img id="mainImage" style="width: 100%; height: 100vh; margin: auto;" class="rounded-4 fit"
-               src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
+               src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
         </div>
 
         <!-- Ảnh chi tiết -->
         <div class="border rounded-4 d-flex justify-content-center m-3 p-2" style="border: 1px solid #ddd;">
           <div class="item-thumb"
-               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp">
+               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
+                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp">
+               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp"/>
+                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_2.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp">
+               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp"/>
+                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_3.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp">
+               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp"/>
+                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_4.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp">
+               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp"/>
+                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_5.webp"/>
           </div>
           <div class="item-thumb"
-               data-image-src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp">
+               data-image-src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp">
             <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                 src="img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp"/>
+                 src="../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_6.webp"/>
           </div>
         </div>
       </aside>
@@ -292,7 +207,7 @@
           </div>
 
           <!--mua ngay-->
-          <a href="Cart.jsp" id="buy-now" class="btn btn-danger border border-secondary py-2 "
+          <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 "
              style="background-color: red">
             Mua ngay </a>
 
@@ -472,12 +387,12 @@
             <div class="card-body">
               <h5 class="card-title mb-3">Sản phẩm liên quan</h5>
               <div class="d-flex mb-3">
-                <a href="ProductDetail.jsp" class="me-3">
-                  <img src="img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
+                <a href="ProductDetail.html" class="me-3">
+                  <img src="../img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.jsp" class="nav-link mb-1">
+                  <a href="ProductDetail.html" class="nav-link mb-1">
                     Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
                   </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
@@ -500,12 +415,12 @@
               </div>
 
               <div class="d-flex mb-3">
-                <a href="ProductDetail.jsp" class="me-3">
-                  <img src="img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
+                <a href="ProductDetail.html" class="me-3">
+                  <img src="../img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.jsp" class="nav-link mb-1">
+                  <a href="ProductDetail.html" class="nav-link mb-1">
                     Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt
                   </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
@@ -528,12 +443,12 @@
               </div>
 
               <div class="d-flex mb-3">
-                <a href="ProductDetail.jsp" class="me-3">
-                  <img src="img/product/NhacNhoAnCan_1.webp"
+                <a href="ProductDetail.html" class="me-3">
+                  <img src="../img/product/NhacNhoAnCan_1.webp"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.jsp" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng
+                  <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng
                     Khoảnh Khắc Trong
                     Cuộc Sống </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
@@ -556,12 +471,12 @@
               </div>
 
               <div class="d-flex">
-                <a href="ProductDetail.jsp" class="me-3">
-                  <img src="img/product/NoiLuonChoNoVuong_1.jpg"
+                <a href="ProductDetail.html" class="me-3">
+                  <img src="../img/product/NoiLuonChoNoVuong_1.jpg"
                        style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                 </a>
                 <div class="info">
-                  <a href="ProductDetail.jsp" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản
+                  <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản
                     2023) </a>
                   <div class="mb-3 text-danger d-flex align-items-center">
                     <!--giá đã giảm-->
@@ -605,7 +520,7 @@
                 <!--Khách hàng-->
                 <div class="comment-header col-2 d-flex align-items-start">
 
-                  <img src="img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
+                  <img src="../img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
                        style="width: 50px; height: 50px;">
                   <div>
                     <div class="comment-name" style="font-weight: bold">Như</div>
@@ -660,77 +575,9 @@
 
 <!--Footer-->
 <!--<div id="footer"></div>-->
-<section class="footer">
-  <div class="footer-row">
-    <div class="footer-col">
-      <a href="" class="mb-4"><img src="img/logo/new_logo.png"/></a>
-      <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
-      <div class="detail-icons ">
-        <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
-        <p><i class="fa-solid fa-phone"></i>0123456789</p>
-        <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Về chúng tôi</h4>
-      <ul class="links">
-        <li><a href="#">Nguyễn Thị Ngọc Diễm</a></li>
-        <li><a href="#">Võ Nguyễn Thanh Diệu</a></li>
-        <li><a href="#">Nguyễn Hữu Thịnh</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Chính sách</h4>
-      <ul class="links">
-        <li><a href="#">Trang chủ</a></li>
-        <li><a href="#">Chính sách bảo mật</a></li>
-        <li><a href="#">Sản phẩm</a></li>
-        <li><a href="#">Tin tức</a></li>
-        <li><a href="#">Liên hệ</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Gửi Email</h4>
-      <p>
-        Đăng ký nhận thông tin mới nhất từ chúng tôi.
-      </p>
-      <form action="#">
-        <input type="text" placeholder="Email" required>
-        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-      </form>
-      <div class="icons">
-        <i class="fa-brands fa-facebook-f"></i>
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-github"></i>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="footer-copyright d-flex justify-content-center">
-    <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
-  </div>
-</section>
+<jsp:include page="footer.jsp"></jsp:include>
 <!-- /FOOTER -->
 
-<!--SCRIPT-->
-<!--<script>-->
-<!--    fetch('Header.jsp')-->
-<!--        .then(response => {-->
-<!--            if (!response.ok) throw new Error('Network response was not ok');-->
-<!--            return response.text();-->
-<!--        })-->
-<!--        .then(data => document.getElementById('header').innerHTML = data)-->
-<!--        .catch(error => console.error('Error:', error));-->
-
-<!--    // Tải nội dung của footer từ tệp Footer.jsp-->
-<!--    fetch('footer.jsp')-->
-<!--        .then(response => response.text())-->
-<!--        .then(data => {-->
-<!--            document.getElementById('footer').innerHTML = data;-->
-<!--        });-->
-<!--</script>-->
 
 <!--Script chọn ảnh thumbnail-->
 <script>
@@ -806,7 +653,7 @@
 </script>
 
 <!--format tiền tệ-->
-<script src="js/FormatMoney.js"></script>
+<script src="../js/FormatMoney.js"></script>
 <script>
   document.querySelectorAll('.unit-price, .original-price').forEach(element => {
     const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
