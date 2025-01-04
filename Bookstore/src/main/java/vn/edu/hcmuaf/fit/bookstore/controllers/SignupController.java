@@ -9,6 +9,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @WebServlet(name = "SignupController", value = "/signup")
 public class SignupController extends HttpServlet {
@@ -27,20 +28,8 @@ public class SignupController extends HttpServlet {
         String phone = request.getParameter("phone");
         String dob = request.getParameter("birthdate");
         String baoloi = "";
-
-        // Định dạng ngày sinh
-        SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        String formattedDob = null;
-        try {
-            Date dateOfBirth = inputFormat.parse(dob);
-            formattedDob = outputFormat.format(dateOfBirth);
-        } catch (Exception e) {
-            request.setAttribute("baoloi", "Ngày sinh không hợp lệ");
-            request.getRequestDispatcher("Signup.jsp").forward(request, response);
-            return;
-        }
+        String type = "signup";
+        String verifyCode = UUID.randomUUID().toString();
 
         // Kiểm tra giới tính hợp lệ
         if (gender == null || (!gender.equals("male") && !gender.equals("female") && !gender.equals("other"))) {
@@ -50,8 +39,11 @@ public class SignupController extends HttpServlet {
         }
 
         UserServices userServices = new UserServices();
-        int result = userServices.register(username, gender, formattedDob, phone, email, password);
+        int result = userServices.register(username, gender, dob, phone, email, password);
+        if (result == 0) {
+            int userId = userServices.findByUserName(username).getUid();
 
+        }
         if (result == 1) {
             request.setAttribute("baoloi", "Username đã tồn tại");
             request.getRequestDispatcher("Signup.jsp").forward(request, response);

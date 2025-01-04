@@ -34,18 +34,19 @@ public class UserServices {
     // Tim kiem nguoi dung theo ten
     public User findByUserName(String username) {
         return conn.withExtension(UserDao.class, handle -> {
-            List<User> users = (List<User>) handle.findByName(username);
-            if (users.isEmpty()) return null;
-            return users.get(0);
+            User user = handle.findByName(username);
+            if (user == null) return null;
+            return user;
         });
     }
 
     // Tim kiem nguoi dung theo email
     public User findByEmail(String email) {
         return conn.withExtension(UserDao.class, handle -> {
-            List<User> users = (List<User>) handle.findByEmail(email);
-            if (users.isEmpty()) return null;
-            return users.get(0);
+            User user = handle.findByEmail(email);
+            if (user == null) return null;
+            return user;
+
         });
     }
 
@@ -59,6 +60,13 @@ public class UserServices {
             return users.get(0);
         });
     }
+
+    public void updatePassword(int uid, String password) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.updatePassword(uid, hashPassword(password));
+        });
+    }
+
 
     // ma hoa mat khau
     private String hashPassword(String password) {
