@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Đơn hàng</title>
 
@@ -32,6 +33,7 @@
 </head>
 <body>
 <!--Header-->
+
 <jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
 
@@ -220,6 +222,7 @@
                                     <h3 class="container-product-content-inner__right-inner-center-product__header-title">
                                             ${invoice.getStatus()}
                                     </h3>
+                                  
                                 </div>
                                 <!-- Lặp qua danh sách chi tiết hóa đơn -->
                                 <section>
@@ -436,7 +439,6 @@
 <
 <jsp:include page="footer.jsp"></jsp:include>
 <!--FOOTER-->
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

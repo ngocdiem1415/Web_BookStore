@@ -6,9 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -33,7 +32,7 @@
 </head>
 <body>
 <!--Header-->
-<jsp:include page="Header.jsp"></jsp:include>
+<jsp:include page="Home.jsp"></jsp:include>
 <!-- /HEADER -->
 
 <!--Product detail content-->
@@ -44,12 +43,12 @@
       <ol class="breadcrumb bg-white shadow p-3">
         <li class="breadcrumb item">
           <!-- Liên kết đến trang chủ -->
-          <a href="Home.jsp" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
+          <a href="Home.html" class="itemNAV btn btn-link p-0 m-0 " style="border: none; background: none;">Trang chủ</a>
           <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>
         </li>
         <li class="breadcrumb item">
           <!-- Liên kết đến trang danh mục sách -->
-          <a href="listBook.jsp" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
+          <a href="category.html" class="itemNAV btn btn-link p-0 m-0" style="border: none; background: none;">Sách</a>
           <span class="fas fa-chevron-right text-muted mx-3"></span>
         </li>
         <li class="breadcrumb item active" aria-current="page">
@@ -58,6 +57,25 @@
       </ol>
     </nav>
   </div>
+  <!--    <div class="breadcrumbNAV">-->
+  <!--        <nav aria-label="breadcrumb">-->
+  <!--            <ol class="breadcrumb bg-white shadow p-3">-->
+  <!--                <li class="breadcrumb item">-->
+  <!--                    <a href="Home.html">Trang chủ</a>-->
+  <!--                    <span class="fas fa-chevron-right text-muted mx-3" style="font-size: inherit"></span>-->
+  <!--                </li>-->
+  <!--                <li class="breadcrumb item">-->
+  <!--                    <a href="category.html">Sách</a>-->
+  <!--                    <span class="fas fa-chevron-right text-muted mx-3"></span>-->
+  <!--                </li>-->
+  <!--                <li class="breadcrumb item active" aria-current="page">Mèo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi-->
+  <!--                    Đến-->
+  <!--                    Tiếng Grừ Grừ-->
+  <!--                </li>-->
+  <!--            </ol>-->
+  <!--        </nav>-->
+  <!--    </div>-->
+
   <section class="product py-5">
     <div class="row m-0">
       <!--Ảnh sản phẩm-->
@@ -560,7 +578,7 @@
 <jsp:include page="footer.jsp"></jsp:include>
 <!-- /FOOTER -->
 
-<!--SCRIPT-->
+
 <!--Script chọn ảnh thumbnail-->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -635,7 +653,7 @@
 </script>
 
 <!--format tiền tệ-->
-<script src="js/FormatMoney.js"></script>
+<script src="../js/FormatMoney.js"></script>
 <script>
   document.querySelectorAll('.unit-price, .original-price').forEach(element => {
     const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ

@@ -1,18 +1,17 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Category {
     private int categoryId;
-    private String name;
+    private String category_name;
     private LocalDateTime update_at;
 
     public Category() {}
 
     public Category(int categoryId, String name, LocalDateTime update_at) {
         this.categoryId = categoryId;
-        this.name = name;
+        this.category_name = name;
         this.update_at = update_at;
     }
 
@@ -20,7 +19,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +
-                ", name='" + name + '\'' +
+                ", name='" + category_name + '\'' +
                 ", update_at=" + update_at +
                 '}';
     }
@@ -33,12 +32,12 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
     public LocalDateTime getUpdate_at() {

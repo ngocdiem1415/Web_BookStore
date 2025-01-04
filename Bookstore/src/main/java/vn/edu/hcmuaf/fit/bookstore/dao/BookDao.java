@@ -13,7 +13,7 @@ import java.util.List;
 public interface BookDao {
 
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT)
-    List<Book> listProduct(@Bind("limit") int limit);
+    List<Book> listProduct(@Bind("limit") int limit, @Bind("offset") int offset);
 
     @SqlQuery(QUERIES.BOOK.FIND_BY_BID)
     Book findById(@Bind("id") int id);

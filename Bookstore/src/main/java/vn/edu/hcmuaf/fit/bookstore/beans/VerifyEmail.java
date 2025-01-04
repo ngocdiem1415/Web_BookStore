@@ -3,9 +3,9 @@ package vn.edu.hcmuaf.fit.bookstore.beans;
 import java.io.Serializable;
 import java.util.Date;
 
-public class VerifyEmail{
+public class VerifyEmail {
     private int id;                 // ID của token
-    private String email;           // Email của người dùng
+    private String email;
     private String token;           // Token dùng để reset password
     private Date createdAt;         // Thời gian tạo token
     private Date expiresAt;         // Thời gian hết hạn của token
@@ -71,6 +71,7 @@ public class VerifyEmail{
                 ", token='" + token + '\'' +
                 ", createdAt=" + createdAt +
                 ", expiresAt=" + expiresAt +
+                ", verificationCode='" + '\'' +
                 '}';
     }
 }
