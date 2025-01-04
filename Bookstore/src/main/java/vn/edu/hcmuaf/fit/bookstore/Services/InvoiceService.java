@@ -51,7 +51,7 @@ public class InvoiceService {
                 Book book = invoiceDetail.getBook();
                 book.setStockQuantity(book.getStockQuantity() - invoiceDetail.getQuantity());
                 book.setSoldQuantity(book.getSoldQuantity() + invoiceDetail.getQuantity());
-                handle.update(book);
+                handle.update(book.getbId());
             });
         }
         return status;
@@ -66,7 +66,7 @@ public class InvoiceService {
                 Book book = invoiceDetail.getBook();
                 book.setStockQuantity(book.getStockQuantity() + invoiceDetail.getQuantity());
                 book.setSoldQuantity(book.getSoldQuantity() - invoiceDetail.getQuantity());
-                handle.update(book);
+                handle.update(book.getbId());
             });
         }
         return status;
