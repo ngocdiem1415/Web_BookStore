@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.bookstore.dao;
 
-import org.jdbi.v3.core.statement.Update;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -16,21 +15,22 @@ public interface UserDao {
     @SqlQuery(QUERIES.USER.SELECT_ALL_USER)
     List<User> list();
 
-    @SqlQuery(QUERIES.USER.FIND_BY_USERNAME_AND_PASSWORD)
+    @SqlQuery(QUERIES.USER.FIND_BY_ID)
     User findById(@Bind("id") int id);
 
-    @SqlQuery("select * from users where username = :username")
+    @SqlQuery(QUERIES.USER.FIND_BY_USERNAME)
     User findByName(@Bind("username") String username);
 
-    @SqlUpdate("insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , 'user')")
+    @SqlUpdate(QUERIES.USER.REGISTER)
     void register(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password);
 
-    @SqlQuery("select * from users where username = :username and password = :password")
-    List<User> findByUserByIdAndPassword(@Bind("username") String username, @Bind("password")String password);
+    @SqlQuery(QUERIES.USER.FIND_BY_USERNAME_AND_PASSWORD)
+    List<User> findByUserByIdAndPassword(@Bind("username") String username, @Bind("password") String password);
 
-    @SqlQuery("select * from users where email = :email")
+    @SqlQuery(QUERIES.USER.FIND_BY_EMAIL)
     User findByEmail(@Bind("email") String email);
 
-
+    @SqlUpdate(QUERIES.USER.CHANGE_PASSWORD)
+    void updatePassword(@Bind("uid") int uid, @Bind("password") String password);
 
 }
