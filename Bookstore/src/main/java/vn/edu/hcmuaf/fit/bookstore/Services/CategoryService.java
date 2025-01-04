@@ -4,7 +4,6 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 import vn.edu.hcmuaf.fit.bookstore.dao.CategoryDao;
-import vn.edu.hcmuaf.fit.bookstore.dao.ProductDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.util.List;
@@ -21,6 +20,7 @@ public class CategoryService {
 
     public List<Category> listCategory(){
         return connect.withExtension(CategoryDao.class, handle -> handle.list());
+
     }
 
     public Category getCategoryById(int id){

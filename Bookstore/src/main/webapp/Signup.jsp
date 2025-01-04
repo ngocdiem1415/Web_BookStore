@@ -6,15 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login/Register</title>
-    <link rel="stylesheet" href="../../css/login.css">
-    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/signUp.css">
+    <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
 </head>
 <body>
@@ -23,25 +23,27 @@
         <div class="form-panel">
             <div class="form-header">
                 <div class="form-header-back">
-                    <a href="../../Home.jsp" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
+                    <a href="home" class="form-header-back-button"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <div class="form-header-inner">
-                    <a href="#" class="form-link" id="sign-up-form-link">Đăng ký</a>
-                    <a href="#" class="form-link active" id="login-form-link">Đăng nhập</a>
+                    <a href="signup" class="form-link active" id="sign-up-form-link">Đăng ký</a>
+                    <a href="login" class="form-link js-only" id="login-form-link">Đăng nhập</a>
                 </div>
                 <div class="form-header-inner-empty"></div>
             </div>
-            <div class="form-body"><!-- Register Form  -->
-                <form id="register-form" action="" method="post">
-                    <h3 class="form-title">Đăng ký</h3>
+            <div class="form-body">
+                <form id="register-form" style="display: block" action="signup" method="post">
                     <div class="form-group">
                         <label for="username">Tên người dùng<span class="required">*</span></label>
-                        <input type="text" name="username" id="name" class="form-control" required>
+                        <input type="text" name="username" id="username" class="form-control" required>
+                        <c:if test="${not empty baoloi}">
+                            <p class="error">${baoloi}</p>
+                        </c:if>
                     </div>
 
                     <div class="form-group">
-                        <label for="password-register">Mật khẩu<span class="required">*</span></label>
-                        <input type="password" name="password-register" id="password-register" class="form-control"
+                        <label for="password">Mật khẩu<span class="required">*</span></label>
+                        <input type="password" name="password" id="password" class="form-control" onkeyup="checkPass()"
                                required>
                     </div>
 
@@ -50,25 +52,25 @@
                         <input type="email" name="email" id="email" class="form-control" required>
                     </div>
 
-                    <div class="form-group form-group-container-infor">
+                    <div class="form-group form-group-container-inform ">
                         <div class="form-group-left">
                             <label for="gender">Giới Tính<span class="required">*</span></label>
                             <select class="form-select infor" id="gender" name="gender" required>
-                                <option value="0">--Hãy chọn--</option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
-                                <option value="3">Khác</option>
+                                <option value="">--Hãy chọn--</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="other">Khác</option>
                             </select>
                         </div>
                         <div class="form-group-right">
                             <label for="birthdate">Ngày sinh<span class="required">*</span></label>
-                            <input type="date" id="birthdate" name="birthdate" class="form-control infor" required>
+                            <input type="date" id="birthdate" name="birthdate" class="form-control inform" required>
                         </div>
 
                     </div>
                     <div class="form-group">
-                        <label for="password-register">Số Điện Thoại<span class="required">*</span></label>
-                        <input type="tel" name="password-register" id="tel" class="form-control"
+                        <label for="tel">Số Điện Thoại<span class="required">*</span></label>
+                        <input type="tel" name="phone" id="tel" class="form-control"
                                required>
                     </div>
                     <div class="form-group-button-login" style="text-align: center">
@@ -87,36 +89,8 @@
     </div>
 </div>
 
-
-<!--all script files-->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const loginForm = document.getElementById("login-form");
-        const registerForm = document.getElementById("register-form");
-        const loginLink = document.getElementById("login-form-link");
-        const registerLink = document.getElementById("sign-up-form-link");
 
-        // Hiển thị form đăng nhập mặc định
-        loginForm.classList.add("active");
-
-        // Xử lý khi bấm vào liên kết Đăng nhập
-        loginLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            loginForm.classList.add("active");
-            registerForm.classList.remove("active");
-            loginLink.classList.add("active");
-            registerLink.classList.remove("active");
-        });
-
-        // Xử lý khi bấm vào liên kết Đăng ký
-        registerLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            registerForm.classList.add("active");
-            loginForm.classList.remove("active");
-            registerLink.classList.add("active");
-            loginLink.classList.remove("active");
-        });
-    });
 </script>
 
 </body>

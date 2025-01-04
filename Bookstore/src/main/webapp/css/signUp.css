@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-image: url('../img/product/background-login.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.container-login {
+    width: 100%;
+    max-width: 620px;
+    min-height: 750px; /* Increased height for signup form */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 30px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container-login .form-panel {
+    width: 100%;
+}
+
+.container-login .form-header {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Center align tabs */
+    position: relative;
+}
+
+.container-login .form-header .form-header-inner {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+.container-login .form-link {
+    font-weight: bold;
+    color: #555;
+    text-decoration: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.container-login .form-link.active {
+    background-color: #4B908E; /* Nền sáng hơn khi đang chọn */
+    color: #fff; /* Màu chữ */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Bóng nổi bật */
+    transform: scale(1.1); /* Tăng kích thước nhẹ */
+    transition: all 0.3s ease; /* Hiệu ứng mượt */
+}
+
+.container-login .form-link:not(.active):hover {
+    background-color: #73C0B0; /* Màu nền khi hover */
+    color: #fff;
+}
+
+.form-header-back-button {
+    position: absolute;
+    top: 20px;
+    left: 10px; /* Sát biên trái */
+    color: rgba(0, 0, 0, .4);
+    transition: color 0.3s ease;
+    font-size: 18px; /* Kích thước biểu tượng */
+}
+
+.form-header-back-button:hover {
+    color: #316064; /* Màu khi hover */
+}
+
+
+.form-body {
+    margin-top: 10px;
+}
+
+.form-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group label span {
+    color: #4B908E;
+    margin-left: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-group-container-inform {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.form-group-left, .form-group-right {
+    flex: 1;
+}
+
+.form-group-left select,
+.form-group-right input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-group-button-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-submit-sign-in {
+    padding: 12px 20px;
+    background-color: #4B908E;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 180px;
+    text-transform: uppercase;
+}
+#register-form {
+
+}
+#register-form.active {
+    display: block; /* Hiển thị khi active */
+}
+
+.form-submit-sign-in:hover {
+    background-color: #316064;
+}
+
+.forgot-password {
+    font-size: 15px;
+    color: #73C0B0;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.footer-login {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #316064;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-login-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-login p {
+    margin: 0;
+    font-size: 14px;
+    color: white;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container-login {
+        padding: 20px 15px;
+    }
+
+    .form-group-container-infor {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-group-left, .form-group-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-submit-sign-in {
+        width: 100%;
+    }
+}

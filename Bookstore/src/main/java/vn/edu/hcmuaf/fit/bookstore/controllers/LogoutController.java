@@ -1,0 +1,23 @@
+package vn.edu.hcmuaf.fit.bookstore.controllers;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+
+import java.io.IOException;
+
+@WebServlet(name = "Logout", value = "/logout")
+public class LogoutController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        // Huy bao session
+        session.invalidate();
+        response.sendRedirect(request.getContextPath() + "/home");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+}
