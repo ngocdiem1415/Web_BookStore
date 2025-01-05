@@ -9,7 +9,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeController", value = "/Home")
+@WebServlet(name = "HomeController", value = "/home")
 public class HomeController extends HttpServlet {
     private BookDetailService bookDetailService;
 
