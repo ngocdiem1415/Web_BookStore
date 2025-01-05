@@ -61,6 +61,12 @@ public class UserServices {
         });
     }
 
+    public void updateEmailVerifiedByID(int id) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.updateEmailVerifiedByID(id);
+        });
+    }
+
     public void updatePassword(int uid, String password) {
         conn.useExtension(UserDao.class, handle -> {
             handle.updatePassword(uid, hashPassword(password));

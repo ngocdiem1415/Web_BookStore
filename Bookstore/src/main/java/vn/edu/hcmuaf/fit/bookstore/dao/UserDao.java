@@ -33,4 +33,6 @@ public interface UserDao {
     @SqlUpdate(QUERIES.USER.CHANGE_PASSWORD)
     void updatePassword(@Bind("uid") int uid, @Bind("password") String password);
 
+    @SqlUpdate(QUERIES.USER.UPDATE_EMAIL_VERIFIED_BYID)
+    void updateEmailVerifiedByID(@Bind("uid") int uid);
 }
