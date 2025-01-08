@@ -5,42 +5,54 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "InvoiceController", value = "/Invoice")
+@WebServlet(name = "InvoiceController", value = "/invoice")
 public class InvoiceController extends HttpServlet {
-
+    HttpSession session ; // Lấy session hiện tại, không tạo mới
+    int userId;
     private final InvoiceService invoiceService = InvoiceService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) action = "list";
+        session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
 
-        switch (action){
-            case "list":
-                listInvoices(request, response);
-                break;
-            case "detail":
-                detailInvoice(request, response);
-                break;
-            case "filterByStatus":
-                filterInvoicesByStatus(request, response);
-                break;
-            case "search":
-                searchInvoicesByBookTitle(request, response);
-                break;
-            default: response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        // Kiểm tra session và user login
+        if (session == null || session.getAttribute("userSession") == null) {
+            // Nếu chưa đăng nhập, chuyển hướng đến trang login
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        } else {
+            userId = ((User) session.getAttribute("userSession")).getUid();
+            String action = request.getParameter("action");
+            if (action == null) action = "list";
+
+            switch (action) {
+                case "list":
+                    listInvoices(request, response);
+                    break;
+                case "detail":
+                    detailInvoice(request, response);
+                    break;
+                case "filterByStatus":
+                    filterInvoicesByStatus(request, response);
+                    break;
+                case "search":
+                    searchInvoicesByBookTitle(request, response);
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
         }
     }
 
     private void searchInvoicesByBookTitle(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
         String searchKeyword = request.getParameter("searchKeyword");
         if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
-            response.sendRedirect("/Invoice?action=list");
+            response.sendRedirect("/invoice");
             return;
         }
 
@@ -67,14 +79,13 @@ public class InvoiceController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        request.setAttribute("invoice", invoices);
+        request.setAttribute("invoices", invoices);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
 
     private void listInvoices(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("userId"));
-        List<Invoice> invoices = invoiceService.findByUser(id);
+        List<Invoice> invoices = invoiceService.findByUser(userId);
         request.setAttribute("invoices", invoices);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
         dispatcher.forward(request, response);
@@ -83,9 +94,9 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action == null) action ="";
+        if (action == null) action = "";
 
-        switch (action){
+        switch (action) {
 //            case "create":
 //                createInvoiceFromCart(request, response);
 //                break;
@@ -97,9 +108,10 @@ public class InvoiceController extends HttpServlet {
                     return;
                 }
                 invoiceService.cancelInvoice(invoice);
-                response.sendRedirect("/Invoice?action=list");
+                response.sendRedirect("/invoice?action=list");
                 break;
-            default: response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            default:
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
     }

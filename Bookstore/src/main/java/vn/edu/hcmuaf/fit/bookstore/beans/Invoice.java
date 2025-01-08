@@ -12,7 +12,7 @@ public class Invoice {
     private String address;
     private LocalDateTime orderDate;
     private String status;
-    private BigDecimal shippingFee;
+    private double shippingFee;
     private LocalDateTime completionDate;
     private List<InvoiceDetail> listInvoiceDetails;
     private Payment payment;
@@ -20,7 +20,7 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, LocalDateTime orderDate, String status, BigDecimal shippingFee, LocalDateTime completionDate, List<InvoiceDetail> listInvoiceDetails, Payment payment) {
+    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, LocalDateTime orderDate, String status, double shippingFee, LocalDateTime completionDate, List<InvoiceDetail> listInvoiceDetails, Payment payment) {
         this.invoiceId = invoiceId;
         this.uid = uid;
         this.recipientName = recipientName;
@@ -90,11 +90,11 @@ public class Invoice {
         this.status = status;
     }
 
-    public BigDecimal getShippingFee() {
+    public double getShippingFee() {
         return shippingFee;
     }
 
-    public void setShippingFee(BigDecimal shippingFee) {
+    public void setShippingFee(double shippingFee) {
         this.shippingFee = shippingFee;
     }
 
