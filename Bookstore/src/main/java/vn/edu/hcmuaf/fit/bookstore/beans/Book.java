@@ -27,10 +27,11 @@ public class Book implements Serializable {
     private LocalDateTime update_at;
     private int status;
     private Image image;
+    private double rating;
 
     public Book() {}
 
-    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status,Image image) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status,Image image, double rating) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -53,6 +54,7 @@ public class Book implements Serializable {
         this.update_at = update_at;
         this.status = status;
         this.image = image;
+        this.rating = rating;
     }
 
     @Override
@@ -79,6 +81,7 @@ public class Book implements Serializable {
                 ", update_at=" + update_at +
                 ", status=" + status +
                 ", image=" + image +
+                ", rating=" + rating+
                 '}';
     }
 
@@ -256,6 +259,14 @@ public class Book implements Serializable {
 
     public void setUpdate_at(LocalDateTime update_at) {
         this.update_at = update_at;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
 
