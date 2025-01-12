@@ -7,7 +7,7 @@ public class VerifyEmailService {
     Jdbi conn = JDBIConnector.getJdbi();
 
     public void insertVerifyEmail(int id,String email, String token, String createdAt, String expiresAt) {
-        conn.useExtension();
+//        conn.useExtension();
     }
 
 

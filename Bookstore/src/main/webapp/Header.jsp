@@ -32,8 +32,8 @@
             <!-- SEARCH BAR -->
             <div class="col-md-7">
                 <div class="header-search">
-                    <form class="d-flex mt-2">
-                        <input class="input flex-grow-1" placeholder="Search product">
+                    <form class="d-flex mt-2" id="searchForm" action="listBook" method="GET">
+                        <input class="input flex-grow-1"  type="text" name="find" id="searchInput" placeholder="Tìm sách">
                         <button class="search-btn">Search</button>
                     </form>
                 </div>

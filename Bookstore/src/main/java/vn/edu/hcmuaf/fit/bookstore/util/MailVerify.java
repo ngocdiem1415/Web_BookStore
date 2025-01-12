@@ -1,20 +1,20 @@
 package vn.edu.hcmuaf.fit.bookstore.util;
 
-import sun.net.smtp.SmtpClient;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+//import sun.net.smtp.SmtpClient;
+//
+//import javax.mail.*;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 
 public class MailVerify {
-    private SmtpClient MailProperties;
-
-    public MailVerify(SmtpClient mailProperties) {
-        MailProperties = mailProperties;
-    }
+//    private SmtpClient MailProperties;
+//
+//    public MailVerify(SmtpClient mailProperties) {
+//        MailProperties = mailProperties;
+//    }
     // email: shadow05.rx@gmail.com
     //sajy blen qiil oxoz: password
 //    private final static String fromEmail = "shadow05.rx@gmail.com"; //requires valid gmail id
@@ -79,7 +79,7 @@ public class MailVerify {
     private void sendEmail(String to, String subject, String content) {
         // Cau hinh mail server
         Properties props = new Properties();
-        props.setProperty("mail.smtp.host", MailProperties.getMailHost());
+//        props.setProperty("mail.smtp.host", MailProperties.getMailHost());
 
         // Thong tin dang nhap mail server
 
