@@ -5,22 +5,16 @@ public class InvoiceDetail {
     private int bookId;
     private int quantity;
     private double unitPrice;
+    private Book book;
 
     public InvoiceDetail() {}
 
-    public InvoiceDetail(int invoiceId, int bookId, int quantity, double unitPrice) {
+    public InvoiceDetail(int invoiceId, int bookId, Book book, int quantity, double unitPrice) {
         this.invoiceId = invoiceId;
         this.bookId = bookId;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
-    }
-
-    public int getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(int invoiceId) {
-        this.invoiceId = invoiceId;
+        this.book = book;
     }
 
     public int getBookId() {
@@ -39,6 +33,14 @@ public class InvoiceDetail {
         this.quantity = quantity;
     }
 
+    public int getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
     public double getUnitPrice() {
         return unitPrice;
     }
@@ -46,6 +48,15 @@ public class InvoiceDetail {
     public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
 
     @Override
     public String toString() {

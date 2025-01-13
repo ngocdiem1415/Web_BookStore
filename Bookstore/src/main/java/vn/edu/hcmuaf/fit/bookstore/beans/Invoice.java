@@ -1,27 +1,37 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class Invoice {
     private int invoiceId;
     private int uid;
-    private Date orderDate;
+    private String recipientName;
+    private String recipientPhone;
+    private String address;
+    private LocalDateTime orderDate;
     private String status;
     private BigDecimal shippingFee;
-    private int shippingId;
-    private Date completionDate;
+    private LocalDateTime completionDate;
+    private List<InvoiceDetail> listInvoiceDetails;
+    private Payment payment;
 
-    public Invoice() {}
+    public Invoice() {
+    }
 
-    public Invoice(int invoiceId, int uid, Date orderDate, String status, BigDecimal shippingFee, int shippingId, Date completionDate) {
+    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, LocalDateTime orderDate, String status, BigDecimal shippingFee, LocalDateTime completionDate, List<InvoiceDetail> listInvoiceDetails, Payment payment) {
         this.invoiceId = invoiceId;
         this.uid = uid;
+        this.recipientName = recipientName;
+        this.recipientPhone = recipientPhone;
+        this.address = address;
         this.orderDate = orderDate;
         this.status = status;
         this.shippingFee = shippingFee;
-        this.shippingId = shippingId;
         this.completionDate = completionDate;
+        this.listInvoiceDetails = listInvoiceDetails;
+        this.payment = payment;
     }
 
     public int getInvoiceId() {
@@ -40,11 +50,35 @@ public class Invoice {
         this.uid = uid;
     }
 
-    public Date getOrderDate() {
+    public String getRecipientName() {
+        return recipientName;
+    }
+
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
+    }
+
+    public String getRecipientPhone() {
+        return recipientPhone;
+    }
+
+    public void setRecipientPhone(String recipientPhone) {
+        this.recipientPhone = recipientPhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -64,20 +98,28 @@ public class Invoice {
         this.shippingFee = shippingFee;
     }
 
-    public int getShippingId() {
-        return shippingId;
-    }
-
-    public void setShippingId(int shippingId) {
-        this.shippingId = shippingId;
-    }
-
-    public Date getCompletionDate() {
+    public LocalDateTime getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(Date completionDate) {
+    public void setCompletionDate(LocalDateTime completionDate) {
         this.completionDate = completionDate;
+    }
+
+    public List<InvoiceDetail> getListInvoiceDetails() {
+        return listInvoiceDetails;
+    }
+
+    public void setListInvoiceDetails(List<InvoiceDetail> listInvoiceDetails) {
+        this.listInvoiceDetails = listInvoiceDetails;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     @Override
@@ -85,11 +127,14 @@ public class Invoice {
         return "Invoice{" +
                 "invoiceId=" + invoiceId +
                 ", uid=" + uid +
+                ", recipientName='" + recipientName + '\'' +
+                ", recipientPhone='" + recipientPhone + '\'' +
+                ", address='" + address + '\'' +
                 ", orderDate=" + orderDate +
                 ", status='" + status + '\'' +
                 ", shippingFee=" + shippingFee +
-                ", shippingId=" + shippingId +
                 ", completionDate=" + completionDate +
+                ", listInvoiceDetails=" + listInvoiceDetails +
                 '}';
     }
 }
