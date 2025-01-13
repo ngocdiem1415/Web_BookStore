@@ -20,7 +20,7 @@
     <div class="alert alert-success mt-3">
         <%= request.getAttribute("baoloi") %>
     </div>
-    <a href="login.jsp" class="btn btn-primary">Đăng nhập</a>
+    <a href="login" class="btn btn-primary">Đăng nhập</a>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
