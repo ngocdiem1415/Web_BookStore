@@ -401,20 +401,6 @@
     transition: color 0.3s; /* Hiệu ứng mượt khi thay đổi màu */
 }
 
-/* Màu mặc định của ngôi sao */
-.rating-infor__star--container .star i {
-    color: #ccc; /* Màu xám mặc định */
-}
-
-/* Hover và trạng thái được chọn */
-.rating-infor__star--container .star:hover i,
-.rating-infor__star--container .star.selected i {
-    color: #ffcc00; /* Màu vàng cho trạng thái hover hoặc đã chọn */
-}
-/* Loại bỏ outline khi focus */
-.rating-infor__star--container .star:focus {
-    outline: #117C6F;
-}
 
 .rating-infor-cmt {
     background-color: #f5f5f5;
@@ -638,6 +624,16 @@ input[type="checkbox"] {
 .rating-submit-btn:hover {
     background-color: #316064 !important;
     color: #fff !important;
+}
+
+.rating-infor__star--container .star i {
+    color: #ccc; /* Màu xám mặc định */
+    transition: color 0.3s; /* Hiệu ứng mượt khi thay đổi màu */
+}
+
+/* Màu khi được chọn */
+.rating-infor__star--container .selected i {
+    color: #ffcc00; /* Màu vàng */
 }
 
 

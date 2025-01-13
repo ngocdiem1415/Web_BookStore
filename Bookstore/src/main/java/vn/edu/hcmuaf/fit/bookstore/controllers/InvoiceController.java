@@ -1,18 +1,24 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
+import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
+import vn.edu.hcmuaf.fit.bookstore.beans.Review;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "InvoiceController", value = "/invoice")
 public class InvoiceController extends HttpServlet {
-    HttpSession session ; // Lấy session hiện tại, không tạo mới
+    HttpSession session; // Lấy session hiện tại, không tạo mới
     int userId;
     private final InvoiceService invoiceService = InvoiceService.getInstance();
 
@@ -94,12 +100,20 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action == null) action = "";
-
+        if (action == null) {
+            action = "";
+        }
         switch (action) {
 //            case "create":
 //                createInvoiceFromCart(request, response);
 //                break;
+            case "review":
+                System.out.println("cc");
+                saveReviews(request, response);
+                response.setContentType("application/json");
+                response.getWriter().write("{\"status\": \"success\"}");
+//                response.sendRedirect("/invoice?action=list");
+                break;
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
@@ -114,6 +128,51 @@ public class InvoiceController extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
+    }
+
+    private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
+        String[] reviewsParams = request.getParameterValues("reviews");
+
+        System.out.println("Reviews...............");
+        if (reviewsParams == null || reviewsParams.length == 0) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("No reviews provided.");
+            System.out.println("No reviews provided.");
+            return;
+        }
+
+        boolean allSaved = true;
+
+        for (String reviewParam : reviewsParams) {
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, Object> reviewData = objectMapper.readValue(reviewParam, new TypeReference<>() {
+                });
+
+                int productId = (int) reviewData.get("productId");
+                int rating = (int) reviewData.get("rating");
+                String comment = (String) reviewData.get("comment");
+
+                Review review = new Review(invoiceId, productId, userId, rating, comment);
+
+                boolean saved = ReviewService.getInstance().addReview(review);
+                if (!saved) {
+                    allSaved = false;
+                }
+            } catch (Exception e) {
+                allSaved = false;
+                e.printStackTrace();
+            }
+        }
+
+        if (allSaved) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("All reviews saved successfully.");
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Failed to save some reviews.");
+        }
     }
 
 //    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
