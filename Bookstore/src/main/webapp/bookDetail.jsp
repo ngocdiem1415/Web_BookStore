@@ -207,7 +207,7 @@
                             </tr>
                             <tr>
                                 <th class="py-2">NXB:</th>
-                                <td class="py-2">${book.publisher}</td>
+                                <td class="py-2">${book.publisher.p_name}</td>
                             </tr>
                             <tr>
                                 <th class="py-2">Năm XB:</th>
@@ -256,116 +256,116 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Sản phẩm liên quan</h5>
-                        <div class="d-flex mb-3">
-                            <a href="ProductDetail.html" class="me-3">
-                                <img src="../img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="ProductDetail.html" class="nav-link mb-1">
-                                    Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
-                                </a>
-                                <div class="mb-3 text-danger d-flex align-items-center">
-                                    <!--giá đã giảm-->
-                                    <div class="d-flex align-items-center justify-content-center text-center">
-                                        <strong class="unit-price fw-semibold">147600</strong>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                        <div class="d-flex mb-3">--%>
+<%--                            <a href="ProductDetail.html" class="me-3">--%>
+<%--                                <img src="../img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"--%>
+<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
+<%--                            </a>--%>
+<%--                            <div class="info">--%>
+<%--                                <a href="ProductDetail.html" class="nav-link mb-1">--%>
+<%--                                    Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên--%>
+<%--                                </a>--%>
+<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
+<%--                                    <!--giá đã giảm-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
+<%--                                        <strong class="unit-price fw-semibold">147600</strong>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--giá gốc-->
-                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                        <span class="original-price">180000</span>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                                    <!--giá gốc-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
+<%--                                        <span class="original-price">180000</span>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--Số % được giảm-->
-                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>
-                                </div>
-                            </div>
-                        </div>
+<%--                                    <!--Số % được giảm-->--%>
+<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                        <div class="d-flex mb-3">
-                            <a href="ProductDetail.html" class="me-3">
-                                <img src="../img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="ProductDetail.html" class="nav-link mb-1">
-                                    Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt
-                                </a>
-                                <div class="mb-3 text-danger d-flex align-items-center">
-                                    <!--giá đã giảm-->
-                                    <div class="d-flex align-items-center justify-content-center text-center">
-                                        <strong class="unit-price fw-semibold">105780</strong>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                        <div class="d-flex mb-3">--%>
+<%--                            <a href="ProductDetail.html" class="me-3">--%>
+<%--                                <img src="../img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"--%>
+<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
+<%--                            </a>--%>
+<%--                            <div class="info">--%>
+<%--                                <a href="ProductDetail.html" class="nav-link mb-1">--%>
+<%--                                    Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt--%>
+<%--                                </a>--%>
+<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
+<%--                                    <!--giá đã giảm-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
+<%--                                        <strong class="unit-price fw-semibold">105780</strong>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--giá gốc-->
-                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                        <span class="original-price">129000</span>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                                    <!--giá gốc-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
+<%--                                        <span class="original-price">129000</span>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--Số % được giảm-->
-                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>
-                                </div>
-                            </div>
-                        </div>
+<%--                                    <!--Số % được giảm-->--%>
+<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                        <div class="d-flex mb-3">
-                            <a href="ProductDetail.html" class="me-3">
-                                <img src="../img/product/NhacNhoAnCan_1.webp"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng
-                                    Khoảnh Khắc Trong
-                                    Cuộc Sống </a>
-                                <div class="mb-3 text-danger d-flex align-items-center">
-                                    <!--giá đã giảm-->
-                                    <div class="d-flex align-items-center justify-content-center text-center">
-                                        <strong class="unit-price fw-semibold">76230</strong>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                        <div class="d-flex mb-3">--%>
+<%--                            <a href="ProductDetail.html" class="me-3">--%>
+<%--                                <img src="../img/product/NhacNhoAnCan_1.webp"--%>
+<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
+<%--                            </a>--%>
+<%--                            <div class="info">--%>
+<%--                                <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng--%>
+<%--                                    Khoảnh Khắc Trong--%>
+<%--                                    Cuộc Sống </a>--%>
+<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
+<%--                                    <!--giá đã giảm-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
+<%--                                        <strong class="unit-price fw-semibold">76230</strong>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--giá gốc-->
-                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                        <span class="original-price">99000</span>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                                    <!--giá gốc-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
+<%--                                        <span class="original-price">99000</span>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--Số % được giảm-->
-                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-23%</span>
-                                </div>
-                            </div>
-                        </div>
+<%--                                    <!--Số % được giảm-->--%>
+<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-23%</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                        <div class="d-flex">
-                            <a href="ProductDetail.html" class="me-3">
-                                <img src="../img/product/NoiLuonChoNoVuong_1.jpg"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản
-                                    2023) </a>
-                                <div class="mb-3 text-danger d-flex align-items-center">
-                                    <!--giá đã giảm-->
-                                    <div class="d-flex align-items-center justify-content-center text-center">
-                                        <strong class="unit-price fw-semibold">88560</strong>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                        <div class="d-flex">--%>
+<%--                            <a href="ProductDetail.html" class="me-3">--%>
+<%--                                <img src="../img/product/NoiLuonChoNoVuong_1.jpg"--%>
+<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
+<%--                            </a>--%>
+<%--                            <div class="info">--%>
+<%--                                <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản--%>
+<%--                                    2023) </a>--%>
+<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
+<%--                                    <!--giá đã giảm-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
+<%--                                        <strong class="unit-price fw-semibold">88560</strong>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--giá gốc-->
-                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                        <span class="original-price">108000</span>
-                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                    </div>
+<%--                                    <!--giá gốc-->--%>
+<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
+<%--                                        <span class="original-price">108000</span>--%>
+<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+<%--                                    </div>--%>
 
-                                    <!--Số % được giảm-->
-                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>
-                                </div>
-                            </div>
-                        </div>
+<%--                                    <!--Số % được giảm-->--%>
+<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,9 @@ public class BookDetailService {
     public Book findById(int id) {
         Book book = connect.withExtension(BookDao.class, handle -> handle.findById(id));
         Image image  = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
+        Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
         book.setImage(image);
+        book.setPublisher(publisher);
         return book;
     }
 
