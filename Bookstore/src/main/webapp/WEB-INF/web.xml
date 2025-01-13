@@ -31,14 +31,11 @@
 
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/*</url-pattern> <!-- Áp dụng filter cho toàn bộ ứng dụng -->
+        <url-pattern>/admin/*</url-pattern> <!-- Áp dụng filter cho toàn bộ ứng dụng -->
     </filter-mapping>
 
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
-
-
-
 </web-app>
 
