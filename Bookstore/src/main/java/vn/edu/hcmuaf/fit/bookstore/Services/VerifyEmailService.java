@@ -17,7 +17,6 @@ import java.util.UUID;
 public class VerifyEmailService {
     Jdbi conn = JDBIConnector.getJdbi();
 
-
     public void insertVerifyEmail(int id, String email, String token, Timestamp createdAt, Timestamp expiresAt) {
         try {
             conn.useExtension(VerifyEmailDao.class, handle -> {

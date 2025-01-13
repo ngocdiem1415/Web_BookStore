@@ -6,463 +6,181 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Giỏ hàng</title>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
 
-  <!--    font awesome-->
-  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <!--    font awesome-->
+    <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
 
-  <!--    bootstrap-->
-  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 
-  <!--    CSS-->
-  <link rel="stylesheet" href="css/Header.css">
-  <link rel="stylesheet" href="css/Style.css">
-  <link rel="stylesheet" href="css/Cart.css">
+    <!--    CSS-->
+    <link rel="stylesheet" href="css/Header.css">
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/Cart.css">
 
 </head>
 <body>
 <!--Header-->
-<!--<div id="header"></div>-->
-<!--Header-->
-<header id="header">
-  <!-- MAIN HEADER -->
-  <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
-  <!--        <a href="#" class="content">Freeship đơn từ 45k, giảm nhiều hơn cùng FREESHIP XTRA</a>-->
-  <!--    </div>-->
-  <div class="container">
-    <!-- row -->
-    <div class="row">
-      <!-- LOGO -->
-      <div class="col-md-2 d-flex justify-content-center align-items-end">
-        <a href="Home.jsp">
-          <div class="header-logo">
-            <img src="img/logo/logo-header.png" height="80" width="100"/></div>
-        </a>
-      </div>
-      <!-- /LOGO -->
-
-      <!-- SEARCH BAR -->
-      <div class="col-md-7">
-        <div class="header-search">
-          <form class="d-flex mt-2">
-            <input class="input flex-grow-1" placeholder="Search product">
-            <button class="search-btn">Search</button>
-          </form>
-        </div>
-      </div>
-      <!-- /SEARCH BAR -->
-
-      <!-- ACCOUNT -->
-      <div class="col-md-3 clearfix d-flex">
-        <ul class="account-menu mr-1">
-          <li class="account box mt-4">
-            <a href="profile.jsp">Tài khoản</a>
-            <i class="fa-solid fa-angle-down"></i>
-            <ul class="subnav">
-              <li class="border-bottom border-gray"><a href="login.jsp">Đăng nhập</a></li>
-              <li><a href="login.jsp">Đăng kí</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="shopping-cart mt-4 ">
-          <a href="Cart.jsp" style="color: black">
-            <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
-            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
-                 class="bi bi-bag-check" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
-              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
 
-<!-- NAVIGATION-->
-<nav id="navigation">
-  <!-- container -->
-  <div class="container ">
-    <!-- NAV -->
-    <ul class="main-nav nav ">
-      <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
-      <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Sản phẩm
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="productDropdown">
-          <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
-          <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
-        </ul>
-      </li>
-      <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
-      <li class="nav-item "><a href="contact.jsp">Liên hệ</a></li>
-    </ul>
-    <!-- /NAV -->
-  </div>
-</nav>
-<!--/nav end-->
 
 <!-- Cart Content-->
+<jsp:useBean id="cart" scope="request" type="vn.edu.hcmuaf.fit.bookstore.beans.Cart.Cart"/>
 <div class="container-cart container">
-  <div class="cart-title my-4">
-    <h3 class="boldGreen">Giỏ hàng</h3>
-  </div>
-  <div class="cart">
-    <!--header of cart-->
-    <section class="cart-header row text-muted bg-white border-bottom rounded-2 my-2 mx-0 py-3 px-2">
-      <div class="col-5">
-        Sản phẩm
-      </div>
-      <div class="col-2 text-center">Đơn giá</div>
-      <div class="col-2 text-center">Số lượng</div>
-      <div class="col-2 text-center">Tổng cộng</div>
-      <div class="col-1 text-center">Thao tác</div>
-    </section>
-
-    <!--cart items-->
-    <section class="cart-items bg-white border-top border rounded-2">
-      <div class="product row m-2 py-3 border-bottom">
-        <div class="col-5 d-flex align-items-center">
-          <label class="me-4">
-            <input type="checkbox" name="item" class="item-checkbox">
-          </label>
-
-          <div class="d-flex align-items-center">
-            <a href="ProductDetail.jsp" class="me-3">
-              <img src="img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"
-                   style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
-            </a>
-            <div class="info">
-              <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
-                Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Đơn giá-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-
-          <!--giá gốc-->
-          <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through">
-            <span class="original-price">180000</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-
-          <!--giá đã giảm-->
-          <div class="d-flex align-items-center justify-content-center text-center ms-2">
-            <span class="unit-price">147600</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-        </div>
-
-        <!--số lượng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <button class="decrease btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-minus"></i>
-          </button>
-          <input type="text" class="quantity form-control text-center border border-secondary mx-1"
-                 placeholder="1" value="1" aria-label="Example text with button addon"
-                 aria-describedby="button-addon1"/>
-          <button class="increase btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-
-        <!--tổng cộng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
-          <span class="total-price"></span>
-          <i class="fa-solid fa-dong-sign fa-xs"></i>
-        </div>
-
-        <!--thao tác-->
-        <div class="col-1 d-flex align-items-center justify-content-center text-center">
-          <button class="delete btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="product row m-2 py-3 border-bottom">
-        <div class="col-5 d-flex align-items-center">
-          <label class="me-4">
-            <input type="checkbox" name="item" class="item-checkbox">
-          </label>
-
-          <div class="d-flex align-items-center">
-            <a href="ProductDetail.jsp" class="me-3">
-              <img src="img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"
-                   style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
-            </a>
-            <div class="info">
-              <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
-                Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Đơn giá-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <!--giá gốc-->
-          <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through">
-            <span class="original-price">129000</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-
-          <!--giá đã giảm-->
-          <div class="d-flex align-items-center justify-content-center text-center ms-2">
-            <span class="unit-price">105780</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-        </div>
-
-        <!--số lượng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <button class="decrease btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-minus"></i>
-          </button>
-          <input type="text" class="quantity form-control text-center border border-secondary mx-1"
-                 placeholder="1" value="1" aria-label="Example text with button addon"
-                 aria-describedby="button-addon1"/>
-          <button class="increase btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-
-        <!--tổng cộng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
-          <span class="total-price"></span>
-          <i class="fa-solid fa-dong-sign fa-xs"></i>
-        </div>
-
-        <!--thao tác-->
-        <div class="col-1 d-flex align-items-center justify-content-center text-center">
-          <button class="delete btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-
-        </div>
-      </div>
-
-      <div class="product row m-2 py-3 border-bottom ">
-        <div class="col-5 d-flex align-items-center">
-          <label class="me-4">
-            <input type="checkbox" name="item" class="item-checkbox">
-          </label>
-
-          <div class="d-flex align-items-center">
-            <a href="ProductDetail.jsp" class="me-3">
-              <img src="img/product/NhacNhoAnCan_1.webp"
-                   style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
-            </a>
-            <div class="info">
-              <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
-                Nhắc Nhở Ân Cần – Nâng Niu Từng Khoảnh Khắc Trong Cuộc Sống
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Đơn giá-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <!--giá gốc-->
-          <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through">
-            <span class="original-price">99000</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-
-          <!--giá đã giảm-->
-          <div class="d-flex align-items-center justify-content-center text-center ms-2">
-            <span class="unit-price">76230</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-        </div>
-
-        <!--số lượng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <button class="decrease btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-minus"></i>
-          </button>
-          <input type="text" class="quantity form-control text-center border border-secondary mx-1"
-                 placeholder="1" value="1" aria-label="Example text with button addon"
-                 aria-describedby="button-addon1"/>
-          <button class="increase btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-
-        <!--tổng cộng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
-          <span class="total-price"></span>
-          <i class="fa-solid fa-dong-sign fa-xs"></i>
-        </div>
-
-        <!--thao tác-->
-        <div class="col-1 d-flex align-items-center justify-content-center text-center">
-          <button class="delete btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-
-        </div>
-      </div>
-
-      <div class="product row m-2 py-3 border-bottom">
-        <div class="col-5 d-flex align-items-center">
-          <label class="me-4">
-            <input type="checkbox" name="item" class="item-checkbox">
-          </label>
-
-          <div class="d-flex align-items-center">
-            <a href="ProductDetail.jsp" class="me-3">
-              <img src="img/product/NoiLuonChoNoVuong_1.jpg"
-                   style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
-            </a>
-            <div class="info">
-              <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
-                Nói Luôn Cho Nó Vuông (Tái Bản 2023)
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Đơn giá-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <!--giá gốc-->
-          <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through">
-            <span class="original-price">108000</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-
-          <!--giá đã giảm-->
-          <div class="d-flex align-items-center justify-content-center text-center ms-2">
-            <span class="unit-price">88560</span>
-            <i class="fa-solid fa-dong-sign fa-xs"></i>
-          </div>
-        </div>
-
-        <!--số lượng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center">
-          <button class="decrease btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-minus"></i>
-          </button>
-          <input type="text" class="quantity form-control text-center border border-secondary mx-1"
-                 placeholder="1" value="1" aria-label="Example text with button addon"
-                 aria-describedby="button-addon1"/>
-          <button class="increase btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-
-        <!--tổng cộng-->
-        <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
-          <span class="total-price"></span>
-          <i class="fa-solid fa-dong-sign fa-xs"></i>
-        </div>
-
-        <!--thao tác-->
-        <div class="col-1 d-flex align-items-center justify-content-center text-center">
-          <button class="delete btn btn-white border border-secondary px-3" type="button"
-                  data-mdb-ripple-color="dark">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!--footer of cart-->
-  <div class="cart-footer row py-3 m-0 border-top d-flex align-items-center">
-    <div class="col-2 text-muted">
-      <label class="mx-3">
-        <input type="checkbox" class="select-all" onclick="toggleSelectAll(this)">
-      </label>
-      Chọn tất cả
+    <div class="cart-title my-4">
+        <h3 class="boldGreen">Giỏ hàng</h3>
     </div>
-    <div class="col-3 text-muted d-flex justify-content-start">
-      <button class="delete-check btn px-3 me-3" type="button">
-        Xóa
-      </button>
+    <div class="cart">
+        <!--header of cart-->
+        <section class="cart-header row text-muted bg-white border-bottom rounded-2 my-2 mx-0 py-3 px-2">
+            <div class="col-5">
+                Sản phẩm
+            </div>
+            <div class="col-2 text-center">Đơn giá</div>
+            <div class="col-2 text-center">Số lượng</div>
+            <div class="col-2 text-center">Tổng cộng</div>
+            <div class="col-1 text-center">Thao tác</div>
+        </section>
 
-      <!--confirm-->
-      <div id="confirm-modal" class="modal hidden">
-        <div class="modal-content">
-          <p id="modal-message">Bạn có chắc chắn muốn xóa sản phẩm này?</p>
-          <div class="modal-buttons">
-            <button id="confirm-delete" class="btn btn-danger">Xóa</button>
-            <button id="cancel-delete" class="btn btn-secondary">Hủy</button>
-          </div>
+        <!--cart items-->
+        <section class="cart-items bg-white border-top border rounded-2">
+            <c:if test="${empty cart.listBook}">
+                <p>Chưa có sản phẩm nào trong giỏ hàng</p>
+            </c:if>
+            <c:forEach var="entry" items="${cart.listBook}">
+                <div class="product row m-2 py-3 border-bottom">
+                    <div class="col-5 d-flex align-items-center">
+                        <label class="me-4">
+                            <input type="checkbox" name="item" class="item-checkbox">
+                        </label>
+
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="me-3">
+                                <img src="entry.value.image" alt="product"
+                                     style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
+                            </a>
+                            <div class="info">
+                                <a href="ProductDetail.jsp" class="nav-link mb-1 text-wrap">
+                                    Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Đơn giá-->
+                    <div class="col-2 d-flex align-items-center justify-content-center text-center">
+
+                        <!--giá gốc-->
+                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through">
+                            <span class="original-price">180000</span>
+                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                        </div>
+
+                        <!--giá đã giảm-->
+                        <div class="d-flex align-items-center justify-content-center text-center ms-2">
+                            <span class="unit-price">147600</span>
+                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                        </div>
+                    </div>
+
+                    <!--số lượng-->
+                    <div class="col-2 d-flex align-items-center justify-content-center text-center">
+                        <button class="decrease btn btn-white border border-secondary px-3" type="button"
+                                data-mdb-ripple-color="dark">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="text" class="quantity form-control text-center border border-secondary mx-1"
+                               placeholder="1" value="1" aria-label="Example text with button addon"
+                               aria-describedby="button-addon1"/>
+                        <button class="increase btn btn-white border border-secondary px-3" type="button"
+                                data-mdb-ripple-color="dark">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <!--tổng cộng-->
+                    <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
+                        <span class="total-price"></span>
+                        <i class="fa-solid fa-dong-sign fa-xs"></i>
+                    </div>
+
+                    <!--thao tác-->
+                    <div class="col-1 d-flex align-items-center justify-content-center text-center">
+                        <button class="delete btn btn-white border border-secondary px-3" type="button"
+                                data-mdb-ripple-color="dark">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </c:forEach>
+        </section>
+    </div>
+
+    <!--footer of cart-->
+    <div class="cart-footer row py-3 m-0 border-top d-flex align-items-center">
+        <div class="col-2 text-muted">
+            <label class="mx-3">
+                <input type="checkbox" class="select-all" onclick="toggleSelectAll(this)">
+            </label>
+            Chọn tất cả
         </div>
-      </div>
+        <div class="col-3 text-muted d-flex justify-content-start">
+            <button class="delete-check btn px-3 me-3" type="button">
+                Xóa
+            </button>
 
-      <button class="love-check btn px-3 text-danger" type="button">
-        Yêu thích
-      </button>
+            <!--confirm-->
+            <div id="confirm-modal" class="modal hidden">
+                <div class="modal-content">
+                    <p id="modal-message">Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+                    <div class="modal-buttons">
+                        <button id="confirm-delete" class="btn btn-danger">Xóa</button>
+                        <button id="cancel-delete" class="btn btn-secondary">Hủy</button>
+                    </div>
+                </div>
+            </div>
 
-      <!-- Thông báo -->
-      <div id="notification"
-           class="alert alert-success text-center position-fixed top-50 start-50 translate-middle hidden"
-           role="alert">
-        Đây là thông báo mặc định.
-      </div>
+            <button class="love-check btn px-3 text-danger" type="button">
+                Yêu thích
+            </button>
+
+            <!-- Thông báo -->
+            <div id="notification"
+                 class="alert alert-success text-center position-fixed top-50 start-50 translate-middle hidden"
+                 role="alert">
+                Đây là thông báo mặc định.
+            </div>
 
 
+        </div>
+        <div class="col-5 d-flex justify-content-end">
+            <span class="count">Tổng thanh toán (0 sản phẩm):</span>
+            <strong class="text-danger h5">
+                <span class="total-price-check ms-2">0</span>
+                <i class="fa-solid fa-dong-sign fa-xs"></i>
+            </strong>
+        </div>
+        <div class="col-2 d-flex justify-content-center">
+            <button id="buy-button" class="MUA btn px-3" type="button">
+                Mua hàng
+            </button>
+        </div>
     </div>
-    <div class="col-5 d-flex justify-content-end">
-      <span class="count">Tổng thanh toán (0 sản phẩm):</span>
-      <strong class="text-danger h5">
-        <span class="total-price-check ms-2">0</span>
-        <i class="fa-solid fa-dong-sign fa-xs"></i>
-      </strong>
-    </div>
-    <div class="col-2 d-flex justify-content-center">
-      <button id="buy-button" class="MUA btn px-3" type="button">
-        Mua hàng
-      </button>
-    </div>
-  </div>
 
 </div>
 
-<!--SCRIPT-->
-<!--<script>-->
-<!--    fetch('Header.jsp')-->
-<!--        .then(response => {-->
-<!--            if (!response.ok) throw new Error('Network response was not ok');-->
-<!--            return response.text();-->
-<!--        })-->
-<!--        .then(data => document.getElementById('header').innerHTML = data)-->
-<!--        .catch(error => console.error('Error:', error));-->
-
-<!--</script>-->
 
 <!--format tiền tệ-->
 <script src="js/FormatMoney.js"></script>
@@ -470,305 +188,305 @@
 
 <!--tăng giảm số lượng sản phẩm-->
 <script>
-  // Hàm tính và cập nhật total-price khi trang tải
-  document.addEventListener('DOMContentLoaded', function () {
-    // Lấy tất cả các phần tử chứa sản phẩm
-    const products = document.querySelectorAll('.product');
+    // Hàm tính và cập nhật total-price khi trang tải
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lấy tất cả các phần tử chứa sản phẩm
+        const products = document.querySelectorAll('.product');
 
-    products.forEach(product => {
-      // Lấy giá trị của unit-price
-      const unitPrice = parseFloat(product.querySelector('.unit-price').textContent);
-      // Lấy số lượng sản phẩm
-      const quantity = parseInt(product.querySelector('.quantity').value);
-      // Tính toán total-price
-      const totalPrice = unitPrice * quantity;
+        products.forEach(product => {
+            // Lấy giá trị của unit-price
+            const unitPrice = parseFloat(product.querySelector('.unit-price').textContent);
+            // Lấy số lượng sản phẩm
+            const quantity = parseInt(product.querySelector('.quantity').value);
+            // Tính toán total-price
+            const totalPrice = unitPrice * quantity;
 
-      // Cập nhật giá trị total-price trong giao diện
-      product.querySelector('.total-price').textContent = totalPrice;
+            // Cập nhật giá trị total-price trong giao diện
+            product.querySelector('.total-price').textContent = totalPrice;
+        });
     });
-  });
 
-  // Áp dụng định dạng cho các phần tử có class unit-price, original-price và total-price
-  function applyCurrencyFormat() {
-    document.querySelectorAll('.unit-price, .total-price, .original-price').forEach(element => {
-      const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
-      if (!isNaN(amount)) {
-        element.textContent = formatCurrencyVN(amount);
-      }
-    });
-  }
-
-  // Cập nhật định dạng sau khi thay đổi tổng giá
-  document.addEventListener('DOMContentLoaded', function () {
-    // Gọi hàm applyCurrencyFormat để định dạng ban đầu
-    applyCurrencyFormat();
-
-    // Hàm cập nhật tổng giá và định dạng lại
-    function updateTotalPrice(productElement) {
-      const unitPrice = parseInt(productElement.querySelector('.unit-price').getAttribute('data-original-price')); // Lấy giá gốc từ data attribute
-      const quantity = parseInt(productElement.querySelector('.quantity').value);
-      const totalPriceElement = productElement.querySelector('.total-price');
-
-      if (!isNaN(unitPrice) && !isNaN(quantity)) {
-        const totalPrice = unitPrice * quantity;
-        totalPriceElement.textContent = formatCurrencyVN(totalPrice);
-      }
+    // Áp dụng định dạng cho các phần tử có class unit-price, original-price và total-price
+    function applyCurrencyFormat() {
+        document.querySelectorAll('.unit-price, .total-price, .original-price').forEach(element => {
+            const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
+            if (!isNaN(amount)) {
+                element.textContent = formatCurrencyVN(amount);
+            }
+        });
     }
 
-    // Thiết lập giá gốc cho các phần tử unit-price
-    document.querySelectorAll('.unit-price').forEach(element => {
-      const originalPrice = parseInt(element.textContent.replace(/\./g, ''));
-      element.setAttribute('data-original-price', originalPrice); // Lưu giá trị gốc trong data attribute
-    });
+    // Cập nhật định dạng sau khi thay đổi tổng giá
+    document.addEventListener('DOMContentLoaded', function () {
+        // Gọi hàm applyCurrencyFormat để định dạng ban đầu
+        applyCurrencyFormat();
 
-    // Tăng số lượng và cập nhật tổng giá
-    document.querySelectorAll('.increase').forEach(button => {
-      button.addEventListener('click', function () {
-        const product = button.closest('.product');
-        const quantityInput = product.querySelector('.quantity');
-        let quantity = parseInt(quantityInput.value);
-        if (!isNaN(quantity) && quantity < 12) {
-          quantity++;
-          quantityInput.value = quantity;
-          updateTotalPrice(product);
-        }
-      });
-    });
+        // Hàm cập nhật tổng giá và định dạng lại
+        function updateTotalPrice(productElement) {
+            const unitPrice = parseInt(productElement.querySelector('.unit-price').getAttribute('data-original-price')); // Lấy giá gốc từ data attribute
+            const quantity = parseInt(productElement.querySelector('.quantity').value);
+            const totalPriceElement = productElement.querySelector('.total-price');
 
-    // Giảm số lượng và cập nhật tổng giá
-    document.querySelectorAll('.decrease').forEach(button => {
-      button.addEventListener('click', function () {
-        const product = button.closest('.product');
-        const quantityInput = product.querySelector('.quantity');
-        let quantity = parseInt(quantityInput.value);
-        if (!isNaN(quantity) && quantity > 1) {
-          quantity--;
-          quantityInput.value = quantity;
-          updateTotalPrice(product);
+            if (!isNaN(unitPrice) && !isNaN(quantity)) {
+                const totalPrice = unitPrice * quantity;
+                totalPriceElement.textContent = formatCurrencyVN(totalPrice);
+            }
         }
-      });
-    });
 
-    // Nhập số lượng và cập nhật tổng giá
-    document.querySelectorAll('.quantity').forEach(input => {
-      input.addEventListener('input', function () {
-        const product = input.closest('.product');
-        let quantity = parseInt(input.value);
-        if (isNaN(quantity) || quantity < 1) {
-          input.value = 1;
-        } else if (quantity > 12) {
-          input.value = 12;
-        } else {
-          input.value = quantity;
-        }
-        updateTotalPrice(product);
-      });
+        // Thiết lập giá gốc cho các phần tử unit-price
+        document.querySelectorAll('.unit-price').forEach(element => {
+            const originalPrice = parseInt(element.textContent.replace(/\./g, ''));
+            element.setAttribute('data-original-price', originalPrice); // Lưu giá trị gốc trong data attribute
+        });
+
+        // Tăng số lượng và cập nhật tổng giá
+        document.querySelectorAll('.increase').forEach(button => {
+            button.addEventListener('click', function () {
+                const product = button.closest('.product');
+                const quantityInput = product.querySelector('.quantity');
+                let quantity = parseInt(quantityInput.value);
+                if (!isNaN(quantity) && quantity < 12) {
+                    quantity++;
+                    quantityInput.value = quantity;
+                    updateTotalPrice(product);
+                }
+            });
+        });
+
+        // Giảm số lượng và cập nhật tổng giá
+        document.querySelectorAll('.decrease').forEach(button => {
+            button.addEventListener('click', function () {
+                const product = button.closest('.product');
+                const quantityInput = product.querySelector('.quantity');
+                let quantity = parseInt(quantityInput.value);
+                if (!isNaN(quantity) && quantity > 1) {
+                    quantity--;
+                    quantityInput.value = quantity;
+                    updateTotalPrice(product);
+                }
+            });
+        });
+
+        // Nhập số lượng và cập nhật tổng giá
+        document.querySelectorAll('.quantity').forEach(input => {
+            input.addEventListener('input', function () {
+                const product = input.closest('.product');
+                let quantity = parseInt(input.value);
+                if (isNaN(quantity) || quantity < 1) {
+                    input.value = 1;
+                } else if (quantity > 12) {
+                    input.value = 12;
+                } else {
+                    input.value = quantity;
+                }
+                updateTotalPrice(product);
+            });
+        });
     });
-  });
 </script>
 
 <!--footer cart-->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const cartFooter = document.querySelector('.cart-footer');
-    const selectAllCheckbox = cartFooter.querySelector('.select-all');
-    const deleteCheckButton = cartFooter.querySelector('.delete-check');
-    const loveCheckButton = cartFooter.querySelector('.love-check');
-    const totalPriceCheckElement = cartFooter.querySelector('.total-price-check');
-    const countElement = cartFooter.querySelector('.count');
-    const muaButton = cartFooter.querySelector('.MUA');
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartFooter = document.querySelector('.cart-footer');
+        const selectAllCheckbox = cartFooter.querySelector('.select-all');
+        const deleteCheckButton = cartFooter.querySelector('.delete-check');
+        const loveCheckButton = cartFooter.querySelector('.love-check');
+        const totalPriceCheckElement = cartFooter.querySelector('.total-price-check');
+        const countElement = cartFooter.querySelector('.count');
+        const muaButton = cartFooter.querySelector('.MUA');
 
-    // Hàm hiển thị thông báo
-    function showNotification(message, type) {
-      const notification = document.getElementById('notification');
-      notification.textContent = message;
-      notification.className = `alert alert-${type} text-center position-fixed top-50 start-50 translate-middle show`;
+        // Hàm hiển thị thông báo
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `alert alert-${type} text-center position-fixed top-50 start-50 translate-middle show`;
 
-      setTimeout(() => {
-        notification.classList.remove('show');
-        notification.classList.add('hidden');
-      }, 3000);
-    }
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('hidden');
+            }, 3000);
+        }
 
-    // Hàm tính tổng tiền và số lượng sản phẩm đã chọn
-    function updateCartSummary() {
-      const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
-      let total = 0;
-      let count = 0;
+        // Hàm tính tổng tiền và số lượng sản phẩm đã chọn
+        function updateCartSummary() {
+            const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
+            let total = 0;
+            let count = 0;
 
-      selectedProducts.forEach(productCheckbox => {
-        const productElement = productCheckbox.closest('.product');
-        const quantity = parseInt(productElement.querySelector('.quantity').value) || 0;
-        const unitPrice = parseInt(productElement.querySelector('.unit-price').getAttribute('data-original-price')) || 0;
-        total += quantity * unitPrice;
-        count += quantity;
-      });
+            selectedProducts.forEach(productCheckbox => {
+                const productElement = productCheckbox.closest('.product');
+                const quantity = parseInt(productElement.querySelector('.quantity').value) || 0;
+                const unitPrice = parseInt(productElement.querySelector('.unit-price').getAttribute('data-original-price')) || 0;
+                total += quantity * unitPrice;
+                count += quantity;
+            });
 
-      totalPriceCheckElement.textContent = formatCurrencyVN(total);
-      countElement.textContent = `Tổng thanh toán (${count} sản phẩm):`;
-      muaButton.disabled = count === 0; // Vô hiệu hóa nút "Mua hàng" nếu không có sản phẩm nào được chọn
-    }
+            totalPriceCheckElement.textContent = formatCurrencyVN(total);
+            countElement.textContent = `Tổng thanh toán (${count} sản phẩm):`;
+            muaButton.disabled = count === 0; // Vô hiệu hóa nút "Mua hàng" nếu không có sản phẩm nào được chọn
+        }
 
-    // Hàm toggle "Chọn tất cả"
-    function toggleSelectAll(selectAllCheckbox) {
-      const allProductCheckboxes = document.querySelectorAll('.product input[type="checkbox"]');
-      allProductCheckboxes.forEach(checkbox => {
-        checkbox.checked = selectAllCheckbox.checked;
-      });
-      updateCartSummary();
-    }
+        // Hàm toggle "Chọn tất cả"
+        function toggleSelectAll(selectAllCheckbox) {
+            const allProductCheckboxes = document.querySelectorAll('.product input[type="checkbox"]');
+            allProductCheckboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+            updateCartSummary();
+        }
 
-    // Gán sự kiện cho nút "Xóa"
-    deleteCheckButton.addEventListener('click', function () {
-      const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
+        // Gán sự kiện cho nút "Xóa"
+        deleteCheckButton.addEventListener('click', function () {
+            const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
 
-      // Kiểm tra nếu không có sản phẩm được chọn
-      if (selectedProducts.length === 0) {
-        showNotification('Vui lòng chọn sản phẩm!', 'danger');
-        return;
-      }
+            // Kiểm tra nếu không có sản phẩm được chọn
+            if (selectedProducts.length === 0) {
+                showNotification('Vui lòng chọn sản phẩm!', 'danger');
+                return;
+            }
 
-      // Hiển thị modal xác nhận
-      const modal = document.getElementById('confirm-modal');
-      modal.classList.remove('hidden');
-      modal.style.display = 'flex';
+            // Hiển thị modal xác nhận
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
 
-      // Xử lý khi người dùng xác nhận xóa
-      const confirmButton = document.getElementById('confirm-delete');
-      const cancelButton = document.getElementById('cancel-delete');
+            // Xử lý khi người dùng xác nhận xóa
+            const confirmButton = document.getElementById('confirm-delete');
+            const cancelButton = document.getElementById('cancel-delete');
 
-      // xử lý sự kiện xóa
-      const onConfirm = () => {
-        selectedProducts.forEach(productCheckbox => {
-          const productElement = productCheckbox.closest('.product');
-          if (productElement) {
-            productElement.remove();
-          }
+            // xử lý sự kiện xóa
+            const onConfirm = () => {
+                selectedProducts.forEach(productCheckbox => {
+                    const productElement = productCheckbox.closest('.product');
+                    if (productElement) {
+                        productElement.remove();
+                    }
+                });
+                updateCartSummary();
+                showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
+                closeModal();
+            };
+
+            // Xử lý sự kiện Hủy
+            const onCancel = () => {
+                closeModal();
+            };
+
+            // Thêm sự kiện cho nút Xóa và Hủy
+            confirmButton.addEventListener('click', onConfirm, {once: true});
+            cancelButton.addEventListener('click', onCancel, {once: true});
+
+            // Hàm đóng modal
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
         });
+
+        // Gán sự kiện cho nút "Yêu thích"
+        loveCheckButton.addEventListener('click', function () {
+            const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
+            if (selectedProducts.length === 0) {
+                // alert('Vui lòng chọn sản phẩm!');
+                showNotification('Vui lòng chọn sản phẩm!', 'danger');
+                return;
+            }
+            selectedProducts.forEach(productCheckbox => {
+                const productElement = productCheckbox.closest('.product');
+                if (productElement) {
+                    productElement.classList.add('loved');
+                }
+            });
+            // alert('Đã thêm sản phẩm vào danh sách yêu thích!');
+            showNotification('Đã thêm sản phẩm vào danh sách yêu thích!', 'success');
+            updateCartSummary();
+        });
+
+        // Gán sự kiện cập nhật khi checkbox trong sản phẩm thay đổi
+        document.addEventListener('change', function (e) {
+            if (e.target.matches('.product input[type="checkbox"]') || e.target.matches('.quantity')) {
+                updateCartSummary();
+            }
+        });
+
+        // Gán sự kiện cho nút "Chọn tất cả"
+        selectAllCheckbox.addEventListener('click', function () {
+            toggleSelectAll(selectAllCheckbox);
+        });
+
+        // Gọi updateCartSummary khi có sự kiện thay đổi khác
+        document.querySelectorAll('.increase, .decrease').forEach(button => {
+            button.addEventListener('click', function () {
+                const product = button.closest('.product');
+                const quantityInput = product.querySelector('.quantity');
+                const quantity = parseInt(quantityInput.value) || 0;
+
+                updateCartSummary();
+            });
+        });
+
+        // Gọi lại hàm updateCartSummary khi xóa sản phẩm
+        document.querySelectorAll('.delete').forEach(deleteButton => {
+            deleteButton.addEventListener('click', function () {
+                // Hiển thị modal xác nhận
+                const modal = document.getElementById('confirm-modal');
+                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+
+                // Xử lý khi người dùng xác nhận xóa
+                const confirmButton = document.getElementById('confirm-delete');
+                const cancelButton = document.getElementById('cancel-delete');
+
+                const onConfirm = () => {
+                    const productElement = deleteButton.closest('.product');
+                    if (productElement) {
+                        productElement.remove();
+                    }
+                    updateCartSummary();
+                    showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
+                    closeModal();
+                };
+
+                // Xử lý sự kiện Hủy
+                const onCancel = () => {
+                    closeModal();
+                };
+
+                // Thêm sự kiện cho nút Xóa và Hủy
+                confirmButton.addEventListener('click', onConfirm, {once: true});
+                cancelButton.addEventListener('click', onCancel, {once: true});
+
+                // Hàm đóng modal
+                function closeModal() {
+                    modal.classList.add('hidden');
+                    modal.style.display = 'none';
+                }
+            });
+
+        });
+
+
+        // Khởi tạo giao diện ban đầu
         updateCartSummary();
-        showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
-        closeModal();
-      };
-
-      // Xử lý sự kiện Hủy
-      const onCancel = () => {
-        closeModal();
-      };
-
-      // Thêm sự kiện cho nút Xóa và Hủy
-      confirmButton.addEventListener('click', onConfirm, {once: true});
-      cancelButton.addEventListener('click', onCancel, {once: true});
-
-      // Hàm đóng modal
-      function closeModal() {
-        modal.classList.add('hidden');
-        modal.style.display = 'none';
-      }
     });
 
-    // Gán sự kiện cho nút "Yêu thích"
-    loveCheckButton.addEventListener('click', function () {
-      const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
-      if (selectedProducts.length === 0) {
-        // alert('Vui lòng chọn sản phẩm!');
-        showNotification('Vui lòng chọn sản phẩm!', 'danger');
-        return;
-      }
-      selectedProducts.forEach(productCheckbox => {
-        const productElement = productCheckbox.closest('.product');
-        if (productElement) {
-          productElement.classList.add('loved');
+    document.addEventListener('DOMContentLoaded', function () {
+        const buyButton = document.getElementById('buy-button');
+
+        if (buyButton) {
+            buyButton.addEventListener('click', function () {
+                const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
+
+                if (selectedProducts.length === 0) {
+                    showNotification('Vui lòng chọn sản phẩm!', 'danger');
+                } else {
+                    // Chuyển hướng sang trang checkout.jsp
+                    window.location.href = './checkout.jsp';
+                }
+            });
         }
-      });
-      // alert('Đã thêm sản phẩm vào danh sách yêu thích!');
-      showNotification('Đã thêm sản phẩm vào danh sách yêu thích!', 'success');
-      updateCartSummary();
     });
-
-    // Gán sự kiện cập nhật khi checkbox trong sản phẩm thay đổi
-    document.addEventListener('change', function (e) {
-      if (e.target.matches('.product input[type="checkbox"]') || e.target.matches('.quantity')) {
-        updateCartSummary();
-      }
-    });
-
-    // Gán sự kiện cho nút "Chọn tất cả"
-    selectAllCheckbox.addEventListener('click', function () {
-      toggleSelectAll(selectAllCheckbox);
-    });
-
-    // Gọi updateCartSummary khi có sự kiện thay đổi khác
-    document.querySelectorAll('.increase, .decrease').forEach(button => {
-      button.addEventListener('click', function () {
-        const product = button.closest('.product');
-        const quantityInput = product.querySelector('.quantity');
-        const quantity = parseInt(quantityInput.value) || 0;
-
-        updateCartSummary();
-      });
-    });
-
-    // Gọi lại hàm updateCartSummary khi xóa sản phẩm
-    document.querySelectorAll('.delete').forEach(deleteButton => {
-      deleteButton.addEventListener('click', function () {
-        // Hiển thị modal xác nhận
-        const modal = document.getElementById('confirm-modal');
-        modal.classList.remove('hidden');
-        modal.style.display = 'flex';
-
-        // Xử lý khi người dùng xác nhận xóa
-        const confirmButton = document.getElementById('confirm-delete');
-        const cancelButton = document.getElementById('cancel-delete');
-
-        const onConfirm = () => {
-          const productElement = deleteButton.closest('.product');
-          if (productElement) {
-            productElement.remove();
-          }
-          updateCartSummary();
-          showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
-          closeModal();
-        };
-
-        // Xử lý sự kiện Hủy
-        const onCancel = () => {
-          closeModal();
-        };
-
-        // Thêm sự kiện cho nút Xóa và Hủy
-        confirmButton.addEventListener('click', onConfirm, {once: true});
-        cancelButton.addEventListener('click', onCancel, {once: true});
-
-        // Hàm đóng modal
-        function closeModal() {
-          modal.classList.add('hidden');
-          modal.style.display = 'none';
-        }
-      });
-
-    });
-
-
-    // Khởi tạo giao diện ban đầu
-    updateCartSummary();
-  });
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const buyButton = document.getElementById('buy-button');
-
-    if (buyButton) {
-      buyButton.addEventListener('click', function () {
-        const selectedProducts = document.querySelectorAll('.product input[type="checkbox"]:checked');
-
-        if (selectedProducts.length === 0) {
-          showNotification('Vui lòng chọn sản phẩm!', 'danger');
-        } else {
-          // Chuyển hướng sang trang checkout.jsp
-          window.location.href = './checkout.jsp';
-        }
-      });
-    }
-  });
 
 </script>
 
