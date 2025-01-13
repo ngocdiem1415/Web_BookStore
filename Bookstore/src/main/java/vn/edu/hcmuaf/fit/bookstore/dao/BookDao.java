@@ -23,4 +23,7 @@ public interface BookDao {
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     void update(@Bind("id") int id);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_RELATED_BOOKS)
+    List<Book> findRelatedBooks(@Bind("categoryId") int categoryId, @Bind("bookId") int bookId);
 }

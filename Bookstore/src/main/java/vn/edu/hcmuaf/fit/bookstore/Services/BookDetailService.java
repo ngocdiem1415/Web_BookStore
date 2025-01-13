@@ -30,10 +30,23 @@ public class BookDetailService {
     public Book findById(int id) {
         Book book = connect.withExtension(BookDao.class, handle -> handle.findById(id));
         Image image  = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
+        List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(id));
         Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
+        Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(id));
         book.setImage(image);
         book.setPublisher(publisher);
+        book.setPromotion(promotion);
+        book.setImageList(images);
         return book;
+    }
+
+    public List<Book> getRelatedBooks(int categoryId, int bookId) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.findRelatedBooks(categoryId, bookId));
+        for(Book book : books) {
+            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+            book.setImage(image);
+        }
+        return books;
     }
 
     private Book mapOtherBean(Book book) {
