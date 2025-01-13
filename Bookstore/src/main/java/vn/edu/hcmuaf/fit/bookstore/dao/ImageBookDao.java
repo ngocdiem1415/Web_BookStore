@@ -21,6 +21,9 @@ public interface ImageBookDao {
     @SqlQuery(QUERIES.IMAGE.FIND_IMAGE_THUMBNAIL_BY_ID)
     Image findImageThumbnailByBookId(@Bind("id") int id);
 
+    @SqlQuery(QUERIES.IMAGE.SELECT_ALL_IMAGE_BY_BOOKID)
+    List<Image> findImageBookId(@Bind("id") int id);
+
     @SqlUpdate(QUERIES.IMAGE.DELETE)
     void delete(@Bind("id") int id);
 }
