@@ -336,7 +336,7 @@
 }
 
 .rating-infor {
-    color: rgba(0, 0, 0, .87);
+    /*color: rgba(0, 0, 0, .87);*/
     cursor: pointer;
     display: flex;
     font-size: 14px;
@@ -390,9 +390,17 @@
     min-width: 180px;
 }
 
-.rating-infor__star--star {
-    color: #ffcc00;
+/* Định dạng nút sao */
+.rating-infor__star--container .star {
+    background: none; /* Loại bỏ nền */
+    border: none; /* Loại bỏ viền */
+    padding: 0; /* Loại bỏ khoảng cách mặc định */
+    margin: 0 5px; /* Khoảng cách giữa các nút */
+    font-size: 24px; /* Kích thước ngôi sao */
+    cursor: pointer; /* Hiển thị con trỏ pointer khi di chuột */
+    transition: color 0.3s; /* Hiệu ứng mượt khi thay đổi màu */
 }
+
 
 .rating-infor-cmt {
     background-color: #f5f5f5;
@@ -616,6 +624,16 @@ input[type="checkbox"] {
 .rating-submit-btn:hover {
     background-color: #316064 !important;
     color: #fff !important;
+}
+
+.rating-infor__star--container .star i {
+    color: #ccc; /* Màu xám mặc định */
+    transition: color 0.3s; /* Hiệu ứng mượt khi thay đổi màu */
+}
+
+/* Màu khi được chọn */
+.rating-infor__star--container .selected i {
+    color: #ffcc00; /* Màu vàng */
 }
 
 
