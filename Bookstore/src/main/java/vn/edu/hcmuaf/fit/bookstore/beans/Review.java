@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Review {
@@ -7,13 +8,13 @@ public class Review {
     private int invoiceId;
     private int bookId;
     private int userId;
-    private Date reviewDate;
+    private LocalDateTime reviewDate;
     private int rating;
     private String comment;
 
     public Review() {}
 
-    public Review(int reviewId, int invoiceId, int bookId, int userId, Date reviewDate, int rating, String comment) {
+    public Review(int reviewId, int invoiceId, int bookId, int userId, LocalDateTime reviewDate, int rating, String comment) {
         this.reviewId = reviewId;
         this.invoiceId = invoiceId;
         this.bookId = bookId;
@@ -55,11 +56,11 @@ public class Review {
         this.userId = userId;
     }
 
-    public Date getReviewDate() {
+    public LocalDateTime getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(Date reviewDate) {
+    public void setReviewDate(LocalDateTime reviewDate) {
         this.reviewDate = reviewDate;
     }
 

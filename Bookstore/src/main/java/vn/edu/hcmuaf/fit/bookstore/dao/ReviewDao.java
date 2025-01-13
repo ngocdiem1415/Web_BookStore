@@ -28,4 +28,7 @@ public interface ReviewDao {
     // Lấy danh sách đánh giá của một sản phẩm
     @SqlQuery("SELECT * FROM reviews WHERE book_id = :bookId ORDER BY review_date DESC")
     List<Review> getReviewsByBookId(@Bind("bookId") int bookId);
+
+    @SqlQuery("SELECT * FROM reviews WHERE b_id = :b_id ORDER BY review_date DESC")
+    Review getReviewsByBookIdCurrent(@Bind("b_id") int b_id);
 }

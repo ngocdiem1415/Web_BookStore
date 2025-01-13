@@ -59,4 +59,10 @@ public class ReviewService {
                 dao.getReviewsByBookId(bookId)
         );
     }
+
+    public Review getReviewsForBookCurrent(int bookId) {
+        return connect.withExtension(ReviewDao.class, dao ->
+                dao.getReviewsByBookIdCurrent(bookId)
+        );
+    }
 }
