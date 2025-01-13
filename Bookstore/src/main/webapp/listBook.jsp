@@ -177,7 +177,7 @@
                         <!--0-->
                         <c:forEach var="book" items="${books}">
                             <div class="grid-md-2-4">
-                                <a href="/BookDetail?id=${book.bId}">
+                                <a href="book-detail?id=${book.bId}">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                              style="background-image: url('${not empty book.image.sourceImg ? book.image.sourceImg : '../img/path_to_default_image.png'}');">
