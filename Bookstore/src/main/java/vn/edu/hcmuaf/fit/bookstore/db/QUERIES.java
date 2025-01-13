@@ -53,7 +53,7 @@ public class QUERIES {
         public static final String SELECT_ALL_IMAGE_THUMBNAIL_LIMIT = "select * from images where is_thumbnail = 1  limit :limit";
         public static final String FIND_IMAGE_THUMBNAIL_BY_ID = "select * from images where b_id = :id and is_thumbnail = 1";
         public static final String DELETE = "delete from images where b_id = :id";
-
+        public static final String SELECT_ALL_IMAGE_BY_BOOKID = "select * from images where b_id = :id";
     }
 
     public class PROMOTION {
@@ -67,7 +67,12 @@ public class QUERIES {
         public static final String SELECT_ALL_PUBLISHER = "select * from publishers";
         public static final String FIND_BY_PUBLISHERID = "select * from publishers where p_id = :id";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
+    }
 
+    public class REVIEW {
+        public static final String SELECT_ALL_REVIEW = "select * from reviews";
+        public static final String FIND_BY_REVIEWID = "select * from reviews where bookId = :bookId";
+        public static final String DELETE = "delete from reviews where review_id = :id";
     }
 
 }
