@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.beans;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class Book implements Serializable {
     private int bId;

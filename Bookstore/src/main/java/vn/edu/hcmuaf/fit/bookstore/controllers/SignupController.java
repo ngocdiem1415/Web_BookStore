@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
 import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
 
 import java.io.IOException;
@@ -41,10 +42,17 @@ public class SignupController extends HttpServlet {
         UserServices userServices = new UserServices();
         int result = userServices.register(username, gender, dob, phone, email, password);
         if (result == 0) {
-            int userId = userServices.findByUserName(username).getUid();
+            int id = userServices.findByUserName(username).getUid();
 
-        }
-        if (result == 1) {
+            // luu token
+            VerifyEmailService verifyEmailService = new VerifyEmailService();
+            verifyEmailService.saveVerifyEmail(id, email);
+
+            // hien thi thong bao
+            request.setAttribute("baoloi", "Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản");
+            request.getRequestDispatcher("email_verify.jsp").forward(request, response);
+
+        } else if (result == 1) {
             request.setAttribute("baoloi", "Username đã tồn tại");
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
         } else if (result == 2) {
