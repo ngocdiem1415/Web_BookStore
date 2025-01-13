@@ -37,7 +37,7 @@ public class QUERIES {
         public static final String FIND_BY_BOOKNAME = "select * from books where b_id = :id";
         public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :pId, publish_year = :publishYear, weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId, sold_quantity = :soldQuantity, stock_quantity = :stockQuantity, create_at = :createAt, update_at = CURRENT_TIMESTAMP WHERE b_id = :bookId";
         public static final String DELETE = "delete from books where b_id = :id";
-
+        public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
     }
 
     public class CATEGORY {
