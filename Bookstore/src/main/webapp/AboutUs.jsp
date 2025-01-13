@@ -37,7 +37,9 @@
 </head>
 <body>
 <!--Header-->
-<header id="header">
+<jsp:include page="Header.jsp"></jsp:include>
+
+
   <!-- MAIN HEADER -->
   <!--    <div class="banner d-flex justify-content-center pt-1 pb-1 ">-->
   <!--        <a href="#" class="content">Freeship đơn từ 45k, giảm nhiều hơn cùng FREESHIP XTRA</a>-->
@@ -233,23 +235,6 @@
 </section>
 <!-- /FOOTER -->
 
-<!--Script-->
-<!--<script>-->
-<!--    fetch('Header.html')-->
-<!--        .then(response => {-->
-<!--            if (!response.ok) throw new Error('Network response was not ok');-->
-<!--            return response.text();-->
-<!--        })-->
-<!--        .then(data => document.getElementById('header').innerHTML = data)-->
-<!--        .catch(error => console.error('Error:', error));-->
-
-<!--    // Tải nội dung của footer từ tệp Footer.html-->
-<!--    fetch('footer.html')-->
-<!--        .then(response => response.text())-->
-<!--        .then(data => {-->
-<!--            document.getElementById('footer').innerHTML = data;-->
-<!--        });-->
-<!--</script>-->
 
 </body>
 </html>

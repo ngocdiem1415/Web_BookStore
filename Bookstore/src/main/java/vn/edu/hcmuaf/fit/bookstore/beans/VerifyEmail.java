@@ -1,19 +1,20 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class VerifyEmail {
     private int id;                 // ID của token
     private String email;
     private String token;           // Token dùng để reset password
-    private Date createdAt;         // Thời gian tạo token
-    private Date expiresAt;         // Thời gian hết hạn của token
+    private LocalDateTime createdAt;         // Thời gian tạo token
+    private LocalDateTime expiresAt;         // Thời gian hết hạn của token
 
     public VerifyEmail() {
     }
 
-    public VerifyEmail(int id, String email, String token, Date createdAt, Date expiresAt) {
+    public VerifyEmail(int id, String email, String token, LocalDateTime createdAt, LocalDateTime expiresAt) {
         this.id = id;
         this.email = email;
         this.token = token;
@@ -46,19 +47,19 @@ public class VerifyEmail {
         this.token = token;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getExpiresAt() {
+    public LocalDateTime getExpiresAt() {
         return expiresAt;
     }
 
-    public void setExpiresAt(Date expiresAt) {
+    public void setExpiresAt(LocalDateTime expiresAt) {
         this.expiresAt = expiresAt;
     }
 
@@ -73,6 +74,10 @@ public class VerifyEmail {
                 ", expiresAt=" + expiresAt +
                 ", verificationCode='" + '\'' +
                 '}';
+    }
+
+    public boolean isValid() {
+        return expiresAt != null; // Kiểm tra mã có hết hạn hay không
     }
 }
 
