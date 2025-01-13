@@ -24,9 +24,6 @@
 
 </head>
 <body>
-
-<!--header-->
-<!--<div id="header"></div>-->
 <!--Header-->
 <jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
