@@ -23,7 +23,7 @@ public class HeaderController extends HttpServlet {
         HttpSession session = request.getSession(true);
         List<Category> categoryList = categoryService.listCategory();
         request.setAttribute("categoryList", categoryList);
-        request.getRequestDispatcher("Header.jsp").forward(request,response);
+        request.getRequestDispatcher("Header-Dashboard.jsp").forward(request,response);
     }
 
     @Override
