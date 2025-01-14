@@ -24,8 +24,8 @@ public class Book implements Serializable {
     private String description;
     private int soldQuantity;
     private int stockQuantity;
-    private LocalDateTime create_at;
-    private LocalDateTime update_at;
+    public LocalDateTime create_at;
+    public LocalDateTime update_at;
     private int status;
     private Image image;
     private double salePrice;
@@ -84,7 +84,7 @@ public class Book implements Serializable {
                 '}';
     }
     public double getsalePrice(){
-        return originalPrice - (originalPrice* promotion.getDiscount());
+        return (promotion == null) ? originalPrice : (originalPrice - (originalPrice * promotion.getDiscount()));
     }
     public Image getImage() {
         return image;
