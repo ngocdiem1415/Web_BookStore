@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import java.lang.reflect.Type;
+
+import io.leangen.geantyref.TypeToken;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,6 +15,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -107,13 +110,9 @@ public class InvoiceController extends HttpServlet {
 //            case "create":
 //                createInvoiceFromCart(request, response);
 //                break;
-            case "review":
-                System.out.println("cc");
-                saveReviews(request, response);
-                response.setContentType("application/json");
-                response.getWriter().write("{\"status\": \"success\"}");
-//                response.sendRedirect("/invoice?action=list");
-                break;
+//            case "review":
+//                saveReviews(request, response);
+//                break;
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
@@ -130,50 +129,43 @@ public class InvoiceController extends HttpServlet {
 
     }
 
-    private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
-        String[] reviewsParams = request.getParameterValues("reviews");
+//    private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        // Lấy thông tin đơn hàng và danh sách đánh giá từ request
+//        int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
+//        String reviewsJson = request.getParameter("reviews");
+//
+//        System.out.println("Reviews...............");
+//        //console
+//        System.out.println(invoiceId);
+//        System.out.println(reviewsJson);
+//
+//        // Chuyển đổi chuỗi JSON thành đối tượng
+//        Gson gson = new Gson();
+//        Type reviewListType = new TypeToken<List<Review>>(){}.getType();
+//        List<Review> reviews = gson.fromJson(reviewsJson, reviewListType);
+//
+//        // Lưu đánh giá cho các sản phẩm
+//        boolean allReviewsSuccess = true;
+//        for (Review review : reviews) {
+//            boolean reviewSaved = ReviewService.getInstance().addReview(review); // Lưu từng đánh giá
+//            if (!reviewSaved) {
+//                allReviewsSuccess = false; // Nếu có lỗi trong việc lưu đánh giá, đánh dấu không thành công
+//            }
+//        }
+//
+//        // Trả về phản hồi cho client
+//        response.setContentType("application/json");
+//        response.setCharacterEncoding("UTF-8");
+//
+//        PrintWriter out = response.getWriter();
+//        if (allReviewsSuccess) {
+//            out.print("{\"status\": \"success\"}");
+//        } else {
+//            out.print("{\"status\": \"error\"}");
+//        }
+//        out.flush();
+//    }
 
-        System.out.println("Reviews...............");
-        if (reviewsParams == null || reviewsParams.length == 0) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("No reviews provided.");
-            System.out.println("No reviews provided.");
-            return;
-        }
-
-        boolean allSaved = true;
-
-        for (String reviewParam : reviewsParams) {
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                Map<String, Object> reviewData = objectMapper.readValue(reviewParam, new TypeReference<>() {
-                });
-
-                int productId = (int) reviewData.get("productId");
-                int rating = (int) reviewData.get("rating");
-                String comment = (String) reviewData.get("comment");
-
-                Review review = new Review(invoiceId, productId, userId, rating, comment);
-
-                boolean saved = ReviewService.getInstance().addReview(review);
-                if (!saved) {
-                    allSaved = false;
-                }
-            } catch (Exception e) {
-                allSaved = false;
-                e.printStackTrace();
-            }
-        }
-
-        if (allSaved) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("All reviews saved successfully.");
-        } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Failed to save some reviews.");
-        }
-    }
 
 //    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        HttpSession session = request.getSession();
