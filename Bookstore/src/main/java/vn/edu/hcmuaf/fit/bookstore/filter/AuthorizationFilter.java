@@ -26,7 +26,7 @@ public class AuthorizationFilter implements Filter{
         String uri = rq.getRequestURI();
         if (uri.startsWith("/admin")) {
             User user = (User) rq.getSession().getAttribute("userSession");
-            if (user == null) {
+            if (user != null) {
                 if (user.getRole().equals("admin")){
                     filterChain.doFilter(servletRequest, servletResponse);
                 } else if (user.getRole().equals("user")) {
