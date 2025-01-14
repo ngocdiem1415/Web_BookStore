@@ -185,12 +185,21 @@
                                         <h4 class="home-product-item__name">${book.title}</h4>
                                         <div class="home-product-item__price">
                                             <c:if test="${book.promotionId == 0}">
-                                                <span class="home-product-item__price-current original-price">${book.originalPrice} đ</span>
+                                                <span class="home-product-item__price-current original-price"><f:formatNumber
+                                                        value="${book.originalPrice}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                </span>
                                             </c:if>
                                             <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
                                             <c:if test="${book.promotionId != 0}">
-                                                <span class="home-product-item__price-current unit-price">${book.originalPrice-(book.originalPrice * book.promotion.discount)}</span>
-                                                <span class="home-product-item__price-old original-price">${book.originalPrice}</span>
+                                                <span class="home-product-item__price-current unit-price"><f:formatNumber
+                                                        value="${book.salePrice}"/>
+                                                       <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                </span>
+
+                                                <span class="home-product-item__price-old original-price"><f:formatNumber
+                                                        value="${book.originalPrice}"/></span>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
                                             </c:if>
                                         </div>
                                         <div class="home-product-item__action">
@@ -261,16 +270,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.twbspagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
 <!--format tiền tệ-->
-<script src="js/FormatMoney.js"></script>
-<script>
-    document.querySelectorAll('.unit-price, .original-price').forEach(element => {
-        const amount = parseInt(element.textContent);
-        if (!isNaN(amount)) {
-            element.textContent = formatCurrencyVN(amount);
-            console.log(element.textContent);
-        }
-    });
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
         let curentPage = 1;
