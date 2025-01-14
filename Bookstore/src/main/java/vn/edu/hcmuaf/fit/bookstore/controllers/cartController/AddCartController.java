@@ -29,7 +29,7 @@ public class AddCartController extends HttpServlet {
             if (cart == null){
                 cart = Cart.getInstance();
             }
-            cart.addBook(book,);
+//            cart.addBook(book,);
         }
 
     }

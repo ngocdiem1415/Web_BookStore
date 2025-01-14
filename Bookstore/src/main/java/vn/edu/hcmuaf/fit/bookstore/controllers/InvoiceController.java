@@ -110,9 +110,6 @@ public class InvoiceController extends HttpServlet {
 //            case "create":
 //                createInvoiceFromCart(request, response);
 //                break;
-//            case "review":
-//                saveReviews(request, response);
-//                break;
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
@@ -121,50 +118,13 @@ public class InvoiceController extends HttpServlet {
                     return;
                 }
                 invoiceService.cancelInvoice(invoice);
-                response.sendRedirect("/invoice?action=list");
+                response.sendRedirect("/invoice?action=filterByStatus&status=canceled");
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
     }
-
-//    private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        // Lấy thông tin đơn hàng và danh sách đánh giá từ request
-//        int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
-//        String reviewsJson = request.getParameter("reviews");
-//
-//        System.out.println("Reviews...............");
-//        //console
-//        System.out.println(invoiceId);
-//        System.out.println(reviewsJson);
-//
-//        // Chuyển đổi chuỗi JSON thành đối tượng
-//        Gson gson = new Gson();
-//        Type reviewListType = new TypeToken<List<Review>>(){}.getType();
-//        List<Review> reviews = gson.fromJson(reviewsJson, reviewListType);
-//
-//        // Lưu đánh giá cho các sản phẩm
-//        boolean allReviewsSuccess = true;
-//        for (Review review : reviews) {
-//            boolean reviewSaved = ReviewService.getInstance().addReview(review); // Lưu từng đánh giá
-//            if (!reviewSaved) {
-//                allReviewsSuccess = false; // Nếu có lỗi trong việc lưu đánh giá, đánh dấu không thành công
-//            }
-//        }
-//
-//        // Trả về phản hồi cho client
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//
-//        PrintWriter out = response.getWriter();
-//        if (allReviewsSuccess) {
-//            out.print("{\"status\": \"success\"}");
-//        } else {
-//            out.print("{\"status\": \"error\"}");
-//        }
-//        out.flush();
-//    }
 
 
 //    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
