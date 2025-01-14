@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="css/mdb/css/mdb.min.css">
 </head>
 <body>
-
-<!--header-->
-<!--<div id="header"></div>-->
 <!--Header-->
 <jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
@@ -250,7 +247,56 @@
             <div class="col-md-10">
                 <div class="home-product">
                     <!-- Sản phẩm hiển thị bên phải -->
+                    <div id="product-container" class="grid__row">
+                        <!--0-->
+                        <c:forEach var="book" items="${books}">
+                            <div class="grid-md-2-4">
+                                <a href="book-detail?id=${book.bId}">
+                                    <div class="home-product-item">
+                                        <div class="home-product-item__img"
+                                             style="background-image: url('${not empty book.image.sourceImg ? book.image.sourceImg : '../img/path_to_default_image.png'}');">
+                                        </div>
+                                        <h4 class="home-product-item__name">${book.title}</h4>
+                                        <div class="home-product-item__price">
+                                            <c:if test="${book.promotionId == 0}">
+                                                <span class="home-product-item__price-current original-price"><f:formatNumber
+                                                        value="${book.originalPrice}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                </span>
+                                            </c:if>
+                                            <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
+                                            <c:if test="${book.promotionId != 0}">
+                                                <span class="home-product-item__price-current unit-price"><f:formatNumber
+                                                        value="${book.salePrice}"/>
+                                                       <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                </span>
+
+                                                <span class="home-product-item__price-old original-price"><f:formatNumber
+                                                        value="${book.originalPrice}"/></span>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </c:if>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                        <span class="home-product-item__like home-product-item__like--liked">
+                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                        </span>
+                                            <div class="home-product-item__rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </c:forEach>
+                    </div>
                     <div id="product-container listBook" class="grid__row">
+
 
                     </div>
                 </div>
@@ -284,16 +330,6 @@
 <script src="css/mdb/js/mdb.min.js"></script>
 
 <!--format tiền tệ-->
-<script src="js/FormatMoney.js"></script>
-<script>
-    document.querySelectorAll('.unit-price, .original-price').forEach(element => {
-        const amount = parseInt(element.textContent);
-        if (!isNaN(amount)) {
-            element.textContent = formatCurrencyVN(amount);
-            console.log(element.textContent);
-        }
-    });
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
         let currentPage = 1;

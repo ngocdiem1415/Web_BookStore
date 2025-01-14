@@ -23,9 +23,18 @@ public class BookDetailService {
         return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
     }
 
+//    public Book findById(int id){
+//        return connect.withExtension(BookDao.class, handle -> handle.findById(id));
+//    }
+
+
     public Book findById(int id) {
         Book book = connect.withExtension(BookDao.class, handle -> handle.findById(id));
-        return mapOtherBean(book);
+        Image image  = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
+        Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
+        book.setImage(image);
+        book.setPublisher(publisher);
+        return book;
     }
 
     private Book mapOtherBean(Book book) {
