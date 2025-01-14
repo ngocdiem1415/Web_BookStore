@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Image {
+public class Image implements Serializable {
     private int imgId;
     private int bookId;
     private String sourceImg;

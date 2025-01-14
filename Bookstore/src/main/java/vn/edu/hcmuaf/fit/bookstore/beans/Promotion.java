@@ -1,9 +1,10 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Promotion {
+public class Promotion implements Serializable {
     private int promotionId;
     private String promotionName;
     private double discount;

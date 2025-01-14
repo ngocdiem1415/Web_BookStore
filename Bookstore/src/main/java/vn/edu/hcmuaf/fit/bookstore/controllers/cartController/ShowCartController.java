@@ -8,7 +8,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Cart.Cart;
 import java.io.IOException;
 
 @WebServlet(name = "ShowCart", value = "/cart")
-public class ShowCart extends HttpServlet {
+public class ShowCartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
