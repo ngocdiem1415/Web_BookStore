@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.beans;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class Book implements Serializable {
     private int bId;
@@ -23,10 +24,11 @@ public class Book implements Serializable {
     private String description;
     private int soldQuantity;
     private int stockQuantity;
-    private LocalDateTime create_at;
-    private LocalDateTime update_at;
+    public LocalDateTime create_at;
+    public LocalDateTime update_at;
     private int status;
     private Image image;
+    private double salePrice;
     private double rating;
 
     public Book() {}
@@ -84,7 +86,9 @@ public class Book implements Serializable {
                 ", rating=" + rating+
                 '}';
     }
-
+    public double getsalePrice(){
+        return (promotion == null) ? originalPrice : (originalPrice - (originalPrice * promotion.getDiscount()));
+    }
     public Image getImage() {
         return image;
     }
