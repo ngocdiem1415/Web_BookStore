@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
 
 import com.google.gson.Gson;
+
 import java.lang.reflect.Type;
 
 import io.leangen.geantyref.TypeToken;
@@ -83,12 +84,13 @@ public class InvoiceController extends HttpServlet {
 
     private void detailInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Invoice invoices = invoiceService.findById(id);
-        if (invoices == null) {
+        Invoice invoice = invoiceService.findById(id);
+        System.out.println(invoice);
+        if (invoice == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        request.setAttribute("invoices", invoices);
+        request.getSession().setAttribute("invoice", invoice);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
@@ -113,12 +115,25 @@ public class InvoiceController extends HttpServlet {
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
+                System.out.println(invoice);
                 if (invoice == null) {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     return;
                 }
-                invoiceService.cancelInvoice(invoice);
-                response.sendRedirect("/invoice?action=filterByStatus&status=canceled");
+                try {
+                    // Thực hiện hủy đơn hàng
+                    int result = invoiceService.cancelInvoice(invoice);
+
+                    if (result > 0) {
+                        // Chuyển hướng sau khi hủy thành công
+                        response.sendRedirect("/invoice?action=filterByStatus&status=cancelled");
+                    } else {
+                        throw new RuntimeException("Hủy đơn hàng thất bại.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi khi hủy đơn hàng.");
+                }
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
