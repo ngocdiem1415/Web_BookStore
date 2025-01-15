@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.bookstore.json;
+package vn.edu.hcmuaf.fit.bookstore.controllers.json;
 
 import com.google.gson.Gson;
 import jakarta.servlet.*;
@@ -15,48 +15,34 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "ListProductJson", value = "/ListProductJson")
+@WebServlet(name = "ListProductJson", value = "/listBooks")
 public class ListProductsJson extends HttpServlet {
     private BookDetailService bookService;
-    private CategoryService categoryService;
-    private PublisherService publisherService;
     List<Book> listBook;
+
     int pageIndexNum = 1;
-    int totalPage;
-    int countNum = 0;
+    int perPageNum = 9;
+
     int from = 0;
     int to = 1000000;
-    int maxPageItem = 20;
+
     String category = null;
     String find;
 
     public ListProductsJson() {
         this.bookService = BookDetailService.getInstance();
-        this.categoryService = CategoryService.getInstance();
-        this.publisherService = PublisherService.getInstance();
-
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        List<Category> categories= categoryService.listCategory();
-        List<Publisher> publishers = publisherService.listPublisher();
-        request.setAttribute("categories", categories);
-        request.setAttribute("publishers", publishers);
-
-        totalPage = bookService.totalBooks();
-        request.setAttribute("totalPage", totalPage);
-        int limit = (int) Math.ceil((double) totalPage / maxPageItem);
-
         // Lấy giá trị từ header
         String find = request.getParameter("find");
         request.setAttribute("find", find);
 
-
         // Xử lý giá trị mặc định và chuyển đổi tham số
-        int pageIndex = getIntParameter(request, "page-index", 1);
-        int perPage = getIntParameter(request, "per-page", 10);
+        pageIndexNum = getIntParameter(request, "page-index", 1);
+        perPageNum = getIntParameter(request, "per-page", 10);
         int category = getIntParameter(request, "category", 0);
         int publisher = getIntParameter(request, "publisher", 0);
         String orderBy = request.getParameter("orderBy");
@@ -64,10 +50,12 @@ public class ListProductsJson extends HttpServlet {
         int firstPrice = getIntParameter(request, "firstPrice", 0);
         int secondPrice = getIntParameter(request, "secondPrice", Integer.MAX_VALUE);
         // Tính toán offset cho phân trang
-        int offset = (pageIndex - 1) * limit;
-
+        int offset = (pageIndexNum - 1) * perPageNum;
+        int limit = perPageNum;
+        System.out.println("category " + category +" publisher "+ publisher+" find " +find +" limit " +limit+ " offset "+ offset + " orderBy " +orderBy+
+                " rating " +ratingValue+ "firstPrice " +firstPrice+ "second " +secondPrice);
         listBook = bookService.getBooks(category, publisher,find, limit, offset, orderBy, ratingValue, firstPrice, secondPrice);
-
+        System.out.println(listBook.toString());
         // Chuyển đổi danh sách sách thành JSON
         if (listBook != null) {
             String json = new Gson().toJson(listBook);
@@ -78,9 +66,6 @@ public class ListProductsJson extends HttpServlet {
                 out.close();
             }
         }
-
-        RequestDispatcher rd = request.getRequestDispatcher("listBook.jsp");
-        rd.forward(request, response);
         System.out.println("da chay toi day");
     }
 

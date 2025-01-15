@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import vn.edu.hcmuaf.fit.bookstore.json.LocalDateTimeAdapter;
+import vn.edu.hcmuaf.fit.bookstore.controllers.json.LocalDateTimeAdapter;
 
 import java.time.LocalDateTime;
 

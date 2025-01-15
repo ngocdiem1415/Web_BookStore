@@ -24,6 +24,7 @@
 
     <%--    mdb css--%>
     <link rel="stylesheet" href="css/mdb/css/mdb.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-pagination/1.4.1/bootstrap-pagination.min.css" rel="stylesheet">
 </head>
 <body>
 <!--Header-->
@@ -37,21 +38,20 @@
         <div class="head">
             <h2 class="head__title">Tất cả sách</h2>
             <div class="head-filter">
-                <p>Ưu tiên xem:</p>
-                <ul class="head-filter__list">
-                    <li class="head-filter__item">
-                        <a href="" class="head-filter__link" title="Hàng mới nhất">Hàng mới nhất</a>
-                    </li>
-                    <li class="head-filter__item">
-                        <a href="" class="head-filter__link" title="Hàng cũ nhất">Hàng cũ nhất</a>
-                    </li>
-                    <li class="head-filter__item">
-                        <a href="" class="head-filter__link" title="Giá tăng dần">Giá tăng dần</a>
-                    </li>
-                    <li class="head-filter__item">
-                        <a href="" class="head-filter__link" title="Giá giảm dần">Giá giảm dần</a>
-                    </li>
-                </ul>
+                <div><p>Ưu tiên xem:</p></div>
+                <!--Section: Sorting-->
+                <div class="head-filter__list">
+                    <div class="col-8 col-lg-6 d-flex justify-content-end mt-2">
+                        <select data-mdb-select-init id="sort-by">
+                            <option value="0">Hàng mới nhất</option>
+                            <option value="1">Hàng cũ nhất</option>
+                            <option value="2">Giá tăng dần</option>
+                            <option value="3">Giá tăng dần</option>
+                        </select>
+                        <label class="form-label select-label" id="apply">Sắp xếp</label>
+                    </div>
+                </div>
+                <!--Section: Sorting-->
             </div>
         </div>
     </div>
@@ -247,64 +247,66 @@
             <div class="col-md-10">
                 <div class="home-product">
                     <!-- Sản phẩm hiển thị bên phải -->
-                    <div id="product-container" class="grid__row">
-                        <!--0-->
-                        <c:forEach var="book" items="${books}">
-                            <div class="grid-md-2-4">
-                                <a href="book-detail?id=${book.bId}">
-                                    <div class="home-product-item">
-                                        <div class="home-product-item__img"
-                                             style="background-image: url('${not empty book.image.sourceImg ? book.image.sourceImg : '../img/path_to_default_image.png'}');">
+                                        <div id="product-container" class="grid__row">
+                                            <!--0-->
+                                            <c:forEach var="book" items="${books}">
+                                                <div class="grid-md-2-4">
+                                                    <a href="book-detail?id=${book.bId}">
+                                                        <div class="home-product-item">
+                                                            <div class="home-product-item__img"
+                                                                 style="background-image: url('${not empty book.image.sourceImg ? book.image.sourceImg : '../img/path_to_default_image.png'}');">
+                                                            </div>
+                                                            <h4 class="home-product-item__name">${book.title}</h4>
+                                                            <div class="home-product-item__price">
+                                                                <c:if test="${book.promotionId == 0}">
+                                                                    <span class="home-product-item__price-current original-price"><f:formatNumber
+                                                                            value="${book.originalPrice}"/>
+                                                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                                    </span>
+                                                                </c:if>
+                                                                <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
+                                                                <c:if test="${book.promotionId != 0}">
+                                                                    <span class="home-product-item__price-current unit-price"><f:formatNumber
+                                                                            value="${book.salePrice}"/>
+                                                                           <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                                    </span>
+
+                                                                    <span class="home-product-item__price-old original-price"><f:formatNumber
+                                                                            value="${book.originalPrice}"/></span>
+                                                                    <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                                </c:if>
+                                                            </div>
+                                                            <div class="home-product-item__action">
+                                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                                <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
+                                                                <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
+                                                            </span>
+                                                                <div class="home-product-item__rating">
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </c:forEach>
                                         </div>
-                                        <h4 class="home-product-item__name">${book.title}</h4>
-                                        <div class="home-product-item__price">
-                                            <c:if test="${book.promotionId == 0}">
-                                                <span class="home-product-item__price-current original-price"><f:formatNumber
-                                                        value="${book.originalPrice}"/>
-                                                    <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                                </span>
-                                            </c:if>
-                                            <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
-                                            <c:if test="${book.promotionId != 0}">
-                                                <span class="home-product-item__price-current unit-price"><f:formatNumber
-                                                        value="${book.salePrice}"/>
-                                                       <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                                </span>
-
-                                                <span class="home-product-item__price-old original-price"><f:formatNumber
-                                                        value="${book.originalPrice}"/></span>
-                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                            </c:if>
-                                        </div>
-                                        <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>
-                                            <i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>
-                                        </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </c:forEach>
-                    </div>
-                    <div id="product-container listBook" class="grid__row">
+<%--                    <div id="product-container" class="grid__row listBook">--%>
 
 
-                    </div>
+<%--                    </div>--%>
                 </div>
 
                 <!-- Phân trang -->
+                <div class = "p-4 d-flex justify-content-end" >
                 <ul class="pagination" id="pagination"></ul>
                 <input type="hidden" value="" id="page" name="page">
                 <input type="hidden" value="" id="maxPageItem" name="maxPageItem">
+                </div>
             </div>
         </div>
     </div>
@@ -324,25 +326,25 @@
 <!--    bootstrap-->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.twbspagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
 <!--    mdb js-->
 <script src="css/mdb/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 
 <!--format tiền tệ-->
 <script type="text/javascript">
-    $(document).ready(function () {
-        let currentPage = 1;
-        let totalPages = ${totalPage};
-        const limit = 20;
-        let category = "";
-        let find = ${find};
-        let publisher = "";
-        let orderBy = "";
-        var firstPrice = 0;
-        var secondPrice = 1000000;
-        let ratingValue = 0;
+    let currentPage = ${page};
+    let totalPages = ${totalPage};
+    const limit = 20;
+    let category = "";
+    let find = "";
+    let publisher = "";
+    let orderBy = "";
+    var firstPrice = 0;
+    var secondPrice = 1000000;
+    let ratingValue = 0;
 
+    $(document).ready(function () {
         window.pagObj = $('#pagination').twbsPagination({
             totalPages: totalPages,
             visiblePages: 5,
@@ -350,285 +352,362 @@
             first: 'Đầu',
             last: 'Cuối',
             onPageClick: function (event, page) {
+                console.log("Page clicked:", page); // Thêm log để kiểm tra
                 if (currentPage != page) {
                     currentPage = page;
-                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                    console.log(currentPage)
+                    // ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                    ajaxLoad(currentPage)
                 }
             }
         });
-
-        // Đặt sự kiện click cho danh sách tác giả
-        var publishers = document.querySelectorAll(".publisher-item");
-        publishers.forEach(function (radioButton) {
-            radioButton.addEventListener("change", function (event) {
-                // Nếu radio button được chọn, lấy giá trị của nó
-                if (radioButton.checked) {
-                    publisher = radioButton.value;
-                    console.log("Selected publisher ID: " + publisher);
-
-                    // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu
-                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                }
-            });
-        });
-
-        // Đặt sự kiện click cho danh sách tác giả
-        var categories = document.querySelectorAll(".categories-item");
-        categories.forEach(function (radioButton) {
-            radioButton.addEventListener("change", function (event) {
-                // Nếu radio button được chọn, lấy giá trị của nó
-                if (radioButton.checked) {
-                    category = radioButton.value;
-                    console.log("Selected category ID: " + publisher);
-
-                    // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu
-                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                }
-            });
-        });
-
-        //dat su kien cho rating
-        $(document).ready(function () {
-            // Attach click event to each star
-            $('.rating li').on('click', function () {
-                ratingValue = $(this).closest('ul').data('data-mdb-value');
-
-                // Log or use the rating value as needed
-                console.log(ratingValue);
-                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-            });
-        });
-
-        $(document).ready(function () {
-            // Attach change event to radio buttons
-            $('input[name="radioForm"]').on('change', function () {
-                var selectedValue = $('input[name="priceRange"]:checked').next('label').text().trim();
-                // Tách các số từ giá trị đã chọn bằng regex
-                var priceRange = selectedValue.match(/\d+/g);
-                console.log('Prices:', priceRange);
-
-                // xử lí giá tị đã tìm được
-                if (priceRange && priceRange.length >= 2) {
-                    var result = priceRange[0];
-
-
-                    if (priceRange[1] == null) {
-                        priceRange[1] = result;
-                        priceRange[0] = 0;
-                        secondPrice = parseInt(priceRange[1] + "000");
-                    }
-                    firstPrice = parseInt(priceRange[0] + "000"); // Chuyển thành số cho giá trị thấp nhất
-                    secondPrice = parseInt(priceRange[1] + "000"); // Chuyển thành số cho giá trị cao nhất
-
-                    console.log('First Price:', firstPrice);
-                    console.log('Second Price:', secondPrice);
-                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                }
-            });
-        });
-
-        // Hàm xử lý với giá trị được chọn
-        function handleSortSelection(selectedValue) {
-
-            switch (selectedValue) {
-
-                case '0':
-                    // Xử lý khi chọn "Mặc định"
-                    currentPage = 1
-                    console.log('Chọn mặc định');
-                    orderBy = ""
-                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
-                    window.pagObj = $('#pagination').twbsPagination({
-                        totalPages: totalPages,
-                        visiblePages: 5,
-                        startPage: currentPage,
-                        onPageClick: function (event, page) {
-                            if (currentPage != page) {
-                                currentPage = page;
-                                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
-                            }
-                        }
-                    });
-                    ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
-                    break;
-                case '1':
-                    // Xử lý khi chọn "hàng mới nhất"
-                    currentPage = 1
-                    console.log('Chọn theo tên');
-                    orderBy = "book_update_DESC"
-                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
-                    window.pagObj = $('#pagination').twbsPagination({
-                        totalPages: totalPages,
-                        visiblePages: 5,
-                        startPage: currentPage,
-                        onPageClick: function (event, page) {
-                            if (currentPage != page) {
-                                currentPage = page;
-                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                            }
-                        }
-                    });
-                    ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
-                    break;
-                case '2':
-                    // Xử lý khi chọn "hàng cũ nhất"
-                    currentPage = 1;
-                    console.log('Chọn theo sách cũ nhất');
-                    orderBy = "book_update_ASC"
-                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
-                    window.pagObj = $('#pagination').twbsPagination({
-                        totalPages: totalPages,
-                        visiblePages: 5,
-                        startPage: currentPage,
-                        onPageClick: function (event, page) {
-                            if (currentPage != page) {
-                                currentPage = page;
-                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                            }
-                        }
-                    });
-                    ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
-                    break;
-                case '3':
-                    // Xử lý khi chọn "Giá tăng dần"
-                    currentPage = 1;
-                    console.log('Chọn theo giá tăng dần');
-                    orderBy = "book_price_ASC"
-                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
-                    window.pagObj = $('#pagination').twbsPagination({
-                        totalPages: totalPages,
-                        visiblePages: 5,
-                        startPage: currentPage,
-                        onPageClick: function (event, page) {
-                            if (currentPage != page) {
-                                currentPage = page;
-                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                            }
-                        }
-                    });
-                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                    break;
-                case '4':
-                    // Xử lý khi chọn "Giá giảm dần"
-                    currentPage = 1;
-                    console.log('Chọn theo giá giảm dần');
-                    orderBy = "book_price_DESC"
-                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
-                    window.pagObj = $('#pagination').twbsPagination({
-                        totalPages: totalPages,
-                        visiblePages: 5,
-                        startPage: currentPage,
-                        onPageClick: function (event, page) {
-                            if (currentPage != page) {
-                                currentPage = page;
-                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                            }
-                        }
-                    });
-                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
-                    break;
-                default:
-                    // Xử lý mặc định hoặc các giá trị khác nếu cần
-                    break;
-            }
-        }
-
-        // $("#search-text").on('keyup', function () {
-        //     currentPage = 1; // Đặt lại currentPage về 1 khi có sự kiện tìm kiếm
-        //     find = $(this).val();
-        //     console.log(find);
-        //
-        //     // Gọi hàm update của twbsPagination để cập nhật giá trị currentPage
-        //     window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
-        //     window.pagObj = $('#pagination').twbsPagination({
-        //         totalPages: totalPages,
-        //         visiblePages: 5,
-        //         startPage: currentPage,
-        //         onPageClick: function (event, page) {
-        //             if (currentPage !== page) {
-        //                 currentPage = page;
-        //                 // Chỉ gọi ajaxRun khi thay đổi trang
-        //                 ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);
-        //             }
-        //         }
-        //     });
-        //
-        //     // Gọi ajaxRun ngay khi có sự kiện tìm kiếm, chỉ khi người dùng thay đổi từ khóa tìm kiếm
-        //     // Điều này giúp hiển thị kết quả tìm kiếm ngay lập tức.
-        //     ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);
-        // });
-
-        // Hàm gọi AJAX
-        function ajaxCall(categoryValue, orderBy, ratingValue, firstPrice, secondPrice) {
-            const params = new URLSearchParams({
-                'page-index': currentPage,
-                'per-page': limit,
-                'category': category,
-                'publisher': publisher,
-                'find': find,
-                'orderBy': orderBy,
-                'ratingValue': ratingValue,
-                'firstPrice': firstPrice,
-                'secondPrice': secondPrice
-            }).toString();
-            $.ajax({
-                type: "POST",
-                url: `/listBook?${params}`,
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                success: function (json) {
-                    let data = "";
-                    let obj = json;
-                    for (let i = 0; i < obj.length; i++) {
-                        let val = obj[i];
-                        // onclick="return theFunction();"
-                        data += '<div class="grid-md-2-4">' +
-                            '<a href="/product-detail?id=' + val.bId + '" class="home-product-item">' +
-                            // hinh anh san pham
-                            '<a href="/product-detail?id="' + (val.image && val.image.sourceImg ? val.image.sourceImg : '../img/path_to_default_image.png') + ');"></div>' +
-                            // Tên sản phẩm
-                            '<h4 class="home-product-item__name">' + val.title + '</h4>' +
-                            // Giá sản phẩm
-                            '<div class="home-product-item__price">';
-                        // Hiển thị giá gốc và giá khuyến mãi
-                        if (val.promotionId == 0) {
-                            data += '<span class="home-product-item__price-current original-price">' + val.originalPrice + ' đ</span>';
-                        } else {
-                            let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
-                            data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
-                                '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>';
-                        }
-                        data += '</div>' +
-                            // Hành động yêu thích
-                            '<div class="home-product-item__action">' +
-                            '<span class="home-product-item__like home-product-item__like--liked">' +
-                            '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
-                            '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
-                            '</span>' +
-
-                            // Đánh giá
-                            '<div class="home-product-item__rating">' +
-                            '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '</ul>' +
-                            '</div>' +
-                            '</div>' +
-                            '</a>' +
-                            '</div>';
-                    }
-                    $(".listBook").html(data);
-                    reloadJsFile("/css/mdb/js/mdb.min.js");
-                },
-                error: function (xhr, status, error) {
-                    console.log(status, error);
-                }
-            });
-        };
     });
+
+    // Đặt sự kiện click cho danh sách tác giả
+    var publishers = document.querySelectorAll(".publisher-item");
+    publishers.forEach(function (radioButton) {
+        radioButton.addEventListener("change", function (event) {
+            // Nếu radio button được chọn, lấy giá trị của nó
+            if (radioButton.checked) {
+                publisher = radioButton.value;
+                console.log("Selected publisher ID: " + publisher);
+
+                // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+            }
+        });
+    });
+
+    // Đặt sự kiện click cho danh sách tác giả
+    var categories = document.querySelectorAll(".categories-item");
+    categories.forEach(function (radioButton) {
+        radioButton.addEventListener("change", function (event) {
+            // Nếu radio button được chọn, lấy giá trị của nó
+            if (radioButton.checked) {
+                category = radioButton.value;
+                console.log("Selected category ID: " + publisher);
+
+                // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+            }
+        });
+    });
+
+    //dat su kien cho rating
+    $(document).ready(function () {
+        // Attach click event to each star
+        $('.rating li').on('click', function () {
+            ratingValue = $(this).closest('ul').data('data-mdb-value');
+
+            // Log or use the rating value as needed
+            console.log(ratingValue);
+            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+        });
+    });
+
+    $(document).ready(function () {
+        // Attach change event to radio buttons
+        $('input[name="radioForm"]').on('change', function () {
+            var selectedValue = $('input[name="priceRange"]:checked').next('label').text().trim();
+            // Tách các số từ giá trị đã chọn bằng regex
+            var priceRange = selectedValue.match(/\d+/g);
+            console.log('Prices:', priceRange);
+
+            // xử lí giá tị đã tìm được
+            if (priceRange && priceRange.length >= 2) {
+                var result = priceRange[0];
+
+
+                if (priceRange[1] == null) {
+                    priceRange[1] = result;
+                    priceRange[0] = 0;
+                    secondPrice = parseInt(priceRange[1] + "000");
+                }
+                firstPrice = parseInt(priceRange[0] + "000"); // Chuyển thành số cho giá trị thấp nhất
+                secondPrice = parseInt(priceRange[1] + "000"); // Chuyển thành số cho giá trị cao nhất
+
+                console.log('First Price:', firstPrice);
+                console.log('Second Price:', secondPrice);
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+            }
+        });
+    });
+
+    $('#sort-by').change(function () {
+        // Lấy giá trị được chọn
+        var selectedValue = $(this).val();
+        console.log(selectedValue)
+
+        // Gọi hàm xử lý hoặc thực hiện các công việc khác tùy thuộc vào giá trị được chọn
+        handleSortSelection(selectedValue);
+    });
+
+    // Hàm xử lý với giá trị được chọn
+    function handleSortSelection(selectedValue) {
+
+        switch (selectedValue) {
+
+            case '0':
+                // Xử lý khi chọn "Mặc định"
+                currentPage = 1
+                console.log('Chọn mặc định');
+                orderBy = ""
+                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: totalPages,
+                    visiblePages: 5,
+                    startPage: currentPage,
+                    onPageClick: function (event, page) {
+                        if (currentPage != page) {
+                            currentPage = page;
+                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                        }
+                    }
+                });
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                break;
+            case '1':
+                // Xử lý khi chọn "hàng mới nhất"
+                currentPage = 1
+                console.log('Chọn theo tên');
+                orderBy = "book_update_DESC"
+                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: totalPages,
+                    visiblePages: 5,
+                    startPage: currentPage,
+                    onPageClick: function (event, page) {
+                        if (currentPage != page) {
+                            currentPage = page;
+                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                        }
+                    }
+                });
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                break;
+            case '2':
+                // Xử lý khi chọn "hàng cũ nhất"
+                currentPage = 1;
+                console.log('Chọn theo sách cũ nhất');
+                orderBy = "book_update_ASC"
+                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: totalPages,
+                    visiblePages: 5,
+                    startPage: currentPage,
+                    onPageClick: function (event, page) {
+                        if (currentPage != page) {
+                            currentPage = page;
+                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                        }
+                    }
+                });
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                break;
+            case '3':
+                // Xử lý khi chọn "Giá tăng dần"
+                currentPage = 1;
+                console.log('Chọn theo giá tăng dần');
+                orderBy = "book_price_ASC"
+                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: totalPages,
+                    visiblePages: 5,
+                    startPage: currentPage,
+                    onPageClick: function (event, page) {
+                        if (currentPage != page) {
+                            currentPage = page;
+                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                        }
+                    }
+                });
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                break;
+            case '4':
+                // Xử lý khi chọn "Giá giảm dần"
+                currentPage = 1;
+                console.log('Chọn theo giá giảm dần');
+                orderBy = "book_price_DESC"
+                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: totalPages,
+                    visiblePages: 5,
+                    startPage: currentPage,
+                    onPageClick: function (event, page) {
+                        if (currentPage != page) {
+                            currentPage = page;
+                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                        }
+                    }
+                });
+                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                break;
+            default:
+                // Xử lý mặc định hoặc các giá trị khác nếu cần
+                break;
+        }
+    }
+
+
+    // $("#search-text").on('keyup', function () {
+    //     currentPage = 1; // Đặt lại currentPage về 1 khi có sự kiện tìm kiếm
+    //     find = $(this).val();
+    //     console.log(find);
+    //
+    //     // Gọi hàm update của twbsPagination để cập nhật giá trị currentPage
+    //     window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+    //     window.pagObj = $('#pagination').twbsPagination({
+    //         totalPages: totalPages,
+    //         visiblePages: 5,
+    //         startPage: currentPage,
+    //         onPageClick: function (event, page) {
+    //             if (currentPage !== page) {
+    //                 currentPage = page;
+    //                 // Chỉ gọi ajaxRun khi thay đổi trang
+    //                 ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);
+    //             }
+    //         }
+    //     });
+    //
+    //     // Gọi ajaxRun ngay khi có sự kiện tìm kiếm, chỉ khi người dùng thay đổi từ khóa tìm kiếm
+    //     // Điều này giúp hiển thị kết quả tìm kiếm ngay lập tức.
+    //     ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);
+    // });
+
+    // Hàm gọi AJAX
+    function ajaxCall(categoryValue, orderBy, ratingValue, firstPrice, secondPrice) {
+        console.log("ajax da chay")
+        $.ajax({
+            type: "POST",
+            url: "/listBooks?page-index=" + currentPage + "&per-page=" + limit + "&category=" + category + "&publisher=" + publisher + "&find=" + find + "&orderBy=" + orderBy + "&ratingValue=" + ratingValue + "&firstPrice=" + firstPrice + "&secondPrice=" + secondPrice,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (json) {
+                let data = "";
+                let obj = json;
+                for (let i = 0; i < obj.length; i++) {
+                    let val = obj[i];
+                    // onclick="return theFunction();"
+                    data += '<div class="grid-md-2-4">' +
+                        '<a href="/product-detail?id=' + val.bId + '" class="home-product-item">' +
+                        // hinh anh san pham
+                        '<a href="/product-detail?id="' + (val.image && val.image.sourceImg ? val.image.sourceImg : '../img/path_to_default_image.png') + ');"></div>' +
+                        // Tên sản phẩm
+                        '<h4 class="home-product-item__name">' + val.title + '</h4>' +
+                        // Giá sản phẩm
+                        '<div class="home-product-item__price">';
+                    // Hiển thị giá gốc và giá khuyến mãi
+                    if (val.promotionId == 0) {
+                        data += '<span class="home-product-item__price-current original-price">' + val.originalPrice + ' đ</span>';
+                    } else {
+                        let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
+                        data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
+                            '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>';
+                    }
+                    data += '</div>' +
+                        // Hành động yêu thích
+                        '<div class="home-product-item__action">' +
+                        '<span class="home-product-item__like home-product-item__like--liked">' +
+                        '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
+                        '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
+                        '</span>' +
+
+                        // Đánh giá
+                        '<div class="home-product-item__rating">' +
+                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '</div>';
+                }
+                $(".listBook").html(data);
+                reloadJsFile("${pageContext.request.contextPath}/css/mdb/js/mdb.min.js");
+            },
+            error: function (xhr, status, error) {
+                console.log(status, error);
+            }
+        });
+    };
+    function ajaxLoad(categoryValue, orderBy, ratingValue, firstPrice, secondPrice) {
+        console.log("ajax da chay")
+        $.ajax({
+            type: "POST",
+            url: "/listBooks?page-index=" + currentPage,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (json) {
+                let data = "";
+                let obj = json;
+                for (let i = 0; i < obj.length; i++) {
+                    let val = obj[i];
+                    // onclick="return theFunction();"
+                    data += '<div class="grid-md-2-4">' +
+                        '<a href="/product-detail?id=' + val.bId + '" class="home-product-item">' +
+                        // hinh anh san pham
+                        '<a href="/product-detail?id="' + (val.image && val.image.sourceImg ? val.image.sourceImg : '../img/path_to_default_image.png') + ');"></div>' +
+                        // Tên sản phẩm
+                        '<h4 class="home-product-item__name">' + val.title + '</h4>' +
+                        // Giá sản phẩm
+                        '<div class="home-product-item__price">';
+                    // Hiển thị giá gốc và giá khuyến mãi
+                    if (val.promotionId == 0) {
+                        data += '<span class="home-product-item__price-current original-price">' + val.originalPrice + ' đ</span>';
+                    } else {
+                        let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
+                        data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
+                            '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>';
+                    }
+                    data += '</div>' +
+                        // Hành động yêu thích
+                        '<div class="home-product-item__action">' +
+                        '<span class="home-product-item__like home-product-item__like--liked">' +
+                        '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
+                        '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
+                        '</span>' +
+
+                        // Đánh giá
+                        '<div class="home-product-item__rating">' +
+                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '</div>';
+                }
+                $(".listBook").html(data);
+                reloadJsFile("${pageContext.request.contextPath}/css/mdb/js/mdb.min.js");
+            },
+            error: function (xhr, status, error) {
+                console.log(status, error);
+            }
+        });
+    };
+
+    // ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+
+    function reloadJsFile(src) {
+        // Remove the existing script tag
+        $('script[src="' + src + '"]').remove();
+
+        // Create a new script element
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+
+        // Append the new script element to the document head
+        document.head.appendChild(script);
+    }
 </script>
 
 <script>

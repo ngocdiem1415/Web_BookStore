@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//
+//import com.fasterxml.jackson.core.type.TypeReference;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -144,27 +144,27 @@ public class InvoiceController extends HttpServlet {
 
         boolean allSaved = true;
 
-        for (String reviewParam : reviewsParams) {
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                Map<String, Object> reviewData = objectMapper.readValue(reviewParam, new TypeReference<>() {
-                });
-
-                int productId = (int) reviewData.get("productId");
-                int rating = (int) reviewData.get("rating");
-                String comment = (String) reviewData.get("comment");
-
-                Review review = new Review(invoiceId, productId, userId, rating, comment);
-
-                boolean saved = ReviewService.getInstance().addReview(review);
-                if (!saved) {
-                    allSaved = false;
-                }
-            } catch (Exception e) {
-                allSaved = false;
-                e.printStackTrace();
-            }
-        }
+//        for (String reviewParam : reviewsParams) {
+//            try {
+//                ObjectMapper objectMapper = new ObjectMapper();
+//                Map<String, Object> reviewData = objectMapper.readValue(reviewParam, new TypeReference<>() {
+//                });
+//
+//                int productId = (int) reviewData.get("productId");
+//                int rating = (int) reviewData.get("rating");
+//                String comment = (String) reviewData.get("comment");
+//
+//                Review review = new Review(invoiceId, productId, userId, rating, comment);
+//
+//                boolean saved = ReviewService.getInstance().addReview(review);
+//                if (!saved) {
+//                    allSaved = false;
+//                }
+//            } catch (Exception e) {
+//                allSaved = false;
+//                e.printStackTrace();
+//            }
+//        }
 
         if (allSaved) {
             response.setStatus(HttpServletResponse.SC_OK);
