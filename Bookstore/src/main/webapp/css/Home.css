@@ -176,6 +176,9 @@ body {
     z-index: 2;
     transition: all 0.5s ease;
     opacity: 0;
+    display: flex
+;
+    justify-content: space-around;
 }
 
 .product-img:hover .quick-view {
@@ -191,8 +194,8 @@ body {
     justify-content: center; /* Căn giữa icon theo chiều ngang */
     align-items: center; /* Căn giữa icon theo chiều dọc */
     font-size: 22px;
-    height: 61px;
-    width: 61px;
+    height: 45px!important;
+    width: 45px!important;
     line-height: 61px; /* Giữ cho chiều cao và line-height bằng nhau để căn giữa */
     transform: scale(0);
     transition: all 0.5s ease 0s;
@@ -203,7 +206,7 @@ body {
 }
 
 .quick-view .action-view i {
-    font-size: 30px; /* Điều chỉnh kích thước icon */
+    font-size: 20px!important; /* Điều chỉnh kích thước icon */
     position: absolute !important;
     top: 15px;
     right: 20px;
@@ -383,7 +386,6 @@ body {
     padding-left: 10px;
     margin-top: 50px;
     padding-top: 40px;
-    border: 1px solid #316064;
 }
 
 .banner-img-3 img {
