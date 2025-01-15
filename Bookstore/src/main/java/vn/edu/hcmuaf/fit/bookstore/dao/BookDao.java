@@ -26,4 +26,7 @@ public interface BookDao {
 
     @SqlQuery(QUERIES.BOOK.SELECT_RELATED_BOOKS)
     List<Book> findRelatedBooks(@Bind("categoryId") int categoryId, @Bind("bookId") int bookId);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_BOOK_PROMOTION_IN_DAY)
+    Book getBookByPromotionId(@Bind("id") int promotionId);
 }
