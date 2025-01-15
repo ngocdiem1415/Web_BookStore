@@ -46,7 +46,7 @@ public class InvoiceController extends HttpServlet {
                     break;
                 case "detail":
                     detailInvoice(request, response);
-                    break;
+//                    break;
                 case "filterByStatus":
                     filterInvoicesByStatus(request, response);
                     break;
@@ -90,7 +90,7 @@ public class InvoiceController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        request.getSession().setAttribute("invoice", invoice);
+        request.setAttribute("invoice", invoice);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrderDetail.jsp");
         dispatcher.forward(request, response);
     }

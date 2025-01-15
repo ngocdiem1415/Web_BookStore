@@ -34,7 +34,9 @@
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
 </head>
+
 <body>
+<%--<jsp:include page="Header.jsp"></jsp:include>--%>
 <%--<jsp:include page="Header.jsp"></jsp:include>--%>
 <%@include file="Header.jsp"%>
 <!-- /HEADER -->
@@ -45,6 +47,7 @@
             <!--content left-->
             <%--PROFILE BAR--%>
             <%@ include file="content-left-profile.jsp" %>
+<%--            <jsp:include page="content-left-profile.jsp"></jsp:include>--%>
             <%--PROFILE BAR--%>
 
             <!--content right-->
@@ -59,7 +62,7 @@
                                         <span>Trở lại</span>
                                     </a>
                                     <div class="right-inner-container__header__title">
-                                        <span class="right-inner-container__header__title-complete">${sessionScope.invoice.getStatus()}</span>
+                                        <span class="right-inner-container__header__title-complete">${invoice.getStatus()}</span>
                                     </div>
                                 </div>
                             </section>
@@ -76,30 +79,30 @@
                                                 Đơn hàng đã đặt
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
-                                                <fmt:formatDate value="${sessionScope.invoice.getOrderDate()}"
+                                                <fmt:formatDate value="${invoice.getOrderDate()}"
                                                                 pattern="HH:mm dd/MM/yyyy"/>
                                             </div>
                                         </div>
                                         <div class="right-inner-container--process__step-finish"
                                              aria-label=" <c:choose>
-                                                 <c:when test='${sessionScope.invoice.getPayment().getPaymentStatus().equals("Pending")}'>Đơn hàng chưa thanh toán</c:when>
-                                                 <c:when test='${sessionScope.invoice.getPayment().getPaymentStatus().equals("Completed")}'>Đơn hàng đã thanh toán</c:when>
-                                                 <c:when test='${sessionScope.invoice.getPayment().getPaymentStatus().equals("Failed")}'>Thanh toán thất bại</c:when>
-                                                 <c:when test='${sessionScope.invoice.getPayment().getPaymentStatus().equals("Refunded")}'>Đã hoàn</c:when>
+                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Pending")}'>Đơn hàng chưa thanh toán</c:when>
+                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Completed")}'>Đơn hàng đã thanh toán</c:when>
+                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Failed")}'>Thanh toán thất bại</c:when>
+                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Refunded")}'>Đã hoàn</c:when>
                                              </c:choose>" tabindex="0">
                                             <div class="right-inner-container--process__step-finish-icon">
                                                 <i class="fa-regular fa-money-bill-1"></i>
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
                                                 <fmt:formatNumber
-                                                        value="${sessionScope.invoice.getPayment().getAmount()}"/>
+                                                        value="${invoice.getPayment().getAmount()}"/>
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
                                                 <c:choose>
-                                                    <c:when test="${!sessionScope.invoice.getPayment().getPaymentStatus().equals('Pending')}">
+                                                    <c:when test="${!invoice.getPayment().getPaymentStatus().equals('Pending')}">
 
                                                         <fmt:formatDate
-                                                                value="${sessionScope.invoice.getPayment().getPaymentDate}"
+                                                                value="${invoice.getPayment().getPaymentDate}"
                                                                 pattern="HH:mm dd/MM/yyyy"/>
                                                     </c:when>
                                                     <c:otherwise>
@@ -125,7 +128,7 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.invoice.getStatus().equals('Completed')}">
+                                                    <c:when test="${invoice.getStatus().equals('Completed')}">
                                                         Đơn hàng đã hoàn thành
                                                     </c:when>
                                                     <c:otherwise>
@@ -135,8 +138,8 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.invoice.getStatus().equals('Completed')}">
-                                                        <fmt:formatDate value="${sessionScope.invoice.completionDate}"
+                                                    <c:when test="${invoice.getStatus().equals('Completed')}">
+                                                        <fmt:formatDate value="${invoice.completionDate}"
                                                                         pattern="HH:mm dd/MM/yyyy"/>
                                                     </c:when>
                                                     <c:otherwise>
@@ -163,12 +166,12 @@
                                                 hàng
                                             </div>
                                             <div class="right-inner-container--content-address__name" tabindex="0">
-                                                ${sessionScope.invoice.getRecipientName()}
+                                                ${invoice.getRecipientName()}
                                             </div>
                                             <div class="right-inner-container--content-address__address">
-                                                <span tabindex="0">${sessionScope.invoice.getRecipientPhone()}</span>
+                                                <span tabindex="0">${invoice.getRecipientPhone()}</span>
                                                 <br>
-                                                <span tabindex="0">${sessionScope.invoice.getAddress()}</span>
+                                                <span tabindex="0">${invoice.getAddress()}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -186,7 +189,7 @@
                                             <%--                                            Lặp danh sách chi tiết đơn hàng trong đơn hàng--%>
                                             <section>
                                                 <c:forEach var="detail"
-                                                           items="${sessionScope.invoice.getListInvoiceDetails()}">
+                                                           items="${invoice.getListInvoiceDetails()}">
                                                     <div class="container-product-content-inner__right-inner-center-product__header__link">
                                                         <div class="content-inner__right-inner-infor">
                                                             <img src="${detail.getBook().getImage().getSourceImg()}"
@@ -238,7 +241,7 @@
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
                                                     <fmt:formatNumber
-                                                            value="${sessionScope.invoice.getPayment().getAmount() - sessionScope.invoice.getShippingFee()}"/>
+                                                            value="${invoice.getPayment().getAmount() - invoice.getShippingFee()}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,7 +252,7 @@
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
                                                     <fmt:formatNumber
-                                                            value="${sessionScope.invoice.getShippingFee()}"/>
+                                                            value="${invoice.getShippingFee()}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,7 +263,7 @@
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
                                                     <fmt:formatNumber
-                                                            value="${sessionScope.invoice.getPayment().getAmount()}"/>
+                                                            value="${invoice.getPayment().getAmount()}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -270,7 +273,7 @@
                                             </div>
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
-                                                    ${sessionScope.invoice.getPayment().getPaymentMethod()}
+                                                    ${invoice.getPayment().getPaymentMethod()}
                                                 </div>
                                             </div>
                                         </div>
