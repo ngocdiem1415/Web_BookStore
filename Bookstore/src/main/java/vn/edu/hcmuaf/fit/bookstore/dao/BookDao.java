@@ -29,4 +29,10 @@ public interface BookDao {
 
     @SqlQuery(QUERIES.BOOK.SELECT_BOOK_PROMOTION_IN_DAY)
     Book getBookByPromotionId(@Bind("id") int promotionId);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_BOOK_SOLDS)
+    List<Book> listBestSeller(@Bind("limit") int limit, @Bind("offset") int offset);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_BOOK_BY_CATEGORY)
+    List<Book> listByCategory(@Bind("category_name") String category_name, @Bind("limit") int limit, @Bind("offset") int offset);
 }

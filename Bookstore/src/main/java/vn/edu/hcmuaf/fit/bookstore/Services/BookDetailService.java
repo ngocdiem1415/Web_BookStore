@@ -69,4 +69,35 @@ public class BookDetailService {
         book.setImage(image);
         return book;
     }
+
+    public List<Book> getBestSellers(int limit, int offset) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listBestSeller(limit, offset));
+        for(Book book: books) {
+            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+            book.setImage(image);
+        }
+        return books;
+    }
+
+    public List<Book> listByCategory(String category_name, int limit, int offset) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
+        for(Book book: books) {
+            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+            book.setImage(image);
+        }
+        return books;
+    }
+
+
+//    public int getCurrentPromotionId() {
+//        List<Promotion> promotions = connect.withExtension(PromotionDao.class, handle -> handle.list());
+//
+//        for(Promotion promotion: promotions) {
+//            if (promotion.isActive()) {
+//                return promotion.getPromotionId();
+//            }
+//        }
+//        // Nếu không có khuyến mãi nào đang active, trả về khuyến mãi đầu tiên hoặc giá trị mặc định
+//        return promotions.isEmpty() ? -1 : promotions.get(0).getPromotionId();
+//    }
 }
