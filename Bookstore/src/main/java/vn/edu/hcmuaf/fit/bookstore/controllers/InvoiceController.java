@@ -1,4 +1,10 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
+
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
+
+import io.leangen.geantyref.TypeToken;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,6 +16,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +46,7 @@ public class InvoiceController extends HttpServlet {
                     break;
                 case "detail":
                     detailInvoice(request, response);
-                    break;
+//                    break;
                 case "filterByStatus":
                     filterInvoicesByStatus(request, response);
                     break;
@@ -77,12 +84,13 @@ public class InvoiceController extends HttpServlet {
 
     private void detailInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Invoice invoices = invoiceService.findById(id);
-        if (invoices == null) {
+        Invoice invoice = invoiceService.findById(id);
+        System.out.println(invoice);
+        if (invoice == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        request.setAttribute("invoices", invoices);
+        request.setAttribute("invoice", invoice);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrderDetail.jsp");
         dispatcher.forward(request, response);
     }
@@ -104,22 +112,28 @@ public class InvoiceController extends HttpServlet {
 //            case "create":
 //                createInvoiceFromCart(request, response);
 //                break;
-            case "review":
-                System.out.println("cc");
-                saveReviews(request, response);
-                response.setContentType("application/json");
-                response.getWriter().write("{\"status\": \"success\"}");
-//                response.sendRedirect("/invoice?action=list");
-                break;
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
+                System.out.println(invoice);
                 if (invoice == null) {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND);
                     return;
                 }
-                invoiceService.cancelInvoice(invoice);
-                response.sendRedirect("/invoice?action=list");
+                try {
+                    // Thực hiện hủy đơn hàng
+                    int result = invoiceService.cancelInvoice(invoice);
+
+                    if (result > 0) {
+                        // Chuyển hướng sau khi hủy thành công
+                        response.sendRedirect("/invoice?action=filterByStatus&status=cancelled");
+                    } else {
+                        throw new RuntimeException("Hủy đơn hàng thất bại.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi khi hủy đơn hàng.");
+                }
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -127,50 +141,6 @@ public class InvoiceController extends HttpServlet {
 
     }
 
-    private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
-        String[] reviewsParams = request.getParameterValues("reviews");
-
-        System.out.println("Reviews...............");
-        if (reviewsParams == null || reviewsParams.length == 0) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("No reviews provided.");
-            System.out.println("No reviews provided.");
-            return;
-        }
-
-        boolean allSaved = true;
-
-//        for (String reviewParam : reviewsParams) {
-//            try {
-//                ObjectMapper objectMapper = new ObjectMapper();
-//                Map<String, Object> reviewData = objectMapper.readValue(reviewParam, new TypeReference<>() {
-//                });
-//
-//                int productId = (int) reviewData.get("productId");
-//                int rating = (int) reviewData.get("rating");
-//                String comment = (String) reviewData.get("comment");
-//
-//                Review review = new Review(invoiceId, productId, userId, rating, comment);
-//
-//                boolean saved = ReviewService.getInstance().addReview(review);
-//                if (!saved) {
-//                    allSaved = false;
-//                }
-//            } catch (Exception e) {
-//                allSaved = false;
-//                e.printStackTrace();
-//            }
-//        }
-
-        if (allSaved) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("All reviews saved successfully.");
-        } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Failed to save some reviews.");
-        }
-    }
 
 //    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        HttpSession session = request.getSession();
