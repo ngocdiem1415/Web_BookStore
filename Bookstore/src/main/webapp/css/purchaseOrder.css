@@ -635,6 +635,15 @@ input[type="checkbox"] {
 .rating-infor__star--container .selected i {
     color: #ffcc00; /* Màu vàng */
 }
+.swal-popup-custom {
+    font-size: 16px;
+    width: auto;
+    max-width: 400px;
+    height: auto;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+}
 
 
 
