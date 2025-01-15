@@ -40,7 +40,7 @@ public interface BookDao {
                         @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
                               @Bind("limit") int limit, @Bind("offset") int offset);
     @SqlUpdate(QUERIES.BOOK.DELETE)
-    void delete(@Bind("id") int id);
+    boolean delete(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     void update(@Bind("id") int id);
@@ -48,4 +48,6 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.TOTALBOOK)
     int totalBooks();
 
+    @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK)
+    List<Book> listAllProduct();
 }
