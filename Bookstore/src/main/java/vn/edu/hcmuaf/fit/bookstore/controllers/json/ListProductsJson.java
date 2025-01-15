@@ -10,82 +10,53 @@ import vn.edu.hcmuaf.fit.bookstore.Services.PublisherService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 import vn.edu.hcmuaf.fit.bookstore.beans.Publisher;
+import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "ListProductJson", value = "/listBooks")
 public class ListProductsJson extends HttpServlet {
-    private BookDetailService bookService;
-    List<Book> listBook;
+    private BookDetailService bookDetailService;
 
-    int pageIndexNum = 1;
-    int perPageNum = 9;
-
-    int from = 0;
-    int to = 1000000;
-
-    String category = null;
-    String find;
 
     public ListProductsJson() {
-        this.bookService = BookDetailService.getInstance();
+        this.bookDetailService = BookDetailService.getInstance();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        // Lấy giá trị từ header
-        String find = request.getParameter("find");
-        request.setAttribute("find", find);
+        // Lấy số trang và số lượng sản phẩm mỗi trang từ tham số request
+        int page = Integer.parseInt(request.getParameter("page"));
+        int maxItems = Integer.parseInt(request.getParameter("maxItems"));
 
-        // Xử lý giá trị mặc định và chuyển đổi tham số
-        pageIndexNum = getIntParameter(request, "page-index", 1);
-        perPageNum = getIntParameter(request, "per-page", 10);
-        int category = getIntParameter(request, "category", 0);
-        int publisher = getIntParameter(request, "publisher", 0);
-        String orderBy = request.getParameter("orderBy");
-        double ratingValue = getDoubleParameter(request, "ratingValue", 0.0);
-        int firstPrice = getIntParameter(request, "firstPrice", 0);
-        int secondPrice = getIntParameter(request, "secondPrice", Integer.MAX_VALUE);
-        // Tính toán offset cho phân trang
-        int offset = (pageIndexNum - 1) * perPageNum;
-        int limit = perPageNum;
-        System.out.println("category " + category +" publisher "+ publisher+" find " +find +" limit " +limit+ " offset "+ offset + " orderBy " +orderBy+
-                " rating " +ratingValue+ "firstPrice " +firstPrice+ "second " +secondPrice);
-        listBook = bookService.getBooks(category, publisher,find, limit, offset, orderBy, ratingValue, firstPrice, secondPrice);
-        System.out.println(listBook.toString());
-        // Chuyển đổi danh sách sách thành JSON
-        if (listBook != null) {
-            String json = new Gson().toJson(listBook);
-            PrintWriter out = response.getWriter();
-            try {
-                out.println(json);
-            } finally {
-                out.close();
-            }
-        }
-        System.out.println("da chay toi day");
-    }
+        // Tính toán offset
+        int offset = (page - 1) * maxItems;
 
-    private int getIntParameter(HttpServletRequest request, String param, int defaultValue) {
-        String value = request.getParameter(param);
-        try {
-            return value != null && !value.isEmpty() ? Integer.parseInt(value) : defaultValue;
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
-    }
+        // Lấy danh sách sản phẩm từ cơ sở dữ liệu
+        List<Book> productList = bookDetailService.listProducts(maxItems, offset);
+        int totalItems = bookDetailService.totalBooks();  // Tổng số sản phẩm trong cơ sở dữ liệu
+        System.out.println(offset + maxItems);
 
-    // Hàm tiện ích để lấy tham số double với giá trị mặc định
-    private double getDoubleParameter(HttpServletRequest request, String param, double defaultValue) {
-        String value = request.getParameter(param);
-        try {
-            return value != null && !value.isEmpty() ? Double.parseDouble(value) : defaultValue;
-        } catch (NumberFormatException e) {
-            return defaultValue;
+        // Chuyển đổi danh sách sản phẩm thành JSON
+        Map<String, Object> result = new HashMap<>();
+        result.put("products", productList);
+        result.put("totalItems", totalItems);
+        System.out.println(result.toString());
+
+        Gson gson = GsonUtil.createGsonWithAdapters();
+        String json = gson.toJson(result);
+        try (PrintWriter writer = response.getWriter()) {
+            response.getWriter().write(json);
+        } catch (Exception e) {
+            System.err.println("Lỗi khi ghi JSON: " + e.getMessage());
         }
+        System.out.println("da chay xong");
     }
 
     @Override
