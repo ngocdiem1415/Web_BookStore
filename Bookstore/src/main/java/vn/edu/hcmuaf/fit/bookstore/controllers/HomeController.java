@@ -38,6 +38,29 @@ public class HomeController extends HttpServlet {
             request.setAttribute("bookByPromotion", bookByPromotion);
 
 
+            // Lay san pham ban chay nhat
+            List<Book> bestSellerBooks = bookDetailService.getBestSellers(4, 0);
+            request.setAttribute("bestSellerBooks", bestSellerBooks);
+
+            // Lấy danh sách thể loại van hoc
+            List<Book> literatureBooks = bookDetailService.listByCategory("Văn học", 5, 0);
+            request.setAttribute("literatureBooks", literatureBooks);
+
+            // Lấy danh sách thể loại tieu thuyet
+            List<Book> novelsBooks = bookDetailService.listByCategory("Tiểu thuyết", 5, 0);
+            request.setAttribute("novelsBooks", novelsBooks);
+
+            // Lấy danh sách thể loại Truyen tranh
+            List<Book> comicBooks = bookDetailService.listByCategory("Truyện Tranh", 5, 0);
+            request.setAttribute("comicBooks", comicBooks);
+
+            // Lấy danh sách thể loại Khac
+            List<Book> otherBooks = bookDetailService.listByCategory("Khác", 5, 0);
+            request.setAttribute("otherBooks", otherBooks);
+
+
+
+
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "Invalid book ID format.");
         }
