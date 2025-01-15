@@ -41,7 +41,7 @@
     <div class="row d-flex align-items-center justify-content-center">
         <h2 class="col-9 text-center my-4">Chỉnh sửa sản phẩm</h2>
         <div class="col-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-success me-2 my-4" style="background: #4B908E" id="update">
+            <button type="button" class="btn btn-success me-2 my-4" style="background: #4B908E" id="update" onclick="window.location.href='/admin/product-management';">
                 <i class="fa-solid fa-check"></i> Xong
             </button>
             <button type="button" class="btn btn-danger my-4"

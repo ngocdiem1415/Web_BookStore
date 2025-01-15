@@ -53,4 +53,7 @@ public interface BookDao {
     
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     boolean updateBook(Book product);
+
+    @SqlUpdate(QUERIES.BOOK.INSERT)
+    boolean insertBook(Book product);
 }
