@@ -12,8 +12,6 @@ public class QUERIES {
         public static final String CHANGE_PASSWORD = "update users set password = :password where uid = :uid";
         public static final String DELETE = "delete from users where uid = :id";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
-
-
     }
 
 
@@ -38,6 +36,9 @@ public class QUERIES {
         public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :pId, publish_year = :publishYear, weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId, sold_quantity = :soldQuantity, stock_quantity = :stockQuantity, create_at = :createAt, update_at = CURRENT_TIMESTAMP WHERE b_id = :bookId";
         public static final String DELETE = "delete from books where b_id = :id";
         public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
+        public static final String SELECT_BOOK_PROMOTION_IN_DAY =
+                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE NOW() >= promotions.start_date and NOW() <= promotions.end_date and promotions.promotion_id = :id";
+
     }
 
     public class CATEGORY {
@@ -45,7 +46,7 @@ public class QUERIES {
         public static final String FIND_BY_CATEGORYID = "select * from categories where category_id = :id";
         public static final String UPDATE = "UPDATE books SET  category_name = :categoryName,update_at = CURRENT_TIMESTAMP WHERE category_id = :Id";
         public static final String DELETE = "delete from categories where category_id = :id";
-
+        public static final String SELECT_BY_CATEGORY = "select * from categories where categoryId = :categoryId limit :limit";
     }
 
     public class IMAGE {

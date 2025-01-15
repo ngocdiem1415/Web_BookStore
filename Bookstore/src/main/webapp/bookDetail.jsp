@@ -120,7 +120,7 @@
 
                         <!-- giá gốc -->
                         <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
-                            <span class="original-price"><f:formatNumber value="${book.originalPrice}" /></span>
+                            <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
                             <i class="fa-solid fa-dong-sign fa-xs"></i>
                         </div>
 
