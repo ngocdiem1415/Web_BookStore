@@ -134,6 +134,9 @@ body {
 
 .owl-carousel .owl-item {
     /*position: relative;*/
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
 }
 
 .product-img, .most-product-img {
@@ -182,19 +185,28 @@ body {
 
 .quick-view a {
     background-color: #316064;
-    border-radius: 50px;
+    border-radius: 50%;
     color: #fff;
-    display: inline-block;
+    display: flex; /* Để sử dụng flexbox */
+    justify-content: center; /* Căn giữa icon theo chiều ngang */
+    align-items: center; /* Căn giữa icon theo chiều dọc */
     font-size: 22px;
     height: 61px;
-    line-height: 61px;
     width: 61px;
+    line-height: 61px; /* Giữ cho chiều cao và line-height bằng nhau để căn giữa */
     transform: scale(0);
-    transition: all .5s ease 0s;
+    transition: all 0.5s ease 0s;
 }
 
-.product-img:hover .quick-view a{
+.product-img:hover .quick-view a {
     transform: scale(1); /* Phóng to nút khi hover */
+}
+
+.quick-view .action-view i {
+    font-size: 30px; /* Điều chỉnh kích thước icon */
+    position: absolute !important;
+    top: 15px;
+    right: 20px;
 }
 
 .product-flag {
@@ -481,6 +493,11 @@ body {
     font-size: 13px;
     font-weight: 400;
     margin-bottom: 0;
+}
+
+.quick-view .action-view i {
+    font-size: 30px; /* Điều chỉnh kích thước icon */
+
 }
 
 /*<!-- banner-area-end -->*/
