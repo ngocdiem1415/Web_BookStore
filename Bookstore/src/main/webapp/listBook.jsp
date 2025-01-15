@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
+    <%--    mdb css--%>
+    <link rel="stylesheet" href="css/mdb/css/mdb.min.css">
 </head>
 <body>
 <!--Header-->
@@ -63,8 +65,8 @@
                         <div class="category-scroll">
                             <div class="category-inform">
                                 <c:forEach var="publisher" items="${publishers}">
-                                    <div class="category-item">
-                                        <input type="checkbox" id="${publisher.p_id}" name="publisher"
+                                    <div class="publisher-item">
+                                        <input type="radio" id="${publisher.p_id}" name="publisher"
                                                value="${publisher.p_id}">
                                         <label class="checkbox-label"
                                                for="${publisher.p_id}">${publisher.p_name}</label>
@@ -77,8 +79,8 @@
                         <h4 class="category__heading">Loại sách</h4>
                         <div class="category-inform">
                             <c:forEach var="category" items="${categories}">
-                                <div class="category-item">
-                                    <input type="checkbox" id="${category.categoryId}" name="category"
+                                <div class="categories-item">
+                                    <input type="radio" id="${category.categoryId}" name="category"
                                            value="${category.categoryId}">
                                     <label class="checkbox-label"
                                            for="${category.categoryId}">${category.category_name}</label>
@@ -88,84 +90,156 @@
                     </div>
                     <div class="category-form">
                         <h4 class="category__heading">Giá cả</h4>
+
                         <div class="category-inform">
-                            <input type="checkbox" id="100k">
+                            <input type="radio" id="100k" name="priceRange" value="under100k">
                             <label class="checkbox-label" for="100k">Giá dưới 100.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="checkbox" id="200k">
+                            <input type="radio" id="200k" name="priceRange" value="100k-200k">
                             <label class="checkbox-label" for="200k">100.000đ - 200.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="checkbox" id="300k">
+                            <input type="radio" id="300k" name="priceRange" value="200k-300k">
                             <label class="checkbox-label" for="300k">200.000đ - 300.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="checkbox" id="500k">
+                            <input type="radio" id="500k" name="priceRange" value="300k-500k">
                             <label class="checkbox-label" for="500k">300.000đ - 500.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="checkbox" id="1000k">
+                            <input type="radio" id="1000k" name="priceRange" value="500k-1000k">
                             <label class="checkbox-label" for="1000k">500.000đ - 1.000.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="checkbox" id="hon1tr">
+                            <input type="radio" id="hon1tr" name="priceRange" value="above1mil">
                             <label class="checkbox-label" for="hon1tr">Giá trên 1.000.000đ</label>
                         </div>
                     </div>
+
                     <div class="category-form">
                         <h4 class="category__heading">Đánh Giá Sao</h4>
+
                         <div class="category-inform">
-                            <input type="radio" id="star-1" name="rating" value="1" hidden>
-                            <label class="checkbox-label" for="star-1">
-                                <i class="fa-regular fa-star"></i>
+                            <input type="radio" id="rating1" name="rating" value="1">
+                            <label for="rating1">
+                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="1">
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                </ul>
                             </label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="star-2" name="rating" value="2" hidden>
-                            <label class="checkbox-label" for="star-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                            <input type="radio" id="rating2" name="rating" value="2">
+                            <label for="rating2">
+                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="2">
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                </ul>
                             </label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="star-3" name="rating" value="3" hidden>
-                            <label class="checkbox-label" for="star-3">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                            <input type="radio" id="rating3" name="rating" value="3">
+                            <label for="rating3">
+                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="3">
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                </ul>
                             </label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="star-4" name="rating" value="4" hidden>
-                            <label class="checkbox-label" for="star-4">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                            <input type="radio" id="rating4" name="rating" value="4">
+                            <label for="rating4">
+                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="4">
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                </ul>
                             </label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="star-5" name="rating" value="5" hidden>
-                            <label class="checkbox-label" for="star-5">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                            <input type="radio" id="rating5" name="rating" value="5">
+                            <label for="rating5">
+                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="5">
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
+                                    </li>
+                                </ul>
                             </label>
                         </div>
                     </div>
-
                 </nav>
             </div>
         </div>
@@ -185,12 +259,21 @@
                                         <h4 class="home-product-item__name">${book.title}</h4>
                                         <div class="home-product-item__price">
                                             <c:if test="${book.promotionId == 0}">
-                                                <span class="home-product-item__price-current original-price">${book.originalPrice} đ</span>
+                                                <span class="home-product-item__price-current original-price"><f:formatNumber
+                                                        value="${book.originalPrice}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                </span>
                                             </c:if>
                                             <!-- Hiển thị giá sau khi giảm giá nếu có promotion -->
                                             <c:if test="${book.promotionId != 0}">
-                                                <span class="home-product-item__price-current unit-price">${book.originalPrice-(book.originalPrice * book.promotion.discount)}</span>
-                                                <span class="home-product-item__price-old original-price">${book.originalPrice}</span>
+                                                <span class="home-product-item__price-current unit-price"><f:formatNumber
+                                                        value="${book.salePrice}"/>
+                                                       <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                                </span>
+
+                                                <span class="home-product-item__price-old original-price"><f:formatNumber
+                                                        value="${book.originalPrice}"/></span>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
                                             </c:if>
                                         </div>
                                         <div class="home-product-item__action">
@@ -212,33 +295,16 @@
                             </div>
                         </c:forEach>
                     </div>
+                    <div id="product-container listBook" class="grid__row">
 
-                    <div style="text-align: center; margin-top: 36px;">
-                        <button id="load-more" onclick="loadMore()" class="home-product-btn btn-primary">Xem thêm
-                        </button>
+
                     </div>
                 </div>
-                <div id="pagination"></div>
 
                 <!-- Phân trang -->
-                <%--                <div class="grid__row--footer">--%>
-                <%--                    <div class="col-md-10">--%>
-                <%--                        <div class="home-filter__paginate" style="text-align: right;">--%>
-                <%--                            <ul class="home-filter__paginate-list">--%>
-                <%--                                <li class="home-filter__paginate-item home-filter__paginate-item--active"><a--%>
-                <%--                                        href="">1</a>--%>
-                <%--                                </li>--%>
-                <%--                                <li class="home-filter__paginate-item"><a href="">2</a></li>--%>
-                <%--                                <li class="home-filter__paginate-item"><a href="">3</a></li>--%>
-                <%--                                <li class="home-filter__paginate-item"><a href="">4</a></li>--%>
-                <%--                                <li class="home-filter__paginate-item"><a href="">5</a></li>--%>
-                <%--                                <li class="home-filter__paginate-item"><a href=""><i--%>
-                <%--                                        class="fa-solid fa-chevron-right"></i></a>--%>
-                <%--                                </li>--%>
-                <%--                            </ul>--%>
-                <%--                        </div>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
+                <ul class="pagination" id="pagination"></ul>
+                <input type="hidden" value="" id="page" name="page">
+                <input type="hidden" value="" id="maxPageItem" name="maxPageItem">
             </div>
         </div>
     </div>
@@ -260,58 +326,309 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.twbspagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
+<!--    mdb js-->
+<script src="css/mdb/js/mdb.min.js"></script>
+
 <!--format tiền tệ-->
-<script src="js/FormatMoney.js"></script>
-<script>
-    document.querySelectorAll('.unit-price, .original-price').forEach(element => {
-        const amount = parseInt(element.textContent);
-        if (!isNaN(amount)) {
-            element.textContent = formatCurrencyVN(amount);
-            console.log(element.textContent);
-        }
-    });
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
-        let curentPage = 1;
-        let totalPages = $(totalPages);
+        let currentPage = 1;
+        let totalPages = ${totalPage};
         const limit = 20;
+        let category = "";
+        let find = ${find};
+        let publisher = "";
+        let orderBy = "";
+        var firstPrice = 0;
+        var secondPrice = 1000000;
+        let ratingValue = 0;
 
-
-        $('#pagination').twbsPagination({
-            totalPages: ${totalPages},
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages: totalPages,
             visiblePages: 5,
-            startPage: ${currentPage},
+            startPage: currentPage,
             first: 'Đầu',
-            prev: 'Trước',
-            next: 'Sau',
             last: 'Cuối',
             onPageClick: function (event, page) {
-                window.location.href = "/category?page=" + page;
+                if (currentPage != page) {
+                    currentPage = page;
+                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                }
             }
         });
-    });
-</script>
-<script>
-    function loadMore() {
-        var amount = document.querySelectorAll(".home-product-item").length;
-        console.log(amount);
-        $.ajax({
-            url: "/load",
-            type: "GET",
-            data: {
-                exitsBook: amount
-            },
-            success: function (data) {
-                var row = document.getElementById("product-container")
-                row.innerHTML += data;
-            },
-            error: function () {
-                alert("error");
-            }
-        })
-    }
 
+        // Đặt sự kiện click cho danh sách tác giả
+        var publishers = document.querySelectorAll(".publisher-item");
+        publishers.forEach(function (radioButton) {
+            radioButton.addEventListener("change", function (event) {
+                // Nếu radio button được chọn, lấy giá trị của nó
+                if (radioButton.checked) {
+                    publisher = radioButton.value;
+                    console.log("Selected publisher ID: " + publisher);
+
+                    // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu
+                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                }
+            });
+        });
+
+        // Đặt sự kiện click cho danh sách tác giả
+        var categories = document.querySelectorAll(".categories-item");
+        categories.forEach(function (radioButton) {
+            radioButton.addEventListener("change", function (event) {
+                // Nếu radio button được chọn, lấy giá trị của nó
+                if (radioButton.checked) {
+                    category = radioButton.value;
+                    console.log("Selected category ID: " + publisher);
+
+                    // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu
+                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                }
+            });
+        });
+
+        //dat su kien cho rating
+        $(document).ready(function () {
+            // Attach click event to each star
+            $('.rating li').on('click', function () {
+                ratingValue = $(this).closest('ul').data('data-mdb-value');
+
+                // Log or use the rating value as needed
+                console.log(ratingValue);
+                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+            });
+        });
+
+        $(document).ready(function () {
+            // Attach change event to radio buttons
+            $('input[name="radioForm"]').on('change', function () {
+                var selectedValue = $('input[name="priceRange"]:checked').next('label').text().trim();
+                // Tách các số từ giá trị đã chọn bằng regex
+                var priceRange = selectedValue.match(/\d+/g);
+                console.log('Prices:', priceRange);
+
+                // xử lí giá tị đã tìm được
+                if (priceRange && priceRange.length >= 2) {
+                    var result = priceRange[0];
+
+
+                    if (priceRange[1] == null) {
+                        priceRange[1] = result;
+                        priceRange[0] = 0;
+                        secondPrice = parseInt(priceRange[1] + "000");
+                    }
+                    firstPrice = parseInt(priceRange[0] + "000"); // Chuyển thành số cho giá trị thấp nhất
+                    secondPrice = parseInt(priceRange[1] + "000"); // Chuyển thành số cho giá trị cao nhất
+
+                    console.log('First Price:', firstPrice);
+                    console.log('Second Price:', secondPrice);
+                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                }
+            });
+        });
+
+        // Hàm xử lý với giá trị được chọn
+        function handleSortSelection(selectedValue) {
+
+            switch (selectedValue) {
+
+                case '0':
+                    // Xử lý khi chọn "Mặc định"
+                    currentPage = 1
+                    console.log('Chọn mặc định');
+                    orderBy = ""
+                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                    window.pagObj = $('#pagination').twbsPagination({
+                        totalPages: totalPages,
+                        visiblePages: 5,
+                        startPage: currentPage,
+                        onPageClick: function (event, page) {
+                            if (currentPage != page) {
+                                currentPage = page;
+                                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                            }
+                        }
+                    });
+                    ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                    break;
+                case '1':
+                    // Xử lý khi chọn "hàng mới nhất"
+                    currentPage = 1
+                    console.log('Chọn theo tên');
+                    orderBy = "book_update_DESC"
+                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                    window.pagObj = $('#pagination').twbsPagination({
+                        totalPages: totalPages,
+                        visiblePages: 5,
+                        startPage: currentPage,
+                        onPageClick: function (event, page) {
+                            if (currentPage != page) {
+                                currentPage = page;
+                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                            }
+                        }
+                    });
+                    ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                    break;
+                case '2':
+                    // Xử lý khi chọn "hàng cũ nhất"
+                    currentPage = 1;
+                    console.log('Chọn theo sách cũ nhất');
+                    orderBy = "book_update_ASC"
+                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                    window.pagObj = $('#pagination').twbsPagination({
+                        totalPages: totalPages,
+                        visiblePages: 5,
+                        startPage: currentPage,
+                        onPageClick: function (event, page) {
+                            if (currentPage != page) {
+                                currentPage = page;
+                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                            }
+                        }
+                    });
+                    ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);
+                    break;
+                case '3':
+                    // Xử lý khi chọn "Giá tăng dần"
+                    currentPage = 1;
+                    console.log('Chọn theo giá tăng dần');
+                    orderBy = "book_price_ASC"
+                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                    window.pagObj = $('#pagination').twbsPagination({
+                        totalPages: totalPages,
+                        visiblePages: 5,
+                        startPage: currentPage,
+                        onPageClick: function (event, page) {
+                            if (currentPage != page) {
+                                currentPage = page;
+                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                            }
+                        }
+                    });
+                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                    break;
+                case '4':
+                    // Xử lý khi chọn "Giá giảm dần"
+                    currentPage = 1;
+                    console.log('Chọn theo giá giảm dần');
+                    orderBy = "book_price_DESC"
+                    window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+                    window.pagObj = $('#pagination').twbsPagination({
+                        totalPages: totalPages,
+                        visiblePages: 5,
+                        startPage: currentPage,
+                        onPageClick: function (event, page) {
+                            if (currentPage != page) {
+                                currentPage = page;
+                                ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                            }
+                        }
+                    });
+                    ajaxCall(category, publisher,orderBy, ratingValue, firstPrice, secondPrice);
+                    break;
+                default:
+                    // Xử lý mặc định hoặc các giá trị khác nếu cần
+                    break;
+            }
+        }
+
+        // $("#search-text").on('keyup', function () {
+        //     currentPage = 1; // Đặt lại currentPage về 1 khi có sự kiện tìm kiếm
+        //     find = $(this).val();
+        //     console.log(find);
+        //
+        //     // Gọi hàm update của twbsPagination để cập nhật giá trị currentPage
+        //     window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại
+        //     window.pagObj = $('#pagination').twbsPagination({
+        //         totalPages: totalPages,
+        //         visiblePages: 5,
+        //         startPage: currentPage,
+        //         onPageClick: function (event, page) {
+        //             if (currentPage !== page) {
+        //                 currentPage = page;
+        //                 // Chỉ gọi ajaxRun khi thay đổi trang
+        //                 ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);
+        //             }
+        //         }
+        //     });
+        //
+        //     // Gọi ajaxRun ngay khi có sự kiện tìm kiếm, chỉ khi người dùng thay đổi từ khóa tìm kiếm
+        //     // Điều này giúp hiển thị kết quả tìm kiếm ngay lập tức.
+        //     ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);
+        // });
+
+        // Hàm gọi AJAX
+        function ajaxCall(categoryValue, orderBy, ratingValue, firstPrice, secondPrice) {
+            const params = new URLSearchParams({
+                'page-index': currentPage,
+                'per-page': limit,
+                'category': category,
+                'publisher': publisher,
+                'find': find,
+                'orderBy': orderBy,
+                'ratingValue': ratingValue,
+                'firstPrice': firstPrice,
+                'secondPrice': secondPrice
+            }).toString();
+            $.ajax({
+                type: "POST",
+                url: `/listBook?${params}`,
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function (json) {
+                    let data = "";
+                    let obj = json;
+                    for (let i = 0; i < obj.length; i++) {
+                        let val = obj[i];
+                        // onclick="return theFunction();"
+                        data += '<div class="grid-md-2-4">' +
+                            '<a href="/product-detail?id=' + val.bId + '" class="home-product-item">' +
+                            // hinh anh san pham
+                            '<a href="/product-detail?id="' + (val.image && val.image.sourceImg ? val.image.sourceImg : '../img/path_to_default_image.png') + ');"></div>' +
+                            // Tên sản phẩm
+                            '<h4 class="home-product-item__name">' + val.title + '</h4>' +
+                            // Giá sản phẩm
+                            '<div class="home-product-item__price">';
+                        // Hiển thị giá gốc và giá khuyến mãi
+                        if (val.promotionId == 0) {
+                            data += '<span class="home-product-item__price-current original-price">' + val.originalPrice + ' đ</span>';
+                        } else {
+                            let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
+                            data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
+                                '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>';
+                        }
+                        data += '</div>' +
+                            // Hành động yêu thích
+                            '<div class="home-product-item__action">' +
+                            '<span class="home-product-item__like home-product-item__like--liked">' +
+                            '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
+                            '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
+                            '</span>' +
+
+                            // Đánh giá
+                            '<div class="home-product-item__rating">' +
+                            '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
+                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                            '</ul>' +
+                            '</div>' +
+                            '</div>' +
+                            '</a>' +
+                            '</div>';
+                    }
+                    $(".listBook").html(data);
+                    reloadJsFile("/css/mdb/js/mdb.min.js");
+                },
+                error: function (xhr, status, error) {
+                    console.log(status, error);
+                }
+            });
+        };
+    });
 </script>
 
 <script>
@@ -346,8 +663,6 @@
             updateStars(checkedInputIndex); // Cập nhật màu nếu đã chọn trước đó
         }
     });
-
-
 </script>
 
 </body>
