@@ -6,6 +6,7 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.bookstore.beans.Review;
+import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
 import java.util.List;
 
@@ -28,4 +29,8 @@ public interface ReviewDao {
     // Lấy danh sách đánh giá của một sản phẩm
     @SqlQuery("SELECT * FROM reviews WHERE book_id = :bookId ORDER BY review_date DESC")
     List<Review> getReviewsByBookId(@Bind("bookId") int bookId);
+
+
+    @SqlQuery(QUERIES.REVIEW.BOOK_RATING)
+    Double getRatingOfBook(@Bind("b_id") int b_id);
 }
