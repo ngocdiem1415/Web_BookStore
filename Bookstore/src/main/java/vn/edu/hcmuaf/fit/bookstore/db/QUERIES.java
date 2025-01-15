@@ -3,15 +3,16 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 public class QUERIES {
 
     public class USER {
-        public static final String SELECT_ALL_USER = "select * from users";
+        public static final String SELECT_ALL_USER = "select * from users where role = :role";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
         public static final String FIND_BY_USERNAME = "select * from users where username = :username";
-        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , 'user')";
+        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , :role)";
         public static final String FIND_BY_EMAIL = "select * from users where email = :email";
         public static final String CHANGE_PASSWORD = "update users set password = :password where uid = :uid";
         public static final String DELETE = "delete from users where uid = :id";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
+        public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
     }
 
 
