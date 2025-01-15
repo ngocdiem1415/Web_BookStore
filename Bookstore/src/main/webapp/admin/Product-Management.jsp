@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -56,7 +57,7 @@
                                         <div class=" main-card-title my-3">
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
-                                        <button id="addProductBtn" class="btn btn-green my-4 border rounded">
+                                        <button id="addProductBtn" class="btn btn-green my-4 border rounded" href=" window.location.href = 'EditProductController">
                                             <i class="fa-solid fa-plus"></i>
                                             Thêm sản phẩm
                                         </button>
@@ -213,7 +214,7 @@
             let productId = data.bId; // Lấy ID sản phẩm từ dữ liệu
 
             // Chuyển hướng đến trang chỉnh sửa với ID sản phẩm
-            window.location.href = 'EditProductPage.jsp?id=' + productId; // Thay đổi URL trang chỉnh sửa
+            window.location.href = 'EditProductController?id=' + productId; // Thay đổi URL trang chỉnh sửa
         });
 
         // Xử lý sự kiện click nút xóa

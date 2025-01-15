@@ -50,4 +50,7 @@ public interface BookDao {
 
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK)
     List<Book> listAllProduct();
+    
+    @SqlUpdate(QUERIES.BOOK.UPDATE)
+    boolean updateBook(Book product);
 }
