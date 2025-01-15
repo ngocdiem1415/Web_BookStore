@@ -27,18 +27,57 @@ public class QUERIES {
     public class BOOK {
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
-        public static final String SELECT_BOOK_PAGE_NEWEST = "select * from books ";
-        //        public static final String SELECT_PRODUCTS_OLDEST =
-//        public static final String SELECT_PRODUCT_PAGE_PRICE_ASC =
-//        public static final String SELECT_PRODUCT_PAGE_PRICE_DESC =
-//        public static final String SELECT_PRODUCT_PAGE_NAME_ASC =
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
-        public static final String FIND_BY_CATEGORYID = "select * from books where b_id = :id";
-        public static final String FIND_BY_BOOKNAME = "select * from books where b_id = :id";
         public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :pId, publish_year = :publishYear, weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId, sold_quantity = :soldQuantity, stock_quantity = :stockQuantity, create_at = :createAt, update_at = CURRENT_TIMESTAMP WHERE b_id = :bookId";
         public static final String DELETE = "delete from books where b_id = :id";
+        public static final String TOTALBOOK = "select count(*) from books ";
 
+        public static final String SELECT_PRODUCT_PAGE = "SELECT * FROM books " +
+                "WHERE (category_id = :category_id OR category_id IS NULL) " +
+                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
+                "AND original_price >= :firstPrice " +
+                "AND original_price <= :secondPrice " +
+                "LIMIT :limit OFFSET :offset";
+
+        public static final String SELECT_BOOK_UPDATE_DESC = "SELECT * FROM books " +
+                "WHERE (category_id = :category_id OR category_id IS NULL) " +
+                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
+                "AND original_price >= :firstPrice " +
+                "AND original_price <= :secondPrice " +
+                "ORDER BY update_at DESC " +
+                "LIMIT :limit OFFSET :offset";
+
+        public static final String SELECT_BOOK_UPDATE_ASC = "SELECT * FROM books " +
+                "WHERE (category_id = :category_id OR category_id IS NULL) " +
+                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
+                "AND original_price >= :firstPrice " +
+                "AND original_price <= :secondPrice " +
+                "ORDER BY update_at ASC " +
+                "LIMIT :limit OFFSET :offset";
+
+        public static final String SELECT_BOOK_PRICE_DESC = "SELECT * FROM books " +
+                "WHERE (category_id = :category_id OR category_id IS NULL) " +
+                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
+                "AND original_price >= :firstPrice " +
+                "AND original_price <= :secondPrice " +
+                "ORDER BY original_price DESC " +
+                "LIMIT :limit OFFSET :offset";
+
+        public static final String SELECT_BOOK_PRICE_ASC = "SELECT * FROM books " +
+                "WHERE (category_id = :category_id OR category_id IS NULL) " +
+                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
+                "AND original_price >= :firstPrice " +
+                "AND original_price <= :secondPrice " +
+                "ORDER BY original_price ASC " +
+                "LIMIT :limit OFFSET :offset";
     }
+
+
 
     public class CATEGORY {
         public static final String SELECT_ALL_CATEGORY = "select * from categories";
@@ -54,6 +93,7 @@ public class QUERIES {
         public static final String FIND_IMAGE_THUMBNAIL_BY_ID = "select * from images where b_id = :id and is_thumbnail = 1";
         public static final String DELETE = "delete from images where b_id = :id";
         public static final String SELECT_ALL_IMAGE_BY_BOOKID = "select * from images where b_id = :id";
+
     }
 
     public class PROMOTION {
@@ -69,10 +109,22 @@ public class QUERIES {
         public static final String DELETE = "delete from promotions where promotion_id = :id";
     }
 
+
     public class REVIEW {
         public static final String SELECT_ALL_REVIEW = "select * from reviews";
         public static final String FIND_BY_REVIEWID = "select * from reviews where bookId = :bookId";
         public static final String DELETE = "delete from reviews where review_id = :id";
-    }
+        public static final String INSERT = "INSERT INTO reviews (invoice_id, book_id, user_id, review_date, rating, comment) " +
+                "VALUES (:invoiceId, :bookId, :userId, :reviewDate, :rating, :comment";
 
+        public static final String HASREVIEWED = "SELECT COUNT(*) > 0 FROM reviews " +
+                "WHERE user_id = :userId AND book_id = :bookId AND invoice_id = :invoiceId";
+
+        public static final String SELECT_LISTBOOK = "SELECT * FROM reviews WHERE book_id = :bookId ORDER BY review_date DESC";
+
+        public static final String BOOK_RATING = "select COALESCE(AVG(rating), 0.0) from reviews " +
+                "WHERE b_id = :b_id GROUP BY b_id";
+
+    }
 }
+

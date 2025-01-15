@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.bookstore.dao;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
@@ -19,8 +20,8 @@ public interface BookDao {
     Book findById(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.BOOK.DELETE)
-    void delete(@Bind("id") int id);
+    void delete(@BindBean Book book);
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
-    void update(@Bind("id") int id);
+    void update(@BindBean Book book);
 }
