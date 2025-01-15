@@ -114,16 +114,12 @@ public class QUERIES {
         public static final String SELECT_ALL_REVIEW = "select * from reviews";
         public static final String FIND_BY_REVIEWID = "select * from reviews where bookId = :bookId";
         public static final String DELETE = "delete from reviews where review_id = :id";
-    }
 
-    public class REVIEW {
         public static final String INSERT = "INSERT INTO reviews (invoice_id, book_id, user_id, review_date, rating, comment) " +
                 "VALUES (:invoiceId, :bookId, :userId, :reviewDate, :rating, :comment";
 
         public static final String HASREVIEWED = "SELECT COUNT(*) > 0 FROM reviews " +
                 "WHERE user_id = :userId AND book_id = :bookId AND invoice_id = :invoiceId";
-
-        public static final String DELETE = "DELETE FROM reviews WHERE book_id = :bookId";
 
         public static final String SELECT_LISTBOOK = "SELECT * FROM reviews WHERE book_id = :bookId ORDER BY review_date DESC";
 
