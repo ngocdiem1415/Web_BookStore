@@ -37,7 +37,6 @@
 </head>
 <body>
 <!--Header-->
-
 <jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
 
@@ -349,7 +348,7 @@
                                             <div class="right-inner-center-product__header__rating-cancel">
                                                 <div>
                                                     <form action="<c:url value="/invoice?action=cancel"/>"
-                                                          method="post">
+                                                          method="post" onsubmit="return confirm('Bạn có chắc muốn hủy đơn hàng này?');">
                                                         <input type="hidden" name="id"
                                                                value="${invoice.getInvoiceId()}">
                                                         <button type="submit"
@@ -376,7 +375,6 @@
 
 
 <!--FOOTER-->
-<
 <jsp:include page="footer.jsp"></jsp:include>
 <!--FOOTER-->
 <!--jquery-->
