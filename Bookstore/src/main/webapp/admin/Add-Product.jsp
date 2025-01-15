@@ -42,8 +42,15 @@
   <div class="row d-flex align-items-center justify-content-center">
     <h2 class="col-9 text-center my-4">Thêm sản phẩm</h2>
     <div class="col-3 d-flex justify-content-center">
-      <button type="submit" class="btn btn-success me-2 my-4" style="background: #4B908E"><i class="fa-solid fa-check"></i> Xong</button>
-      <button type="button" class="btn btn-danger my-4"><i class="fa-solid fa-times"></i> Hủy</button>
+      <div class="col-3 d-flex justify-content-center">
+        <button type="button" class="btn btn-success me-2 my-4" style="background: #4B908E" id="update" >
+          <i class="fa-solid fa-check"></i> Xong
+        </button>
+        <button type="button" class="btn btn-danger my-4"
+                onclick="window.location.href='/admin/product-management';">
+          <i class="fa-solid fa-times"></i> Hủy
+        </button>
+      </div>
     </div>
   </div>
   <form>
@@ -148,13 +155,26 @@
           <div class="col-md-12">
             <label for="danhMuc" class="form-label">Danh mục</label>
             <select class="form-select" id="danhMuc">
-              <option>Sách kinh tế</option>
-              <option>Sách kĩ năng</option>
-              <option>Sách thiếu nhi</option>
-              <option>Sách thường thức</option>
-              <option>Sách tuổi teen</option>
-              <option>Sách văn học</option>
-              <option>Khác</option>
+              <option value="1">Văn học</option>
+              <option value="2">Kinh tế</option>
+              <option value="3">Tâm lí học</option>
+              <option value="4">Sách thiếu nhi</option>
+              <option value="5">Tiểu sử - hồi kí</option>
+              <option value="6">Sách giáo khoa</option>
+              <option value="7">Sách Hướng Nghiệp & Phát Triển
+                Bản Thân
+              </option>
+              <option value="8">Truyện ngắn</option>
+              <option value="9">Tiểu thuyết</option>
+              <option value="10">Tâm lí - Giáo dục</option>
+              <option value="11">Tâm lí - Kỹ năng sống</option>
+              <option value="12">Sách Tiếng Việt</option>
+              <option value="13">Sách Kiến Thức - Hội Họa -
+                Điện Ảnh
+              </option>
+              <option value="14">Truyện Tranh</option>
+              <option value="15">Sách Chuyên Ngành</option>
+              <option value="16">Nuôi dạy con</option>
             </select>
           </div>
         </div>
@@ -169,13 +189,12 @@
         <div class="row mb-3">
           <div class="col-md-12">
             <label for="khuyenMai" class="form-label">Khuyến mãi</label>
-            <select class="form-select" id="khuyenMai">
-              <option>-- Chọn CTKM --</option>
-              <option>Giảm 10%</option>
-              <option>Giảm 20%</option>
-              <option>Giảm 25%</option>
-              <option>Giảm 50%</option>
-              <option>Freeship</option>
+            <select class="form-select" id="khuyenMai" name="khuyenMai">
+              <option value="1">Giảm 10%</option>
+              <option value="2">Giảm 20%</option>
+              <option value="3">Giảm 25%</option>
+              <option value="4">Giảm 50%</option>
+              <option value="5">Không giảm giá</option>
             </select>
           </div>
         </div>
@@ -192,26 +211,25 @@
 <script src="../js/datatables.min.js"></script>
 
 <script>
-  function addProduct(data) {
+  $('#update').click(function (e) {
     var formData = new FormData($("#formSubmit")[0]);
+
     $.ajax({
-      type: "POST",
-      url: "/api/admin/product",
+      type: "PUT",
+      url: "/admin/EditProduct",
       data: formData,
       processData: false,
       contentType: false,
-      dataType: 'json',
       success: function (data) {
-        console.log("SUCCESS : ", data);
-        alert("Thêm mới thành công");
-        window.location.href = "/admin/product-management";
+        alert("Thêm thành công");
+        window.location.href = "/admin/product-management"; // Điều hướng về trang quản lý sản phẩm
       },
       error: function (e) {
         console.log("ERROR : ", e);
-        alert("Thêm mới thất bại");
+        alert("Thêm thất bại");
       }
-    })
-  }
+    });
+  });
 
 </script>
 </body>

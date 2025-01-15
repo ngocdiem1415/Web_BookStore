@@ -57,7 +57,8 @@
                                         <div class=" main-card-title my-3">
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
-                                        <button id="addProductBtn" class="btn btn-green my-4 border rounded" href=" window.location.href = 'EditProductController">
+                                        <button id="addProductBtn" class="btn btn-green my-4 border rounded"
+                                                onclick="window.location.href='/admin/EditProductController';">
                                             <i class="fa-solid fa-plus"></i>
                                             Thêm sản phẩm
                                         </button>

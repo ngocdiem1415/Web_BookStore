@@ -25,6 +25,8 @@ public class QUERIES {
     }
 
     public class BOOK {
+        public static final String INSERT = "INSERT INTO books (title, author, category_id, p_id, publish_year, dimensions, weight, page_count, format, original_price, description, promotion_id, sold_quantity, stock_quantity, create_at, status) " +
+                "VALUES (:title, :author, :categoryId, :pId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId, :soldQuantity, :stockQuantity, CURRENT_TIMESTAMP, :status)";
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
