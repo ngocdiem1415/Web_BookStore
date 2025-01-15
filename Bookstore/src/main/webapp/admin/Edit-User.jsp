@@ -11,153 +11,18 @@
   <meta charset="UTF-8">
   <title>Edit-User</title>
   <!--  all css files-->
-  <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
-  <link rel="stylesheet" href="../../css/Style.css">
-  <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-  <link rel="stylesheet" href="../css/Dashboard.css">
-  <link rel="stylesheet" href="../css/Edit-Admin.css">
+  <link rel="stylesheet" href="../css/Style.css">
+  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="css/Dashboard.css">
+  <link rel="stylesheet" href="css/Edit-Admin.css">
 </head>
 <body>
 <!--curtain menu-->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <a href="Dashboard.html">
-      <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
-    </a>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <nav class="offcanvas-body">
-    <ul class="links">
-      <li class="nav-item">
-        <a href="Dashboard.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-tachometer-alt"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="User-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Order-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-shopping-cart"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Category-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-tags"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Product-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-archive"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Supplier-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="far fa-newspaper"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí nhà xuất bản</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Slider-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-store"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Discount-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-percent"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Admin-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users-cog"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Admin</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Settings.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-                    <i class="fa-solid fa-gear"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
-<div class="overlay"></div>
+<jsp:include page="Curtain-Menu.jsp"/>
 
-<!--header start-->
-<header id="header">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
-        <div class="header-left">
-          <div class="menu-toggle-btn ">
-            <button class="btn" type="button" style="background-color: #4B908E; color: white"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
-                    class="fas fa-bars" style="color:white"></i> Menu
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-7 col-6 ">
-        <div class="header-right">
-          <!-- profile start -->
-          <div class="profile-box">
-            <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
-                    id="profile"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="profile-info">
-                <div class="info ">
-                  <h5 class="pt-3">Ngọc Diễm</h5>
-                  <div class="image">
-                    <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
-                    <span class="status"></span>
-                  </div>
-                </div>
-              </div>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
-              <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-            </ul>
-          </div>
-          <!-- profile end -->
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<!--header end-->
+<jsp:include page="Header-Dashboard.jsp"/>
 <!-- Container -->
 
 <section class="section">
@@ -168,7 +33,7 @@
         <div class="breadcrumb-wrapper">
           <ol class="breadcrumb mx-4">
             <li class="breadcrumb-item">
-              <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
+              <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
               <a href="#" class="text-dec" style="color: gray"> / </a>
               <a href="#" class="text-dec" style="color: #f07c29">Edit User</a>
             </li>
@@ -183,63 +48,51 @@
         <div style="display: contents">
           <div class="edit-admin-container-content-inner">
             <div class="edit-admin-container-content-inner-header">
-              <h2 class="edit-user-container-content-inner-header-title">Sửa Thông Tin Người Dùng</h2>
-              <div class="edit-admin--container-content-inner-button">
-                <button class="edit-admin-container-content-inner-button-save">
-                  Lưu
-                </button>
-                <button class="edit-admin-container-content-inner-button-cancel">
-                  Hủy
-                </button>
-              </div>
+              <h2 class="edit-user-container-content-inner-header-title">Sua Thong Tin Nguoi Dung</h2>
             </div>
             <div class="edit-admin-container-content-inner-body">
-              <form action="#" method="post">
+              <form action="edit-admin?id=${user.uid}" method="post">
+                <div class="edit-admin--container-content-inner-button">
+                  <button type="submit" class="edit-admin-container-content-inner-button-save">
+                    Luu
+                  </button>
+                  <button class="edit-admin-container-content-inner-button-cancel">
+                    Huy
+                  </button>
+                </div>
                 <div class="form-edit-admin-group">
                   <label for="id">ID</label>
-                  <input type="text" class="form-control form-control-fit" id="id" name="id" value="1"
+                  <input type="text" class="form-control form-control-fit" id="id" name="id" value="${user.uid}"
                          readonly required>
                 </div>
                 <div class="form-edit-admin-group">
-                  <label for="ten">Tên Đăng Nhập</label>
-                  <input type="text" class="form-control" id="ten" name="ten" value="thinhquadz" required>
+                  <label for="username">Ten Dang Nhap</label>
+                  <input type="text" class="form-control" id="username" name="username" value="${user.username}" required>
                 </div>
                 <div class="form-edit-admin-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" value="th1234@gmail.com"
+                  <input type="email" class="form-control" id="email" name="email" value="${user.email}"
                          required>
                 </div>
 
                 <div class="form-edit-admin-group">
-                  <label for="phone">Số điện thoại</label>
-                  <input type="text" class="form-control" id="phone" name="phone" value="0123456789" required>
+                  <label for="phone">So Dien Thoai</label>
+                  <input type="text" class="form-control" id="phone" name="phone" value="${user.phone}" required>
                 </div>
 
                 <div class="form-edit-admin-group">
-                  <label for="address">Địa chỉ</label>
-                  <input type="text" class="form-control" id="address" value="Phước Long B"
-                         name="address" required>
+                  <label for="birthdate">Ngay Sinh</label>
+                  <input type="date" class="form-control" id="birthdate" name="birthdate" value="${user.dob}" required>
                 </div>
 
-                <div class="form-edit-admin-group">
-                  <label for="city">Tỉnh/Thành phố<span class="require">*</span></label>
-                  <select class="form-select" id="city" name="city" readonly="Hồ Chí Minh" required>
-                    <option value="0">Hồ Chí Minh</option>
-                    <option value="1">Ninh Bình</option>
-                    <option value="2">Bình Định</option>
-                    <option value="3">Lâm Đồng</option>
-                    <option value="4">Bình Dương</option>
-                  </select>
-                </div>
+
 
                 <div class="form-edit-admin-group">
-                  <label for="distinct">Huyện<span class="require">*</span></label>
-                  <select class="form-select" id="distinct" name="distinct" readonly="Quận 9" required>
-                    <option value="0">Quận 9</option>
-                    <option value="1">Quận 8</option>
-                    <option value="2">Quận 10</option>
-                    <option value="3">Quận 11</option>
-                    <option value="4">Quận 12</option>
+                  <label for="gender">Gioi Tinh</label>
+                  <select class="form-select" id="gender" name="gender" required>
+                    <option value="male" ${user.gender == male ? 'selected' : ''}>Nam</option>
+                    <option value="female" ${user.gender == female ? 'selected' : ''}>Nu</option>
+                    <option value="other" ${user.gender == other ? 'selected' : ''}>Khac</option>
                   </select>
                 </div>
               </form>
@@ -254,10 +107,10 @@
 <!--header end-->
 
 <!--all script files-->
-<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
-<script src="../../js/datatables.min.js"></script>
+<script src="../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/datatables.min.js"></script>
 
 </body>
 </html>
