@@ -23,4 +23,7 @@ public interface BookDao {
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     void update(@Bind("id") int id);
+
+    @SqlQuery(QUERIES.BOOK.LISTALL)
+    List<Book> listAllProduct();
 }
