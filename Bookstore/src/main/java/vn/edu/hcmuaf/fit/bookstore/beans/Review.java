@@ -14,7 +14,9 @@ public class Review {
 
     public Review() {}
 
-    public Review(int invoiceId, int bookId, int userId, int rating, String comment) {
+
+    public Review(int reviewId, int invoiceId, int bookId, int userId, LocalDateTime reviewDate, int rating, String comment) {
+        this.reviewId = reviewId;
         this.invoiceId = invoiceId;
         this.bookId = bookId;
         this.userId = userId;
