@@ -13,10 +13,10 @@
   <title>Admin</title>
 
   <!--  all css files-->
-  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
-  <link rel="stylesheet" href="css/dataTable/datatables.min.css">
-  <link rel="stylesheet" href="css/Style.css">
-  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/dataTable/datatables.min.css">
+  <link rel="stylesheet" href="../css/Style.css">
+  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
   <link rel="stylesheet" href="css/Dashboard.css">
 
 </head>
@@ -25,7 +25,7 @@
 <!--curtain menu-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
-    <a href="Dashboard.html">
+    <a href="admin/dashboard">
       <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
     </a>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -33,7 +33,7 @@
   <nav class="offcanvas-body">
     <ul class="links">
       <li class="nav-item">
-        <a href="Dashboard.html" class="text-dec">
+        <a href="admin/dashboard" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-tachometer-alt"></i>
             </span>
@@ -41,7 +41,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="User-Management.html" class="text-dec">
+        <a href="admin/user-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users"></i>
             </span>
@@ -308,10 +308,10 @@
 </section>
 
 <!--all script files-->
-<script src="fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/datatables.min.js"></script>
+<script src="../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/datatables.min.js"></script>
 
 <!--script-->
 <script>

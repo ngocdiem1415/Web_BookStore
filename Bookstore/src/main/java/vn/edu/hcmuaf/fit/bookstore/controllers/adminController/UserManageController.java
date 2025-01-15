@@ -11,7 +11,6 @@ public class UserManageController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.getRequestDispatcher("Add-User.jsp").forward(request, response);
     }
 
