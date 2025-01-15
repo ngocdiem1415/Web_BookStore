@@ -1,28 +1,41 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
 public class InvoiceDetail {
     private int invoiceId;
-    private int bookId;
+    private int bId;
     private int quantity;
     private double unitPrice;
     private Book book;
 
-    public InvoiceDetail() {}
+    public InvoiceDetail() {
+    }
 
-    public InvoiceDetail(int invoiceId, int bookId, Book book, int quantity, double unitPrice) {
+    // Constructor
+    public InvoiceDetail(int invoiceId, int bId, int quantity, double unitPrice, Book book) {
         this.invoiceId = invoiceId;
-        this.bookId = bookId;
+        this.bId = bId;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.book = book;
     }
 
-    public int getBookId() {
-        return bookId;
+    // Getters and setters
+    public int getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
+    public int getbId() {
+        return bId;
+    }
+
+    public void setbId(int bId) {
+        this.bId = bId;
     }
 
     public int getQuantity() {
@@ -31,14 +44,6 @@ public class InvoiceDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public int getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(int invoiceId) {
-        this.invoiceId = invoiceId;
     }
 
     public double getUnitPrice() {
@@ -57,12 +62,11 @@ public class InvoiceDetail {
         this.book = book;
     }
 
-
     @Override
     public String toString() {
         return "InvoiceDetail{" +
                 "invoiceId=" + invoiceId +
-                ", bookId=" + bookId +
+                ", bookId=" + bId +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
                 '}';

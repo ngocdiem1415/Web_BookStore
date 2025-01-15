@@ -32,8 +32,8 @@
             <!-- SEARCH BAR -->
             <div class="col-md-7">
                 <div class="header-search">
-                    <form class="d-flex mt-2">
-                        <input class="input flex-grow-1" placeholder="Search product">
+                    <form class="d-flex mt-2" id="searchForm" action="listBook" method="GET">
+                        <input class="input flex-grow-1"  type="text" name="find" id="searchInput" placeholder="Tìm sách">
                         <button class="search-btn">Search</button>
                     </form>
                 </div>
@@ -67,7 +67,7 @@
                 </ul>
                 <div class="shopping-cart mt-4 ">
                     <c:if test="${not empty userSession}">
-                        <a href="Cart.jsp" style="color: black">
+                        <a href="/cart" style="color: black">
                             <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
                                  class="bi bi-bag-check" viewBox="0 0 16 16">

@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Category {
+public class Category  implements Serializable {
     private int categoryId;
     private String category_name;
     private LocalDateTime update_at;
