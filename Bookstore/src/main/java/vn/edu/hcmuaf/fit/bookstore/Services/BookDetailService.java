@@ -103,4 +103,11 @@ public class BookDetailService {
         }
     }
 
+    public void delete(int id) {
+        try {
+            connect.withExtension(BookDao.class, handle -> handle.delete(id));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
