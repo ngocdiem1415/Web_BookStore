@@ -47,7 +47,6 @@ public class ListProductsJson extends HttpServlet {
         Map<String, Object> result = new HashMap<>();
         result.put("products", productList);
         result.put("totalItems", totalItems);
-        System.out.println(result.toString());
 
         Gson gson = GsonUtil.createGsonWithAdapters();
         String json = gson.toJson(result);
@@ -56,7 +55,6 @@ public class ListProductsJson extends HttpServlet {
         } catch (Exception e) {
             System.err.println("Lỗi khi ghi JSON: " + e.getMessage());
         }
-        System.out.println("da chay xong");
     }
 
     @Override

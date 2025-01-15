@@ -280,6 +280,8 @@
 <!--    mdb js-->
 <script src="css/mdb/js/mdb.min.js"></script>
 
+<!--format tiền tệ-->
+<script src="js/FormatMoney.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -300,16 +302,16 @@
                     // Tạo danh sách sản phẩm
                     obj.forEach(function (val) {
                         data += '<div class="grid-md-2-4">' +
-                            '<a href="/product-detail?id=' + val.bId + '" class="home-product-item">' +
-                            '<div class="home-product-item__img'+
+                            '<a href="/book-detail?id=' + val.bId + '">' +
+                            '<div class="home-product-item">' +
                             // Hình ảnh sản phẩm
-                            '<div class="home-product-item__img">'
+                            '<div class="home-product-item__img" ';
                             if (val.image.sourceImg != null) {
-                                data += '<img src="' + val.image.sourceImg + ' " alt="Product Image" width="200" height="200">';
+                                data += 'style="background-image: url(' + val.image.sourceImg + ')"></div>';
                             }else{
-                                data += '<img src="/img/path_to_default_image.png" alt="Product Image" width="200" height="200">';
+                                data += 'style="background-image: url(../img/path_to_default_image.png)"></div>';
                             }
-                            '</div>' + '</div>' +
+                            data +=
                             // Tên sản phẩm
                             '<h4 class="home-product-item__name">' + val.title + '</h4>' +
                             // Giá sản phẩm
@@ -317,21 +319,23 @@
 
                         // Hiển thị giá gốc và giá khuyến mãi
                         if (val.promotionId == 0) {
-                            data += '<span class="home-product-item__price-current original-price">' + val.originalPrice + ' đ</span>';
+                            price = formatCurrencyVN(val.originalPrice);
+                            data += '<span class="home-product-item__price-current original-price">' + price +
+                                '<i class="fa-solid fa-dong-sign fa-xs"></i> </span>'+
+                                '</div>';
                         } else {
                             let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
                             data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
-                                '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>';
+                                '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>' + '</div>';
                         }
 
-                        data += '</div>' +
+                        data +=
                             // Hành động yêu thích
                             '<div class="home-product-item__action">' +
                             '<span class="home-product-item__like home-product-item__like--liked">' +
                             '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
                             '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
                             '</span>' +
-
                             // Đánh giá sản phẩm
                             '<div class="home-product-item__rating">' +
                             '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
@@ -341,9 +345,10 @@
                             '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
                             '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
                             '</ul>' +
-                            '</div>' +
-                            '</div>' +
                             '</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
                             '</div>';
                     });
 
@@ -371,7 +376,7 @@
 
     });
 </script>
-<!--format tiền tệ-->
+
 <%--<script type="text/javascript">--%>
 <%--    let currentPage = ${page};--%>
 <%--    let totalPages = ${totalPage};--%>
