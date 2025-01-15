@@ -1,0 +1,74 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 18/12/2024
+  Time: 10:16 SA
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Footer</title>
+
+<body>
+<!--    footer start -->
+<section class="footer">
+  <div class="footer-row">
+    <div class="footer-col">
+      <a href="" class="mb-4"><img src="img/logo/new_logo.png"/></a>
+      <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
+      <div class="detail-icons ">
+        <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
+        <p><i class="fa-solid fa-phone"></i>0123456789</p>
+        <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Về chúng tôi</h4>
+      <ul class="links">
+        <li><a href="#">Nguyễn Thị Ngọc Diễm</a></li>
+        <li><a href="#">Võ Nguyễn Thanh Diệu</a></li>
+        <li><a href="#">Nguyễn Hữu Thịnh</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Chính sách</h4>
+      <ul class="links">
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Tin tức</a></li>
+        <li><a href="#">Liên hệ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Gửi Email</h4>
+      <p>
+        Đăng ký nhận thông tin mới nhất từ chúng tôi.
+      </p>
+      <form action="#">
+        <input type="text" placeholder="Email" required>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+      <div class="icons">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-github"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="footer-copyright d-flex justify-content-center">
+    <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
+  </div>
+</section>
+<!-- /FOOTER -->
+
+</body>
+</html>
+

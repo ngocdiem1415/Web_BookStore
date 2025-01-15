@@ -36,7 +36,10 @@
 .category-inform {
     padding: 4px 16px;
     font-size: 16px;
+    display: block;
+
 }
+
 
 .category-inform .fa-star {
     color: #ef552f;
@@ -76,7 +79,7 @@
 }
 
 
-.category-item {
+.publisher-item {
 }
 
 .category-item--active .category-item__link {
