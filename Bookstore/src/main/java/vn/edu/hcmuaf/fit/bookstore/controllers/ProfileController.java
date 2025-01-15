@@ -13,6 +13,7 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Chuyển hướng tới trang thông tin cá nhân
         request.getRequestDispatcher("profile.jsp").forward(request, response);
+
     }
 
     @Override
