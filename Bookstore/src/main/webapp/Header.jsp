@@ -103,7 +103,7 @@
     <div class="container ">
         <!-- NAV -->
         <ul class="main-nav nav ">
-            <li class="nav-item "><a href="/home">Trang chủ</a></li>
+            <li class="nav-item "><a href="home">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
             <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
