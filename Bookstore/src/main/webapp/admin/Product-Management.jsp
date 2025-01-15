@@ -67,48 +67,6 @@
               <tr>
                 <th scope="row">
                   <table class="table" id="orderTable">
-                    <thead>
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th>Tên sản phẩm</th>
-                      <th>Thể loại</th>
-                      <th>Tác giả</th>
-                      <th>Năm xuất bản</th>
-                      <th>Số lượng</th>
-                      <th>Giá</th>
-                      <th>Khuyến mãi</th>
-                      <th>Ngày cập nhật</th>
-                      <th>Hoạt động</th>
-                    </tr>
-                    </thead>
-                    <tbody style="font-weight: lighter">
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mèo méo meo - Bí mật giao tiếp từ cái vẫy đuôi đến tiếng grừ grừ</td>
-                      <td>Kĩ năng sống</td>
-                      <td>Lili Chin</td>
-                      <td>2024</td>
-                      <td>1000</td>
-                      <td>129.000 đ</td>
-                      <td>1</td>
-                      <td>15/11/2024</td>
-                      <td>
-                        <div class="row px-3">
-                          <!-- Nút Chỉnh Sửa -->
-                          <button class="edit-button col-6 btn px-0" style="color: #236844;"
-                                  title="Chỉnh sửa">
-                            <i class="fa-regular fa-pen-to-square fa-lg"></i>
-                          </button>
-
-                          <!-- Nút Xóa -->
-                          <button type="button" class="delete-button col-6 btn px-0"
-                                  style="color: #ef5f5f;" title="Xóa">
-                            <i class="fa-regular fa-trash-can fa-lg"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    </tbody>
                   </table>
                 </th>
               </tr>
@@ -151,22 +109,98 @@
 <script>
   $(document).ready(function () {
     // Khởi tạo DataTable cho bảng với id 'orderTable'
+    let mess = $('#mess');
     var table = $('#orderTable').DataTable({
-      language: {
-        processing: "đang tải",
-        search: "Tìm kiếm",
-        lengthMenu: "Số dòng hiển thị _MENU_ ",
-        info: "Bài viết từ _START_ đến _END_ trong _TOTAL_ sản phẩm",
-        infoEmpty: "",
-        loadingRecords: "",
-        infoFiltered: "",
-        zeroRecords: "Không tìm thấy",
-        emptyTable: "Không có dữ liệu",
-
+      info: false,
+      scrollX: true,
+      ajax: {
+        url: 'ProductAjaxController?action=all',
+        dataSrc: '',
       },
-      columnDefs: [
-        {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
-      ],
+        columns: [
+            {
+                title: 'ID',
+                data: 'id',
+                render: function (data) {
+                    return '<th scope="row">' +data+'</th>';
+                }
+            },
+            {
+                title: 'Tên sản phẩm',
+                data: 'name',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Thể loại',
+                data: 'category',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Tác giả',
+                data: 'author',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Năm xuất bản',
+                data: 'publishYear',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Số lượng',
+                data: 'quantity',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Giá',
+                data: 'price',
+                render: function (data) {
+                    return '<td>'+data ? data.toLocaleString()+' đ' : ''+ '</td>';
+                }
+            },
+            {
+                title: 'Khuyến mãi',
+                data: 'promotion',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Ngày cập nhật',
+                data: 'updatedDate',
+                render: function (data) {
+                    return '<td>'+ data ? data : ''+'</td>';
+                }
+            },
+            {
+                title: 'Hoạt động',
+                render: function () {
+                    return `
+                <td>
+                    <div class="row px-3">
+                        <!-- Nút Chỉnh Sửa -->
+                        <button class="edit-button col-6 btn px-0" style="color: #236844;" title="Chỉnh sửa">
+                            <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                        </button>
+
+                        <!-- Nút Xóa -->
+                        <button type="button" class="delete-button col-6 btn px-0" style="color: #ef5f5f;" title="Xóa">
+                            <i class="fa-regular fa-trash-can fa-lg"></i>
+                        </button>
+                    </div>
+                </td>`;
+                }
+            }
+        ],
     });
   });
 </script>
