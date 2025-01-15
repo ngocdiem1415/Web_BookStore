@@ -1,0 +1,384 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 15/01/2025
+  Time: 5:21 CH
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lí tài khoản</title>
+
+    <!--  all css files-->
+    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
+    <link rel="stylesheet" href="../../css/Style.css">
+    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+
+</head>
+<body>
+
+<!--curtain menu-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <a href="admin/dashboard">
+            <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
+        </a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <nav class="offcanvas-body">
+        <ul class="links">
+            <li class="nav-item">
+                <a href="admin/dashboard" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tachometer-alt"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="admin/user-management" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Order-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Category-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tags"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Product-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-archive"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Supplier-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="far fa-newspaper"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà xuất bản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Slider-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-store"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Discount-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-percent"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Admin-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users-cog"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Admin</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                    <i class="fa-solid fa-gear"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="overlay"></div>
+
+<!--header start-->
+<header id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
+                <div class="header-left">
+                    <div class="menu-toggle-btn ">
+                        <button class="btn" type="button" style="background-color: #4B908E; color: white"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
+                                class="fas fa-bars" style="color:white"></i> Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-7 col-6 ">
+                <div class="header-right">
+                    <!-- profile start -->
+                    <div class="profile-box">
+                        <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
+                                id="profile"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-info">
+                                <div class="info ">
+                                    <h5 class="pt-3">Ngọc Diễm</h5>
+                                    <div class="image">
+                                        <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
+                                        <span class="status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
+                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    <!-- profile end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+<section class="section">
+    <div class="container-fluid mb-5">
+        <div class="title-wrapper pt-3">
+            <div class="d-flex align-items-center">
+                <!-- end col -->
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb mx-4">
+                        <li class="breadcrumb-item">
+                            <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="#" class="text-dec" style="color: gray"> / </a>
+                            <a href="#" class="text-dec" style="color: #f07c29">Quản lí tài khoản</a>
+                        </li>
+                    </ol>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <div id="performance-stats">
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="content-main d-flex justify-content-center">
+                        <table class="main-listUser-table table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="d-flex justify-content-between">
+                                        <div class=" main-card-title my-3">
+                                            <h3>Quản lí tài khoản</h3>
+                                        </div>
+                                        <a href="Add-User.html" class="btn btn-green my-4 border rounded addSlider">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Thêm tài khoản
+                                        </a>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <table class="table" id="orderTable">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th>Avatar</th>
+                                            <th>Tên người dùng</th>
+                                            <th>SDT</th>
+                                            <th>Email</th>
+                                            <th>Trạng thái</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody style="font-weight: lighter">
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
+                                            <td>Nguyễn Văn A</td>
+                                            <td>08333333331</td>
+                                            <td>a123@gmail.com</td>
+                                            <td>hoạt động</td>
+                                            <td>
+                                                <a href="Edit-User.html" class="text-dec">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg"
+                                                       style="color: #236844"></i>
+                                                </a>
+                                                <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
+                                            <td>Nguyễn Thị B</td>
+                                            <td>08333333332</td>
+                                            <td>b123@gmail.com</td>
+                                            <td>hoạt động</td>
+                                            <td>
+                                                <a href="Edit-User.html" class="text-dec">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg"
+                                                       style="color: #236844"></i>
+                                                </a>
+                                                <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
+                                            <td>Trần Văn C</td>
+                                            <td>08333333333</td>
+                                            <td>c123@gmail.com</td>
+                                            <td>hoạt động</td>
+                                            <td>
+                                                <a href="Edit-User.html" class="text-dec">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg"
+                                                       style="color: #236844"></i>
+                                                </a>
+                                                <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
+                                            <td>Nguyễn Hoàng D</td>
+                                            <td>08333333334</td>
+                                            <td>d123@gmail.com</td>
+                                            <td>hoạt động</td>
+                                            <td>
+                                                <a href="Edit-User.html" class="text-dec">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg"
+                                                       style="color: #236844"></i>
+                                                </a>
+                                                <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
+                                            <td>Nguyễn Văn E</td>
+                                            <td>08333333335</td>
+                                            <td>e123@gmail.com</td>
+                                            <td>hoạt động</td>
+                                            <td>
+                                                <a href="Edit-User.html" class="text-dec">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg"
+                                                       style="color: #236844"></i>
+                                                </a>
+                                                <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg "
+                                                       style="color: #ef5f5f"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa tài khoản</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!--all script files-->
+<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/datatables.min.js"></script>
+
+<!--script-->
+
+<script>
+    $(document).ready(function () {
+        // Khởi tạo DataTable cho bảng với id 'orderTable'
+        var table = $('#orderTable').DataTable({
+            language: {
+                processing: "đang tải",
+                search: "Tìm kiếm",
+                lengthMenu: "Số dòng hiển thị _MENU_ ",
+                info: "Bài viết từ _START_ đến _END_ trong _TOTAL_ tài khoản",
+                infoEmpty: "",
+                loadingRecords: "",
+                infoFiltered: "",
+                zeroRecords: "Không tìm thấy",
+                emptyTable: "Không có dữ liệu",
+                paginate: {
+                    next: "2",
+                },
+            },
+            columnDefs: [
+                {"className": "text-center", "targets": "_all"},  // Căn giữa văn bản ở cột thứ 5
+            ],
+        });
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -12,12 +12,12 @@
   <meta charset="UTF-8">
   <title>Add User</title>
   <!--  all css files-->
-  <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
-  <link rel="stylesheet" href="../../css/Style.css">
-  <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-  <link rel="stylesheet" href="../css/Dashboard.css">
-  <link rel="stylesheet" href="../css/Add-Admin.css">
+  <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/dataTable/datatables.min.css">
+  <link rel="stylesheet" href="css/Style.css">
+  <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="css/Dashboard.css">
+  <link rel="stylesheet" href="css/Add-Admin.css">
 
 </head>
 <body>

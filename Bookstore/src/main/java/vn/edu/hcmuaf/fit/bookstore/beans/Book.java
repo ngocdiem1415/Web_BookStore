@@ -297,6 +297,7 @@ public class Book implements Serializable {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
 
     public List<Image> getImageList() {
         return imageList;

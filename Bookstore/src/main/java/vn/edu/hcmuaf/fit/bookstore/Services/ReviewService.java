@@ -61,9 +61,10 @@ public class ReviewService {
     }
 
 
-    public double getRatingOfBook(int bookId){
+    public double getRatingOfBook(int bookId) {
         Double rating = connect.withExtension(ReviewDao.class, handle -> handle.getRatingOfBook(bookId));
         return rating != null ? rating : 0.0;
+    }
 
     public Review getReviewsForBookCurrent(int bookId) {
         return connect.withExtension(ReviewDao.class, dao ->
