@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
 
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -11,7 +12,9 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 import vn.edu.hcmuaf.fit.bookstore.beans.Publisher;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "ListBookController", value = "/listBook")
 public class ListBookController extends HttpServlet {
@@ -31,32 +34,15 @@ public class ListBookController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Category> categories= categoryService.listCategory();
+        List<Category> categories = categoryService.listCategory();
         List<Publisher> publishers = publisherService.listPublisher();
         request.setAttribute("categories", categories);
         request.setAttribute("publishers", publishers);
-        List<Book> listbooks = bookDetailService.listProducts(20,0);
-        request.setAttribute("books", listbooks);
-        // Lấy giá trị từ header
-        String find = request.getParameter("find");
-        request.setAttribute("find", find);
-        totalItem = bookDetailService.totalBooks();
-        if (totalItem != -1) {
-            // paging attribute setup
-            request.setAttribute("page", page);
-            request.setAttribute("totalPage", (int) Math.ceil((double) totalItem / maxPageItem));
-            RequestDispatcher rd = request.getRequestDispatcher("listBook.jsp");
-
-            try {
-                rd.forward(request, response);
-            } catch (ServletException | IOException e) {
-                e.printStackTrace();
-            }
-        }
+        request.getRequestDispatcher("listBook.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
 }
