@@ -78,7 +78,7 @@
         </div>
         <div class="stardust-dropdown">
             <div class="stardust-dropdown__item-header">
-                <a href="purchaseOrder.jsp" class="stardust-dropdown__item-header-menu">
+                <a href="<c:url value="/invoice"/>" class="stardust-dropdown__item-header-menu">
                     <div class="stardust-dropdown__item-header-account-img">
                         <img src="admin/img/sample_Menu_Icon.png"/>
                     </div>
