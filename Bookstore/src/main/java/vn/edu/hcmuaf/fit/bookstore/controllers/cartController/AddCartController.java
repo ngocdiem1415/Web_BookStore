@@ -10,6 +10,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Cart.Cart;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "AddCartController", value = "/add-cart")
 public class AddCartController extends HttpServlet {
@@ -40,9 +41,10 @@ public class AddCartController extends HttpServlet {
                 cart.addBook(book, quantity);
                 session.setAttribute("cart", cart);
                 // Sử dụng Gson với TypeAdapter
-                Gson gson = GsonUtil.createGsonWithAdapters();
-                String json = gson.toJson(cart);
-                response.getWriter().write(json);
+                PrintWriter printWriter = response.getWriter();
+                printWriter.println(new GsonUtil().toJSon(cart));
+                printWriter.flush();
+                printWriter.close();
             }
         }
     }
