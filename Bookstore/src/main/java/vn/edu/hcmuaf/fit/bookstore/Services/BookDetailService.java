@@ -23,6 +23,11 @@ public class BookDetailService {
         return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
     }
 
+    public List<Book> listAllProducts() {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listAllProduct());
+        return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
+    }
+
 //    public Book findById(int id){
 //        return connect.withExtension(BookDao.class, handle -> handle.findById(id));
 //    }

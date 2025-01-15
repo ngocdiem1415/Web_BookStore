@@ -48,4 +48,6 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.TOTALBOOK)
     int totalBooks();
 
+    @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK)
+    List<Book> listAllProduct();
 }
