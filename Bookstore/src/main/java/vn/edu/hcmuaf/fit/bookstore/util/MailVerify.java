@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.bookstore.util;
 
-
 import com.sun.tools.javac.Main;
 
 import javax.mail.*;
@@ -70,5 +69,3 @@ public class MailVerify {
         mailVerify.sendVerificationCode(testEmail, testCode);
     }
 }
-
-

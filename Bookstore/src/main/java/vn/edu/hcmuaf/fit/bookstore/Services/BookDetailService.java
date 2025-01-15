@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,11 @@ public class BookDetailService {
 
     public List<Book> listProducts(int limit, int offset) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProduct(limit, offset));
+        return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
+    }
+
+    public List<Book> listAllProduct() {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listAllProduct());
         return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
     }
 
@@ -53,6 +59,8 @@ public class BookDetailService {
         Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
         Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(book.getPromotionId()));
         Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+        Double rating = connect.withExtension(ReviewDao.class, handle -> handle.getRatingOfBook(book.getbId()));
+        book.setRating(rating != null ? rating : 0.0);
 //    System.out.println("Category: " + category.getName());
 //    System.out.println("Publisher: " + publisher.getName());
         book.setCategory(category);
@@ -79,6 +87,11 @@ public class BookDetailService {
         return books;
     }
 
+
+    public List<Book> getBooks(int categoryId, int publisherId, String find, int limit, int offset, String orderBy, double ratingValue, int from, int to) {
+        List<Book> products = new ArrayList<Book>();
+        List<Book> temp;
+
     public List<Book> listByCategory(String category_name, int limit, int offset) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
         for(Book book: books) {
@@ -88,6 +101,49 @@ public class BookDetailService {
         return books;
     }
 
+
+        if ("book_update_DESC".equals(orderBy)) {
+            temp = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateDESC(categoryId, publisherId, find, from, to, limit, offset));
+        } else if ("book_update_ASC".equals(orderBy)) {
+            temp = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateASC(categoryId, publisherId, find, from, to, limit, offset));
+        } else if ("book_price_DESC".equals(orderBy)) {
+            temp = connect.withExtension(BookDao.class, handle -> handle.findByPriceDESC(categoryId, publisherId, find, from, to, limit, offset));
+        } else if ("book_price_ASC".equals(orderBy)) {
+            temp = connect.withExtension(BookDao.class, handle -> handle.findByPriceASC(categoryId, publisherId, find, from, to, limit, offset));
+        } else {
+            temp = connect.withExtension(BookDao.class, handle -> handle.getProductsOnPage(categoryId, publisherId, find, from, to, limit, offset));
+        }
+
+        // Lọc theo ratingValue
+        if (ratingValue > 0) {
+            temp = temp.stream()
+                    .filter(bookDao -> bookDao.getRating() >= ratingValue)
+                    .collect(Collectors.toList());
+        }
+
+        products = temp.stream()
+                .map(product -> mapOtherBean(product))
+                .collect(Collectors.toList());
+
+        return products;
+    }
+
+    public int totalBooks() {
+        try {
+            return connect.withExtension(BookDao.class, handle -> handle.totalBooks());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; // Trả về 0 nếu có lỗi
+        }
+    }
+
+    public void delete(int id) {
+        try {
+            connect.withExtension(BookDao.class, handle -> handle.delete(id));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 //    public int getCurrentPromotionId() {
 //        List<Promotion> promotions = connect.withExtension(PromotionDao.class, handle -> handle.list());
@@ -100,4 +156,5 @@ public class BookDetailService {
 //        // Nếu không có khuyến mãi nào đang active, trả về khuyến mãi đầu tiên hoặc giá trị mặc định
 //        return promotions.isEmpty() ? -1 : promotions.get(0).getPromotionId();
 //    }
+
 }

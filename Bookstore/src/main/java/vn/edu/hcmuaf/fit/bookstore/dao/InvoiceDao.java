@@ -32,7 +32,7 @@ public interface InvoiceDao {
     List<Invoice> findByBookTitle(@Bind("id") int id, @Bind("title") String title);
 
     //Tìm đơn hàng theo status
-    @SqlQuery("select * from invoices where uid = :id and status = :status order by i.order_date desc")
+    @SqlQuery("select * from invoices where uid = :id and status = :status order by order_date desc")
     List<Invoice> findByStatus(@Bind("id") int id, @Bind("status") String status);
 
     //Thêm đơn hàng
