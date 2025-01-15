@@ -110,4 +110,9 @@ public class BookDetailService {
             e.printStackTrace();
         }
     }
+
+    public Book updateProduct(Book product) {
+        connect.withExtension(BookDao.class, handle-> handle.updateBook(product));
+        return findById(product.getbId());
+    }
 }
