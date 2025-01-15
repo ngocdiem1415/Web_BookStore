@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.Services;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 import vn.edu.hcmuaf.fit.bookstore.beans.Category;
+import vn.edu.hcmuaf.fit.bookstore.dao.BookDao;
 import vn.edu.hcmuaf.fit.bookstore.dao.CategoryDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
@@ -26,5 +27,4 @@ public class CategoryService {
     public Category getCategoryById(int id){
         return connect.withExtension(CategoryDao.class, handle -> handle.findById(id));
     }
-
 }
