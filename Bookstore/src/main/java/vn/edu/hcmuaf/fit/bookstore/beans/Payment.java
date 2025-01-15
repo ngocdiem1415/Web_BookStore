@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 public class Payment {
     private int paymentId;
     private int invoiceId;
-    private BigDecimal amount;
+    private double amount;
     private LocalDateTime paymentDate;
     private int paymentMethod;
     private String paymentStatus;
 
     public Payment() {}
 
-    public Payment(int paymentId, int invoiceId, BigDecimal amount, LocalDateTime paymentDate, int paymentMethod, String paymentStatus) {
+    public Payment(int paymentId, int invoiceId, double amount, LocalDateTime paymentDate, int paymentMethod, String paymentStatus) {
         this.paymentId = paymentId;
         this.invoiceId = invoiceId;
         this.amount = amount;
@@ -39,11 +39,11 @@ public class Payment {
         this.invoiceId = invoiceId;
     }
 
-    public BigDecimal getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.dao;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
+import org.jdbi.v3.sqlobject.config.RegisterConstructorMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -13,7 +14,8 @@ import java.util.List;
 public interface InvoiceDetailDao {
 
     //Lấy danh sách chi tiết đơn hàng theo invoiceId
-    @SqlQuery("SELECT * FROM invoice_details WHERE invoice_id = :invoiceId")
+    @SqlQuery("SELECT invoice_id, b_id, quantity, unit_price \n" +
+            "FROM invoice_details WHERE invoice_id = :invoiceId")
     List<InvoiceDetail> findByInvoiceId(@Bind("invoiceId") int invoiceId);
 
     //Thêm chi tiết đơn hàng
