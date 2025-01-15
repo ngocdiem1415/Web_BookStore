@@ -21,7 +21,8 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
-
+    <!--jquery-->
+    <script src="js/jquery.min.js"></script>
 
     <!--    CSS-->
     <link rel="stylesheet" href="css/ProductDetail.css">
@@ -50,7 +51,7 @@
                 </li>
                 <li class="breadcrumb item">
                     <!-- Liên kết đến trang danh mục sách -->
-                    <a href="category.html" class="itemNAV btn btn-link p-0 m-0"
+                    <a href="/listBook" class="itemNAV btn btn-link p-0 m-0"
                        style="border: none; background: none;">Sách</a>
                     <span class="fas fa-chevron-right text-muted mx-3"></span>
                 </li>
@@ -70,15 +71,17 @@
                 <!-- Thumbnail (Ảnh lớn) -->
                 <div class="rounded-4 d-flex justify-content-center">
                     <img id="mainImage" style="width: 100%; height: 100vh; margin: auto;" class="rounded-4 fit"
-                         src="${book.image.sourceImg}" alt="${book.title}" />
+                         src="${book.image.sourceImg}" alt="${book.title}"/>
                 </div>
 
                 <!-- Ảnh chi tiết -->
-                <div class="border rounded-4 d-flex justify-content-center m-3 p-2" style="border: 1px solid #ddd;">
-                    <div class="item-thumb">
-                        <img width="60" height="60" class="rounded-2" style="object-fit: cover;"
-                             src="${book.image.sourceImg}" alt="${book.title}" />
-                    </div>
+                <div class="border rounded-4 d-flex justify-content-center m-3 p-2" style="border: 1px solid #ddd;">=
+                    <c:forEach var="image" items="${book.imageList}">
+                        <div class="item-thumb mx-2">
+                            <img width="60" height="60" class="rounded-2" style="object-fit: cover; cursor: pointer"
+                                 src="${image.sourceImg}" alt="${book.title}" onclick="updateMainImage('${image.sourceImg}')" />
+                        </div>
+                    </c:forEach>
                 </div>
             </aside>
 
@@ -112,13 +115,13 @@
                     <div class="mb-3 text-danger ps-3 d-flex align-items-center">
                         <!-- giá đã giảm -->
                         <div class="h4 d-flex align-items-center justify-content-center text-center">
-                            <span class="unit-price"><f:formatNumber value="${book.originalPrice}" /></span>
+                            <span class="unit-price"><f:formatNumber value="${book.originalPrice}"/></span>
                             <i class="fa-solid fa-dong-sign fa-xs"></i>
                         </div>
 
                         <!-- giá gốc -->
                         <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
-                            <span class="original-price"><f:formatNumber value="${book.originalPrice}" /></span>
+                            <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
                             <i class="fa-solid fa-dong-sign fa-xs"></i>
                         </div>
 
@@ -126,8 +129,10 @@
                         <span class="h5 small bg-danger text-white me-2 px-2 py-1 rounded ms-2">${book.promotion.promotionName}</span>
                     </div>
 
-                    <p>${book.description}</p>
-                    <hr />
+                    <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis">
+                        ${book.description}
+                    </p>
+                    <hr/>
 
                     <!-- Số lượng, Mua ngay, Thêm vào giỏ hàng -->
                     <div class="row mb-1 text-muted">
@@ -138,7 +143,8 @@
                                 <i class="fas fa-minus"></i>
                             </button>
                             <input type="text" id="quantity" class="form-control text-center border border-secondary"
-                                   placeholder="1" value="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                   placeholder="1" value="1" aria-label="Example text with button addon"
+                                   aria-describedby="button-addon1"/>
                             <button class="btn btn-white border border-secondary px-3" type="button" id="increase"
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-plus"></i>
@@ -153,16 +159,39 @@
                     </div>
 
                     <!-- Mua ngay -->
-                    <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 " style="background-color: red">
-                        Mua ngay </a>
+                    <c:if test="${not empty userSession}">
+                        <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 "
+                           style="background-color: red">
+                            Mua ngay </a>
+                    </c:if>
+                    <c:if test="${empty userSession}">
+                        <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 "
+                           style="background-color: red; pointer-events: none;">
+                            Mua ngay </a>
+                    </c:if>
 
                     <!-- Thêm vào giỏ hàng -->
-                    <button id="add-to-cart" class="btn btn-success border border-secondary py-2">
-                        <i class="me-1 fa fa-shopping-basket"> </i> Thêm vào giỏ hàng
-                    </button>
-                    <div id="cart-notification" style="display: none; z-index: 1050; opacity: 0.9;"
+                    <c:if test="${empty userSession}">
+                        <button id="add-to-cart" class="btn btn-success border border-secondary py-2 disabled-btn"
+                                disabled>
+                            <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
+                        </button>
+                    </c:if>
+
+                    <c:if test="${not empty userSession}">
+                        <button id="add-to-cart" class="btn btn-success border border-secondary py-2"
+                                onclick="addToCart(${book.bId})">
+                            <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
+                        </button>
+                    </c:if>
+
+                    <div id="cart-notification-success" style="display: none; z-index: 1050; opacity: 0.9;"
                          class="alert alert-success text-center position-fixed start-50 top-50 translate-middle">
                         Sản phẩm đã được thêm vào giỏ hàng!
+                    </div>
+                    <div id="cart-notification-error" style="display: none; z-index: 1050; opacity: 0.9;"
+                         class="alert alert-success text-center position-fixed start-50 top-50 translate-middle">
+                        Không thể thêm sản phẩm vào giỏ hàng!
                     </div>
 
                     <!-- Yêu thích -->
@@ -192,9 +221,7 @@
                             CHI TIẾT SẢN PHẨM
                         </a>
                     </li>
-
                 </ul>
-                <!-- Pills navs -->
 
                 <!-- Pills content -->
                 <div class="tab-content" id="ex1-content">
@@ -256,116 +283,37 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Sản phẩm liên quan</h5>
-<%--                        <div class="d-flex mb-3">--%>
-<%--                            <a href="ProductDetail.html" class="me-3">--%>
-<%--                                <img src="../img/product/BiAnVungNuocSauLanRanhThienTaiVaKeDien_1.webp"--%>
-<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
-<%--                            </a>--%>
-<%--                            <div class="info">--%>
-<%--                                <a href="ProductDetail.html" class="nav-link mb-1">--%>
-<%--                                    Bí Ẩn Vùng Nước Sâu - Lằn Ranh Thiên Tài Và Kẻ Điên--%>
-<%--                                </a>--%>
-<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
-<%--                                    <!--giá đã giảm-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
-<%--                                        <strong class="unit-price fw-semibold">147600</strong>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
+                        <c:forEach var="relatedBook" items="${relatedBooks}" >
+                            <div class="d-flex mb-3">
+                                <a href="book-detail?id=${relatedBook.bId}" class="me-3">
+                                    <img src="${relatedBook.image != null ? relatedBook.image.sourceImg : 'default-image.jpg'}"
+                                         style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
+                                </a>
+                                <div class="info">
+                                    <a href="book-detail" class="nav-link mb-1">
+                                       ${relatedBook.title}
+                                    </a>
+                                    <div class="mb-3 text-danger d-flex align-items-center">
+                                        <!--giá đã giảm-->
+                                        <div class="d-flex align-items-center justify-content-center text-center">
+                                            <strong class="unit-price fw-semibold"><f:formatNumber value="${relatedBook.originalPrice}"/> </strong>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
 
-<%--                                    <!--giá gốc-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
-<%--                                        <span class="original-price">180000</span>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
+                                        <!--giá gốc-->
+                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                            <span class="original-price"><f:formatNumber value="${relatedBook.originalPrice}"/></span>
+                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                        </div>
 
-<%--                                    <!--Số % được giảm-->--%>
-<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div class="d-flex mb-3">--%>
-<%--                            <a href="ProductDetail.html" class="me-3">--%>
-<%--                                <img src="../img/product/GieoDiuDangAtHaiDuocNiemVui_1.webp"--%>
-<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
-<%--                            </a>--%>
-<%--                            <div class="info">--%>
-<%--                                <a href="ProductDetail.html" class="nav-link mb-1">--%>
-<%--                                    Gieo Dịu Dàng Ắt Hái Được Niềm Vui - 200 Trích Dẫn Song Ngữ Trung-Việt--%>
-<%--                                </a>--%>
-<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
-<%--                                    <!--giá đã giảm-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
-<%--                                        <strong class="unit-price fw-semibold">105780</strong>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
-
-<%--                                    <!--giá gốc-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
-<%--                                        <span class="original-price">129000</span>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
-
-<%--                                    <!--Số % được giảm-->--%>
-<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div class="d-flex mb-3">--%>
-<%--                            <a href="ProductDetail.html" class="me-3">--%>
-<%--                                <img src="../img/product/NhacNhoAnCan_1.webp"--%>
-<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
-<%--                            </a>--%>
-<%--                            <div class="info">--%>
-<%--                                <a href="ProductDetail.html" class="nav-link mb-1"> Nhắc Nhở Ân Cần – Nâng Niu Từng--%>
-<%--                                    Khoảnh Khắc Trong--%>
-<%--                                    Cuộc Sống </a>--%>
-<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
-<%--                                    <!--giá đã giảm-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
-<%--                                        <strong class="unit-price fw-semibold">76230</strong>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
-
-<%--                                    <!--giá gốc-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
-<%--                                        <span class="original-price">99000</span>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
-
-<%--                                    <!--Số % được giảm-->--%>
-<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-23%</span>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div class="d-flex">--%>
-<%--                            <a href="ProductDetail.html" class="me-3">--%>
-<%--                                <img src="../img/product/NoiLuonChoNoVuong_1.jpg"--%>
-<%--                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>--%>
-<%--                            </a>--%>
-<%--                            <div class="info">--%>
-<%--                                <a href="ProductDetail.html" class="nav-link mb-1"> Nói Luôn Cho Nó Vuông (Tái Bản--%>
-<%--                                    2023) </a>--%>
-<%--                                <div class="mb-3 text-danger d-flex align-items-center">--%>
-<%--                                    <!--giá đã giảm-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center">--%>
-<%--                                        <strong class="unit-price fw-semibold">88560</strong>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
-
-<%--                                    <!--giá gốc-->--%>
-<%--                                    <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">--%>
-<%--                                        <span class="original-price">108000</span>--%>
-<%--                                        <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
-<%--                                    </div>--%>
-
-<%--                                    <!--Số % được giảm-->--%>
-<%--                                    <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">-18%</span>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+                                        <!--Số % được giảm-->
+                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
+                                                ${relatedBook.promotion != null ? relatedBook.promotion.promotionName : 'Không giảm giá'}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -385,57 +333,38 @@
                        style="font-weight: 500; font-size: 1.2rem; padding: 0; color: black">
                         ĐÁNH GIÁ SẢN PHẨM
                     </a>
-                    <ul class="comment-list">
+                    <c:if test="${review != null}">
+                        <ul class="comment-list">
                         <li class="my-4 row">
                             <!--Khách hàng-->
                             <div class="comment-header col-2 d-flex align-items-start">
 
-                                <img src="../img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
+                                <img src="img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
                                      style="width: 50px; height: 50px;">
                                 <div>
                                     <div class="comment-name" style="font-weight: bold">Như</div>
-                                    <div class="comment-date">09/09/2024</div>
+                                    <div class="comment-date">${review.reviewDate}</div>
                                 </div>
                             </div>
                             <!--                                rating-->
                             <div class="comment-content col-10">
                                 <div class="rating-box mt-2">
                                     <div class="text-warning mb-1 me-2">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <span>${review.rating}</span>
                                         <i class="fa fa-star"></i>
                                     </div>
                                 </div>
-                                <!--                                    Đánh giá-->
+                                <!--   Đánh giá-->
                                 <div class="mt-2">
-                                    Sách đẹp, giấy dày, có in màu. Vì sách ghi "làm sao chúng ta đối phó với
-                                    những
-                                    kẻ
-                                    thích vượt qua giới hạn" nên mình lầm rằng đây là sách dạy cách đối phó
-                                    thật.
-                                    Sách
-                                    ghi chép những chuyện tác giả đã trải qua, nên cũng ghi lại cách tác giả ứng
-                                    phó
-                                    với
-                                    nó. Cách đối phó của tác giả là tránh xa tiêu cực, hoặc tìm niềm vui với
-                                    những
-                                    điều
-                                    tích cực hơn, và 1 chút về xã giao trong các mối quan hệ. Nó ổn với mình. Vì
-                                    mình hi
-                                    vọng sẽ đọc vị được những người hay vượt giới hạn để mình giải quyết vấn đề
-                                    mà
-                                    họ
-                                    đưa cho mình. Mình thích những quyển giải quyết vấn đề triệt để hơn, nên
-                                    quyển
-                                    này
-                                    khá cơ bản.
+                                    ${review.comment}
                                 </div>
                             </div>
-
                         </li>
                     </ul>
+                    </c:if>
+                    <c:if test="${review == null}">
+                        <p>Không có đánh giá nào cho sách này.</p>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -446,7 +375,12 @@
 <!-- /FOOTER -->
 
 
-
+<script>
+    function updateMainImage(src) {
+        const main = document.getElementById('mainImage');
+        main.src = src;
+    }
+</script>
 
 <!--Script chọn ảnh thumbnail-->
 <script>
@@ -520,15 +454,8 @@
     });
 </script>
 <!--format tiền tệ-->
-<script src="../js/FormatMoney.js"></script>
-<script>
-    document.querySelectorAll('.unit-price, .original-price').forEach(element => {
-        const amount = parseInt(element.textContent.replace(/\./g, '')); // Bỏ dấu chấm cũ
-        if (!isNaN(amount)) {
-            element.textContent = formatCurrencyVN(amount);
-        }
-    });
-</script>
+<script src="js/FormatMoney.js"></script>
+
 <!--Script tăng giảm số lượng-->
 <script>
     const decreaseButton = document.getElementById("decrease");
@@ -563,25 +490,33 @@
 </script>
 <!--Script thêm vào giỏ hàng-->
 <script>
-    const addToCartButton = document.getElementById('add-to-cart');
-    // const cartCountElement = document.getElementById('cart-count'); //số lượng sản phẩm trong giỏ hàng
-    const cartNotification = document.getElementById('cart-notification');
+    function addToCart() {
+        let id = '${book.bId}';
+        let quantity = $('#quantity').val();
+        const cartNotifications = document.getElementById('cart-notification-success');
+        const cartNotificatione = document.getElementById('cart-notification-error');
+        $.ajax({
+            url: '/add-cart?id=' + id + '&quantity=' + quantity,
+            type: 'GET',
+            success: function (data) {
+                cartNotifications.style.display = 'block';
+                // Ẩn thông báo sau 2 giây
+                setTimeout(() => {
+                    cartNotifications.style.display = 'none';
+                }, 2000);
+            },
+            error: function (data) {
+                cartNotifications.style.display = 'block';
 
-    // Xử lý sự kiện khi nhấn nút "Thêm vào giỏ hàng"
-    addToCartButton.addEventListener('click', () => {
-        // Tăng số lượng giỏ hàng
-        // let cartCount = parseInt(cartCountElement.textContent);
-        // cartCountElement.textContent = cartCount + 1;
-
-        // Hiển thị thông báo thêm vào giỏ hàng
-        cartNotification.style.display = 'block';
-
-        // Ẩn thông báo sau 2 giây
-        setTimeout(() => {
-            cartNotification.style.display = 'none';
-        }, 2000);
-    });
+                // Ẩn thông báo sau 2 giây
+                setTimeout(() => {
+                    cartNotifications.style.display = 'none';
+                }, 2000);
+            }
+        });
+    }
 </script>
+
 <!--Script yêu thích-->
 <script>
     const favouriteButton = document.getElementById('favourite');

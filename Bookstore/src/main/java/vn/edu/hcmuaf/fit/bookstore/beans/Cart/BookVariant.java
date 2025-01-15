@@ -2,14 +2,15 @@ package vn.edu.hcmuaf.fit.bookstore.beans.Cart;
 
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 
-public class BookVariant {
+import java.io.Serializable;
+
+public class BookVariant implements Serializable {
     private int id;
     private int quantity;
     private Book book;
 
-    public BookVariant(int id, int quantity, Book book) {
+    public BookVariant(int id, Book book) {
         this.id = id;
-        this.quantity = quantity;
         this.book = book;
     }
 
