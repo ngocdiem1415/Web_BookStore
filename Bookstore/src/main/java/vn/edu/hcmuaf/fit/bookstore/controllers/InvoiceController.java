@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
+import vn.edu.hcmuaf.fit.bookstore.beans.InvoiceDetail;
 import vn.edu.hcmuaf.fit.bookstore.beans.Review;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
@@ -110,9 +111,9 @@ public class InvoiceController extends HttpServlet {
             action = "";
         }
         switch (action) {
-//            case "create":
-//                createInvoiceFromCart(request, response);
-//                break;
+            case "create":
+                createInvoiceFromCart(request, response);
+                break;
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
@@ -142,35 +143,37 @@ public class InvoiceController extends HttpServlet {
 
     }
 
-//    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        List<InvoiceDetail> cart = (List<InvoiceDetail>) session.getAttribute("cart");
-//
-//        if (cart == null || cart.isEmpty()) {
-//            request.setAttribute("error", "Your cart is empty. Cannot create an invoice.");
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
-//            dispatcher.forward(request, response);
-//            return;
-//        }
-//
-//        try {
-//            Invoice newInvoice = new Invoice();
-//            newInvoice.setListInvoiceDetails(cart);
-//            // Set other properties of Invoice as needed, e.g., userId, totalAmount, etc.
-//
-//            int result = invoiceService.insert(newInvoice);
-//
-//            if (result > 0) {
-//                session.removeAttribute("cart"); // Clear the cart after creating the invoice
-//                response.sendRedirect("/Invoice?action=list");
-//            } else {
-//                request.setAttribute("error", "Failed to create invoice.");
-//                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
-//                dispatcher.forward(request, response);
-//            }
-//        } catch (Exception e) {
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
+
+    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        List<InvoiceDetail> cart = (List<InvoiceDetail>) session.getAttribute("cart");
+
+        if (cart == null || cart.isEmpty()) {
+            request.setAttribute("error", "Your cart is empty. Cannot create an invoice.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        try {
+            Invoice newInvoice = new Invoice();
+            newInvoice.setListInvoiceDetails(cart);
+            // Set other properties of Invoice as needed, e.g., userId, totalAmount, etc.
+
+            int result = invoiceService.insert(newInvoice);
+
+            if (result > 0) {
+                session.removeAttribute("cart"); // Clear the cart after creating the invoice
+                response.sendRedirect("/Invoice?action=list");
+            } else {
+                request.setAttribute("error", "Failed to create invoice.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
+                dispatcher.forward(request, response);
+            }
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

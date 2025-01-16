@@ -60,7 +60,7 @@
                 <p>Chưa có sản phẩm nào trong giỏ hàng</p>
             </c:if>
             <c:forEach var="entry" items="${cart.listBook}">
-                <div class="product row m-2 py-3 border-bottom">
+                <div class="product row m-2 py-3 border-bottom" data-product-id="${entry.value.book.bId}">
                     <div class="col-5 d-flex align-items-center">
                         <label class="me-4">
                             <input type="checkbox" name="item" class="item-checkbox"/>
@@ -72,7 +72,8 @@
                                      style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
                             </a>
                             <div class="info">
-                                <a href="book-detail?id=${entry.value.book.bId}" class="nav-link mb-1 text-wrap">
+                                <a href="book-detail?id=${entry.value.book.bId}"
+                                   class="nav-link mb-1 text-wrap product-name">
                                         ${entry.value.book.title}
                                 </a>
                             </div>
@@ -289,5 +290,67 @@
     }
 </script>
 
+<%--Chuyển các sản phẩm được checkbox từ cart sang checkout khi nhấn nút buy-now--%>
+<script>
+    $(document).ready(function () {
+        $("#buy-button").click(function () {
+            // Lấy tất cả các checkbox
+            const checkboxes = $('.item-checkbox');
+            const selectedProducts = [];
+
+            // Lấy danh sách sản phẩm được chọn
+            checkboxes.each(function () {
+                if ($(this).is(":checked")) {
+                    const productRow = $(this).closest('.product');
+                    if (productRow.length > 0) {
+                        const productId = productRow.data('product-id'); // Lấy productId
+                        const productImg = productRow.find('.img-thumbnail').attr('src');
+                        const productName = productRow.find('.product-name').text().trim();
+                        const quantity = parseInt(productRow.find('.quantity').val().trim());
+                        const unitPriceText = productRow.find('.unit-price').text().trim();
+                        const totalPriceText = productRow.find('.total-price').text().trim();
+                        const unitPrice = parseFloat(unitPriceText.replace(/,/g, '').replace(/\s/g, ''));
+                        const totalPrice = parseFloat(totalPriceText.replace(/,/g, '').replace(/\s/g, ''));
+
+                        if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {
+                            selectedProducts.push({
+                                productId: productId,
+                                productImg: productImg,
+                                productName: productName,
+                                unitPrice: unitPrice,
+                                quantity: quantity,
+                                totalPrice: totalPrice
+                            });
+                        }
+                    }
+                }
+            });
+
+            if (selectedProducts.length > 0) {
+                // Mã hóa danh sách sản phẩm thành JSON
+                const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
+
+                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
+                window.location.href = '/process-checkout?selectedProducts=' + encodedData;
+                // $.ajax({
+                //     url: "/process-checkout", // Đường dẫn tới Servlet
+                //     method: "POST",
+                //     contentType: "application/json",
+                //     data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),
+                //     success: function () {
+                //         // Chuyển hướng tới trang thanh toán sau khi xử lý thành công
+                //         window.location.href = "/checkout.jsp";
+                //     },
+                //     error: function (xhr, status, error) {
+                //         console.error("Đã xảy ra lỗi:", error);
+                //         alert("Đã xảy ra lỗi khi chuyển sản phẩm sang trang thanh toán.");
+                //     }
+                // });
+            } else {
+                alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
+            }
+        });
+    });
+</script>
 </body>
 </html>
