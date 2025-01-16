@@ -123,4 +123,14 @@ public class BookDetailService {
         List<Book> temp;
         return products;
     }
+
+    public Book updateProduct(Book product) {
+        connect.withExtension(BookDao.class, handle-> handle.updateBook(product));
+        return findById(product.getbId());
+    }
+
+    public Book insertProduct(Book product) {
+        connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
+        return findById(product.getbId());
+    }
 }
