@@ -24,11 +24,6 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/Style.css">
 
-    <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <%--Boostrap--%>
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
@@ -77,7 +72,7 @@
                                                 Đơn hàng đã đặt
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
-                                                ${invoice.getOrderDate()}
+                                                ${invoice.orderDate}
                                             </div>
                                         </div>
                                         <div class="right-inner-container--process__step-finish"
@@ -87,21 +82,21 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
                                                 <c:choose>
-                                                    <c:when test='${invoice.getPayment().getPaymentStatus().equals("Pending")}'>Đơn hàng chưa thanh toán</c:when>
-                                                    <c:when test='${invoice.getPayment().getPaymentStatus().equals("Completed")}'>Đơn hàng đã thanh toán</c:when>
-                                                    <c:when test='${invoice.getPayment().getPaymentStatus().equals("Failed")}'>Thanh toán thất bại</c:when>
-                                                    <c:when test='${invoice.getPayment().getPaymentStatus().equals("Refunded")}'>Đã hoàn</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Pending")}'>Đơn hàng chưa thanh toán</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Completed")}'>Đơn hàng đã thanh toán</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Failed")}'>Thanh toán thất bại</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Refunded")}'>Đã hoàn</c:when>
                                                 </c:choose>
                                                 <span>
                                                     <f:formatNumber value="${invoice.payment.amount}"/>
-<%--                                                    <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+                                                    <%-- <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
                                                 </span>
 
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
                                                 <c:choose>
-                                                    <c:when test="${!invoice.getPayment().getPaymentStatus().equals('Pending')}">
-                                                        ${invoice.getPayment().getPaymentDate}
+                                                    <c:when test="${!invoice.payment.paymentStatus.equals('Pending')}">
+                                                        ${invoice.payment.paymentDate}
                                                     </c:when>
                                                     <c:otherwise>
 
@@ -135,10 +130,10 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
                                                 <c:choose>
-                                                    <c:when test="${invoice.getStatus().equals('Completed')}">
+                                                    <c:when test="${invoice.status.equals('Completed')}">
                                                         Đơn hàng đã hoàn thành
                                                     </c:when>
-                                                    <c:when test="${invoice.getStatus().equals('Cancelled')}">
+                                                    <c:when test="${invoice.status.equals('Cancelled')}">
                                                         Đơn hàng đã hủy
                                                     </c:when>
                                                     <c:otherwise>
@@ -148,7 +143,7 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
                                                 <c:choose>
-                                                    <c:when test="${invoice.getStatus().equals('Completed')}">
+                                                    <c:when test="${invoice.status.equals('Completed')}">
                                                         ${invoice.completionDate}
                                                     </c:when>
                                                     <c:otherwise>
@@ -175,12 +170,12 @@
                                                 hàng
                                             </div>
                                             <div class="right-inner-container--content-address__name" tabindex="0">
-                                                ${invoice.getRecipientName()}
+                                                ${invoice.recipientName}
                                             </div>
                                             <div class="right-inner-container--content-address__address">
-                                                <span tabindex="0">${invoice.getRecipientPhone()}</span>
+                                                <span tabindex="0">${invoice.recipientPhone}</span>
                                                 <br>
-                                                <span tabindex="0">${invoice.getAddress()}</span>
+                                                <span tabindex="0">${invoice.address}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -196,18 +191,21 @@
                                     <div class="container-product-content-inner__right-inner-detail">
                                         <div>
                                             <section>
+                                                <c:if test="${empty invoice.listInvoiceDetails}">
+                                                    <p>Không có sản phẩm nào trong đơn hàng này.</p>
+                                                </c:if>
                                                 <c:forEach var="detail"
-                                                           items="${invoice.getListInvoiceDetails()}">
+                                                           items="${invoice.listInvoiceDetails}">
                                                     <div class="container-product-content-inner__right-inner-center-product__header__link">
                                                         <div class="content-inner__right-inner-infor">
-                                                            <img src="${detail.getBook().getImage().getSourceImg()}"
-                                                                 alt="${detail.getBook().getTitle()}"
+                                                            <img src="${detail.book.image.sourceImg}"
+                                                                 alt="${detail.book.title}"
                                                                  class="content-inner__right-inner-infor-img">
                                                             <div class="content-inner__right-inner-infor__text">
                                                                 <div>
                                                                     <div class="content-inner__right-inner-infor__text-content">
                                                                 <span class="content-inner__right-inner-infor__text-content-name">
-                                                                        ${detail.getBook().getTitle()}
+                                                                        ${detail.book.title}
                                                                 </span>
                                                                     </div>
                                                                 </div>
@@ -215,7 +213,7 @@
                                                                     <div class="content-inner__right-inner-infor__text-content">
                                                                         <div class="content-inner__right-inner-infor__text-content-quanlity"
                                                                              tabindex="0">
-                                                                            Số lượng: ${detail.getQuantity()}
+                                                                            Số lượng: ${detail.quantity}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -246,7 +244,8 @@
                                             </div>
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
-                                                    <f:formatNumber value="${invoice.payment.amount - invoice.shippingFee}"/>
+                                                    <f:formatNumber
+                                                            value="${invoice.payment.amount - invoice.shippingFee}"/>
                                                     <i class="fa-solid fa-dong-sign fa-xs"></i></span>
                                                 </div>
                                             </div>
@@ -280,10 +279,10 @@
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
                                                     <c:choose>
-                                                        <c:when test="${invoice.getPayment().getPaymentMethod() == 1}">
+                                                        <c:when test="${invoice.payment.paymentMethod == 1}">
                                                             Thanh toán khi nhận hàng
                                                         </c:when>
-                                                        <c:when test="${invoice.getPayment().getPaymentMethod() == 2}">
+                                                        <c:when test="${invoice.payment.paymentMethod == 2}">
                                                             Chuyển khoản ngân hàng
                                                         </c:when>
                                                         <c:otherwise>
