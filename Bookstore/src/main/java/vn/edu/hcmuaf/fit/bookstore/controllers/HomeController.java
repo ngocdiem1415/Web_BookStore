@@ -33,7 +33,7 @@ public class HomeController extends HttpServlet {
 
             // Lấy sản phẩm theo promotionId trong ngày
 
-            int promotionId =3;  // Giả sử bạn đã xác định promotionId
+            int promotionId =1;  // Giả sử bạn đã xác định promotionId
 
             Book bookByPromotion = bookDetailService.getBookByPromotionId(promotionId);
             System.out.println("Book by promotion: " + bookByPromotion);
@@ -45,19 +45,19 @@ public class HomeController extends HttpServlet {
             request.setAttribute("bestSellerBooks", bestSellerBooks);
 
             // Lấy danh sách thể loại van hoc
-            List<Book> literatureBooks = bookDetailService.listByCategory("Văn học", 5, 0);
+            List<Book> literatureBooks = bookDetailService.listByCategory("Văn học", 4, 0);
             request.setAttribute("literatureBooks", literatureBooks);
 
             // Lấy danh sách thể loại tieu thuyet
-            List<Book> novelsBooks = bookDetailService.listByCategory("Tiểu thuyết", 5, 0);
+            List<Book> novelsBooks = bookDetailService.listByCategory("Tiểu thuyết", 4, 0);
             request.setAttribute("novelsBooks", novelsBooks);
 
             // Lấy danh sách thể loại Truyen tranh
-            List<Book> comicBooks = bookDetailService.listByCategory("Truyện Tranh", 5, 0);
+            List<Book> comicBooks = bookDetailService.listByCategory("Truyện Tranh", 4, 0);
             request.setAttribute("comicBooks", comicBooks);
 
             // Lấy danh sách thể loại Khac
-            List<Book> otherBooks = bookDetailService.listByCategory("Khác", 5, 0);
+            List<Book> otherBooks = bookDetailService.listByCategory("Khác", 4, 0);
             request.setAttribute("otherBooks", otherBooks);
 
 

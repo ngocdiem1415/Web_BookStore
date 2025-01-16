@@ -192,6 +192,8 @@
 <jsp:include page="footer.jsp"></jsp:include>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     var citis = document.getElementById("city");
     var districts = document.getElementById("district");
@@ -233,6 +235,7 @@
             }
         };
     }
+
 </script>
 
 <%--//Chuyển từ file Json qua các đối tượng để đổ dữ liệu vô JSP--%>
@@ -393,13 +396,152 @@
         // Thêm sự kiện click để chuyển trang
         orderButton.addEventListener("click", function () {
             // Chuyển hướng sang trang BuyProduct.jsp
-            window.location.href = "purchaseOrder.jsp";
+            window.location.href = "invoice";
         });
     });
 </script>
 
+<%-- Thu thập data để chuyển dữ liệu qua backend--%>
 <script>
+    const citySelect = document.getElementById("city");
+    const districtSelect = document.getElementById("district");
+    const wardSelect = document.getElementById("ward");
+    const specificAddressInput = document.getElementById("specific_address");
 
+    const url = "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json";
+
+    // Fetch data
+    axios.get(url)
+        .then(response => {
+            renderCity(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            alert("Đã có lỗi khi tải dữ liệu địa lý hành chính.");
+        });
+
+    // Render cities to the city select dropdown
+    function renderCity(data) {
+        // Populate cities
+        data.forEach(city => {
+            const option = new Option(city.Name, city.Id);
+            citySelect.appendChild(option);
+        });
+
+        // Event handler for city selection
+        citySelect.onchange = function() {
+            districtSelect.length = 1; // Reset districts
+            wardSelect.length = 1; // Reset wards
+            if (this.value) {
+                const city = data.find(c => c.Id === this.value);
+                city.Districts.forEach(district => {
+                    const option = new Option(district.Name, district.Id);
+                    districtSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Event handler for district selection
+        districtSelect.onchange = function() {
+            wardSelect.length = 1; // Reset wards
+            if (this.value) {
+                const city = data.find(c => c.Id === citySelect.value);
+                const district = city.Districts.find(d => d.Id === this.value);
+                district.Wards.forEach(ward => {
+                    const option = new Option(ward.Name, ward.Id);
+                    wardSelect.appendChild(option);
+                });
+            }
+        };
+    }
+
+    // Function to build full address from selected data
+    function getFullAddress(cityId, districtId, wardId, specificAddress) {
+        const city = getCityById(cityId);
+        const district = city ? getDistrictById(city, districtId) : null;
+        const ward = district ? getWardById(district, wardId) : null;
+
+        const cityName = city ? city.Name : '';
+        const districtName = district ? district.Name : '';
+        const wardName = ward ? ward.Name : '';
+
+        return specificAddress + ', ' + wardName + ', ' + districtName + ', ' + cityName;
+    }
+
+    // Helper functions to find city, district, and ward by ID
+    function getCityById(cityId) {
+        function getCityById(cityId) {
+            var option = citySelect.querySelector('option[value="' + cityId + '"]');
+            return option ? { Name: option.textContent } : null;
+        }
+    }
+
+    function getDistrictById(city, districtId) {
+        return city.Districts.find(district => district.Id === districtId);
+    }
+
+    function getWardById(district, wardId) {
+        return district.Wards.find(ward => ward.Id === wardId);
+    }
+
+    const buyNowButton = document.getElementById("buy-now");
+    buyNowButton.addEventListener("click", function() {
+        // Thu thập dữ liệu người dùng từ form
+        const recipientName = document.querySelector("input[name='shipping_full_name']").value;
+        const recipientPhone = document.querySelector("input[name='shipping_phone']").value;
+        const specificAddress = specificAddressInput.value;
+
+        const shippingCity = citySelect.value;
+        const shippingDistrict = districtSelect.value;
+        const shippingWard = wardSelect.value;
+
+        // Thu thập danh sách sản phẩm từ giỏ hàng
+        const products = selectProducts.map(product => ({
+            productId: product.productId,
+            quantity: product.quantity,
+            unitPrice: product.unitPrice
+        }));
+
+        // Phí vận chuyển cố định
+        const shippingFee = 15000;
+
+        // Tính tổng tiền
+        const totalPrice = selectProducts.reduce((sum, product) => sum + (product.unitPrice * product.quantity), 0);
+        const totalAmount = totalPrice + shippingFee;
+
+        // Thu thập phương thức thanh toán
+        let paymentMethod = 'COD'; // Phương thức mặc định (Thanh toán khi nhận hàng)
+        if (document.getElementById("bank-transfer").classList.contains("active")) {
+            paymentMethod = 'BANK_TRANSFER'; // Chuyển khoản ngân hàng
+        }
+
+        // Tạo đối tượng gửi dữ liệu
+        const orderData = {
+            recipientName: recipientName,
+            recipientPhone: recipientPhone,
+            shippingAddress: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
+            products: products,
+            shippingFee: shippingFee,
+            totalAmount: totalAmount,
+            paymentMethod: paymentMethod
+        };
+
+        // Gửi yêu cầu AJAX để tạo đơn hàng mới
+        $.ajax({
+            url: 'invoice?action=create', // URL endpoint của backend
+            type: 'POST',
+            contentType: 'application/json', // Loại nội dung là JSON
+            data: JSON.stringify(orderData), // Chuyển đổi đối tượng thành JSON
+            success: function(response) {
+                // Nếu yêu cầu thành công, chuyển hướng đến trang đơn hàng
+                window.location.href = '/invoice?action=list&userId=' + userSession.getUid(); // Chuyển hướng đến trang đơn hàng chờ xử lý
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('Đã xảy ra lỗi khi tạo đơn hàng!');
+            }
+        });
+    });
 </script>
 
 </body>

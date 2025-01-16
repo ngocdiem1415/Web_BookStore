@@ -10,6 +10,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
+import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
 import vn.edu.hcmuaf.fit.bookstore.beans.InvoiceDetail;
@@ -19,6 +20,8 @@ import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -100,6 +103,7 @@ public class InvoiceController extends HttpServlet {
     private void listInvoices(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Invoice> invoices = invoiceService.findByUser(userId);
         request.setAttribute("invoices", invoices);
+//        response.sendRedirect("/invoice");
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
         dispatcher.forward(request, response);
     }
@@ -144,37 +148,55 @@ public class InvoiceController extends HttpServlet {
 
     }
 
-
-
     private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        List<InvoiceDetail> cart = (List<InvoiceDetail>) session.getAttribute("cart");
+        // Get order data from request (this is assuming the data is sent via JSON)
+        String recipientName = request.getParameter("recipientName");
+        String recipientPhone = request.getParameter("recipientPhone");
+        String address = request.getParameter("shippingAddress");  // Full address (city, district, ward, specific address)
+        double shippingFee = Double.parseDouble(request.getParameter("shippingFee"));
+        String paymentMethod = request.getParameter("paymentMethod");
 
-        if (cart == null || cart.isEmpty()) {
-            request.setAttribute("error", "Your cart is empty. Cannot create an invoice.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
-            dispatcher.forward(request, response);
-            return;
-        }
+        // Get products from request
+        String productsJson = request.getParameter("products");
+        List<InvoiceDetail> invoiceDetails = new ArrayList<>();
 
+        // Use Gson to parse the products JSON array into a List of Map objects
+        Gson gson = new Gson();
         try {
-            Invoice newInvoice = new Invoice();
-            newInvoice.setListInvoiceDetails(cart);
-            // Set other properties of Invoice as needed, e.g., userId, totalAmount, etc.
+            List<Map<String, Object>> productsList = gson.fromJson(productsJson, new TypeToken<List<Map<String, Object>>>() {}.getType());
 
-            int result = invoiceService.insert(newInvoice);
+            // Iterate over parsed product data and create InvoiceDetail objects
+            for (Map<String, Object> productData : productsList) {
+                int productId = ((Double) productData.get("productId")).intValue();  // Convert Double to int if necessary
+                int quantity = ((Double) productData.get("quantity")).intValue();    // Convert Double to int if necessary
+                double unitPrice = (Double) productData.get("unitPrice");
 
-            if (result > 0) {
-                session.removeAttribute("cart"); // Clear the cart after creating the invoice
-                response.sendRedirect("/Invoice?action=list");
-            } else {
-                request.setAttribute("error", "Failed to create invoice.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart.jsp");
-                dispatcher.forward(request, response);
+                // Create InvoiceDetail object and add it to the list
+                InvoiceDetail invoiceDetail = new InvoiceDetail(0, productId, quantity, unitPrice, null); // Book will be added later
+                invoiceDetails.add(invoiceDetail);
             }
         } catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+            // Handle error if the product data cannot be parsed
         }
+
+        // Create invoice object
+        Invoice invoice = new Invoice(0, userId, recipientName, recipientPhone, address, LocalDateTime.now(), "Pending", shippingFee, null, invoiceDetails, null);
+
+        // Insert the invoice and associated details into the database
+        InvoiceService invoiceService = new InvoiceService();
+        int invoiceId = invoiceService.insert(invoice); // This will insert invoice and invoice details
+
+        // Create payment for the invoice
+        PaymentService paymentService = PaymentService.getInstance();
+        String paymentStatus = "Pending"; // Default status
+        int paymentMethodCode = (paymentMethod.equals("BANK_TRANSFER")) ? 1 : 0; // 1 for bank transfer, 0 for COD
+        paymentService.createPayment(invoiceId, paymentMethodCode, paymentStatus); // Create payment
+
+        // Return a success response with invoiceId
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.getWriter().write("{\"message\": \"Invoice created successfully!\", \"invoiceId\": " + invoiceId + "}");
     }
+
 
 }
