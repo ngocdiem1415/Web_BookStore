@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,7 +165,7 @@
                                                 </div>
                                                 <div class="content-inner__right-inner-infor__price" tabindex="0">
                                                     <span class="content-inner__right-inner-infor__price-text">
-                                                        <fmt:formatNumber value="${detail.getUnitPrice()}"/>
+                                                        <f:formatNumber value="${detail.getUnitPrice()}"/>
                                                         <i class="fa-solid fa-dong-sign fa-xs"></i>
                                                     </span>
                                                 </div>
@@ -185,7 +184,7 @@
                                     </label>
                                     <div class="right-inner-center-product__header__total-price-contain-cost"
                                          tabindex="0">
-                                        <fmt:formatNumber value="${invoice.payment.amount}"/>
+                                        <f:formatNumber value="${invoice.payment.amount}"/>
                                         <i class="fa-solid fa-dong-sign fa-xs"></i>
                                     </div>
                                 </div>
