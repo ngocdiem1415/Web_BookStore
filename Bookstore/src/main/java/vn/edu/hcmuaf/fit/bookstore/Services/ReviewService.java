@@ -2,7 +2,9 @@ package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.Review;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.dao.ReviewDao;
+import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.util.List;
@@ -71,5 +73,11 @@ public class ReviewService {
         return connect.withExtension(ReviewDao.class, dao ->
                 dao.getReviewsByBookIdCurrent(bookId)
         );
+    }
+
+    public Review mapReview(Review review) {
+        User user = connect.withExtension(UserDao.class, handle -> handle.findById(review.getUserId()));
+        review.setUser(user);
+        return review;
     }
 }

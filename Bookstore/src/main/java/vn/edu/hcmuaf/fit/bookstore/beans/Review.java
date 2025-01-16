@@ -14,21 +14,31 @@ public class Review implements Serializable {
     private int bookId;
     @Expose
     private int userId;
-    public transient LocalDateTime reviewDate;
+    public LocalDateTime reviewDate;
     @Expose
     private int rating;
     @Expose
     private String comment;
+    private User user;
 
     public Review() {}
 
-    public Review(int userId, int invoiceId, int bookId, int rating, String comment) {
+    public Review(int userId, int invoiceId, int bookId, int rating, String comment, User user) {
         this.userId = userId;
         this.invoiceId = invoiceId;
         this.bookId = bookId;
         this.rating = rating;
         this.comment = comment;
         this.reviewDate = LocalDateTime.now();
+        this.user = user;
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
     }
 
     public int getReviewId() {

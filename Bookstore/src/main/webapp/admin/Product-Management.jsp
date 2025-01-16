@@ -34,9 +34,9 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb mx-4">
                         <li class="breadcrumb-item">
-                            <a href="/admin/dashboard" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
-                            <a href="/admin/product-management" class="text-dec" style="color: #f07c29">Quản lí sản
+                            <a href="product-management" class="text-dec" style="color: #f07c29">Quản lí sản
                                 phẩm</a>
                         </li>
                     </ol>
@@ -58,7 +58,7 @@
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
                                         <button id="addProductBtn" class="btn btn-green my-4 border rounded"
-                                                onclick="window.location.href='/admin/EditProductController';">
+                                                onclick="window.location.href='EditProductController';">
                                             <i class="fa-solid fa-plus"></i>
                                             Thêm sản phẩm
                                         </button>
