@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.bookstore.json;
+package vn.edu.hcmuaf.fit.bookstore.controllers.json;
 
 import com.google.gson.*;
 import java.lang.reflect.Type;
