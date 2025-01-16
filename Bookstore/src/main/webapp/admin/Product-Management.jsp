@@ -34,9 +34,9 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb mx-4">
                         <li class="breadcrumb-item">
-                            <a href="/admin/dashboard" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
-                            <a href="/admin/product-management" class="text-dec" style="color: #f07c29">Quản lí sản
+                            <a href="product-management" class="text-dec" style="color: #f07c29">Quản lí sản
                                 phẩm</a>
                         </li>
                     </ol>
