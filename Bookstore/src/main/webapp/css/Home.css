@@ -55,6 +55,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+
 }
 
 .max-width-150{
@@ -145,8 +146,8 @@ body {
 }
 
 .product-img img {
-    width: 100%;
-    height: auto;
+    width: 220px;
+    height: 240px;
     object-fit: contain;
 }
 
@@ -240,7 +241,7 @@ body {
     display: inline-block;
 }
 
-.product-details h4 {
+.product-details h5 {
     margin-bottom: 10px;
     margin-top: 13px;
 }
@@ -337,6 +338,9 @@ body {
 .deal-off-day .sale-area .price-box {
     font-style: italic;
     margin-top: 22px;
+    display: flex;
+    flex-wrap: nowrap; /* Không cho nội dung xuống dòng */
+    gap: 10px;
 }
 
 .deal-off-day .sale-area .price-box span.old-sale {
@@ -400,7 +404,7 @@ body {
     margin-top: 20px;
 }
 
-.bestseller-details h4 a {
+.bestseller-details h5 a {
     color: #333333;
     display: block;
     font-size: 15px;
@@ -431,6 +435,11 @@ body {
     padding-right: 15px;
     display: block;
 }
+.product-wrapper {
+    width: 240px; /* Đặt chiều rộng cố định cho khung sản phẩm */
+    margin: 0 auto; /* Căn giữa khung sản phẩm */
+}
+
 .most-product .product-wrapper:hover{
     box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -451,7 +460,26 @@ body {
     text-decoration: line-through;
     margin-bottom: 5px;
     top: 50%;
+    white-space: nowrap; /* Không cho chữ xuống dòng */
+    overflow: hidden; /* Ẩn chữ tràn */
+    text-overflow: ellipsis;
 }
+
+.price-most-product h5 a {
+    display: block; /* Giúp quản lý không gian dễ dàng */
+    width: 100%; /* Giới hạn theo chiều rộng khung */
+    white-space: nowrap; /* Không cho chữ xuống dòng */
+    overflow: hidden; /* Ẩn chữ bị tràn ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị dấu "..." nếu chữ quá dài */
+    text-decoration: none; /* Bỏ gạch chân */
+    color: black; /* Đặt màu chữ đen */
+}
+
+.price-most-product h5 a:hover {
+    color: #f07c29; /* Đổi màu chữ khi hover (tuỳ chọn) */
+    text-decoration: none; /* Bỏ gạch chân khi hover */
+}
+
 
 .price-box .old-price .price{
    color: #999;
@@ -500,6 +528,56 @@ body {
 .quick-view .action-view i {
     font-size: 30px; /* Điều chỉnh kích thước icon */
 
+}
+
+.product-wrapper {
+    width: 240px; /* Chiều rộng cố định cho sản phẩm */
+    margin: 10px; /* Khoảng cách giữa các thẻ */
+    display: inline-block; /* Giữ các thẻ hiển thị trên một hàng nhưng cách nhau */
+    vertical-align: top; /* Đảm bảo các thẻ được căn đều theo chiều dọc */
+}
+
+.product-img {
+    margin-bottom: 10px; /* Khoảng cách giữa ảnh và nội dung bên dưới */
+}
+
+.price-most-product {
+    padding: 10px 0; /* Khoảng cách bên trong giữa tiêu đề và giá */
+}
+
+.price-box {
+    gap: 10px; /* Khoảng cách giữa giá đặc biệt và giá cũ */
+}
+
+.quick-view {
+    margin-top: 5px; /* Khoảng cách giữa biểu tượng Quick View và nội dung bên dưới */
+}
+
+.price-most-product h5 {
+    margin-bottom: 8px; /* Tạo khoảng cách dưới tiêu đề */
+}
+
+.product-container {
+    display: flex; /* Sử dụng flexbox để quản lý bố cục */
+    flex-wrap: wrap; /* Đảm bảo các sản phẩm tự xuống dòng khi không đủ chỗ */
+    justify-content: center; /* Căn giữa các sản phẩm trong container */
+    gap: 20px; /* Tạo khoảng cách đều giữa các sản phẩm */
+    margin-top: 20px; /* Khoảng cách từ các thành phần bên trên */
+}
+
+/* Thẻ sản phẩm */
+.product-wrapper {
+    width: 240px; /* Chiều rộng cố định cho từng sản phẩm */
+    margin: 0; /* Không cần margin ở đây, khoảng cách sẽ do gap của flexbox tạo */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước khung */
+    display: flex;
+    flex-direction: column; /* Các thành phần bên trong thẻ sắp xếp theo cột */
+    align-items: center; /* Căn giữa nội dung bên trong thẻ */
+}
+
+.d-flex {
+    display: flex !important;
+    justify-content: space-around;
 }
 
 /*<!-- banner-area-end -->*/
