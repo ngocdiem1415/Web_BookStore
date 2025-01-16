@@ -40,7 +40,6 @@ public class PaymentService {
 
         // Tính amount (shippingFee + totalAmount)
         double amount = invoice.getShippingFee() + totalAmount;
-
         // Tạo Payment
         Payment payment = new Payment();
         payment.setInvoiceId(invoiceId);
