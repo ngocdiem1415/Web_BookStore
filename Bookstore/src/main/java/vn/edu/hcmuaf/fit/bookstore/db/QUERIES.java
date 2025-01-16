@@ -92,6 +92,8 @@ public class QUERIES {
         public static final String UPDATE = "UPDATE books SET  category_name = :categoryName,update_at = CURRENT_TIMESTAMP WHERE category_id = :Id";
         public static final String DELETE = "delete from categories where category_id = :id";
         public static final String SELECT_BY_CATEGORY = "select * from categories where categoryId = :categoryId limit :limit";
+        public static final String INSERT_CATEGORY = "INSERT INTO categories (category_name, update_at) VALUES (:categoryName, NOW())";
+        public static final String UPDATE_CATEGORY = "UPDATE categories SET category_name = :categoryName, update_at = NOW() WHERE category_id = :categoryid";
     }
 
     public class IMAGE {
@@ -107,6 +109,13 @@ public class QUERIES {
         public static final String SELECT_ALL_PROMOTION = "select * from promotions";
         public static final String FIND_BY_PROMOTIONID = "select * from promotions where promotion_id = :id";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
+        public static final String INSERT_PROMOTION =
+                "INSERT INTO promotions (promotion_name, discount, start_date, end_date, is_Active) " +
+                        "VALUES (:promotionName, :discount, :startDate, :endDate, " +
+                        "CASE WHEN :startDate <= NOW() AND :endDate >= NOW() THEN 1 ELSE 0 END)";
+
+        public static final String UPDATE_PROMOTIOn = "UPDATE promotions SET promotion_name = :promotionName, discount = :discount, start_date = :startDate, end_date = :endDate, is_Active = " +
+                "CASE WHEN :startDate <= NOW() AND :endDate >= NOW() THEN 1 ELSE 0 END WHERE promotion_id = :promotionId";
 
     }
 
