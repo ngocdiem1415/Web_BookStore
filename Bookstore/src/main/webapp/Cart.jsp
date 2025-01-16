@@ -239,7 +239,7 @@
         const countElement = document.querySelector('.count');
         if (countElement) {
             const selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            countElement.textContent = `Tổng thanh toán (${selectedCount} sản phẩm):`;
+            countElement.textContent = 'Tổng thanh toán ('+selectedCount+' sản phẩm):';
         }
     }
 

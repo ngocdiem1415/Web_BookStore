@@ -67,7 +67,7 @@
                 </ul>
                 <div class="shopping-cart mt-4 ">
                     <c:if test="${not empty userSession}">
-                        <a href="/cart" style="color: black">
+                        <a href="cart" style="color: black">
                             <!--                    <i class="fa-solid fa-cart-shopping" style="color: #0e2b1e;"></i>-->
                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
                                  class="bi bi-bag-check" viewBox="0 0 16 16">
@@ -105,16 +105,7 @@
         <ul class="main-nav nav ">
             <li class="nav-item "><a href="home">Trang chủ</a></li>
             <li class="nav-item "><a href="about-us">Giới thiệu</a></li>
-            <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sản phẩm
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                    <c:forEach var="c" items="${categoryList}">
-                    <li><a class="dropdown-item" href="/listBook?categoryId=${c.categoryId}">c.category_name</a></li>
-                    </c:forEach>
-                </ul>
-            </li>
+            <li class="nav-item "><a href="listBook">Sản phẩm</a></li>
             <li class="nav-item "><a href="policy">Chính sách</a></li>
             <li class="nav-item "><a href="contact">Liên hệ</a></li>
         </ul>

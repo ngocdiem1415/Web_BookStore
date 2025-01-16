@@ -34,47 +34,6 @@ public class ProductAjaxController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String address= request.getParameter("address");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-
-
-        PrintWriter printWriter = response.getWriter();
-
-//        ProducerService producerService = new ProducerService();
-//        Producer producer = new Producer();
-//
-//        try {
-//            producer.setId(id);
-//            producer.setName(name);
-//            producer.setEmail(email);
-//            producer.setAddress(address);
-//            producer.setPhone(phone);
-//        } catch (Exception e) {
-//            resp.setStatus(400);
-//            printWriter.println(new ExceptionModel(e.toString()));
-//            printWriter.close();
-//        }
-//        System.out.println(producer);
-//        try {
-//            if (id == null || id.equals("")) {
-//                id = StringUtil.genIDWithLength(10);
-//                producer.setId(id);
-//                producerService.insert(producer);
-//                printWriter.println("Insert Success");
-//            } else {
-//                // update
-//                producerService.update(producer);
-//                printWriter.println("Update Success");
-//            }
-//            printWriter.close();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            resp.setStatus(400);
-//            printWriter.close();
-//        }
     }
 
     @Override

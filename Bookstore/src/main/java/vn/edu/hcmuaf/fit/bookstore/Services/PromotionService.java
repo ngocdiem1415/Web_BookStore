@@ -1,9 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 import vn.edu.hcmuaf.fit.bookstore.beans.Promotion;
-import vn.edu.hcmuaf.fit.bookstore.dao.CategoryDao;
 import vn.edu.hcmuaf.fit.bookstore.dao.PromotionDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
@@ -22,7 +20,7 @@ public class PromotionService {
         return connect.withExtension(PromotionDao.class, handle -> handle.list());
     }
 
-    public Promotion getCategoryById(int id){
+    public Promotion getPromotionById(int id){
         return connect.withExtension(PromotionDao.class, handle -> handle.findById(id));
     }
 }

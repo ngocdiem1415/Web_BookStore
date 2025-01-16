@@ -58,22 +58,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="Supplier-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="far fa-newspaper"></i>
-            </span>
-                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà xuất bản</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="Slider-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-store"></i>
-            </span>
-                    <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="Discount-Management.html" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-percent"></i>
@@ -87,14 +71,6 @@
               <i class="fas fa-users-cog"></i>
             </span>
                     <span class="text" style="color: black; font-weight: bold">Admin</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="Settings.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-                    <i class="fa-solid fa-gear"></i>
-            </span>
-                    <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
                 </a>
             </li>
         </ul>
