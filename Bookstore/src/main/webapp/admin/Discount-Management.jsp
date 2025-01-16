@@ -5,6 +5,10 @@
   Time: 5:35 CH
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +16,11 @@
     <title>Quản lí khuyến mãi</title>
 
     <!--  all css files-->
-    <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
-    <link rel="stylesheet" href="../../css/Style.css">
-    <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/dataTable/datatables.min.css">
+    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
 
 
 </head>
@@ -35,7 +39,7 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb mx-4">
                         <li class="breadcrumb-item">
-                            <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
+                            <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
                             <a href="#" class="text-dec" style="color: #f07c29">Quản lí khuyến mãi</a>
                         </li>
@@ -57,67 +61,15 @@
                                         <div class="main-card-title my-3">
                                             <h3>Quản lí khuyến mãi</h3>
                                         </div>
-                                        <button type="button" class="btn btn-green my-4 border rounded"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#addDiscount">
-                                            <i class="fa-solid fa-plus"></i>
-                                            Thêm khuyến mãi
-                                        </button>
-                                    </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="addDiscount" tabindex="-1"
-                                         aria-labelledby="staticBackdropLabel"
-                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="discountLabel">Thêm CTKM</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body row">
-                                                    <div>
-                                                        <div class="mb-3">
-                                                            <label for="idDis" class="labels">ID CTKM</label>
-                                                            <fieldset disabled>
-                                                                <input id="idDis" type="text"
-                                                                       class="form-control disabled" placeholder="ID"
-                                                                       value="">
-                                                            </fieldset>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="nameDis" class="labels">Tên khuyến mãi</label>
-                                                            <input id="nameDis" type="text" class="form-control">
-                                                        </div>
-                                                        <div class=" mb-2">
-                                                            <label for="discount">Giá trị khuyến mãi </label>
-                                                            <input type="text" class="form-control"
-                                                                   id="discount" name="phone" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="fromDate">Ngày bắt đầu </label>
-                                                            <input type="date" class="form-control"
-                                                                   id="fromDate" name="phone" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="toDate">Ngày bắt đầu </label>
-                                                            <input type="date" class="form-control"
-                                                                   id="toDate" name="phone" required>
-                                                        </div>
-                                                        <div class="d-flex justify-content-center mb-2">
-                                                            <button type="button"
-                                                                    class="btn btn-green save-supplier mx-4">
-                                                                Lưu
-                                                            </button>
-                                                            <button type="button"
-                                                                    class="btn btn-danger cancel-supplier">
-                                                                Hủy
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="add-promotion">
+                                            <button type="button" class="btn btn-green my-4 border rounded"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#addDiscount">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Thêm khuyến mãi
+                                            </button>
+                                        </a>
+
                                     </div>
                                 </th>
                             </tr>
@@ -138,44 +90,27 @@
                                         </tr>
                                         </thead>
                                         <tbody style="font-weight: lighter">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Khuyến mãi mua 1 tặng 1</td>
-                                            <td></td>
-                                            <td>10/10/2024</td>
-                                            <td>11/11/2024</td>
-                                            <td>hết hạn</td>
-                                            <td>
-                                                <button type="button" class="btn btn-edit m-0 p-0">
-                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                       style="color: #236844"></i>
-                                                </button>
-                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                                        data-bs-target="#confirmDeleteModal">
-                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                       style="color: #ef5f5f"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Khuyến mãi 30%</td>
-                                            <td>30%</td>
-                                            <td>10/10/2024</td>
-                                            <td>11/12/2024</td>
-                                            <td>hoạt động</td>
-                                            <td>
-                                                <button type="button" class="btn btn-edit m-0 p-0">
-                                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                       style="color: #236844"></i>
-                                                </button>
-                                                <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                                        data-bs-target="#confirmDeleteModal">
-                                                    <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                                       style="color: #ef5f5f"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <c:forEach var="promotion" items="${promotions}">
+                                            <tr>
+                                                <th scope="row">${promotion.promotionId}</th>
+                                                <td>${promotion.promotionName}</td>
+                                                <td>${promotion.discount}</td>
+                                                <td>${promotion.startDate}</td>
+                                                <td>${promotion.endDate}</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-edit m-0 p-0">
+                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                           style="color: #236844"></i>
+                                                    </button>
+                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal">
+                                                        <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                                                           style="color: #ef5f5f"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </th>
@@ -210,10 +145,10 @@
 </section>
 
 <!--all script files-->
-<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
-<script src="../../js/datatables.min.js"></script>
+<script src="../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/datatables.min.js"></script>
 
 <!--script-->
 <script>
