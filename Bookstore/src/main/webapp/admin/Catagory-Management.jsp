@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -13,154 +14,20 @@
   <title>Quản lí danh mục</title>
 
   <!--  all css files-->
-  <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
-  <link rel="stylesheet" href="../../css/Style.css">
-  <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-  <link rel="stylesheet" href="../css/Dashboard.css">
+  <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/dataTable/datatables.min.css">
+  <link rel="stylesheet" href="../css/Style.css">
+  <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="css/Dashboard.css">
 
 </head>
 <body>
 
 <!--curtain menu-->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <a href="Dashboard.html">
-      <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
-    </a>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <nav class="offcanvas-body">
-    <ul class="links">
-      <li class="nav-item">
-        <a href="Dashboard.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-tachometer-alt"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="User-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Order-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-shopping-cart"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Category-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-tags"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Product-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-archive"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Supplier-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="far fa-newspaper"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí nhà xuất bản</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Slider-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-store"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Discount-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-percent"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Admin-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users-cog"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Admin</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Settings.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-                    <i class="fa-solid fa-gear"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
-<div class="overlay"></div>
+<!--curtain menu-->
+<jsp:include page="Curtain-Menu.jsp"/>
 
-<!--header start-->
-<header id="header">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
-        <div class="header-left">
-          <div class="menu-toggle-btn ">
-            <button class="btn" type="button" style="background-color: #4B908E; color: white"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
-                    class="fas fa-bars" style="color:white"></i> Menu
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-7 col-6 ">
-        <div class="header-right">
-          <!-- profile start -->
-          <div class="profile-box">
-            <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
-                    id="profile"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="profile-info">
-                <div class="info ">
-                  <h5 class="pt-3">Ngọc Diễm</h5>
-                  <div class="image">
-                    <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
-                    <span class="status"></span>
-                  </div>
-                </div>
-              </div>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
-              <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-            </ul>
-          </div>
-          <!-- profile end -->
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<!--header end-->
+<jsp:include page="Header-Dashboard.jsp"/>
 
 <section class="section">
   <div class="container-fluid mb-5">
@@ -170,9 +37,9 @@
         <div class="breadcrumb-wrapper">
           <ol class="breadcrumb mx-4">
             <li class="breadcrumb-item">
-              <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
+              <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
               <a href="#" class="text-dec" style="color: gray"> / </a>
-              <a href="#" class="text-dec" style="color: #f07c29">Quản lí danh mục</a>
+              <a href="category" class="text-dec" style="color: #f07c29">Quản lí danh mục</a>
             </li>
           </ol>
         </div>
@@ -192,12 +59,15 @@
                     <div class=" main-card-title my-3">
                       <h3>Quản lí danh mục</h3>
                     </div>
-                    <button type="button" class="btn btn-green my-4 border rounded"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addCategory">
-                      <i class="fa-solid fa-plus"></i>
-                      Thêm danh mục
-                    </button>
+                    <a href="add-category">
+                      <button type="button" class="btn btn-green my-4 border rounded"
+                              data-bs-toggle="modal"
+                              data-bs-target="#addCategory">
+                        <i class="fa-solid fa-plus"></i>
+                        Thêm danh mục
+                      </button>
+                    </a>
+
                     <!-- Modal -->
                     <div class="modal fade" id="addCategory" tabindex="-1"
                          aria-labelledby="staticBackdropLabel"
@@ -222,25 +92,6 @@
                               <label for="nameCat" class="labels">Tên danh mục</label>
                               <input id="nameCat" type="text" class="form-control"
                                      placeholder="Danh Mục" value="">
-                            </div>
-                            <div class="mb-3">
-                              <label class="form-label">Danh sách thể
-                                loại</label>
-                              <div class="form-group d-flex">
-                                <label class="idGenre text-normal mx-2" for="idGenre">ID                                                                    loại
-                                </label>
-                                <fieldset disabled>
-                                  <input id="idGenre" class="form-control disabled" placeholder="ID" style="width: 50px">
-                                </fieldset>
-
-                                <label class="nameGenre text-normal mx-2"
-                                       for="nameGenre">Tên thể loại
-                                </label>
-                                <input id="nameGenre" type="text" style="width: 200px">
-                                <button class="btn">
-                                  <i class="fa-solid fa-plus"></i>
-                                </button>
-                              </div>
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -267,147 +118,29 @@
                     </tr>
                     </thead>
                     <tbody style="font-weight: lighter">
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Văn học</td>
-                      <td>3204</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Kinh tế</td>
-                      <td>2354</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Tâm lí-Kĩ năng sống</td>
-                      <td>243</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>Sách thiếu nhi</td>
-                      <td>325</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td>Tiểu sử-hồi kí</td>
-                      <td>243</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">6</th>
-                      <td>Sách giáo khoa</td>
-                      <td>3254</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">7</th>
-                      <td>Nuôi dạy con</td>
-                      <td>435</td>
-                      <td>11/11/2024</td>
-                      <td>
-                        <button type="button" class="btn btn-view m-0 p-0">
-                          <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                        </button>
-                        <button type="button" class="btn btn-edit m-0 p-0">
-                          <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                             style="color: #236844"></i>
-                        </button>
-                        <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                data-bs-target="#confirmDeleteModal">
-                          <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                             style="color: #ef5f5f"></i>
-                        </button>
-                      </td>
-                    </tr>
-
+                    <c:forEach var="category" items="${categories}">
+                      <tr>
+                        <th scope="row">${category.categoryId}</th>
+                        <td>${category.category_name}</td>
+                        <td>${category.update_at}</td>
+                        <td>
+                          <button type="button" class="btn btn-view m-0 p-0">
+                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                          </button>
+                          <a href="edit-category?id=${category.categoryId}">
+                            <button type="button" class="btn btn-edit m-0 p-0">
+                              <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                 style="color: #236844"></i>
+                            </button>
+                          </a>
+                          <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                  data-bs-target="#confirmDeleteModal">
+                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
+                               style="color: #ef5f5f"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </c:forEach>
                     </tbody>
                   </table>
                 </th>
@@ -442,10 +175,10 @@
 
 
 <!--all script files-->
-<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
-<script src="../../js/datatables.min.js"></script>
+<script src="../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/datatables.min.js"></script>
 
 <!--script-->
 <script>
@@ -472,36 +205,6 @@
       ],
     });
 
-    myModalEl.addEventListener('hidden.bs.modal', function (event) {
-      // Reset lại tiêu đề và các giá trị trong modal khi modal đóng
-      $('#catLabel').html("Thêm danh mục");
-      $('#idCat').val("");
-      $('#nameCat').val("");
-      $('#despCat').val("");
-      $('#idGenre').val("");
-      $('#nameGenre').val("");
-
-      // Reset lại trạng thái disabled cho các trường nhập liệu
-      $('#nameCat').prop('disabled', false);
-      $('#despCat').prop('disabled', false);
-      $('#idGenre').prop('disabled', false);
-      $('#nameGenre').prop('disabled', false);
-    });
-
-    $('#orderTable tbody').on('click', '.btn-edit', function () {
-      var data = table.row($(this).parents('tr')).data();
-
-      // Đặt tiêu đề modal và điền dữ liệu vào các trường trong modal
-      $('#catLabel').html("Sửa danh mục");
-      $('#idCat').val(data[0]);
-      $('#nameCat').val(data[1]);
-      $('#despCat').val(data[5]);
-      $('#idGenre').val('01');
-      $('#nameGenre').val('truyện tranh');
-
-      // Mở modal cho phép chỉnh sửa
-      $('#addCategory').modal('show');
-    });
 
     $('#orderTable tbody').on('click', '.btn-view', function () {
       var data = table.row($(this).parents('tr')).data();
