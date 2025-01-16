@@ -107,6 +107,10 @@ public class QUERIES {
         public static final String SELECT_ALL_PROMOTION = "select * from promotions";
         public static final String FIND_BY_PROMOTIONID = "select * from promotions where promotion_id = :id";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
+        public static final String INSERT_PROMOTION =
+                "INSERT INTO promotions (promotion_name, discount, start_date, end_date, is_Active) " +
+                        "VALUES (:promotionName, :discount, :startDate, :endDate, " +
+                        "CASE WHEN :startDate <= NOW() AND :endDate >= NOW() THEN 1 ELSE 0 END)";
 
     }
 
