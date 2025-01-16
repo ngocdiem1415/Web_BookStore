@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 public class QUERIES {
 
     public class USER {
+        public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
         public static final String SELECT_ALL_USER = "select * from users where role = :role";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
