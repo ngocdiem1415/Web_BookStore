@@ -32,7 +32,9 @@ public class HomeController extends HttpServlet {
             request.setAttribute("newBooks", bookList);
 
             // Lấy sản phẩm theo promotionId trong ngày
+
             int promotionId = 25;  // Giả sử bạn đã xác định promotionId
+
             Book bookByPromotion = bookDetailService.getBookByPromotionId(promotionId);
             System.out.println("Book by promotion: " + bookByPromotion);
             request.setAttribute("bookByPromotion", bookByPromotion);
