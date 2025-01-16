@@ -40,7 +40,7 @@ public class SignupController extends HttpServlet {
         }
 
         UserServices userServices = new UserServices();
-        int result = userServices.register(username, gender, dob, phone, email, password);
+        int result = userServices.register(username, gender, dob, phone, email, password, "user");
         if (result == 0) {
             int id = userServices.findByUserName(username).getUid();
 
