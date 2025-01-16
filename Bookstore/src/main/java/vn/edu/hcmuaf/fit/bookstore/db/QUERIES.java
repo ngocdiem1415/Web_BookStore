@@ -92,6 +92,8 @@ public class QUERIES {
         public static final String UPDATE = "UPDATE books SET  category_name = :categoryName,update_at = CURRENT_TIMESTAMP WHERE category_id = :Id";
         public static final String DELETE = "delete from categories where category_id = :id";
         public static final String SELECT_BY_CATEGORY = "select * from categories where categoryId = :categoryId limit :limit";
+        public static final String INSERT_CATEGORY = "INSERT INTO categories (category_name, update_at) VALUES (:categoryName, NOW())";
+        public static final String UPDATE_CATEGORY = "UPDATE categories SET category_name = :categoryName, update_at = NOW() WHERE category_id = :categoryid";
     }
 
     public class IMAGE {
