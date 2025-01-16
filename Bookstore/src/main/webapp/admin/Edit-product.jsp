@@ -1,379 +1,238 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Admin
-  Date: 15/01/2025
-  Time: 5:35 CH
+  User: ngocd
+  Date: 1/15/2025
+  Time: 1:21 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Chỉnh sửa sản phẩm</title>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa sản phẩm</title>
 
-  <!--  all css files-->
-  <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
-  <link rel="stylesheet" href="../../css/Style.css">
-  <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
-  <link rel="stylesheet" href="../css/Dashboard.css">
+    <!--  all css files-->
+    <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
 </head>
 <body>
-<!--curtain menu-->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <a href="Dashboard.html">
-      <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
-    </a>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <nav class="offcanvas-body">
-    <ul class="links">
-      <li class="nav-item">
-        <a href="Dashboard.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-tachometer-alt"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="User-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Order-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-shopping-cart"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Category-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-tags"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Product-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-archive"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Supplier-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="far fa-newspaper"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Slider-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-store"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Discount-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-percent"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Admin-Management.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users-cog"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Admin</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="Settings.html" class="text-dec">
-            <span class="icon" style="font-size: 25px">
-                    <i class="fa-solid fa-gear"></i>
-            </span>
-          <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div<div class="overlay"></div>
+<jsp:include page="Curtain-Menu.jsp"/>
 
-<!--header start-->
-<header id="header">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
-        <div class="header-left">
-          <div class="menu-toggle-btn ">
-            <button class="btn" type="button" style="background-color: #4B908E; color: white"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
-                    class="fas fa-bars" style="color:white"></i> Menu
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-7 col-6 ">
-        <div class="header-right">
-          <!-- profile start -->
-          <div class="profile-box">
-            <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
-                    id="profile"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="profile-info">
-                <div class="info ">
-                  <h5 class="pt-3">Ngọc Diễm</h5>
-                  <div class="image">
-                    <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
-                    <span class="status"></span>
-                  </div>
-                </div>
-              </div>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
-              <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-            </ul>
-          </div>
-          <!-- profile end -->
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<!--header end-->
+<jsp:include page="Header-Dashboard.jsp"/>
 
 <div class="container-add-product mt-5 p-4 bg-light">
-  <div class="breadcrumb-wrapper py-1">
-    <ol class="breadcrumb mx-3">
-      <li class="breadcrumb-item">
-        <a href="../Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
-        <a href="#" class="text-dec" style="color: gray"> / </a>
-        <a href="../Product-Management.html" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
-        <a href="#" class="text-dec" style="color: gray"> / </a>
-        <a href="#" class="text-dec" style="color: #f07c29">Chỉnh sửa sản phẩm</a>
-      </li>
-    </ol>
-  </div>
-  <div class="row d-flex align-items-center justify-content-center">
-    <h2 class="col-9 text-center my-4">Chỉnh sửa sản phẩm</h2>
-    <div class="col-3 d-flex justify-content-center">
-      <button type="submit" class="btn btn-success me-2 my-4" style="background: #4B908E"><i
-              class="fa-solid fa-check"></i> Xong
-      </button>
-      <button type="button" class="btn btn-danger my-4"><i class="fa-solid fa-times"></i> Hủy</button>
+    <div class="breadcrumb-wrapper py-1">
+        <ol class="breadcrumb mx-3">
+            <li class="breadcrumb-item">
+                <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
+                <a href="#" class="text-dec" style="color: gray"> / </a>
+                <a href="product-management" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
+                <a href="#" class="text-dec" style="color: gray"> / </a>
+                <a href="#" class="text-dec" style="color: #f07c29">Chỉnh sửa sản phẩm</a>
+            </li>
+        </ol>
     </div>
-  </div>
-  <form>
-    <div class="row d-flex flex-nowrap m-0 p-0">
-      <!-- Left Column -->
-      <div class="col-7 bg-white rounded-2 shadow mx-4">
-        <!-- Product Details -->
-        <div class="row mb-3">
-          <div class="col-md-12 pt-3">
-            <label for="tenSanPham" class="form-label">Tên sản phẩm</label>
-            <input type="text" class="form-control" id="tenSanPham" placeholder="Nhập tên sản phẩm">
-          </div>
+    <div class="row d-flex align-items-center justify-content-center">
+        <h2 class="col-9 text-center my-4">Chỉnh sửa sản phẩm</h2>
+        <div class="col-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-success me-2 my-4" style="background: #4B908E" id="update" onclick="window.location.href='product-management';">
+                <i class="fa-solid fa-check"></i> Xong
+            </button>
+            <button type="button" class="btn btn-danger my-4"
+                    onclick="window.location.href='product-management';">
+                <i class="fa-solid fa-times"></i> Hủy
+            </button>
         </div>
+    </div>
+    <form id="formSubmit" enctype="multipart/form-data">
+        <div class="row d-flex flex-nowrap m-0 p-0">
+            <!-- Left Column -->
+            <div class="col-7 bg-white rounded-2 shadow mx-4">
+                <!-- Product Details -->
+                <div class="row mb-3">
+                    <div class="col-md-12 pt-3">
+                        <label for="tenSanPham" class="form-label">Tên sản phẩm</label>
+                        <input type="text" class="form-control" id="tenSanPham" value="${book.title}"
+                               placeholder="Nhập tên sản phẩm">
+                    </div>
+                </div>
 
-        <div class="row mb-3">
-          <div class="col-md-5">
-            <label for="Tacgia" class="form-label">Tác giả</label>
-            <input type="text" class="form-control" id="Tacgia" placeholder="">
-          </div>
-          <div class="col-md-5">
-            <label for="NXB" class="form-label">Nhà xuất bản</label>
-            <input type="text" class="form-control" id="NXB" placeholder="">
-          </div>
-          <div class="col-md-2">
-            <label for="NamXB" class="form-label">Năm XB</label>
-            <input type="text" class="form-control" id="NamXB" placeholder="">
-          </div>
-        </div>
+                <div class="row mb-3">
+                    <div class="col-md-5">
+                        <label for="Tacgia" class="form-label">Tác giả</label>
+                        <input type="text" class="form-control" id="Tacgia" value="${book.author}" placeholder="">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NamXB" class="form-label">Năm XB</label>
+                        <input type="text" class="form-control" id="NamXB" value="${book.publishYear}" placeholder="">
+                    </div>
+                </div>
 
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label for="kichThuoc1" class="form-label">Kích thước (cm)</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="height" placeholder="">
-              <input type="text" class="form-control" id="width" placeholder="">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Kích thước (cm)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="height" value="${book.dimensions.split('x')[0]}"
+                                   placeholder="">
+                            <input type="text" class="form-control" id="width" value="${book.dimensions.split('x')[1]}"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="khoiLuong" class="form-label">Khối lượng</label>
+                        <input type="text" class="form-control" id="khoiLuong" value="${book.weight}" placeholder="">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="chatLieu" class="form-label">Số trang</label>
+                        <input type="text" class="form-control" id="chatLieu" value="${book.pageCount}" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="HinhThuc" class="form-label">Hình thức</label>
+                        <input type="text" class="form-control" id="HinhThuc" value="${book.format}" placeholder="">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="moTaSanPham" class="form-label">Mô tả sản phẩm</label>
+                    <textarea class="form-control" id="moTaSanPham" rows="3"
+                              placeholder="">${book.description}</textarea>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="mb-3">
+                    <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
+                    <input type="file" class="form-control" id="anhTrungBay">
+                    <div id="anhTrungBayPreview" class="image-container">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
+                    <input type="file" class="form-control" id="themAnhKhac" multiple>
+                    <div id="themAnhKhacPreview" class="image-container"></div>
+                </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <label for="khoiLuong" class="form-label">Khối lượng</label>
-            <input type="text" class="form-control" id="khoiLuong" placeholder="">
-          </div>
-          <div class="col-md-4">
-            <label for="chatLieu" class="form-label">Số trang</label>
-            <input type="text" class="form-control" id="chatLieu" placeholder="">
-          </div>
+
+            <!-- Right Column -->
+            <div class="col-4 bg-white rounded-2 shadow mx-4">
+                <div class="row mb-3">
+                    <div class="col-md-12 pt-3">
+                        <label for="giaSanPham" class="form-label">Giá</label>
+                        <input type="text" class="form-control" id="giaSanPham" value="${book.salePrice}"
+                               placeholder="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="soLuongSanPham" class="form-label">Số lượng</label>
+                        <input type="text" class="form-control" id="soLuongSanPham" value="${book.stockQuantity}"
+                               placeholder="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="trangThai" class="form-label">Trạng thái</label>
+                        <select class="form-select" id="trangThai">
+                            <option value="1" ${book.status == 1 ? 'selected' : ''}>Hoạt động</option>
+                            <option value="0" ${book.status == 0 ? 'selected' : ''}>Ngừng bán</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="danhMuc" class="form-label">Danh mục</label>
+                        <select class="form-select" id="danhMuc">
+                            <option value="1" ${book.categoryId == 1 ? 'selected' : ''}>Văn học</option>
+                            <option value="2" ${book.categoryId == 2 ? 'selected' : ''}>Kinh tế</option>
+                            <option value="3" ${book.categoryId == 3 ? 'selected' : ''}>Tâm lí học</option>
+                            <option value="4" ${book.categoryId == 4 ? 'selected' : ''}>Sách thiếu nhi</option>
+                            <option value="5" ${book.categoryId == 5 ? 'selected' : ''}>Tiểu sử - hồi kí</option>
+                            <option value="6" ${book.categoryId == 6 ? 'selected' : ''}>Sách giáo khoa</option>
+                            <option value="7" ${book.categoryId == 7 ? 'selected' : ''}>Sách Hướng Nghiệp & Phát Triển
+                                Bản Thân
+                            </option>
+                            <option value="8" ${book.categoryId == 8 ? 'selected' : ''}>Truyện ngắn</option>
+                            <option value="9" ${book.categoryId == 9 ? 'selected' : ''}>Tiểu thuyết</option>
+                            <option value="10" ${book.categoryId == 10 ? 'selected' : ''}>Tâm lí - Giáo dục</option>
+                            <option value="11" ${book.categoryId == 11 ? 'selected' : ''}>Tâm lí - Kỹ năng sống</option>
+                            <option value="12" ${book.categoryId == 12 ? 'selected' : ''}>Sách Tiếng Việt</option>
+                            <option value="13" ${book.categoryId == 13 ? 'selected' : ''}>Sách Kiến Thức - Hội Họa -
+                                Điện Ảnh
+                            </option>
+                            <option value="14" ${book.categoryId == 14 ? 'selected' : ''}>Truyện Tranh</option>
+                            <option value="15" ${book.categoryId == 15 ? 'selected' : ''}>Sách Chuyên Ngành</option>
+                            <option value="16" ${book.categoryId == 16 ? 'selected' : ''}>Nuôi dạy con</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="nhaCungCap" class="form-label">Nhà cung cấp</label>
+                        <input type="text" class="form-control" id="nhaCungCap" value="${book.publisher.p_name}"
+                               placeholder="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="khuyenMai" class="form-label">Khuyến mãi</label>
+                        <select class="form-select" id="khuyenMai" name="khuyenMai">
+                            <option value="1" ${book.promotionId == 1 ? 'selected' : ''}>Giảm 10%</option>
+                            <option value="2" ${book.promotionId == 2 ? 'selected' : ''}>Giảm 20%</option>
+                            <option value="3" ${book.promotionId == 3 ? 'selected' : ''}>Giảm 25%</option>
+                            <option value="4" ${book.promotionId == 4 ? 'selected' : ''}>Giảm 50%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="row mb-3">
-          <div class="col">
-            <label for="HinhThuc" class="form-label">Hình thức</label>
-            <input type="text" class="form-control" id="HinhThuc" placeholder="">
-          </div>
 
-        </div>
-
-        <!-- Description -->
-        <div class="mb-3">
-          <label for="moTaSanPham" class="form-label">Mô tả sản phẩm</label>
-          <textarea class="form-control" id="moTaSanPham" rows="3" placeholder=""></textarea>
-        </div>
-
-        <!-- Image Upload -->
-        <div class="mb-3">
-          <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
-          <input type="file" class="form-control" id="anhTrungBay">
-          <div id="anhTrungBayPreview" class="image-container"></div>
-        </div>
-
-        <div class="mb-3">
-          <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
-          <input type="file" class="form-control" id="themAnhKhac" multiple>
-          <div id="themAnhKhacPreview" class="image-container"></div>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="col-4 bg-white rounded-2 shadow mx-4">
-        <div class="row mb-3">
-          <div class="col-md-12 pt-3">
-            <label for="giaSanPham" class="form-label">Giá</label>
-            <input type="text" class="form-control" id="giaSanPham" placeholder="">
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <label for="soLuongSanPham" class="form-label">Số lượng</label>
-            <input type="text" class="form-control" id="soLuongSanPham" placeholder="">
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <label for="trangThai" class="form-label">Trạng thái</label>
-            <select class="form-select" id="trangThai">
-              <option>Hoạt động</option>
-              <option>Ngừng bán</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <label for="danhMuc" class="form-label">Danh mục</label>
-            <select class="form-select" id="danhMuc">
-              <option>Sách kinh tế</option>
-              <option>Sách kĩ năng</option>
-              <option>Sách thiếu nhi</option>
-              <option>Sách thường thức</option>
-              <option>Sách tuổi teen</option>
-              <option>Sách văn học</option>
-              <option>Khác</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <label for="nhaCungCap" class="form-label">Nhà cung cấp</label>
-            <input type="text" class="form-control" id="nhaCungCap" placeholder="">
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <label for="khuyenMai" class="form-label">Khuyến mãi</label>
-            <select class="form-select" id="khuyenMai">
-              <option>-- Chọn CTKM --</option>
-              <option>Giảm 10%</option>
-              <option>Giảm 20%</option>
-              <option>Giảm 25%</option>
-              <option>Giảm 50%</option>
-              <option>Freeship</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </form>
+    </form>
 </div>
 
 
 <!--all script files-->
-<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
-<script src="../../js/datatables.min.js"></script>
+<script src="../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/datatables.min.js"></script>
 
 <script>
-  document.querySelector('.btn-success').addEventListener('click', function () {
-    window.location.href = "Product-Management.html";
-  });
-  document.querySelector('.btn-danger').addEventListener('click', function () {
-    window.location.href = "Product-Management.html";
-  });
-</script>
+    $('#update').click(function (e) {
+        var formData = new FormData($("#formSubmit")[0]);
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Điền dữ liệu vào các trường
-    document.getElementById("tenSanPham").value = "Méo Mèo Meo - Bí Mật Giao Tiếp Từ Cái Vẫy Đuôi Đến Tiếng Grừ Grừ - Tặng Kèm Thẻ Đeo Mica Cá Nhân Hóa + Bộ Sticker Mèo Dễ Thương";
-    document.getElementById("Tacgia").value = "Lili Chin";
-    document.getElementById("NXB").value = "NXB Thế giới";
-    document.getElementById("NamXB").value = "2024";
-
-    document.getElementById("height").value = "14";
-    document.getElementById("width").value = "17.8";
-
-    document.getElementById("khoiLuong").value = "180";
-    document.getElementById("chatLieu").value = "160";
-    document.getElementById("HinhThuc").value = "Bìa mềm";
-
-    document.getElementById("moTaSanPham").value = `Quyển sách “Kitty Language: An Illustrated Guide to Understanding Your Cat” - quyển sách “đọc vị” loài mèo đình đám trong hội con sen toàn thế giới nay đã chính thức có phiên bản Việt hóa với tên: “Mèo méo meo - Bí mật giao tiếp từ cái vẫy đuôi đến tiếng grừ grừ”. Quyển sách nhận được 4.6 sao trên sàn Amazon và trở thành quyển cẩm nang đặc biệt giúp “sen” kết nối với “quàng thượng” theo một cách vừa khoa học, vừa gần gũi. Những hình minh họa đáng yêu từ tác giả Lili Chin sẽ giúp bạn thấu hiểu “ngôn ngữ” của boss yêu qua mọi bộ phận cơ thể: mặt, mắt, tai, râu và đuôi; và cả cách thay đổi tư thế hay hướng và tốc độ di chuyển.
-Quyển sách được chắp bút và minh họa bởi Lili Chin - nghệ sĩ minh họa nổi tiếng và là “con sen” chính hiệu. Cô đã hợp tác với nhiều tổ chức uy tín như Fear Free Pets, RSPCA, Hiệp hội tư vấn hành vi động vật quốc tế và International Cat Care. Cô cũng là tác giả của quyển sách “Doggie Language” đình đám.`;
-
-    document.getElementById("giaSanPham").value = "120000";
-    document.getElementById("soLuongSanPham").value = "12";
-
-    // Chọn trạng thái
-    document.getElementById("trangThai").value = "Hoạt động";
-
-    // Chọn danh mục
-    document.getElementById("danhMuc").value = "Sách kĩ năng";
-
-    // Điền nhà cung cấp
-    document.getElementById("nhaCungCap").value = "Sài Gòn books";
-
-    // Chọn khuyến mãi
-    document.getElementById("khuyenMai").value = "Giảm 25%";
-
-    // Thay đổi màu chữ thành màu đen
-    document.querySelectorAll("input, textarea").forEach(function (field) {
-      field.style.color = "black";
+        $.ajax({
+            type: "PUT",
+            url: "EditProduct",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert("Cập nhật thành công");
+                window.location.href = "/admin/product-management"; // Điều hướng về trang quản lý sản phẩm
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+                alert("Cập nhật thất bại");
+            }
+        });
     });
-  });
 </script>
 
 </body>
