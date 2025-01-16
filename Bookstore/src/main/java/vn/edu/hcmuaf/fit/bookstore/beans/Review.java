@@ -1,23 +1,31 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Review {
+public class Review implements Serializable {
     private int reviewId;
+    @Expose
     private int invoiceId;
+    @Expose
     private int bookId;
+    @Expose
     private int userId;
-    private LocalDateTime reviewDate;
+    public transient LocalDateTime reviewDate;
+    @Expose
     private int rating;
+    @Expose
     private String comment;
 
     public Review() {}
 
-    public Review(int invoiceId, int bookId, int userId, int rating, String comment) {
+    public Review(int userId, int invoiceId, int bookId, int rating, String comment) {
+        this.userId = userId;
         this.invoiceId = invoiceId;
         this.bookId = bookId;
-        this.userId = userId;
         this.rating = rating;
         this.comment = comment;
         this.reviewDate = LocalDateTime.now();

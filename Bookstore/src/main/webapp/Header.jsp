@@ -103,7 +103,7 @@
     <div class="container ">
         <!-- NAV -->
         <ul class="main-nav nav ">
-            <li class="nav-item "><a href="/home">Trang chủ</a></li>
+            <li class="nav-item "><a href="home">Trang chủ</a></li>
             <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
             <li class="nav-item "><a href="/listBook">Sản phẩm</a></li>
             <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>

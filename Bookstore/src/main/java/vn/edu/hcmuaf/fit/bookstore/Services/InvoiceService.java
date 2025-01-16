@@ -42,43 +42,138 @@ public class InvoiceService {
     }
 
     synchronized public int insert(Invoice invoice) {
-        int status = (int) connect.withExtension(InvoiceDao.class, handle -> handle.insert(invoice));
-        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()) {
-            connect.withExtension(InvoiceDetailDao.class, handle -> handle.insert(invoiceDetail));
-            connect.useExtension(BookDao.class, handle -> {
-                Book book = invoiceDetail.getBook();
-                book.setStockQuantity(book.getStockQuantity() - invoiceDetail.getQuantity());
-                book.setSoldQuantity(book.getSoldQuantity() + invoiceDetail.getQuantity());
-                handle.update(book.getbId());
+        try {
+            if (invoice == null) {
+                throw new IllegalArgumentException("Invoice không được null.");
+            }
+
+            return connect.inTransaction(handle -> {
+                // Thêm hóa đơn
+                handle.attach(InvoiceDao.class).insert(invoice);
+
+                // Thêm các chi tiết hóa đơn và cập nhật sách
+                if (invoice.getListInvoiceDetails() != null) {
+                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
+                        handle.attach(InvoiceDetailDao.class).insert(detail);
+
+                        Book book = detail.getBook();
+                        if (book != null) {
+                            book.setStockQuantity(book.getStockQuantity() - detail.getQuantity());
+                            book.setSoldQuantity(book.getSoldQuantity() + detail.getQuantity());
+                            handle.attach(BookDao.class).update(book);
+                        }
+                    }
+                }
+
+                return 1; // Thành công
             });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi thêm hóa đơn: " + e.getMessage(), e);
         }
-        return status;
     }
 
     synchronized public int cancelInvoice(Invoice invoice) {
-        invoice.setStatus("Canceled");
-        System.out.println(invoice);
-        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
-        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
-            connect.useExtension(BookDao.class, handle -> {
-                Book book = invoiceDetail.getBook();
-                book.setStockQuantity(book.getStockQuantity() + invoiceDetail.getQuantity());
-                book.setSoldQuantity(book.getSoldQuantity() - invoiceDetail.getQuantity());
-                handle.update(book.getbId());
+        try {
+            if (invoice == null) {
+                throw new IllegalArgumentException("Invoice không được null.");
+            }
+
+            if (!"Pending".equalsIgnoreCase(invoice.getStatus())) {
+                throw new IllegalStateException("Chỉ có thể hủy đơn hàng khi trạng thái là Pending.");
+            }
+
+            return connect.inTransaction(handle -> {
+                // Cập nhật trạng thái hóa đơn
+                invoice.setStatus("Cancelled");
+                handle.attach(InvoiceDao.class).update(invoice);
+
+                // Hoàn trả số lượng sách trong kho
+                if (invoice.getListInvoiceDetails() != null) {
+                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
+                        Book book = detail.getBook();
+                        if (book != null) {
+                            book.setStockQuantity(book.getStockQuantity() + detail.getQuantity());
+                            book.setSoldQuantity(book.getSoldQuantity() - detail.getQuantity());
+                            handle.attach(BookDao.class).update(book);
+                        }
+                    }
+                }
+
+                return 1; // Thành công
             });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi hủy hóa đơn: " + e.getMessage(), e);
         }
-        return status;
     }
 
-    public int update(Invoice invoice){
-        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
-        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
-            connect.withExtension(InvoiceDetailDao.class, handle -> handle.update(invoiceDetail));
+    public int update(Invoice invoice) {
+        try {
+            if (invoice == null) {
+                throw new IllegalArgumentException("Invoice không được null.");
+            }
+
+            return connect.inTransaction(handle -> {
+                // Cập nhật thông tin hóa đơn
+                handle.attach(InvoiceDao.class).update(invoice);
+
+                // Cập nhật thông tin các chi tiết hóa đơn
+                if (invoice.getListInvoiceDetails() != null) {
+                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
+                        handle.attach(InvoiceDetailDao.class).update(detail);
+                    }
+                }
+
+                // Cập nhật Payment
+                updatePaymentForInvoice(invoice);
+
+                return 1; // Thành công
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi cập nhật hóa đơn: " + e.getMessage(), e);
         }
-        // Cập nhật Payment
-        updatePaymentForInvoice(invoice);
-        return status;
     }
+
+//    synchronized public int insert(Invoice invoice) {
+//        int status = (int) connect.withExtension(InvoiceDao.class, handle -> handle.insert(invoice));
+//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()) {
+//            connect.withExtension(InvoiceDetailDao.class, handle -> handle.insert(invoiceDetail));
+//            connect.useExtension(BookDao.class, handle -> {
+//                Book book = invoiceDetail.getBook();
+//                book.setStockQuantity(book.getStockQuantity() - invoiceDetail.getQuantity());
+//                book.setSoldQuantity(book.getSoldQuantity() + invoiceDetail.getQuantity());
+//                handle.update(book.getbId());
+//            });
+//        }
+//        return status;
+//    }
+//
+//    synchronized public int cancelInvoice(Invoice invoice) {
+//        invoice.setStatus("Canceled");
+//        System.out.println(invoice);
+//        int status =  connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
+//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
+//            connect.useExtension(BookDao.class, handle -> {
+//                Book book = invoiceDetail.getBook();
+//                book.setStockQuantity(book.getStockQuantity() + invoiceDetail.getQuantity());
+//                book.setSoldQuantity(book.getSoldQuantity() - invoiceDetail.getQuantity());
+//                handle.update(book.getbId());
+//            });
+//        }
+//        return status;
+//    }
+//
+//    public int update(Invoice invoice){
+//        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
+//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
+//            connect.withExtension(InvoiceDetailDao.class, handle -> handle.update(invoiceDetail));
+//        }
+//        // Cập nhật Payment
+//        updatePaymentForInvoice(invoice);
+//        return status;
+//    }
 
     private void updatePaymentForInvoice(Invoice invoice) {
         PaymentService paymentService = PaymentService.getInstance();
