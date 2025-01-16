@@ -47,14 +47,12 @@ public class ListProductsJson extends HttpServlet {
         Map<String, Object> result = new HashMap<>();
         result.put("products", productList);
         result.put("totalItems", totalItems);
+        System.out.println(request.toString());
 
-        Gson gson = GsonUtil.createGsonWithAdapters();
-        String json = gson.toJson(result);
-        try (PrintWriter writer = response.getWriter()) {
-            response.getWriter().write(json);
-        } catch (Exception e) {
-            System.err.println("Lỗi khi ghi JSON: " + e.getMessage());
-        }
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(new GsonUtil().toJSon(result));
+        printWriter.flush();
+        printWriter.close();
     }
 
     @Override
