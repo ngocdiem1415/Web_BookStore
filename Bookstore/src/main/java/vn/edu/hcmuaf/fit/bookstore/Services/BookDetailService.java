@@ -124,4 +124,13 @@ public class BookDetailService {
         connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
         return findById(product.getbId());
     }
+
+    public List<Book> listByCategory(String category, int limit, int offset) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category, limit, offset));
+        for(Book book: books) {
+            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+            book.setImage(image);
+        }
+        return books;
+    }
 }
