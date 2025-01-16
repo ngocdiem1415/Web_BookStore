@@ -92,16 +92,6 @@ public class BookDetailService {
         List<Book> products = new ArrayList<Book>();
         List<Book> temp;
 
-    public List<Book> listByCategory(String category_name, int limit, int offset) {
-        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
-        for(Book book: books) {
-            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
-            book.setImage(image);
-        }
-        return books;
-    }
-
-
         if ("book_update_DESC".equals(orderBy)) {
             temp = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateDESC(categoryId, publisherId, find, from, to, limit, offset));
         } else if ("book_update_ASC".equals(orderBy)) {
@@ -126,6 +116,15 @@ public class BookDetailService {
                 .collect(Collectors.toList());
 
         return products;
+    }
+
+    public List<Book> listByCategory(String category_name, int limit, int offset) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
+        for(Book book: books) {
+            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+            book.setImage(image);
+        }
+        return books;
     }
 
     public int totalBooks() {

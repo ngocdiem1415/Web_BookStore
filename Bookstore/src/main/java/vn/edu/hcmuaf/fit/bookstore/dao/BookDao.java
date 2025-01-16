@@ -41,13 +41,13 @@ public interface BookDao {
                         @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
                               @Bind("limit") int limit, @Bind("offset") int offset);
     @SqlUpdate(QUERIES.BOOK.DELETE)
-
+    boolean delete(@Bind("id") int id);
 //     void delete(@BindBean Book book);
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     void update(@BindBean Book book);
   
-    boolean delete(@Bind("id") int id);
+
 
     @SqlQuery(QUERIES.BOOK.TOTALBOOK)
     int totalBooks();
