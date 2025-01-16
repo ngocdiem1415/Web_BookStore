@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
-import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
@@ -16,7 +15,7 @@ public class UserServices {
 
 
     // Dang ki
-    public int register(String username, String gender, String dob, String phone, String email, String password) {
+    public int register(String username, String gender, String dob, String phone, String email, String password, String role) {
         return conn.withExtension(UserDao.class, handle -> {
             User user = null;
             if (handle.findByName(username) != null) {
@@ -26,7 +25,7 @@ public class UserServices {
                 return 2;
             }
             String hashedPassword = hashPassword(password);
-            handle.register(username, gender, dob, phone, email, hashedPassword);
+            handle.register(username, gender, dob, phone, email, hashedPassword, role);
             return 0;
         });
     }
@@ -73,6 +72,10 @@ public class UserServices {
         });
     }
 
+    public User findById(int id) {
+        return conn.withExtension(UserDao.class, handle -> handle.findById(id));
+    }
+
 
     // ma hoa mat khau
     private String hashPassword(String password) {
@@ -97,10 +100,26 @@ public class UserServices {
         return password;
     }
 
+    public List<User> list(String role) {
+        return conn.withExtension(UserDao.class, handle -> handle.list(role));
+    }
+
 
     public static void main(String[] args) {
         UserServices userServices = new UserServices();
         System.out.println(userServices.hashPassword("123"));
+    }
+
+    public void updateUserRole(String username, String gender, String dob, String phone, String email, int id) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.updateUserRole(username, gender, dob, phone, email, id);
+        });
+    }
+
+    public void changePassword(int uid, String password) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.updatePassword(uid, hashPassword(password));
+        });
     }
 
 
