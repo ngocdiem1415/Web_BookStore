@@ -90,14 +90,6 @@ public class BookDetailService {
         return books;
     }
 
-    public List<Book> listByCategory(String category_name, int limit, int offset) {
-        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
-        for(Book book: books) {
-            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
-            book.setImage(image);
-        }
-        return books;
-    }
 
     public void delete(int id) {
         try {

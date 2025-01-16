@@ -289,7 +289,7 @@
         function fetchProducts(page = 1, maxItems = 20) {
             console.log(page + " " + maxItems)
             $.ajax({
-                url: '/listBooks?page=' + page + '&maxItems=' + maxItems,  // Địa chỉ URL của API để lấy sản phẩm
+                url: '/Bookstore/listBooks?page=' + page + '&maxItems=' + maxItems,  // Địa chỉ URL của API để lấy sản phẩm
                 method: 'GET',
                 dataType: 'json',
                 success: function (json) {
@@ -302,7 +302,7 @@
                     // Tạo danh sách sản phẩm
                     obj.forEach(function (val) {
                         data += '<div class="grid-md-2-4">' +
-                            '<a href="/book-detail?id=' + val.bId + '">' +
+                            '<a href="book-detail?id=' + val.bId + '">' +
                             '<div class="home-product-item">' +
                             // Hình ảnh sản phẩm
                             '<div class="home-product-item__img" ';
