@@ -119,7 +119,6 @@ public class QUERIES {
         public static final String SELECT_ALL_REVIEW = "select * from reviews";
         public static final String FIND_BY_REVIEWID = "select * from reviews where bookId = :bookId";
         public static final String DELETE = "delete from reviews where review_id = :id";
-
         public static final String INSERT = "INSERT INTO reviews (invoice_id, book_id, user_id, review_date, rating, comment) " +
                 "VALUES (:invoiceId, :bookId, :userId, :reviewDate, :rating, :comment";
 
