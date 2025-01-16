@@ -33,7 +33,7 @@ public class HomeController extends HttpServlet {
 
             // Lấy sản phẩm theo promotionId trong ngày
 
-            int promotionId =3;  // Giả sử bạn đã xác định promotionId
+            int promotionId =1;  // Giả sử bạn đã xác định promotionId
 
             Book bookByPromotion = bookDetailService.getBookByPromotionId(promotionId);
             System.out.println("Book by promotion: " + bookByPromotion);
