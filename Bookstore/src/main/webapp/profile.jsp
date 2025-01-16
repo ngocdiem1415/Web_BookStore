@@ -174,7 +174,7 @@
                                 <!--upload ảnh-->
                                 <div class="container-profile-content-inner__right-main-content-upload">
                                     <div class="right-main-content-upload-header">
-                                        <div class="right-main-content-upload-header-focus" role="header">
+                                        <div class="right-main-content-upload-header-focus" >
                                             <div class="right-main-content-upload-header-focus-image">
                                                 <img src="admin/img/Sample_User_Icon.png" id="previewImage"/>
                                             </div>
