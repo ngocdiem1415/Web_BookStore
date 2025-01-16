@@ -26,11 +26,11 @@
 
         <button type="submit" class="btn btn-primary">Xác Nhận</button>
 
-        <% if (request.getAttribute("baoloi") != null) { %>
-        <div class="alert alert-danger mt-3">
-            <%= request.getAttribute("baoloi") %>
-        </div>
-        <% } %>
+<%--        <% if (request.getAttribute("baoloi") != null) { %>--%>
+<%--        <div class="alert alert-danger mt-3">--%>
+<%--            <%= request.getAttribute("baoloi") %>--%>
+<%--        </div>--%>
+<%--        <% } %>--%>
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
