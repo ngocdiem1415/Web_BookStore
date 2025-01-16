@@ -31,9 +31,9 @@
   <div class="breadcrumb-wrapper py-1">
     <ol class="breadcrumb mx-3">
       <li class="breadcrumb-item">
-        <a href="/admin/dashboard" class="text-dec" style="color: gray">Dashboard</a>
+        <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
         <a href="#" class="text-dec" style="color: gray"> / </a>
-        <a href="/admin/product-management" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
+        <a href="product-management" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
         <a href="#" class="text-dec" style="color: gray"> / </a>
         <a href="#" class="text-dec" style="color: #f07c29">Thêm sản phẩm</a>
       </li>
@@ -47,7 +47,7 @@
           <i class="fa-solid fa-check"></i> Xong
         </button>
         <button type="button" class="btn btn-danger my-4"
-                onclick="window.location.href='/admin/product-management';">
+                onclick="window.location.href='product-management';">
           <i class="fa-solid fa-times"></i> Hủy
         </button>
       </div>
@@ -216,13 +216,13 @@
 
     $.ajax({
       type: "PUT",
-      url: "/admin/EditProduct",
+      url: "EditProduct",
       data: formData,
       processData: false,
       contentType: false,
       success: function (data) {
         alert("Thêm thành công");
-        window.location.href = "/admin/product-management"; // Điều hướng về trang quản lý sản phẩm
+        window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
       },
       error: function (e) {
         console.log("ERROR : ", e);

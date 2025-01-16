@@ -30,9 +30,9 @@
     <div class="breadcrumb-wrapper py-1">
         <ol class="breadcrumb mx-3">
             <li class="breadcrumb-item">
-                <a href="/admin/dashboard" class="text-dec" style="color: gray">Dashboard</a>
+                <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
                 <a href="#" class="text-dec" style="color: gray"> / </a>
-                <a href="/admin/product-management" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
+                <a href="product-management" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
                 <a href="#" class="text-dec" style="color: gray"> / </a>
                 <a href="#" class="text-dec" style="color: #f07c29">Chỉnh sửa sản phẩm</a>
             </li>
@@ -219,7 +219,7 @@
 
         $.ajax({
             type: "PUT",
-            url: "/admin/EditProduct",
+            url: "EditProduct",
             data: formData,
             processData: false,
             contentType: false,
