@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "ProductAjaxController", value = "/ProductAjaxController")
+@WebServlet(name = "ProductAjaxController", value = "/admin/ProductAjaxController")
 public class ProductAjaxController extends HttpServlet {
     BookDetailService bookDetailService ;
 
