@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="Category-Management.html" class="text-dec">
+                <a href="category" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-tags"></i>
             </span>
@@ -58,7 +58,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="Discount-Management.html" class="text-dec">
+                <a href="promotion" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-percent"></i>
             </span>

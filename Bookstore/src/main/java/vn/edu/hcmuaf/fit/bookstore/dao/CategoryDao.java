@@ -18,9 +18,12 @@ public interface CategoryDao {
     @SqlQuery(QUERIES.CATEGORY.FIND_BY_CATEGORYID)
     Category findById(@Bind("id") int id);
 
-    @SqlUpdate(QUERIES.CATEGORY.UPDATE)
-    void update(@Bind("id") int id);
+    @SqlUpdate(QUERIES.CATEGORY.UPDATE_CATEGORY)
+    void update(@Bind("categoryid") int categoryid, @Bind("categoryName") String categoryName);
 
     @SqlUpdate(QUERIES.CATEGORY.DELETE)
     void delete(@Bind("id") int id);
+
+    @SqlUpdate(QUERIES.CATEGORY.INSERT_CATEGORY)
+    void insert(@Bind("categoryName") String categoryName);
 }
