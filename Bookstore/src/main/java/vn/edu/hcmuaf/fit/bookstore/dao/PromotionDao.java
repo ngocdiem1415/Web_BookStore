@@ -24,4 +24,6 @@ public interface PromotionDao {
     @SqlUpdate(QUERIES.PROMOTION.INSERT_PROMOTION)
     void insertpromotion(@Bind("promotionName") String promotionName, @Bind("discount") double discount, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
 
+    @SqlUpdate(QUERIES.PROMOTION.UPDATE_PROMOTIOn)
+    void updatePromotion(@Bind("promotionId") int promotionId, @Bind("promotionName") String promotionName, @Bind("discount") double discount, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
 }
