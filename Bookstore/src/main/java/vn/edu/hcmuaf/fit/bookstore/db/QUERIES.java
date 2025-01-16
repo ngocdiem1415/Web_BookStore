@@ -112,6 +112,9 @@ public class QUERIES {
                         "VALUES (:promotionName, :discount, :startDate, :endDate, " +
                         "CASE WHEN :startDate <= NOW() AND :endDate >= NOW() THEN 1 ELSE 0 END)";
 
+        public static final String UPDATE_PROMOTIOn = "UPDATE promotions SET promotion_name = :promotionName, discount = :discount, start_date = :startDate, end_date = :endDate, is_Active = " +
+                "CASE WHEN :startDate <= NOW() AND :endDate >= NOW() THEN 1 ELSE 0 END WHERE promotion_id = :promotionId";
+
     }
 
     public class PUBLISHER {

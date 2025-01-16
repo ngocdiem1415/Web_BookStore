@@ -99,10 +99,13 @@
                                                 <td>${promotion.endDate}</td>
                                                 <td>1</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-edit m-0 p-0">
-                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                                           style="color: #236844"></i>
-                                                    </button>
+                                                    <a href="edit-promotion?id=${promotion.promotionId}">
+                                                        <button type="button" class="btn btn-edit m-0 p-0">
+                                                            <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                               style="color: #236844"></i>
+                                                        </button>
+                                                    </a>
+
                                                     <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
                                                             data-bs-target="#confirmDeleteModal">
                                                         <i class="fa-regular fa-trash-can fa-lg mx-2 "
