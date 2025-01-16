@@ -17,7 +17,7 @@ public class ProcessCheckoutController extends HttpServlet {
             // Lưu danh sách sản phẩm vào session
             HttpSession session = request.getSession();
             session.setAttribute("selectedProducts", selectedProductsJson);
-
+            System.out.println("selectedProductsJson: " + selectedProductsJson);
             // Chuyển hướng tới trang thanh toán (checkout.jsp)
             response.sendRedirect("checkout.jsp");
         } else {

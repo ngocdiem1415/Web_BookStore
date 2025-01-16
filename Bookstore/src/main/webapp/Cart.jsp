@@ -57,7 +57,7 @@
         <!--cart items-->
         <section class="cart-items bg-white border-top border rounded-2">
             <c:if test="${empty cart.listBook}">
-                <p>Chưa có sản phẩm nào trong giỏ hàng</p>
+                <p class="d-flex justify-content-center pt-3">Chưa có sản phẩm nào trong giỏ hàng</p>
             </c:if>
             <c:forEach var="entry" items="${cart.listBook}">
                 <div class="product row m-2 py-3 border-bottom" data-product-id="${entry.value.book.bId}">
@@ -86,7 +86,7 @@
                         <!--giá gốc-->
                         <c:if test="${entry.value.book.promotionId == 0}">
                             <div class="d-flex align-items-center justify-content-center text-center small">
-                                <span class="original-price"><f:formatNumber value="${entry.value.book.originalPrice}"/>
+                                <span class="unit-price"><f:formatNumber value="${entry.value.book.originalPrice}"/>
                                 <i class="fa-solid fa-dong-sign fa-xs"></i></span>
                             </div>
                         </c:if>
@@ -217,7 +217,8 @@
                     if (totalPriceElement) {
                         const priceText = totalPriceElement.textContent.trim();
                         // Loại bỏ dấu phẩy hoặc ký tự không phải số và chuyển sang dạng số
-                        const price = parseFloat(priceText.replace(/,/g, '').replace(/\s/g, ''));
+                        // const price = parseFloat(priceText.replace(/,/g, '').replace(/\s/g, ''));
+                        const price = parseInt(priceText.replace(/[.,\s]/g, ''), 10);
                         if (!isNaN(price)) {
                             totalSelectedPrice += price;
                         }
@@ -307,12 +308,12 @@
                         const productImg = productRow.find('.img-thumbnail').attr('src');
                         const productName = productRow.find('.product-name').text().trim();
                         const quantity = parseInt(productRow.find('.quantity').val().trim());
-                        const unitPriceText = productRow.find('.unit-price').text().trim();
-                        const totalPriceText = productRow.find('.total-price').text().trim();
-                        const unitPrice = parseFloat(unitPriceText.replace(/,/g, '').replace(/\s/g, ''));
-                        const totalPrice = parseFloat(totalPriceText.replace(/,/g, '').replace(/\s/g, ''));
+                        const unitPriceText = productRow.find('.unit-price').text();
+                        const totalPriceText = productRow.find('.total-price').text();
+                        const unitPrice = parseFloat(unitPriceText.replace(/[.,\s]/g, ''), 10);
+                        const totalPrice = parseFloat(totalPriceText.replace(/[.,\s]/g, ''), 10);
 
-                        if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {
+                        // if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {
                             selectedProducts.push({
                                 productId: productId,
                                 productImg: productImg,
@@ -321,17 +322,18 @@
                                 quantity: quantity,
                                 totalPrice: totalPrice
                             });
-                        }
+                        // }
                     }
                 }
             });
+            console.log(selectedProducts);
 
             if (selectedProducts.length > 0) {
                 // Mã hóa danh sách sản phẩm thành JSON
                 const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
 
                 // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
-                window.location.href = '/process-checkout?selectedProducts=' + encodedData;
+                window.location.href = 'process-checkout?selectedProducts=' + encodedData;
                 // $.ajax({
                 //     url: "/process-checkout", // Đường dẫn tới Servlet
                 //     method: "POST",
