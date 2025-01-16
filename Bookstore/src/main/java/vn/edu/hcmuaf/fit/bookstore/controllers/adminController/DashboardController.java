@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "Dashboard", value = "/dashboard")
+@WebServlet(name = "Dashboard", value = "/admin/dashboard")
 public class DashboardController extends HttpServlet {
 
     @Override

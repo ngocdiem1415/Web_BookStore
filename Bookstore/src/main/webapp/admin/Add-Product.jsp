@@ -47,7 +47,7 @@
           <i class="fa-solid fa-check"></i> Xong
         </button>
         <button type="button" class="btn btn-danger my-4"
-                onclick="window.location.href='/admin/product-management';">
+                onclick="window.location.href='product-management';">
           <i class="fa-solid fa-times"></i> Hủy
         </button>
       </div>
@@ -222,7 +222,7 @@
       contentType: false,
       success: function (data) {
         alert("Thêm thành công");
-        window.location.href = "/admin/product-management"; // Điều hướng về trang quản lý sản phẩm
+        window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
       },
       error: function (e) {
         console.log("ERROR : ", e);
