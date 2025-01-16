@@ -8,7 +8,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Book;
 
 import java.io.IOException;
 
-@WebServlet(name = "EditProductController", value = "/admin/EditProductController")
+@WebServlet(name = "EditProductController", value = "/EditProductController")
 public class EditProductController extends HttpServlet {
     BookDetailService bookDetailService;
 

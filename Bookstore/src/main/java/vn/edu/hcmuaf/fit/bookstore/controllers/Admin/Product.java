@@ -14,7 +14,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Promotion;
 
 import java.io.IOException;
 
-@WebServlet(name = "EditProduct", value = "/admin/EditProduct")
+@WebServlet(name = "EditProduct", value = "/EditProduct")
 public class Product extends HttpServlet {
     private BookDetailService bookService;
     private CategoryService categoryService;
