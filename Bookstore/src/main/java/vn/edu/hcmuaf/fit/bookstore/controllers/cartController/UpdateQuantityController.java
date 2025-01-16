@@ -7,7 +7,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Cart.Cart;
 
 import java.io.IOException;
 
-@WebServlet(name = "UpdateQUantityController", value = "/update-quantity")
+@WebServlet(name = "UpdateQuantityController", value = "/update-quantity")
 public class UpdateQuantityController extends HttpServlet {
 
     @Override
@@ -22,7 +22,7 @@ public class UpdateQuantityController extends HttpServlet {
             session.setAttribute("cart", cart);
         }
 
-        response.sendRedirect("/cart");
+        response.sendRedirect("/Bookstore/cart");
     }
 
     @Override

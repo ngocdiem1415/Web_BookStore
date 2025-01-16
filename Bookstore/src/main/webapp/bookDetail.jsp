@@ -160,13 +160,13 @@
 
                     <!-- Mua ngay -->
                     <c:if test="${not empty userSession}">
-                        <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: red">
+                        <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
+                           style="background-color: red" onclick="addToCart()">
                             Mua ngay </a>
                     </c:if>
                     <c:if test="${empty userSession}">
-                        <a href="Cart.html" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: red; pointer-events: none;">
+                        <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
+                           style="background-color: red; pointer-events: none;" onclick="addToCart()">
                             Mua ngay </a>
                     </c:if>
 
@@ -342,7 +342,6 @@
                                 <img src="img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
                                      style="width: 50px; height: 50px;">
                                 <div>
-                                    <div class="comment-name" style="font-weight: bold">Như</div>
                                     <div class="comment-date">${review.reviewDate}</div>
                                 </div>
                             </div>
@@ -496,7 +495,7 @@
         const cartNotifications = document.getElementById('cart-notification-success');
         const cartNotificatione = document.getElementById('cart-notification-error');
         $.ajax({
-            url: '/add-cart?id=' + id + '&quantity=' + quantity,
+            url: 'add-cart?id=' + id + '&quantity=' + quantity,
             type: 'GET',
             success: function (data) {
                 cartNotifications.style.display = 'block';
