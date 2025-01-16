@@ -68,7 +68,7 @@
                     <a href="#" id="profile-link"
                        class="stardust-dropdown__item-body__content-item stardust-dropdown__item-body__content-item-active"><span
                             class="stardust-dropdown__item-body__content-item--text">Hồ sơ</span></a>
-                    <a href="change-password.jsp" id="password-change-link"
+                    <a href="change-password" id="password-change-link"
                        class="stardust-dropdown__item-body__content-item "><span
                             class="stardust-dropdown__item-body__content-item--text">Đổi Lại Mật Khẩu</span></a>
                     <a href="" id="privacy-link" class="stardust-dropdown__item-body__content-item"><span
@@ -105,7 +105,7 @@
         <!--Dang Xuat-->
         <div class="stardust-dropdown">
             <div class="stardust-dropdown__item-header">
-                <a href="Home.jsp" class="stardust-dropdown__item-header-menu">
+                <a href="logout" class="stardust-dropdown__item-header-menu">
                     <div class="stardust-dropdown__item-header-account-img">
                         <i class="fa-solid fa-circle-xmark"></i>
                     </div>
@@ -120,7 +120,7 @@
         <c:if test="${userSession.getRole() == 'admin'}">
             <div class="stardust-dropdown">
                 <div class="stardust-dropdown__item-header">
-                    <a href="admin.jsp" class="stardust-dropdown__item-header-menu">
+                    <a href="admin/dashboard" class="stardust-dropdown__item-header-menu">
                         <div class="stardust-dropdown__item-header-account-img">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </div>
