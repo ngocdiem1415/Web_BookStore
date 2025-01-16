@@ -3,17 +3,16 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 public class QUERIES {
 
     public class USER {
-        public static final String SELECT_ALL_USER = "select * from users";
+        public static final String SELECT_ALL_USER = "select * from users where role = :role";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
         public static final String FIND_BY_USERNAME = "select * from users where username = :username";
-        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , 'user')";
+        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , :role)";
         public static final String FIND_BY_EMAIL = "select * from users where email = :email";
         public static final String CHANGE_PASSWORD = "update users set password = :password where uid = :uid";
         public static final String DELETE = "delete from users where uid = :id";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
-
-
+        public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
     }
 
 
@@ -77,6 +76,12 @@ public class QUERIES {
                 "AND original_price <= :secondPrice " +
                 "ORDER BY original_price ASC " +
                 "LIMIT :limit OFFSET :offset";
+
+        public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
+        public static final String SELECT_BOOK_PROMOTION_IN_DAY =
+                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE NOW() >= promotions.start_date and NOW() <= promotions.end_date and promotions.promotion_id = :id";
+        public static final String SELECT_BOOK_SOLDS = "select * from books order by sold_quantity desc limit :limit offset :offset";
+        public static final String SELECT_BOOK_BY_CATEGORY = "SELECT books.* FROM books JOIN categories on books.category_id = categories.category_id WHERE categories.category_name = :category_name limit :limit offset :offset";
     }
 
 
@@ -86,7 +91,7 @@ public class QUERIES {
         public static final String FIND_BY_CATEGORYID = "select * from categories where category_id = :id";
         public static final String UPDATE = "UPDATE books SET  category_name = :categoryName,update_at = CURRENT_TIMESTAMP WHERE category_id = :Id";
         public static final String DELETE = "delete from categories where category_id = :id";
-
+        public static final String SELECT_BY_CATEGORY = "select * from categories where categoryId = :categoryId limit :limit";
     }
 
     public class IMAGE {
@@ -116,7 +121,6 @@ public class QUERIES {
         public static final String SELECT_ALL_REVIEW = "select * from reviews";
         public static final String FIND_BY_REVIEWID = "select * from reviews where bookId = :bookId";
         public static final String DELETE = "delete from reviews where review_id = :id";
-
         public static final String INSERT = "INSERT INTO reviews (invoice_id, book_id, user_id, review_date, rating, comment) " +
                 "VALUES (:invoiceId, :bookId, :userId, :reviewDate, :rating, :comment";
 

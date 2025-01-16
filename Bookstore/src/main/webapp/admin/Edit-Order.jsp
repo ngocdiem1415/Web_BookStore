@@ -1,0 +1,356 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 15/01/2025
+  Time: 5:35 CH
+  To change this template use File | Settings | File Templates.
+--%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chỉnh sửa đơn hàng</title>
+
+  <!--  all css files-->
+  <link rel="stylesheet" href="../../css/boostrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/dataTable/datatables.min.css">
+  <link rel="stylesheet" href="../../css/Style.css">
+  <link rel="stylesheet" href="../../fonts/fontawesome-free-6.6.0-web/css/all.css">
+  <link rel="stylesheet" href="../css/Dashboard.css">
+  <link rel="stylesheet" href="../css/Edit-css.css">
+
+</head>
+<body>
+
+<!--curtain menu-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <a href="Dashboard.html">
+      <img src="../../img/logo/new_logo.png" height="200px" width="200px"/>
+    </a>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <nav class="offcanvas-body">
+    <ul class="links">
+      <li class="nav-item">
+        <a href="Dashboard.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tachometer-alt"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="User-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Order-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí đơn hàng</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Category-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-tags"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí danh mục</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Product-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-archive"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí sản phẩm</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Supplier-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="far fa-newspaper"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí nhà cung cấp</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Slider-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-store"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí slider</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Discount-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-percent"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Quản lí khuyến mãi</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Admin-Management.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users-cog"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Admin</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="Settings.html" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                    <i class="fa-solid fa-gear"></i>
+            </span>
+          <span class="text" style="color: black; font-weight: bold">Cài đặt chung</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div<div class="overlay"></div>
+
+<!--header start-->
+<header id="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-6 d-flex align-items-center">
+        <div class="header-left">
+          <div class="menu-toggle-btn ">
+            <button class="btn" type="button" style="background-color: #4B908E; color: white"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
+                    class="fas fa-bars" style="color:white"></i> Menu
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-7 col-6 ">
+        <div class="header-right">
+          <!-- profile start -->
+          <div class="profile-box">
+            <button class="dropdown-toggle bg-transparent border-0  d-flex align-items-center" type="button"
+                    id="profile"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="profile-info">
+                <div class="info ">
+                  <h5 class="pt-3">Ngọc Diễm</h5>
+                  <div class="image">
+                    <img src="../img/Sample_User_Icon.png" style="width: 40px; height: 40px">
+                    <span class="status"></span>
+                  </div>
+                </div>
+              </div>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="../../views/Home.html">Trang bán hàng</a></li>
+              <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+            </ul>
+          </div>
+          <!-- profile end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!--header end-->
+<!--main content-->
+<section class="section">
+  <div class="container-fluid mb-5">
+    <div class="title-wrapper pt-3">
+      <div class="d-flex align-items-center">
+        <!-- end col -->
+        <div class="breadcrumb-wrapper">
+          <ol class="breadcrumb mx-4">
+            <li class="breadcrumb-item">
+              <a href="Dashboard.html" class="text-dec" style="color: gray">Dashboard</a>
+              <a href="#" class="text-dec" style="color: gray"> / </a>
+              <a href="Order-Management.html" class="text-dec" style="color: gray">Quản lí đơn hàng</a>
+              <a href="#" class="text-dec" style="color: gray"> / </a>
+              <a href="#" class="text-dec" style="color: #f07c29">Chỉnh sửa</a>
+            </li>
+          </ol>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <div class="container-fluid main-content br-gray rounded">
+      <div class="row ">
+        <div class="mt-4 ">
+          <div class="ID-Order">
+            <h5> MÃ ĐƠN HÀNG: 24111365HC4H16</h5>
+            <span
+                    class="mx-2">|</span><span class="f4gWe1" aria-role="region" aria-live="polite"
+                                               tabindex="0">Giao hàng thành công (11:00 am 22/11/2024)</span>
+          </div>
+        </div>
+        <div class="card-body mt-4">
+          <div class="row">
+            <div class="col-6">
+              <div class="col-lg-12">
+                <form>
+                  <div class="mb-4 ml-4">
+                    <label for="store-name" class="form-label mx-2 ">ID khách hàng:</label>
+                    <input type="text" id="store-name" class="form-control" value="1" readonly=""
+                           fdprocessedid="z9i7i9">
+                  </div>
+                </form>
+              </div>
+              <div class="col-12">
+                <form>
+                  <div class="mb-4 ml-4">
+                    <label for="owner-name" class="form-label mx-2"> Tên người mua:</label>
+                    <input type="text" id="owner-name" class="form-control"
+                           value="Nguyễn Văn A">
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg-12">
+                <div class="mb-4 ml-4">
+                  <label for="schedule-number" class="form-label mx-2">Số điện thoại:</label>
+                  <input type="number" id="schedule-number" name="schedule-number"
+                         class="form-control"
+                         value="0378221321">
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <form>
+                  <div class="mb-4 ml-4">
+                    <label for="schedule-email" class="form-label mx-2">Địa chỉ:</label>
+                    <input type="email" id="schedule-email" name="schedule-email"
+                           class="form-control"
+                           value="31 đường số 4, Linh Xuân, Thủ Đức, Hồ Chí Minh">
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg-12">
+                <div class="mb-4 ml-4">
+                  <label for="address" class="form-label mx-2">Ghi chú:</label>
+                  <textarea class="form-control bg-light-subtle" id="address" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-5 ">
+              <form class="payment mr-4">
+                <div class="mb-3 ">
+                  <label for="owner-name" class="form-label mx-2"> Hình thức thanh toán:</label>
+                  <select class="form-select" fdprocessedid="y0ulvo">
+                    <option value="o" selected="">Chuyển khoản</option>
+                    <option value="3">Tiền mặt</option>
+                  </select>
+                </div>
+              </form>
+              <form class="active">
+                <div class="mb-3 mr-4">
+                  <label for="owner-name" class="form-label mx-2"> Trạng thái:</label>
+                  <select class="form-select" fdprocessedid="y0ulvo">
+                    <option value="o" selected="">Đang xử lý</option>
+                    <option value="1">Đang vận chuyển</option>
+                    <option value="2">Đã nhận được hàng</option>
+                    <option value="3">Hủy đơn hàng</option>
+                  </select>
+                </div>
+              </form>
+              <div class="row pb-3">
+                <div class="col-6 fw-bold">Tổng tiền</div>
+                <div class="col-6">209.000 đ</div>
+              </div>
+              <div class="row pb-3">
+                <div class="col-6 fw-bold">Phí vận chuyển</div>
+                <div class="col-6">20.000 đ</div>
+              </div>
+              <div class="row pb-3">
+                <div class="col-6 fw-bold">Thành tiền</div>
+                <div class="col-6 ">229.000 đ</div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list-detail mt-4">
+        <div class="container-fluid">
+          <table class="table" id="orderTable">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th>Ảnh</th>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+
+            </tr>
+            </thead>
+            <tbody style="font-weight: lighter">
+            <tr>
+              <th scope="row">1</th>
+              <td><img
+                      src="../../img/product/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru/MeoMeoMeoBiMatGiaoTiepTuCaiVayDuoiDenTiengGruGru_1.webp"
+                      height="80px" width="70px"/></td>
+              <td>Mèo méo meo - Bí mật giao tiếp từ cái vẫy đuôi đến tiếng grừ grừ</td>
+              <td>129.000 đ</td>
+              <td>
+                <input type="number" class="form-control" value="1" fdprocessedid="pc90o2">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td><img src="../../img/product/NoiLuonChoNoVuong_1.jpg" height="80" width="70"/></td>
+              <td>Nói luôn cho nó vuông</td>
+              <td>80.000 đ</td>
+              <td>
+                <input type="number" class="form-control" value="1" fdprocessedid="pc90o2">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="button d-flex justify-content-center">
+        <div id="cancel" class="m-4">
+          <button type="button" class="btn btn-success my-2 px-4">Lưu</button>
+        </div>
+        <div id="saveChanges" class="mt-4 ">
+          <button type="button" class="btn btn-danger  my-2 4">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--body-->
+
+
+<!--header end-->
+<!--all script files-->
+<script src="../../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script src="../../js/datatables.min.js"></script>
+
+<script>
+  document.getElementById("cancel").addEventListener("click", function () {
+    const confirmCancel = confirm("Bạn có chắc chắn muốn hủy bỏ thay đổi ?");
+    if(confirmCancel){
+      window.location.href = "Order-Management.html";
+    }
+  });
+
+  document.getElementById("saveChanges").addEventListener("click", function () {
+    const confirmSave = confirm("Bạn có chắc chắn muốn lưu thay đổi ?");
+    if(confirmSave){
+      window.location.href = "Order-Management.html";
+    }
+  });
+</script>
+</body>
+</html>

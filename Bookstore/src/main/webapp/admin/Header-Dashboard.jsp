@@ -39,7 +39,7 @@
               </div>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="home">Trang bán hàng</a></li>
+              <li><a class="dropdown-item" href="Bookstore/home">Trang bán hàng</a></li>
               <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
             </ul>
           </div>

@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.bookstore.dao;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
@@ -41,15 +42,30 @@ public interface BookDao {
                               @Bind("limit") int limit, @Bind("offset") int offset);
     @SqlUpdate(QUERIES.BOOK.DELETE)
     boolean delete(@Bind("id") int id);
+//     void delete(@BindBean Book book);
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
-    void update(@Bind("id") int id);
+    void update(@BindBean Book book);
+  
+
 
     @SqlQuery(QUERIES.BOOK.TOTALBOOK)
     int totalBooks();
 
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK)
     List<Book> listAllProduct();
+
+    @SqlQuery(QUERIES.BOOK.SELECT_RELATED_BOOKS)
+    List<Book> findRelatedBooks(@Bind("categoryId") int categoryId, @Bind("bookId") int bookId);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_BOOK_PROMOTION_IN_DAY)
+    Book getBookByPromotionId(@Bind("id") int promotionId);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_BOOK_SOLDS)
+    List<Book> listBestSeller(@Bind("limit") int limit, @Bind("offset") int offset);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_BOOK_BY_CATEGORY)
+    List<Book> listByCategory(@Bind("category_name") String category_name, @Bind("limit") int limit, @Bind("offset") int offset);
     
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     boolean updateBook(Book product);

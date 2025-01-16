@@ -2,11 +2,8 @@ package vn.edu.hcmuaf.fit.bookstore.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import vn.edu.hcmuaf.fit.bookstore.adapter.LocalDateTimeDeserializer;
-import vn.edu.hcmuaf.fit.bookstore.adapter.LocalDateTimeSerializer;
-
-
 import java.time.LocalDateTime;
+import vn.edu.hcmuaf.fit.bookstore.adapter.*;
 
 public class GsonUtil {
     private GsonBuilder builder;

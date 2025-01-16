@@ -18,7 +18,7 @@
     <nav class="offcanvas-body">
         <ul class="links">
             <li class="nav-item">
-                <a href="admin/dashboard" class="text-dec">
+                <a href="dashboard" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-tachometer-alt"></i>
             </span>
@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="User-Management.html" class="text-dec">
+                <a href="user-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users"></i>
             </span>
@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/product-management" class="text-dec">
+                <a href="product-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-archive"></i>
             </span>
@@ -66,7 +66,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="Admin-Management.html" class="text-dec">
+                <a href="admin-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users-cog"></i>
             </span>

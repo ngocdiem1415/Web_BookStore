@@ -54,7 +54,7 @@
                                 <div class="container-profile-content-inner__right-main-content-center">
                                     <!--form thông tin account-->
                                     <!--Dùng table để phân chia các thông tin-->
-                                    <form action="">
+                                    <form action="profile" method="post" >
                                         <table class="container-profile-content-inner__right-main-content-center__table">
                                             <!--Các hang lưu trữ thông tin-->
                                             <!--Ten Dang Nhap-->
@@ -64,10 +64,7 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name">${userSession.getUsername()}</div>
-                                                        <button type="button" id="edit-name"
-                                                                class="table__row-input__text-button">Thay Đổi
-                                                        </button>
+                                                        <input class="table__row-input__text-name" name="username" value="${userSession.getUsername()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -78,10 +75,7 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name">${userSession.getEmail()}</div>
-                                                        <button type="button" id="edit-email"
-                                                                class="table__row-input__text-button">Thay Đổi
-                                                        </button>
+                                                        <input class="table__row-input__text-name" name="email" value="${userSession.getEmail()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -93,10 +87,7 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name">${userSession.getPhone()}</div>
-                                                        <button type="button" id="edit-phone"
-                                                                class="table__row-input__text-button">Thay Đổi
-                                                        </button>
+                                                        <input class="table__row-input__text-name" name="phone" value="${userSession.getPhone()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -110,26 +101,11 @@
                                                     <div class="table__row-input__text">
                                                         <!-- div chứa các radioBox -->
                                                         <div class="table__row-input-stardust-radio-group">
-                                                            <!-- GT Nam -->
-                                                            <label class="stardust-radio">
-                                                                <input type="radio" name="gender" value="Nam" class="gender-radio"
-                                                                       <c:if test="${userSession.getGender() == 'male'}">checked</c:if>>
-                                                                <span class="stardust-radio__label">Nam</span>
-                                                            </label>
-
-                                                            <!-- Radio Nữ -->
-                                                            <label class="stardust-radio">
-                                                                <input type="radio" name="gender" value="Nữ" class="gender-radio"
-                                                                       <c:if test="${userSession.getGender() == 'female'}">checked</c:if>>
-                                                                <span class="stardust-radio__label">Nữ</span>
-                                                            </label>
-
-                                                            <!-- Radio Khác -->
-                                                            <label class="stardust-radio">
-                                                                <input type="radio" name="gender" value="Khác" class="gender-radio"
-                                                                       <c:if test="${userSession.getGender() == 'other'}">checked</c:if>>
-                                                                <span class="stardust-radio__label">Khác</span>
-                                                            </label>
+                                                            <select class="form-select" id="gender" name="gender" required>
+                                                                <option value="male" ${userSession.gender == male ? 'selected' : ''}>Nam</option>
+                                                                <option value="female" ${userSession.gender == female ? 'selected' : ''}>Nữ</option>
+                                                                <option value="other" ${userSession.gender == other ? 'selected' : ''}>Khác</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -142,14 +118,7 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <div class="table__row-input__text-name">
-                                                            <c:if test="${userSession.getDob() != null}">
-                                                                ${userSession.getDob()}
-                                                            </c:if>
-                                                        </div>
-                                                        <button type="button" id="edit-birthday"
-                                                                class="table__row-input__text-button">Thay Đổi
-                                                        </button>
+                                                        <input class="table__row-input__text-name" name="birthdate" value="${userSession.getDob()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -160,10 +129,8 @@
                                                     <label></label>
                                                 </td>
                                                 <td class="table__row-input">
-                                                    <button id="save--btn"
-                                                            class="btn btn-solid-primary btn--m btn--inline"
-                                                            type="button"
-                                                            aria-disabled="false">Lưu
+                                                    <button id="save--btn" type="submit"
+                                                            class="btn btn-solid-primary btn--m btn--inline">Lưu
                                                     </button>
                                                 </td>
                                             </tr>
@@ -174,7 +141,7 @@
                                 <!--upload ảnh-->
                                 <div class="container-profile-content-inner__right-main-content-upload">
                                     <div class="right-main-content-upload-header">
-                                        <div class="right-main-content-upload-header-focus" role="header">
+                                        <div class="right-main-content-upload-header-focus" >
                                             <div class="right-main-content-upload-header-focus-image">
                                                 <img src="admin/img/Sample_User_Icon.png" id="previewImage"/>
                                             </div>
@@ -194,7 +161,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -207,58 +173,7 @@
 <!--footer-->
 <!--<div id="footer"></div>-->
 <!--    footer start -->
-<section class="footer">
-    <div class="footer-row">
-        <div class="footer-col">
-            <a href="" class="mb-4"><img src="img/logo/logo1.png"/></a>
-            <p class="detail mb-4">Nơi cung cấp trí thức cho bạn.</p>
-            <div class="detail-icons ">
-                <p><i class="fa-solid fa-location-dot"></i>VQCR+GP6, khu pho 6, Thu Đuc, Ho Chi Minh</p>
-                <p><i class="fa-solid fa-phone"></i>0123456789</p>
-                <p><i class="fa-solid fa-envelope"></i>@st.hcmuaf.edu.vn</p>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Về chúng tôi</h4>
-            <ul class="links">
-                <li><a href="#">Nguyễn Thị Ngọc Diễm</a></li>
-                <li><a href="#">Võ Nguyễn Thanh Diệu</a></li>
-                <li><a href="#">Nguyễn Hữu Thịnh</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Chính sách</h4>
-            <ul class="links">
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Sản phẩm</a></li>
-                <li><a href="#">Tin tức</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Gửi Email</h4>
-            <p>
-                Đăng ký nhận thông tin mới nhất từ chúng tôi.
-            </p>
-            <form action="#">
-                <input type="text" placeholder="Email" required>
-                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-            </form>
-            <div class="icons">
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-linkedin"></i>
-                <i class="fa-brands fa-github"></i>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="footer-copyright d-flex justify-content-center">
-        <p>&copy; 2024 BookStore | Designed by <span>Team TDD</span></p>
-    </div>
-</section>
+<jsp:include page="footer.jsp"></jsp:include>
 <!--footer end-->
 
 <script>

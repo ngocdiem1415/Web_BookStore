@@ -24,17 +24,6 @@ public class MailVerify {
         sendEmail(toEmail, subject, content);
     }
 
-//    public void sendVerificationMail(String domain, String to, String token) {
-//        // Xay dung lien ket xac minh
-//        String vertificationLink = domain + "/verify?token=" + token;
-//
-//        // Chinh chu de va noi dung email xac minh
-//        String subject = "Xác minh tài khoản";
-//        String content = "Nhấn vào đường dẫn sau để xác minh tài khoản của bạn: " + vertificationLink;
-//
-//        // suwr dungj phuong thuc gui mail
-//        sendEmail(to, subject, content);
-//    }
 
     private void sendEmail(String to, String subject, String content) {
         // properties : khai bao cac thuoc tinh
