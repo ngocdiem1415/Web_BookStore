@@ -101,7 +101,7 @@
                                 <div class="product-price">
                                     <ul>
                                         <li>
-                                                ${book.originalPrice}
+                                                <f:formatNumber value="${book.originalPrice}"/>
                                             <i class="fa-solid fa-dong-sign fa-xs pt-2" style="color: #f07c29;"></i>
                                         </li>
                                     </ul>
@@ -177,8 +177,7 @@
                                                        href="book-detail?id=${book.bId}"</a>${book.title}</h4>
                                                 <div class="sale-area">
                                                     <div class="price-box">
-                                                <span class="new-sale cl-o"><f:formatNumber
-                                                        value="${book.originalPrice}"/>
+                                                <span class="new-sale cl-o"><f:formatNumber value="${book.originalPrice}"/>
                                                     <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
                                                 </span>
                                                     </div>
