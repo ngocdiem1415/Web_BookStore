@@ -116,5 +116,11 @@ public class UserServices {
         });
     }
 
+    public void changePassword(int uid, String password) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.updatePassword(uid, hashPassword(password));
+        });
+    }
+
 
 }

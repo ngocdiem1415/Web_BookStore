@@ -27,26 +27,27 @@
 <body>
 <!--header-->
 <%@ include file="Header.jsp" %>
+<% String baoloi = (String) request.getAttribute("baoloi"); %>
 
 <!-- container -->
 <div class="container ">
     <!-- NAV -->
     <ul class="main-nav nav ">
-        <li class="nav-item "><a href="Home.jsp">Trang chủ</a></li>
+        <li class="nav-item "><a href="home">Trang chủ</a></li>
         <li class="nav-item "><a href="AboutUs.jsp">Giới thiệu</a></li>
         <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="category.jsp" id="productDropdown"
+            <a class="nav-link dropdown-toggle pt-0 pl-15 pr-10" href="listBook" id="productDropdown"
                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Sản phẩm
             </a>
             <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                <li><a class="dropdown-item" href="category.jsp">Sách văn học</a></li>
-                <li><a class="dropdown-item" href="category.jsp">Kinh tế</a></li>
-                <li><a class="dropdown-item" href="category.jsp">Sách thiếu nhi</a></li>
-                <li><a class="dropdown-item" href="category.jsp">Tiểu sử - Hồi ký</a></li>
-                <li><a class="dropdown-item" href="category.jsp">Tâm lí - Kĩ năng sống</a></li>
-                <li><a class="dropdown-item" href="category.jsp">Nuôi dạy con</a></li>
-                <li><a class="dropdown-item" href="category.jsp">Sách giáo khoa</a></li>
+                <li><a class="dropdown-item" href="listBook">Sách văn học</a></li>
+                <li><a class="dropdown-item" href="listBook">Kinh tế</a></li>
+                <li><a class="dropdown-item" href="listBook">Sách thiếu nhi</a></li>
+                <li><a class="dropdown-item" href="listBook">Tiểu sử - Hồi ký</a></li>
+                <li><a class="dropdown-item" href="listBook">Tâm lí - Kĩ năng sống</a></li>
+                <li><a class="dropdown-item" href="listBook">Nuôi dạy con</a></li>
+                <li><a class="dropdown-item" href="listBook">Sách giáo khoa</a></li>
             </ul>
         </li>
         <li class="nav-item "><a href="policy.jsp">Chính sách</a></li>
@@ -82,7 +83,7 @@
                             <div class="container-profile-content-inner__right-main-content">
                                 <div class="container-profile-content-inner__right-main-content-center">
                                     <!-- Form thay đổi mật khẩu -->
-                                    <form action="change-password">
+                                    <form action="change-password" method="post">
                                         <table class="container-profile-content-inner__right-main-content-center__table">
                                             <!-- Mật khẩu hiện tại -->
                                             <tr>
@@ -107,6 +108,9 @@
                                                         <input type="password" placeholder="Nhập mật khẩu mới"
                                                                class="table__row-input__field-text" name="new-password">
                                                     </div>
+                                                    <% if (baoloi != null) { %>
+                                                    <div class="alert alert-danger"><%= baoloi %></div>
+                                                    <% } %>
                                                 </td>
                                             </tr>
 
@@ -129,9 +133,7 @@
                                                     <label></label>
                                                 </td>
                                                 <td class="table__row-input">
-                                                    <button type="submit"
-                                                            class="btn btn-solid-primary btn--m btn--inline"
-                                                            type="button" aria-disabled="false">
+                                                    <button type="submit" class="btn btn-solid-primary btn--m btn--inline">
                                                         Lưu Thay Đổi
                                                     </button>
                                                 </td>
