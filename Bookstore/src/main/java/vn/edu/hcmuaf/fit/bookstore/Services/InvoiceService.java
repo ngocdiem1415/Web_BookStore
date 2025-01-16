@@ -89,16 +89,16 @@ public class InvoiceService {
                 handle.attach(InvoiceDao.class).update(invoice);
 
                 // Hoàn trả số lượng sách trong kho
-                if (invoice.getListInvoiceDetails() != null) {
-                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
-                        Book book = detail.getBook();
-                        if (book != null) {
-                            book.setStockQuantity(book.getStockQuantity() + detail.getQuantity());
-                            book.setSoldQuantity(book.getSoldQuantity() - detail.getQuantity());
-                            handle.attach(BookDao.class).update(book);
-                        }
-                    }
-                }
+//                if (invoice.getListInvoiceDetails() != null) {
+//                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
+//                        Book book = detail.getBook();
+//                        if (book != null) {
+//                            book.setStockQuantity(book.getStockQuantity() + detail.getQuantity());
+//                            book.setSoldQuantity(book.getSoldQuantity() - detail.getQuantity());
+//                            handle.attach(BookDao.class).update(book);
+//                        }
+//                    }
+//                }
 
                 return 1; // Thành công
             });

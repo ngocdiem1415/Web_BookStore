@@ -107,6 +107,7 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        userId = ((User) session.getAttribute("userSession")).getUid();
         if (action == null) {
             action = "";
         }
@@ -128,7 +129,7 @@ public class InvoiceController extends HttpServlet {
 
                     if (result > 0) {
                         // Chuyển hướng sau khi hủy thành công
-                        response.sendRedirect("/invoice?action=filterByStatus&status=cancelled");
+                        response.sendRedirect("invoice?action=filterByStatus&status=cancelled&userId=" + userId);
                     } else {
                         throw new RuntimeException("Hủy đơn hàng thất bại.");
                     }
