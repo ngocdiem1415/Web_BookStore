@@ -31,6 +31,11 @@ public class InvoiceService {
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
 
+    public List<Invoice> listOrderByDate() {
+        return connect.withExtension(InvoiceDao.class, handle -> handle.findByDate().stream()
+                .map(this::mapInvoice).collect(Collectors.toList()));
+    }
+
     public List<Invoice> findByBookTitle(int userId, String title) {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByBookTitle(userId, title).stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
@@ -135,6 +140,8 @@ public class InvoiceService {
             throw new RuntimeException("Lỗi khi cập nhật hóa đơn: " + e.getMessage(), e);
         }
     }
+
+
 
 //    synchronized public int insert(Invoice invoice) {
 //        int status = (int) connect.withExtension(InvoiceDao.class, handle -> handle.insert(invoice));

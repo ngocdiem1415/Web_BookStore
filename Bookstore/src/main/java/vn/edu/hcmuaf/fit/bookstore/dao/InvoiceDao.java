@@ -35,6 +35,10 @@ public interface InvoiceDao {
     @SqlQuery("select * from invoices where uid = :id and status = :status order by order_date desc")
     List<Invoice> findByStatus(@Bind("id") int id, @Bind("status") String status);
 
+    //Tìm đơn hàng theo date
+    @SqlQuery("select * from invoices WHERE DATE(order_date) = CURDATE()")
+    List<Invoice> findByDate();
+
     //Thêm đơn hàng
     @SqlUpdate(" INSERT INTO invoices ( uid, recipient_name, recipient_phone, address, order_date, status, shipping_fee, completion_date) " +
             "VALUES ( :uid, :recipientName, :recipientPhone, :address, :orderDate, :status, :shippingFee, :completionDate)")

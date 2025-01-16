@@ -27,6 +27,19 @@ public class PaymentService {
                 .mapToDouble(detail -> detail.getUnitPrice() * detail.getQuantity()).sum();
     }
 
+    // Tính tổng số tiền thanh toán trong ngày từ bảng payments
+    public int getTotalAcountInDay() {
+        // Truy vấn tất cả các thanh toán trong ngày hiện tại
+        double totalAmount = connect.withExtension(PaymentDao.class, dao -> dao.findPaymentsInDay())
+                .stream()
+                .mapToDouble(Payment::getAmount)  // Lấy giá trị amount từ đối tượng Payment
+                .sum();  // Tính tổng
+
+        return (int) Math.round(totalAmount);  // Làm tròn và ép kiểu về int
+    }
+
+
+
     // Thêm Payment với tính toán amount
     public int createPayment(int invoiceId, int paymentMethod, String paymentStatus) {
         // Lấy thông tin Invoice
