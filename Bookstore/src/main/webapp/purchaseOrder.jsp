@@ -78,7 +78,7 @@
                                 <span class="right-inner-item-text">Hoàn thành</span>
                             </a>
 
-                            <a href="<c:url value="/invoice?action=filterByStatus&status=canceled&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=filterByStatus&status=Cancelled&userId=${userSession.getUid()}"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Đã hủy">
                                 <span class="right-inner-item-text">Đã hủy</span>

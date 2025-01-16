@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +24,6 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/Style.css">
 
-    <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <%--Boostrap--%>
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
 
@@ -38,7 +32,7 @@
 <body>
 <%--<jsp:include page="Header.jsp"></jsp:include>--%>
 <%--<jsp:include page="Header.jsp"></jsp:include>--%>
-<%@include file="Header.jsp"%>
+<jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
 
 <div class="content-profile">
@@ -47,7 +41,6 @@
             <!--content left-->
             <%--PROFILE BAR--%>
             <%@ include file="content-left-profile.jsp" %>
-<%--            <jsp:include page="content-left-profile.jsp"></jsp:include>--%>
             <%--PROFILE BAR--%>
 
             <!--content right-->
@@ -79,31 +72,31 @@
                                                 Đơn hàng đã đặt
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
-                                                <fmt:formatDate value="${invoice.getOrderDate()}"
-                                                                pattern="HH:mm dd/MM/yyyy"/>
+                                                ${invoice.orderDate}
                                             </div>
                                         </div>
                                         <div class="right-inner-container--process__step-finish"
-                                             aria-label=" <c:choose>
-                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Pending")}'>Đơn hàng chưa thanh toán</c:when>
-                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Completed")}'>Đơn hàng đã thanh toán</c:when>
-                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Failed")}'>Thanh toán thất bại</c:when>
-                                                 <c:when test='${invoice.getPayment().getPaymentStatus().equals("Refunded")}'>Đã hoàn</c:when>
-                                             </c:choose>" tabindex="0">
+                                             aria-label="Thanh toán đơn hàng" tabindex="0">
                                             <div class="right-inner-container--process__step-finish-icon">
                                                 <i class="fa-regular fa-money-bill-1"></i>
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
-                                                <fmt:formatNumber
-                                                        value="${invoice.getPayment().getAmount()}"/>
+                                                <c:choose>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Pending")}'>Đơn hàng chưa thanh toán</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Completed")}'>Đơn hàng đã thanh toán</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Failed")}'>Thanh toán thất bại</c:when>
+                                                    <c:when test='${invoice.payment.paymentStatus.equals("Refunded")}'>Đã hoàn</c:when>
+                                                </c:choose>
+                                                <span>
+                                                    <f:formatNumber value="${invoice.payment.amount}"/>
+                                                    <%-- <i class="fa-solid fa-dong-sign fa-xs"></i>--%>
+                                                </span>
+
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
                                                 <c:choose>
-                                                    <c:when test="${!invoice.getPayment().getPaymentStatus().equals('Pending')}">
-
-                                                        <fmt:formatDate
-                                                                value="${invoice.getPayment().getPaymentDate}"
-                                                                pattern="HH:mm dd/MM/yyyy"/>
+                                                    <c:when test="${!invoice.payment.paymentStatus.equals('Pending')}">
+                                                        ${invoice.payment.paymentDate}
                                                     </c:when>
                                                     <c:otherwise>
 
@@ -117,9 +110,18 @@
                                                 <i class="fa-solid fa-truck-fast"></i>
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
-                                                Đơn hàng đang vận chuyển
+                                                <c:choose>
+                                                    <c:when test="${invoice.status.equals('Shipping')}">
+                                                        Đơn hàng đang được vận chuyển
+                                                    </c:when>
+                                                    <c:when test="${invoice.status.equals('Completed')}">
+                                                        Đã giao hàng thành công
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        Đơn hàng chưa được vận chuyển
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
-
                                         </div>
                                         <div class="right-inner-container--process__step-finish"
                                              aria-label="Đã nhận được hàng" tabindex="0">
@@ -128,8 +130,11 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-text">
                                                 <c:choose>
-                                                    <c:when test="${invoice.getStatus().equals('Completed')}">
+                                                    <c:when test="${invoice.status.equals('Completed')}">
                                                         Đơn hàng đã hoàn thành
+                                                    </c:when>
+                                                    <c:when test="${invoice.status.equals('Cancelled')}">
+                                                        Đơn hàng đã hủy
                                                     </c:when>
                                                     <c:otherwise>
                                                         Đơn hàng chưa hoàn thành
@@ -138,9 +143,8 @@
                                             </div>
                                             <div class="right-inner-container--process__step-finish-date">
                                                 <c:choose>
-                                                    <c:when test="${invoice.getStatus().equals('Completed')}">
-                                                        <fmt:formatDate value="${invoice.completionDate}"
-                                                                        pattern="HH:mm dd/MM/yyyy"/>
+                                                    <c:when test="${invoice.status.equals('Completed')}">
+                                                        ${invoice.completionDate}
                                                     </c:when>
                                                     <c:otherwise>
 
@@ -166,12 +170,12 @@
                                                 hàng
                                             </div>
                                             <div class="right-inner-container--content-address__name" tabindex="0">
-                                                ${invoice.getRecipientName()}
+                                                ${invoice.recipientName}
                                             </div>
                                             <div class="right-inner-container--content-address__address">
-                                                <span tabindex="0">${invoice.getRecipientPhone()}</span>
+                                                <span tabindex="0">${invoice.recipientPhone}</span>
                                                 <br>
-                                                <span tabindex="0">${invoice.getAddress()}</span>
+                                                <span tabindex="0">${invoice.address}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -186,20 +190,22 @@
                                 <div>
                                     <div class="container-product-content-inner__right-inner-detail">
                                         <div>
-                                            <%--                                            Lặp danh sách chi tiết đơn hàng trong đơn hàng--%>
                                             <section>
+                                                <c:if test="${empty invoice.listInvoiceDetails}">
+                                                    <p>Không có sản phẩm nào trong đơn hàng này.</p>
+                                                </c:if>
                                                 <c:forEach var="detail"
-                                                           items="${invoice.getListInvoiceDetails()}">
+                                                           items="${invoice.listInvoiceDetails}">
                                                     <div class="container-product-content-inner__right-inner-center-product__header__link">
                                                         <div class="content-inner__right-inner-infor">
-                                                            <img src="${detail.getBook().getImage().getSourceImg()}"
-                                                                 alt="${detail.getBook().getTitle()}"
+                                                            <img src="${detail.book.image.sourceImg}"
+                                                                 alt="${detail.book.title}"
                                                                  class="content-inner__right-inner-infor-img">
                                                             <div class="content-inner__right-inner-infor__text">
                                                                 <div>
                                                                     <div class="content-inner__right-inner-infor__text-content">
                                                                 <span class="content-inner__right-inner-infor__text-content-name">
-                                                                        ${detail.getBook().getTitle()}
+                                                                        ${detail.book.title}
                                                                 </span>
                                                                     </div>
                                                                 </div>
@@ -207,7 +213,7 @@
                                                                     <div class="content-inner__right-inner-infor__text-content">
                                                                         <div class="content-inner__right-inner-infor__text-content-quanlity"
                                                                              tabindex="0">
-                                                                            Số lượng: ${detail.getQuantity()}
+                                                                            Số lượng: ${detail.quantity}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -216,19 +222,17 @@
                                                         <div class="content-inner__right-inner-infor__price"
                                                              tabindex="0">
                                                             <span class="right-inner-detail-link-content-price-text-old">
-                                                                <fmt:formatNumber
-                                                                        value="${detail.getBook().getPrice()}"/>
+                                                                <f:formatNumber value="${detail.book.originalPrice}"/>
                                                                 <i class="fa-solid fa-dong-sign fa-xs"></i>
                                                             </span>
                                                             <span class="content-inner__right-inner-infor__price-text">
-                                                                <fmt:formatNumber value="${detail.getUnitPrice()}"/>
+                                                                <f:formatNumber value="${detail.unitPrice}"/>
                                                                 <i class="fa-solid fa-dong-sign fa-xs"></i>
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </c:forEach>
                                             </section>
-                                            <%--                                        Kết thúc lặp--%>
 
                                         </div>
                                     </div>
@@ -240,8 +244,9 @@
                                             </div>
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
-                                                    <fmt:formatNumber
-                                                            value="${invoice.getPayment().getAmount() - invoice.getShippingFee()}"/>
+                                                    <f:formatNumber
+                                                            value="${invoice.payment.amount - invoice.shippingFee}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,8 +256,8 @@
                                             </div>
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
-                                                    <fmt:formatNumber
-                                                            value="${invoice.getShippingFee()}"/>
+                                                    <f:formatNumber value="${invoice.shippingFee}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,8 +267,8 @@
                                             </div>
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
-                                                    <fmt:formatNumber
-                                                            value="${invoice.getPayment().getAmount()}"/>
+                                                    <f:formatNumber value="${invoice.payment.amount}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -273,7 +278,18 @@
                                             </div>
                                             <div class="container-profile-content-inner__right-inner-cost__price">
                                                 <div>
-                                                    ${invoice.getPayment().getPaymentMethod()}
+                                                    <c:choose>
+                                                        <c:when test="${invoice.payment.paymentMethod == 1}">
+                                                            Thanh toán khi nhận hàng
+                                                        </c:when>
+                                                        <c:when test="${invoice.payment.paymentMethod == 2}">
+                                                            Chuyển khoản ngân hàng
+                                                        </c:when>
+                                                        <c:otherwise>
+
+                                                        </c:otherwise>
+                                                    </c:choose>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -289,7 +305,7 @@
 </div>
 
 <!--FOOTER-->
-<%@include file="footer.jsp" %>
+<jsp:include page="footer.jsp"></jsp:include>
 <!--FOOTER-->
 
 
@@ -306,55 +322,56 @@
         });
     });
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const reviewButton = document.querySelector(".stardust-button--primary"); // Nút "Đánh giá"
-        const overlay = document.getElementById("overlay"); // Overlay
-        const cancelButton = document.getElementById("cancel-overlay"); // Nút "Trở lại"
-        const submitButton = document.getElementById("submit-overlay"); // Nút "Hoàn thành"
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        const reviewButton = document.querySelector(".stardust-button--primary"); // Nút "Đánh giá"--%>
+<%--        const overlay = document.getElementById("overlay"); // Overlay--%>
+<%--        const cancelButton = document.getElementById("cancel-overlay"); // Nút "Trở lại"--%>
+<%--        const submitButton = document.getElementById("submit-overlay"); // Nút "Hoàn thành"--%>
 
-        // Hiển thị overlay khi nhấn "Đánh giá"
-        reviewButton.addEventListener("click", () => {
-            overlay.classList.remove("hidden"); // Hiện overlay
-        });
+<%--        // Hiển thị overlay khi nhấn "Đánh giá"--%>
+<%--        reviewButton.addEventListener("click", () => {--%>
+<%--            overlay.classList.remove("hidden"); // Hiện overlay--%>
+<%--        });--%>
 
-        // Ẩn overlay khi nhấn "Trở lại"
-        cancelButton.addEventListener("click", () => {
-            overlay.classList.add("hidden"); // Ẩn overlay
-        });
+<%--        // Ẩn overlay khi nhấn "Trở lại"--%>
+<%--        cancelButton.addEventListener("click", () => {--%>
+<%--            overlay.classList.add("hidden"); // Ẩn overlay--%>
+<%--        });--%>
 
-        // Xử lý khi nhấn "Hoàn thành"
-        submitButton.addEventListener("click", () => {
-            console.log("Đánh giá đã gửi thành công!"); // Thêm logic gửi đánh giá ở đây nếu cần
-            overlay.classList.add("hidden"); // Ẩn overlay
-        });
+<%--        // Xử lý khi nhấn "Hoàn thành"--%>
+<%--        submitButton.addEventListener("click", () => {--%>
+<%--            console.log("Đánh giá đã gửi thành công!"); // Thêm logic gửi đánh giá ở đây nếu cần--%>
+<%--            overlay.classList.add("hidden"); // Ẩn overlay--%>
+<%--        });--%>
 
-        // Ẩn overlay khi nhấn ra ngoài overlay
-        overlay.addEventListener("click", (event) => {
-            if (event.target === overlay) {
-                overlay.classList.add("hidden");
-            }
-        });
-    });
+<%--        // Ẩn overlay khi nhấn ra ngoài overlay--%>
+<%--        overlay.addEventListener("click", (event) => {--%>
+<%--            if (event.target === overlay) {--%>
+<%--                overlay.classList.add("hidden");--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
 
 
-</script>
-<script>
-    document.getElementById("fileInput").addEventListener("change", function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
+<%--</script>--%>
+<%--<script>--%>
+<%--    document.getElementById("fileInput").addEventListener("change", function (event) {--%>
+<%--        const file = event.target.files[0];--%>
+<%--        if (file) {--%>
+<%--            const reader = new FileReader();--%>
 
-            // Đọc file và gán vào phần hiển thị
-            reader.onload = function (e) {
-                const previewImage = document.getElementById("previewImage");
-                previewImage.src = e.target.result;
-            };
+<%--            // Đọc file và gán vào phần hiển thị--%>
+<%--            reader.onload = function (e) {--%>
+<%--                const previewImage = document.getElementById("previewImage");--%>
+<%--                previewImage.src = e.target.result;--%>
+<%--            };--%>
 
-            reader.readAsDataURL(file);
-        }
-    });
-</script>
+<%--            reader.readAsDataURL(file);--%>
+<%--        }--%>
+<%--    });--%>
+<%--</script>--%>
 
 </body>
 </html>
+
