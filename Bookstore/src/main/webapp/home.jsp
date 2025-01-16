@@ -81,9 +81,11 @@
                                 <img src="${book.image.sourceImg}"
                                      alt="${book.title}" class="primary" style="width: 220px;height: 240px"/>
                                 <div class="overlay"></div>
-                                <div class="quick-view" style="display: flex;justify-content: space-around; margin-left: 45px">
+                                <div class="quick-view"
+                                     style="display: flex;justify-content: space-around; margin-left: 45px">
                                     <a class="action-view" href="book-detail?id=${book.bId}" title="Quick View">
-                                        <i class="fa fa-search-plus" style="position: absolute;top: 15px;right: 20px;"></i>
+                                        <i class="fa fa-search-plus"
+                                           style="position: absolute;top: 15px;right: 20px;"></i>
                                     </a>
                                 </div>
                                 <div class="product-flag">
@@ -95,13 +97,14 @@
                                 </div>
                             </div>
                             <div class="product-details text-center pt-2">
-                                <div class="limited-lines">
+                                <div class="limited-lines"
+                                     style="text-decoration-line: none; text-decoration-color: black">
                                     <h4><a href="book-detail?id=${book.bId}">${book.title}</a></h4>
                                 </div>
                                 <div class="product-price">
                                     <ul>
                                         <li>
-                                                <f:formatNumber value="${book.originalPrice}"/>
+                                            <f:formatNumber value="${book.originalPrice}"/>
                                             <i class="fa-solid fa-dong-sign fa-xs pt-2" style="color: #f07c29;"></i>
                                         </li>
                                     </ul>
@@ -113,6 +116,36 @@
                 </div>
             </c:forEach>
         </div>
+        <%--        <div class="owl-carousel owl-theme"--%>
+        <%--             data-loop="true"--%>
+        <%--             data-margin="20"--%>
+        <%--             data-nav="true"--%>
+        <%--             data-dots="true"--%>
+        <%--             data-autoplay="false"--%>
+        <%--             data-items="5"--%>
+        <%--             data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":5}}'>--%>
+        <%--            <c:forEach var="book" items="${newBooks}">--%>
+        <%--                <div class="item">--%>
+        <%--                    <div class="product-wrapper">--%>
+        <%--                        <div class="product-img">--%>
+        <%--                            <img src="${book.image.sourceImg}"--%>
+        <%--                                 alt="${book.title}"--%>
+        <%--                                 class="primary"--%>
+        <%--                                 style="width: 220px; height: 240px;">--%>
+        <%--                        </div>--%>
+        <%--                        <div class="product-details text-center pt-2">--%>
+        <%--                            <h4><a href="book-detail?id=${book.bId}">${book.title}</a></h4>--%>
+        <%--                            <div class="product-price">--%>
+        <%--                                <f:formatNumber value="${book.originalPrice}"/>--%>
+        <%--                                <i class="fa-solid fa-dong-sign fa-xs pt-2" style="color: #f07c29;"></i>--%>
+        <%--                            </div>--%>
+        <%--                        </div>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--            </c:forEach>--%>
+        <%--        </div>--%>
+
+
     </div>
     <!-- featured-area-end -->
 
@@ -170,16 +203,19 @@
                                             <div class="product-img">
                                                 <a href="book-detail?id=${book.bId}"><img src="${book.image.sourceImg}"
                                                                                           alt="book"
-                                                                                          class="img-fluid"/></a>
+                                                                                          class="img-fluid"
+                                                                                          style="height:143px; width: 143px"/></a>
                                             </div>
                                             <div class="bestseller-details text-center mt-2">
-                                                <h4><a style="text-decoration: none"
-                                                       href="book-detail?id=${book.bId}"</a>${book.title}</h4>
+                                                <h5>
+                                                    <a href="book-detail?id=${book.bId}">${book.title}</a>
+                                                </h5>
                                                 <div class="sale-area">
                                                     <div class="price-box">
-                                                <span class="new-sale cl-o"><f:formatNumber value="${book.originalPrice}"/>
-                                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-                                                </span>
+            <span class="new-sale cl-o">
+                <f:formatNumber value="${book.originalPrice}"/>
+                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                    </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,20 +254,23 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${book.bId}">
-                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"/>
+                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"
+                                                     style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
                                             <div class="quick-view" style="display: flex;gap: 10px;">
-                                                <a class="action-view" href="book-detail?id=${book.bId}" title="Quick View">
+                                                <a class="action-view" href="book-detail?id=${book.bId}"
+                                                   title="Quick View">
                                                     <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
                                                 </a>
                                                 <a class="action-view" href="Cart.jsp" title="Add Product">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs" style="top: 20px;left: 8px;"></i> </a>
+                                                    <i class="fa-solid fa-cart-shopping fa-xs"
+                                                       style="top: 20px;left: 8px;"></i> </a>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>
-                                            </h5>
+                                            <p><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>
+                                            </p>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <div class="special-price">
                                             <span class="price product-price cl-o">
@@ -277,7 +316,8 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${book.bId}">
-                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"/>
+                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"
+                                                     style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
                                             <div class="quick-view" style="display: flex; gap: 10px;">
@@ -287,11 +327,13 @@
                                                 </a>
                                                 <a class="action-view" href="Cart.jsp"
                                                    title="Add Product">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs" style="top: 20px;left: 8px;"></i> </a>
+                                                    <i class="fa-solid fa-cart-shopping fa-xs"
+                                                       style="top: 20px;left: 8px;"></i> </a>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a></h5>
+                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>
+                                            </h5>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <div class="special-price">
                                             <span class="price product-price cl-o">
@@ -337,7 +379,8 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${book.bId}">
-                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"/>
+                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"
+                                                     style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
                                             <div class="quick-view" style="display: flex; gap: 10px;">
@@ -347,11 +390,13 @@
                                                 </a>
                                                 <a class="action-view" href="Cart.jsp"
                                                    title="Add Product">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs" style="top: 20px;left: 8px;"></i> </a>
+                                                    <i class="fa-solid fa-cart-shopping fa-xs"
+                                                       style="top: 20px;left: 8px;"></i> </a>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a></h5>
+                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>
+                                            </h5>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <div class="special-price">
                                             <span class="price product-price cl-o">
@@ -397,7 +442,8 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${book.bId}">
-                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"/>
+                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"
+                                                     style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
                                             <div class="quick-view" style="display: flex; gap: 10px;">
@@ -407,11 +453,13 @@
                                                 </a>
                                                 <a class="action-view" href="Cart.jsp"
                                                    title="Add Product">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs" style="top: 20px;left: 8px;"></i> </a>
+                                                    <i class="fa-solid fa-cart-shopping fa-xs"
+                                                       style="top: 20px;left: 8px;"></i> </a>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a></h5>
+                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>
+                                            </h5>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <div class="special-price">
                                             <span class="price product-price cl-o">
@@ -460,7 +508,7 @@
                 items: 3
             },
             1000: {
-                items: 5
+                items: 4
             }
         }
     })
