@@ -75,7 +75,7 @@
                 </div>
 
                 <!-- Ảnh chi tiết -->
-                <div class="border rounded-4 d-flex justify-content-center m-3 p-2" style="border: 1px solid #ddd;">=
+                <div class="border rounded-4 d-flex justify-content-center m-3 p-2" style="border: 1px solid #ddd;">
                     <c:forEach var="image" items="${book.imageList}">
                         <div class="item-thumb mx-2">
                             <img width="60" height="60" class="rounded-2" style="object-fit: cover; cursor: pointer"
