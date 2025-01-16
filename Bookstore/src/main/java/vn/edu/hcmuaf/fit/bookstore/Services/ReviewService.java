@@ -66,6 +66,7 @@ public class ReviewService {
         return rating != null ? rating : 0.0;
     }
 
+
     public Review getReviewsForBookCurrent(int bookId) {
         return connect.withExtension(ReviewDao.class, dao ->
                 dao.getReviewsByBookIdCurrent(bookId)

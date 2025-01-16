@@ -25,14 +25,18 @@
     <link rel="stylesheet" href="css/Header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/Style.css">
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <%--Boostrap--%>
     <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
 <!--Header-->
-
 <jsp:include page="Header.jsp"></jsp:include>
 <!-- /HEADER -->
 
@@ -74,7 +78,7 @@
                                 <span class="right-inner-item-text">Hoàn thành</span>
                             </a>
 
-                            <a href="<c:url value="/invoice?action=filterByStatus&status=canceled&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=filterByStatus&status=Cancelled&userId=${userSession.getUid()}"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Đã hủy">
                                 <span class="right-inner-item-text">Đã hủy</span>
@@ -162,8 +166,8 @@
                                                 </div>
                                                 <div class="content-inner__right-inner-infor__price" tabindex="0">
                                                     <span class="content-inner__right-inner-infor__price-text">
-                                                        <fmt:formatNumber value="${detail.getUnitPrice()}"
-                                                                          type="currency" currencySymbol="đ"/>
+                                                        <fmt:formatNumber value="${detail.getUnitPrice()}"/>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
                                                     </span>
                                                 </div>
                                             </div>
@@ -181,8 +185,8 @@
                                     </label>
                                     <div class="right-inner-center-product__header__total-price-contain-cost"
                                          tabindex="0">
-                                        <fmt:formatNumber value="${invoice.payment.amount}" type="currency"
-                                                          currencySymbol="đ"/>
+                                        <fmt:formatNumber value="${invoice.payment.amount}"/>
+                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
                                     </div>
                                 </div>
                             </div>
@@ -226,11 +230,11 @@
                                             <%--ĐÁNH GIÁ SẢN PHẨM--%>
                                             <div id="overlay" class="overlay hidden"
                                                  data-invoice-id="${invoice.getInvoiceId()}">
-                                                    <%--                                                console.log("invoiceId:", invoiceId);--%>
-                                                <form method="POST" action="<c:url value='/invoice' />">
+                                                <form method="POST">
                                                     <input type="hidden" name="action" value="review">
-                                                    <input type="text" name="invoiceId"
+                                                    <input type="hidden" name="invoiceId"
                                                            value="${invoice.getInvoiceId()}">
+                                                    <input type="hidden" name="userId" value="${userSession.getUid()}">
                                                     <div class="rating-container">
                                                         <div style="display: contents">
                                                             <div>
@@ -272,36 +276,36 @@
                                                                                             <span>Chất lượng sản phẩm</span>
                                                                                         </div>
                                                                                         <div class="rating-infor__star--container">
-                                                                                            <button class="btn star"
-                                                                                                    data-value="1"
-                                                                                                    aria-label="1 star">
+                                                                                            <span class="star"
+                                                                                                  data-value="1"
+                                                                                                  aria-label="1 star">
                                                                                                 <i class="fas fa-star"
                                                                                                    style="color: #ccc"></i>
-                                                                                            </button>
-                                                                                            <button class="btn star"
-                                                                                                    data-value="2"
-                                                                                                    aria-label="2 stars">
-                                                                                                <i class="fas fa-star "
-                                                                                                   style="color: #ccc"></i>
-                                                                                            </button>
-                                                                                            <button class="btn star"
-                                                                                                    data-value="3"
-                                                                                                    aria-label="3 stars">
-                                                                                                <i class="fas fa-star "
-                                                                                                   style="color: #ccc"></i>
-                                                                                            </button>
-                                                                                            <button class="btn star"
-                                                                                                    data-value="4"
-                                                                                                    aria-label="4 stars">
+                                                                                            </span>
+                                                                                            <span class="star"
+                                                                                                  data-value="2"
+                                                                                                  aria-label="2 stars">
                                                                                                 <i class="fas fa-star"
                                                                                                    style="color: #ccc"></i>
-                                                                                            </button>
-                                                                                            <button class="btn star"
-                                                                                                    data-value="5"
-                                                                                                    aria-label="5 stars">
+                                                                                            </span>
+                                                                                            <span class="star"
+                                                                                                  data-value="3"
+                                                                                                  aria-label="3 stars">
                                                                                                 <i class="fas fa-star"
                                                                                                    style="color: #ccc"></i>
-                                                                                            </button>
+                                                                                            </span>
+                                                                                            <span class="star"
+                                                                                                  data-value="4"
+                                                                                                  aria-label="4 stars">
+                                                                                                <i class="fas fa-star"
+                                                                                                   style="color: #ccc"></i>
+                                                                                            </span>
+                                                                                            <span class="star"
+                                                                                                  data-value="5"
+                                                                                                  aria-label="5 stars">
+                                                                                                <i class="fas fa-star"
+                                                                                                   style="color: #ccc"></i>
+                                                                                            </span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -344,7 +348,7 @@
                                             <div class="right-inner-center-product__header__rating-cancel">
                                                 <div>
                                                     <form action="<c:url value="/invoice?action=cancel"/>"
-                                                          method="post">
+                                                          method="post" onsubmit="return confirm('Bạn có chắc muốn hủy đơn hàng này?');">
                                                         <input type="hidden" name="id"
                                                                value="${invoice.getInvoiceId()}">
                                                         <button type="submit"
@@ -371,9 +375,11 @@
 
 
 <!--FOOTER-->
-<
 <jsp:include page="footer.jsp"></jsp:include>
 <!--FOOTER-->
+<!--jquery-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -415,6 +421,7 @@
                 const invoiceId = button.getAttribute("data-invoice-id");
                 console.log("invoiceId:", invoiceId);  // Kiểm tra giá trị invoiceId
                 const overlay = document.querySelector('.overlay[data-invoice-id="' + invoiceId + '"]');
+                console.log('.overlay[data-invoice-id=' + invoiceId + ']');
                 if (overlay) {
                     overlay.classList.remove("hidden");
                 } else {
@@ -492,195 +499,90 @@
                     event.preventDefault();
 
                     const form = overlay.querySelector("form");
-                    const invoiceId = form.querySelector("input[name='invoiceId']").value;
+                    let invoiceId = form.querySelector("input[name='invoiceId']").value;
+                    let userId = form.querySelector("input[name='userId']").value;
 
                     const reviews = [];
                     const reviewContainers = form.querySelectorAll(".rating-container-form__main-container");
                     reviewContainers.forEach((container) => {
-                        const productId = container.getAttribute("data-product-id");
-                        const selectedStar = container.querySelector(".rating-infor__star--container .star.selected");
-                        const rating = selectedStar ? selectedStar.getAttribute("data-value") : null;
-                        const comment = container.querySelector("textarea").value;
+                        let productId = container.getAttribute("data-product-id");
+                        let selectedStars = container.querySelectorAll(".rating-infor__star--container .star.selected");
+                        let comment = container.querySelector("textarea").value;
 
-                        if (rating) {
+                        // Kiểm tra nếu có sao nào được chọn
+                        if (selectedStars.length > 0) {
+                            // Lấy giá trị "data-value" lớn nhất từ các sao đã chọn
+                            const maxRating = Math.max(...Array.from(selectedStars).map(star => parseInt(star.getAttribute("data-value"), 10)));
+
+                            // Thêm vào mảng reviews
                             reviews.push({
                                 productId: parseInt(productId, 10),
-                                rating: parseInt(rating, 10),
+                                rating: maxRating, // Sử dụng sao lớn nhất
                                 comment: comment.trim(),
                             });
                         }
                     });
 
                     console.log(reviews);
+                    const reviewsString = JSON.stringify(reviews);
 
                     if (reviews.length > 0) {
-                        // Chuẩn bị dữ liệu để gửi
-                        const requestBody = new URLSearchParams();
-                        requestBody.append("action", "review");
-                        requestBody.append("invoiceId", invoiceId);
-                        reviews.forEach((review, index) => {
-                            requestBody.append(`reviews[${index}]`, JSON.stringify(review));
-                        });
-
-                        // Gửi dữ liệu qua POST
-                        fetch(form.action, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded",
+                        // Gửi yêu cầu AJAX để lưu đánh giá
+                        $.ajax({
+                            // fix thêm chỗ truyền tham số invoiceId và userId
+                            url: '/Bookstore/submitReview?&action=' +'review' + '&invoiceId=' + invoiceId + '&userId=' + userId, // URL backend để xử lý việc lưu đánh giá
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                userId: userId,
+                                invoiceId: invoiceId,
+                                reviews: reviews // Mảng reviews đã được stringify
+                            }),
+                            success: function (data) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "Đánh giá thành công!",
+                                    fontsize: 20,
+                                    showConfirmButton: false,
+                                    width: 300,
+                                    height: 50,
+                                    timer: 1000
+                                });
+                                overlay.classList.add("hidden"); // Đóng overlay sau khi gửi đánh giá thành công
                             },
-                            body: requestBody.toString(),
-                        })
-                            .then((response) => {
-                                if (response.ok) {
-                                    alert("Đánh giá đã được gửi thành công!");
-                                    overlay.classList.add("hidden");
-                                } else {
-                                    alert("Gửi đánh giá thất bại. Vui lòng thử lại.");
-                                }
-                            })
-                            .catch((error) => {
-                                console.error("Lỗi khi gửi đánh giá:", error);
-                                alert("Đã xảy ra lỗi khi gửi đánh giá.");
-                            });
-                    } else {
-                        alert("Vui lòng đánh giá ít nhất một sản phẩm.");
+                            error: function (data) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "Đánh giá thành công!",
+                                    fontsize: 20,
+                                    showConfirmButton: false,
+                                    width: 300,
+                                    height: 50,
+                                    timer: 1000
+                                });
+                                const reviewButton = document.querySelector('button.stardust-button--primary[data-invoice-id="' + invoiceId + '"]');
+                                reviewButton.classList.add("hidden");
+                            }
+                        });
+                    } else if (!Array.isArray(reviews) || reviews.length === 0) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "warning",
+                            title: "Vui lòng đánh giá ít nhất một sản phẩm!",
+                            fontsize: 20,
+                            showConfirmButton: false,
+                            width: 300,
+                            height: 50,
+                            timer: 1000
+                        });
                     }
                 });
             }
         });
     });
 </script>
-
-<%--<!--js hidden-->--%>
-<%--<script>--%>
-<%--    document.addEventListener("DOMContentLoaded", function () {--%>
-<%--        const reviewButton = document.querySelector(".stardust-button--primary"); // Nút "Đánh giá"--%>
-<%--        const cancelButton = document.getElementById("cancel-overlay"); // Nút "Trở lại"--%>
-<%--        const submitButton = document.getElementById("submit-overlay"); // Nút "Hoàn thành"--%>
-<%--        const overlay = document.getElementById("overlay"); // Overlay--%>
-<%--        const hiddenForm = document.createElement("form"); // Tạo form ẩn--%>
-<%--        hiddenForm.method = "POST";--%>
-<%--        hiddenForm.action = "/invoice"; // URL đến backend--%>
-<%--        hiddenForm.style.display = "none";--%>
-<%--        document.body.appendChild(hiddenForm);--%>
-
-<%--        // Hiển thị overlay khi nhấn "Đánh giá"--%>
-<%--        reviewButton.addEventListener("click", () => {--%>
-<%--            overlay.classList.remove("hidden"); // Hiện overlay--%>
-<%--        });--%>
-
-<%--        // Ẩn overlay khi nhấn "Trở lại"--%>
-<%--        cancelButton.addEventListener("click", () => {--%>
-<%--            overlay.classList.add("hidden"); // Ẩn overlay--%>
-<%--        });--%>
-
-<%--        // Xử lý khi nhấn "Hoàn thành"--%>
-<%--        submitButton.addEventListener("click", () => {--%>
-<%--            const reviews = [];--%>
-<%--            const invoiceId = overlay.getAttribute("data-invoice-id");--%>
-<%--            console.log("Invoice ID:", invoiceId);--%>
-<%--            console.log("ddmm")--%>
-<%--            if (!invoiceId) {--%>
-<%--                alert("Không tìm thấy ID hóa đơn!");--%>
-<%--                return;--%>
-<%--            }--%>
-<%--            const ratingContainers = document.querySelectorAll(".rating-container-form__main-container");--%>
-<%--            ratingContainers.forEach((container) => {--%>
-<%--                const productId = container.getAttribute("data-product-id");--%>
-<%--                const stars = container.querySelectorAll(".rating-infor__star--container .star");--%>
-<%--                const selectedStar = Array.from(stars).find(star => star.querySelector("i").style.color === "rgb(255, 204, 0)");--%>
-<%--                const rating = selectedStar ? parseInt(selectedStar.getAttribute("data-value")) : 0;--%>
-
-<%--                const comment = container.querySelector(".rating-infor-cmt-inner--textarea").value.trim();--%>
-
-<%--                if (rating > 0 && comment) {--%>
-<%--                    reviews.push({productId, rating, comment});--%>
-<%--                }--%>
-<%--            });--%>
-
-<%--            console.log(reviews); // Kiểm tra dữ liệu đánh giá--%>
-
-<%--            if (reviews.length === 0) {--%>
-<%--                alert("Vui lòng nhập đánh giá trước khi gửi!");--%>
-<%--                return;--%>
-<%--            }--%>
-
-<%--            fetch(`/invoice?action=review&invoiceId=${invoiceId}`, {--%>
-<%--                method: "POST",--%>
-<%--                headers: {--%>
-<%--                    "Content-Type": "application/json"--%>
-<%--                },--%>
-<%--                body: JSON.stringify(reviews)--%>
-<%--            })--%>
-<%--                .then(response => {--%>
-<%--                    if (response.ok) {--%>
-<%--                        alert("Đánh giá đã được lưu thành công!");--%>
-<%--                        location.reload();--%>
-<%--                    } else {--%>
-<%--                        alert("Có lỗi xảy ra khi lưu đánh giá!");--%>
-<%--                    }--%>
-<%--                })--%>
-<%--                .catch(error => {--%>
-<%--                    console.error("Lỗi khi gửi dữ liệu đánh giá:", error);--%>
-<%--                });--%>
-<%--        });--%>
-
-<%--        // Ẩn overlay khi nhấn ra ngoài overlay--%>
-<%--        overlay.addEventListener("click", (event) => {--%>
-<%--            if (event.target === overlay) {--%>
-<%--                overlay.classList.add("hidden");--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
-
-<%--&lt;%&ndash;Rating star&ndash;%&gt;--%>
-<%--<script>--%>
-<%--    document.addEventListener("DOMContentLoaded", () => {--%>
-<%--        // Lấy tất cả các container đánh giá--%>
-<%--        const ratingContainers = document.querySelectorAll(".rating-container-form__main-container");--%>
-<%--        ratingContainers.forEach((container) => {--%>
-<%--            const productId = container.getAttribute("data-product-id"); // Lấy ID sản phẩm từ container--%>
-<%--            const stars = container.querySelectorAll(".rating-infor__star--container .star");--%>
-<%--            let selectedRating = 0;--%>
-
-<%--            stars.forEach((star) => {--%>
-<%--                // Xử lý hover--%>
-<%--                star.addEventListener("mouseover", () => {--%>
-<%--                    const value = parseInt(star.getAttribute("data-value"));--%>
-<%--                    highlightStars(stars, value);--%>
-<%--                });--%>
-
-<%--                // Xử lý hover out--%>
-<%--                star.addEventListener("mouseout", () => {--%>
-<%--                    highlightStars(stars, selectedRating); // Trả về trạng thái đã chọn--%>
-<%--                });--%>
-
-<%--                // Xử lý click để chọn sao--%>
-<%--                star.addEventListener("click", () => {--%>
-<%--                    selectedRating = parseInt(star.getAttribute("data-value"));--%>
-<%--                    highlightStars(stars, selectedRating);--%>
-<%--                    console.log("User selected rating:", selectedRating);--%>
-<%--                });--%>
-<%--            });--%>
-<%--        });--%>
-
-<%--        function highlightStars(stars, value) {--%>
-<%--            stars.forEach((star) => {--%>
-<%--                const starValue = parseInt(star.getAttribute("data-value"));--%>
-<%--                const icon = star.querySelector("i");--%>
-<%--                if (starValue <= value) {--%>
-<%--                    star.classList.add("selected");--%>
-<%--                    icon.style.color = "#ffcc00"; // Màu vàng khi được chọn--%>
-<%--                } else {--%>
-<%--                    star.classList.remove("selected");--%>
-<%--                    icon.style.color = "#ccc"; // Màu xám khi không được chọn--%>
-<%--                }--%>
-<%--            });--%>
-<%--        }--%>
-<%--    });--%>
-
-<%--</script>--%>
 
 </body>
 </html>
