@@ -21,9 +21,7 @@ public class ListBookController extends HttpServlet {
     private BookDetailService bookDetailService;
     private CategoryService categoryService;
     private PublisherService publisherService;
-    private int page = 1;
-    private int maxPageItem = 9;
-    private int totalItem = -1;
+
 
     public ListBookController() {
         this.bookDetailService = BookDetailService.getInstance();
