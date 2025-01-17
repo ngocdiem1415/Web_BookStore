@@ -306,12 +306,10 @@
                             '<div class="home-product-item">' +
                             // Hình ảnh sản phẩm
                             '<div class="home-product-item__img" ';
-                            if (val.image.sourceImg != null) {
-                                data += 'style="background-image: url(' + val.image.sourceImg + ')"></div>';
-                            }else{
-                                data += 'style="background-image: url(../img/path_to_default_image.png)"></div>';
-                            }
-                            data +=
+                        const imageUrl = val.image?.sourceImg || '/img/logo/default_image.png';
+                        data += 'style="background-image: url(' +imageUrl + ' )"></div>';
+
+                        data +=
                             // Tên sản phẩm
                             '<h4 class="home-product-item__name">' + val.title + '</h4>' +
                             // Giá sản phẩm
@@ -321,7 +319,7 @@
                         if (val.promotionId == 0) {
                             price = formatCurrencyVN(val.originalPrice);
                             data += '<span class="home-product-item__price-current original-price">' + price +
-                                '<i class="fa-solid fa-dong-sign fa-xs"></i> </span>'+
+                                '<i class="fa-solid fa-dong-sign fa-xs"></i> </span>' +
                                 '</div>';
                         } else {
                             let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
