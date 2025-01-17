@@ -160,7 +160,7 @@
                             <div class="deal-off-day-title mb-30">
                                 <h1>CÁC ƯU ĐÃI TRONG NGÀY</h1>
                             </div>
-                            <h2><a href="book-detail?id=${bookByPromotion.bId}">${bookByPromotion.title}</a></h2>
+                            <h4><a href="book-detail?id=${bookByPromotion.bId}">${bookByPromotion.title}</a></h4>
                             <div class="sale-area">
                                 <div class="price-box">
                                 <span class="old-sale"><f:formatNumber value="${bookByPromotion.originalPrice}"/>
@@ -212,9 +212,9 @@
                                                 </h5>
                                                 <div class="sale-area">
                                                     <div class="price-box">
-            <span class="new-sale cl-o">
-                <f:formatNumber value="${book.originalPrice}"/>
-                <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
+                                                <span class="new-sale cl-o">
+                                                    <f:formatNumber value="${book.originalPrice}"/>
+                                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
                                                     </span>
                                                     </div>
                                                 </div>
