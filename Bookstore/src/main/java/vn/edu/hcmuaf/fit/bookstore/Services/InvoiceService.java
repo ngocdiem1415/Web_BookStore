@@ -61,12 +61,12 @@ public class InvoiceService {
                     for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
                         handle.attach(InvoiceDetailDao.class).insert(detail);
 
-                        Book book = detail.getBook();
-                        if (book != null) {
-                            book.setStockQuantity(book.getStockQuantity() - detail.getQuantity());
-                            book.setSoldQuantity(book.getSoldQuantity() + detail.getQuantity());
-                            handle.attach(BookDao.class).update(book);
-                        }
+//                        Book book = detail.getBook();
+//                        if (book != null) {
+//                            book.setStockQuantity(book.getStockQuantity() - detail.getQuantity());
+//                            book.setSoldQuantity(book.getSoldQuantity() + detail.getQuantity());
+//                            handle.attach(BookDao.class).update(book);
+//                        }
                     }
                 }
 
@@ -94,16 +94,16 @@ public class InvoiceService {
                 handle.attach(InvoiceDao.class).update(invoice);
 
                 // Hoàn trả số lượng sách trong kho
-                if (invoice.getListInvoiceDetails() != null) {
-                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
-                        Book book = detail.getBook();
-                        if (book != null) {
-                            book.setStockQuantity(book.getStockQuantity() + detail.getQuantity());
-                            book.setSoldQuantity(book.getSoldQuantity() - detail.getQuantity());
-                            handle.attach(BookDao.class).update(book);
-                        }
-                    }
-                }
+//                if (invoice.getListInvoiceDetails() != null) {
+//                    for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
+//                        Book book = detail.getBook();
+//                        if (book != null) {
+//                            book.setStockQuantity(book.getStockQuantity() + detail.getQuantity());
+//                            book.setSoldQuantity(book.getSoldQuantity() - detail.getQuantity());
+//                            handle.attach(BookDao.class).update(book);
+//                        }
+//                    }
+//                }
 
                 return 1; // Thành công
             });
@@ -182,7 +182,7 @@ public class InvoiceService {
 //        return status;
 //    }
 
-    private void updatePaymentForInvoice(Invoice invoice) {
+    public void updatePaymentForInvoice(Invoice invoice) {
         PaymentService paymentService = PaymentService.getInstance();
         // Tính tổng tiền hàng từ InvoiceDetail
         double totalAmount = connect.withExtension(InvoiceDetailDao.class, dao -> dao.findByInvoiceId(invoice.getInvoiceId()))
