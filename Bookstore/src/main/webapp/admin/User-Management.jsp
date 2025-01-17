@@ -86,7 +86,7 @@
                                         <c:forEach var="user" items="${users}">
                                             <tr>
                                                 <th scope="row">${user.uid}</th>
-                                                <td><img src="../img/user/avatar1.png" height="50px" width="50px"/></td>
+                                                <td><img src="../img/logo/avatar.jpg" height="50px" width="50px"/></td>
                                                 <td>${user.username}</td>
                                                 <td>${user.phone}</td>
                                                 <td>${user.email}</td>

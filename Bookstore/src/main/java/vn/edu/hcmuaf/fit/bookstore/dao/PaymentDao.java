@@ -7,6 +7,8 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.bookstore.beans.Payment;
 
+import java.util.List;
+
 @RegisterBeanMapper(Payment.class)
 public interface PaymentDao {
 
@@ -24,4 +26,8 @@ public interface PaymentDao {
             "payment_method = :paymentMethod, payment_status = :paymentStatus " +
             "WHERE invoice_id = :invoiceId")
     int update(@BindBean Payment payment);
+
+    @SqlQuery("SELECT amount FROM payments WHERE DATE(payment_date) = CURDATE()")
+    List<Payment> findPaymentsInDay();
+
 }
