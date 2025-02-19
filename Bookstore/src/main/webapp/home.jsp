@@ -421,69 +421,69 @@
             </div>
         </div>
 
-        <div class="other-books mb-30">
-            <div class="container">
-                <div class="row row-noGutter-2">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_top_menu_index row mb-30">
-                        <div class="heading1 col-10 ">
-                            <h2 class="title-head bl-10"><a href="listBook" class="text-dec">Sách khác</a></h2>
-                        </div>
-                        <div class="d-md-block d-none col-12 col-md-2">
-                            <a class="see-more text-dec" href="listBook" title="Xem thêm">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="d-flex flex-wrap">
-                        <c:forEach var="book" items="${otherBooks}">
-                            <div class="most-product mb-30" style="width: 205px">
-                                <div class="tab-total">
-                                    <!-- single-product-start -->
-                                    <div class="product-wrapper ">
-                                        <div class="product-img">
-                                            <a href="book-detail?id=${book.bId}">
-                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"
-                                                     style="height:220px; width: 240px"/>
-                                            </a>
-                                            <div class="overlay"></div>
-                                            <div class="quick-view" style="display: flex; gap: 10px;">
-                                                <a class="action-view" href="book-detail?id=${book.bId}"
-                                                   title="Quick View">
-                                                    <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
-                                                </a>
-                                                <a class="action-view" href="Cart.jsp"
-                                                   title="Add Product">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs"
-                                                       style="top: 20px;left: 8px;"></i> </a>
-                                            </div>
-                                        </div>
-                                        <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>
-                                            </h5>
-                                            <div class="price-box clearfix d-flex justify-content-center">
-                                                <div class="special-price">
-                                            <span class="price product-price cl-o">
-                                                <f:formatNumber value="${book.originalPrice}"/>
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
-                                                </div>
-                                                <div class="old-price">
-						                <span class="price product-price-old">
-                                                <f:formatNumber value="${book.originalPrice}"/>
-                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>
-						                </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single-product-end -->
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<%--        <div class="other-books mb-30">--%>
+<%--            <div class="container">--%>
+<%--                <div class="row row-noGutter-2">--%>
+<%--                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_top_menu_index row mb-30">--%>
+<%--                        <div class="heading1 col-10 ">--%>
+<%--                            <h2 class="title-head bl-10"><a href="listBook" class="text-dec">Sách khác</a></h2>--%>
+<%--                        </div>--%>
+<%--                        <div class="d-md-block d-none col-12 col-md-2">--%>
+<%--                            <a class="see-more text-dec" href="listBook" title="Xem thêm">Xem thêm</a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">--%>
+<%--                    <div class="d-flex flex-wrap">--%>
+<%--                        <c:forEach var="book" items="${otherBooks}">--%>
+<%--                            <div class="most-product mb-30" style="width: 205px">--%>
+<%--                                <div class="tab-total">--%>
+<%--                                    <!-- single-product-start -->--%>
+<%--                                    <div class="product-wrapper ">--%>
+<%--                                        <div class="product-img">--%>
+<%--                                            <a href="book-detail?id=${book.bId}">--%>
+<%--                                                <img src="${book.image.sourceImg}" alt="${book.title}" class="primary"--%>
+<%--                                                     style="height:220px; width: 240px"/>--%>
+<%--                                            </a>--%>
+<%--                                            <div class="overlay"></div>--%>
+<%--                                            <div class="quick-view" style="display: flex; gap: 10px;">--%>
+<%--                                                <a class="action-view" href="book-detail?id=${book.bId}"--%>
+<%--                                                   title="Quick View">--%>
+<%--                                                    <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>--%>
+<%--                                                </a>--%>
+<%--                                                <a class="action-view" href="Cart.jsp"--%>
+<%--                                                   title="Add Product">--%>
+<%--                                                    <i class="fa-solid fa-cart-shopping fa-xs"--%>
+<%--                                                       style="top: 20px;left: 8px;"></i> </a>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="price-most-product text-center">--%>
+<%--                                            <h5><a href="book-detail?id=${book.bId}" class="text-dec">${book.title}</a>--%>
+<%--                                            </h5>--%>
+<%--                                            <div class="price-box clearfix d-flex justify-content-center">--%>
+<%--                                                <div class="special-price">--%>
+<%--                                            <span class="price product-price cl-o">--%>
+<%--                                                <f:formatNumber value="${book.originalPrice}"/>--%>
+<%--                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>--%>
+<%--                                                </div>--%>
+<%--                                                <div class="old-price">--%>
+<%--						                <span class="price product-price-old">--%>
+<%--                                                <f:formatNumber value="${book.originalPrice}"/>--%>
+<%--                                            <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i>--%>
+<%--						                </span>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <!-- single-product-end -->--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </c:forEach>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
     <!--     most-product-area-end -->
 </div>
 
