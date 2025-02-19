@@ -316,14 +316,14 @@ body {
     float: left;
 }
 
-.deal-off-day h2 {
+.deal-off-day h4 {
     margin-top: 85px;
     margin-bottom: 0;
 }
 
-.deal-off-day h2 a {
+.deal-off-day h4 a {
     color: #333;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
     line-height: 1.15;
     text-transform: capitalize;
@@ -482,7 +482,7 @@ body {
 
 
 .price-box .old-price .price{
-   color: #999;
+    color: #999;
     padding-left:10px;
     font-size: 12px;
 }

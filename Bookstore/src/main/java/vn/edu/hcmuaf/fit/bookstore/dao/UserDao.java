@@ -15,6 +15,9 @@ public interface UserDao {
     @SqlQuery(QUERIES.USER.SELECT_ALL_USER)
     List<User> list(@Bind("role") String role);
 
+    @SqlQuery(QUERIES.USER.TOTALUSER)
+    int totaluser();
+
     @SqlQuery(QUERIES.USER.FIND_BY_ID)
     User findById(@Bind("id") int id);
 

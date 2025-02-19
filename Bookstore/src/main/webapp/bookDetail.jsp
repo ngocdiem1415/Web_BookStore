@@ -115,7 +115,7 @@
                     <div class="mb-3 text-danger ps-3 d-flex align-items-center">
                         <!-- giá đã giảm -->
                         <div class="h4 d-flex align-items-center justify-content-center text-center">
-                            <span class="unit-price"><f:formatNumber value="${book.originalPrice}"/></span>
+                            <span class="unit-price"><f:formatNumber value="${book.salePrice}"/></span>
                             <i class="fa-solid fa-dong-sign fa-xs"></i>
                         </div>
 

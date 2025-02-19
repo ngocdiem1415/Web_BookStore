@@ -25,11 +25,11 @@ public class EditProductController extends HttpServlet {
 
             if (book != null) {
                 request.setAttribute("book", book);
-                request.getRequestDispatcher("Edit-Product.jsp").forward(request,response);
+                request.getRequestDispatcher("Edit-product.jsp").forward(request,response);
             }
         }
 
-        request.getRequestDispatcher("Edit-Product.jsp").forward(request,response);
+        request.getRequestDispatcher("Edit-product.jsp").forward(request,response);
     }
 
     @Override
