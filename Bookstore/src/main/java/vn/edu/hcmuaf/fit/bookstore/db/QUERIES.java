@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 public class QUERIES {
 
     public class USER {
+        public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
         public static final String SELECT_ALL_USER = "select * from users where role = :role";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
@@ -86,6 +87,7 @@ public class QUERIES {
 
 
 
+
     public class CATEGORY {
         public static final String SELECT_ALL_CATEGORY = "select * from categories";
         public static final String FIND_BY_CATEGORYID = "select * from categories where category_id = :id";
@@ -123,7 +125,10 @@ public class QUERIES {
         public static final String SELECT_ALL_PUBLISHER = "select * from publishers";
         public static final String FIND_BY_PUBLISHERID = "select * from publishers where p_id = :id";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
+        public static final String INSERT_PUBLISHER = "INSERT INTO publishers (p_name, p_address, p_phone) VALUES (:publisherName, :address, :phone)";
+        public static  final String UPDATE_PUBLISHER = "UPDATE publishers SET p_name = :publisherName, p_address = :address, p_phone = :phone WHERE p_id = :p_id";
     }
+
 
 
     public class REVIEW {

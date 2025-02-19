@@ -13,6 +13,9 @@ public class UserServices {
 
     Jdbi conn = JDBIConnector.getJdbi();
 
+    public int getTotalUser() {
+        return conn.withExtension(UserDao.class, dao -> dao.totaluser());
+    }
 
     // Dang ki
     public int register(String username, String gender, String dob, String phone, String email, String password, String role) {
@@ -48,6 +51,8 @@ public class UserServices {
 
         });
     }
+
+
 
     // Tim kiem nguoi dung theo ten va mat khau
     public User findByUsernameAndPassword(String username, String hashedPassword) {

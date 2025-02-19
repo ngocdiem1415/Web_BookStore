@@ -34,7 +34,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="Order-Management.html" class="text-dec">
+                <a href="publisher" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-users"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí nhà sản xuất</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="order-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-shopping-cart"></i>
             </span>
