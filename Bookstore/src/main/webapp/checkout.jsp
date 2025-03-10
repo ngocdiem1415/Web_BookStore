@@ -511,9 +511,9 @@
 
         // Thu thập phương thức thanh toán
         let paymentMethod = 'COD'; // Phương thức mặc định (Thanh toán khi nhận hàng)
-        if (document.getElementById("bank-transfer").classList.contains("active")) {
-            paymentMethod = 'BANK_TRANSFER'; // Chuyển khoản ngân hàng
-        }
+        // if (document.getElementById("bank-transfer").classList.contains("active")) {
+        //     paymentMethod = 'BANK_TRANSFER'; // Chuyển khoản ngân hàng
+        // }
 
         // Tạo đối tượng gửi dữ liệu
         const orderData = {
@@ -525,6 +525,8 @@
             totalAmount: totalAmount,
             paymentMethod: paymentMethod
         };
+
+        console.log(orderData);
 
         // Gửi yêu cầu AJAX để tạo đơn hàng mới
         $.ajax({
