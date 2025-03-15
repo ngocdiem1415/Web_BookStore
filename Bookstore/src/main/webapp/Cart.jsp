@@ -337,26 +337,28 @@
                 // ------
 
                 //Mã hóa danh sách sản phẩm thành JSON
-                const encodedData = JSON.stringify(selectedProducts);
+                const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
                 console.log(encodedData);
+                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
+                window.location.href = 'process-checkout?selectedProducts=' + encodedData;
 
-                //Gửi AJAX request đến ProcessCheckoutController
-                $.ajax({
-                    url: "/Bookstore/process-checkout", // Đường dẫn tới Servlet
-                    method: "POST",
-                    contentType: "application/json",
-                    //data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),
-                    data: encodedData,
-                    success: function (response) {
-                        console.log("Response:", response);
-                        // Chuyển hướng tới trang thanh toán sau khi xử lý thành công
-                        window.location.href = "/Bookstore/process-checkout";
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Đã xảy ra lỗi:", error);
-                        alert("Đã xảy ra lỗi khi chuyển sản phẩm sang trang thanh toán.");
-                    }
-                });
+                // //Gửi AJAX request đến ProcessCheckoutController
+                // $.ajax({
+                //     url: "/Bookstore/process-checkout", // Đường dẫn tới Servlet
+                //     method: "POST",
+                //     contentType: "application/json",
+                //     //data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),
+                //     data: encodedData,
+                //     success: function (response) {
+                //         console.log("Response:", response);
+                //         // Chuyển hướng tới trang thanh toán sau khi xử lý thành công
+                //         window.location.href = "/Bookstore/process-checkout";
+                //     },
+                //     error: function (xhr, status, error) {
+                //         console.error("Đã xảy ra lỗi:", error);
+                //         alert("Đã xảy ra lỗi khi chuyển sản phẩm sang trang thanh toán.");
+                //     }
+                // });
             } else {
                 alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
             }

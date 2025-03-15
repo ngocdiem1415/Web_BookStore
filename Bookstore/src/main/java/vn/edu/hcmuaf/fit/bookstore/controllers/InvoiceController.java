@@ -116,9 +116,9 @@ public class InvoiceController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "create":
-                createInvoiceFromCart(request, response);
-                break;
+//            case "create":
+//                createInvoiceFromCart(request, response);
+//                break;
             case "cancel":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Invoice invoice = invoiceService.findById(id);
