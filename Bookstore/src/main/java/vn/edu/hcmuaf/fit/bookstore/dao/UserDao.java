@@ -41,4 +41,10 @@ public interface UserDao {
 
     @SqlUpdate(QUERIES.USER.UPDATE_USER_ROLE)
     void updateUserRole(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("id") int id);
+
+    @SqlUpdate(QUERIES.USER.INSERT_BY_GOOGLE)
+    void insertByGoogle(@Bind("username") String username, @Bind("gender") String gender,  @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password, @Bind("role") String role);
+
+    @SqlQuery(QUERIES.USER.FIND_ALL)
+    List<User> findAll();
 }
