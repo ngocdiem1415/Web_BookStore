@@ -141,10 +141,10 @@
                 Thanh toán khi nhận hàng
             </button>
 
-            <%--            <!-- Nút Chuyển khoản ngân hàng -->--%>
-            <%--            <button type="button" class="btn payment-btn btn-outline-success" id="bank-transfer">--%>
-            <%--                Chuyển khoản ngân hàng--%>
-            <%--            </button>--%>
+            <!-- Nút Chuyển khoản ngân hàng -->
+            <button type="button" class="btn payment-btn btn-outline-success" id="bank-transfer">
+                Chuyển khoản ngân hàng
+            </button>
         </div>
     </div>
 
