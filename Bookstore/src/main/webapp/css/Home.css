@@ -133,6 +133,18 @@ body {
     z-index: 1;
 }
 
+.owl-stage-outer {
+    overflow: hidden !important; /* Ẩn phần dư thừa */
+    white-space: nowrap; /* Ngăn xuống dòng */
+    display: flex;
+}
+
+.owl-stage {
+    width: auto !important;
+    display: flex !important;
+    flex-wrap: nowrap; /* Ngăn item bị xuống dòng */
+}
+
 .owl-carousel .owl-item {
     /*position: relative;*/
     display: inline-block;

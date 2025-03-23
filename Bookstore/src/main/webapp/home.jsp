@@ -91,8 +91,11 @@
                                 <div class="product-flag">
                                     <ul>
                                         <li><span class="sale">new</span> <br></li>
-                                        <li><span class="discount-percentage">${book.promotion.promotionName}</span>
-                                        </li>
+                                        <c:if test="${book.promotion != null}">
+                                            <li>
+                                                <span class="discount-percentage">${book.promotion.promotionName}</span>
+                                            </li>
+                                        </c:if>
                                     </ul>
                                 </div>
                             </div>

@@ -5,7 +5,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.BookDetailService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
-import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +27,7 @@ public class HomeController extends HttpServlet {
                 request.setAttribute("bookByPromotion", bookByPromotion);
             }
             // Luôn luôn lấy danh sách sách mới
-            List<Book> bookList = bookDetailService.listProducts(10, 0);
+            List<Book> bookList = bookDetailService.newBooks(10);
             request.setAttribute("newBooks", bookList);
 
             // Lấy sản phẩm theo promotionId trong ngày
