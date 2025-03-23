@@ -7,7 +7,6 @@ import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
@@ -44,7 +43,6 @@ public class LoginController extends HttpServlet {
             } else if ("admin".equals(user.getRole())) {
                 response.sendRedirect(request.getContextPath() + "/home");
             }
-
         }
     }
 }
