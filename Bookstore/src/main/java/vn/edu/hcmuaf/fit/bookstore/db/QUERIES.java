@@ -29,6 +29,7 @@ public class QUERIES {
                 "VALUES (:title, :author, :categoryId, :pId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId, :soldQuantity, :stockQuantity, CURRENT_TIMESTAMP, :status)";
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
+        public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
         public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :pId, publish_year = :publishYear, weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId, stock_quantity = :stockQuantity, create_at = :createAt, update_at = CURRENT_TIMESTAMP WHERE b_id = :bookId";
         public static final String DELETE = "delete from books where b_id = :id";
@@ -80,7 +81,8 @@ public class QUERIES {
 
         public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
         public static final String SELECT_BOOK_PROMOTION_IN_DAY =
-                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE NOW() >= promotions.start_date and NOW() <= promotions.end_date and promotions.promotion_id = :id";
+//                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE NOW() >= promotions.start_date and NOW() <= promotions.end_date and promotions.promotion_id = :id";
+                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE promotions.promotion_id = :id";
         public static final String SELECT_BOOK_SOLDS = "select * from books order by sold_quantity desc limit :limit offset :offset";
         public static final String SELECT_BOOK_BY_CATEGORY = "SELECT books.* FROM books JOIN categories on books.category_id = categories.category_id WHERE categories.category_name = :category_name limit :limit offset :offset";
     }

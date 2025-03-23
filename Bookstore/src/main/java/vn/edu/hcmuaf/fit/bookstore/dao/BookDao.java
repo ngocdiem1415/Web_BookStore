@@ -16,6 +16,9 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT)
     List<Book> listProduct(@Bind("limit") int limit, @Bind("offset") int offset);
 
+    @SqlQuery(QUERIES.BOOK.SELECT_LIST_NEW_BOOK)
+    List<Book> newBooks(@Bind("limit") int limit);
+
     @SqlQuery(QUERIES.BOOK.FIND_BY_BID)
     Book findById(@Bind("id") int id);
 
