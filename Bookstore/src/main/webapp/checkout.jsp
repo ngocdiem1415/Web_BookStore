@@ -385,21 +385,25 @@
             });
         });
     });
+    // function getSelectedPaymentMethod() {
+    //     const selectedButton = document.querySelector(".payment-btn.active");
+    //     return selectedButton ? selectedButton.textContent.trim() : null;
+    // }
 </script>
 
-<!--Chuyển sang trang đơn hàng khi nhấn nút mua ngay-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Lấy nút đặt hàng
-        const orderButton = document.getElementById("buy-now");
+<%--<!--Chuyển sang trang đơn hàng khi nhấn nút mua ngay-->--%>
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        // Lấy nút đặt hàng--%>
+<%--        const orderButton = document.getElementById("buy-now");--%>
 
-        // Thêm sự kiện click để chuyển trang
-        orderButton.addEventListener("click", function () {
-            // Chuyển hướng sang trang BuyProduct.jsp
-            window.location.href = "invoice";
-        });
-    });
-</script>
+<%--        // Thêm sự kiện click để chuyển trang--%>
+<%--        orderButton.addEventListener("click", function () {--%>
+<%--            // Chuyển hướng sang trang BuyProduct.jsp--%>
+<%--            window.location.href = "invoice";--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 
 <%-- Thu thập data để chuyển dữ liệu qua backend--%>
 <script>
@@ -511,26 +515,26 @@
 
         // Thu thập phương thức thanh toán
         let paymentMethod = 'COD'; // Phương thức mặc định (Thanh toán khi nhận hàng)
-        // if (document.getElementById("bank-transfer").classList.contains("active")) {
-        //     paymentMethod = 'BANK_TRANSFER'; // Chuyển khoản ngân hàng
-        // }
+        if (document.getElementById("bank-transfer").classList.contains("active")) {
+            paymentMethod = 'BANK_TRANSFER'; // Chuyển khoản ngân hàng
+        }
 
         // Tạo đối tượng gửi dữ liệu
         const orderData = {
             recipientName: recipientName,
             recipientPhone: recipientPhone,
-            shippingAddress: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
+            address: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
             products: products,
             shippingFee: shippingFee,
             totalAmount: totalAmount,
             paymentMethod: paymentMethod
         };
 
-        console.log(orderData);
+        console.log("orderData: "+orderData);
 
         // Gửi yêu cầu AJAX để tạo đơn hàng mới
         $.ajax({
-            url: 'invoice?action=create', // URL endpoint của backend
+            url: 'checkout', // URL endpoint của backend
             type: 'POST',
             contentType: 'application/json', // Loại nội dung là JSON
             data: JSON.stringify(orderData), // Chuyển đổi đối tượng thành JSON
