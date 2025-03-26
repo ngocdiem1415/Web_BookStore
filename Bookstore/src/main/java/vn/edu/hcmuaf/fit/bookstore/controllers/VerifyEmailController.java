@@ -36,7 +36,7 @@ public class VerifyEmailController extends HttpServlet {
 
             if (userId != null) {
                 // Tạo mã xác nhận
-                String verifyCode = UUID.randomUUID().toString();
+                String verifyCode = UUID.randomUUID().toString(); // update này khi dun OTP 6 số de thuc hien
 
                 // Lưu mã xác nhận vào cơ sở dữ liệu và gửi email
                 verifyEmailService.saveVerifyEmail(userId, email);
