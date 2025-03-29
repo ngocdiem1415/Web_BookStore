@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
+import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.VerifyEmail;
 import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
@@ -17,10 +18,10 @@ import java.util.UUID;
 public class VerifyEmailService {
     Jdbi conn = JDBIConnector.getJdbi();
 
-    public void insertVerifyEmail(int id, String email, String token, Timestamp createdAt, Timestamp expiresAt) {
+    public void insertVerifyEmail(String email, String token, Timestamp createdAt, Timestamp expiresAt) {
         try {
             conn.useExtension(VerifyEmailDao.class, handle -> {
-                handle.insertVerifyEmail(id, email, token, createdAt, expiresAt);
+                handle.insertVerifyEmail(email, token, createdAt, expiresAt);
             });
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -38,20 +39,26 @@ public class VerifyEmailService {
     }
 
     // Lu mã token vào database và gửi email xác minh
-    public void saveVerifyEmail(int id, String email) {
-        String token = UUID.randomUUID().toString();
-        LocalDateTime createdAt = LocalDateTime.now();
-        LocalDateTime expiresAt = createdAt.plusDays(1);
+    public boolean saveVerifyEmail(String email, String token) {
+//        String token = UUID.randomUUID().toString();
+        try {
+            LocalDateTime createdAt = LocalDateTime.now();
+            LocalDateTime expiresAt = createdAt.plusMinutes(2);
 
-        Timestamp createdTimestamp = Timestamp.valueOf(createdAt);
-        Timestamp expiresTimestamp = Timestamp.valueOf(expiresAt);
-        conn.useExtension(VerifyEmailDao.class, dao -> {
-            dao.insertVerifyEmail(id, email, token, createdTimestamp, expiresTimestamp);
-        });
+            Timestamp createdTimestamp = Timestamp.valueOf(createdAt);
+            Timestamp expiresTimestamp = Timestamp.valueOf(expiresAt);
+            conn.useExtension(VerifyEmailDao.class, dao -> {
+                dao.insertVerifyEmail(email, token, createdTimestamp, expiresTimestamp);
+            });
 
-        // Gui email xac minh
-        MailVerify mailVerify = new MailVerify();
-        mailVerify.sendVerificationCode(email, token);
+            // Gui email xac minh
+            MailVerify mailVerify = new MailVerify();
+            mailVerify.sendVerificationCode(email, token);
+            return true;
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public void deleteVerifyEmailByUserId(int uid) {
@@ -60,11 +67,27 @@ public class VerifyEmailService {
         });
     }
 
-    public void delete(int id) {
+    public void delete(String token) {
         conn.useExtension(VerifyEmailDao.class, handle -> {
-            handle.delete(id);
+            handle.delete(token);
         });
     }
 
+    public boolean verifyToken(String token) {
+        return conn.withExtension(VerifyEmailDao.class, handle-> {
+            List<VerifyEmail> verifyEmails = handle.findValidToken(token, 0);
+            if (verifyEmails.isEmpty()) {
+                return false;
+            }
+            VerifyEmail verifyEmail = verifyEmails.get(0);
+            // Kiem tra thoi han
+            if (LocalDateTime.now().isAfter(verifyEmail.getExpiresAt().toLocalDate().atStartOfDay())) {
+                return false;
+            }
 
+            // dannh dau token da duoc su dung
+            handle.updateTokenStatus(token, 1);
+            return true;
+        });
+    }
 }

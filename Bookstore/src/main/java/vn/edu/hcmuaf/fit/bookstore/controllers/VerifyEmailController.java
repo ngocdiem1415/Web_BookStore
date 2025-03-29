@@ -13,67 +13,118 @@ import java.util.UUID;
 
 @WebServlet(name = "VerifyEmailController", value = "/verify")
 public class VerifyEmailController extends HttpServlet {
-
-    private VerifyEmailService verifyEmailService = new VerifyEmailService();
-    private UserServices userService = new UserServices();
+    private final VerifyEmailService verifyEmailService = new VerifyEmailService();
+    private final UserServices userService = new UserServices();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+
+        if ("sendcode".equals(action)) {
+            handleSendCode(request, response, session);
+        } else if ("validateCode".equalsIgnoreCase(action)) {
+            handleValidateCode(request, response, session);
+        }
+    }
+
+    private void handleSendCode(HttpServletRequest request, HttpServletResponse response,
+                                HttpSession session) throws ServletException, IOException {
+        String email = request.getParameter("email");
+
+        if (email == null || email.isEmpty()) {
+            sendError(request, response, "Email không hợp lệ");
+            return;
+        }
+
+        String verifyCode = UUID.randomUUID().toString();
+        session.setAttribute("verifyEmail", email);
+        session.setAttribute("verifyCode", verifyCode);
+
+        if (!verifyEmailService.saveVerifyEmail(email, verifyCode)) {
+            sendError(request, response, "Lỗi hệ thống, vui lòng thử lại sau");
+            return;
+        }
+
+        boolean sent = new MailVerify().sendVerificationCode(email, verifyCode);
+        if (sent) {
+            request.setAttribute("success", "Mã xác nhận đã được gửi đến " + email);
+        } else {
+            sendError(request, response, "Gửi email xác nhận thất bại, vui lòng thử lại");
+            return;
+        }
         request.getRequestDispatcher("email_verify.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+    private void handleValidateCode(HttpServletRequest request, HttpServletResponse response,
+                                    HttpSession session) throws ServletException, IOException {
+        String inputCode = request.getParameter("code");
+        String sessionEmail = (String) session.getAttribute("verifyEmail");
 
-        if ("sendcode".equals(action)) {
-            // Lấy email người dùng gửi
-            String email = request.getParameter("email");
-
-            // Lấy ID người dùng từ session
-            HttpSession session = request.getSession();
-            Integer userId = (Integer) session.getAttribute("userId");
-
-            if (userId != null) {
-                // Tạo mã xác nhận
-                String verifyCode = UUID.randomUUID().toString(); // update này khi dun OTP 6 số de thuc hien
-
-                // Lưu mã xác nhận vào cơ sở dữ liệu và gửi email
-                verifyEmailService.saveVerifyEmail(userId, email);
-
-                // Gửi mã qua email (giả sử bạn có hàm gửi email)
-                MailVerify mailVerify = new MailVerify();
-                mailVerify.sendVerificationCode(email, verifyCode);
-
-                // Chuyển đến trang nhập mã
-                request.setAttribute("email", email);
-                request.getRequestDispatcher("email_verify.jsp").forward(request, response);
-            } else {
-                // Người dùng chưa đăng nhập, chuyển hướng đến trang login
-                response.sendRedirect("login.jsp");
-            }
-
-        } else if ("validateCode".equalsIgnoreCase(action)) {
-            // Kiểm tra mã xác nhận từ cơ sở dữ liệu
-            String inputCode = request.getParameter("code");
-
-            // Kiểm tra tính hợp lệ và thời gian hết hạn của mã
-            VerifyEmail verifyEmail = verifyEmailService.selectVerifyEmailByCode(inputCode);
-            if (verifyEmail != null && verifyEmail.isValid()) {  // isValid() kiểm tra hết hạn
-                // Cập nhật trạng thái email đã xác minh
-                int userId = verifyEmail.getId();
-                userService.updateEmailVerifiedByID(userId);
-
-                // Xóa mã xác nhận sau khi sử dụng
-                verifyEmailService.selectVerifyEmailByCode(inputCode);
-
-                request.setAttribute("baoloi", "Xác nhận thành công! Bạn có thể đăng nhập.");
-                request.getRequestDispatcher("success.jsp").forward(request, response);
-            } else {
-                request.setAttribute("baoloi", "Mã xác nhận không đúng hoặc đã hết hạn. Vui lòng thử lại.");
-                request.getRequestDispatcher("email_verify.jsp").forward(request, response);
-            }
+        if (inputCode == null || inputCode.isEmpty()) {
+            sendError(request, response, "Vui lòng nhập mã xác nhận");
+            return;
         }
+
+        VerifyEmail verifyEmail = verifyEmailService.selectVerifyEmailByCode(inputCode);
+
+        // Kiểm tra 3 điều kiện: mã tồn tại, chưa hết hạn, và khớp với email trong session
+        if (verifyEmail == null || !verifyEmail.isValid() ||
+                !verifyEmail.getEmail().equals(sessionEmail)) {
+            sendError(request, response, "Mã xác nhận không đúng hoặc đã hết hạn");
+            return;
+        }
+
+        processSuccessfulVerification(request, response, session, verifyEmail);
+    }
+
+    private void processSuccessfulVerification(HttpServletRequest request,
+                                               HttpServletResponse response, HttpSession session, VerifyEmail verifyEmail)
+            throws ServletException, IOException {
+        // Lấy thông tin từ session
+        String username = (String) session.getAttribute("tempUsername");
+        String password = (String) session.getAttribute("tempPassword");
+        String email = (String) session.getAttribute("tempEmail");
+        String gender = (String) session.getAttribute("tempGender");
+        String phone = (String) session.getAttribute("tempPhone");
+        String dob = (String) session.getAttribute("tempDob");
+
+        // Tạo tài khoản người dùng
+        int result = userService.register(username, gender, dob, phone, email, password, "user");
+
+        if (result == 0) {
+            // Đánh dấu email đã xác minh
+            userService.updateEmailVerifiedByID(verifyEmail.getId());
+
+            // Xóa mã xác nhận đã dùng
+            verifyEmailService.delete(verifyEmail.getToken());
+
+            // Xóa thông tin tạm
+            clearTempSessionData(session);
+
+            request.setAttribute("success", "Xác nhận thành công! Bạn có thể đăng nhập.");
+            request.getRequestDispatcher("success.jsp").forward(request, response);
+        } else {
+            sendError(request, response, "Đã có lỗi xảy ra, vui lòng thử lại sau");
+        }
+    }
+
+    private void clearTempSessionData(HttpSession session) {
+        session.removeAttribute("tempUsername");
+        session.removeAttribute("tempPassword");
+        session.removeAttribute("tempEmail");
+        session.removeAttribute("tempGender");
+        session.removeAttribute("tempPhone");
+        session.removeAttribute("tempDob");
+        session.removeAttribute("verifyEmail");
+        session.removeAttribute("verifyCode");
+    }
+
+    private void sendError(HttpServletRequest request, HttpServletResponse response,
+                           String message) throws ServletException, IOException {
+        request.setAttribute("baoloi", message);
+        request.getRequestDispatcher("email_verify.jsp").forward(request, response);
     }
 }
 

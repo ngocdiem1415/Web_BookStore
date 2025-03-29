@@ -16,16 +16,22 @@ public class MailVerify {
     private final static String fromEmail = "shadow05.rx@gmail.com"; //requires valid gmail id
     private final static String username = "shadow05.rx@gmail.com";
     private final static String password = "sajyblenqiiloxoz"; // correct password for gmail id
+    // Template email xác minh
+    private static final String VERIFICATION_SUBJECT = "Xác minh tài khoản BookStore";
+    private static final String VERIFICATION_TEMPLATE =
+            "Xin chào,\n\n" +
+                    "Mã xác minh tài khoản của bạn là: %s\n\n" +
+                    "Mã có hiệu lực trong vòng 2 phút.\n\n" +
+                    "Trân trọng,\n" +
+                    "Đội ngũ BookStore";
 
-    public void sendVerificationCode(String toEmail, String code) {
-        String subject = "Xác minh tài khoản";
-        String content = "Mã xác minh là: " + code;
-
-        sendEmail(toEmail, subject, content);
+    public boolean sendVerificationCode(String toEmail, String code) {
+        String content = String.format(VERIFICATION_TEMPLATE, code);
+        return sendEmail(toEmail, VERIFICATION_SUBJECT, content);
     }
 
 
-    private void sendEmail(String to, String subject, String content) {
+    private boolean sendEmail(String to, String subject, String content) {
         // properties : khai bao cac thuoc tinh
         Properties pros = new Properties();
         pros.put("mail.smtp.host", "smtp.gmail.com"); // SMTP HOST
@@ -55,8 +61,9 @@ public class MailVerify {
 
             // gui mail
             Transport.send(msg);
+            return  true;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 

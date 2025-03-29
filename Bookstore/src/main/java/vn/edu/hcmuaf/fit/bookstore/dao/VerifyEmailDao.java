@@ -17,7 +17,7 @@ import java.util.List;
 public interface VerifyEmailDao {
 
     @SqlUpdate(QUERIES.VERIFY_EMAIL.INSERT_VERIFY_EMAIL)
-    void insertVerifyEmail(@Bind("id") int id, @Bind("email") String email, @Bind("token") String token, @Bind("createdAt") Timestamp createdAt, @Bind("expiresAt") Timestamp expiresAt);
+    void insertVerifyEmail(@Bind("email") String email, @Bind("token") String token, @Bind("createdAt") Timestamp createdAt, @Bind("expiresAt") Timestamp expiresAt);
 
     @SqlQuery(QUERIES.VERIFY_EMAIL.SELECT_VERIFY_EMAIL_BY_CODE)
     List<VerifyEmail> selectVerifyEmailByCode(@Bind("token") String token);
@@ -26,6 +26,11 @@ public interface VerifyEmailDao {
     void deleteVerifyEmailByUserId(@Bind("uid") int uid);
 
     @SqlUpdate(QUERIES.VERIFY_EMAIL.DELETE)
-    void delete(@Bind("id") int id);
+    void delete(@Bind("token") String token);
 
+    @SqlQuery(QUERIES.VERIFY_EMAIL.FIND_VALID_TOKEN)
+    List<VerifyEmail> findValidToken(@Bind("token") String token, @Bind("status") int status);
+
+    @SqlUpdate(QUERIES.VERIFY_EMAIL.UPDATE_TOKEN_STATUS)
+    void updateTokenStatus(@Bind("token") String token, @Bind("status") int status);
 }

@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
 import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
+import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -44,9 +45,19 @@ public class SignupController extends HttpServlet {
         if (result == 0) {
             int id = userServices.findByUserName(username).getUid();
 
+            // Luu thongg tin tam vao session
+            HttpSession session = request.getSession();
+            session.setAttribute("tempUsername", username);
+            session.setAttribute("tempPassword", password);
+            session.setAttribute("tempEmail", email);
+            session.setAttribute("tempGender", gender);
+            session.setAttribute("tempPhone", phone);
+            session.setAttribute("tempDob", dob);
+            session.setAttribute("tempVerifyCode", verifyCode);
+
             // luu token
             VerifyEmailService verifyEmailService = new VerifyEmailService();
-            verifyEmailService.saveVerifyEmail(id, email);
+            verifyEmailService.saveVerifyEmail(email, verifyCode);
 
             // hien thi thong bao
             request.setAttribute("baoloi", "Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản");
