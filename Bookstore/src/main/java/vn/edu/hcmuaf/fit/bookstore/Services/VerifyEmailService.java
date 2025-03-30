@@ -67,27 +67,26 @@ public class VerifyEmailService {
         });
     }
 
-    public void delete(String token) {
-        conn.useExtension(VerifyEmailDao.class, handle -> {
-            handle.delete(token);
-        });
+    public boolean delete(String token) {
+        try {
+            conn.useExtension(VerifyEmailDao.class, handle -> {
+                handle.delete(token);
+            });
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
-    public boolean verifyToken(String token) {
-        return conn.withExtension(VerifyEmailDao.class, handle-> {
-            List<VerifyEmail> verifyEmails = handle.findValidToken(token, 0);
-            if (verifyEmails.isEmpty()) {
-                return false;
-            }
-            VerifyEmail verifyEmail = verifyEmails.get(0);
-            // Kiem tra thoi han
-            if (LocalDateTime.now().isAfter(verifyEmail.getExpiresAt().toLocalDate().atStartOfDay())) {
-                return false;
-            }
-
-            // dannh dau token da duoc su dung
-            handle.updateTokenStatus(token, 1);
+    public boolean updateTokenStatus(String token, int status) {
+        try {
+            conn.useExtension(VerifyEmailDao.class, handlle -> {
+                handlle.updateTokenStatus(token, status);
+            });
             return true;
-        });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

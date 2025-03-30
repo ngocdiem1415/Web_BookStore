@@ -16,6 +16,7 @@ public class QUERIES {
         public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
         public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";;
         public static final String FIND_ALL = "select * from users";
+        public static final String UPDATE_EMAIL_ID = "UPDATE users SET status = 1 WHERE email = :email";
     }
 
 

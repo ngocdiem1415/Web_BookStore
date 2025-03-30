@@ -65,9 +65,21 @@ public class UserServices {
         });
     }
 
-    public void updateEmailVerifiedByID(int id) {
+    public boolean updateEmailVerifiedByID(int id) {
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updateEmailVerifiedByID(id);
+            });
+            return true;
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void updateEmailVerifiedByEmail(String email) {
         conn.useExtension(UserDao.class, handle -> {
-            handle.updateEmailVerifiedByID(id);
+            handle.updateEmailVerifiedByEmail(email);
         });
     }
 
@@ -135,8 +147,8 @@ public class UserServices {
 
     public boolean exists(User user) {
         List<User> users = conn.withExtension(UserDao.class, handle -> handle.findAll());
-        for(User u : users) {
-            if(u.getUsername().equals(user.getUsername())) {
+        for (User u : users) {
+            if (u.getUsername().equals(user.getUsername())) {
                 return true;
             }
         }

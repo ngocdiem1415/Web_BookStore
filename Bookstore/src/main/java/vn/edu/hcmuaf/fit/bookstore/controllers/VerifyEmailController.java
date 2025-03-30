@@ -22,9 +22,10 @@ public class VerifyEmailController extends HttpServlet {
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
 
-        if ("sendcode".equals(action)) {
-            handleSendCode(request, response, session);
-        } else if ("validateCode".equalsIgnoreCase(action)) {
+//        if ("sendcode".equals(action)) {
+//            handleSendCode(request, response, session);
+//        } else
+            if ("validateCode".equalsIgnoreCase(action)) {
             handleValidateCode(request, response, session);
         }
     }
@@ -60,7 +61,7 @@ public class VerifyEmailController extends HttpServlet {
     private void handleValidateCode(HttpServletRequest request, HttpServletResponse response,
                                     HttpSession session) throws ServletException, IOException {
         String inputCode = request.getParameter("code");
-        String sessionEmail = (String) session.getAttribute("verifyEmail");
+        String sessionEmail = (String) session.getAttribute("tempEmail");
 
         if (inputCode == null || inputCode.isEmpty()) {
             sendError(request, response, "Vui lòng nhập mã xác nhận");
@@ -76,7 +77,20 @@ public class VerifyEmailController extends HttpServlet {
             return;
         }
 
-        processSuccessfulVerification(request, response, session, verifyEmail);
+        // Lay thong tin tu session
+
+
+
+        // Chỉ cập nhật trạng thái xác nhận email, không tạo user mới
+        boolean updated = userService.updateEmailVerifiedByID(verifyEmail.getId());
+        if (updated) {
+            verifyEmailService.delete(verifyEmail.getToken());
+            clearTempSessionData(session);
+            request.setAttribute("baoloi", "Xác nhận thành công! Bạn có thể đăng nhập.");
+            request.getRequestDispatcher("success.jsp").forward(request, response);
+        } else {
+            sendError(request, response, "Đã có lỗi xảy ra, vui lòng thử lại sau");
+        }
     }
 
     private void processSuccessfulVerification(HttpServletRequest request,
@@ -94,11 +108,13 @@ public class VerifyEmailController extends HttpServlet {
         int result = userService.register(username, gender, dob, phone, email, password, "user");
 
         if (result == 0) {
-            // Đánh dấu email đã xác minh
-            userService.updateEmailVerifiedByID(verifyEmail.getId());
-
-            // Xóa mã xác nhận đã dùng
-            verifyEmailService.delete(verifyEmail.getToken());
+            verifyEmailService.updateTokenStatus(verifyEmail.getToken(), 1);
+            userService.updateEmailVerifiedByEmail(email);
+//            // Đánh dấu email đã xác minh
+//            userService.updateEmailVerifiedByID(verifyEmail.getId());
+//
+//            // Xóa mã xác nhận đã dùng
+//            verifyEmailService.delete(verifyEmail.getToken());
 
             // Xóa thông tin tạm
             clearTempSessionData(session);

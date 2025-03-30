@@ -57,16 +57,18 @@ public class SignupController extends HttpServlet {
 
             // luu token
             VerifyEmailService verifyEmailService = new VerifyEmailService();
-            verifyEmailService.saveVerifyEmail(email, verifyCode);
-
-            // hien thi thong bao
-            request.setAttribute("baoloi", "Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản");
-            request.getRequestDispatcher("email_verify.jsp").forward(request, response);
-
-        } else if (result == 1) {
+            if (verifyEmailService.saveVerifyEmail(email, verifyCode)) {
+                new MailVerify().sendVerificationCode(email, verifyCode);
+                request.setAttribute("baoloi", "Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản");
+                request.getRequestDispatcher("email_verify.jsp").forward(request, response);
+            } else {
+                request.setAttribute("baoloi", "Gửi email xác nhận thất bại, vui lòng thử lại");
+                request.getRequestDispatcher("Signup.jsp").forward(request, response);
+            }
+        } else if (result == 1) { //username da ton tai
             request.setAttribute("baoloi", "Username đã tồn tại");
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
-        } else if (result == 2) {
+        } else if (result == 2) {// email da ton tai
             request.setAttribute("baoloi", "Email đã tồn tại");
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
         } else {

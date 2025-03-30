@@ -47,4 +47,7 @@ public interface UserDao {
 
     @SqlQuery(QUERIES.USER.FIND_ALL)
     List<User> findAll();
+
+    @SqlUpdate(QUERIES.USER.UPDATE_EMAIL_ID)
+    void updateEmailVerifiedByEmail(@Bind("email") String email);
 }
