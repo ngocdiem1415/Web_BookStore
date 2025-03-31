@@ -80,10 +80,8 @@ public class QUERIES {
                 "LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
-        public static final String SELECT_BOOK_PROMOTION_IN_DAY =
-//                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE NOW() >= promotions.start_date and NOW() <= promotions.end_date and promotions.promotion_id = :id";
-                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE promotions.promotion_id = :id";
-        public static final String SELECT_BOOK_SOLDS = "select * from books order by sold_quantity desc limit :limit offset :offset";
+        public static final String SELECT_BOOK_BY_LIST_PROMOTION =
+               "SELECT b.* FROM books b JOIN promotions p ON b.promotion_id = p.promotion_id WHERE p.is_active = 1 ORDER BY p.discount DESC LIMIT 5";
         public static final String SELECT_BOOK_BY_CATEGORY = "SELECT books.* FROM books JOIN categories on books.category_id = categories.category_id WHERE categories.category_name = :category_name limit :limit offset :offset";
     }
 
