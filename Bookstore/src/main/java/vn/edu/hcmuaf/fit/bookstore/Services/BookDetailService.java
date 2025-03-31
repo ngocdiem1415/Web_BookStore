@@ -79,22 +79,10 @@ public class BookDetailService {
         return book;
     }
 
-    public Book getBookByPromotionId(int promotionId) {
-        Book book = connect.withExtension(BookDao.class, handle -> handle.getBookByPromotionId(promotionId));
-        Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
-        book.setImage(image);
-        return book;
+    public List<Book> getBookByListPromotion() {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.getBookByListPromotion());
+        return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
     }
-
-    public List<Book> getBestSellers(int limit, int offset) {
-        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listBestSeller(limit, offset));
-        for(Book book: books) {
-            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
-            book.setImage(image);
-        }
-        return books;
-    }
-
 
     public void delete(int id) {
         try {
@@ -133,11 +121,6 @@ public class BookDetailService {
 
     public List<Book> listByCategory(String category_name, int limit, int offset) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
-
-        for(Book book: books) {
-            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
-            book.setImage(image);
-        }
-        return books;
+        return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
     }
 }
