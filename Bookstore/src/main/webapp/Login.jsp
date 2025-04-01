@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,8 +54,8 @@
                         <label for="remember">Ghi nhớ mật khẩu</label>
                     </div>
                     <div class="form-group-button-login">
-                        <button type="submit" class="form-submit form-submit-gg"><i class="fa-brands fa-google"></i>
-                        </button>
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Bookstore/login-google&response_type=code&client_id=260850348977-8hune82mhlpi3odt53r7satqq9fo4plk.apps.googleusercontent.com&approval_prompt=force" class="form-submit form-submit-gg"><i class="fa-brands fa-google"></i>
+                        </a>
                         <button type="submit" class="form-submit form-submit-email"><i class="fa-solid fa-envelope"></i>
                         </button>
                     </div>
