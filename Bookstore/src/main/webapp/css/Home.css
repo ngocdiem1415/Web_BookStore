@@ -355,7 +355,7 @@ body {
     justify-content: right;
 }
 
-.deal-off-day .sale-area .price-box span.old-sale {
+.price-box .old-sale {
     color: #333;
     font-size: 18px;
     font-weight: 400;
@@ -363,7 +363,7 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
-.deal-off-day .sale-area .price-box span.new-sale {
+.price-box .new-sale {
     color: #f07c29;
     display: block;
     font-size: 28px;
