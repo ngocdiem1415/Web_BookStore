@@ -304,7 +304,7 @@
                 if ($(this).is(":checked")) {
                     const productRow = $(this).closest('.product');
                     if (productRow.length > 0) {
-                        const productId = productRow.data('product-id'); // Lấy productId
+                        const bId = productRow.data('product-id'); // Lấy productId
                         const productImg = productRow.find('.img-thumbnail').attr('src');
                         const productName = productRow.find('.product-name').text().trim();
                         const quantity = parseInt(productRow.find('.quantity').val().trim());
@@ -315,7 +315,7 @@
 
                         // if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {
                             selectedProducts.push({
-                                productId: productId,
+                                bId: bId,
                                 productImg: productImg,
                                 productName: productName,
                                 unitPrice: unitPrice,
