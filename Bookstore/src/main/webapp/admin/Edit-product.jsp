@@ -30,11 +30,9 @@
     <div class="breadcrumb-wrapper py-1">
         <ol class="breadcrumb mx-3">
             <li class="breadcrumb-item">
-
                 <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
                 <a href="#" class="text-dec" style="color: gray"> / </a>
                 <a href="product-management" class="text-dec" style="color: gray">Quản lý sản phẩm</a>
-
                 <a href="#" class="text-dec" style="color: gray"> / </a>
                 <a href="#" class="text-dec" style="color: #f07c29">Chỉnh sửa sản phẩm</a>
             </li>
@@ -43,13 +41,11 @@
     <div class="row d-flex align-items-center justify-content-center">
         <h2 class="col-9 text-center my-4">Chỉnh sửa sản phẩm</h2>
         <div class="col-3 d-flex justify-content-center">
-
-            <button type="button" class="btn btn-success me-2 my-4" style="background: #4B908E" id="update" onclick="window.location.href='product-management';">
+            <button type="button" class="btn btn-success me-2 my-4" style="background: #4B908E" id="update" onclick="window.location.href='/admin/product-management';">
                 <i class="fa-solid fa-check"></i> Xong
             </button>
             <button type="button" class="btn btn-danger my-4"
-                    onclick="window.location.href='product-management';">
-
+                    onclick="window.location.href='/admin/product-management';">
                 <i class="fa-solid fa-times"></i> Hủy
             </button>
         </div>
@@ -223,10 +219,7 @@
 
         $.ajax({
             type: "PUT",
-
-            url: "/admin/EditProduct",
-
-
+            url: "EditProduct",
             data: formData,
             processData: false,
             contentType: false,

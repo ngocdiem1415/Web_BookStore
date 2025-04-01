@@ -135,11 +135,18 @@ public class UserServices {
 
     public boolean exists(User user) {
         List<User> users = conn.withExtension(UserDao.class, handle -> handle.findAll());
-        for(User u : users) {
-            if(u.getUsername().equals(user.getUsername())) {
+        for (User u : users) {
+            if (u.getUsername().equals(user.getUsername())) {
                 return true;
             }
         }
         return false;
     }
+
+    public void updateEmailVerifiedByEmail(String email) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.updateEmailVerifiedByEmail(email);
+        });
+    }
+
 }
