@@ -62,8 +62,8 @@ public class VerifyEmailController extends HttpServlet {
             VerifyEmail verifyEmail = verifyEmailService.selectVerifyEmailByCode(inputCode);
             if (verifyEmail != null && verifyEmail.isValid()) {  // isValid() kiểm tra hết hạn
                 // Cập nhật trạng thái email đã xác minh
-                int userId = verifyEmail.getId();
-                userService.updateEmailVerifiedByID(userId);
+                String mail = verifyEmail.getEmail();
+                userService.updateEmailVerifiedByEmail(mail);
 
                 // Xóa mã xác nhận sau khi sử dụng
                 verifyEmailService.selectVerifyEmailByCode(inputCode);
