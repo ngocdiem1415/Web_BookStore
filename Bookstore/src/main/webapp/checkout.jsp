@@ -391,7 +391,7 @@
     // }
 </script>
 
-<%--<!--Chuyển sang trang đơn hàng khi nhấn nút mua ngay-->--%>
+<!--Chuyển sang trang đơn hàng khi nhấn nút mua ngay-->
 <%--<script>--%>
 <%--    document.addEventListener("DOMContentLoaded", function () {--%>
 <%--        // Lấy nút đặt hàng--%>
@@ -498,7 +498,8 @@
         const shippingCity = citySelect.value;
         const shippingDistrict = districtSelect.value;
         const shippingWard = wardSelect.value;
-
+        <% Integer userId = (Integer) request.getAttribute("userId"); %>
+        var userId = <%= userId %>;
         // Thu thập danh sách sản phẩm từ giỏ hàng
         const products = selectProducts.map(product => ({
             bId: product.bId,
@@ -541,7 +542,8 @@
             data: JSON.stringify(orderData), // Chuyển đổi đối tượng thành JSON
             success: function(response) {
                 // Nếu yêu cầu thành công, chuyển hướng đến trang đơn hàng
-                window.location.href = '/invoice?action=list&userId=' + userSession.getUid(); // Chuyển hướng đến trang đơn hàng chờ xử lý
+                // const contextPath = window.location.pathname.split('/')[1];  // Lấy context path từ URL hiện tại
+                window.location.href = '/Bookstore/invoice?action=list&userId=' + userId; // Chuyển hướng đến trang đơn hàng chờ xử lý
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
