@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
 import vn.edu.hcmuaf.fit.bookstore.beans.VerifyEmail;
 import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
+import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -36,7 +37,7 @@ public class VerifyEmailController extends HttpServlet {
 
             if (userId != null) {
                 // Tạo mã xác nhận
-                String verifyCode = UUID.randomUUID().toString();
+                String verifyCode = RandomCode.randomCode();
 
                 // Lưu mã xác nhận vào cơ sở dữ liệu và gửi email
                 verifyEmailService.saveVerifyEmail(userId, email);
