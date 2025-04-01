@@ -5,6 +5,7 @@ import com.sun.tools.javac.Main;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.UUID;
@@ -55,7 +56,7 @@ public class MailVerify {
             // kieu noi dung
             msg.setFrom(new InternetAddress(fromEmail, "BookStore"));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            msg.setSubject(subject);
+            msg.setSubject(MimeUtility.encodeText(subject, "UTF-8", "B"));
             msg.setContent(content, "text/plain; charset=UTF-8");
 
             // gui mail
