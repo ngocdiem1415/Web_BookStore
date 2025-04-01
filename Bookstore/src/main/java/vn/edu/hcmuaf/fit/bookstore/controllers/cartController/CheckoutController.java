@@ -23,13 +23,6 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("CheckoutController: doPost() triggered");
         //Kiểm tra session của User
         HttpSession session = request.getSession(false);
         // Kiểm tra session và user login
@@ -39,7 +32,17 @@ public class CheckoutController extends HttpServlet {
             System.out.println("CheckoutController: redirect to login");
             return;
         }
+        int userId = ((User) session.getAttribute("userSession")).getUid();
+        request.setAttribute("userId", userId);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
+        dispatcher.forward(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("CheckoutController: doPost() triggered");
+
+        HttpSession session = request.getSession(false);
         int userId = ((User) session.getAttribute("userSession")).getUid();
 
         try {
