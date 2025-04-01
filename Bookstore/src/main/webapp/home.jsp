@@ -149,7 +149,7 @@
                             <div class="sale-area">
                                 <div class="price-box">
                                 <span class="old-sale"><f:formatNumber value="${firstBook.originalPrice}"/>
-                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #000;"></i> </span>
+                                    <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i> </span>
                                     <span class="new-sale"> <f:formatNumber value="${firstBook.salePrice}"/>
                                     <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                 </div>
@@ -199,8 +199,8 @@
                                                     <div class="price-box">
                                                          <span class="old-sale"><f:formatNumber
                                                                  value="${book.originalPrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #000;"></i> </span>
-                                                        <span class="new-sale"> <f:formatNumber
+                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #999;"></i> </span>
+                                                        <span class="new-sale" style="font-size: 1rem"> <f:formatNumber
                                                                 value="${book.salePrice}"/>
                                                         <i class="fa-solid fa-dong-sign fa-xs"
                                                            style="color: #f07c29;"></i></span>
@@ -251,9 +251,12 @@
                                                    title="Quick View">
                                                     <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
                                                 </a>
-                                                <a class="action-view" href="Cart.jsp" title="Add Product">
+                                                <c:if test="${not empty userSession}">
+                                                <a class="action-view" title="Add Product"
+                                                onclick="addToCart(${literatureBooks.bId})">
                                                     <i class="fa-solid fa-cart-shopping fa-xs"
                                                        style="top: 20px;left: 8px;"></i> </a>
+                                                </c:if>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
@@ -267,18 +270,17 @@
                                                         <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                                     </div>
                                                     <div class="old-price">
-                                                        <span class="price product-price-old"><f:formatNumber
+                                                        <span class="price product-price-old" style="font-size: 1rem"><f:formatNumber
                                                                 value="${literatureBooks.originalPrice}"/>
                                                          <i class="fa-solid fa-dong-sign fa-xs"
-                                                            style="color: #000;"></i></span>
+                                                            style="color: #999;"></i></span>
                                                     </div>
                                                 </c:if>
                                                 <c:if test="${literatureBooks.promotionId == 0}">
                                                     <div class="special-price">
-                                                         <span class="price product-price-old"><f:formatNumber
-                                                                 value="${literatureBooks.originalPrice}"/>
-                                                         <i class="fa-solid fa-dong-sign fa-xs"
-                                                            style="color: #f07c29;"></i></span>
+                                                        <span class="price product-price cl-o"><f:formatNumber
+                                                                value="${literatureBooks.originalPrice}"/>
+                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -323,10 +325,12 @@
                                                    title="Quick View">
                                                     <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
                                                 </a>
-                                                <a class="action-view" href="Cart.jsp"
-                                                   title="Add Product">
+                                                <c:if test="${not empty userSession}">
+                                                <a class="action-view" title="Add Product"
+                                                   onclick="addToCart(${novelsBooks.bId})">
                                                     <i class="fa-solid fa-cart-shopping fa-xs"
                                                        style="top: 20px;left: 8px;"></i> </a>
+                                                </c:if>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
@@ -340,18 +344,17 @@
                                                         <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                                     </div>
                                                     <div class="old-price">
-                                                        <span class="price product-price-old"><f:formatNumber
+                                                        <span class="price product-price-old" style="font-size: 1rem"><f:formatNumber
                                                                 value="${novelsBooks.originalPrice}"/>
                                                          <i class="fa-solid fa-dong-sign fa-xs"
-                                                            style="color: #000;"></i></span>
+                                                            style="color: #999;"></i></span>
                                                     </div>
                                                 </c:if>
                                                 <c:if test="${novelsBooks.promotionId == 0}">
                                                     <div class="special-price">
-                                                         <span class="price product-price-old"><f:formatNumber
-                                                                 value="${novelsBooks.originalPrice}"/>
-                                                         <i class="fa-solid fa-dong-sign fa-xs"
-                                                            style="color: #f07c29;"></i></span>
+                                                        <span class="price product-price cl-o"><f:formatNumber
+                                                                value="${novelsBooks.salePrice}"/>
+                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -396,10 +399,12 @@
                                                    title="Quick View">
                                                     <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
                                                 </a>
-                                                <a class="action-view" href="Cart.jsp"
-                                                   title="Add Product">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs"
-                                                       style="top: 20px;left: 8px;"></i> </a>
+                                                <c:if test="${not empty userSession}">
+                                                    <a class="action-view" title="Add Product"
+                                                       onclick="addToCart(${comicBooks.bId})">
+                                                        <i class="fa-solid fa-cart-shopping fa-xs"
+                                                           style="top: 20px;left: 8px;"></i> </a>
+                                                </c:if>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
@@ -416,15 +421,14 @@
                                                         <span class="price product-price-old"><f:formatNumber
                                                                 value="${comicBooks.originalPrice}"/>
                                                          <i class="fa-solid fa-dong-sign fa-xs"
-                                                            style="color: #000;"></i></span>
+                                                            style="color: #999;"></i></span>
                                                     </div>
                                                 </c:if>
                                                 <c:if test="${comicBooks.promotionId == 0}">
                                                     <div class="special-price">
-                                                         <span class="price product-price-old"><f:formatNumber
-                                                                 value="${comicBooks.originalPrice}"/>
-                                                         <i class="fa-solid fa-dong-sign fa-xs"
-                                                            style="color: #f07c29;"></i></span>
+                                                        <span class="price product-price cl-o"><f:formatNumber
+                                                                value="${comicBooks.salePrice}"/>
+                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -503,6 +507,16 @@
         <%--        </div>--%>
         <%--    </div>--%>
         <!--     most-product-area-end -->
+
+        <div id="cart-notification-success" style="display: none; z-index: 1050; opacity: 0.9;"
+             class="alert alert-success text-center position-fixed start-50 top-50 translate-middle">
+            Sản phẩm đã được thêm vào giỏ hàng!
+        </div>
+        <div id="cart-notification-error" style="display: none; z-index: 1050; opacity: 0.9;"
+             class="alert alert-success text-center position-fixed start-50 top-50 translate-middle">
+            Không thể thêm sản phẩm vào giỏ hàng!
+        </div>
+
     </div>
 
     <!--/SECTION-->
@@ -562,5 +576,33 @@
 
     </script>
 
+    <!--Script thêm vào giỏ hàng-->
+    <script>
+        function addToCart(Bid) {
+            let id = Bid;
+            let quantity = 1;
+            const cartNotifications = document.getElementById('cart-notification-success');
+            const cartNotificatione = document.getElementById('cart-notification-error');
+            $.ajax({
+                url: 'add-cart?id=' + id + '&quantity=' + quantity,
+                type: 'GET',
+                success: function (data) {
+                    cartNotifications.style.display = 'block';
+                    // Ẩn thông báo sau 2 giây
+                    setTimeout(() => {
+                        cartNotifications.style.display = 'none';
+                    }, 2000);
+                },
+                error: function (data) {
+                    cartNotifications.style.display = 'block';
+
+                    // Ẩn thông báo sau 2 giây
+                    setTimeout(() => {
+                        cartNotifications.style.display = 'none';
+                    }, 2000);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
