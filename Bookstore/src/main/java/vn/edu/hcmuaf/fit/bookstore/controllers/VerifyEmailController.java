@@ -40,7 +40,7 @@ public class VerifyEmailController extends HttpServlet {
                 String verifyCode = RandomCode.randomCode();
 
                 // Lưu mã xác nhận vào cơ sở dữ liệu và gửi email
-                verifyEmailService.saveVerifyEmail(userId, email);
+                verifyEmailService.saveVerifyEmail(email, verifyCode);
 
                 // Gửi mã qua email (giả sử bạn có hàm gửi email)
                 MailVerify mailVerify = new MailVerify();

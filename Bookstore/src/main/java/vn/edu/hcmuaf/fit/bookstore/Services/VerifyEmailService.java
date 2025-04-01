@@ -18,10 +18,10 @@ import java.util.UUID;
 public class VerifyEmailService {
     Jdbi conn = JDBIConnector.getJdbi();
 
-    public void insertVerifyEmail(int id, String email, String token, Timestamp createdAt, Timestamp expiresAt) {
+    public void insertVerifyEmail(String email, String token, Timestamp createdAt, Timestamp expiresAt) {
         try {
             conn.useExtension(VerifyEmailDao.class, handle -> {
-                handle.insertVerifyEmail(id, email, token, createdAt, expiresAt);
+                handle.insertVerifyEmail(email, token, createdAt, expiresAt);
             });
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -39,15 +39,14 @@ public class VerifyEmailService {
     }
 
     // Lu mã token vào database và gửi email xác minh
-    public void saveVerifyEmail(int id, String email) {
-        String token = RandomCode.randomCode();
+    public void saveVerifyEmail(String email, String token) {
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime expiresAt = createdAt.plusMinutes(2);
 
         Timestamp createdTimestamp = Timestamp.valueOf(createdAt);
         Timestamp expiresTimestamp = Timestamp.valueOf(expiresAt);
         conn.useExtension(VerifyEmailDao.class, dao -> {
-            dao.insertVerifyEmail(id, email, token, createdTimestamp, expiresTimestamp);
+            dao.insertVerifyEmail(email, token, createdTimestamp, expiresTimestamp);
         });
 
         // Gui email xac minh

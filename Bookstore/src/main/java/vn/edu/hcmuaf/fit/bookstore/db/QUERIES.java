@@ -20,10 +20,10 @@ public class QUERIES {
 
 
     public class VERIFY_EMAIL {
-        public static final String INSERT_VERIFY_EMAIL = "insert into password_reset_tokens (id ,email, token, created_at, expires_at) values (:id ,:email, :token, NOW(), :expiresAt)";
+        public static final String INSERT_VERIFY_EMAIL = "insert into password_reset_tokens (email, token, created_at, expires_at) values (:email, :token, NOW(), :expiresAt)";
         public static final String SELECT_VERIFY_EMAIL_BY_CODE = "select * from password_reset_tokens where token = :token";
-        public static final String DELETE_VERIFY_BY_USER_ID = "delete from password_reset_tokens where uid = :uid";
-        public static final String DELETE = "delete from password_reset_tokens where id = :id";
+        public static final String DELETE_VERIFY_BY_USER_ID = "delete from password_reset_tokens where email = :email";
+        public static final String DELETE = "delete from password_reset_tokens where token = :token";
     }
 
     public class BOOK {
