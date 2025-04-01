@@ -19,7 +19,12 @@ public class MailVerify {
 
     public void sendVerificationCode(String toEmail, String code) {
         String subject = "Xác minh tài khoản";
-        String content = "Mã xác minh là: " + code;
+        String content =
+                "Xin chào,\n\n" +
+                        "Mã xác minh tài khoản của bạn là: " + code + "\n\n" +
+                        "Mã có hiệu lực trong vòng 2 phút.\n\n" +
+                        "Trân trọng,\n" +
+                        "Đội ngũ BookStore";
 
         sendEmail(toEmail, subject, content);
     }
@@ -51,7 +56,7 @@ public class MailVerify {
             msg.setFrom(new InternetAddress(fromEmail, "BookStore"));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             msg.setSubject(subject);
-            msg.setText(content);
+            msg.setContent(content, "text/plain; charset=UTF-8");
 
             // gui mail
             Transport.send(msg);
