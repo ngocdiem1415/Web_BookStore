@@ -5,12 +5,9 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
-import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
+import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 @WebServlet(name = "SignupController", value = "/signup")
 public class SignupController extends HttpServlet {
@@ -30,7 +27,7 @@ public class SignupController extends HttpServlet {
         String dob = request.getParameter("birthdate");
         String baoloi = "";
         String type = "signup";
-        String verifyCode = UUID.randomUUID().toString();
+        String verifyCode = RandomCode.randomCode();
 
         // Kiểm tra giới tính hợp lệ
         if (gender == null || (!gender.equals("male") && !gender.equals("female") && !gender.equals("other"))) {
@@ -46,7 +43,7 @@ public class SignupController extends HttpServlet {
 
             // luu token
             VerifyEmailService verifyEmailService = new VerifyEmailService();
-            verifyEmailService.saveVerifyEmail(id, email);
+            verifyEmailService.saveVerifyEmail(email, verifyCode);
 
             // hien thi thong bao
             request.setAttribute("baoloi", "Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản");

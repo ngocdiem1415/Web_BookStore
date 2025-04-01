@@ -90,8 +90,52 @@
 </div>
 
 <script>
+    document.getElementById("register-form").addEventListener("submit", function(event) {
+        let birthdateInput = document.getElementById("birthdate").value;
+        let birthdate = new Date(birthdateInput);
+        let today = new Date();
 
+        // Tính tuổi
+        let age = today.getFullYear() - birthdate.getFullYear();
+        let monthDiff = today.getMonth() - birthdate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+            age--;
+        }
+
+        if (birthdate >= today) {
+            alert("Ngày sinh không được là ngày trong tương lai!");
+            event.preventDefault(); // Ngăn form gửi đi
+            return;
+        }
+
+        if (age < 18) {
+            alert("Bạn phải ít nhất 18 tuổi để đăng ký!");
+            event.preventDefault();
+        }
+    });
 </script>
+
+<script>
+    document.getElementById("register-form").addEventListener("submit", function(event) {
+        let password = document.getElementById("password").value;
+        let phone = document.getElementById("tel").value;
+
+        let phoneRegex = /^[0-9]{10}$/;
+        let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // Ít nhất 6 ký tự, gồm chữ và số
+
+        if (!phoneRegex.test(phone)) {
+            alert("Số điện thoại phải có đúng 10 chữ số!");
+            event.preventDefault();
+            return;
+        }
+        if (!passwordRegex.test(password)) {
+            alert("Mật khẩu phải có ít nhất 6 ký tự, bao gồm cả chữ cái và số!");
+            event.preventDefault();
+        }
+    });
+</script>
+
+
 
 </body>
 </html>
