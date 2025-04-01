@@ -55,6 +55,7 @@ public class InvoiceService {
             return connect.inTransaction(handle -> {
                 InvoiceDao invoiceDao = handle.attach(InvoiceDao.class);
                 InvoiceDetailDao invoiceDetailDao = handle.attach(InvoiceDetailDao.class);
+                PaymentDao paymentDao = handle.attach(PaymentDao.class);
                 // BookDao bookDao = handle.attach(BookDao.class);
 
                 //Thêm hóa đơn
@@ -80,6 +81,12 @@ public class InvoiceService {
                         //     bookDao.update(book);
                         // }
                     }
+                }
+
+                //Thêm thông tin thanh toán
+                if (invoice.getPayment() != null) {
+                    invoice.getPayment().setInvoiceId(invoiceId);
+                    paymentDao.insert(invoice.getPayment());
                 }
 
                 return invoiceId; // Trả về invoiceId vừa tạo
