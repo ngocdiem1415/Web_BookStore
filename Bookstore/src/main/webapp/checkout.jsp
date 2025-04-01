@@ -290,7 +290,7 @@
             const productElement = tempContainer.firstElementChild;
 
             // Gán giá trị động vào các phần tử con
-            productElement.setAttribute("data-product-id", product.productId);
+            productElement.setAttribute("data-product-id", product.bId);
             productElement.querySelector(".img-thumbnail").src = product.productImg;
             productElement.querySelector(".info").textContent = product.productName;
 
@@ -501,7 +501,8 @@
 
         // Thu thập danh sách sản phẩm từ giỏ hàng
         const products = selectProducts.map(product => ({
-            productId: product.productId,
+            bId: product.bId,
+            // productId: product.productId,
             quantity: product.quantity,
             unitPrice: product.unitPrice
         }));
@@ -530,11 +531,11 @@
             paymentMethod: paymentMethod
         };
 
-        console.log("orderData: "+orderData);
+        console.log("orderData: " + JSON.stringify(orderData, null, 2));
 
         // Gửi yêu cầu AJAX để tạo đơn hàng mới
         $.ajax({
-            url: 'checkout', // URL endpoint của backend
+            url: '/Bookstore/checkout', // URL endpoint của backend
             type: 'POST',
             contentType: 'application/json', // Loại nội dung là JSON
             data: JSON.stringify(orderData), // Chuyển đổi đối tượng thành JSON
