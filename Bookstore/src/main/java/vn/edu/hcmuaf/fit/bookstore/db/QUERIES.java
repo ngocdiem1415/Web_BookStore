@@ -8,7 +8,7 @@ public class QUERIES {
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
         public static final String FIND_BY_USERNAME = "select * from users where username = :username";
-        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 1 , :role)";
+        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 0 , :role)";
         public static final String FIND_BY_EMAIL = "select * from users where email = :email";
         public static final String CHANGE_PASSWORD = "update users set password = :password where uid = :uid";
         public static final String DELETE = "delete from users where uid = :id";
@@ -16,14 +16,15 @@ public class QUERIES {
         public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
         public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";;
         public static final String FIND_ALL = "select * from users";
+        public static final String UPDATE_EMAIL_VERIFIED_BY_EMAIL = "UPDATE users SET status = 1 WHERE email = :email";
     }
 
 
     public class VERIFY_EMAIL {
-        public static final String INSERT_VERIFY_EMAIL = "insert into password_reset_tokens (id ,email, token, created_at, expires_at) values (:id ,:email, :token, NOW(), :expiresAt)";
+        public static final String INSERT_VERIFY_EMAIL = "insert into password_reset_tokens (email, token, created_at, expires_at) values (:email, :token, NOW(), :expiresAt)";
         public static final String SELECT_VERIFY_EMAIL_BY_CODE = "select * from password_reset_tokens where token = :token";
-        public static final String DELETE_VERIFY_BY_USER_ID = "delete from password_reset_tokens where uid = :uid";
-        public static final String DELETE = "delete from password_reset_tokens where id = :id";
+        public static final String DELETE_VERIFY_BY_USER_ID = "delete from password_reset_tokens where email = :email";
+        public static final String DELETE = "delete from password_reset_tokens where token = :token";
     }
 
     public class BOOK {
