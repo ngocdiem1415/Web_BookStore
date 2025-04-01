@@ -10,7 +10,7 @@ import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 
-public class AuthorizationFilter implements Filter{
+public class AuthorizationFilter implements Filter {
     private ServletContext context;
 
 
@@ -19,13 +19,14 @@ public class AuthorizationFilter implements Filter{
         this.context = filterConfig.getServletContext();
     }
 
-    @Override
+        @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse rp = (HttpServletResponse) servletResponse;
         HttpServletRequest rq = (HttpServletRequest) servletRequest;
         String uri = rq.getRequestURI();
+        User user = (User) rq.getSession().getAttribute("userSession");
         if (uri.startsWith("/admin")) {
-            User user = (User) rq.getSession().getAttribute("userSession");
+            User user1 = (User) rq.getSession().getAttribute("userSession");
             if (user != null) {
                 if (user.getRole().equals("admin")){
                     filterChain.doFilter(servletRequest, servletResponse);
@@ -39,4 +40,5 @@ public class AuthorizationFilter implements Filter{
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }
+
 }

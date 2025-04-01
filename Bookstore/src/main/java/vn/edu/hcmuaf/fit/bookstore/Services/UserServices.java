@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
+import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
@@ -51,7 +52,6 @@ public class UserServices {
 
         });
     }
-
 
 
     // Tim kiem nguoi dung theo ten va mat khau
@@ -127,5 +127,19 @@ public class UserServices {
         });
     }
 
+    public void insertByGoogle(User user) {
+        conn.useExtension(UserDao.class, handle -> {
+            handle.insertByGoogle(user.getUsername(), user.getGender(), user.getPhone(), user.getEmail(), user.getPassword(), user.getRole());
+        });
+    }
 
+    public boolean exists(User user) {
+        List<User> users = conn.withExtension(UserDao.class, handle -> handle.findAll());
+        for(User u : users) {
+            if(u.getUsername().equals(user.getUsername())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
