@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.VerifyEmailDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
+import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -39,9 +40,9 @@ public class VerifyEmailService {
 
     // Lu mã token vào database và gửi email xác minh
     public void saveVerifyEmail(int id, String email) {
-        String token = UUID.randomUUID().toString();
+        String token = RandomCode.randomCode();
         LocalDateTime createdAt = LocalDateTime.now();
-        LocalDateTime expiresAt = createdAt.plusDays(1);
+        LocalDateTime expiresAt = createdAt.plusMinutes(2);
 
         Timestamp createdTimestamp = Timestamp.valueOf(createdAt);
         Timestamp expiresTimestamp = Timestamp.valueOf(expiresAt);
