@@ -133,6 +133,18 @@ body {
     z-index: 1;
 }
 
+.owl-stage-outer {
+    overflow: hidden !important; /* Ẩn phần dư thừa */
+    white-space: nowrap; /* Ngăn xuống dòng */
+    display: flex;
+}
+
+.owl-stage {
+    width: auto !important;
+    display: flex !important;
+    flex-wrap: nowrap; /* Ngăn item bị xuống dòng */
+}
+
 .owl-carousel .owl-item {
     /*position: relative;*/
     display: inline-block;
@@ -210,7 +222,6 @@ body {
     font-size: 20px!important; /* Điều chỉnh kích thước icon */
     position: absolute !important;
     top: 15px;
-    right: 20px;
 }
 
 .product-flag {
@@ -256,7 +267,7 @@ body {
     padding: 0;
     text-transform: capitalize;
     transition: .3s;
-    font-family: 'Rufina', serif;
+    font-family: "Open Sans", sans-serif;
     text-decoration: none;
 }
 
@@ -269,7 +280,7 @@ body {
     color: #f07c29;
     font-size: 20px;
     font-weight: 600;
-    font-family: 'Rufina', serif;
+    font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
 
@@ -328,7 +339,7 @@ body {
     line-height: 1.15;
     text-transform: capitalize;
     text-decoration: none;
-    font-family: 'Rufina', serif;
+    font-family: "Open Sans", sans-serif;
     transition: .3s;
 }
 
@@ -341,17 +352,18 @@ body {
     display: flex;
     flex-wrap: nowrap; /* Không cho nội dung xuống dòng */
     gap: 10px;
+    justify-content: right;
 }
 
-.deal-off-day .sale-area .price-box span.old-sale {
+.price-box .old-sale {
     color: #333;
     font-size: 18px;
     font-weight: 400;
     text-decoration: line-through;
-    font-family: 'Rufina', serif;
+    font-family: "Open Sans", sans-serif;
 }
 
-.deal-off-day .sale-area .price-box span.new-sale {
+.price-box .new-sale {
     color: #f07c29;
     display: block;
     font-size: 28px;
@@ -512,7 +524,7 @@ body {
 
 .single-banner .banner-text h4 {
     color: #222;
-    font-family: "Rufina", serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 2px;

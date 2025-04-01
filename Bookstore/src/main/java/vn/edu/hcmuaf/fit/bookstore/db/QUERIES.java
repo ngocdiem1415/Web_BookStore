@@ -14,6 +14,8 @@ public class QUERIES {
         public static final String DELETE = "delete from users where uid = :id";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
         public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
+        public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";;
+        public static final String FIND_ALL = "select * from users";
     }
 
 
@@ -29,6 +31,7 @@ public class QUERIES {
                 "VALUES (:title, :author, :categoryId, :pId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId, :soldQuantity, :stockQuantity, CURRENT_TIMESTAMP, :status)";
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
+        public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
         public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :pId, publish_year = :publishYear, weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId, stock_quantity = :stockQuantity, create_at = :createAt, update_at = CURRENT_TIMESTAMP WHERE b_id = :bookId";
         public static final String DELETE = "delete from books where b_id = :id";
@@ -79,14 +82,11 @@ public class QUERIES {
                 "LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
-        public static final String SELECT_BOOK_PROMOTION_IN_DAY =
-                "SELECT books.* FROM books JOIN promotions ON books.promotion_id = promotions.promotion_id WHERE promotions.promotion_id = :id";
-        //Sửa lỗi ngày bắt đầu và kết thúc
-        public static final String SELECT_BOOK_SOLDS = "select * from books order by sold_quantity desc limit :limit offset :offset";
+        public static final String SELECT_BOOK_BY_LIST_PROMOTION =
+               "SELECT b.* FROM books b JOIN promotions p ON b.promotion_id = p.promotion_id WHERE p.is_active = 1 ORDER BY p.discount DESC LIMIT 5";
+
         public static final String SELECT_BOOK_BY_CATEGORY = "SELECT books.* FROM books JOIN categories on books.category_id = categories.category_id WHERE categories.category_name = :category_name limit :limit offset :offset";
     }
-
-
 
 
     public class CATEGORY {
@@ -127,9 +127,8 @@ public class QUERIES {
         public static final String FIND_BY_PUBLISHERID = "select * from publishers where p_id = :id";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
         public static final String INSERT_PUBLISHER = "INSERT INTO publishers (p_name, p_address, p_phone) VALUES (:publisherName, :address, :phone)";
-        public static  final String UPDATE_PUBLISHER = "UPDATE publishers SET p_name = :publisherName, p_address = :address, p_phone = :phone WHERE p_id = :p_id";
+        public static final String UPDATE_PUBLISHER = "UPDATE publishers SET p_name = :publisherName, p_address = :address, p_phone = :phone WHERE p_id = :p_id";
     }
-
 
 
     public class REVIEW {

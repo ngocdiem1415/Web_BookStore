@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
@@ -18,6 +17,26 @@ public class User {
     private String role; // "user" hoặc "admin"
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
+    private int emailVerified;
+
+    public User(int id, String name, String picture, String gender, Object dob, String phone, String email, String password, int status, String user, Object createAt, Object updateAt) {
+    }
+
+    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, String role, LocalDateTime createAt, LocalDateTime updateAt, int emailVerified) {
+        this.uid = uid;
+        this.username = username;
+        this.avatar = avatar;
+        this.gender = gender;
+        this.dob = dob;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.role = role;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+        this.emailVerified = emailVerified;
+    }
 
     public User() {
     }
@@ -154,6 +173,14 @@ public class User {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public int getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(int emailVerified) {
+        this.emailVerified = emailVerified;
     }
 
     @Override
