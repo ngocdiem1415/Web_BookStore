@@ -164,9 +164,10 @@
                            style="background-color: red" onclick="addToCart()">
                             Mua ngay </a>
                     </c:if>
+
                     <c:if test="${empty userSession}">
                         <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: red; pointer-events: none;" onclick="addToCart()">
+                           style="background-color: red; pointer-events: none;" onclick="addToCart(${book.bId})">
                             Mua ngay </a>
                     </c:if>
 
