@@ -5,6 +5,7 @@ import com.sun.tools.javac.Main;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.UUID;
@@ -19,7 +20,12 @@ public class MailVerify {
 
     public void sendVerificationCode(String toEmail, String code) {
         String subject = "Xác minh tài khoản";
-        String content = "Mã xác minh là: " + code;
+        String content =
+                "Xin chào,\n\n" +
+                        "Mã xác minh tài khoản của bạn là: " + code + "\n\n" +
+                        "Mã có hiệu lực trong vòng 2 phút.\n\n" +
+                        "Trân trọng,\n" +
+                        "Đội ngũ BookStore";
 
         sendEmail(toEmail, subject, content);
     }
@@ -50,8 +56,8 @@ public class MailVerify {
             // kieu noi dung
             msg.setFrom(new InternetAddress(fromEmail, "BookStore"));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            msg.setSubject(subject);
-            msg.setText(content);
+            msg.setSubject(MimeUtility.encodeText(subject, "UTF-8", "B"));
+            msg.setContent(content, "text/plain; charset=UTF-8");
 
             // gui mail
             Transport.send(msg);
