@@ -22,6 +22,7 @@ public class InvoiceService {
     public List<Invoice> listAll() {
         return connect.withExtension(InvoiceDao.class, InvoiceDao::listAll);
     }
+
     public Invoice findById(int id) {
         return connect.withExtension(InvoiceDao.class, handle -> mapInvoice(handle.findById(id)));
     }
@@ -51,30 +52,48 @@ public class InvoiceService {
             if (invoice == null) {
                 throw new IllegalArgumentException("Invoice không được null.");
             }
-
             return connect.inTransaction(handle -> {
-                // Thêm hóa đơn
-                handle.attach(InvoiceDao.class).insert(invoice);
+                InvoiceDao invoiceDao = handle.attach(InvoiceDao.class);
+                InvoiceDetailDao invoiceDetailDao = handle.attach(InvoiceDetailDao.class);
+                PaymentDao paymentDao = handle.attach(PaymentDao.class);
+                // BookDao bookDao = handle.attach(BookDao.class);
 
-                // Thêm các chi tiết hóa đơn và cập nhật sách
+                //Thêm hóa đơn
+                invoiceDao.insert(invoice);
+
+                // **Lấy invoiceId sau khi insert**
+                int invoiceId = handle.createQuery("SELECT LAST_INSERT_ID()").mapTo(Integer.class).one();
+
+                // Cập nhật invoiceId cho đối tượng
+                invoice.setInvoiceId(invoiceId);
+
+                // **Thêm các chi tiết hóa đơn**
                 if (invoice.getListInvoiceDetails() != null) {
                     for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
-                        handle.attach(InvoiceDetailDao.class).insert(detail);
+                        detail.setInvoiceId(invoiceId); // Gán invoiceId cho từng detail
+                        invoiceDetailDao.insert(detail);
 
-//                        Book book = detail.getBook();
-//                        if (book != null) {
-//                            book.setStockQuantity(book.getStockQuantity() - detail.getQuantity());
-//                            book.setSoldQuantity(book.getSoldQuantity() + detail.getQuantity());
-//                            handle.attach(BookDao.class).update(book);
-//                        }
+                        // **Cập nhật tồn kho sách**
+                        // Book book = detail.getBook();
+                        // if (book != null) {
+                        //     book.setStockQuantity(book.getStockQuantity() - detail.getQuantity());
+                        //     book.setSoldQuantity(book.getSoldQuantity() + detail.getQuantity());
+                        //     bookDao.update(book);
+                        // }
                     }
                 }
 
-                return 1; // Thành công
+                //Thêm thông tin thanh toán
+                if (invoice.getPayment() != null) {
+                    invoice.getPayment().setInvoiceId(invoiceId);
+                    paymentDao.insert(invoice.getPayment());
+                }
+
+                return invoiceId; // Trả về invoiceId vừa tạo
             });
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Lỗi khi thêm hóa đơn: " + e.getMessage(), e);
+            throw new RuntimeException("Lỗi không thêm được hóa đơn (Trong invoiceService): " + e.getMessage(), e);
         }
     }
 
@@ -140,7 +159,6 @@ public class InvoiceService {
             throw new RuntimeException("Lỗi khi cập nhật hóa đơn: " + e.getMessage(), e);
         }
     }
-
 
 
 //    synchronized public int insert(Invoice invoice) {
@@ -238,7 +256,7 @@ public class InvoiceService {
         return invoiceDetail;
     }
 
-    private Invoice mapInvoice(Invoice invoice){
+    private Invoice mapInvoice(Invoice invoice) {
         if (invoice == null) {
             System.out.println("Warning: Attempted to map invoice details and payment for a null Invoice.");
             return null;
