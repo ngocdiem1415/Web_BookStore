@@ -83,7 +83,7 @@ public class UserServices {
 
 
     // ma hoa mat khau
-    private String hashPassword(String password) {
+    public String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
