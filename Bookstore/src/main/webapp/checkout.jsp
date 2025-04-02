@@ -141,10 +141,10 @@
                 Thanh toán khi nhận hàng
             </button>
 
-            <%--            <!-- Nút Chuyển khoản ngân hàng -->--%>
-            <%--            <button type="button" class="btn payment-btn btn-outline-success" id="bank-transfer">--%>
-            <%--                Chuyển khoản ngân hàng--%>
-            <%--            </button>--%>
+            <!-- Nút Chuyển khoản ngân hàng -->
+            <button type="button" class="btn payment-btn btn-outline-success" id="bank-transfer">
+                Chuyển khoản ngân hàng
+            </button>
         </div>
     </div>
 
@@ -290,7 +290,7 @@
             const productElement = tempContainer.firstElementChild;
 
             // Gán giá trị động vào các phần tử con
-            productElement.setAttribute("data-product-id", product.productId);
+            productElement.setAttribute("data-product-id", product.bId);
             productElement.querySelector(".img-thumbnail").src = product.productImg;
             productElement.querySelector(".info").textContent = product.productName;
 
@@ -385,21 +385,25 @@
             });
         });
     });
+    // function getSelectedPaymentMethod() {
+    //     const selectedButton = document.querySelector(".payment-btn.active");
+    //     return selectedButton ? selectedButton.textContent.trim() : null;
+    // }
 </script>
 
 <!--Chuyển sang trang đơn hàng khi nhấn nút mua ngay-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Lấy nút đặt hàng
-        const orderButton = document.getElementById("buy-now");
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        // Lấy nút đặt hàng--%>
+<%--        const orderButton = document.getElementById("buy-now");--%>
 
-        // Thêm sự kiện click để chuyển trang
-        orderButton.addEventListener("click", function () {
-            // Chuyển hướng sang trang BuyProduct.jsp
-            window.location.href = "invoice";
-        });
-    });
-</script>
+<%--        // Thêm sự kiện click để chuyển trang--%>
+<%--        orderButton.addEventListener("click", function () {--%>
+<%--            // Chuyển hướng sang trang BuyProduct.jsp--%>
+<%--            window.location.href = "invoice";--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 
 <%-- Thu thập data để chuyển dữ liệu qua backend--%>
 <script>
@@ -494,10 +498,12 @@
         const shippingCity = citySelect.value;
         const shippingDistrict = districtSelect.value;
         const shippingWard = wardSelect.value;
-
+        <% Integer userId = (Integer) request.getAttribute("userId"); %>
+        var userId = <%= userId %>;
         // Thu thập danh sách sản phẩm từ giỏ hàng
         const products = selectProducts.map(product => ({
-            productId: product.productId,
+            bId: product.bId,
+            // productId: product.productId,
             quantity: product.quantity,
             unitPrice: product.unitPrice
         }));
@@ -519,22 +525,25 @@
         const orderData = {
             recipientName: recipientName,
             recipientPhone: recipientPhone,
-            shippingAddress: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
+            address: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
             products: products,
             shippingFee: shippingFee,
             totalAmount: totalAmount,
             paymentMethod: paymentMethod
         };
 
+        console.log("orderData: " + JSON.stringify(orderData, null, 2));
+
         // Gửi yêu cầu AJAX để tạo đơn hàng mới
         $.ajax({
-            url: 'invoice?action=create', // URL endpoint của backend
+            url: '/Bookstore/checkout', // URL endpoint của backend
             type: 'POST',
             contentType: 'application/json', // Loại nội dung là JSON
             data: JSON.stringify(orderData), // Chuyển đổi đối tượng thành JSON
             success: function(response) {
                 // Nếu yêu cầu thành công, chuyển hướng đến trang đơn hàng
-                window.location.href = '/invoice?action=list&userId=' + userSession.getUid(); // Chuyển hướng đến trang đơn hàng chờ xử lý
+                // const contextPath = window.location.pathname.split('/')[1];  // Lấy context path từ URL hiện tại
+                window.location.href = '/Bookstore/invoice?action=list&userId=' + userId; // Chuyển hướng đến trang đơn hàng chờ xử lý
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
