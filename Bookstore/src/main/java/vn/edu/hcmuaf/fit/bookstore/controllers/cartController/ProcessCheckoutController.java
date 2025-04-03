@@ -19,7 +19,7 @@ public class ProcessCheckoutController extends HttpServlet {
             session.setAttribute("selectedProducts", selectedProductsJson);
             System.out.println("selectedProductsJson: " + selectedProductsJson);
             // Chuyển hướng tới trang thanh toán (checkout.jsp)
-            response.sendRedirect("checkout.jsp");
+            response.sendRedirect(request.getContextPath() + "/checkout");
         } else {
             // Nếu không có sản phẩm nào được chọn, trả về thông báo lỗi
             response.setContentType("text/plain");

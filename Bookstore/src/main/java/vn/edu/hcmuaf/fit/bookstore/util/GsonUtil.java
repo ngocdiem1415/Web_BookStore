@@ -9,7 +9,6 @@ public class GsonUtil {
     private GsonBuilder builder;
     private Gson gson;
 
-
     public GsonUtil() {
         builder = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer())
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer());
@@ -20,4 +19,12 @@ public class GsonUtil {
     public String toJSon(Object object) {
         return gson.toJson(object);
     }
+    public Gson getGson() {
+        return gson;
+    }
+
+    public void setGson(Gson gson) {
+        this.gson = gson;
+    }
+
 }
