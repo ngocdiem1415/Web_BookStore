@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-footer">
-                        <a href="ForgetPassword.jsp" id="forgot-password-link" class="forgot-password">Quên
+                        <a href="forget-password" id="forgot-password-link" class="forgot-password">Quên
                             mật khẩu?</a>
                     </div>
                 </form>

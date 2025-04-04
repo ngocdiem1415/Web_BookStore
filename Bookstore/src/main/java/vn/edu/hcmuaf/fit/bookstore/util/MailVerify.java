@@ -20,18 +20,39 @@ public class MailVerify {
 
     public void sendVerificationCode(String toEmail, String code) {
         String subject = "Xác minh tài khoản";
-        String content =
-                "Xin chào,\n\n" +
-                        "Mã xác minh tài khoản của bạn là: " + code + "\n\n" +
-                        "Mã có hiệu lực trong vòng 2 phút.\n\n" +
-                        "Trân trọng,\n" +
-                        "Đội ngũ BookStore";
+        String content = "<!DOCTYPE html>" +
+                "<html lang='vi'>" +
+                "<head>" +
+                "<meta charset='UTF-8'>" +
+                "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+                "<title>Mã xác minh tài khoản</title>" +
+                "<style>" +
+                "body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; text-align: center; }" +
+                ".container { max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }" +
+                "h2 { color: #d35400; }" +
+                "p { font-size: 16px; }" +
+                ".code { font-size: 24px; font-weight: bold; color: #4B908E; background: #f8f9fa; padding: 10px 20px; display: inline-block; border-radius: 5px; }" +
+                ".footer { margin-top: 20px; font-size: 14px; color: #888; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<div class='container'>" +
+                "<h2> Mã xác minh tài khoản </h2>" +
+                "<p>Xin chào,</p>" +
+                "<p>Mã xác minh tài khoản của bạn là:</p>" +
+                "<p class='code'>" + code + "</p>" +
+                "<p>Mã có hiệu lực trong vòng <strong>2 phút</strong>.</p>" +
+                "<p>Nếu bạn không yêu cầu mã này, vui lòng bỏ qua email này.</p>" +
+                "<p class='footer'>Trân trọng,<br><strong>Đội ngũ BookStore</strong></p>" +
+                "</div>" +
+                "</body>" +
+                "</html>";
 
         sendEmail(toEmail, subject, content);
     }
 
 
-    private void sendEmail(String to, String subject, String content) {
+    public void sendEmail(String to, String subject, String content) {
         // properties : khai bao cac thuoc tinh
         Properties pros = new Properties();
         pros.put("mail.smtp.host", "smtp.gmail.com"); // SMTP HOST
@@ -57,7 +78,7 @@ public class MailVerify {
             msg.setFrom(new InternetAddress(fromEmail, "BookStore"));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             msg.setSubject(MimeUtility.encodeText(subject, "UTF-8", "B"));
-            msg.setContent(content, "text/plain; charset=UTF-8");
+            msg.setContent(content, "text/html; charset=UTF-8");
 
             // gui mail
             Transport.send(msg);
