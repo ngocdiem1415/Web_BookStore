@@ -50,8 +50,8 @@ public class VerifyEmailService {
         });
 
         // Gui email xac minh
-        MailVerify mailVerify = new MailVerify();
-        mailVerify.sendVerificationCode(email, token);
+//        MailVerify mailVerify = new MailVerify();
+//        mailVerify.sendVerificationCode(email, token);
     }
 
     public void deleteVerifyEmailByUserId(int uid) {
@@ -63,6 +63,12 @@ public class VerifyEmailService {
     public void delete(int id) {
         conn.useExtension(VerifyEmailDao.class, handle -> {
             handle.delete(id);
+        });
+    }
+
+    public void deleteVerifyEmailByEmail(String email) {
+        conn.useExtension(VerifyEmailDao.class, handle -> {
+            handle.deleteVerifyEmailByEmail(email);
         });
     }
 
