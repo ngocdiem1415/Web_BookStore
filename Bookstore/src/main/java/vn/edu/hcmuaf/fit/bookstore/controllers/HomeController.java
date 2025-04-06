@@ -27,8 +27,6 @@ public class HomeController extends HttpServlet {
 
         // Lấy sản phẩm theo promotionId trong ngày
         List<Book> bookByPromotion = bookDetailService.getBookByListPromotion();
-        System.out.println(bookByPromotion.get(0).getsalePrice());
-        System.out.println("-------------------------------------------Book by promotion: " + bookByPromotion);
         request.setAttribute("bookByPromotion", bookByPromotion);
 
         // Lấy danh sách thể loại van hoc
