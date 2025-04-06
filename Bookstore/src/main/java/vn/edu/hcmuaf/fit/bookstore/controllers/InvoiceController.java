@@ -12,10 +12,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
-import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
-import vn.edu.hcmuaf.fit.bookstore.beans.InvoiceDetail;
-import vn.edu.hcmuaf.fit.bookstore.beans.Review;
-import vn.edu.hcmuaf.fit.bookstore.beans.User;
+import vn.edu.hcmuaf.fit.bookstore.beans.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,7 +48,7 @@ public class InvoiceController extends HttpServlet {
                     break;
                 case "detail":
                     detailInvoice(request, response);
-//                    break;
+                    break;
                 case "filterByStatus":
                     filterInvoicesByStatus(request, response);
                     break;
@@ -117,27 +114,7 @@ public class InvoiceController extends HttpServlet {
         }
         switch (action) {
             case "cancel":
-                int id = Integer.parseInt(request.getParameter("id"));
-                Invoice invoice = invoiceService.findById(id);
-                System.out.println(invoice);
-                if (invoice == null) {
-                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                    return;
-                }
-                try {
-                    // Thực hiện hủy đơn hàng
-                    int result = invoiceService.cancelInvoice(invoice);
-
-                    if (result > 0) {
-                        // Chuyển hướng sau khi hủy thành công
-                        response.sendRedirect("invoice?action=filterByStatus&status=cancelled&userId=" + userId);
-                    } else {
-                        throw new RuntimeException("Hủy đơn hàng thất bại.");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi khi hủy đơn hàng.");
-                }
+                cancelInvoice(request,response);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -145,55 +122,37 @@ public class InvoiceController extends HttpServlet {
 
     }
 
-//    private void createInvoiceFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        // Get order data from request (this is assuming the data is sent via JSON)
-//        String recipientName = request.getParameter("recipientName");
-//        String recipientPhone = request.getParameter("recipientPhone");
-//        String address = request.getParameter("shippingAddress");  // Full address (city, district, ward, specific address)
-//        double shippingFee = Double.parseDouble(request.getParameter("shippingFee"));
-//        String paymentMethod = request.getParameter("paymentMethod");
-//
-//        // Get products from request
-//        String productsJson = request.getParameter("products");
-//        List<InvoiceDetail> invoiceDetails = new ArrayList<>();
-//
-//        // Use Gson to parse the products JSON array into a List of Map objects
-//        Gson gson = new Gson();
-//        try {
-//            List<Map<String, Object>> productsList = gson.fromJson(productsJson, new TypeToken<List<Map<String, Object>>>() {}.getType());
-//
-//            // Iterate over parsed product data and create InvoiceDetail objects
-//            for (Map<String, Object> productData : productsList) {
-//                int productId = ((Double) productData.get("productId")).intValue();  // Convert Double to int if necessary
-//                int quantity = ((Double) productData.get("quantity")).intValue();    // Convert Double to int if necessary
-//                double unitPrice = (Double) productData.get("unitPrice");
-//
-//                // Create InvoiceDetail object and add it to the list
-//                InvoiceDetail invoiceDetail = new InvoiceDetail(0, productId, quantity, unitPrice, null); // Book will be added later
-//                invoiceDetails.add(invoiceDetail);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            // Handle error if the product data cannot be parsed
-//        }
-//
-//        // Create invoice object
-//        Invoice invoice = new Invoice(0, userId, recipientName, recipientPhone, address, LocalDateTime.now(), "Pending", shippingFee, null, invoiceDetails, null);
-//
-//        // Insert the invoice and associated details into the database
-//        InvoiceService invoiceService = new InvoiceService();
-//        int invoiceId = invoiceService.insert(invoice); // This will insert invoice and invoice details
-//
-//        // Create payment for the invoice
-//        PaymentService paymentService = PaymentService.getInstance();
-//        String paymentStatus = "Pending"; // Default status
-//        int paymentMethodCode = (paymentMethod.equals("BANK_TRANSFER")) ? 1 : 0; // 1 for bank transfer, 0 for COD
-//        paymentService.createPayment(invoiceId, paymentMethodCode, paymentStatus); // Create payment
-//
-//        // Return a success response with invoiceId
-//        response.setStatus(HttpServletResponse.SC_OK);
-//        response.getWriter().write("{\"message\": \"Invoice created successfully!\", \"invoiceId\": " + invoiceId + "}");
-//    }
+    private void cancelInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Invoice invoice = invoiceService.findById(id);
+        Payment payment = invoice.getPayment();
+        PaymentService paymentService = PaymentService.getInstance();
+        System.out.println("Hủy đơn hàng có phương thức thanh toán là: " + payment.getPaymentMethod());
 
+        System.out.println(invoice);
+        if (invoice == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        try {
+            // Thực hiện hủy đơn hàng và hủy thanh toán
+            System.out.println("Hủy đơn hàng có phương thức thanh toán là: " + payment.getPaymentMethod());
+//            if (payment.getPaymentMethod() == 1)
+//                payment.setPaymentStatus("Failed");
+//            else
+            payment.setPaymentStatus("Refunded");
+            int reCancelPayment = paymentService.update(payment);
+            int result = invoiceService.cancelInvoice(invoice);
 
+            if (result > 0 && reCancelPayment > 0) {
+                // Chuyển hướng sau khi hủy thành công
+                response.sendRedirect("invoice?action=filterByStatus&status=cancelled&userId=" + userId);
+            } else {
+                throw new RuntimeException("Hủy đơn hàng thất bại.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi khi hủy đơn hàng.");
+        }
+    }
 }
