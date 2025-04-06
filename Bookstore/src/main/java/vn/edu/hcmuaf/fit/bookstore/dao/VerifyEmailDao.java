@@ -28,4 +28,7 @@ public interface VerifyEmailDao {
     @SqlUpdate(QUERIES.VERIFY_EMAIL.DELETE)
     void delete(@Bind("id") int id);
 
+    @SqlUpdate(QUERIES.VERIFY_EMAIL.DELETE_VERIFY_BY_EMAIL)
+    void deleteVerifyEmailByEmail(@Bind("email") String email);
+
 }
