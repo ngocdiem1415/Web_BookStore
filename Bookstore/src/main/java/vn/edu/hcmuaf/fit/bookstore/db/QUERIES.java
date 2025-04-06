@@ -25,6 +25,7 @@ public class QUERIES {
         public static final String SELECT_VERIFY_EMAIL_BY_CODE = "select * from password_reset_tokens where token = :token";
         public static final String DELETE_VERIFY_BY_USER_ID = "delete from password_reset_tokens where email = :email";
         public static final String DELETE = "delete from password_reset_tokens where token = :token";
+        public static final String DELETE_VERIFY_BY_EMAIL = "delete from password_reset_tokens where email = :email";
     }
 
     public class BOOK {
