@@ -5,12 +5,19 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
+import vn.edu.hcmuaf.fit.bookstore.beans.VerifyEmail;
+import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
 import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
 
 import java.io.IOException;
 
 @WebServlet(name = "SignupController", value = "/signup")
 public class SignupController extends HttpServlet {
+    private MailVerify mailVerify;
+
+    public SignupController() {
+        this.mailVerify = new MailVerify();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,6 +50,7 @@ public class SignupController extends HttpServlet {
 
             // luu token
             VerifyEmailService verifyEmailService = new VerifyEmailService();
+            mailVerify.sendVerificationCode(email, verifyCode);
             verifyEmailService.saveVerifyEmail(email, verifyCode);
 
             // hien thi thong bao
