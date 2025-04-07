@@ -42,13 +42,13 @@ public interface InvoiceDao {
     //Thêm đơn hàng
     @SqlUpdate(" INSERT INTO invoices ( uid, recipient_name, recipient_phone, address, order_date, status, shipping_fee, completion_date) " +
             "VALUES ( :uid, :recipientName, :recipientPhone, :address, :orderDate, :status, :shippingFee, :completionDate)")
-    void insert(@BindBean Invoice invoice);
+    int insert(@BindBean Invoice invoice); //Trả về id của đơn hàng
 
     //Cập nhật đơn hàng
     @SqlUpdate(" UPDATE invoices SET recipient_name = :recipientName, " +
             "recipient_phone = :recipientPhone, address = :address, order_date = :orderDate, " +
             "status = :status, shipping_fee = :shippingFee, completion_date = :completionDate " +
             "WHERE invoice_id = :invoiceId ")
-    void update(@BindBean Invoice invoice);
+    int update(@BindBean Invoice invoice); //Trả về trạng thái có update được hay không
 
 }
