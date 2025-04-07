@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.VerifyEmailDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
+import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -17,10 +18,10 @@ import java.util.UUID;
 public class VerifyEmailService {
     Jdbi conn = JDBIConnector.getJdbi();
 
-    public void insertVerifyEmail(int id, String email, String token, Timestamp createdAt, Timestamp expiresAt) {
+    public void insertVerifyEmail(String email, String token, Timestamp createdAt, Timestamp expiresAt) {
         try {
             conn.useExtension(VerifyEmailDao.class, handle -> {
-                handle.insertVerifyEmail(id, email, token, createdAt, expiresAt);
+                handle.insertVerifyEmail(email, token, createdAt, expiresAt);
             });
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
@@ -38,20 +39,19 @@ public class VerifyEmailService {
     }
 
     // Lu mã token vào database và gửi email xác minh
-    public void saveVerifyEmail(int id, String email) {
-        String token = UUID.randomUUID().toString();
+    public void saveVerifyEmail(String email, String token) {
         LocalDateTime createdAt = LocalDateTime.now();
-        LocalDateTime expiresAt = createdAt.plusDays(1);
+        LocalDateTime expiresAt = createdAt.plusMinutes(2);
 
         Timestamp createdTimestamp = Timestamp.valueOf(createdAt);
         Timestamp expiresTimestamp = Timestamp.valueOf(expiresAt);
         conn.useExtension(VerifyEmailDao.class, dao -> {
-            dao.insertVerifyEmail(id, email, token, createdTimestamp, expiresTimestamp);
+            dao.insertVerifyEmail(email, token, createdTimestamp, expiresTimestamp);
         });
 
         // Gui email xac minh
-        MailVerify mailVerify = new MailVerify();
-        mailVerify.sendVerificationCode(email, token);
+//        MailVerify mailVerify = new MailVerify();
+//        mailVerify.sendVerificationCode(email, token);
     }
 
     public void deleteVerifyEmailByUserId(int uid) {
@@ -63,6 +63,12 @@ public class VerifyEmailService {
     public void delete(int id) {
         conn.useExtension(VerifyEmailDao.class, handle -> {
             handle.delete(id);
+        });
+    }
+
+    public void deleteVerifyEmailByEmail(String email) {
+        conn.useExtension(VerifyEmailDao.class, handle -> {
+            handle.deleteVerifyEmailByEmail(email);
         });
     }
 
