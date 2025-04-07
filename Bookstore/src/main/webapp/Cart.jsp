@@ -304,7 +304,7 @@
                 if ($(this).is(":checked")) {
                     const productRow = $(this).closest('.product');
                     if (productRow.length > 0) {
-                        const productId = productRow.data('product-id'); // Lấy productId
+                        const bId = productRow.data('product-id'); // Lấy productId
                         const productImg = productRow.find('.img-thumbnail').attr('src');
                         const productName = productRow.find('.product-name').text().trim();
                         const quantity = parseInt(productRow.find('.quantity').val().trim());
@@ -315,7 +315,7 @@
 
                         // if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {
                             selectedProducts.push({
-                                productId: productId,
+                                bId: bId,
                                 productImg: productImg,
                                 productName: productName,
                                 unitPrice: unitPrice,
@@ -330,18 +330,29 @@
 
             if (selectedProducts.length > 0) {
                 // Mã hóa danh sách sản phẩm thành JSON
-                const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
+                // const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
 
                 // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
+                // window.location.href = 'process-checkout?selectedProducts=' + encodedData;
+                // ------
+
+                //Mã hóa danh sách sản phẩm thành JSON
+                const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
+                console.log(encodedData);
+                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
                 window.location.href = 'process-checkout?selectedProducts=' + encodedData;
+
+                // //Gửi AJAX request đến ProcessCheckoutController
                 // $.ajax({
-                //     url: "/process-checkout", // Đường dẫn tới Servlet
+                //     url: "/Bookstore/process-checkout", // Đường dẫn tới Servlet
                 //     method: "POST",
                 //     contentType: "application/json",
-                //     data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),
-                //     success: function () {
+                //     //data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),
+                //     data: encodedData,
+                //     success: function (response) {
+                //         console.log("Response:", response);
                 //         // Chuyển hướng tới trang thanh toán sau khi xử lý thành công
-                //         window.location.href = "/checkout.jsp";
+                //         window.location.href = "/Bookstore/process-checkout";
                 //     },
                 //     error: function (xhr, status, error) {
                 //         console.error("Đã xảy ra lỗi:", error);
