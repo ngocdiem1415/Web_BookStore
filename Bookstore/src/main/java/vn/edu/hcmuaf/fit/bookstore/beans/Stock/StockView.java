@@ -15,6 +15,8 @@ public class StockView {
         this.stockRemaining = stockRemaining;
     }
 
+    public StockView(){}
+
     public int getbId() {
         return bId;
     }
