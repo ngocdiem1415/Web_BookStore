@@ -13,19 +13,22 @@ import vn.edu.hcmuaf.fit.bookstore.beans.Category;
 import vn.edu.hcmuaf.fit.bookstore.beans.Promotion;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "EditProduct", value = "/admin/EditProduct")
-public class Product extends HttpServlet {
+@WebServlet(name = "ProductAPI", value = "/admin/product")
+public class ProductAPI extends HttpServlet {
     private BookDetailService bookService;
     private CategoryService categoryService;
     private PublisherService publisherService;
     private PromotionService promotionService;
+    private BookDetailService bookDetailService;
 
-    public Product() {
+    public ProductAPI() {
         this.bookService = BookDetailService.getInstance();
         this.categoryService = CategoryService.getInstance();
         this.publisherService = PublisherService.getInstance();
         this.promotionService = PromotionService.getInstance();
+        this.bookDetailService = BookDetailService.getInstance();
     }
 
     @Override
@@ -120,5 +123,20 @@ public class Product extends HttpServlet {
 
         book = bookService.updateProduct(book);
         gson.toJson(book, response.getWriter());
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        PrintWriter printWriter = resp.getWriter();
+        try {
+            bookDetailService.delete(id);
+            printWriter.println("Delete Done");
+            printWriter.close();
+        } catch (Exception e) {
+            resp.setStatus(400);
+            printWriter.println("Error");
+            printWriter.close();
+        }
     }
 }

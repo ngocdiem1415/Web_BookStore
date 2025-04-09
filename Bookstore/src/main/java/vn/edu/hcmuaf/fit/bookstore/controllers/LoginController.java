@@ -23,7 +23,6 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         UserServices userServices = new UserServices();
         User user = userServices.findByUsernameAndPassword(username, password);
-        System.out.println(user);
         String baoloi = "";
         if (user == null) {
             baoloi = "Sai tên đăng nhập hoặc mật khẩu";
