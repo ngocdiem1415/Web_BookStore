@@ -48,13 +48,12 @@
                                     thông tin hồ sơ để bảo mật tài khoản
                                 </div>
                             </div>
-
-                            <!-- Phần content của phía bên phải-->
-                            <div class="container-profile-content-inner__right-main-content">
-                                <div class="container-profile-content-inner__right-main-content-center">
-                                    <!--form thông tin account-->
-                                    <!--Dùng table để phân chia các thông tin-->
-                                    <form action="profile" method="post" >
+                            <form action="profile" method="post" enctype="multipart/form-data">
+                                <!-- Phần content của phía bên phải-->
+                                <div class="container-profile-content-inner__right-main-content">
+                                    <div class="container-profile-content-inner__right-main-content-center">
+                                        <!--form thông tin account-->
+                                        <!--Dùng table để phân chia các thông tin-->
                                         <table class="container-profile-content-inner__right-main-content-center__table">
                                             <!--Các hang lưu trữ thông tin-->
                                             <!--Ten Dang Nhap-->
@@ -64,7 +63,8 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <input class="table__row-input__text-name" name="username" value="${userSession.getUsername()}">
+                                                        <input class="table__row-input__text-name" name="username"
+                                                               value="${userSession.getUsername()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -75,7 +75,8 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <input class="table__row-input__text-name" name="email" value="${userSession.getEmail()}">
+                                                        <input class="table__row-input__text-name" name="email"
+                                                               value="${userSession.getEmail()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -87,7 +88,8 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <input class="table__row-input__text-name" name="phone" value="${userSession.getPhone()}">
+                                                        <input class="table__row-input__text-name" name="phone"
+                                                               value="${userSession.getPhone()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -101,10 +103,17 @@
                                                     <div class="table__row-input__text">
                                                         <!-- div chứa các radioBox -->
                                                         <div class="table__row-input-stardust-radio-group">
-                                                            <select class="form-select" id="gender" name="gender" required>
-                                                                <option value="male" ${userSession.gender == male ? 'selected' : ''}>Nam</option>
-                                                                <option value="female" ${userSession.gender == female ? 'selected' : ''}>Nữ</option>
-                                                                <option value="other" ${userSession.gender == other ? 'selected' : ''}>Khác</option>
+                                                            <select class="form-select" id="gender" name="gender"
+                                                                    required>
+                                                                <option value="male" ${userSession.gender == male ? 'selected' : ''}>
+                                                                    Nam
+                                                                </option>
+                                                                <option value="female" ${userSession.gender == female ? 'selected' : ''}>
+                                                                    Nữ
+                                                                </option>
+                                                                <option value="other" ${userSession.gender == other ? 'selected' : ''}>
+                                                                    Khác
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -118,7 +127,8 @@
                                                 </td>
                                                 <td class="table__row-input">
                                                     <div class="table__row-input__text">
-                                                        <input class="table__row-input__text-name" name="birthdate" value="${userSession.getDob()}">
+                                                        <input class="table__row-input__text-name" name="birthdate"
+                                                               value="${userSession.getDob()}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -128,40 +138,43 @@
                                                 <td class="table__row-label">
                                                     <label></label>
                                                 </td>
-                                                <td class="table__row-input">
+                                                <td class="table__row-input" id="upload-image">
                                                     <button id="save--btn" type="submit"
                                                             class="btn btn-solid-primary btn--m btn--inline">Lưu
                                                     </button>
                                                 </td>
                                             </tr>
                                         </table>
-                                    </form>
-                                </div>
+                                    </div>
 
-                                <!--upload ảnh-->
-                                <div class="container-profile-content-inner__right-main-content-upload">
-                                    <div class="right-main-content-upload-header">
-                                        <div class="right-main-content-upload-header-focus" >
-                                            <div class="right-main-content-upload-header-focus-image">
-                                                <img src="admin/img/Sample_User_Icon.png" id="previewImage"/>
+                                    <!--upload ảnh-->
+                                    <div class="container-profile-content-inner__right-main-content-upload">
+                                        <div class="right-main-content-upload-header">
+                                            <div class="right-main-content-upload-header-focus">
+                                                <div class="right-main-content-upload-header-focus-image">
+                                                    <img src="${userSession.avatar}" id="previewImage" style="opacity: 1"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!-- Nút upload -->
-                                        <input type="file" accept=".jpg,.jpeg,.png"
-                                               class="right-main-content-upload-header-focus-input" id="fileInput">
-                                        <label for="fileInput" class="btn btn-light btn--m btn--inline">Chọn ảnh</label>
-                                        <!-- Hướng dẫn upload -->
-                                        <div class="right-main-content-upload-header-text">
-                                            <div class="right-main-content-upload-header-text-same">Dung lượng file tối
-                                                đa 1 MB
-                                            </div>
-                                            <div class="right-main-content-upload-header-text-same">Định dạng:.JPPEG,
-                                                .PNG
+                                            <!-- Nút upload -->
+                                            <input type="file" name="imageFile" accept=".jpg,.jpeg,.png"
+                                                   class="right-main-content-upload-header-focus-input" id="fileInput">
+                                            <label for="fileInput" class="btn btn-light btn--m btn--inline">Chọn
+                                                ảnh</label>
+                                            <!-- Hướng dẫn upload -->
+                                            <div class="right-main-content-upload-header-text">
+                                                <div class="right-main-content-upload-header-text-same">Dung lượng file
+                                                    tối
+                                                    đa 1 MB
+                                                </div>
+                                                <div class="right-main-content-upload-header-text-same">Định
+                                                    dạng:.JPPEG,
+                                                    .PNG
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -175,6 +188,34 @@
 <!--    footer start -->
 <jsp:include page="footer.jsp"></jsp:include>
 <!--footer end-->
+
+<%--DUng ajax de load anh--%>
+<script>
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+
+        // Gửi ảnh cùng các thông tin người dùng lên luôn nếu muốn
+        $.ajax({
+            url: 'upload-image',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (imageUrl) {
+                alert('Upload thành công: ' + imageUrl);
+                location.reload();
+
+                // Optionally: cập nhật preview
+                $('#previewImage').attr('src', imageUrl);
+            },
+            error: function () {
+                alert('Upload thất bại');
+            }
+        });
+    });
+</script>
 
 <script>
     document.getElementById("fileInput").addEventListener("change", function (event) {
