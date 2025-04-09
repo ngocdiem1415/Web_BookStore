@@ -109,7 +109,7 @@
                                                     </button>
                                                     <button type="button" class="delete-button col-6 btn px-0"
                                                             style="color: #ef5f5f;"
-                                                            onclick="deleteProduct(${p.bId})"
+                                                            onclick="deleteProduct(${p.bId},this)"
                                                             title="Xóa">
                                                         <i class="fa-regular fa-trash-can fa-lg"></i>
                                                     </button>
@@ -162,17 +162,19 @@
     });
 
     // Xử lý sự kiện click nút xóa
-    function deleteProduct(id) {
+    function deleteProduct(id,btn) {
         if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
             $.ajax({
                 url: 'product?id=' + id,
                 method: 'DELETE',
                 success: function (response) {
+                    let table = $('#orderTable').DataTable();
+                    let row = table.row($(btn).parents('tr'));
                     row.remove().draw();
-                    mess.html('<div class="alert alert-success" role="alert">Sản phẩm đã được xóa!</div>');
+                    $('#mess').html('<div class="alert alert-success" role="alert">Sản phẩm đã được xóa!</div>');
                 },
                 error: function (error) {
-                    mess.html('<div class="alert alert-danger" role="alert">Xóa thất bại!</div>');
+                    $('#mess').html('<div class="alert alert-danger" role="alert">Xóa thất bại!</div>');
                 }
             });
         }
