@@ -273,6 +273,7 @@ body {
 
 .product-price {
     transition: all 0.5s ease 0s;
+    font-style: italic;
 }
 
 .product-price ul li {
@@ -368,6 +369,7 @@ body {
     display: block;
     font-size: 28px;
     font-weight: 400;
+    font-style: italic;
 }
 
 .deal-off-day p {

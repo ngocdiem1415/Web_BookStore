@@ -19,17 +19,16 @@ public class EditProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId = request.getParameter("id");
+
         if (productId != null && !productId.isEmpty()) {
             int id = Integer.parseInt(productId);
             Book book = bookDetailService.findById(id);
 
             if (book != null) {
                 request.setAttribute("book", book);
-                request.getRequestDispatcher("Edit-product.jsp").forward(request,response);
             }
         }
-
-        request.getRequestDispatcher("Edit-product.jsp").forward(request,response);
+        request.getRequestDispatcher("Add-Product.jsp").forward(request,response);
     }
 
     @Override
