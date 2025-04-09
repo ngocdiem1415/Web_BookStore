@@ -4,6 +4,7 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
+import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,19 @@ public class BookDetailService {
         List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(id));
         Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
         Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(id));
+        book.setImage(image);
+        book.setPublisher(publisher);
+        book.setPromotion(promotion);
+        book.setImageList(images);
+        return book;
+    }
+
+    public Book findByName(String title) {
+        Book book = connect.withExtension(BookDao.class, handle -> handle.findByName(title));
+        Image image  = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+        List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(book.getbId()));
+        Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getbId()));
+        Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(book.getbId()));
         book.setImage(image);
         book.setPublisher(publisher);
         book.setPromotion(promotion);
@@ -110,7 +124,7 @@ public class BookDetailService {
 
     public Book insertProduct(Book product) {
         connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
-        return findById(product.getbId());
+        return findByName(product.getTitle());
     }
 
 

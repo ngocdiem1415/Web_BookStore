@@ -22,8 +22,12 @@ public class PublisherService {
         return connect.withExtension(PublisherDao.class, handle -> handle.list());
     }
 
-    public Publisher getCategoryById(int id){
+    public Publisher getPublisherById(int id){
         return connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
+    }
+
+    public Publisher getPublisherByName(String name){
+        return connect.withExtension(PublisherDao.class, handle -> handle.findByName(name));
     }
 
     public void insertPublisher(String publisherName, String address, String phone){
