@@ -14,9 +14,10 @@ public class QUERIES {
         public static final String DELETE = "delete from users where uid = :id";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
         public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
-        public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";;
+        public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";
         public static final String FIND_ALL = "select * from users";
         public static final String UPDATE_EMAIL_VERIFIED_BY_EMAIL = "UPDATE users SET status = 1 WHERE email = :email";
+        public static final String UPDATE_IMAGE_BY_ID = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email, avatar = :avatar WHERE uid = :id";
     }
 
 
@@ -85,7 +86,7 @@ public class QUERIES {
 
         public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
         public static final String SELECT_BOOK_BY_LIST_PROMOTION =
-               "SELECT b.* FROM books b JOIN promotions p ON b.promotion_id = p.promotion_id WHERE p.is_active = 1 ORDER BY p.discount DESC LIMIT 5";
+                "SELECT b.* FROM books b JOIN promotions p ON b.promotion_id = p.promotion_id WHERE p.is_active = 1 ORDER BY p.discount DESC LIMIT 5";
 
         public static final String SELECT_BOOK_BY_CATEGORY = "SELECT books.* FROM books JOIN categories on books.category_id = categories.category_id WHERE categories.category_name = :category_name limit :limit offset :offset";
     }
