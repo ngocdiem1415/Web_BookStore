@@ -59,8 +59,7 @@ public class UserServices {
         return conn.withExtension(UserDao.class, handle -> {
             String originPass = hashPassword(hashedPassword);
             List<User> users = handle.findByUserByIdAndPassword(username, originPass);
-            if (users.size() != 1)
-                return null;
+            if (users.size() != 1) return null;
             return users.get(0);
         });
     }
@@ -116,9 +115,14 @@ public class UserServices {
     }
 
     public void updateUserRole(String username, String gender, String dob, String phone, String email, int id) {
-        conn.useExtension(UserDao.class, handle -> {
-            handle.updateUserRole(username, gender, dob, phone, email, id);
-        });
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updateUserRole(username, gender, dob, phone, email, id);
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     public void changePassword(int uid, String password) {
@@ -147,6 +151,17 @@ public class UserServices {
         conn.useExtension(UserDao.class, handle -> {
             handle.updateEmailVerifiedByEmail(email);
         });
+    }
+
+    public void updateImageByID(String username, String gender, String dob, String phone, String email, String avatar, int id) {
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updateImageByID(username, gender, dob, phone, email, avatar, id);
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
 }
