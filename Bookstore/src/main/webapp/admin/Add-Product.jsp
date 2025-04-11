@@ -69,7 +69,7 @@
                         <label for="tenSanPham" class="form-label">Tên sản phẩm</label>
                         <input type="text" class="form-control" id="tenSanPham" name="tenSanPham"
                                value="${empty book ? '' :book.title}"
-                               placeholder="Nhập tên sản phẩm">
+                               placeholder="Nhập tên sản phẩm" required>
                     </div>
                 </div>
 
@@ -78,13 +78,13 @@
                         <label for="Tacgia" class="form-label">Tác giả</label>
                         <input type="text" class="form-control" id="Tacgia" name="Tacgia"
                                value="${empty book ? '' :book.author}"
-                               placeholder="">
+                               placeholder="" required>
                     </div>
                     <div class="col-md-2">
                         <label for="NamXB" class="form-label">Năm XB</label>
                         <input type="text" class="form-control" id="NamXB" name="NamXB"
                                value="${empty book ? '' :book.publishYear}"
-                               placeholder="">
+                               placeholder="" required>
                     </div>
                 </div>
 
@@ -94,16 +94,20 @@
                         <div class="input-group">
                             <input type="text" class="form-control" id="dimensions" name="dimensions"
                                    value="${empty book ? '' :book.dimensions.split('cm')[0]}"
-                                   placeholder="">
+                                   placeholder="" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <label for="khoiLuong" class="form-label">Khối lượng</label>
-                        <input type="text" class="form-control" id="khoiLuong" name="khoiLuong" placeholder="gram">
+                        <input type="text" class="form-control" id="khoiLuong" name="khoiLuong"
+                               value="${empty book ? '' :book.weight}"
+                               placeholder="gram" required>
                     </div>
                     <div class="col-md-4">
                         <label for="pageCount" class="form-label">Số trang</label>
-                        <input type="text" class="form-control" id="pageCount" name="pageCount" placeholder="Trang">
+                        <input type="text" class="form-control" id="pageCount" name="pageCount"
+                               value="${empty book ? '' :book.pageCount }"
+                               placeholder="Trang" required>
                     </div>
                 </div>
 
@@ -112,7 +116,7 @@
                         <label for="format" class="form-label">Hình thức</label>
                         <input type="text" class="form-control" id="format" name="format"
                                value="${empty book ? '' :book.format}"
-                               placeholder="Bìa cứng">
+                               placeholder="Bìa cứng" required>
                     </div>
 
                 </div>
@@ -121,14 +125,15 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Mô tả sản phẩm</label>
                     <textarea class="form-control" id="description" name="description" rows="3"
-                              placeholder="">${empty book ? '' :book.description}</textarea></div>
+                              placeholder="Nhập mô tả sản phẩm" required>${empty book ? '' : book.description} </textarea>
+                </div>
 
                 <!-- Ảnh trưng bày -->
                 <div class="mb-3">
                     <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
                     <input type="file" class="form-control" id="anhTrungBay" name="anhTrungBay">
                     <div id="anhTrungBayPreview" class="image-container mt-2">
-                        <img id="previewImage" src="${not empty book ? '' :book.image.sourceImg}" alt="Ảnh trưng bày"
+                        <img id="previewImage" src="${empty book ? '' :book.image.sourceImg}" alt="Ảnh trưng bày"
                              style="max-width: 200px; display: block;">
                     </div>
                 </div>
@@ -153,17 +158,8 @@
                     <div class="col-md-12 pt-3">
                         <label for="price" class="form-label">Giá</label>
                         <input type="text" class="form-control" id="price" name="price"
-                               value="${empty book ? '' :book.salePrice}"
-                               placeholder="">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label for="quantity" class="form-label">Số lượng</label>
-                        <input type="text" class="form-control" id="quantity" name="quantity"
-                               value="${empty book ? '' :book.stockQuantity}"
-                               placeholder="">
+                               value="${empty book ? '' :book.originalPrice}"
+                               placeholder="" required>
                     </div>
                 </div>
 
@@ -296,7 +292,7 @@
                         <select class="form-select" id="promotion" name="promotion">
                             <c:choose>
                                 <c:when test="${not empty book}">
-                                    <option value="0" ${empty book.promotion}>Không giảm giá</option>
+                                    <option value="0" ${empty book.promotion ? 'selected' : ''}>Không giảm giá</option>
                                     <option value="1" ${book.promotionId == 1 ? 'selected' : ''}>Giảm 10%</option>
                                     <option value="2" ${book.promotionId == 2 ? 'selected' : ''}>Giảm 20%</option>
                                     <option value="3" ${book.promotionId == 3 ? 'selected' : ''}>Giảm 25%</option>
@@ -304,11 +300,11 @@
                                 </c:when>
 
                                 <c:otherwise>
-                                    <option value="1" selected>Không giảm giá</option>
-                                    <option value="2">Giảm 10%</option>
-                                    <option value="3">Giảm 20%</option>
-                                    <option value="4">Giảm 25%</option>
-                                    <option value="5">Giảm 50%</option>
+                                    <option value="0" selected>Không giảm giá</option>
+                                    <option value="1">Giảm 10%</option>
+                                    <option value="2">Giảm 20%</option>
+                                    <option value="3">Giảm 25%</option>
+                                    <option value="4">Giảm 50%</option>
                                 </c:otherwise>
                             </c:choose>
                         </select>

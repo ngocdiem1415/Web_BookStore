@@ -60,13 +60,13 @@ public class ProductAPI extends HttpServlet {
         String format = request.getParameter("format");
         String description = request.getParameter("description");
 
-        int publishYear = 0, weight = 0, pageCount = 0;
-        double price = 0;
+        int publishYear = 0, pageCount = 0;
+        double price = 0, weight = 0;
         int status = 0, category = 0, pulisher = 0, promotion = 0;
 
         try {
             publishYear = Integer.parseInt(request.getParameter("NamXB"));
-            weight = Integer.parseInt(request.getParameter("khoiLuong"));
+            weight = Double.parseDouble(request.getParameter("khoiLuong"));
             pageCount = Integer.parseInt(request.getParameter("pageCount"));
 
             price = Double.parseDouble(request.getParameter("price"));
@@ -79,20 +79,26 @@ public class ProductAPI extends HttpServlet {
             return;
         }
 
+        Book book = new Book();
         Category categoryObj = categoryService.getCategoryById(category);
         Publisher publisherObj = publisherService.getPublisherById(pulisher);
-        Promotion promotionObj = promotionService.getPromotionById(promotion);
+        if (promotion != 0) {
+            Promotion promotionObj = promotionService.getPromotionById(promotion);
+            book.setPromotionId(promotion);
+            book.setPromotion(promotionObj);
+        } else {
+            book.setPromotionId(null);
+            book.setPromotion(null);
+        }
 
+        System.out.println(book.toString());
         // Tạo đối tượng Book và gán các giá trị
-        Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);
         book.setCategoryId(category);
         book.setPublisherId(pulisher);
-        book.setPromotionId(promotion);
         book.setCategory(categoryObj);
         book.setPublisher(publisherObj);
-        book.setPromotion(promotionObj);
         book.setPublishYear(publishYear);
         book.setDimensions(dimensions);
         book.setWeight(weight);
@@ -104,7 +110,7 @@ public class ProductAPI extends HttpServlet {
         int idNewBook = 0;
 
         System.out.println("bat dau insert");
-        System.out.println(bookDetailService.findByName(title) == null);
+        System.out.println(book.toString());
         if (bookDetailService.findByName(title) == null) {
             book = bookService.insertProduct(book);
             idNewBook = book.getbId();
@@ -113,7 +119,6 @@ public class ProductAPI extends HttpServlet {
         }
 
 //        //xu li hinh anh
-        List<String> otherImageNames = new ArrayList<>();
 
 //        String uploadPath = request.getServletContext().getRealPath("/img/uploadProducts");
 //        File uploadDir = new File(uploadPath);
@@ -131,6 +136,7 @@ public class ProductAPI extends HttpServlet {
 ////        }
 //
         // xu lý ảnh
+        List<String> otherImageNames = new ArrayList<>();
         Part anhTrungBay = request.getPart("anhTrungBay");
 
         if (anhTrungBay != null && anhTrungBay.getSize() > 0 && anhTrungBay.getSubmittedFileName() != null) {
@@ -213,51 +219,51 @@ public class ProductAPI extends HttpServlet {
         response.setContentType("application/json");
 
         System.out.println("da nhan duoc data");
+        int idBook = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("tenSanPham");
         String author = request.getParameter("Tacgia");
         String dimensions = request.getParameter("dimensions");
         String format = request.getParameter("format");
         String description = request.getParameter("description");
 
-        int publishYear = 0, weight = 0, pageCount = 0;
-        double price = 0;
-        int quantity = 0, status = 0, category = 0, publisher = 0, promotion = 0;
+        int publishYear = 0, pageCount = 0;
+        double price = 0, weight = 0;
+        int status = 0, category = 0, pulisher = 0, promotion = 0;
 
         try {
             publishYear = Integer.parseInt(request.getParameter("NamXB"));
-            weight = Integer.parseInt(request.getParameter("khoiLuong"));
+            weight = Double.parseDouble(request.getParameter("khoiLuong"));
             pageCount = Integer.parseInt(request.getParameter("pageCount"));
 
             price = Double.parseDouble(request.getParameter("price"));
-            quantity = Integer.parseInt(request.getParameter("quantity"));
             status = Integer.parseInt(request.getParameter("status"));
             category = Integer.parseInt(request.getParameter("category"));
-            publisher = Integer.parseInt(request.getParameter("publisher"));
-            System.out.println(publisher);
+            pulisher = Integer.parseInt(request.getParameter("publisher"));
             promotion = Integer.parseInt(request.getParameter("promotion"));
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi định dạng dữ liệu số: " + e.getMessage());
             return;
         }
 
+        Book book = new Book();
         Category categoryObj = categoryService.getCategoryById(category);
-        System.out.println(categoryObj);
-        Publisher publisherObj = publisherService.getPublisherById(publisher);
-        System.out.println(publisherObj);
-        Promotion promotionObj = promotionService.getPromotionById(promotion);
-        System.out.println(promotionObj);
+        Publisher publisherObj = publisherService.getPublisherById(pulisher);
+        if (promotion != 0) {
+            Promotion promotionObj = promotionService.getPromotionById(promotion);
+            book.setPromotionId(promotion);
+            book.setPromotion(promotionObj);
+        } else {
+            book.setPromotionId(null);
+            book.setPromotion(null);
+        }
 
         // Tạo đối tượng Book và gán các giá trị
-        int id = Integer.parseInt(request.getParameter("id"));
-        Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);
         book.setCategoryId(category);
-        book.setPublisherId(publisher);
-        book.setPromotionId(promotion);
+        book.setPublisherId(pulisher);
         book.setCategory(categoryObj);
         book.setPublisher(publisherObj);
-        book.setPromotion(promotionObj);
         book.setPublishYear(publishYear);
         book.setDimensions(dimensions);
         book.setWeight(weight);
@@ -265,64 +271,89 @@ public class ProductAPI extends HttpServlet {
         book.setFormat(format);
         book.setOriginalPrice(price);
         book.setDescription(description);
-        book.setStockQuantity(quantity);
         book.setStatus(status);
-        book = bookService.insertProduct(book);
-        System.out.println(book.toString());
 
         System.out.println("bat dau update");
         book = bookService.updateProduct(book);
         System.out.println(book.toString());
-        String uploadPath = request.getServletContext().getRealPath("/img/uploadProducts");
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdirs();
 
+        // xu lý ảnh
         List<String> otherImageNames = new ArrayList<>();
-
         Part anhTrungBay = request.getPart("anhTrungBay");
-        if (anhTrungBay != null && anhTrungBay.getSize() > 0) {
-            String fileName = Paths.get(anhTrungBay.getSubmittedFileName()).getFileName().toString();
-            if (isValidImage(fileName)) {
-                anhTrungBay.write(uploadPath + File.separator + fileName);
-                System.out.println(fileName);
-                otherImageNames.add("/img/uploadProducts/" + fileName);
+
+        if (anhTrungBay != null && anhTrungBay.getSize() > 0 && anhTrungBay.getSubmittedFileName() != null) {
+            try {
+                String thumbNailImageNames = CloundinaryConfig.getUrl(anhTrungBay);
+                otherImageNames.add(thumbNailImageNames);
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải ảnh lên");
+                return;
             }
         }
 
+        String originalName;
         Collection<Part> parts = request.getParts();
         for (Part part : parts) {
             if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
-                String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-                if (isValidImage(fileName)) {
-                    part.write(uploadPath + File.separator + fileName);
-                    System.out.println(fileName);
-                    otherImageNames.add("/img/uploadProducts/" + fileName);
+                originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+                if (isValidImage(originalName)) {
+                    try {
+                        String imageUrl = CloundinaryConfig.getUrl(part); // ✅ dùng đúng part hiện tại
+                        otherImageNames.add(imageUrl);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        request.setAttribute("baoloi", "Lỗi khi tải ảnh khác lên");
+                        return;
+                    }
                 }
             }
         }
-
-        if (!otherImageNames.isEmpty()) {
-//            imageService.deleteImagesByBookId(id); // nếu cần xóa ảnh cũ
-            List<Image> listImage = new ArrayList<>();
-            for (int i = 0; i < otherImageNames.size(); i++) {
-                boolean isThumbnail = (i == 0);
-                Image image = new Image(id, otherImageNames.get(i), isThumbnail);
-                Image saved = imageService.insertImage(image);
-                image.setImgId(saved.getImgId());
-                listImage.add(image);
-            }
-
-            book.setImage(listImage.get(0));
-            book.setImageList(listImage);
+        System.out.println(otherImageNames.toString());
+////        String originalName;
+////        Collection<Part> parts = request.getParts();
+////        for (Part part : parts) {
+////            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
+////                originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+////                String fileName = originalName.replaceAll("\\s+", "_");
+////                if (isValidImage(fileName)) {
+////                    part.write(uploadPath + File.separator + fileName);
+////                    System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + fileName);
+////                    otherImageNames.add("/img/uploadProducts/" + fileName);
+////                }
+////            }
+////        }
+//
+        System.out.println("them ds anh vao sach");
+        List<Image> listImage = new ArrayList<>();
+        imageService.delete(idBook);
+        for (int i = 0; i < otherImageNames.size(); i++) {
+            boolean isThumbnail = (i == 0);
+            Image image = new Image(idBook, otherImageNames.get(i), isThumbnail);
+            listImage.add(image);
+            System.out.println(image.toString());
+            Image savedImage = imageService.insertImage(image);
+            image.setImgId(savedImage.getImgId());
         }
+        System.out.println(listImage.toString());
 
-        try (PrintWriter out = response.getWriter()) {
-            out.println(new GsonUtil().toJSon(book));
-        } catch (Exception e) {
+        book.setImage(listImage.get(0));
+        System.out.println("them anh thumbnail");
+        book.setImageList(listImage);
+        System.out.println(book.toString());
+
+        try {
+            PrintWriter printWriter = response.getWriter();
+            printWriter.println(new GsonUtil().toJSon(book));
+            printWriter.flush();
+            printWriter.close();
+        } catch (
+                Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Serialization error");
         }
     }
+
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

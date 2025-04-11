@@ -24,6 +24,10 @@ public class ImageService {
         return connect.withExtension(ImageBookDao.class, handle -> handle.listImageThumbnail());
     }
 
+    public boolean delete(int bId){
+        return connect.withExtension(ImageBookDao.class, handle -> handle.delete(bId));
+    }
+
     public Image findByProductId(int id) {
         return connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
     }
