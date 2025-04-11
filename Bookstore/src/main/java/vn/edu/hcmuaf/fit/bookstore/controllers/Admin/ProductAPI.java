@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.*;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
+import vn.edu.hcmuaf.fit.bookstore.cloundinary.CloundinaryConfig;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.File;
@@ -61,7 +62,7 @@ public class ProductAPI extends HttpServlet {
 
         int publishYear = 0, weight = 0, pageCount = 0;
         double price = 0;
-        int quantity = 0, status = 0, category = 0, pulisher = 0, promotion = 0;
+        int status = 0, category = 0, pulisher = 0, promotion = 0;
 
         try {
             publishYear = Integer.parseInt(request.getParameter("NamXB"));
@@ -69,7 +70,6 @@ public class ProductAPI extends HttpServlet {
             pageCount = Integer.parseInt(request.getParameter("pageCount"));
 
             price = Double.parseDouble(request.getParameter("price"));
-            quantity = Integer.parseInt(request.getParameter("quantity"));
             status = Integer.parseInt(request.getParameter("status"));
             category = Integer.parseInt(request.getParameter("category"));
             pulisher = Integer.parseInt(request.getParameter("publisher"));
@@ -100,27 +100,47 @@ public class ProductAPI extends HttpServlet {
         book.setFormat(format);
         book.setOriginalPrice(price);
         book.setDescription(description);
-        book.setStockQuantity(quantity);
         book.setStatus(status);
-        book = bookService.insertProduct(book);
-        System.out.println(book.toString());
-        int idNewBook = book.getbId();
+        int idNewBook = 0;
 
-        //xu li hinh anh
+        System.out.println("bat dau insert");
+        System.out.println(bookDetailService.findByName(title) == null);
+        if (bookDetailService.findByName(title) == null) {
+            book = bookService.insertProduct(book);
+            idNewBook = book.getbId();
+        } else {
+            request.setAttribute("baoloi", "Sản phẩm đã tồn tại");
+        }
+
+//        //xu li hinh anh
         List<String> otherImageNames = new ArrayList<>();
 
-        String uploadPath = request.getServletContext().getRealPath("/img/uploadProducts");
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdirs();
-
+//        String uploadPath = request.getServletContext().getRealPath("/img/uploadProducts");
+//        File uploadDir = new File(uploadPath);
+//        if (!uploadDir.exists()) uploadDir.mkdirs();
+////
+////        Part anhTrungBay = request.getPart("anhTrungBay");
+////        if (anhTrungBay != null && anhTrungBay.getSize() > 0) {
+////            String originalName = Paths.get(anhTrungBay.getSubmittedFileName()).getFileName().toString();
+////            String thumbNailImageNames = originalName.replaceAll("\\s+", "_");
+////            if (isValidImage(thumbNailImageNames)) {
+////                anhTrungBay.write(uploadPath + File.separator + thumbNailImageNames);
+////                System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + thumbNailImageNames);
+////                otherImageNames.add("/img/uploadProducts/" + thumbNailImageNames);
+////            }
+////        }
+//
+        // xu lý ảnh
         Part anhTrungBay = request.getPart("anhTrungBay");
-        if (anhTrungBay != null && anhTrungBay.getSize() > 0) {
-            String originalName = Paths.get(anhTrungBay.getSubmittedFileName()).getFileName().toString();
-            String thumbNailImageNames = originalName.replaceAll("\\s+", "_");
-            if (isValidImage(thumbNailImageNames)) {
-                anhTrungBay.write(uploadPath + File.separator + thumbNailImageNames);
-                System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + thumbNailImageNames);
-                otherImageNames.add("/img/uploadProducts/" + thumbNailImageNames);
+
+        if (anhTrungBay != null && anhTrungBay.getSize() > 0 && anhTrungBay.getSubmittedFileName() != null) {
+            try {
+                String thumbNailImageNames = CloundinaryConfig.getUrl(anhTrungBay);
+                otherImageNames.add(thumbNailImageNames);
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải ảnh lên");
+                return;
             }
         }
 
@@ -129,25 +149,47 @@ public class ProductAPI extends HttpServlet {
         for (Part part : parts) {
             if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
                 originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-                String fileName = originalName.replaceAll("\\s+", "_");
-                if (isValidImage(fileName)) {
-                    part.write(uploadPath + File.separator + fileName);
-                    System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + fileName);
-                    otherImageNames.add("/img/uploadProducts/" + fileName);
+                if (isValidImage(originalName)) {
+                    try {
+                        String imageUrl = CloundinaryConfig.getUrl(part); // ✅ dùng đúng part hiện tại
+                        otherImageNames.add(imageUrl);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        request.setAttribute("baoloi", "Lỗi khi tải ảnh khác lên");
+                        return;
+                    }
                 }
             }
         }
-
+        System.out.println(otherImageNames.toString());
+////        String originalName;
+////        Collection<Part> parts = request.getParts();
+////        for (Part part : parts) {
+////            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
+////                originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+////                String fileName = originalName.replaceAll("\\s+", "_");
+////                if (isValidImage(fileName)) {
+////                    part.write(uploadPath + File.separator + fileName);
+////                    System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + fileName);
+////                    otherImageNames.add("/img/uploadProducts/" + fileName);
+////                }
+////            }
+////        }
+//
+        System.out.println("them ds anh vao sach");
         List<Image> listImage = new ArrayList<>();
         for (int i = 0; i < otherImageNames.size(); i++) {
             boolean isThumbnail = (i == 0);
             Image image = new Image(idNewBook, otherImageNames.get(i), isThumbnail);
             listImage.add(image);
+            System.out.println(image.toString());
             Image savedImage = imageService.insertImage(image);
             image.setImgId(savedImage.getImgId());
         }
+        System.out.println(listImage.toString());
 
         book.setImage(listImage.get(0));
+        System.out.println("them anh thumbnail");
         book.setImageList(listImage);
         System.out.println(book.toString());
 
