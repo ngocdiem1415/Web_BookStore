@@ -71,7 +71,7 @@ public interface BookDao {
     List<Book> listByCategory(@Bind("category_name") String category_name, @Bind("limit") int limit, @Bind("offset") int offset);
     
     @SqlUpdate(QUERIES.BOOK.UPDATE)
-    boolean updateBook(Book product);
+    boolean updateBook(@BindBean Book product);
 
     @SqlUpdate(QUERIES.BOOK.INSERT)
     boolean insertBook(@BindBean Book product);

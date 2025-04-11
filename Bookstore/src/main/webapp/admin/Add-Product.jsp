@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,16 +123,20 @@
                     <textarea class="form-control" id="description" name="description" rows="3"
                               placeholder="">${empty book ? '' :book.description}</textarea></div>
 
+                <!-- Ảnh trưng bày -->
                 <div class="mb-3">
                     <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
                     <input type="file" class="form-control" id="anhTrungBay" name="anhTrungBay">
-                    <div id="anhTrungBayPreview" class="image-container"></div>
+                    <div id="anhTrungBayPreview" class="image-container mt-2">
+                    </div>
                 </div>
 
+                <!-- Thêm ảnh khác -->
                 <div class="mb-3">
                     <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
                     <input type="file" class="form-control" id="themAnhKhac" name="themAnhKhac" multiple>
-                    <div id="themAnhKhacPreview" class="image-container"></div>
+                    <div id="themAnhKhacPreview" class="image-container mt-2">
+                    </div>
                 </div>
             </div>
 
@@ -233,39 +238,46 @@
                         <label for="publisher" class="form-label">Nhà xuất bản</label>
                         <select class="form-select" id="publisher" name="publisher">
                             <c:choose>
-                            <c:when test="${not empty book}">
-                            <option value="1" ${book.publisherId == 1 ? 'selected' : ''}>NXB Trẻ</option>
-                            <option value="2" ${book.publisherId == 2 ? 'selected' : ''}>NXB Giáo dục Việt Nam</option>
-                            <option value="3" ${book.publisherId == 3 ? 'selected' : ''}>NXB Kim Đồng</option>
-                            <option value="4" ${book.publisherId == 4 ? 'selected' : ''}>NXB Hội Nhà văn</option>
-                            <option value="5" ${book.publisherId == 5 ? 'selected' : ''}>NXB Phương Nam</option>
-                            <option value="6" ${book.publisherId == 6 ? 'selected' : ''}>NXB Thế Giới</option>
-                            <option value="7" ${book.publisherId == 7 ? 'selected' : ''}>NXB Phụ Nữ</option>
-                            <option value="8" ${book.publisherId == 8 ? 'selected' : ''}>NXB Dân Trí</option>
-                            <option value="9" ${book.publisherId == 9 ? 'selected' : ''}>NXB Khoa Học - Xã Hội</option>
-                            <option value="10" ${book.publisherId == 10 ? 'selected' : ''}>NXB Tổng Hợp TP. HCM</option>
-                            <option value="11" ${book.publisherId == 11 ? 'selected' : ''}>NXB Thanh Niên</option>
-                            <option value="12" ${book.publisherId == 12 ? 'selected' : ''}>NXB Công Thương</option>
-                            <option value="13" ${book.publisherId == 13 ? 'selected' : ''}>NXB Hà Nội</option>
-                            <option value="14" ${book.publisherId == 14 ? 'selected' : ''}>NXB Văn Học</option>
-                            </c:when>
+                                <c:when test="${not empty book}">
+                                    <option value="1" ${book.publisherId == 1 ? 'selected' : ''}>NXB Trẻ</option>
+                                    <option value="2" ${book.publisherId == 2 ? 'selected' : ''}>NXB Giáo dục Việt Nam
+                                    </option>
+                                    <option value="3" ${book.publisherId == 3 ? 'selected' : ''}>NXB Kim Đồng</option>
+                                    <option value="4" ${book.publisherId == 4 ? 'selected' : ''}>NXB Hội Nhà văn
+                                    </option>
+                                    <option value="5" ${book.publisherId == 5 ? 'selected' : ''}>NXB Phương Nam</option>
+                                    <option value="6" ${book.publisherId == 6 ? 'selected' : ''}>NXB Thế Giới</option>
+                                    <option value="7" ${book.publisherId == 7 ? 'selected' : ''}>NXB Phụ Nữ</option>
+                                    <option value="8" ${book.publisherId == 8 ? 'selected' : ''}>NXB Dân Trí</option>
+                                    <option value="9" ${book.publisherId == 9 ? 'selected' : ''}>NXB Khoa Học - Xã Hội
+                                    </option>
+                                    <option value="10" ${book.publisherId == 10 ? 'selected' : ''}>NXB Tổng Hợp TP.
+                                        HCM
+                                    </option>
+                                    <option value="11" ${book.publisherId == 11 ? 'selected' : ''}>NXB Thanh Niên
+                                    </option>
+                                    <option value="12" ${book.publisherId == 12 ? 'selected' : ''}>NXB Công Thương
+                                    </option>
+                                    <option value="13" ${book.publisherId == 13 ? 'selected' : ''}>NXB Hà Nội</option>
+                                    <option value="14" ${book.publisherId == 14 ? 'selected' : ''}>NXB Văn Học</option>
+                                </c:when>
 
-                            <c:otherwise>
-                            <option value="1">NXB Trẻ</option>
-                            <option value="2">NXB Giáo dục Việt Nam</option>
-                            <option value="3">NXB Kim Đồng</option>
-                            <option value="4">NXB Hội Nhà văn</option>
-                            <option value="5">NXB Phương Nam</option>
-                            <option value="6">NXB Thế Giới</option>
-                            <option value="7">NXB Phụ Nữ</option>
-                            <option value="8">NXB Dân Trí</option>
-                            <option value="9">NXB Khoa Học - Xã Hội</option>
-                            <option value="10">NXB Tổng Hợp TP. HCM</option>
-                            <option value="11">NXB Thanh Niên</option>
-                            <option value="12">NXB Công Thương</option>
-                            <option value="13">NXB Hà Nội</option>
-                            <option value="14">NXB Văn Học</option>
-                            </c:otherwise>
+                                <c:otherwise>
+                                    <option value="1">NXB Trẻ</option>
+                                    <option value="2">NXB Giáo dục Việt Nam</option>
+                                    <option value="3">NXB Kim Đồng</option>
+                                    <option value="4">NXB Hội Nhà văn</option>
+                                    <option value="5">NXB Phương Nam</option>
+                                    <option value="6">NXB Thế Giới</option>
+                                    <option value="7">NXB Phụ Nữ</option>
+                                    <option value="8">NXB Dân Trí</option>
+                                    <option value="9">NXB Khoa Học - Xã Hội</option>
+                                    <option value="10">NXB Tổng Hợp TP. HCM</option>
+                                    <option value="11">NXB Thanh Niên</option>
+                                    <option value="12">NXB Công Thương</option>
+                                    <option value="13">NXB Hà Nội</option>
+                                    <option value="14">NXB Văn Học</option>
+                                </c:otherwise>
                             </c:choose>
                         </select>
                     </div>
@@ -277,6 +289,7 @@
                         <select class="form-select" id="promotion" name="promotion">
                             <c:choose>
                                 <c:when test="${not empty book}">
+                                    <option value="0" ${empty book.promotion}>Không giảm giá</option>
                                     <option value="1" ${book.promotionId == 1 ? 'selected' : ''}>Giảm 10%</option>
                                     <option value="2" ${book.promotionId == 2 ? 'selected' : ''}>Giảm 20%</option>
                                     <option value="3" ${book.promotionId == 3 ? 'selected' : ''}>Giảm 25%</option>
@@ -350,15 +363,15 @@
     }
 
     function updateProduct(data, id) {
-        var formData = new FormData($("#formSubmit")[0]);
         $.ajax({
             type: "PUT",
             url: "product?id=" + id,
-            data: formData,
+            data: data,
             processData: false,
             contentType: false,
+            dataType: 'json',
             success: function (data) {
-                alert("Cập nhật thành công");
+                alert("Cập nhật thành công: ", data);
                 window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
             },
             error: function (e) {

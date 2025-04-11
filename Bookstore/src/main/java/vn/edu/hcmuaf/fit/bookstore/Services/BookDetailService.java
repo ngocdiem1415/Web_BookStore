@@ -118,9 +118,24 @@ public class BookDetailService {
     }
 
     public Book updateProduct(Book product) {
-        connect.withExtension(BookDao.class, handle-> handle.updateBook(product));
-        return findById(product.getbId());
+        try {
+            connect.withExtension(BookDao.class, handle -> handle.updateBook(product));
+            System.out.println("update");
+        } catch (Exception e) {
+            System.err.println("Lỗi khi cập nhật sản phẩm: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+
+        try {
+            return findById(product.getbId());
+        } catch (Exception e) {
+            System.err.println("Lỗi khi truy vấn lại sản phẩm sau khi cập nhật: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
+
 
     public Book insertProduct(Book product) {
         connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
