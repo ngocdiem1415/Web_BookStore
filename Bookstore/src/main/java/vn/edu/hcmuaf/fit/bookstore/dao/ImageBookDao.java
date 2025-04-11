@@ -29,7 +29,7 @@ public interface ImageBookDao {
     List<Image> findImageBookId(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.IMAGE.DELETE)
-    void delete(@Bind("id") int id);
+    boolean delete(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.IMAGE.INSERT)
     boolean insertImage(@BindBean Image img);
