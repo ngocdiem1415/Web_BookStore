@@ -128,6 +128,8 @@
                     <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
                     <input type="file" class="form-control" id="anhTrungBay" name="anhTrungBay">
                     <div id="anhTrungBayPreview" class="image-container mt-2">
+                        <img id="previewImage" src="${not empty book ? '' :book.image.sourceImg}" alt="Ảnh trưng bày"
+                             style="max-width: 200px; display: block;">
                     </div>
                 </div>
 
@@ -136,6 +138,11 @@
                     <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
                     <input type="file" class="form-control" id="themAnhKhac" name="themAnhKhac" multiple>
                     <div id="themAnhKhacPreview" class="image-container mt-2">
+                        <c:if test="${not empty book.imageList}">
+                            <c:forEach var="image" items="${book.imageList}" begin="1">
+                                <img src="${image.sourceImg}" alt="Ảnh khác" style="max-width: 200px; display: block;">
+                            </c:forEach>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -310,7 +317,6 @@
             </div>
         </div>
 
-
     </form>
 </div>
 
@@ -347,7 +353,7 @@
             type: "POST",
             url: "product",
             data: data,
-            processData: false,       // Phải là false
+            processData: false, // Phải là false
             contentType: false,
             dataType: 'json',
             success: function (data) {
@@ -356,8 +362,8 @@
                 window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
             },
             error: function (e) {
-                console.log("ERROR : ", e);
-                alert("Thêm thất bại");
+                console.log("ERROR : ",e );
+                alert("Thêm thất bại! " );
             }
         });
     }
