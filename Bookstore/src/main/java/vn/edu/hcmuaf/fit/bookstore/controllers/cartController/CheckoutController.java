@@ -54,6 +54,17 @@ public class CheckoutController extends HttpServlet {
             OrderData orderData = gsonUtil.getGson().fromJson(reader, OrderData.class);
             System.out.println("orderData: " + orderData);
 
+            // Kiểm tra orderData không có sản phẩm
+            if (orderData == null || orderData.getProducts() == null || orderData.getProducts().isEmpty()) {
+                // Trả JSON thông báo lỗi:
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write("{\"error\": \"Không có sản phẩm nào để mua. Vui lòng kiểm tra lại giỏ hàng.\"}");
+                System.out.println("❗ Không có sản phẩm trong orderData.");
+                response.sendRedirect(request.getContextPath() + "/cart");
+                return;
+            }
+
             //Tạo đối tượng Invoice
             Invoice invoice = new Invoice();
             invoice.setUid(userId);
