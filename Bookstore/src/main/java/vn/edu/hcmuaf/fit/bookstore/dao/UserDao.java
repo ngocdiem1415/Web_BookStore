@@ -43,11 +43,16 @@ public interface UserDao {
     void updateUserRole(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("id") int id);
 
     @SqlUpdate(QUERIES.USER.INSERT_BY_GOOGLE)
-    void insertByGoogle(@Bind("username") String username, @Bind("gender") String gender,  @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password, @Bind("role") String role);
+    void insertByGoogle(@Bind("username") String username, @Bind("gender") String gender, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password, @Bind("role") String role);
 
     @SqlQuery(QUERIES.USER.FIND_ALL)
     List<User> findAll();
 
     @SqlUpdate(QUERIES.USER.UPDATE_EMAIL_VERIFIED_BY_EMAIL)
     void updateEmailVerifiedByEmail(@Bind("email") String email);
+
+    @SqlUpdate(QUERIES.USER.UPDATE_IMAGE_BY_ID)
+    void updateImageByID(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("avatar") String avatar, @Bind("id") int id);
+
+
 }
