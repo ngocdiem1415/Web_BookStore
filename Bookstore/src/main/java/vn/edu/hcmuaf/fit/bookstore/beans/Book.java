@@ -11,7 +11,7 @@ public class Book implements Serializable {
     private String author;
     private int categoryId;
     private int publisherId;
-    private int promotionId;
+    private Integer promotionId;
     private Category category;
     private Publisher publisher;
     private Promotion promotion;
@@ -34,7 +34,7 @@ public class Book implements Serializable {
 
     public Book() {}
 
-    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status,Image image, double rating) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, Integer promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status,Image image, double rating) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -60,7 +60,7 @@ public class Book implements Serializable {
         this.rating = rating;
     }
 
-    public Book(int bId, String title, String author, int categoryId, int publisherId, int promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status, Image image, List<Image> imageList) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, Integer promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status, Image image, List<Image> imageList) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -212,11 +212,15 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public int getPromotionId() {
+    public Integer getPromotionId() {
         return promotionId;
     }
 
-    public void setPromotionId(int promotionId) {
+    public int getPromotionIdOrDefault() {
+        return promotionId != null ? promotionId : 0;
+    }
+
+    public void setPromotionId(Integer promotionId) {
         this.promotionId = promotionId;
     }
 

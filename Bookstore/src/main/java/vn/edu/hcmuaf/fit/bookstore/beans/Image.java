@@ -1,7 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Image implements Serializable {
     private int imgId;
@@ -14,6 +13,12 @@ public class Image implements Serializable {
 
     public Image(int imgId, int bookId, String sourceImg, boolean isThumbnail) {
         this.imgId = imgId;
+        this.bookId = bookId;
+        this.sourceImg = sourceImg;
+        this.isThumbnail = isThumbnail;
+    }
+
+    public Image(int bookId, String sourceImg, boolean isThumbnail) {
         this.bookId = bookId;
         this.sourceImg = sourceImg;
         this.isThumbnail = isThumbnail;
@@ -53,11 +58,11 @@ public class Image implements Serializable {
         this.sourceImg = sourceImg;
     }
 
-    public boolean isThumbnail() {
+    public boolean getIsThumbnail() {
         return isThumbnail;
     }
 
-    public void setThumbnail(boolean thumbnail) {
+    public void setIsThumbnail(boolean thumbnail) {
         isThumbnail = thumbnail;
     }
 }

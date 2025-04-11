@@ -15,13 +15,25 @@ public class ImageService {
         if (instance == null) instance = new ImageService();
         return instance;
     }
+    public Image insertImage(Image image){
+        connect.withExtension(ImageBookDao.class, handle -> handle.insertImage(image));
+        return findBySourceImg(image.getSourceImg());
+    }
 
     public List<Image> listImageThumbnail(){
         return connect.withExtension(ImageBookDao.class, handle -> handle.listImageThumbnail());
     }
 
+    public boolean delete(int bId){
+        return connect.withExtension(ImageBookDao.class, handle -> handle.delete(bId));
+    }
+
     public Image findByProductId(int id) {
         return connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
+    }
+
+    public Image findBySourceImg(String source) {
+        return connect.withExtension(ImageBookDao.class, handle -> handle.findBySourceImg(source));
     }
 
     public List<Image> finbyBookId(int id){

@@ -22,6 +22,9 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.FIND_BY_BID)
     Book findById(@Bind("id") int id);
 
+    @SqlQuery(QUERIES.BOOK.FIND_BY_TITLE)
+    Book findByName(@Bind("title") String title);
+
     @SqlQuery(QUERIES.BOOK.SELECT_PRODUCT_PAGE)
     List<Book> getProductsOnPage(@Bind("category_id") int category_id, @Bind("p_id") int p_id,
                           @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
@@ -68,8 +71,8 @@ public interface BookDao {
     List<Book> listByCategory(@Bind("category_name") String category_name, @Bind("limit") int limit, @Bind("offset") int offset);
     
     @SqlUpdate(QUERIES.BOOK.UPDATE)
-    boolean updateBook(Book product);
+    boolean updateBook(@BindBean Book product);
 
     @SqlUpdate(QUERIES.BOOK.INSERT)
-    boolean insertBook(Book product);
+    boolean insertBook(@BindBean Book product);
 }

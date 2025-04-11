@@ -18,6 +18,9 @@ public interface PublisherDao {
     @SqlQuery(QUERIES.PUBLISHER.FIND_BY_PUBLISHERID)
     Publisher findById(@Bind("id") int id);
 
+    @SqlQuery(QUERIES.PUBLISHER.FIND_BY_PUBLISHERNAME)
+    Publisher findByName(@Bind("name") String name);
+
     @SqlUpdate(QUERIES.PUBLISHER.DELETE)
     void delete(@Bind("id") int id);
 

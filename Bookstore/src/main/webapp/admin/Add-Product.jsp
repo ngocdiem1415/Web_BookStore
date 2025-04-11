@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +59,7 @@
             </div>
         </div>
     </div>
-    <form id="formSubmit" enctype="multipart/form-data">
+    <form id="formSubmit" method="post" enctype="multipart/form-data">
         <div class="row d-flex flex-nowrap m-0 p-0">
             <!-- Left Column -->
             <div class="col-7 bg-white rounded-2 shadow mx-4">
@@ -66,71 +67,88 @@
                 <div class="row mb-3">
                     <div class="col-md-12 pt-3">
                         <label for="tenSanPham" class="form-label">Tên sản phẩm</label>
-                        <input type="text" class="form-control" id="tenSanPham" value="${empty book ? '' :book.title}"
-                               placeholder="Nhập tên sản phẩm">
+                        <input type="text" class="form-control" id="tenSanPham" name="tenSanPham"
+                               value="${empty book ? '' :book.title}"
+                               placeholder="Nhập tên sản phẩm" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-5">
                         <label for="Tacgia" class="form-label">Tác giả</label>
-                        <input type="text" class="form-control" id="Tacgia" value="${empty book ? '' :book.author}"
-                               placeholder="">
+                        <input type="text" class="form-control" id="Tacgia" name="Tacgia"
+                               value="${empty book ? '' :book.author}"
+                               placeholder="" required>
                     </div>
                     <div class="col-md-2">
                         <label for="NamXB" class="form-label">Năm XB</label>
-                        <input type="text" class="form-control" id="NamXB" value="${empty book ? '' :book.publishYear}"
-                               placeholder="">
+                        <input type="text" class="form-control" id="NamXB" name="NamXB"
+                               value="${empty book ? '' :book.publishYear}"
+                               placeholder="" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-4">
-                        <label class="form-label">Kích thước (cm)</label>
+                        <label class="form-label">Kích thước (a x b x c cm)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="height"
-                                   value="${empty book ? '' :book.dimensions.split('x')[0]}"
-                                   placeholder="">
-                            <input type="text" class="form-control" id="width"
-                                   value="${empty book ? '' :book.dimensions.split('x')[1]}"
-                                   placeholder="">
+                            <input type="text" class="form-control" id="dimensions" name="dimensions"
+                                   value="${empty book ? '' :book.dimensions.split('cm')[0]}"
+                                   placeholder="" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <label for="khoiLuong" class="form-label">Khối lượng</label>
-                        <input type="text" class="form-control" id="khoiLuong" placeholder="gram">
+                        <input type="text" class="form-control" id="khoiLuong" name="khoiLuong"
+                               value="${empty book ? '' :book.weight}"
+                               placeholder="gram" required>
                     </div>
                     <div class="col-md-4">
-                        <label for="chatLieu" class="form-label">Số trang</label>
-                        <input type="text" class="form-control" id="chatLieu" placeholder="Trang">
+                        <label for="pageCount" class="form-label">Số trang</label>
+                        <input type="text" class="form-control" id="pageCount" name="pageCount"
+                               value="${empty book ? '' :book.pageCount }"
+                               placeholder="Trang" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="HinhThuc" class="form-label">Hình thức</label>
-                        <input type="text" class="form-control" id="HinhThuc" value="${empty book ? '' :book.format}"
-                               placeholder="Bìa cứng">
+                        <label for="format" class="form-label">Hình thức</label>
+                        <input type="text" class="form-control" id="format" name="format"
+                               value="${empty book ? '' :book.format}"
+                               placeholder="Bìa cứng" required>
                     </div>
 
                 </div>
 
                 <!-- Description -->
                 <div class="mb-3">
-                    <label for="moTaSanPham" class="form-label">Mô tả sản phẩm</label>
-                    <textarea class="form-control" id="moTaSanPham" rows="3"
-                              placeholder="">${empty book ? '' :book.description}</textarea></div>
-
-                <div class="mb-3">
-                    <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
-                    <input type="file" class="form-control" id="anhTrungBay">
-                    <div id="anhTrungBayPreview" class="image-container"></div>
+                    <label for="description" class="form-label">Mô tả sản phẩm</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"
+                              placeholder="Nhập mô tả sản phẩm" required>${empty book ? '' : book.description} </textarea>
                 </div>
 
+                <!-- Ảnh trưng bày -->
+                <div class="mb-3">
+                    <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
+                    <input type="file" class="form-control" id="anhTrungBay" name="anhTrungBay">
+                    <div id="anhTrungBayPreview" class="image-container mt-2">
+                        <img id="previewImage" src="${empty book ? '' :book.image.sourceImg}" alt="Ảnh trưng bày"
+                             style="max-width: 200px; display: block;">
+                    </div>
+                </div>
+
+                <!-- Thêm ảnh khác -->
                 <div class="mb-3">
                     <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
-                    <input type="file" class="form-control" id="themAnhKhac" multiple>
-                    <div id="themAnhKhacPreview" class="image-container"></div>
+                    <input type="file" class="form-control" id="themAnhKhac" name="themAnhKhac" multiple>
+                    <div id="themAnhKhacPreview" class="image-container mt-2">
+                        <c:if test="${not empty book.imageList}">
+                            <c:forEach var="image" items="${book.imageList}" begin="1">
+                                <img src="${image.sourceImg}" alt="Ảnh khác" style="max-width: 200px; display: block;">
+                            </c:forEach>
+                        </c:if>
+                    </div>
                 </div>
             </div>
 
@@ -138,26 +156,17 @@
             <div class="col-4 bg-white rounded-2 shadow mx-4">
                 <div class="row mb-3">
                     <div class="col-md-12 pt-3">
-                        <label for="giaSanPham" class="form-label">Giá</label>
-                        <input type="text" class="form-control" id="giaSanPham"
-                               value="${empty book ? '' :book.salePrice}"
-                               placeholder="">
+                        <label for="price" class="form-label">Giá</label>
+                        <input type="text" class="form-control" id="price" name="price"
+                               value="${empty book ? '' :book.originalPrice}"
+                               placeholder="" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <label for="soLuongSanPham" class="form-label">Số lượng</label>
-                        <input type="text" class="form-control" id="soLuongSanPham"
-                               value="${empty book ? '' :book.stockQuantity}"
-                               placeholder="">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label for="trangThai" class="form-label">Trạng thái</label>
-                        <select class="form-select" id="trangThai">
+                        <label for="status" class="form-label">Trạng thái</label>
+                        <select class="form-select" id="status" name="status">
                             <c:if test="${book.bId != null}">
                                 <option value="1" ${book.status == 1 ? 'selected' : ''}>Hoạt động</option>
                                 <option value="0" ${book.status == 0 ? 'selected' : ''}>Ngừng bán</option>
@@ -172,8 +181,8 @@
 
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <label for="danhMuc" class="form-label">Danh mục</label>
-                        <select class="form-select" id="danhMuc">
+                        <label for="category" class="form-label">Danh mục</label>
+                        <select class="form-select" id="category" name="category">
                             <c:choose>
                                 <c:when test="${not empty book}">
                                     <option value="1" ${book.categoryId == 1 ? 'selected' : ''}>Văn học</option>
@@ -229,19 +238,61 @@
 
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <label for="nhaXuatBan" class="form-label">Nhà xuất bản</label>
-                        <input type="text" class="form-control" id="nhaXuatBan"
-                               value="${empty book ? '' :book.publisher.p_name}"
-                               placeholder="">
+                        <label for="publisher" class="form-label">Nhà xuất bản</label>
+                        <select class="form-select" id="publisher" name="publisher">
+                            <c:choose>
+                                <c:when test="${not empty book}">
+                                    <option value="1" ${book.publisherId == 1 ? 'selected' : ''}>NXB Trẻ</option>
+                                    <option value="2" ${book.publisherId == 2 ? 'selected' : ''}>NXB Giáo dục Việt Nam
+                                    </option>
+                                    <option value="3" ${book.publisherId == 3 ? 'selected' : ''}>NXB Kim Đồng</option>
+                                    <option value="4" ${book.publisherId == 4 ? 'selected' : ''}>NXB Hội Nhà văn
+                                    </option>
+                                    <option value="5" ${book.publisherId == 5 ? 'selected' : ''}>NXB Phương Nam</option>
+                                    <option value="6" ${book.publisherId == 6 ? 'selected' : ''}>NXB Thế Giới</option>
+                                    <option value="7" ${book.publisherId == 7 ? 'selected' : ''}>NXB Phụ Nữ</option>
+                                    <option value="8" ${book.publisherId == 8 ? 'selected' : ''}>NXB Dân Trí</option>
+                                    <option value="9" ${book.publisherId == 9 ? 'selected' : ''}>NXB Khoa Học - Xã Hội
+                                    </option>
+                                    <option value="10" ${book.publisherId == 10 ? 'selected' : ''}>NXB Tổng Hợp TP.
+                                        HCM
+                                    </option>
+                                    <option value="11" ${book.publisherId == 11 ? 'selected' : ''}>NXB Thanh Niên
+                                    </option>
+                                    <option value="12" ${book.publisherId == 12 ? 'selected' : ''}>NXB Công Thương
+                                    </option>
+                                    <option value="13" ${book.publisherId == 13 ? 'selected' : ''}>NXB Hà Nội</option>
+                                    <option value="14" ${book.publisherId == 14 ? 'selected' : ''}>NXB Văn Học</option>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <option value="1">NXB Trẻ</option>
+                                    <option value="2">NXB Giáo dục Việt Nam</option>
+                                    <option value="3">NXB Kim Đồng</option>
+                                    <option value="4">NXB Hội Nhà văn</option>
+                                    <option value="5">NXB Phương Nam</option>
+                                    <option value="6">NXB Thế Giới</option>
+                                    <option value="7">NXB Phụ Nữ</option>
+                                    <option value="8">NXB Dân Trí</option>
+                                    <option value="9">NXB Khoa Học - Xã Hội</option>
+                                    <option value="10">NXB Tổng Hợp TP. HCM</option>
+                                    <option value="11">NXB Thanh Niên</option>
+                                    <option value="12">NXB Công Thương</option>
+                                    <option value="13">NXB Hà Nội</option>
+                                    <option value="14">NXB Văn Học</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </select>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <label for="khuyenMai" class="form-label">Khuyến mãi</label>
-                        <select class="form-select" id="khuyenMai" name="khuyenMai">
+                        <label for="promotion" class="form-label">Khuyến mãi</label>
+                        <select class="form-select" id="promotion" name="promotion">
                             <c:choose>
                                 <c:when test="${not empty book}">
+                                    <option value="0" ${empty book.promotion ? 'selected' : ''}>Không giảm giá</option>
                                     <option value="1" ${book.promotionId == 1 ? 'selected' : ''}>Giảm 10%</option>
                                     <option value="2" ${book.promotionId == 2 ? 'selected' : ''}>Giảm 20%</option>
                                     <option value="3" ${book.promotionId == 3 ? 'selected' : ''}>Giảm 25%</option>
@@ -249,7 +300,8 @@
                                 </c:when>
 
                                 <c:otherwise>
-                                    <option value="1" selected>Giảm 10%</option>
+                                    <option value="0" selected>Không giảm giá</option>
+                                    <option value="1">Giảm 10%</option>
                                     <option value="2">Giảm 20%</option>
                                     <option value="3">Giảm 25%</option>
                                     <option value="4">Giảm 50%</option>
@@ -260,7 +312,6 @@
                 </div>
             </div>
         </div>
-
 
     </form>
 </div>
@@ -274,28 +325,31 @@
 <script>
     $('#addOrUpdate').click(function (e) {
         e.preventDefault();
-        var data = {};
-        var productId = $('#id').val();
-        var formData = $('#formSubmit').serializeArray();
-        $.each(formData, function (index, v) {
-            data["" + v.name + ""] = v.value;
-        });
-        console.log(data);
+        console.log("Thêm hoặc sửa sản phẩm đã được bấm");
+
+        var productId = "${book.bId}";
+        var formElement = document.getElementById('formSubmit');
+        var formData = new FormData(formElement); // dùng FormData để chứa cả file
+
+        // In thử thông tin để debug
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+
         if (productId === "") {
-            delete data.id;
-            addProduct(data);
+            addProduct(formData);
         } else {
-            updateProduct(data);
+            updateProduct(formData, productId);
         }
     });
 
-    function addProduct() {
-        var formData = new FormData($("#formSubmit")[0]);
+
+    function addProduct(data) {
         $.ajax({
             type: "POST",
-            url: "/admin/product",
-            data: formData,
-            processData: false,
+            url: "product",
+            data: data,
+            processData: false, // Phải là false
             contentType: false,
             dataType: 'json',
             success: function (data) {
@@ -304,22 +358,22 @@
                 window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
             },
             error: function (e) {
-                console.log("ERROR : ", e);
-                alert("Thêm thất bại");
+                console.log("ERROR : ",e );
+                alert("Thêm thất bại! " );
             }
         });
     }
 
-    function updateProduct() {
-        var formData = new FormData($("#formSubmit")[0]);
+    function updateProduct(data, id) {
         $.ajax({
             type: "PUT",
-            url: "/admin/product",
-            data: formData,
+            url: "product?id=" + id,
+            data: data,
             processData: false,
             contentType: false,
+            dataType: 'json',
             success: function (data) {
-                alert("Cập nhật thành công");
+                alert("Cập nhật thành công: ", data);
                 window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
             },
             error: function (e) {

@@ -30,27 +30,31 @@ public class QUERIES {
     }
 
     public class BOOK {
-        public static final String INSERT = "INSERT INTO books (title, author, category_id, p_id, publish_year, dimensions, weight, page_count, format, original_price, description, promotion_id, sold_quantity, stock_quantity, create_at, status) " +
-                "VALUES (:title, :author, :categoryId, :pId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId, :soldQuantity, :stockQuantity, CURRENT_TIMESTAMP, :status)";
+        public static final String INSERT =
+                "INSERT INTO books (title, author, category_id, p_id, publish_year, dimensions, weight, page_count, format, original_price, description, promotion_id,create_at, status) " +
+                        "VALUES (:title, :author, :categoryId, :publisherId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId,CURRENT_TIMESTAMP, :status)";
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
         public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
-        public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :pId, publish_year = :publishYear, weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId, stock_quantity = :stockQuantity, create_at = :createAt, update_at = CURRENT_TIMESTAMP WHERE b_id = :bookId";
+        public static final String FIND_BY_TITLE = "select * from books where title = :title";
+        public static final String UPDATE =
+                "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :publisherId, publish_year = :publishYear, " +
+                "weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId,update_at = CURRENT_TIMESTAMP,status = :status WHERE b_id = :bId";
         public static final String DELETE = "delete from books where b_id = :id";
         public static final String TOTALBOOK = "select count(*) from books ";
 
         public static final String SELECT_PRODUCT_PAGE = "SELECT * FROM books " +
-                "WHERE (category_id = :category_id OR category_id IS NULL) " +
-                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
+                "AND (p_id = :publisherId OR p_id IS NULL) " +
                 "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
                 "AND original_price >= :firstPrice " +
                 "AND original_price <= :secondPrice " +
                 "LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_BOOK_UPDATE_DESC = "SELECT * FROM books " +
-                "WHERE (category_id = :category_id OR category_id IS NULL) " +
-                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
+                "AND (p_id = :publisherId OR p_id IS NULL) " +
                 "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
                 "AND original_price >= :firstPrice " +
                 "AND original_price <= :secondPrice " +
@@ -58,8 +62,8 @@ public class QUERIES {
                 "LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_BOOK_UPDATE_ASC = "SELECT * FROM books " +
-                "WHERE (category_id = :category_id OR category_id IS NULL) " +
-                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
+                "AND (p_id = :publisherId OR p_id IS NULL) " +
                 "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
                 "AND original_price >= :firstPrice " +
                 "AND original_price <= :secondPrice " +
@@ -67,8 +71,8 @@ public class QUERIES {
                 "LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_BOOK_PRICE_DESC = "SELECT * FROM books " +
-                "WHERE (category_id = :category_id OR category_id IS NULL) " +
-                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
+                "AND (p_id = :publisherId OR p_id IS NULL) " +
                 "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
                 "AND original_price >= :firstPrice " +
                 "AND original_price <= :secondPrice " +
@@ -76,8 +80,8 @@ public class QUERIES {
                 "LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_BOOK_PRICE_ASC = "SELECT * FROM books " +
-                "WHERE (category_id = :category_id OR category_id IS NULL) " +
-                "AND (p_id = :p_id OR p_id IS NULL) " +
+                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
+                "AND (p_id = :publisherId OR p_id IS NULL) " +
                 "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
                 "AND original_price >= :firstPrice " +
                 "AND original_price <= :secondPrice " +
@@ -106,7 +110,9 @@ public class QUERIES {
         public static final String SELECT_ALL_IMAGE_THUMBNAIL = "select * from images where is_thumbnail = 1";
         public static final String SELECT_ALL_IMAGE_THUMBNAIL_LIMIT = "select * from images where is_thumbnail = 1  limit :limit";
         public static final String FIND_IMAGE_THUMBNAIL_BY_ID = "select * from images where b_id = :id and is_thumbnail = 1";
+        public static final String FIND_IMAGE_BY_SOURCE = "select * from images where source_img = :source";
         public static final String DELETE = "delete from images where b_id = :id";
+        public static final String INSERT = "INSERT INTO images (b_id, source_img, is_thumbnail) VALUES (:bookId, :sourceImg, :isThumbnail)";
         public static final String SELECT_ALL_IMAGE_BY_BOOKID = "select * from images where b_id = :id";
 
     }
@@ -128,6 +134,7 @@ public class QUERIES {
     public class PUBLISHER {
         public static final String SELECT_ALL_PUBLISHER = "select * from publishers";
         public static final String FIND_BY_PUBLISHERID = "select * from publishers where p_id = :id";
+        public static final String FIND_BY_PUBLISHERNAME = "select * from publishers where p_name = :name";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
         public static final String INSERT_PUBLISHER = "INSERT INTO publishers (p_name, p_address, p_phone) VALUES (:publisherName, :address, :phone)";
         public static final String UPDATE_PUBLISHER = "UPDATE publishers SET p_name = :publisherName, p_address = :address, p_phone = :phone WHERE p_id = :p_id";
