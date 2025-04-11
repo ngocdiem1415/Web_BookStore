@@ -24,13 +24,10 @@
 
     <div class="profile-info">
         <a href="" class="profile-info-logo">
-            <div class="profile-info-avatar-img">
+            <div class="profile-info-avatar-img" style="border: none">
                 <div class="profile-info-avatar_img__placeholder">
-                    <img
-                            <c:if test="${userSession.getAvatar() != null}">
-                                src="${userSession.getAvatar()}"
-                            </c:if>
-                            class="icon-user"/>
+                    <img class="icon-user w-100 h-100" style="opacity: 1 "
+                         src="${userSession.avatar != null ? userSession.avatar : 'https://res.cloudinary.com/dh90ponfw/image/upload/v1736864014/defaultavatar.jpg'}"/>
                 </div>
             </div>
         </a>
