@@ -38,7 +38,8 @@ public class QUERIES {
         public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
         public static final String FIND_BY_TITLE = "select * from books where title = :title";
-        public static final String UPDATE = "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :publisherId, publish_year = :publishYear, " +
+        public static final String UPDATE =
+                "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :publisherId, publish_year = :publishYear, " +
                 "weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId,update_at = CURRENT_TIMESTAMP,status = :status WHERE b_id = :bId";
         public static final String DELETE = "delete from books where b_id = :id";
         public static final String TOTALBOOK = "select count(*) from books ";
