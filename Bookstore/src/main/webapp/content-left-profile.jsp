@@ -119,7 +119,7 @@
                 <div class="stardust-dropdown__item-header">
                     <a href="admin/dashboard" class="stardust-dropdown__item-header-menu">
                         <div class="stardust-dropdown__item-header-account-img">
-                            <i class="fa-solid fa-circle-xmark"></i>
+                            <i class="fa-solid fa-users"></i>
                         </div>
                         <div class="stardust-dropdown__item-header-account-name">
                             <span class="stardust-dropdown__item-header-account-name-text">Admin</span>
