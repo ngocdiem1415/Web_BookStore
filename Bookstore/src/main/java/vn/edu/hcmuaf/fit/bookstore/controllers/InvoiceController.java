@@ -31,7 +31,7 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
-
+        request.setAttribute("today", java.time.LocalDate.now());
         // Kiểm tra session và user login
         if (session == null || session.getAttribute("userSession") == null) {
             // Nếu chưa đăng nhập, chuyển hướng đến trang login

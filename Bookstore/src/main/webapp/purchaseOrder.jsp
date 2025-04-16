@@ -195,14 +195,23 @@
                                 <div class="right-inner-center-product__header__date-contain">
                                     <c:choose>
                                         <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews()}">
-                                            <span class="date__text"
-                                                  aria-label="Đánh giá sản phẩm trước ngày ${invoice.completionDate.plusDays(7)}"
-                                                  tabindex="0">
-                                                Đánh giá sản phẩm trước ngày: &nbsp;
-                                                <div class="date-buy__text-date">
-                                                    <u>${invoice.completionDate.plusDays(7)}</u>
-                                                </div>
-                                            </span>
+                                            <c:choose>
+                                                <c:when test="${invoice.getReviewDeadline() lt today}">
+                                                    <span class="date__text">
+                                                        <strong>Đã quá hạn đánh giá</strong>
+                                                    </span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="date__text"
+                                                          aria-label="Đánh giá sản phẩm trước ngày ${invoice.getReviewDeadline()}"
+                                                          tabindex="0">
+                                                        Đánh giá sản phẩm trước ngày: &nbsp;
+                                                        <div class="date-buy__text-date">
+                                                            <u>${invoice.getReviewDeadline()}</u>
+                                                        </div>
+                                                    </span>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:when>
 
                                         <c:when test="${invoice.status == 'Pending'}">
@@ -216,7 +225,7 @@
 
                                 <section class="right-inner-center-product__header__rating">
                                     <c:choose>
-                                        <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews()}">
+                                        <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews() && !(invoice.getReviewDeadline() lt today)}">
                                             <div class="right-inner-center-product__header__rating-vote">
                                                 <div>
                                                     <button class="stardust-button stardust-button--primary"

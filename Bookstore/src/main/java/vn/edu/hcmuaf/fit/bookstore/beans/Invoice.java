@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class Invoice {
         this.listInvoiceDetails = listInvoiceDetails;
         this.payment = payment;
         this.hasReviews = hasReviews;
+    }
+
+    public LocalDate getReviewDeadline() {
+        return this.completionDate.toLocalDate().plusDays(7);  // Nếu completionDate là LocalDateTime
     }
 
     public boolean isHasReviews() {
