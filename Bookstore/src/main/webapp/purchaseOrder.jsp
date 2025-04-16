@@ -545,6 +545,12 @@
                                     timer: 1000
                                 });
                                 overlay.classList.add("hidden"); // Đóng overlay sau khi gửi đánh giá thành công
+
+                                // Ẩn nút "Đánh giá" tương ứng với invoiceId
+                                const reviewButton = document.querySelector('button.stardust-button--primary[data-invoice-id="' + invoiceId + '"]');
+                                if (reviewButton) {
+                                    reviewButton.style.display = 'none';
+                                }
                             },
                             error: function (data) {
                                 Swal.fire({
