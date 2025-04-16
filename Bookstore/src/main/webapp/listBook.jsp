@@ -125,121 +125,7 @@
 
                     <div class="category-form">
                         <h4 class="category__heading">Đánh Giá Sao</h4>
-
-                        <div class="category-inform">
-                            <input type="radio" id="rating1" name="rating" value="1">
-                            <label for="rating1">
-                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="1">
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                </ul>
-                            </label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="radio" id="rating2" name="rating" value="2">
-                            <label for="rating2">
-                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="2">
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                </ul>
-                            </label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="radio" id="rating3" name="rating" value="3">
-                            <label for="rating3">
-                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="3">
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                </ul>
-                            </label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="radio" id="rating4" name="rating" value="4">
-                            <label for="rating4">
-                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="4">
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                </ul>
-                            </label>
-                        </div>
-
-                        <div class="category-inform">
-                            <input type="radio" id="rating5" name="rating" value="5">
-                            <label for="rating5">
-                                <ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="5">
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star fa-sm text-primary" style="color: gold;"></i>
-                                    </li>
-                                </ul>
-                            </label>
-                        </div>
+                        <div id="rating-options"></div>
                     </div>
                 </nav>
             </div>
@@ -283,97 +169,146 @@
 <!--format tiền tệ-->
 <script src="js/FormatMoney.js"></script>
 
+<%
+    String findWord = request.getParameter("find");
+    if (findWord == null) findWord = "";
+%>
 <script>
-    $(document).ready(function () {
-        // Hàm AJAX gọi để lấy danh sách sản phẩm
-        function fetchProducts(page = 1, maxItems = 20) {
-            console.log(page + " " + maxItems)
-            $.ajax({
-                url: '/Bookstore/listBooks?page=' + page + '&maxItems=' + maxItems,  // Địa chỉ URL của API để lấy sản phẩm
-                method: 'GET',
-                dataType: 'json',
-                success: function (json) {
-                    let data = "";
-                    let obj = json.products; // Dữ liệu trả về có key 'products'
-                    let totalItems = json.totalItems; // Tổng số sản phẩm (để tính số trang)
-                    let maxItems = 20; // Số sản phẩm hiển thị mỗi trang
-                    let maxPage = Math.ceil(totalItems / maxItems); // Tính tổng số trang
-                    console.log(obj)
-                    // Tạo danh sách sản phẩm
-                    obj.forEach(function (val) {
-                        data += '<div class="grid-md-2-4">' +
-                            '<a href="book-detail?id=' + val.bId + '">' +
-                            '<div class="home-product-item">' +
-                            // Hình ảnh sản phẩm
-                            '<div class="home-product-item__img" ';
-                        const imageUrl = val.image?.sourceImg || '/img/logo/default_image.png';
-                        data += 'style="background-image: url(' +imageUrl + ' )"></div>';
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy từ khóa từ biến Servlet (đã truyền từ request)
+        const keyword = "<%= findWord %>";
 
-                        data +=
-                            // Tên sản phẩm
-                            '<h4 class="home-product-item__name">' + val.title + '</h4>' +
-                            // Giá sản phẩm
-                            '<div class="home-product-item__price">';
+        // Gán lại vào ô search để giữ từ khóa
+        document.getElementById("searchInput").value = keyword;
 
-                        // Hiển thị giá gốc và giá khuyến mãi
-                        if (val.promotionId == 0) {
-                            price = formatCurrencyVN(val.originalPrice);
-                            data += '<span class="home-product-item__price-current original-price">' + price +
-                                '<i class="fa-solid fa-dong-sign fa-xs"></i> </span>' +
-                                '</div>';
-                        } else {
-                            let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
-                            data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
-                                '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>' + '</div>';
-                        }
+        // Gọi AJAX để load sản phẩm
+        fetchProducts(1, 20, keyword);
+    });
+</script>
+<script>
+    function fetchProducts(page, maxItems, keyword) {
+        $.ajax({
+            url: '/Bookstore/listBooks?page=' + page + '&maxItems=' + maxItems + '&find=' + keyword,
+            method: 'GET',
+            dataType: 'json',
+            success: function (json) {
+                let data = "";
+                let obj = json.products; // Dữ liệu trả về có key 'products'
+                let totalItems = json.totalItems; // Tổng số sản phẩm (để tính số trang)
+                let maxItems = 20; // Số sản phẩm hiển thị mỗi trang
+                let maxPage = Math.ceil(totalItems / maxItems); // Tính tổng số trang
+                console.log(obj)
+                // Tạo danh sách sản phẩm
+                obj.forEach(function (val) {
+                    console.log("HTML sinh ra:", data);
+                    data += '<div class="grid-md-2-4">' +
+                        '<a href="book-detail?id=' + val.bId + '">' +
+                        '<div class="home-product-item">' +
+                        // Hình ảnh sản phẩm
+                        '<div class="home-product-item__img" ';
+                    const imageUrl = val.image?.sourceImg || '/img/logo/default_image.png';
+                    data += 'style="background-image: url(' + imageUrl + ' )"></div>';
 
-                        data +=
-                            // Hành động yêu thích
-                            '<div class="home-product-item__action">' +
-                            '<span class="home-product-item__like home-product-item__like--liked">' +
-                            '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
-                            '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
-                            '</span>' +
-                            // Đánh giá sản phẩm
-                            '<div class="home-product-item__rating">' +
-                            '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                            '</ul>' +
-                            '</a>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
+                    data +=
+                        // Tên sản phẩm
+                        '<h4 class="home-product-item__name">' + val.title + '</h4>' +
+                        // Giá sản phẩm
+                        '<div class="home-product-item__price">';
+
+                    // Hiển thị giá gốc và giá khuyến mãi
+                    if (val.promotionId == 0) {
+                        price = formatCurrencyVN(val.originalPrice);
+                        data += '<span class="home-product-item__price-current original-price">' + price +
+                            '<i class="fa-solid fa-dong-sign fa-xs"></i> </span>' +
                             '</div>';
-                    });
+                    } else {
+                        let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
+                        data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
+                            '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>' + '</div>';
+                    }
 
-                    // Thêm các sản phẩm vào DOM
-                    $('#product-container').html(data);
+                    data +=
+                        // Hành động yêu thích
+                        '<div class="home-product-item__action">' +
+                        '<span class="home-product-item__like home-product-item__like--liked">' +
+                        '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
+                        '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
+                        '</span>' +
+                        // Đánh giá sản phẩm
+                        '<div class="home-product-item__rating">' +
+                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
+                        '</ul>' +
+                        '</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                });
 
-                    // Cập nhật phân trang
+                // Thêm các sản phẩm vào DOM
+                $('#product-container').html(data);
+
+                // Cập nhật phân trang
+                if (totalItems < 10) {
+                    $('#pagination').hide(); // Ẩn phân trang khi chỉ có một trang
+                } else {
                     $('#pagination').twbsPagination({
                         totalPages: maxPage,
                         visiblePages: 5,
                         onPageClick: function (event, page) {
-                            fetchProducts(page, maxItems); // Tải lại sản phẩm khi click vào trang
+                            fetchProducts(page, maxItems, keyword); // Tải lại sản phẩm khi click vào trang
                             $('#page').val(page); // Cập nhật trang hiện tại
                         }
                     });
-                },
-                error: function (xhr, status, error) {
-                    console.log("Có lỗi xảy ra khi lấy dữ liệu: " + error);
                 }
-            });
-        }
+            }
+            ,
+            error: function (xhr, status, error) {
+                console.log("Có lỗi xảy ra khi lấy dữ liệu: " + error);
+            }
+        });
+    }
 
-        // Gọi hàm AJAX để tải sản phẩm ban đầu
-        fetchProducts(1, 20);  // Tải trang đầu tiên với tối đa 10 sản phẩm
-
-    });
+    // // Gọi hàm AJAX để tải sản phẩm ban đầu
+    // fetchProducts(1, 20);  // Tải trang đầu tiên với tối đa 10 sản phẩm
 </script>
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        const container = document.getElementById("rating-options");--%>
+
+<%--        // Hàm tạo HTML sao--%>
+<%--        function generateStars(rating) {--%>
+<%--            let stars = '';--%>
+<%--            for (let i = 1; i <= 5; i++) {--%>
+<%--                if (i <= rating) {--%>
+<%--                    stars += '<li><i class="fa fa-star fa-sm text-warning"></i></li>';--%>
+<%--                } else {--%>
+<%--                    stars += '<li><i class="fa fa-star-o fa-sm text-warning"></i></li>';--%>
+<%--                }--%>
+<%--            }--%>
+<%--            return '<ul class="rating">' + stars + '</ul>';--%>
+<%--        }--%>
+
+<%--        // Tạo từng mức đánh giá từ 1 đến 5--%>
+<%--        for (let i = 1; i <= 5; i++) {--%>
+<%--            const option = document.createElement('div');--%>
+<%--            option.classList.add('category-inform');--%>
+<%--            option.innerHTML = `--%>
+<%--                <input type="radio" id="rating${i}" name="rating" value="${i}">--%>
+<%--                <label for="rating${i}">--%>
+<%--                    ${generateStars(i)}--%>
+<%--                </label>--%>
+<%--            `;--%>
+<%--            container.appendChild(option);--%>
+<%--        }--%>
+<%--    });--%>
+<%--</script>--%>
+
 
 <%--<script type="text/javascript">--%>
 <%--    let currentPage = ${page};--%>
@@ -726,6 +661,44 @@
         }
     });
 </script>
+<!--Script xếp hạng-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy danh sách các phần tử nhận xét
+        const comments = document.querySelectorAll(".comment-list .rating-box .text-warning");
 
+        // Nếu không có nhận xét, giữ nguyên giá trị mặc định
+        if (comments.length === 0) return;
+
+        let totalRating = 0;
+
+        // Tính tổng điểm xếp hạng
+        comments.forEach(comment => {
+            const stars = comment.querySelectorAll(".fa-star");
+            totalRating += stars.length; // Mỗi ngôi sao trong `.text-warning` là một điểm
+        });
+
+        // Tính trung bình
+        const averageRating = totalRating / comments.length;
+
+        // Cập nhật số sao và giá trị trung bình hiển thị
+        const averageRatingElement = document.getElementById("average-rating");
+        const averageRatingValueElement = document.getElementById("average-rating-value");
+
+        // Làm tròn đến 1 chữ số thập phân
+        averageRatingValueElement.textContent = averageRating.toFixed(1);
+
+        // Cập nhật số sao hiển thị
+        averageRatingElement.innerHTML = '';
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement("i");
+            star.classList.add("fa", i < Math.round(averageRating) ? "fa-star" : "fa-star-o", "text-warning");
+            averageRatingElement.appendChild(star);
+        }
+
+        // Thêm lại phần điểm trung bình
+        averageRatingElement.appendChild(averageRatingValueElement);
+    });
+</script>
 </body>
 </html>
