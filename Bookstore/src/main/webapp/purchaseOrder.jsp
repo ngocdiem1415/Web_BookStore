@@ -504,7 +504,7 @@
                     const reviews = [];
                     const reviewContainers = form.querySelectorAll(".rating-container-form__main-container");
                     reviewContainers.forEach((container) => {
-                        let productId = container.getAttribute("data-product-id");
+                        let bookId = container.getAttribute("data-product-id");
                         let selectedStars = container.querySelectorAll(".rating-infor__star--container .star.selected");
                         let comment = container.querySelector("textarea").value;
 
@@ -515,7 +515,7 @@
 
                             // Thêm vào mảng reviews
                             reviews.push({
-                                productId: parseInt(productId, 10),
+                                bookId: parseInt(bookId, 10),
                                 rating: maxRating, // Sử dụng sao lớn nhất
                                 comment: comment.trim(),
                             });
@@ -523,7 +523,7 @@
                     });
 
                     console.log(reviews);
-                    const reviewsString = JSON.stringify(reviews);
+                    // const reviewsString = JSON.stringify(reviews);
 
                     if (reviews.length > 0) {
                         // Gửi yêu cầu AJAX để lưu đánh giá
@@ -532,11 +532,7 @@
                             url: '/Bookstore/submitReview?&action=' +'review' + '&invoiceId=' + invoiceId + '&userId=' + userId, // URL backend để xử lý việc lưu đánh giá
                             type: 'POST',
                             contentType: 'application/json',
-                            data: JSON.stringify({
-                                userId: userId,
-                                invoiceId: invoiceId,
-                                reviews: reviews // Mảng reviews đã được stringify
-                            }),
+                            data: JSON.stringify(reviews),
                             success: function (data) {
                                 Swal.fire({
                                     position: "center",
@@ -553,8 +549,8 @@
                             error: function (data) {
                                 Swal.fire({
                                     position: "center",
-                                    icon: "success",
-                                    title: "Đánh giá thành công!",
+                                    icon: "error",
+                                    title: "Đánh giá không thành công!",
                                     fontsize: 20,
                                     showConfirmButton: false,
                                     width: 300,

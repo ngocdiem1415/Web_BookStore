@@ -48,8 +48,6 @@ public class CheckoutController extends HttpServlet {
         try {
             //Đọc JSON từ request
             BufferedReader reader = request.getReader();
-//            Gson gson = new Gson();
-//            OrderData orderData = gson.fromJson(reader, OrderData.class);
             GsonUtil gsonUtil = new GsonUtil();
             OrderData orderData = gsonUtil.getGson().fromJson(reader, OrderData.class);
             System.out.println("orderData: " + orderData);
