@@ -525,7 +525,7 @@
                     console.log(reviews);
                     // const reviewsString = JSON.stringify(reviews);
 
-                    if (reviews.length > 0) {
+                    if (reviews.length === reviewContainers.length) {
                         // Gửi yêu cầu AJAX để lưu đánh giá
                         $.ajax({
                             // fix thêm chỗ truyền tham số invoiceId và userId
@@ -561,11 +561,11 @@
                                 reviewButton.classList.add("hidden");
                             }
                         });
-                    } else if (!Array.isArray(reviews) || reviews.length === 0) {
+                    } else {
                         Swal.fire({
                             position: "center",
                             icon: "warning",
-                            title: "Vui lòng đánh giá ít nhất một sản phẩm!",
+                            title: "Vui lòng đánh giá tất cả sản phẩm trong đơn hàng!",
                             fontsize: 20,
                             showConfirmButton: false,
                             width: 300,
