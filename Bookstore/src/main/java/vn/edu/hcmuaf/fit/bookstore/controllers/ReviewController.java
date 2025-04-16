@@ -67,24 +67,11 @@ public class ReviewController extends HttpServlet {
                 boolean success = reviewService.addReview(review);
                 if (!success) {
                     allSuccess = false;
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                     System.out.println("❌ Không thể thêm review cho bookId: " + reviewData.getBookId());
                     break;
                 }
-//                Review review = new Review();
-//                review.setInvoiceId(invoiceId);
-//                review.setBookId(reviewData.getBookId());
-//                review.setUserId(userId);
-//                review.setReviewDate(LocalDateTime.now());
-//                review.setRating(reviewData.getRating());
-//                review.setComment(reviewData.getComment());
-//
-//                ReviewService reviewService = new ReviewService();
-//                boolean success = reviewService.addReview(review);
-//                if (!success) {
-//                    allSuccess = false;
-//                    System.out.println("fail in review book id:" + reviewData.getBookId());
-//                    break;
-//                }
+
             }
 
             // Gửi phản hồi JSON
@@ -98,37 +85,6 @@ public class ReviewController extends HttpServlet {
             System.out.println("❌ Lỗi khi đọc JSON từ request: " + e.getMessage());
         }
 
-//        // Parse JSON thành đối tượng cần thiết
-//        JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
-//        int userId = Integer.parseInt(jsonObject.get("userId").getAsString());
-//        int invoiceId = Integer.parseInt(jsonObject.get("invoiceId").getAsString());
-//        JsonArray reviewsArray = jsonObject.getAsJsonArray("reviews");
-//
-//        boolean allSuccess = true; // Biến để kiểm tra nếu tất cả đánh giá đều thành công
-//        for (JsonElement reviewElement : reviewsArray) {
-//            Review review = gson.fromJson(reviewElement, Review.class);
-//            review.setUserId(userId);
-//            review.setInvoiceId(invoiceId);
-//
-//            // Thực hiện lưu đánh giá cho mỗi sản phẩm
-//            boolean success = reviewService.addReview(review);
-//            if (!success) {
-//                allSuccess = false; // Nếu có ít nhất một đánh giá thất bại
-//                break;
-//            }
-//        }
-//
-//        // Tạo phản hồi trả về cho client
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//
-//        PrintWriter out = response.getWriter();
-//        if (allSuccess) {
-//            out.print("{\"success\": true}");
-//        } else {
-//            out.print("{\"success\": false}");
-//        }
-//        out.flush();
     }
 
     class ReviewData {
