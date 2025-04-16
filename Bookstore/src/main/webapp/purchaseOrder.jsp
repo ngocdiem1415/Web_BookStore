@@ -194,7 +194,7 @@
                             <div class="right-inner-center-product__header__date-and-rating d-flex justify-content-between align-items-center">
                                 <div class="right-inner-center-product__header__date-contain">
                                     <c:choose>
-                                        <c:when test="${invoice.status == 'Completed'}">
+                                        <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews()}">
                                             <span class="date__text"
                                                   aria-label="Đánh giá sản phẩm trước ngày ${invoice.completionDate.plusDays(7)}"
                                                   tabindex="0">
@@ -216,7 +216,7 @@
 
                                 <section class="right-inner-center-product__header__rating">
                                     <c:choose>
-                                        <c:when test="${invoice.status == 'Completed'}">
+                                        <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews()}">
                                             <div class="right-inner-center-product__header__rating-vote">
                                                 <div>
                                                     <button class="stardust-button stardust-button--primary"

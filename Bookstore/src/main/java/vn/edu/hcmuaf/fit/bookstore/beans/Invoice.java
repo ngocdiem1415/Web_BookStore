@@ -15,11 +15,12 @@ public class Invoice {
     private LocalDateTime completionDate;
     private List<InvoiceDetail> listInvoiceDetails;
     private Payment payment;
+    private boolean hasReviews;
 
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, LocalDateTime orderDate, String status, double shippingFee, LocalDateTime completionDate, List<InvoiceDetail> listInvoiceDetails, Payment payment) {
+    public Invoice(int invoiceId, int uid, String recipientName, String recipientPhone, String address, LocalDateTime orderDate, String status, double shippingFee, LocalDateTime completionDate, List<InvoiceDetail> listInvoiceDetails, Payment payment, boolean hasReviews) {
         this.invoiceId = invoiceId;
         this.uid = uid;
         this.recipientName = recipientName;
@@ -31,6 +32,15 @@ public class Invoice {
         this.completionDate = completionDate;
         this.listInvoiceDetails = listInvoiceDetails;
         this.payment = payment;
+        this.hasReviews = hasReviews;
+    }
+
+    public boolean isHasReviews() {
+        return hasReviews;
+    }
+
+    public void setHasReviews(boolean hasReviews) {
+        this.hasReviews = hasReviews;
     }
 
     public int getInvoiceId() {

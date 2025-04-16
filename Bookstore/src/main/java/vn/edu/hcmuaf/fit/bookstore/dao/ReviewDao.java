@@ -22,6 +22,11 @@ public interface ReviewDao {
             "WHERE uid = :userId AND b_id = :bookId AND invoice_id = :invoiceId")
     boolean hasReviewed(@Bind("userId") int userId, @Bind("bookId") int bookId, @Bind("invoiceId") int invoiceId);
 
+    // Kiểm tra đơn hàng đó đã được đánh giá chưa
+    @SqlQuery("SELECT COUNT(*) > 0 FROM reviews " +
+            "WHERE uid = :userId AND invoice_id = :invoiceId")
+    boolean hasReviewedInvoice(@Bind("userId") int userId, @Bind("invoiceId") int invoiceId);
+
     // Xóa tất cả đánh giá liên quan đến sách
     @SqlUpdate("DELETE FROM reviews WHERE b_id = :bookId")
     int deleteReviewByBookId(@Bind("bookId") int bookId);

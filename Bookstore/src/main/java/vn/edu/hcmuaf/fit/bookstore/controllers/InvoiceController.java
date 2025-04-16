@@ -27,7 +27,7 @@ public class InvoiceController extends HttpServlet {
     HttpSession session; // Lấy session hiện tại, không tạo mới
     int userId;
     private final InvoiceService invoiceService = InvoiceService.getInstance();
-
+    private final ReviewService reviewService = ReviewService.getInstance();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
@@ -79,6 +79,10 @@ public class InvoiceController extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         String status = request.getParameter("status");
         List<Invoice> invoices = invoiceService.findByStatus(userId, status);
+        for (Invoice invoice : invoices) {
+            boolean hasReviews = reviewService.hasReviewedInvoice(invoice.getUid(), invoice.getInvoiceId());
+            invoice.setHasReviews(hasReviews);
+        }
         request.setAttribute("invoices", invoices);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
         dispatcher.forward(request, response);
@@ -99,6 +103,10 @@ public class InvoiceController extends HttpServlet {
 
     private void listInvoices(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Invoice> invoices = invoiceService.findByUser(userId);
+        for (Invoice invoice : invoices) {
+            boolean hasReviews = reviewService.hasReviewedInvoice(invoice.getUid(), invoice.getInvoiceId());
+            invoice.setHasReviews(hasReviews);
+        }
         request.setAttribute("invoices", invoices);
 //        response.sendRedirect("/invoice");
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
