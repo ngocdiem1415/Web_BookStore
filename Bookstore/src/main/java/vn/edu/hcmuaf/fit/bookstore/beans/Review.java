@@ -8,16 +8,11 @@ import java.util.Date;
 
 public class Review implements Serializable {
     private int reviewId;
-    @Expose
     private int invoiceId;
-    @Expose
     private int bookId;
-    @Expose
     private int userId;
     public LocalDateTime reviewDate;
-    @Expose
     private int rating;
-    @Expose
     private String comment;
     private User user;
 
