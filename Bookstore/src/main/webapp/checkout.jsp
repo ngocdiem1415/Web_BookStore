@@ -307,6 +307,8 @@
         });
     } else {
         productContainer.innerHTML = "<p>Không có sản phẩm nào trong danh sách thanh toán.</p>";
+        alert("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi đặt hàng!");
+        window.location.href = '/Bookstore/cart';
     }
 </script>
 

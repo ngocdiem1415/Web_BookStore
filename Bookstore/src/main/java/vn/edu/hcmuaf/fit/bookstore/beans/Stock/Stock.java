@@ -16,6 +16,8 @@ public class Stock implements Serializable {
         this.create_at = create_at;
     }
 
+    public Stock(){}
+
     public int getStockId() {
         return stockId;
     }

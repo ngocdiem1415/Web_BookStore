@@ -40,6 +40,12 @@ public class ReviewService {
         return rowsAffected > 0;
     }
 
+    public boolean hasReviewedInvoice(int userId, int invoiceId) {
+        return connect.withExtension(ReviewDao.class, handle ->
+                handle.hasReviewedInvoice(userId, invoiceId)
+        );
+    }
+
     /**
      * Xóa tất cả đánh giá liên quan đến một sản phẩm.
      *

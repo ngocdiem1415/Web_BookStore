@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@WebFilter(filterName = "LoginCheckFilter")
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/*"})
 public class LoginCheckFilter implements Filter {
 
     private ServletContext context;
@@ -41,8 +41,9 @@ public class LoginCheckFilter implements Filter {
         HttpServletResponse rp = (HttpServletResponse) response;
 
         // Kiểm tra URL yêu cầu có nằm trong danh sách ngoại lệ không
-        String requestUri = rq.getRequestURI();
-        if (isExcludedPage(requestUri)) {
+        String servletPath = rq.getServletPath();
+//        String requestUri = rq.getRequestURI();
+        if (isExcludedPage(servletPath)) {
             // Nếu là trang ngoại lệ, tiếp tục chuỗi filter mà không kiểm tra đăng nhập
             chain.doFilter(request, response);
             return;
@@ -63,12 +64,13 @@ public class LoginCheckFilter implements Filter {
     }
 
     // Kiểm tra xem URL có nằm trong danh sách ngoại lệ hay không
-    private boolean isExcludedPage(String requestUri) {
-        for (String excludedPage : EXCLUDED_PAGES) {
-            if (requestUri.startsWith(excludedPage)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean isExcludedPage(String servletPath) {
+//        for (String excludedPage : EXCLUDED_PAGES) {
+//            if (requestUri.startsWith(excludedPage)) {
+//                return true;
+//            }
+//        }
+//        return false;
+        return EXCLUDED_PAGES.contains(servletPath);
     }
 }

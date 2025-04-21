@@ -194,15 +194,24 @@
                             <div class="right-inner-center-product__header__date-and-rating d-flex justify-content-between align-items-center">
                                 <div class="right-inner-center-product__header__date-contain">
                                     <c:choose>
-                                        <c:when test="${invoice.status == 'Completed'}">
-                                            <span class="date__text"
-                                                  aria-label="Đánh giá sản phẩm trước ngày ${invoice.completionDate.plusDays(7)}"
-                                                  tabindex="0">
-                                                Đánh giá sản phẩm trước ngày: &nbsp;
-                                                <div class="date-buy__text-date">
-                                                    <u>${invoice.completionDate.plusDays(7)}</u>
-                                                </div>
-                                            </span>
+                                        <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews()}">
+                                            <c:choose>
+                                                <c:when test="${invoice.getReviewDeadline() lt today}">
+                                                    <span class="date__text">
+                                                        <strong>Đã quá hạn đánh giá</strong>
+                                                    </span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="date__text"
+                                                          aria-label="Đánh giá sản phẩm trước ngày ${invoice.getReviewDeadline()}"
+                                                          tabindex="0">
+                                                        Đánh giá sản phẩm trước ngày: &nbsp;
+                                                        <div class="date-buy__text-date">
+                                                            <u>${invoice.getReviewDeadline()}</u>
+                                                        </div>
+                                                    </span>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:when>
 
                                         <c:when test="${invoice.status == 'Pending'}">
@@ -216,7 +225,7 @@
 
                                 <section class="right-inner-center-product__header__rating">
                                     <c:choose>
-                                        <c:when test="${invoice.status == 'Completed'}">
+                                        <c:when test="${invoice.status == 'Completed' && !invoice.isHasReviews() && !(invoice.getReviewDeadline() lt today)}">
                                             <div class="right-inner-center-product__header__rating-vote">
                                                 <div>
                                                     <button class="stardust-button stardust-button--primary"
@@ -504,7 +513,7 @@
                     const reviews = [];
                     const reviewContainers = form.querySelectorAll(".rating-container-form__main-container");
                     reviewContainers.forEach((container) => {
-                        let productId = container.getAttribute("data-product-id");
+                        let bookId = container.getAttribute("data-product-id");
                         let selectedStars = container.querySelectorAll(".rating-infor__star--container .star.selected");
                         let comment = container.querySelector("textarea").value;
 
@@ -515,7 +524,7 @@
 
                             // Thêm vào mảng reviews
                             reviews.push({
-                                productId: parseInt(productId, 10),
+                                bookId: parseInt(bookId, 10),
                                 rating: maxRating, // Sử dụng sao lớn nhất
                                 comment: comment.trim(),
                             });
@@ -523,20 +532,16 @@
                     });
 
                     console.log(reviews);
-                    const reviewsString = JSON.stringify(reviews);
+                    // const reviewsString = JSON.stringify(reviews);
 
-                    if (reviews.length > 0) {
+                    if (reviews.length === reviewContainers.length) {
                         // Gửi yêu cầu AJAX để lưu đánh giá
                         $.ajax({
                             // fix thêm chỗ truyền tham số invoiceId và userId
                             url: '/Bookstore/submitReview?&action=' +'review' + '&invoiceId=' + invoiceId + '&userId=' + userId, // URL backend để xử lý việc lưu đánh giá
                             type: 'POST',
                             contentType: 'application/json',
-                            data: JSON.stringify({
-                                userId: userId,
-                                invoiceId: invoiceId,
-                                reviews: reviews // Mảng reviews đã được stringify
-                            }),
+                            data: JSON.stringify(reviews),
                             success: function (data) {
                                 Swal.fire({
                                     position: "center",
@@ -549,12 +554,18 @@
                                     timer: 1000
                                 });
                                 overlay.classList.add("hidden"); // Đóng overlay sau khi gửi đánh giá thành công
+
+                                // Ẩn nút "Đánh giá" tương ứng với invoiceId
+                                const reviewButton = document.querySelector('button.stardust-button--primary[data-invoice-id="' + invoiceId + '"]');
+                                if (reviewButton) {
+                                    reviewButton.style.display = 'none';
+                                }
                             },
                             error: function (data) {
                                 Swal.fire({
                                     position: "center",
-                                    icon: "success",
-                                    title: "Đánh giá thành công!",
+                                    icon: "error",
+                                    title: "Đánh giá không thành công!",
                                     fontsize: 20,
                                     showConfirmButton: false,
                                     width: 300,
@@ -565,11 +576,11 @@
                                 reviewButton.classList.add("hidden");
                             }
                         });
-                    } else if (!Array.isArray(reviews) || reviews.length === 0) {
+                    } else {
                         Swal.fire({
                             position: "center",
                             icon: "warning",
-                            title: "Vui lòng đánh giá ít nhất một sản phẩm!",
+                            title: "Vui lòng đánh giá tất cả sản phẩm trong đơn hàng!",
                             fontsize: 20,
                             showConfirmButton: false,
                             width: 300,
