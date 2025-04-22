@@ -71,6 +71,22 @@ public class LoginCheckFilter implements Filter {
 //            }
 //        }
 //        return false;
-        return EXCLUDED_PAGES.contains(servletPath);
+//        return EXCLUDED_PAGES.contains(servletPath);
+        if (EXCLUDED_PAGES.contains(servletPath)) {
+            return true;
+        }
+
+        // Bỏ qua các file tĩnh (static resources)
+        return servletPath.endsWith(".css") ||
+                servletPath.endsWith(".js") ||
+                servletPath.endsWith(".png") ||
+                servletPath.endsWith(".jpg") ||
+                servletPath.endsWith(".jpeg") ||
+                servletPath.endsWith(".gif") ||
+                servletPath.endsWith(".woff") ||
+                servletPath.endsWith(".woff2") ||
+                servletPath.endsWith(".ttf") ||
+                servletPath.endsWith(".eot") ||
+                servletPath.endsWith(".svg");
     }
 }
