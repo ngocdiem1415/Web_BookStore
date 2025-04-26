@@ -16,6 +16,9 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT)
     List<Book> listProduct(@Bind("limit") int limit, @Bind("offset") int offset);
 
+    @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT_TEST)
+    List<Book> listProductTest(@Bind("limit") int limit, @Bind("offset") int offset, @Bind("title") String find);
+
     @SqlQuery(QUERIES.BOOK.SELECT_LIST_NEW_BOOK)
     List<Book> newBooks(@Bind("limit") int limit);
 
@@ -23,7 +26,7 @@ public interface BookDao {
     Book findById(@Bind("id") int id);
 
     @SqlQuery(QUERIES.BOOK.FIND_BY_TITLE)
-    Book findByName(@Bind("title") String title);
+    List<Book> findByName(@Bind("title") String title);
 
     @SqlQuery(QUERIES.BOOK.SELECT_PRODUCT_PAGE)
     List<Book> getProductsOnPage(@Bind("category_id") int category_id, @Bind("p_id") int p_id,

@@ -35,9 +35,11 @@ public class QUERIES {
                         "VALUES (:title, :author, :categoryId, :publisherId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId,CURRENT_TIMESTAMP, :status)";
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
+        public static final String SELECT_ALL_BOOK_LIMIT_TEST =
+                "SELECT * FROM books WHERE title LIKE CONCAT('%', :title, '%') LIMIT :limit OFFSET :offset";
         public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
-        public static final String FIND_BY_TITLE = "select * from books where title = :title";
+        public static final String FIND_BY_TITLE = "select * from books where title LIKE CONCAT('%', :title, '%')";
         public static final String UPDATE =
                 "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :publisherId, publish_year = :publishYear, " +
                 "weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId,update_at = CURRENT_TIMESTAMP,status = :status WHERE b_id = :bId";
