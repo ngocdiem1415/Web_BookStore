@@ -27,23 +27,23 @@
         <error-code>404</error-code>
         <location>/error.jsp</location>
     </error-page>
-    <filter>
-        <filter-name>LoginCheckFilter</filter-name>
-        <filter-class>vn.edu.hcmuaf.fit.bookstore.filter.LoginCheckFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>LoginCheckFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter>
-        <filter-name>AuthorizationFilter</filter-name>
-        <filter-class>vn.edu.hcmuaf.fit.bookstore.filter.AuthorizationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-        <!--  Áp dụng filter cho toàn bộ ứng dụng  -->
-    </filter-mapping>
+<!--    <filter>-->
+<!--        <filter-name>LoginCheckFilter</filter-name>-->
+<!--        <filter-class>vn.edu.hcmuaf.fit.bookstore.filter.LoginCheckFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>LoginCheckFilter</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
+<!--    <filter>-->
+<!--        <filter-name>AuthorizationFilter</filter-name>-->
+<!--        <filter-class>vn.edu.hcmuaf.fit.bookstore.filter.AuthorizationFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthorizationFilter</filter-name>-->
+<!--        <url-pattern>/admin/*</url-pattern>-->
+<!--        &lt;!&ndash;  Áp dụng filter cho toàn bộ ứng dụng  &ndash;&gt;-->
+<!--    </filter-mapping>-->
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
