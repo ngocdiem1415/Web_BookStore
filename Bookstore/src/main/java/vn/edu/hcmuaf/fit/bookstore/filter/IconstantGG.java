@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.filter;
 
-public class Iconstant {
+public class IconstantGG {
     public static final String GOOGLE_CLIENT_ID = "260850348977-8hune82mhlpi3odt53r7satqq9fo4plk.apps.googleusercontent.com";
     public static final String GOOGLE_CLIENT_SECRET = "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";
     public static final String GOOGLE_REDIRECT_URI = "http://localhost:8080/Bookstore/login-google";
