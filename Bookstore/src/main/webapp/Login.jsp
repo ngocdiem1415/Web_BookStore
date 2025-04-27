@@ -54,10 +54,12 @@
                         <label for="remember">Ghi nhớ mật khẩu</label>
                     </div>
                     <div class="form-group-button-login">
-                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Bookstore/login-google&response_type=code&client_id=260850348977-8hune82mhlpi3odt53r7satqq9fo4plk.apps.googleusercontent.com&approval_prompt=force" class="form-submit form-submit-gg"><i class="fa-brands fa-google"></i>
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Bookstore/login-google&response_type=code&client_id=260850348977-8hune82mhlpi3odt53r7satqq9fo4plk.apps.googleusercontent.com&approval_prompt=force"
+                           class="form-submit form-submit-gg"><i class="fa-brands fa-google"></i>
                         </a>
-                        <button type="submit" class="form-submit form-submit-email"><i class="fa-solid fa-envelope"></i>
-                        </button>
+                        <a href="https://www.facebook.com/v22.0/dialog/oauth?client_id=1746451382884277&redirect_uri=http://localhost:8080/Bookstore/login-facebook" type="submit" class="form-submit form-submit-email"><i
+                                class="fa-brands fa-facebook"></i></i>
+                        </a>
                     </div>
 
                     <div class="form-group-button-login">
