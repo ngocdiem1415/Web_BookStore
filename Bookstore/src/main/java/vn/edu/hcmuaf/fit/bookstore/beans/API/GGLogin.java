@@ -1,6 +1,8 @@
-package vn.edu.hcmuaf.fit.bookstore.beans;
+package vn.edu.hcmuaf.fit.bookstore.beans.API;
 
-public class UserGoogle {
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
+
+public class GGLogin {
     private String id;
     private String email;
     private boolean verified_email;
@@ -9,10 +11,10 @@ public class UserGoogle {
     private String family_name;
     private String picture;
 
-    public UserGoogle() {
+    public GGLogin() {
     }
 
-    public UserGoogle(String id, String email, boolean verified_email, String name, String given_name, String family_name, String picture) {
+    public GGLogin(String id, String email, boolean verified_email, String name, String given_name, String family_name, String picture) {
         this.id = id;
         this.email = email;
         this.verified_email = verified_email;
@@ -91,7 +93,7 @@ public class UserGoogle {
                 '}';
     }
 
-    public User mapToUser() {
+    public User mapToUserGG() {
         User user = new User();
         user.setEmail(this.email);
         user.setUsername(this.name);
