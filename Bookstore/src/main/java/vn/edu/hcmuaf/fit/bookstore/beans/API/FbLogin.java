@@ -1,25 +1,27 @@
-package vn.edu.hcmuaf.fit.bookstore.beans;
+package vn.edu.hcmuaf.fit.bookstore.beans.API;
 
-public class UserGoogle {
+import vn.edu.hcmuaf.fit.bookstore.beans.Pictures;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
+
+public class FbLogin {
     private String id;
     private String email;
     private boolean verified_email;
     private String name;
     private String given_name;
     private String family_name;
-    private String picture;
+    private Pictures pictureObject;
 
-    public UserGoogle() {
+    public FbLogin() {
     }
-
-    public UserGoogle(String id, String email, boolean verified_email, String name, String given_name, String family_name, String picture) {
+    public FbLogin(String id, String email, boolean verified_email, String name, String given_name, String family_name, Pictures pictureObject) {
         this.id = id;
         this.email = email;
         this.verified_email = verified_email;
         this.name = name;
         this.given_name = given_name;
         this.family_name = family_name;
-        this.picture = picture;
+        this.pictureObject = pictureObject;
     }
 
     public String getId() {
@@ -70,38 +72,34 @@ public class UserGoogle {
         this.family_name = family_name;
     }
 
-    public String getPicture() {
-        return picture;
+    public Pictures getPictureObject() {
+        return pictureObject;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setPictureObject(Pictures pictureObject) {
+        this.pictureObject = pictureObject;
     }
-
     @Override
     public String toString() {
-        return "UserGoogle{" +
+        return "FbLogin{" +
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", verified_email=" + verified_email +
                 ", name='" + name + '\'' +
                 ", given_name='" + given_name + '\'' +
                 ", family_name='" + family_name + '\'' +
-                ", picture='" + picture + '\'' +
+                ", pictureObject=" + pictureObject +
                 '}';
     }
 
-    public User mapToUser() {
+    public User mapToUserFB() {
         User user = new User();
         user.setEmail(this.email);
         user.setUsername(this.name);
-        user.setAvatar(this.picture);
-        if (this.verified_email) {
-            user.setEmailVerified(1);
-        } else {
-            user.setEmailVerified(0);
+        if (this.pictureObject != null && this.pictureObject.getData() != null) {
+            user.setAvatar(this.pictureObject.getData().getUrl());
         }
-        user.setUsername(this.name);
+        user.setEmailVerified(this.verified_email ? 1 : 0);
         return user;
     }
 }

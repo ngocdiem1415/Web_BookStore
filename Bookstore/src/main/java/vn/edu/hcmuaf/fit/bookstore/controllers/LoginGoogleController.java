@@ -10,8 +10,8 @@ import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
-import vn.edu.hcmuaf.fit.bookstore.beans.UserGoogle;
-import vn.edu.hcmuaf.fit.bookstore.filter.Iconstant;
+import vn.edu.hcmuaf.fit.bookstore.beans.API.GGLogin;
+import vn.edu.hcmuaf.fit.bookstore.filter.IconstantGG;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -22,14 +22,14 @@ public class LoginGoogleController extends HttpServlet {
 
     public static String getToken(String code) throws IOException, ClientProtocolException {
         // call api to get Token
-        String response = Request.Post(Iconstant.GOOGLE_LINK_GET_TOKEN)
+        String response = Request.Post(IconstantGG.GOOGLE_LINK_GET_TOKEN)
                 .bodyForm(
                         Form.form()
-                                .add("client_id", Iconstant.GOOGLE_CLIENT_ID)
-                                .add("client_secret", Iconstant.GOOGLE_CLIENT_SECRET)
-                                .add("redirect_uri", Iconstant.GOOGLE_REDIRECT_URI)
+                                .add("client_id", IconstantGG.GOOGLE_CLIENT_ID)
+                                .add("client_secret", IconstantGG.GOOGLE_CLIENT_SECRET)
+                                .add("redirect_uri", IconstantGG.GOOGLE_REDIRECT_URI)
                                 .add("code", code)
-                                .add("grant_type", Iconstant.GOOGLE_GRANT_TYPE)
+                                .add("grant_type", IconstantGG.GOOGLE_GRANT_TYPE)
                                 .build()
                 )
                 .execute().returnContent().asString();
@@ -38,10 +38,10 @@ public class LoginGoogleController extends HttpServlet {
         return accessToken;
     }
 
-    public static UserGoogle getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
-        String link = Iconstant.GOOGLE_LINK_GET_USER_INFO + accessToken;
+    public static GGLogin getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
+        String link = IconstantGG.GOOGLE_LINK_GET_USER_INFO + accessToken;
         String response = Request.Get(link).execute().returnContent().asString();
-        UserGoogle googlePeople = new Gson().fromJson(response, UserGoogle.class);
+        GGLogin googlePeople = new Gson().fromJson(response, GGLogin.class);
         return googlePeople;
 
     }
@@ -50,8 +50,8 @@ public class LoginGoogleController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         String accessToken = getToken(code);
-        UserGoogle userGoogle = getUserInfo(accessToken);
-        User user = userGoogle.mapToUser();
+        GGLogin GGLogin = getUserInfo(accessToken);
+        User user = GGLogin.mapToUserGG();
         if (!userService.exists(user)) {
             user.setRole("user");
             user.setStatus(1);
