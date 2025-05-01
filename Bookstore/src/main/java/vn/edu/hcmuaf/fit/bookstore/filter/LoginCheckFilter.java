@@ -23,6 +23,8 @@ public class LoginCheckFilter implements Filter {
             "/aboutUs",
             "/contact",
             "/policy",
+            "/login-google",
+            "/login-facebook",
             "/listBook",
             "/BookDetail"
     );
@@ -49,15 +51,15 @@ public class LoginCheckFilter implements Filter {
             return;
         }
 
-        // Kiểm tra session xem người dùng đã đăng nhập hay chưa
-        HttpSession session = rq.getSession(false);
-        User user = (session != null) ? (User) session.getAttribute("userSession") : null;
-
-        // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
-        if (user == null) {
-            rp.sendRedirect(rq.getContextPath() + "/login");
-            return;
-        }
+//        // Kiểm tra session xem người dùng đã đăng nhập hay chưa
+//        HttpSession session = rq.getSession(false);
+//        User user = (session != null) ? (User) session.getAttribute("userSession") : null;
+//
+//        // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+//        if (user == null) {
+//            rp.sendRedirect(rq.getContextPath() + "/login");
+//            return;
+//        }
 
         // Nếu đã đăng nhập, tiếp tục chuỗi lọc và xử lý tiếp
         chain.doFilter(request, response);
@@ -75,18 +77,23 @@ public class LoginCheckFilter implements Filter {
         if (EXCLUDED_PAGES.contains(servletPath)) {
             return true;
         }
+        // Bỏ qua luôn các file .jsp trong folder gốc (như login.jsp)
+        if (servletPath.endsWith(".jsp")) {
+            return true;
+        }
 
         // Bỏ qua các file tĩnh (static resources)
-        return servletPath.endsWith(".css") ||
-                servletPath.endsWith(".js") ||
-                servletPath.endsWith(".png") ||
-                servletPath.endsWith(".jpg") ||
-                servletPath.endsWith(".jpeg") ||
-                servletPath.endsWith(".gif") ||
-                servletPath.endsWith(".woff") ||
-                servletPath.endsWith(".woff2") ||
-                servletPath.endsWith(".ttf") ||
-                servletPath.endsWith(".eot") ||
-                servletPath.endsWith(".svg");
+//        return servletPath.endsWith(".css") ||
+//                servletPath.endsWith(".js") ||
+//                servletPath.endsWith(".png") ||
+//                servletPath.endsWith(".jpg") ||
+//                servletPath.endsWith(".jpeg") ||
+//                servletPath.endsWith(".gif") ||
+//                servletPath.endsWith(".woff") ||
+//                servletPath.endsWith(".woff2") ||
+//                servletPath.endsWith(".ttf") ||
+//                servletPath.endsWith(".eot") ||
+//                servletPath.endsWith(".svg");
+    return true;
     }
 }

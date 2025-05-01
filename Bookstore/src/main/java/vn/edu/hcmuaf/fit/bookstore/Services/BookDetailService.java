@@ -24,6 +24,12 @@ public class BookDetailService {
         return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
     }
 
+    public List<Book> listProductsTest(int limit, int offset, String keywword) {
+        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProductTest(limit, offset, keywword));
+        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+    }
+
+
     public List<Book> newBooks(int limit) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.newBooks(limit));
         return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
@@ -60,29 +66,30 @@ public class BookDetailService {
     }
 
 
-    public Book findByName(String title) {
+    public List<Book> findByName(String title) {
         try {
-            Book book = connect.withExtension(BookDao.class, handle -> handle.findByName(title));
+            List<Book> books = connect.withExtension(BookDao.class, handle -> handle.findByName(title));
 
-            if (book == null) {
+            if (books == null) {
                 System.out.println("Không tìm thấy book với title: " + title);
                 return null;
             }
 
-            int bookId = book.getbId();
+            for (Book book : books) {
+                int bookId = book.getbId();
 
-            Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(bookId));
-            List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(bookId));
-            Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
-            if (book.getPromotionId() != null) {
-                Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(book.getPromotionId()));
-                book.setPromotion(promotion);
+                Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(bookId));
+                List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(bookId));
+                Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
+                if (book.getPromotionId() != null) {
+                    Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(book.getPromotionId()));
+                    book.setPromotion(promotion);
+                }
+                book.setImage(image);
+                book.setImageList(images);
+                book.setPublisher(publisher);
             }
-            book.setImage(image);
-            book.setImageList(images);
-            book.setPublisher(publisher);
-
-            return book;
+            return books;
 
         } catch (Exception e) {
             System.err.println("Lỗi khi tìm Book theo title: " + title);
@@ -156,7 +163,7 @@ public class BookDetailService {
     public Book updateProduct(Book product) {
         try {
             connect.withExtension(BookDao.class, handle -> handle.updateBook(product));
-            return findByName(product.getTitle());
+            return findByName(product.getTitle()).get(0);
         } catch (Exception e) {
             System.err.println("Lỗi khi cập nhật sản phẩm: " + e.getMessage());
             e.printStackTrace();
@@ -168,7 +175,7 @@ public class BookDetailService {
     public Book insertProduct(Book product) {
         try {
             connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
-            return findByName(product.getTitle());
+            return findByName(product.getTitle()).get(0);
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi chèn sản phẩm vào CSDL", e);

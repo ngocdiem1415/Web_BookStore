@@ -34,12 +34,14 @@ public class ListProductsJson extends HttpServlet {
         // Lấy số trang và số lượng sản phẩm mỗi trang từ tham số request
         int page = Integer.parseInt(request.getParameter("page"));
         int maxItems = Integer.parseInt(request.getParameter("maxItems"));
+        String findword = request.getParameter("find");
 
         // Tính toán offset
         int offset = (page - 1) * maxItems;
 
         // Lấy danh sách sản phẩm từ cơ sở dữ liệu
-        List<Book> productList = bookDetailService.listProducts(maxItems, offset);
+        List<Book> productList = bookDetailService.listProductsTest(maxItems, offset, findword);
+//        int totalItems = bookDetailService.totalBooks();  // Tổng số sản phẩm trong cơ sở dữ liệu
         int totalItems = bookDetailService.totalBooks();  // Tổng số sản phẩm trong cơ sở dữ liệu
         System.out.println(offset + maxItems);
 

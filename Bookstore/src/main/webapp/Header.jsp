@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- HEADER -->
@@ -32,9 +32,9 @@
             <!-- SEARCH BAR -->
             <div class="col-md-7">
                 <div class="header-search">
-                    <form class="d-flex mt-2" id="searchForm" action="listBook" method="GET">
-                        <input class="input flex-grow-1"  type="text" name="find" id="searchInput" placeholder="Tìm sách">
-                        <button class="search-btn">Search</button>
+                    <form class="d-flex mt-2" id="searchForm" action="/Bookstore/listBook" method="get">
+                        <input class="input flex-grow-1" type="text" name="find" id="searchInput" placeholder="Tìm sách...">
+                        <button class="search-btn" type="submit">Search</button>
                     </form>
                 </div>
             </div>
