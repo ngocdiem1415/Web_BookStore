@@ -12,6 +12,7 @@ import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 import java.util.List;
 
 @RegisterBeanMapper(Book.class)
+@RegisterBeanMapper(BookStockView.class)
 public interface BookDao {
 
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT)
