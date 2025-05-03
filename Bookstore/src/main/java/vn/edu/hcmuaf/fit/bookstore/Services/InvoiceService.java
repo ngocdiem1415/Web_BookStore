@@ -161,45 +161,6 @@ public class InvoiceService {
     }
 
 
-//    synchronized public int insert(Invoice invoice) {
-//        int status = (int) connect.withExtension(InvoiceDao.class, handle -> handle.insert(invoice));
-//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()) {
-//            connect.withExtension(InvoiceDetailDao.class, handle -> handle.insert(invoiceDetail));
-//            connect.useExtension(BookDao.class, handle -> {
-//                Book book = invoiceDetail.getBook();
-//                book.setStockQuantity(book.getStockQuantity() - invoiceDetail.getQuantity());
-//                book.setSoldQuantity(book.getSoldQuantity() + invoiceDetail.getQuantity());
-//                handle.update(book.getbId());
-//            });
-//        }
-//        return status;
-//    }
-//
-//    synchronized public int cancelInvoice(Invoice invoice) {
-//        invoice.setStatus("Canceled");
-//        System.out.println(invoice);
-//        int status =  connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
-//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
-//            connect.useExtension(BookDao.class, handle -> {
-//                Book book = invoiceDetail.getBook();
-//                book.setStockQuantity(book.getStockQuantity() + invoiceDetail.getQuantity());
-//                book.setSoldQuantity(book.getSoldQuantity() - invoiceDetail.getQuantity());
-//                handle.update(book.getbId());
-//            });
-//        }
-//        return status;
-//    }
-//
-//    public int update(Invoice invoice){
-//        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
-//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
-//            connect.withExtension(InvoiceDetailDao.class, handle -> handle.update(invoiceDetail));
-//        }
-//        // Cập nhật Payment
-//        updatePaymentForInvoice(invoice);
-//        return status;
-//    }
-
     public void updatePaymentForInvoice(Invoice invoice) {
         PaymentService paymentService = PaymentService.getInstance();
         // Tính tổng tiền hàng từ InvoiceDetail
