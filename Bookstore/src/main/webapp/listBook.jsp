@@ -230,21 +230,24 @@
                         '<span class="home-product-item__like home-product-item__like--liked">' +
                         '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +
                         '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +
-                        '</span>' +
-                        // Đánh giá sản phẩm
-                        '<div class="home-product-item__rating">' +
-                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.rating + '">' +
-                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
-                        '</ul>' +
-                        '</a>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
+                        '</span>';
+
+                    // Đánh giá
+                    data +=  '<div class="home-product-item__rating">' +
+                            '<ul class="rating" data-mdb-value="' + val.rating + '">';
+                    for (let i = 1; i <= 5; i++) {
+                        if (i <= val.rating) {
+                            data += '<li><i class="fas fa-star fa-sm" style="color: gold;"></i></li>';
+                        } else {
+                            data += '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>';
+                        }
+                    }
+                    data += '</ul>';
+                    data += '</a>';
+                    data += '</div>';
+                    data += '</div>';
+                    data += '</div>';
+                    data += '</div>';
                 });
 
                 // Thêm các sản phẩm vào DOM
@@ -263,6 +266,7 @@
                         }
                     });
                 }
+
             }
             ,
             error: function (xhr, status, error) {
@@ -275,19 +279,6 @@
     function formatCurrencyVN(number) {
         return new Intl.NumberFormat('vi-VN').format(number);
     }
-
-    $(document).ready(function() {
-        // Khởi tạo rating cho từng phần tử
-        $('.rating').each(function() {
-            const ratingValue = $(this).data('data-mdb-value');
-            mdb.Rating.init(this);  // Khởi tạo rating
-            $(this).find('li').each(function(index) {
-                if (index < ratingValue) {
-                    $(this).css('color', 'gold'); // Đổi màu sao thành vàng
-                }
-            });
-        });
-    });
 
 </script>
 
