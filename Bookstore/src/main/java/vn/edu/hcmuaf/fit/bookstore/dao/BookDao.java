@@ -6,11 +6,13 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.bookstore.beans.Book;
+import vn.edu.hcmuaf.fit.bookstore.beans.BookStockView;
 import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
 import java.util.List;
 
 @RegisterBeanMapper(Book.class)
+@RegisterBeanMapper(BookStockView.class)
 public interface BookDao {
 
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT)
@@ -78,4 +80,10 @@ public interface BookDao {
 
     @SqlUpdate(QUERIES.BOOK.INSERT)
     boolean insertBook(@BindBean Book product);
+
+    @SqlQuery(QUERIES.BOOK.GET_ALL_BOOKS_STOCK)
+    List<BookStockView> getAllBookStocks();
+
+    @SqlQuery(QUERIES.BOOK.GET_BOOK_STOCK_BY_ID)
+    BookStockView getBookStockById(@Bind("id") int id);
 }
