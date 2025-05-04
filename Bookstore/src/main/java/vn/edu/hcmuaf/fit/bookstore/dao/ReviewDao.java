@@ -38,6 +38,9 @@ public interface ReviewDao {
     @SqlQuery(QUERIES.REVIEW.BOOK_RATING)
     Double getRatingOfBook(@Bind("b_id") int b_id);
 
+    @SqlQuery(QUERIES.REVIEW.BOOK_REVIEW)
+    List<Review> getReviewOfBook(@Bind("b_id") int b_id);
+
     @SqlQuery("SELECT * FROM reviews WHERE b_id = :b_id ORDER BY review_date DESC")
     Review getReviewsByBookIdCurrent(@Bind("b_id") int b_id);
 

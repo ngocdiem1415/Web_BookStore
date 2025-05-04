@@ -158,6 +158,8 @@ public class QUERIES {
         public static final String BOOK_RATING = "select COALESCE(AVG(rating), 0.0) from reviews " +
                 "WHERE b_id = :b_id GROUP BY b_id";
 
+        public static final String BOOK_REVIEW = "select COALESCE(AVG(rating), 0.0) from reviews " +
+                "WHERE b_id = :b_id GROUP BY b_id";
     }
 }
 
