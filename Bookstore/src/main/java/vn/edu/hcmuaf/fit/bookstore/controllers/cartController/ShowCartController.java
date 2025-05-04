@@ -19,7 +19,7 @@ public class ShowCartController extends HttpServlet {
         }
         session.setAttribute("cart", cart);
         request.setAttribute("cart", cart);
-        request.getRequestDispatcher("Cart.jsp").forward(request,response);
+        request.getRequestDispatcher("/Cart.jsp").forward(request,response);
     }
 
     @Override

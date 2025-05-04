@@ -24,8 +24,9 @@
 
     <%--    mdb css--%>
     <link rel="stylesheet" href="css/mdb/css/mdb.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-pagination/1.4.1/bootstrap-pagination.min.css"
-          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+
 </head>
 <body>
 <!--Header-->
@@ -173,19 +174,14 @@
     String findWord = request.getParameter("find");
     if (findWord == null) findWord = "";
 %>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Lấy từ khóa từ biến Servlet (đã truyền từ request)
         const keyword = "<%= findWord %>";
-
-        // Gán lại vào ô search để giữ từ khóa
         document.getElementById("searchInput").value = keyword;
-
-        // Gọi AJAX để load sản phẩm
         fetchProducts(1, 20, keyword);
     });
-</script>
-<script>
+
     function fetchProducts(page, maxItems, keyword) {
         $.ajax({
             url: '/Bookstore/listBooks?page=' + page + '&maxItems=' + maxItems + '&find=' + keyword,
@@ -198,6 +194,7 @@
                 let maxItems = 20; // Số sản phẩm hiển thị mỗi trang
                 let maxPage = Math.ceil(totalItems / maxItems); // Tính tổng số trang
                 console.log(obj)
+
                 // Tạo danh sách sản phẩm
                 obj.forEach(function (val) {
                     console.log("HTML sinh ra:", data);
@@ -222,9 +219,9 @@
                             '<i class="fa-solid fa-dong-sign fa-xs"></i> </span>' +
                             '</div>';
                     } else {
-                        let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);
+                        discountedPrice = formatCurrencyVN(val.originalPrice - (val.originalPrice * val.promotion.discount));
                         data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +
-                            '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>' + '</div>';
+                            '<span class="home-product-item__price-old original-price">' + price + ' đ</span>' + '</div>';
                     }
 
                     data +=
@@ -236,7 +233,7 @@
                         '</span>' +
                         // Đánh giá sản phẩm
                         '<div class="home-product-item__rating">' +
-                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +
+                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.rating + '">' +
                         '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
                         '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
                         '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +
@@ -274,9 +271,27 @@
         });
     }
 
-    // // Gọi hàm AJAX để tải sản phẩm ban đầu
-    // fetchProducts(1, 20);  // Tải trang đầu tiên với tối đa 10 sản phẩm
+    // Hàm định dạng tiền tệ (nếu chưa có)
+    function formatCurrencyVN(number) {
+        return new Intl.NumberFormat('vi-VN').format(number);
+    }
+
+    $(document).ready(function() {
+        // Khởi tạo rating cho từng phần tử
+        $('.rating').each(function() {
+            const ratingValue = $(this).data('data-mdb-value');
+            mdb.Rating.init(this);  // Khởi tạo rating
+            $(this).find('li').each(function(index) {
+                if (index < ratingValue) {
+                    $(this).css('color', 'gold'); // Đổi màu sao thành vàng
+                }
+            });
+        });
+    });
+
 </script>
+
+
 <%--<script>--%>
 <%--    document.addEventListener("DOMContentLoaded", function () {--%>
 <%--        const container = document.getElementById("rating-options");--%>
