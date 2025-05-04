@@ -109,7 +109,9 @@ public class QUERIES {
                     ) s ON b.b_id = s.b_id
                     LEFT JOIN (
                         SELECT b_id, SUM(quantity) AS total_sold
-                        FROM invoice_details
+                        FROM invoice_details idet
+                        INNER JOIN invoices i ON idet.invoice_id = i.invoice_id
+                        WHERE i.status != 'Cancelled'
                         GROUP BY b_id
                     ) idet ON b.b_id = idet.b_id
                 """;
@@ -126,7 +128,9 @@ public class QUERIES {
                     ) s ON b.b_id = s.b_id
                     LEFT JOIN (
                         SELECT b_id, SUM(quantity) AS total_sold
-                        FROM invoice_details
+                        FROM invoice_details idet
+                        INNER JOIN invoices i ON idet.invoice_id = i.invoice_id
+                        WHERE i.status != 'Cancelled'
                         GROUP BY b_id
                     ) idet ON b.b_id = idet.b_id
                     WHERE b.b_id = :id

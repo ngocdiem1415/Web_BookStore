@@ -32,11 +32,4 @@ public class StockService {
         connect.useExtension(StockDao.class, dao -> dao.updateStock(stock));
     }
 
-    public List<Stock> getAllBookStocks() {
-        return connect.withExtension(StockDao.class, StockDao::getAllBookStocks);
-    }
-
-    public Stock getBookStockById(int bId) {
-        return connect.withExtension(StockDao.class, dao -> dao.getBookStockById(bId));
-    }
 }
