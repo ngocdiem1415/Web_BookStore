@@ -128,6 +128,10 @@ public class BookDetailService {
         Category category = connect.withExtension(CategoryDao.class, handle -> handle.findById(book.getCategoryId()));
         Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
         Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(book.getbId()));
+        double rating = connect.withExtension(ReviewDao.class, handle -> {
+            Double ratingFromDb = handle.getRatingOfBook(book.getbId());
+            return (ratingFromDb != null) ? ratingFromDb : 0.0;
+        });
         Integer promoId = book.getPromotionId();
         if (promoId != null) {
             int pid = promoId;
@@ -136,6 +140,7 @@ public class BookDetailService {
         } else {
             book.setPromotionId(0);
         }
+
         book.setCategory(category);
         book.setPublisher(publisher);
         book.setImage(image);
