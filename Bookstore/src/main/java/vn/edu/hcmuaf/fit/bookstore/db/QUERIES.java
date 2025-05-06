@@ -42,7 +42,7 @@ public class QUERIES {
         public static final String FIND_BY_TITLE = "select * from books where title LIKE CONCAT('%', :title, '%')";
         public static final String UPDATE =
                 "UPDATE books SET title = :title, author = :author, category_id = :categoryId, p_id = :publisherId, publish_year = :publishYear, " +
-                "weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId,update_at = CURRENT_TIMESTAMP,status = :status WHERE b_id = :bId";
+                        "weight = :weight, page_count = :pageCount, original_price = :originalPrice, description = :description, promotion_id = :promotionId,update_at = CURRENT_TIMESTAMP,status = :status WHERE b_id = :bId";
         public static final String DELETE = "delete from books where b_id = :id";
         public static final String TOTALBOOK = "select count(*) from books ";
 
@@ -95,6 +95,46 @@ public class QUERIES {
                 "SELECT b.* FROM books b JOIN promotions p ON b.promotion_id = p.promotion_id WHERE p.is_active = 1 ORDER BY p.discount DESC LIMIT 5";
 
         public static final String SELECT_BOOK_BY_CATEGORY = "SELECT books.* FROM books JOIN categories on books.category_id = categories.category_id WHERE categories.category_name = :category_name limit :limit offset :offset";
+
+        public static final String GET_ALL_BOOKS_STOCK = """
+                    SELECT 
+                        b.b_id,
+                        IFNULL(s.total_imported, 0) AS totalImported,
+                        IFNULL(idet.total_sold, 0) AS totalSold
+                    FROM books b
+                    LEFT JOIN (
+                        SELECT b_id, SUM(quantity) AS total_imported
+                        FROM Stocks
+                        GROUP BY b_id
+                    ) s ON b.b_id = s.b_id
+                    LEFT JOIN (
+                        SELECT b_id, SUM(quantity) AS total_sold
+                        FROM invoice_details idet
+                        INNER JOIN invoices i ON idet.invoice_id = i.invoice_id
+                        WHERE i.status != 'Cancelled'
+                        GROUP BY b_id
+                    ) idet ON b.b_id = idet.b_id
+                """;
+        public static final String GET_BOOK_STOCK_BY_ID = """
+                    SELECT 
+                        b.b_id,
+                        IFNULL(s.total_imported, 0) AS totalImported,
+                        IFNULL(idet.total_sold, 0) AS totalSold
+                    FROM books b
+                    LEFT JOIN (
+                        SELECT b_id, SUM(quantity) AS total_imported
+                        FROM Stocks
+                        GROUP BY b_id
+                    ) s ON b.b_id = s.b_id
+                    LEFT JOIN (
+                        SELECT b_id, SUM(quantity) AS total_sold
+                        FROM invoice_details idet
+                        INNER JOIN invoices i ON idet.invoice_id = i.invoice_id
+                        WHERE i.status != 'Cancelled'
+                        GROUP BY b_id
+                    ) idet ON b.b_id = idet.b_id
+                    WHERE b.b_id = :id
+                """;
     }
 
 

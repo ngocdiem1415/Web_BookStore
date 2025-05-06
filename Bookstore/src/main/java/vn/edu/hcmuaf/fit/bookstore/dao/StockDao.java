@@ -5,7 +5,7 @@ import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
-import vn.edu.hcmuaf.fit.bookstore.beans.Stock.Stock;
+import vn.edu.hcmuaf.fit.bookstore.beans.Stock;
 
 import java.util.List;
 
@@ -32,4 +32,6 @@ public interface StockDao {
         WHERE stock_id = :stockId
     """)
     void updateStock(@BindBean Stock stock);
+
+
 }

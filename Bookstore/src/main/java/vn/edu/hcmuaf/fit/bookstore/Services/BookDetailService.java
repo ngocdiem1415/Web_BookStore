@@ -21,23 +21,35 @@ public class BookDetailService {
 
     public List<Book> listProducts(int limit, int offset) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProduct(limit, offset));
-        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+//        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+        return books.stream()
+                .map(book -> mapOtherBean(book))
+                .collect(Collectors.toList());
     }
 
     public List<Book> listProductsTest(int limit, int offset, String keywword) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProductTest(limit, offset, keywword));
-        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+//        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+        return books.stream()
+                .map(book -> mapOtherBean(book))
+                .collect(Collectors.toList());
     }
 
 
     public List<Book> newBooks(int limit) {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.newBooks(limit));
-        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+        return books.stream()
+                .map(book -> mapOtherBean(book))
+                .collect(Collectors.toList());
+//        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
     }
 
     public List<Book> listAllProduct() {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listAllProduct());
-        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+        return books.stream()
+                .map(book -> mapOtherBean(book))
+                .collect(Collectors.toList());
+//        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
     }
 
     public Book findById(int id) {
@@ -132,7 +144,18 @@ public class BookDetailService {
         book.setCategory(category);
         book.setPublisher(publisher);
         book.setImage(image);
-        book.setRating(rating);
+
+        BookStockView stockView = connect.withExtension(BookDao.class, handle -> handle.getBookStockById(book.getbId()));
+        if (stockView != null) {
+            book.setSoldQuantity(stockView.getTotalSold());
+            book.setStockQuantity(stockView.getStockRemaining());
+            System.out.println("Book ID: " + book.getbId()
+                    + ", Đã bán: " + stockView.getTotalSold()
+                    + ", Tồn kho: " + stockView.getStockRemaining());
+        } else {
+            book.setSoldQuantity(0);
+            book.setStockQuantity(0);
+        }
         return book;
     }
 
@@ -192,4 +215,5 @@ public class BookDetailService {
         List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listByCategory(category_name, limit, offset));
         return books.stream().map(book -> mapOtherBean(book)).collect(Collectors.toList());
     }
+
 }
