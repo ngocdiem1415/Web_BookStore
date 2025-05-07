@@ -542,10 +542,19 @@
                 // const contextPath = window.location.pathname.split('/')[1];  // Lấy context path từ URL hiện tại
                 window.location.href = '/Bookstore/invoice?action=list&userId=' + userId; // Chuyển hướng đến trang đơn hàng chờ xử lý
             },
-            error: function (xhr, status, error) {
-                console.error('Error:', error);
-                alert('Đã xảy ra lỗi khi tạo đơn hàng!');
+            error: function (xhr) {
+                if (xhr.status === 400) {
+                    const res = JSON.parse(xhr.responseText);
+                    alert('❗ ' + res.error);
+                    window.location.href = '/Bookstore/cart'; // Quay lại giỏ hàng
+                } else {
+                    alert('❌ Đã xảy ra lỗi khi tạo đơn hàng!');
+                }
             }
+            // error: function (xhr, status, error) {
+            //     console.error('Error:', error);
+            //     alert('Đã xảy ra lỗi khi tạo đơn hàng!');
+            // }
         });
     });
 </script>

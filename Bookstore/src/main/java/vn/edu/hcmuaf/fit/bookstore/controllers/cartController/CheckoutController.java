@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(name = "CheckoutController", value = "/checkout")
@@ -53,15 +54,15 @@ public class CheckoutController extends HttpServlet {
             System.out.println("orderData: " + orderData);
 
             // Kiểm tra orderData không có sản phẩm
-//            if (orderData == null || orderData.getProducts() == null || orderData.getProducts().isEmpty()) {
-//                // Trả JSON thông báo lỗi:
-//                response.setContentType("application/json");
-//                response.setCharacterEncoding("UTF-8");
-//                response.getWriter().write("{\"error\": \"Không có sản phẩm nào để mua. Vui lòng kiểm tra lại giỏ hàng.\"}");
-//                System.out.println("❗ Không có sản phẩm trong orderData.");
-//                response.sendRedirect(request.getContextPath() + "/cart");
-//                return;
-//            }
+            if (orderData == null || orderData.getProducts() == null || orderData.getProducts().isEmpty()) {
+                // Trả JSON thông báo lỗi:
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write("{\"error\": \"Không có sản phẩm nào để mua. Vui lòng kiểm tra lại giỏ hàng.\"}");
+                System.out.println("❗ Không có sản phẩm trong orderData.");
+                response.sendRedirect(request.getContextPath() + "/cart");
+                return;
+            }
 
             //Tạo đối tượng Invoice
             Invoice invoice = new Invoice();
@@ -96,9 +97,21 @@ public class CheckoutController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"message\": \"Invoice created successfully!\", \"invoiceId\": " + invoiceId + "}");
             System.out.println("✅ orderData received: " + orderData);
+        } catch (IllegalStateException e) {
+            // Lỗi vượt số lượng sản phẩm trong kho
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            Gson gson = new Gson();
+            String jsonError = gson.toJson(Collections.singletonMap("error", e.getMessage()));
+            response.getWriter().write(jsonError);
+            System.out.println("❌ Loi vuot qua ton kho: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("❌ Lỗi khi đọc JSON từ request: " + e.getMessage());
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 500
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"error\": \"Có lỗi xảy ra khi xử lý đơn hàng.\"}");
         }
     }
 

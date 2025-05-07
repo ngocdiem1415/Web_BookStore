@@ -79,8 +79,8 @@ public class InvoiceService {
                             );
                         }
 
-                        detail.setInvoiceId(invoiceId); // ✅ PHẢI đặt bên ngoài khối if
-                        invoiceDetailDao.insert(detail); // ✅ PHẢI đặt bên ngoài khối if
+                        detail.setInvoiceId(invoiceId); //
+                        invoiceDetailDao.insert(detail); //
                     }
                 }
 
@@ -92,9 +92,11 @@ public class InvoiceService {
 
                 return invoiceId;
             });
+        } catch (IllegalStateException e) {
+            throw e;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Lỗi không thêm được hóa đơn (Trong invoiceService): " + e.getMessage(), e);
+            throw new RuntimeException("Lỗi không thêm được hóa đơn: " + e.getMessage(), e);
         }
     }
 
