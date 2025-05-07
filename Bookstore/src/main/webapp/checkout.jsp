@@ -478,6 +478,24 @@
         return district.Wards.find(ward => ward.Id === wardId);
     }
 
+    function removeProduct(productKey, callback) {
+        // let id = productKey;
+        $.ajax({
+            url: "remove-book-in-cart",
+            type: "GET",
+            data: {
+                productKey: productKey,
+            },
+            success: function (data) {
+                console.log("delete book" + productKey + "is success!");
+                if (callback) callback();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error during delete book:", textStatus, errorThrown);
+            }
+        });
+    }
+
     const buyNowButton = document.getElementById("buy-now");
     buyNowButton.addEventListener("click", function () {
         // Thu thập dữ liệu người dùng từ form
@@ -540,7 +558,17 @@
             success: function (response) {
                 // Nếu yêu cầu thành công, chuyển hướng đến trang đơn hàng
                 // const contextPath = window.location.pathname.split('/')[1];  // Lấy context path từ URL hiện tại
-                window.location.href = '/Bookstore/invoice?action=list&userId=' + userId; // Chuyển hướng đến trang đơn hàng chờ xử lý
+                // window.location.href = '/Bookstore/invoice?action=list&userId=' + userId; // Chuyển hướng đến trang đơn hàng chờ xử lý
+                let removeCount = 0;
+                selectProducts.forEach(product => {
+                    removeProduct(product.bId, () => {
+                        removeCount++;
+                        if (removeCount === selectProducts.length) {
+                            // Sau khi xóa xong hết thì chuyển trang
+                            window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;
+                        }
+                    });
+                });
             },
             error: function (xhr) {
                 if (xhr.status === 400) {
