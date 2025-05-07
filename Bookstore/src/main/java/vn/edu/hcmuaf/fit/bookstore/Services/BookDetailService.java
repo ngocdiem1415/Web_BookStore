@@ -60,21 +60,25 @@ public class BookDetailService {
             return null;
         }
 
-        Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
+//        Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
+//        List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(id));
+//        Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
+//        Integer promoId = book.getPromotionId();
+//        if (promoId != null) {
+//            int pid = promoId;
+//            Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(pid));
+//            book.setPromotion(promotion);
+//        } else {
+//            book.setPromotionId(0);
+//        }
+//        book.setImage(image);
+//        book.setPublisher(publisher);
+//        book.setImageList(images);
+//        return book;
         List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(id));
-        Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
-        Integer promoId = book.getPromotionId();
-        if (promoId != null) {
-            int pid = promoId;
-            Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(pid));
-            book.setPromotion(promotion);
-        } else {
-            book.setPromotionId(0);
-        }
-        book.setImage(image);
-        book.setPublisher(publisher);
         book.setImageList(images);
-        return book;
+
+        return mapOtherBean(book);
     }
 
 
@@ -145,8 +149,8 @@ public class BookDetailService {
             book.setSoldQuantity(stockView.getTotalSold());
             book.setStockQuantity(stockView.getStockRemaining());
             System.out.println("Book ID: " + book.getbId()
-                    + ", Đã bán: " + stockView.getTotalSold()
-                    + ", Tồn kho: " + stockView.getStockRemaining());
+                    + ", Daban: " + book.getSoldQuantity()
+                    + ", Tonkho: " + book.getStockQuantity());
         } else {
             book.setSoldQuantity(0);
             book.setStockQuantity(0);
