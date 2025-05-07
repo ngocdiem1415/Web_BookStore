@@ -1,7 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
@@ -36,6 +35,11 @@ public class InvoiceService {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByDate().stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
+
+    public List<Integer> listTotalInvoicesInMonth(int year) {
+        return connect.withExtension(InvoiceDao.class, dao -> dao.countInvoicesInMonth(year));
+    }
+
 
     public List<Invoice> findByBookTitle(int userId, String title) {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByBookTitle(userId, title).stream()

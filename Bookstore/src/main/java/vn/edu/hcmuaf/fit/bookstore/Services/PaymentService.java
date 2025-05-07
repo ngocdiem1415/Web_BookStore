@@ -11,6 +11,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.PaymentDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PaymentService {
     private static PaymentService instance = null;
@@ -38,6 +39,10 @@ public class PaymentService {
         return (int) Math.round(totalAmount);  // Làm tròn và ép kiểu về int
     }
 
+    // Tính tổng số tiền thanh toán theo tháng từ bảng payments
+    public List<Double> listTotalAccountInMonth(int year) {
+        return connect.withExtension(PaymentDao.class, dao -> dao.getTotalAccountInMonth(year));
+    }
 
 
     // Thêm Payment với tính toán amount

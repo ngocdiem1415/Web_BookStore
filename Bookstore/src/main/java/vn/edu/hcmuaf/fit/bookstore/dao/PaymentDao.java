@@ -27,7 +27,10 @@ public interface PaymentDao {
             "WHERE invoice_id = :invoiceId")
     int update(@BindBean Payment payment);
 
-    @SqlQuery("SELECT amount FROM payments WHERE DATE(payment_date) = CURDATE()")
+    @SqlQuery("SELECT amount FROM payments WHERE DATE(payment_date) = CURDATE() AND payment_status = 'Completed'")
     List<Payment> findPaymentsInDay();
+
+    @SqlQuery("SELECT SUM(amount) FROM payments WHERE payment_status = 'Completed' AND YEAR(payment_date) = :year GROUP BY MONTH(payment_date) ORDER BY MONTH(payment_date)")
+    List<Double> getTotalAccountInMonth(@Bind("year") int year);
 
 }
