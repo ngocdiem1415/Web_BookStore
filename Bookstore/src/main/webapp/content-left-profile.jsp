@@ -12,7 +12,7 @@
     <title>content left</title>
     <link rel="stylesheet" href="fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/Header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/Style.css">

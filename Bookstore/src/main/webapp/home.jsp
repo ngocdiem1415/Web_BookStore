@@ -14,8 +14,7 @@
     <meta charset="UTF-8">
 
     <!--    bootstrap-->
-    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <!--     OwlCarousel-->
     <link rel="stylesheet" href="css/OwlCarousel/owl.carousel.min.css">
     <link rel="stylesheet" href="css/OwlCarousel/owl.theme.default.min.css">
@@ -242,7 +241,8 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${literatureBooks.bId}">
-                                                <img src="${literatureBooks.image.sourceImg}" alt="${literatureBooks.title}" class="primary"
+                                                <img src="${literatureBooks.image.sourceImg}"
+                                                     alt="${literatureBooks.title}" class="primary"
                                                      style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
@@ -252,25 +252,28 @@
                                                     <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
                                                 </a>
                                                 <c:if test="${not empty userSession}">
-                                                <a class="action-view" title="Add Product"
-                                                onclick="addToCart(${literatureBooks.bId})">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs"
-                                                       style="top: 20px;left: 8px;"></i> </a>
+                                                    <a class="action-view" title="Add Product"
+                                                       onclick="addToCart(${literatureBooks.bId})">
+                                                        <i class="fa-solid fa-cart-shopping fa-xs"
+                                                           style="top: 20px;left: 8px;"></i> </a>
                                                 </c:if>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <p><a href="book-detail?id=${literatureBooks.bId}" class="text-dec">${literatureBooks.title}</a>
+                                            <p><a href="book-detail?id=${literatureBooks.bId}"
+                                                  class="text-dec">${literatureBooks.title}</a>
                                             </p>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <c:if test="${literatureBooks.promotionId != 0}">
                                                     <div class="special-price">
                                                         <span class="price product-price cl-o"><f:formatNumber
                                                                 value="${literatureBooks.salePrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"
+                                                           style="color: #f07c29;"></i></span>
                                                     </div>
                                                     <div class="old-price">
-                                                        <span class="price product-price-old" style="font-size: 1rem"><f:formatNumber
+                                                        <span class="price product-price-old"
+                                                              style="font-size: 1rem"><f:formatNumber
                                                                 value="${literatureBooks.originalPrice}"/>
                                                          <i class="fa-solid fa-dong-sign fa-xs"
                                                             style="color: #999;"></i></span>
@@ -280,7 +283,8 @@
                                                     <div class="special-price">
                                                         <span class="price product-price cl-o"><f:formatNumber
                                                                 value="${literatureBooks.originalPrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"
+                                                           style="color: #f07c29;"></i></span>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -316,7 +320,8 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${novelsBooks.bId}">
-                                                <img src="${novelsBooks.image.sourceImg}" alt="${novelsBooks.title}" class="primary"
+                                                <img src="${novelsBooks.image.sourceImg}" alt="${novelsBooks.title}"
+                                                     class="primary"
                                                      style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
@@ -326,25 +331,28 @@
                                                     <i class="fa fa-search-plus" style="top: 10px;left: 12px;"></i>
                                                 </a>
                                                 <c:if test="${not empty userSession}">
-                                                <a class="action-view" title="Add Product"
-                                                   onclick="addToCart(${novelsBooks.bId})">
-                                                    <i class="fa-solid fa-cart-shopping fa-xs"
-                                                       style="top: 20px;left: 8px;"></i> </a>
+                                                    <a class="action-view" title="Add Product"
+                                                       onclick="addToCart(${novelsBooks.bId})">
+                                                        <i class="fa-solid fa-cart-shopping fa-xs"
+                                                           style="top: 20px;left: 8px;"></i> </a>
                                                 </c:if>
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${novelsBooks.bId}" class="text-dec">${novelsBooks.title}</a>
+                                            <h5><a href="book-detail?id=${novelsBooks.bId}"
+                                                   class="text-dec">${novelsBooks.title}</a>
                                             </h5>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <c:if test="${novelsBooks.promotionId != 0}">
                                                     <div class="special-price">
                                                         <span class="price product-price cl-o"><f:formatNumber
                                                                 value="${novelsBooks.salePrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"
+                                                           style="color: #f07c29;"></i></span>
                                                     </div>
                                                     <div class="old-price">
-                                                        <span class="price product-price-old" style="font-size: 1rem"><f:formatNumber
+                                                        <span class="price product-price-old"
+                                                              style="font-size: 1rem"><f:formatNumber
                                                                 value="${novelsBooks.originalPrice}"/>
                                                          <i class="fa-solid fa-dong-sign fa-xs"
                                                             style="color: #999;"></i></span>
@@ -354,7 +362,8 @@
                                                     <div class="special-price">
                                                         <span class="price product-price cl-o"><f:formatNumber
                                                                 value="${novelsBooks.salePrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"
+                                                           style="color: #f07c29;"></i></span>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -390,7 +399,8 @@
                                     <div class="product-wrapper ">
                                         <div class="product-img">
                                             <a href="book-detail?id=${comicBooks.bId}">
-                                                <img src="${comicBooks.image.sourceImg}" alt="${comicBooks.title}" class="primary"
+                                                <img src="${comicBooks.image.sourceImg}" alt="${comicBooks.title}"
+                                                     class="primary"
                                                      style="height:220px; width: 240px"/>
                                             </a>
                                             <div class="overlay"></div>
@@ -408,14 +418,16 @@
                                             </div>
                                         </div>
                                         <div class="price-most-product text-center">
-                                            <h5><a href="book-detail?id=${comicBooks.bId}" class="text-dec">${comicBooks.title}</a>
+                                            <h5><a href="book-detail?id=${comicBooks.bId}"
+                                                   class="text-dec">${comicBooks.title}</a>
                                             </h5>
                                             <div class="price-box clearfix d-flex justify-content-center">
                                                 <c:if test="${comicBooks.promotionId != 0}">
                                                     <div class="special-price">
                                                         <span class="price product-price cl-o"><f:formatNumber
                                                                 value="${comicBooks.salePrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"
+                                                           style="color: #f07c29;"></i></span>
                                                     </div>
                                                     <div class="old-price">
                                                         <span class="price product-price-old"><f:formatNumber
@@ -428,7 +440,8 @@
                                                     <div class="special-price">
                                                         <span class="price product-price cl-o"><f:formatNumber
                                                                 value="${comicBooks.salePrice}"/>
-                                                        <i class="fa-solid fa-dong-sign fa-xs" style="color: #f07c29;"></i></span>
+                                                        <i class="fa-solid fa-dong-sign fa-xs"
+                                                           style="color: #f07c29;"></i></span>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -518,91 +531,91 @@
         </div>
 
     </div>
+</div>
+<!--/SECTION-->
+<jsp:include page="footer.jsp"></jsp:include>
 
-    <!--/SECTION-->
-    <jsp:include page="footer.jsp"></jsp:include>
+<script src="js/jquery.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 20,
-            nav: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 4
-                }
-            }
-        })
-    </script>
-
-    <script>
-        // Hàm đếm ngược đến cuối ngày
-        function countdownToEndOfDay() {
-            const now = new Date();
-            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0); // Cuối ngày
-
-            const diff = endOfDay - now;
-
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                // Cập nhật các phần tử HTML
-                document.getElementById("days").textContent = days;
-                document.getElementById("hours").textContent = hours;
-                document.getElementById("minutes").textContent = minutes < 10 ? `0${minutes}` : minutes;
-                document.getElementById("seconds").textContent = seconds < 10 ? `0${seconds}` : seconds;
-            } else {
-                // Nếu hết thời gian, hiển thị thông báo
-                document.getElementById("countdown").textContent = "Hết thời gian!";
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: false,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 4
             }
         }
+    })
+</script>
 
-        // Gọi hàm mỗi giây
-        setInterval(countdownToEndOfDay, 1000);
+<script>
+    // Hàm đếm ngược đến cuối ngày
+    function countdownToEndOfDay() {
+        const now = new Date();
+        const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0); // Cuối ngày
 
-    </script>
+        const diff = endOfDay - now;
 
-    <!--Script thêm vào giỏ hàng-->
-    <script>
-        function addToCart(Bid) {
-            let id = Bid;
-            let quantity = 1;
-            const cartNotifications = document.getElementById('cart-notification-success');
-            const cartNotificatione = document.getElementById('cart-notification-error');
-            $.ajax({
-                url: 'add-cart?id=' + id + '&quantity=' + quantity,
-                type: 'GET',
-                success: function (data) {
-                    cartNotifications.style.display = 'block';
-                    // Ẩn thông báo sau 2 giây
-                    setTimeout(() => {
-                        cartNotifications.style.display = 'none';
-                    }, 2000);
-                },
-                error: function (data) {
-                    cartNotifications.style.display = 'block';
+        if (diff > 0) {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                    // Ẩn thông báo sau 2 giây
-                    setTimeout(() => {
-                        cartNotifications.style.display = 'none';
-                    }, 2000);
-                }
-            });
+            // Cập nhật các phần tử HTML
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes < 10 ? `0${minutes}` : minutes;
+            document.getElementById("seconds").textContent = seconds < 10 ? `0${seconds}` : seconds;
+        } else {
+            // Nếu hết thời gian, hiển thị thông báo
+            document.getElementById("countdown").textContent = "Hết thời gian!";
         }
-    </script>
+    }
+
+    // Gọi hàm mỗi giây
+    setInterval(countdownToEndOfDay, 1000);
+
+</script>
+
+<!--Script thêm vào giỏ hàng-->
+<script>
+    function addToCart(Bid) {
+        let id = Bid;
+        let quantity = 1;
+        const cartNotifications = document.getElementById('cart-notification-success');
+        const cartNotificatione = document.getElementById('cart-notification-error');
+        $.ajax({
+            url: 'add-cart?id=' + id + '&quantity=' + quantity,
+            type: 'GET',
+            success: function (data) {
+                cartNotifications.style.display = 'block';
+                // Ẩn thông báo sau 2 giây
+                setTimeout(() => {
+                    cartNotifications.style.display = 'none';
+                }, 2000);
+            },
+            error: function (data) {
+                cartNotifications.style.display = 'block';
+
+                // Ẩn thông báo sau 2 giây
+                setTimeout(() => {
+                    cartNotifications.style.display = 'none';
+                }, 2000);
+            }
+        });
+    }
+</script>
 </body>
 </html>
