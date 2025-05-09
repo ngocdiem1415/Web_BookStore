@@ -90,9 +90,13 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h4>Doanh thu và đơn hàng theo tháng</h4>
                             <div class="mx-3">
-                                <button type="button" class="btn btn-sm year-btn" data-year="2023">2023</button>
-                                <button type="button" class="btn btn-sm year-btn" data-year="2024">2024</button>
-                                <button type="button" class="btn btn-sm year-btn active" data-year="2025">2025</button>
+                                <c:forEach var="year" items="${listYear}">
+                                    <button type="button"
+                                            class="btn btn-sm year-btn ${year == lastYear ? 'active' : ''}"
+                                            data-year="${year}">
+                                            ${year}
+                                    </button>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="m-4">
@@ -202,14 +206,14 @@
                 type: 'line',
                 stacked: false,
             },
-            xaxis: { categories: months },
+            xaxis: {categories: months},
             yaxis: [
-                { title: { text: 'Số đơn hàng' } },
-                { opposite: true, title: { text: 'Doanh thu (triệu VNĐ)' } }
+                {title: {text: 'Số đơn hàng'}},
+                {opposite: true, title: {text: 'Doanh thu (triệu VNĐ)'}}
             ],
             series: [
-                { name: 'Số đơn hàng', type: 'column', data: orderCounts },
-                { name: 'Doanh thu', type: 'line', data: revenues }
+                {name: 'Số đơn hàng', type: 'column', data: orderCounts},
+                {name: 'Doanh thu', type: 'line', data: revenues}
             ],
             colors: ['#00E396', '#FEB019']
         };
@@ -225,7 +229,6 @@
             method: 'GET',
             success: function (data) {
                 renderChart(data.months, data.orderCounts, data.revenues);
-                console.log(data);
             },
             error: function () {
                 alert("Không thể tải dữ liệu biểu đồ.");

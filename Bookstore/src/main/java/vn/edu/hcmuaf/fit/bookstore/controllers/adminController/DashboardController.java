@@ -39,6 +39,9 @@ public class DashboardController extends HttpServlet {
         request.setAttribute("totalNewOrder", totalNewOrder);
         request.setAttribute("totalU", totalU);
         request.setAttribute("totalPayment", totalPayment);
+
+        List<Integer> listYear = invoiceService.getListYear();
+        request.setAttribute("listYear", listYear);
         request.getRequestDispatcher("Dashboard.jsp").forward(request,response);
     }
 
