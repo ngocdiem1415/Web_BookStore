@@ -30,7 +30,7 @@ public interface PaymentDao {
     @SqlQuery("SELECT amount FROM payments WHERE DATE(payment_date) = CURDATE() AND payment_status = 'Completed'")
     List<Payment> findPaymentsInDay();
 
-    @SqlQuery("SELECT SUM(amount) FROM payments WHERE payment_status = 'Completed' AND YEAR(payment_date) = :year GROUP BY MONTH(payment_date) ORDER BY MONTH(payment_date)")
-    List<Double> getTotalAccountInMonth(@Bind("year") int year);
+    @SqlQuery("SELECT * FROM payments WHERE payment_status = 'Completed' AND YEAR(payment_date) = :year")
+    List<Payment> listAccountInYear(@Bind("year") int year);
 
 }

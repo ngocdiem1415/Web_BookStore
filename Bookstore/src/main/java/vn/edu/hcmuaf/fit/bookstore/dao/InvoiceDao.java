@@ -39,8 +39,11 @@ public interface InvoiceDao {
     @SqlQuery("select * from invoices WHERE DATE(order_date) = CURDATE()")
     List<Invoice> findByDate();
 
-    @SqlQuery("SELECT COUNT(*) FROM invoices WHERE YEAR(order_date) = :year GROUP BY MONTH(order_date) ORDER BY MONTH(order_date)")
-    List<Integer> countInvoicesInMonth(@Bind("year") int year);
+    @SqlQuery("SELECT * FROM invoices WHERE YEAR(order_date) = :year ")
+    List<Invoice> findInvoicesInMonth(@Bind("year") int year);
+
+    @SqlQuery("select distinct YEAR(order_date) from invoices")
+    List<Integer> getListYear();
 
     //Thêm đơn hàng
     @SqlUpdate(" INSERT INTO invoices ( uid, recipient_name, recipient_phone, address, order_date, status, shipping_fee, completion_date) " +

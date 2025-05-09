@@ -11,7 +11,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.PaymentDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 
 public class PaymentService {
     private static PaymentService instance = null;
@@ -40,8 +40,27 @@ public class PaymentService {
     }
 
     // Tính tổng số tiền thanh toán theo tháng từ bảng payments
-    public List<Double> listTotalAccountInMonth(int year) {
-        return connect.withExtension(PaymentDao.class, dao -> dao.getTotalAccountInMonth(year));
+    public List<Double> listPaymentInYear(int year) {
+        List<Payment> listTotalAccount = connect.withExtension(PaymentDao.class, dao -> dao.listAccountInYear(year));
+        Map<Integer,Double> temp = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1-o2;
+            }
+        });
+        for (Payment p:listTotalAccount ) {
+            int month = p.getPaymentDate().getMonthValue();
+            if ( !temp.containsKey(month)){
+                temp.put(month,p.getAmount());
+            }
+            temp.put(month, temp.get(month)+p.getAmount());
+        }
+        for (int i = 1; i <= 12; i++) {
+            if ( !temp.containsKey(i)) temp.put(i,0.0);
+        }
+        System.out.println(temp.toString());
+        Collection<Double> values = temp.values();
+        return new ArrayList<>(values);
     }
 
 

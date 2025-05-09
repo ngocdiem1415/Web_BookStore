@@ -6,7 +6,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class InvoiceService {
@@ -35,9 +35,24 @@ public class InvoiceService {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByDate().stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
+    public List<Integer> getListYear(){
+        List<Integer> listAllYear = connect.withExtension(InvoiceDao.class, InvoiceDao :: getListYear);
+        Collections.sort(listAllYear);
+        return listAllYear;
+    }
 
     public List<Integer> listTotalInvoicesInMonth(int year) {
-        return connect.withExtension(InvoiceDao.class, dao -> dao.countInvoicesInMonth(year));
+        List<Invoice> listTotalInvoices = connect.withExtension(InvoiceDao.class, dao -> dao.findInvoicesInMonth(year));
+        Map<Integer, Integer> temp = new TreeMap<>();
+        for (Invoice i : listTotalInvoices) {
+            int month =i.getOrderDate().getMonthValue();
+            temp.put(month, temp.getOrDefault(month, 0) + 1);
+        }
+        for (int i = 1; i <= 12; i++) {
+            if ( !temp.containsKey(i)) temp.put(i,0);
+        }
+        System.out.println(temp.toString());
+        return new ArrayList<>(temp.values());
     }
 
 
