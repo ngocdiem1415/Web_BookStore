@@ -20,7 +20,17 @@ public class RemoveBookController extends HttpServlet {
             cart.removeProduct(productKey);
             session.setAttribute("cart", cart);
         }
-        response.sendRedirect(request.getContextPath() + "/cart");
+
+        // Kiểm tra xem đây có phải là AJAX request không
+        String requestedWith = request.getHeader("X-Requested-With");
+
+        // Nếu là AJAX, chỉ trả về một status OK
+        if ("XMLHttpRequest".equals(requestedWith)) {
+            response.setStatus(HttpServletResponse.SC_OK);  // Trả về HTTP status OK
+            response.getWriter().write("OK");  // Có thể trả về thông báo để client biết đã xóa thành công
+        } else {
+            response.sendRedirect(request.getContextPath() + "/cart");
+        }
     }
 
     @Override
