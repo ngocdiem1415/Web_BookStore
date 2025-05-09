@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.bookstore.beans.Stock;
+package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -71,50 +71,52 @@ public class InvoiceService {
             if (invoice == null) {
                 throw new IllegalArgumentException("Invoice không được null.");
             }
+
             return connect.inTransaction(handle -> {
                 InvoiceDao invoiceDao = handle.attach(InvoiceDao.class);
                 InvoiceDetailDao invoiceDetailDao = handle.attach(InvoiceDetailDao.class);
                 PaymentDao paymentDao = handle.attach(PaymentDao.class);
-                // BookDao bookDao = handle.attach(BookDao.class);
+                BookDetailService bookService = new BookDetailService();
 
-                //Thêm hóa đơn
+                // Thêm hóa đơn
                 invoiceDao.insert(invoice);
 
-                // **Lấy invoiceId sau khi insert**
-                int invoiceId = handle.createQuery("SELECT LAST_INSERT_ID()").mapTo(Integer.class).one();
-
-                // Cập nhật invoiceId cho đối tượng
+                // Lấy invoiceId sau khi insert
+                int invoiceId = handle.createQuery("SELECT LAST_INSERT_ID()")
+                        .mapTo(Integer.class).one();
                 invoice.setInvoiceId(invoiceId);
 
-                // **Thêm các chi tiết hóa đơn**
+                // Thêm chi tiết hóa đơn
                 if (invoice.getListInvoiceDetails() != null) {
                     for (InvoiceDetail detail : invoice.getListInvoiceDetails()) {
-                        detail.setInvoiceId(invoiceId); // Gán invoiceId cho từng detail
-                        invoiceDetailDao.insert(detail);
+                        Book book = bookService.findById(detail.getbId());
+                        int remaining = book.getStockQuantity();
 
-                        // **Cập nhật tồn kho sách**
-                        // Book book = detail.getBook();
-                        // if (book != null) {
-                        //     book.setStockQuantity(book.getStockQuantity() - detail.getQuantity());
-                        //     book.setSoldQuantity(book.getSoldQuantity() + detail.getQuantity());
-                        //     bookDao.update(book);
-                        // }
+                        if (detail.getQuantity() > remaining) {
+                            throw new IllegalStateException(
+                                    "Sach \"" + book.getTitle() + "\" chi con " + remaining + " cuon, khong the dat " + detail.getQuantity()
+                            );
+                        }
+
+                        detail.setInvoiceId(invoiceId); // ✅ PHẢI đặt bên ngoài khối if
+                        invoiceDetailDao.insert(detail); // ✅ PHẢI đặt bên ngoài khối if
                     }
                 }
 
-                //Thêm thông tin thanh toán
+                // Thêm thông tin thanh toán
                 if (invoice.getPayment() != null) {
                     invoice.getPayment().setInvoiceId(invoiceId);
                     paymentDao.insert(invoice.getPayment());
                 }
 
-                return invoiceId; // Trả về invoiceId vừa tạo
+                return invoiceId;
             });
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi không thêm được hóa đơn (Trong invoiceService): " + e.getMessage(), e);
         }
     }
+
 
     synchronized public int cancelInvoice(Invoice invoice) {
         try {
@@ -179,45 +181,6 @@ public class InvoiceService {
         }
     }
 
-
-//    synchronized public int insert(Invoice invoice) {
-//        int status = (int) connect.withExtension(InvoiceDao.class, handle -> handle.insert(invoice));
-//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()) {
-//            connect.withExtension(InvoiceDetailDao.class, handle -> handle.insert(invoiceDetail));
-//            connect.useExtension(BookDao.class, handle -> {
-//                Book book = invoiceDetail.getBook();
-//                book.setStockQuantity(book.getStockQuantity() - invoiceDetail.getQuantity());
-//                book.setSoldQuantity(book.getSoldQuantity() + invoiceDetail.getQuantity());
-//                handle.update(book.getbId());
-//            });
-//        }
-//        return status;
-//    }
-//
-//    synchronized public int cancelInvoice(Invoice invoice) {
-//        invoice.setStatus("Canceled");
-//        System.out.println(invoice);
-//        int status =  connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
-//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
-//            connect.useExtension(BookDao.class, handle -> {
-//                Book book = invoiceDetail.getBook();
-//                book.setStockQuantity(book.getStockQuantity() + invoiceDetail.getQuantity());
-//                book.setSoldQuantity(book.getSoldQuantity() - invoiceDetail.getQuantity());
-//                handle.update(book.getbId());
-//            });
-//        }
-//        return status;
-//    }
-//
-//    public int update(Invoice invoice){
-//        int status = connect.withExtension(InvoiceDao.class, handle -> handle.update(invoice));
-//        for (InvoiceDetail invoiceDetail : invoice.getListInvoiceDetails()){
-//            connect.withExtension(InvoiceDetailDao.class, handle -> handle.update(invoiceDetail));
-//        }
-//        // Cập nhật Payment
-//        updatePaymentForInvoice(invoice);
-//        return status;
-//    }
 
     public void updatePaymentForInvoice(Invoice invoice) {
         PaymentService paymentService = PaymentService.getInstance();
