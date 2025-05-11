@@ -54,5 +54,6 @@ public interface UserDao {
     @SqlUpdate(QUERIES.USER.UPDATE_IMAGE_BY_ID)
     void updateImageByID(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("avatar") String avatar, @Bind("id") int id);
 
-
+    @SqlUpdate(QUERIES.USER.UPDATE_ROLE)
+    void updateRole(@Bind("role") String role, @Bind("uid") int uid);
 }

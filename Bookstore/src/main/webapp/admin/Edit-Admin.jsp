@@ -64,29 +64,33 @@
                                 </div>
                                 <div class="form-edit-admin-group">
                                     <label for="id">ID</label>
-                                    <input type="text" class="form-control form-control-fit" id="id" name="id" value="${admin.uid}"
+                                    <input type="text" class="form-control form-control-fit" id="id" name="id"
+                                           value="${admin.uid}"
                                            readonly required>
                                 </div>
                                 <div class="form-edit-admin-group">
                                     <label for="username">Ten Dang Nhap</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="${admin.username}" required>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                           value="${admin.username}" required>
                                 </div>
                                 <div class="form-edit-admin-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="${admin.email}"
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           value="${admin.email}"
                                            required>
                                 </div>
 
                                 <div class="form-edit-admin-group">
                                     <label for="phone">So Dien Thoai</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="${admin.phone}" required>
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                           value="${admin.phone}" required>
                                 </div>
 
                                 <div class="form-edit-admin-group">
                                     <label for="birthdate">Ngay Sinh</label>
-                                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="${admin.dob}" required>
+                                    <input type="date" class="form-control" id="birthdate" name="birthdate"
+                                           value="${admin.dob}" required>
                                 </div>
-
 
 
                                 <div class="form-edit-admin-group">
@@ -95,6 +99,14 @@
                                         <option value="male" ${admin.gender == male ? 'selected' : ''}>Nam</option>
                                         <option value="female" ${admin.gender == female ? 'selected' : ''}>Nu</option>
                                         <option value="other" ${admin.gender == other ? 'selected' : ''}>Khac</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="role">Vai Tro</label>
+                                    <select class="form-select" id="role" name="role" required>
+                                        <option value="admin" ${admin.role == 'admin' ? 'selected' : ''}>Admin</option>
+                                        <option value="user" ${admin.role == 'user' ? 'selected' : ''}>User</option>
                                     </select>
                                 </div>
                             </form>
