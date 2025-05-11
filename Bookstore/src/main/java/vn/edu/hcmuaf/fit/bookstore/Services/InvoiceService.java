@@ -1,13 +1,12 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class InvoiceService {
@@ -36,6 +35,26 @@ public class InvoiceService {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByDate().stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
+    public List<Integer> getListYear(){
+        List<Integer> listAllYear = connect.withExtension(InvoiceDao.class, InvoiceDao :: getListYear);
+        Collections.sort(listAllYear);
+        return listAllYear;
+    }
+
+    public List<Integer> listTotalInvoicesInMonth(int year) {
+        List<Invoice> listTotalInvoices = connect.withExtension(InvoiceDao.class, dao -> dao.findInvoicesInMonth(year));
+        Map<Integer, Integer> temp = new TreeMap<>();
+        for (Invoice i : listTotalInvoices) {
+            int month =i.getOrderDate().getMonthValue();
+            temp.put(month, temp.getOrDefault(month, 0) + 1);
+        }
+        for (int i = 1; i <= 12; i++) {
+            if ( !temp.containsKey(i)) temp.put(i,0);
+        }
+        System.out.println(temp.toString());
+        return new ArrayList<>(temp.values());
+    }
+
 
     public List<Invoice> findByBookTitle(int userId, String title) {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByBookTitle(userId, title).stream()
@@ -79,8 +98,8 @@ public class InvoiceService {
                             );
                         }
 
-                        detail.setInvoiceId(invoiceId); // ✅ PHẢI đặt bên ngoài khối if
-                        invoiceDetailDao.insert(detail); // ✅ PHẢI đặt bên ngoài khối if
+                        detail.setInvoiceId(invoiceId); //
+                        invoiceDetailDao.insert(detail); //
                     }
                 }
 
@@ -92,9 +111,11 @@ public class InvoiceService {
 
                 return invoiceId;
             });
+        } catch (IllegalStateException e) {
+            throw e;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Lỗi không thêm được hóa đơn (Trong invoiceService): " + e.getMessage(), e);
+            throw new RuntimeException("Lỗi không thêm được hóa đơn: " + e.getMessage(), e);
         }
     }
 

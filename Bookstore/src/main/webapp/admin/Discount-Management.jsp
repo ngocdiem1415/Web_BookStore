@@ -106,7 +106,7 @@
                                                         </button>
                                                     </a>
 
-                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                                                    <button type="button" class="btn btn-delete m-0 p-0" data-bs-toggle="modal"
                                                             data-bs-target="#confirmDeleteModal">
                                                         <i class="fa-regular fa-trash-can fa-lg mx-2 "
                                                            style="color: #ef5f5f"></i>
@@ -155,8 +155,8 @@
 
 <!--script-->
 <script>
-    var myModalEl = document.getElementById('addDiscount');
     $(document).ready(function () {
+        var myModalEl = document.getElementById('addDiscount');
         // Khởi tạo DataTable cho bảng với id 'orderTable'
         var table = $('#discountTable').DataTable({
             language: {
@@ -176,15 +176,15 @@
             ],
         });
 
-        myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        $('#addDiscount').on('hidden.bs.modal', function (event) {
             $('#discountLabel').html("Thêm CTKM")
             $('#idDis').val("")
             $('#nameDis').val("");
             $('#discount').val("");
             $('#fromDate').val("");
             $('#toDate').val("");
-
         });
+
 
         $('#discountTable tbody').on('click', '.btn-edit', function () {
             var data = table.row($(this).parents('tr')).data();

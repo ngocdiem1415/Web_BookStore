@@ -20,12 +20,12 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Invoice> orders = invoiceService.listAll();
-
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("Order-Management.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }
