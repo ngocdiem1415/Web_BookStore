@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers.adminController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -8,7 +9,6 @@ import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
-import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,6 +39,9 @@ public class DashboardController extends HttpServlet {
         request.setAttribute("totalNewOrder", totalNewOrder);
         request.setAttribute("totalU", totalU);
         request.setAttribute("totalPayment", totalPayment);
+
+        List<Integer> listYear = invoiceService.getListYear();
+        request.setAttribute("listYear", listYear);
         request.getRequestDispatcher("Dashboard.jsp").forward(request,response);
     }
 

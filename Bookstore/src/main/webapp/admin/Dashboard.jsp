@@ -48,20 +48,22 @@
         <div id="performance-stats">
             <div class="container-fluid ">
                 <div class="row mt-3 mb-3">
-<%--                    <div class="col-md-3">--%>
-<%--                        <div class="card border-left-primary shadow h-100 py-2 rounded-3 ">--%>
-<%--                            <div class="card-body">--%>
-<%--                                <h6 class="text-primary">TỔNG SỐ SẢN PHẨM</h6>--%>
-<%--                                <h3><i class="fa-solid fa-arrow-up fa-rotate-180" style="color: #d70f0f;"></i> ${totalBook}--%>
-<%--                                </h3>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <div class="col-md-3">
+                        <div class="card border-left-primary shadow h-100 py-2 rounded-3 ">
+                            <div class="card-body">
+                                <h6 class="text-primary">TỔNG SỐ SẢN PHẨM</h6>
+                                <h3><i class="fa-solid fa-arrow-up fa-rotate-180"
+                                       style="color: #d70f0f;"></i> ${totalBook}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <div class="card border-left-success shadow h-100 py-2 rounded-3 ">
                             <div class="card-body">
                                 <h6 class="text-success">ĐƠN HÀNG TRONG NGÀY</h6>
-                                <h3><i class="fa-solid fa-arrow-up fa-rotate-180" style="color: #d70f0f;"></i> ${totalNewOrder}
+                                <h3><i class="fa-solid fa-arrow-up fa-rotate-180"
+                                       style="color: #d70f0f;"></i> ${totalNewOrder}
                                 </h3>
                             </div>
                         </div>
@@ -84,79 +86,71 @@
                     </div>
                 </div>
                 <div id="revenue-card" class="mt-5">
-                    <div class="revenue-card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="revenue-card-title mx-3 my-3">Thống kê đơn hàng</h4>
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4>Doanh thu và đơn hàng theo tháng</h4>
                             <div class="mx-3">
-                                <button type="button" class="btn btn-sm ">ALL</button>
-                                <button type="button" class="btn btn-sm ">1M</button>
-                                <button type="button" class="btn btn-sm ">6M</button>
-                                <button type="button" class="btn btn-sm">1Y</button>
+                                <c:forEach var="year" items="${listYear}">
+                                    <button type="button"
+                                            class="btn btn-sm year-btn ${year == lastYear ? 'active' : ''}"
+                                            data-year="${year}">
+                                            ${year}
+                                    </button>
+                                </c:forEach>
                             </div>
-                        </div> <!-- end card-title-->
-
-<%--                        <div dir="ltr">--%>
-<%--                            <div id="dash-revenue-chart" class="d-flex justify-content-center mt-3">--%>
-<%--                                <div class="mb-3">--%>
-<%--                                    <div class="toolbar apex-toolbar">--%>
-<%--                                        <button id="one_month" class="btn btn-sm btn-light">1M</button>--%>
-<%--                                        <button id="six_months" class="btn btn-sm btn-light">6M</button>--%>
-<%--                                        <button id="one_year" class="btn btn-sm btn-light active">1Y</button>--%>
-<%--                                        <button id="ytd" class="btn btn-sm btn-light">YTD</button>--%>
-<%--                                        <button id="all" class="btn btn-sm btn-light">ALL</button>--%>
-<%--                                    </div>--%>
-<%--                                    <div dir="ltr">--%>
-<%--                                        <div id="area-chart-datetime" class="apex-charts"></div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-                    </div> <!-- end card body -->
-                </div> <!-- end card -->
-                <div class="container-fluid">
-                    <div class="card-stats">
-                        <div class="card-title mt-5">
-                            <h3>Đơn hàng mới</h3>
+                        </div>
+                        <div class="m-4">
+                            <div class="card-body">
+                                <div id="order-revenue-chart"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body mx-2">
-                        <table class="table" id="orderTable">
-                            <thead>
-                            <tr>
-                                <th scope="col">Order ID</th>
-                                <th>Ngày đặt</th>
-                                <th>Khách hàng</th>
-                                <th>SDT</th>
-                                <th>Tổng tiền</th>
-                                <th>Trạng thái thanh toán</th>
-                                <th>Trạng thái đơn hàng</th>
-                                <th>Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody style="font-weight: lighter">
-                            <c:forEach var="order" items="${orders}">
-                                <tr>
-                                    <th scope="row">${order.invoiceId}</th>
-                                    <td>${order.orderDate}</td>
-                                    <td>${order.recipientName}</td>
-                                    <td>${order.recipientPhone}</td>
-                                    <td>${order.getPayment().getAmount()}đ</td>
-                                    <td>${order.getPayment().getPaymentStatus()}</td>
-                                    <td>${order.status}</td>
-                                    <td>
-                                        <a href="Edit-Order.html" class="text-dec">
-                                            <i class="fa-regular fa-pen-to-square fa-lg"
-                                               style="color: #236844"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
+                </div> <!-- end card body -->
+            </div> <!-- end card -->
+            <div class="container-fluid">
+                <div class="card-stats">
+                    <div class="card-title mt-5">
+                        <h3>Đơn hàng mới</h3>
                     </div>
+                </div>
+                <div class="card-body mx-2">
+                    <table class="table" id="orderTable">
+                        <thead>
+                        <tr>
+                            <th scope="col">Order ID</th>
+                            <th>Ngày đặt</th>
+                            <th>Khách hàng</th>
+                            <th>SDT</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái thanh toán</th>
+                            <th>Trạng thái đơn hàng</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody style="font-weight: lighter">
+                        <c:forEach var="order" items="${orders}">
+                            <tr>
+                                <th scope="row">${order.invoiceId}</th>
+                                <td>${order.orderDate}</td>
+                                <td>${order.recipientName}</td>
+                                <td>${order.recipientPhone}</td>
+                                <td>${order.getPayment().getAmount()}đ</td>
+                                <td>${order.getPayment().getPaymentStatus()}</td>
+                                <td>${order.status}</td>
+                                <td>
+                                    <a href="Edit-Order.html" class="text-dec">
+                                        <i class="fa-regular fa-pen-to-square fa-lg"
+                                           style="color: #236844"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Modal -->
     <!--    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"-->
@@ -186,6 +180,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/datatables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!--script-->
 <script>
@@ -200,5 +195,60 @@
         });
     });
 </script>
+
+<script>
+    let chart;
+
+    function renderChart(months, orderCounts, revenues) {
+        const options = {
+            chart: {
+                height: 500,
+                type: 'line',
+                stacked: false,
+            },
+            xaxis: {categories: months},
+            yaxis: [
+                {title: {text: 'Số đơn hàng'}},
+                {opposite: true, title: {text: 'Doanh thu (triệu VNĐ)'}}
+            ],
+            series: [
+                {name: 'Số đơn hàng', type: 'column', data: orderCounts},
+                {name: 'Doanh thu', type: 'line', data: revenues}
+            ],
+            colors: ['#00E396', '#FEB019']
+        };
+
+        if (chart) chart.destroy();
+        chart = new ApexCharts(document.querySelector("#order-revenue-chart"), options);
+        chart.render();
+    }
+
+    function loadChartData(year) {
+        $.ajax({
+            url: 'dashboardChartAjax?year=' + year,
+            method: 'GET',
+            success: function (data) {
+                renderChart(data.months, data.orderCounts, data.revenues);
+            },
+            error: function () {
+                alert("Không thể tải dữ liệu biểu đồ.");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadChartData(2025); // Gọi lần đầu với năm mặc định
+
+        $('.year-btn').click(function () {
+            $('.year-btn').removeClass('active');
+            $(this).addClass('active');
+
+            const year = $(this).data('year');
+            loadChartData(year);
+        });
+    });
+</script>
+
+
 </body>
 </html>
