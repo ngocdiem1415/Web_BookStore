@@ -74,7 +74,7 @@
                 <input type="password" id="confirm-password" name="confirm-password" class="form-control" required>
             </div>
             <div class="text-center">
-                <span class="text-danger">${baoloi}</span>
+                <span class="text-success">${baoloi}</span>
             </div>
             <button type="submit" class="btn btn-reset btn-primary">Xác nhận</button>
         </form>

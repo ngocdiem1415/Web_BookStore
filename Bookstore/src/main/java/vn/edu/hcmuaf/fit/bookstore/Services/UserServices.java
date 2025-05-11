@@ -164,4 +164,15 @@ public class UserServices {
         }
     }
 
+    public void updateRole(String role, int uid) {
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updateRole(role, uid);
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
 }
