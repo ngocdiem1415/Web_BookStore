@@ -78,37 +78,53 @@
                                             <th>Tên người dùng</th>
                                             <th>SDT</th>
                                             <th>Email</th>
-                                            <th>Trạng thái</th>
-                                            <th>Hành động</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody style="font-weight: lighter">
-                                        <c:forEach var="user" items="${users}">
-                                            <tr>
-                                                <th scope="row">${user.uid}</th>
-                                                <td><img src="../img/logo/avatar.jpg" height="50px" width="50px"/></td>
-                                                <td>${user.username}</td>
-                                                <td>${user.phone}</td>
-                                                <td>${user.email}</td>
-                                                <td>hoạt động</td>
-                                                <td>
-                                                    <a href="edit-user?id=${user.uid}" class="text-dec">
-                                                        <i class="fa-regular fa-pen-to-square fa-lg"
-                                                           style="color: #236844"></i>
-                                                    </a>
-                                                    <button type="button" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#confirmDeleteModal">
-                                                        <i class="fa-regular fa-trash-can fa-lg "
-                                                           style="color: #ef5f5f"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
+                                            <th>Role</th>
                                 </th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
                             </tr>
+                            </thead>
+                            <tbody style="font-weight: lighter">
+                            <c:forEach var="user" items="${users}">
+                                <tr>
+                                    <th scope="row">${user.uid}</th>
+                                    <td><img src="../img/logo/avatar.jpg" height="50px" width="50px"/></td>
+                                    <td>${user.username}</td>
+                                    <td>${user.phone}</td>
+                                    <td>${user.email}</td>
+                                    <td>
+                                        <form action="${pageContext.request.contextPath}/admin/upload-role" method="post" class="d-inline">
+                                            <input type="hidden" name="uid" value="${user.uid}"/>
+                                            <select name="role" class="form-select form-select-sm"
+                                                    onchange="this.form.submit()">
+                                                <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>
+                                                    Admin
+                                                </option>
+                                                <option value="user" ${user.role == 'user' ? 'selected' : ''}>
+                                                    User
+                                                </option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                    <td>hoạt động</td>
+                                    <td>
+                                        <a href="edit-user?id=${user.uid}" class="text-dec">
+                                            <i class="fa-regular fa-pen-to-square fa-lg"
+                                               style="color: #236844"></i>
+                                        </a>
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeleteModal">
+                                            <i class="fa-regular fa-trash-can fa-lg "
+                                               style="color: #ef5f5f"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
+                        </table>
+                        </th>
+                        </tr>
+                        </tbody>
                         </table>
                     </div>
                 </div>
