@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
 
     <!--    bootstrap-->
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/boostrap/bootstrap.min.css">
     <!--     OwlCarousel-->
     <link rel="stylesheet" href="css/OwlCarousel/owl.carousel.min.css">
     <link rel="stylesheet" href="css/OwlCarousel/owl.theme.default.min.css">

@@ -144,7 +144,7 @@ public class BookDetailService {
         } else {
             book.setPromotionId(0);
         }
-
+        book.setRating(rating);
         book.setCategory(category);
         book.setPublisher(publisher);
         book.setImage(image);
