@@ -639,14 +639,12 @@
         const starInputs = document.querySelectorAll("input[name='rating']");
         const starLabels = document.querySelectorAll(".category-inform label");
 
-        // Gắn sự kiện click cho từng label
         starLabels.forEach((label, index) => {
             label.addEventListener("click", () => {
                 updateStars(index);
             });
         });
 
-        // Hàm cập nhật màu của các ngôi sao dựa trên chỉ số được chọn
         function updateStars(selectedIndex) {
             starLabels.forEach((label, i) => {
                 if (i <= selectedIndex) {
@@ -656,14 +654,12 @@
                 }
             });
 
-            // Đánh dấu radio button tương ứng là được chọn
             starInputs[selectedIndex].checked = true;
         }
 
-        // Kiểm tra trạng thái khi tải lại trang
         const checkedInputIndex = Array.from(starInputs).findIndex((input) => input.checked);
         if (checkedInputIndex !== -1) {
-            updateStars(checkedInputIndex); // Cập nhật màu nếu đã chọn trước đó
+            updateStars(checkedInputIndex);
         }
     });
 </script>
