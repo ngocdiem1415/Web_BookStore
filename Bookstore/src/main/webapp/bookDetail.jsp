@@ -79,7 +79,8 @@
                     <c:forEach var="image" items="${book.imageList}">
                         <div class="item-thumb mx-2">
                             <img width="60" height="60" class="rounded-2" style="object-fit: cover; cursor: pointer"
-                                 src="${image.sourceImg}" alt="${book.title}" onclick="updateMainImage('${image.sourceImg}')" />
+                                 src="${image.sourceImg}" alt="${book.title}"
+                                 onclick="updateMainImage('${image.sourceImg}')"/>
                         </div>
                     </c:forEach>
                 </div>
@@ -284,7 +285,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Sản phẩm liên quan</h5>
-                        <c:forEach var="relatedBook" items="${relatedBooks}" >
+                        <c:forEach var="relatedBook" items="${relatedBooks}">
                             <div class="d-flex mb-3">
                                 <a href="book-detail?id=${relatedBook.bId}" class="me-3">
                                     <img src="${relatedBook.image != null ? relatedBook.image.sourceImg : 'default-image.jpg'}"
@@ -292,18 +293,20 @@
                                 </a>
                                 <div class="info">
                                     <a href="book-detail" class="nav-link mb-1">
-                                       ${relatedBook.title}
+                                            ${relatedBook.title}
                                     </a>
                                     <div class="mb-3 text-danger d-flex align-items-center">
                                         <!--giá đã giảm-->
                                         <div class="d-flex align-items-center justify-content-center text-center">
-                                            <strong class="unit-price fw-semibold"><f:formatNumber value="${relatedBook.originalPrice}"/> </strong>
+                                            <strong class="unit-price fw-semibold"><f:formatNumber
+                                                    value="${relatedBook.originalPrice}"/> </strong>
                                             <i class="fa-solid fa-dong-sign fa-xs"></i>
                                         </div>
 
                                         <!--giá gốc-->
                                         <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                            <span class="original-price"><f:formatNumber value="${relatedBook.originalPrice}"/></span>
+                                            <span class="original-price"><f:formatNumber
+                                                    value="${relatedBook.originalPrice}"/></span>
                                             <i class="fa-solid fa-dong-sign fa-xs"></i>
                                         </div>
 
@@ -334,37 +337,40 @@
                        style="font-weight: 500; font-size: 1.2rem; padding: 0; color: black">
                         ĐÁNH GIÁ SẢN PHẨM
                     </a>
-                    <c:if test="${review != null}">
-                        <ul class="comment-list">
-                        <li class="my-4 row">
-                            <!--Khách hàng-->
-                            <div class="comment-header col-2 d-flex align-items-start">
+                    <c:choose>
+                        <c:when test="${not empty book.getReviewList()}">
+                            <ul class="comment-list">
+                                <c:forEach var="review" items="${book.getReviewList()}">
+                                    <li class="my-4 row">
+                                        <!-- Khách hàng -->
+                                        <div class="comment-header col-2 d-flex align-items-start">
+                                            <img src="${review.getUser().getAvatar()}" alt="avatar" class="rounded-circle me-3"
+                                                 style="width: 50px; height: 50px;">
+                                            <div>
+                                                <div class="comment-date">${review.getReviewDate()}</div>
+                                            </div>
+                                        </div>
 
-                                <img src="img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
-                                     style="width: 50px; height: 50px;">
-                                <div>
-                                    <div class="comment-date">${review.reviewDate}</div>
-                                </div>
-                            </div>
-                            <!--                                rating-->
-                            <div class="comment-content col-10">
-                                <div class="rating-box mt-2">
-                                    <div class="text-warning mb-1 me-2">
-                                        <span>${review.rating}</span>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <!--   Đánh giá-->
-                                <div class="mt-2">
-                                    ${review.comment}
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    </c:if>
-                    <c:if test="${review == null}">
-                        <p>Không có đánh giá nào cho sách này.</p>
-                    </c:if>
+                                        <!-- Rating và Comment -->
+                                        <div class="comment-content col-10">
+                                            <div class="rating-box mt-2">
+                                                <div class="text-warning mb-1 me-2">
+                                                    <span>${review.getRating()}</span>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">
+                                                    ${review.getComment()}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Không có đánh giá nào cho sách này.</p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
