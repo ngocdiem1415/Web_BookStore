@@ -43,16 +43,18 @@ public class FilterOfListBook extends HttpServlet {
 
         // Tính toán offset
         int offset = (page - 1) * maxItems;
-
+        System.out.println("page " +page + "maxItem "+ maxItems );
         List<Book> productList = bookDetailService.listProductsTest(maxItems, offset,
                 publisher,category,firstPrice,secondPrice,rating,sort,findWord);
         int totalItems = bookDetailService.totalBooks();  // Tổng số sản phẩm trong cơ sở dữ liệu
+        int totalItemsOnPage = productList.size();
         System.out.println(offset + maxItems);
 
         // Chuyển đổi danh sách sản phẩm thành JSON
         Map<String, Object> result = new HashMap<>();
         result.put("products", productList);
         result.put("totalItems", totalItems);
+        result.put("totalItemsOnPage", totalItemsOnPage);
         System.out.println(request.toString());
 
         PrintWriter printWriter = response.getWriter();
