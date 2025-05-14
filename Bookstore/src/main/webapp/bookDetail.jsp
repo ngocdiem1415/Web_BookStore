@@ -140,19 +140,42 @@
                     <!-- Số lượng, Mua ngay, Thêm vào giỏ hàng -->
                     <div class="row mb-1 text-muted">
                         <label class="pt-1 d-block col-2">Số lượng</label>
+                        <%--                        <div class="input-group mb-3 col-6" style="width: 170px;">--%>
+                        <%--                            <button class="btn btn-white border border-secondary px-3" type="button" id="decrease"--%>
+                        <%--                                    data-mdb-ripple-color="dark">--%>
+                        <%--                                <i class="fas fa-minus"></i>--%>
+                        <%--                            </button>--%>
+                        <%--                            <input type="text" id="quantity" class="form-control text-center border border-secondary"--%>
+                        <%--                                   placeholder="1" value="1" aria-label="Example text with button addon"--%>
+                        <%--                                   aria-describedby="button-addon1"/>--%>
+                        <%--                            <button class="btn btn-white border border-secondary px-3" type="button" id="increase"--%>
+                        <%--                                    data-mdb-ripple-color="dark">--%>
+                        <%--                                <i class="fas fa-plus"></i>--%>
+                        <%--                            </button>--%>
+                        <%--                        </div>--%>
+                        <!-- Nếu hết hàng -->
                         <div class="input-group mb-3 col-6" style="width: 170px;">
-                            <button class="btn btn-white border border-secondary px-3" type="button" id="decrease"
+                            <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
+                                    type="button" id="decrease"
+                                    ${book.stockQuantity == 0 ? 'disabled' : ''}
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-minus"></i>
                             </button>
+
                             <input type="text" id="quantity" class="form-control text-center border border-secondary"
-                                   placeholder="1" value="1" aria-label="Example text with button addon"
+                                   value="${book.stockQuantity == 0 ? 0 : 1}"
+                                    ${book.stockQuantity == 0 ? 'readonly' : ''}
+                                   aria-label="Example text with button addon"
                                    aria-describedby="button-addon1"/>
-                            <button class="btn btn-white border border-secondary px-3" type="button" id="increase"
+
+                            <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
+                                    type="button" id="increase"
+                                    ${book.stockQuantity == 0 ? 'disabled' : ''}
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
+
 
                         <!-- Số lượng hàng tồn kho -->
                         <label class="pt-1 d-block col-3">
