@@ -97,12 +97,12 @@
 
                         <!-- Xếp hạng -->
                         <div id="average-rating" class="text-warning mb-1 me-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span id="average-rating-value" class="ms-1"> 5.0 </span>
+                            <span class="star" data-value="1"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="2"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="3"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="4"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="5"><i class="fa fa-star"></i></span>
+                            <span id="average-rating-value" class="ms-1"> ${book.rating} </span>
                         </div>
 
                         <!-- Lượt mua -->
@@ -423,41 +423,24 @@
 <!--Script xếp hạng-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Lấy danh sách các phần tử nhận xét
-        const comments = document.querySelectorAll(".comment-list .rating-box .text-warning");
-
-        // Nếu không có nhận xét, giữ nguyên giá trị mặc định
-        if (comments.length === 0) return;
-
-        let totalRating = 0;
-
-        // Tính tổng điểm xếp hạng
-        comments.forEach(comment => {
-            const stars = comment.querySelectorAll(".fa-star");
-            totalRating += stars.length; // Mỗi ngôi sao trong `.text-warning` là một điểm
-        });
-
-        // Tính trung bình
-        const averageRating = totalRating / comments.length;
-
-        // Cập nhật số sao và giá trị trung bình hiển thị
-        const averageRatingElement = document.getElementById("average-rating");
-        const averageRatingValueElement = document.getElementById("average-rating-value");
-
-        // Làm tròn đến 1 chữ số thập phân
-        averageRatingValueElement.textContent = averageRating.toFixed(1);
-
-        // Cập nhật số sao hiển thị
-        averageRatingElement.innerHTML = '';
-        for (let i = 0; i < 5; i++) {
-            const star = document.createElement("i");
-            star.classList.add("fa", i < Math.round(averageRating) ? "fa-star" : "fa-star-o", "text-warning");
-            averageRatingElement.appendChild(star);
-        }
-
-        // Thêm lại phần điểm trung bình
-        averageRatingElement.appendChild(averageRatingValueElement);
+        const ratingText = document.getElementById("average-rating-value").textContent.trim();
+        const ratingValue = Math.round(parseFloat(ratingText)); // Làm tròn giá trị rating
+        const stars = document.querySelectorAll("#average-rating .star");
+        highlightStars(stars, ratingValue);
     });
+    function highlightStars(stars, value) {
+        stars.forEach((star) => {
+            const starValue = parseInt(star.getAttribute("data-value"), 10);
+            const icon = star.querySelector("i");
+            if (starValue <= value) {
+                icon.style.color = "#ffcc00"; // Màu vàng khi được chọn
+                star.classList.add("selected");
+            } else {
+                icon.style.color = "#ccc"; // Màu xám khi không được chọn
+                star.classList.remove("selected");
+            }
+        });
+    }
 </script>
 <!--format tiền tệ-->
 <script src="js/FormatMoney.js"></script>
