@@ -24,7 +24,7 @@
 
     <%--    mdb css--%>
     <link rel="stylesheet" href="css/mdb/css/mdb.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 
 </head>
@@ -48,7 +48,8 @@
                             <option value="0">Hàng mới nhất</option>
                             <option value="1">Hàng cũ nhất</option>
                             <option value="2">Giá tăng dần</option>
-                            <option value="3">Giá tăng dần</option>
+                            <option value="3">Giá giảm dần</option>
+                            <option value="4">Hàng giảm giá</option>
                         </select>
                         <label class="form-label select-label" id="apply">Sắp xếp</label>
                     </div>
@@ -94,33 +95,33 @@
                         <h4 class="category__heading">Giá cả</h4>
 
                         <div class="category-inform">
-                            <input type="radio" id="100k" name="priceRange" value="under100k">
-                            <label class="checkbox-label" for="100k">Giá dưới 100.000đ</label>
+                            <input type="radio" id="100" name="priceRange" value="<100k">
+                            <label class="checkbox-label" for="100">Giá dưới 100.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="200k" name="priceRange" value="100k-200k">
-                            <label class="checkbox-label" for="200k">100.000đ - 200.000đ</label>
+                            <input type="radio" id="200" name="priceRange" value="100k-200k">
+                            <label class="checkbox-label" for="200">100.000đ - 200.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="300k" name="priceRange" value="200k-300k">
-                            <label class="checkbox-label" for="300k">200.000đ - 300.000đ</label>
+                            <input type="radio" id="300" name="priceRange" value="200k-300k">
+                            <label class="checkbox-label" for="300">200.000đ - 300.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="500k" name="priceRange" value="300k-500k">
-                            <label class="checkbox-label" for="500k">300.000đ - 500.000đ</label>
+                            <input type="radio" id="500" name="priceRange" value="300k-500k">
+                            <label class="checkbox-label" for="500">300.000đ - 500.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="1000k" name="priceRange" value="500k-1000k">
-                            <label class="checkbox-label" for="1000k">500.000đ - 1.000.000đ</label>
+                            <input type="radio" id="1000" name="priceRange" value="500k-1000k">
+                            <label class="checkbox-label" for="1000">500.000đ - 1.000.000đ</label>
                         </div>
 
                         <div class="category-inform">
-                            <input type="radio" id="hon1tr" name="priceRange" value="above1mil">
-                            <label class="checkbox-label" for="hon1tr">Giá trên 1.000.000đ</label>
+                            <input type="radio" id=">1000" name="priceRange" value=">1000k">
+                            <label class="checkbox-label" for=">1000">Giá trên 1.000.000đ</label>
                         </div>
                     </div>
 
@@ -145,6 +146,15 @@
                 </div>
             </div>
         </div>
+        <form id="filter-form">
+            <input type="hidden" name="publisher" id="publisherFilter">
+            <input type="hidden" name="category" id="categoryFilter">
+            <input type="hidden" name="firstPrice" id="firstPriceFilter">
+            <input type="hidden" name="secondPrice" id="secondPriceFilter">
+            <input type="hidden" name="rating" id="ratingFilter">
+            <input type="hidden" name="sort" id="sortFilter">
+            <input type="hidden" name="page" id="pageFilter" value="1">
+        </form>
     </div>
 </div>
 <!--footer-->
@@ -176,17 +186,59 @@
 %>
 
 <script>
+    let keyword = "";
     document.addEventListener("DOMContentLoaded", function () {
-        const keyword = "<%= findWord %>";
+        keyword = "<%= findWord %>";
         document.getElementById("searchInput").value = keyword;
+        fetchProducts(1, 20, keyword)
+    });
+
+    $("input[name='publisher'], input[name='category'], input[name='priceRange']").change(function () {
+        $("#publisherFilter").val($("input[name='publisher']:checked").val());
+        $("#categoryFilter").val($("input[name='category']:checked").val());
+
+        var selectedValue = $("input[name='priceRange']:checked").val();
+        console.log('Selected Price Range:', selectedValue);
+        // Tách các số từ giá trị đã chọn bằng regex
+        if (selectedValue == null) {
+            firstPrice = "";
+            secondPrice = "";
+        } else {
+            var priceRange = selectedValue.match(/\d+/g);
+            if (priceRange && priceRange.length >= 2) {
+                var result = priceRange[0];
+
+                if (priceRange[1] == null) {
+                    priceRange[1] = result;
+                    priceRange[0] = 0;
+                    secondPrice = parseInt(priceRange[1] + "000");
+                }
+                firstPrice = parseInt(priceRange[0] + "000"); // Chuyển thành số cho giá trị thấp nhất
+                secondPrice = parseInt(priceRange[1] + "000"); // Chuyển thành số cho giá trị cao nhất
+                $("#firstPriceFilter").val(firstPrice);
+                $("#secondPriceFilter").val(secondPrice);
+
+                console.log('First Price:', firstPrice);
+                console.log('Second Price:', secondPrice);
+            }
+        }
+        $("#pageFilter").val("1"); // reset về trang đầu
         fetchProducts(1, 20, keyword);
     });
 
-    function fetchProducts(page, maxItems, keyword) {
+    //Sắp xếp
+    $("#sort-by").change(function () {
+        $("#sortFilter").val($(this).val());
+        $("#pageFilter").val("1");
+        fetchProducts(1, 20, keyword);
+    });
+
+    function fetchProducts(page, maxItems, findWord) {
         $.ajax({
-            url: '/Bookstore/listBooks?page=' + page + '&maxItems=' + maxItems + '&find=' + keyword,
+            url: '/Bookstore/filter',
             method: 'GET',
             dataType: 'json',
+            data: $("#filter-form").serialize() + "&page=" + page + "&maxItems=" + maxItems + "&find=" + findWord,
             success: function (json) {
                 let data = "";
                 let obj = json.products; // Dữ liệu trả về có key 'products'
@@ -233,8 +285,8 @@
                         '</span>';
 
                     // Đánh giá
-                    data +=  '<div class="home-product-item__rating">' +
-                            '<ul class="rating" data-mdb-value="' + val.rating + '">';
+                    data += '<div class="home-product-item__rating">' +
+                        '<ul class="rating" data-mdb-value="' + val.rating + '">';
                     for (let i = 1; i <= 5; i++) {
                         if (i <= val.rating) {
                             data += '<li><i class="fas fa-star fa-sm" style="color: gold;"></i></li>';
@@ -389,34 +441,7 @@
 <%--        });--%>
 <%--    });--%>
 
-<%--    $(document).ready(function () {--%>
-<%--        // Attach change event to radio buttons--%>
-<%--        $('input[name="radioForm"]').on('change', function () {--%>
-<%--            var selectedValue = $('input[name="priceRange"]:checked').next('label').text().trim();--%>
-<%--            // Tách các số từ giá trị đã chọn bằng regex--%>
-<%--            var priceRange = selectedValue.match(/\d+/g);--%>
-<%--            console.log('Prices:', priceRange);--%>
-
-<%--            // xử lí giá tị đã tìm được--%>
-<%--            if (priceRange && priceRange.length >= 2) {--%>
-<%--                var result = priceRange[0];--%>
-
-
-<%--                if (priceRange[1] == null) {--%>
-<%--                    priceRange[1] = result;--%>
-<%--                    priceRange[0] = 0;--%>
-<%--                    secondPrice = parseInt(priceRange[1] + "000");--%>
-<%--                }--%>
-<%--                firstPrice = parseInt(priceRange[0] + "000"); // Chuyển thành số cho giá trị thấp nhất--%>
-<%--                secondPrice = parseInt(priceRange[1] + "000"); // Chuyển thành số cho giá trị cao nhất--%>
-
-<%--                console.log('First Price:', firstPrice);--%>
-<%--                console.log('Second Price:', secondPrice);--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-
+<%--
 <%--    $('#sort-by').change(function () {--%>
 <%--        // Lấy giá trị được chọn--%>
 <%--        var selectedValue = $(this).val();--%>
@@ -661,45 +686,6 @@
         if (checkedInputIndex !== -1) {
             updateStars(checkedInputIndex);
         }
-    });
-</script>
-<!--Script xếp hạng-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Lấy danh sách các phần tử nhận xét
-        const comments = document.querySelectorAll(".comment-list .rating-box .text-warning");
-
-        // Nếu không có nhận xét, giữ nguyên giá trị mặc định
-        if (comments.length === 0) return;
-
-        let totalRating = 0;
-
-        // Tính tổng điểm xếp hạng
-        comments.forEach(comment => {
-            const stars = comment.querySelectorAll(".fa-star");
-            totalRating += stars.length; // Mỗi ngôi sao trong `.text-warning` là một điểm
-        });
-
-        // Tính trung bình
-        const averageRating = totalRating / comments.length;
-
-        // Cập nhật số sao và giá trị trung bình hiển thị
-        const averageRatingElement = document.getElementById("average-rating");
-        const averageRatingValueElement = document.getElementById("average-rating-value");
-
-        // Làm tròn đến 1 chữ số thập phân
-        averageRatingValueElement.textContent = averageRating.toFixed(1);
-
-        // Cập nhật số sao hiển thị
-        averageRatingElement.innerHTML = '';
-        for (let i = 0; i < 5; i++) {
-            const star = document.createElement("i");
-            star.classList.add("fa", i < Math.round(averageRating) ? "fa-star" : "fa-star-o", "text-warning");
-            averageRatingElement.appendChild(star);
-        }
-
-        // Thêm lại phần điểm trung bình
-        averageRatingElement.appendChild(averageRatingValueElement);
     });
 </script>
 </body>
