@@ -36,8 +36,21 @@ public class QUERIES {
                         "VALUES (:title, :author, :categoryId, :publisherId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId,CURRENT_TIMESTAMP, :status)";
         public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
-        public static final String SELECT_ALL_BOOK_LIMIT_TEST =
-                "SELECT * FROM books WHERE title LIKE CONCAT('%', :title, '%') LIMIT :limit OFFSET :offset";
+        //        public static final String SELECT_ALL_BOOK_LIMIT_TEST =
+//                "SELECT * FROM books WHERE title LIKE CONCAT('%', :title, '%') LIMIT :limit OFFSET :offset";
+        public static final String SELECT_ALL_BOOK_FILTER =
+               "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                       " FROM books b" +
+                       " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                       " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                       " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                       " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                       " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                       " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                       " GROUP BY b.b_id" +
+                       " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                       " LIMIT :limit OFFSET :offset";
+
         public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
         public static final String FIND_BY_TITLE = "select * from books where title LIKE CONCAT('%', :title, '%')";
@@ -47,49 +60,75 @@ public class QUERIES {
         public static final String DELETE = "delete from books where b_id = :id";
         public static final String TOTALBOOK = "select count(*) from books ";
 
-        public static final String SELECT_PRODUCT_PAGE = "SELECT * FROM books " +
-                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
-                "AND (p_id = :publisherId OR p_id IS NULL) " +
-                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
-                "AND original_price >= :firstPrice " +
-                "AND original_price <= :secondPrice " +
-                "LIMIT :limit OFFSET :offset";
+        public static final String SELECT_BOOK_UPDATE_DESC =
+                "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                        " FROM books b" +
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                        " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                        " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                        " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                        " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                        " GROUP BY b.b_id" +
+                        " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                        " ORDER BY update_at DESC "+
+                        " LIMIT :limit OFFSET :offset";
 
-        public static final String SELECT_BOOK_UPDATE_DESC = "SELECT * FROM books " +
-                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
-                "AND (p_id = :publisherId OR p_id IS NULL) " +
-                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
-                "AND original_price >= :firstPrice " +
-                "AND original_price <= :secondPrice " +
-                "ORDER BY update_at DESC " +
-                "LIMIT :limit OFFSET :offset";
+        public static final String SELECT_BOOK_UPDATE_ASC = "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                " FROM books b" +
+                " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                " GROUP BY b.b_id" +
+                " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                " ORDER BY update_at ASC "+
+                " LIMIT :limit OFFSET :offset";
 
-        public static final String SELECT_BOOK_UPDATE_ASC = "SELECT * FROM books " +
-                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
-                "AND (p_id = :publisherId OR p_id IS NULL) " +
-                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
-                "AND original_price >= :firstPrice " +
-                "AND original_price <= :secondPrice " +
-                "ORDER BY update_at ASC " +
-                "LIMIT :limit OFFSET :offset";
+        public static final String SELECT_BOOK_PRICE_DESC =
+                "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                        " FROM books b" +
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                        " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                        " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                        " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                        " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                        " GROUP BY b.b_id" +
+                        " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                        " ORDER BY original_price DESC " +
+                        " LIMIT :limit OFFSET :offset";
 
-        public static final String SELECT_BOOK_PRICE_DESC = "SELECT * FROM books " +
-                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
-                "AND (p_id = :publisherId OR p_id IS NULL) " +
-                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
-                "AND original_price >= :firstPrice " +
-                "AND original_price <= :secondPrice " +
-                "ORDER BY original_price DESC " +
-                "LIMIT :limit OFFSET :offset";
+        public static final String SELECT_BOOK_PRICE_ASC =
+                "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                        " FROM books b" +
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                        " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                        " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                        " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                        " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                        " GROUP BY b.b_id" +
+                        " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                        " ORDER BY original_price ASC " +
+                        " LIMIT :limit OFFSET :offset";
 
-        public static final String SELECT_BOOK_PRICE_ASC = "SELECT * FROM books " +
-                "WHERE (category_id = :categoryId OR category_id IS NULL) " +
-                "AND (p_id = :publisherId OR p_id IS NULL) " +
-                "AND LOWER(title) LIKE CONCAT('%', LOWER(:find), '%') " +
-                "AND original_price >= :firstPrice " +
-                "AND original_price <= :secondPrice " +
-                "ORDER BY original_price ASC " +
-                "LIMIT :limit OFFSET :offset";
+        public static final String SELECT_ALL_BOOK_DISCOUNT =
+                "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                        " FROM books b" +
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                        " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                        " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                        " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                        " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                        " AND b.promotion_id IS NOT NULL" +
+                        " GROUP BY b.b_id" +
+                        " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                        " ORDER BY original_price ASC " +
+                        " LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_RELATED_BOOKS = "select * from books where category_id = :categoryId and b_id != :bookId limit 4";
         public static final String SELECT_BOOK_BY_LIST_PROMOTION =
