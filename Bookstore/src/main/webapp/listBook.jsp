@@ -124,10 +124,14 @@
                             <label class="checkbox-label" for=">1000">Giá trên 1.000.000đ</label>
                         </div>
                     </div>
-
                     <div class="category-form">
                         <h4 class="category__heading">Đánh Giá Sao</h4>
-                        <div id="rating-options"></div>
+                        <div class="category-inform">
+                            <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐ trở lên</label><br>
+                            <label><input type="radio" name="rating" value="3"> ⭐⭐⭐ trở lên</label><br>
+                            <label><input type="radio" name="rating" value="2"> ⭐⭐ trở lên</label><br>
+                            <label><input type="radio" name="rating" value="1"> ⭐ trở lên</label>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -153,7 +157,6 @@
             <input type="hidden" name="secondPrice" id="secondPriceFilter">
             <input type="hidden" name="rating" id="ratingFilter">
             <input type="hidden" name="sort" id="sortFilter">
-            <input type="hidden" name="page" id="pageFilter" value="1">
         </form>
     </div>
 </div>
@@ -186,19 +189,23 @@
 %>
 
 <script>
+    let page=1;
     let keyword = "";
     document.addEventListener("DOMContentLoaded", function () {
         keyword = "<%= findWord %>";
         document.getElementById("searchInput").value = keyword;
-        fetchProducts(1, 20, keyword)
+        fetchProducts(page, 20, keyword)
     });
 
-    $("input[name='publisher'], input[name='category'], input[name='priceRange']").change(function () {
+    $("input[name='publisher'], input[name='category'], input[name='priceRange'], input[name='rating']").change(function () {
+        $("#page").val("1");
+        page = 1;
+        console.log(page);
         $("#publisherFilter").val($("input[name='publisher']:checked").val());
         $("#categoryFilter").val($("input[name='category']:checked").val());
-
+        $("#ratingFilter").val($("input[name='rating']:checked").val());
         var selectedValue = $("input[name='priceRange']:checked").val();
-        console.log('Selected Price Range:', selectedValue);
+        // console.log('Selected Price Range:', selectedValue);
         // Tách các số từ giá trị đã chọn bằng regex
         if (selectedValue == null) {
             firstPrice = "";
@@ -223,14 +230,13 @@
             }
         }
         $("#pageFilter").val("1"); // reset về trang đầu
-        fetchProducts(1, 20, keyword);
+        fetchProducts(page, 20, keyword);
     });
 
     //Sắp xếp
     $("#sort-by").change(function () {
         $("#sortFilter").val($(this).val());
-        $("#pageFilter").val("1");
-        fetchProducts(1, 20, keyword);
+        fetchProducts(page, 20, keyword);
     });
 
     function fetchProducts(page, maxItems, findWord) {
@@ -243,13 +249,13 @@
                 let data = "";
                 let obj = json.products; // Dữ liệu trả về có key 'products'
                 let totalItems = json.totalItems; // Tổng số sản phẩm (để tính số trang)
-                let maxItems = 20; // Số sản phẩm hiển thị mỗi trang
+                let totalItemsOnPage = json.totalItemsOnPage; // Tổng số sản phẩm trên trang hiện tại
+                maxItems = 20; // Số sản phẩm hiển thị mỗi trang
                 let maxPage = Math.ceil(totalItems / maxItems); // Tính tổng số trang
-                console.log(obj)
+                // console.log(obj)
 
                 // Tạo danh sách sản phẩm
                 obj.forEach(function (val) {
-                    console.log("HTML sinh ra:", data);
                     data += '<div class="grid-md-2-4">' +
                         '<a href="book-detail?id=' + val.bId + '">' +
                         '<div class="home-product-item">' +
@@ -288,7 +294,7 @@
                     data += '<div class="home-product-item__rating">' +
                         '<ul class="rating" data-mdb-value="' + val.rating + '">';
                     for (let i = 1; i <= 5; i++) {
-                        if (i <= val.rating) {
+                        if (i <= Math.round(val.rating)) {
                             data += '<li><i class="fas fa-star fa-sm" style="color: gold;"></i></li>';
                         } else {
                             data += '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>';
@@ -306,15 +312,16 @@
                 $('#product-container').html(data);
 
                 // Cập nhật phân trang
-                if (totalItems < 10) {
+                if (totalItemsOnPage < 10) {
                     $('#pagination').hide(); // Ẩn phân trang khi chỉ có một trang
                 } else {
                     $('#pagination').twbsPagination({
                         totalPages: maxPage,
                         visiblePages: 5,
                         onPageClick: function (event, page) {
-                            fetchProducts(page, maxItems, keyword); // Tải lại sản phẩm khi click vào trang
                             $('#page').val(page); // Cập nhật trang hiện tại
+                            console.log("Trang hiện tại: " + page);
+                            fetchProducts(page, maxItems, keyword); // Tải lại sản phẩm khi click vào trang
                         }
                     });
                 }
@@ -332,361 +339,6 @@
         return new Intl.NumberFormat('vi-VN').format(number);
     }
 
-</script>
-
-
-<%--<script>--%>
-<%--    document.addEventListener("DOMContentLoaded", function () {--%>
-<%--        const container = document.getElementById("rating-options");--%>
-
-<%--        // Hàm tạo HTML sao--%>
-<%--        function generateStars(rating) {--%>
-<%--            let stars = '';--%>
-<%--            for (let i = 1; i <= 5; i++) {--%>
-<%--                if (i <= rating) {--%>
-<%--                    stars += '<li><i class="fa fa-star fa-sm text-warning"></i></li>';--%>
-<%--                } else {--%>
-<%--                    stars += '<li><i class="fa fa-star-o fa-sm text-warning"></i></li>';--%>
-<%--                }--%>
-<%--            }--%>
-<%--            return '<ul class="rating">' + stars + '</ul>';--%>
-<%--        }--%>
-
-<%--        // Tạo từng mức đánh giá từ 1 đến 5--%>
-<%--        for (let i = 1; i <= 5; i++) {--%>
-<%--            const option = document.createElement('div');--%>
-<%--            option.classList.add('category-inform');--%>
-<%--            option.innerHTML = `--%>
-<%--                <input type="radio" id="rating${i}" name="rating" value="${i}">--%>
-<%--                <label for="rating${i}">--%>
-<%--                    ${generateStars(i)}--%>
-<%--                </label>--%>
-<%--            `;--%>
-<%--            container.appendChild(option);--%>
-<%--        }--%>
-<%--    });--%>
-<%--</script>--%>
-
-
-<%--<script type="text/javascript">--%>
-<%--    let currentPage = ${page};--%>
-<%--    let totalPages = ${totalPage};--%>
-<%--    const limit = 20;--%>
-<%--    let category = "";--%>
-<%--    let find = "";--%>
-<%--    let publisher = "";--%>
-<%--    let orderBy = "";--%>
-<%--    var firstPrice = 0;--%>
-<%--    var secondPrice = 1000000;--%>
-<%--    let ratingValue = 0;--%>
-
-<%--    $(document).ready(function () {--%>
-<%--        window.pagObj = $('#pagination').twbsPagination({--%>
-<%--            totalPages: totalPages,--%>
-<%--            visiblePages: 5,--%>
-<%--            startPage: currentPage,--%>
-<%--            first: 'Đầu',--%>
-<%--            last: 'Cuối',--%>
-<%--            onPageClick: function (event, page) {--%>
-<%--                console.log("Page clicked:", page); // Thêm log để kiểm tra--%>
-<%--                if (currentPage != page) {--%>
-<%--                    currentPage = page;--%>
-<%--                    console.log(currentPage)--%>
-<%--                    // ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                    ajaxLoad(currentPage)--%>
-<%--                }--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--    // Đặt sự kiện click cho danh sách tác giả--%>
-<%--    var publishers = document.querySelectorAll(".publisher-item");--%>
-<%--    publishers.forEach(function (radioButton) {--%>
-<%--        radioButton.addEventListener("change", function (event) {--%>
-<%--            // Nếu radio button được chọn, lấy giá trị của nó--%>
-<%--            if (radioButton.checked) {--%>
-<%--                publisher = radioButton.value;--%>
-<%--                console.log("Selected publisher ID: " + publisher);--%>
-
-<%--                // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--    // Đặt sự kiện click cho danh sách tác giả--%>
-<%--    var categories = document.querySelectorAll(".categories-item");--%>
-<%--    categories.forEach(function (radioButton) {--%>
-<%--        radioButton.addEventListener("change", function (event) {--%>
-<%--            // Nếu radio button được chọn, lấy giá trị của nó--%>
-<%--            if (radioButton.checked) {--%>
-<%--                category = radioButton.value;--%>
-<%--                console.log("Selected category ID: " + publisher);--%>
-
-<%--                // Tiến hành gọi AJAX hoặc xử lý theo yêu cầu--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--    //dat su kien cho rating--%>
-<%--    $(document).ready(function () {--%>
-<%--        // Attach click event to each star--%>
-<%--        $('.rating li').on('click', function () {--%>
-<%--            ratingValue = $(this).closest('ul').data('data-mdb-value');--%>
-
-<%--            // Log or use the rating value as needed--%>
-<%--            console.log(ratingValue);--%>
-<%--            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--
-<%--    $('#sort-by').change(function () {--%>
-<%--        // Lấy giá trị được chọn--%>
-<%--        var selectedValue = $(this).val();--%>
-<%--        console.log(selectedValue)--%>
-
-<%--        // Gọi hàm xử lý hoặc thực hiện các công việc khác tùy thuộc vào giá trị được chọn--%>
-<%--        handleSortSelection(selectedValue);--%>
-<%--    });--%>
-
-<%--    // Hàm xử lý với giá trị được chọn--%>
-<%--    function handleSortSelection(selectedValue) {--%>
-
-<%--        switch (selectedValue) {--%>
-
-<%--            case '0':--%>
-<%--                // Xử lý khi chọn "Mặc định"--%>
-<%--                currentPage = 1--%>
-<%--                console.log('Chọn mặc định');--%>
-<%--                orderBy = ""--%>
-<%--                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại--%>
-<%--                window.pagObj = $('#pagination').twbsPagination({--%>
-<%--                    totalPages: totalPages,--%>
-<%--                    visiblePages: 5,--%>
-<%--                    startPage: currentPage,--%>
-<%--                    onPageClick: function (event, page) {--%>
-<%--                        if (currentPage != page) {--%>
-<%--                            currentPage = page;--%>
-<%--                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                        }--%>
-<%--                    }--%>
-<%--                });--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                break;--%>
-<%--            case '1':--%>
-<%--                // Xử lý khi chọn "hàng mới nhất"--%>
-<%--                currentPage = 1--%>
-<%--                console.log('Chọn theo tên');--%>
-<%--                orderBy = "book_update_DESC"--%>
-<%--                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại--%>
-<%--                window.pagObj = $('#pagination').twbsPagination({--%>
-<%--                    totalPages: totalPages,--%>
-<%--                    visiblePages: 5,--%>
-<%--                    startPage: currentPage,--%>
-<%--                    onPageClick: function (event, page) {--%>
-<%--                        if (currentPage != page) {--%>
-<%--                            currentPage = page;--%>
-<%--                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                        }--%>
-<%--                    }--%>
-<%--                });--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                break;--%>
-<%--            case '2':--%>
-<%--                // Xử lý khi chọn "hàng cũ nhất"--%>
-<%--                currentPage = 1;--%>
-<%--                console.log('Chọn theo sách cũ nhất');--%>
-<%--                orderBy = "book_update_ASC"--%>
-<%--                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại--%>
-<%--                window.pagObj = $('#pagination').twbsPagination({--%>
-<%--                    totalPages: totalPages,--%>
-<%--                    visiblePages: 5,--%>
-<%--                    startPage: currentPage,--%>
-<%--                    onPageClick: function (event, page) {--%>
-<%--                        if (currentPage != page) {--%>
-<%--                            currentPage = page;--%>
-<%--                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                        }--%>
-<%--                    }--%>
-<%--                });--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                break;--%>
-<%--            case '3':--%>
-<%--                // Xử lý khi chọn "Giá tăng dần"--%>
-<%--                currentPage = 1;--%>
-<%--                console.log('Chọn theo giá tăng dần');--%>
-<%--                orderBy = "book_price_ASC"--%>
-<%--                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại--%>
-<%--                window.pagObj = $('#pagination').twbsPagination({--%>
-<%--                    totalPages: totalPages,--%>
-<%--                    visiblePages: 5,--%>
-<%--                    startPage: currentPage,--%>
-<%--                    onPageClick: function (event, page) {--%>
-<%--                        if (currentPage != page) {--%>
-<%--                            currentPage = page;--%>
-<%--                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                        }--%>
-<%--                    }--%>
-<%--                });--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                break;--%>
-<%--            case '4':--%>
-<%--                // Xử lý khi chọn "Giá giảm dần"--%>
-<%--                currentPage = 1;--%>
-<%--                console.log('Chọn theo giá giảm dần');--%>
-<%--                orderBy = "book_price_DESC"--%>
-<%--                window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại--%>
-<%--                window.pagObj = $('#pagination').twbsPagination({--%>
-<%--                    totalPages: totalPages,--%>
-<%--                    visiblePages: 5,--%>
-<%--                    startPage: currentPage,--%>
-<%--                    onPageClick: function (event, page) {--%>
-<%--                        if (currentPage != page) {--%>
-<%--                            currentPage = page;--%>
-<%--                            ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                        }--%>
-<%--                    }--%>
-<%--                });--%>
-<%--                ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--                break;--%>
-<%--            default:--%>
-<%--                // Xử lý mặc định hoặc các giá trị khác nếu cần--%>
-<%--                break;--%>
-<%--        }--%>
-<%--    }--%>
-
-
-<%--    // $("#search-text").on('keyup', function () {--%>
-<%--    //     currentPage = 1; // Đặt lại currentPage về 1 khi có sự kiện tìm kiếm--%>
-<%--    //     find = $(this).val();--%>
-<%--    //     console.log(find);--%>
-<%--    //--%>
-<%--    //     // Gọi hàm update của twbsPagination để cập nhật giá trị currentPage--%>
-<%--    //     window.pagObj.twbsPagination('destroy'); // Hủy bỏ phân trang hiện tại--%>
-<%--    //     window.pagObj = $('#pagination').twbsPagination({--%>
-<%--    //         totalPages: totalPages,--%>
-<%--    //         visiblePages: 5,--%>
-<%--    //         startPage: currentPage,--%>
-<%--    //         onPageClick: function (event, page) {--%>
-<%--    //             if (currentPage !== page) {--%>
-<%--    //                 currentPage = page;--%>
-<%--    //                 // Chỉ gọi ajaxRun khi thay đổi trang--%>
-<%--    //                 ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--    //             }--%>
-<%--    //         }--%>
-<%--    //     });--%>
-<%--    //--%>
-<%--    //     // Gọi ajaxRun ngay khi có sự kiện tìm kiếm, chỉ khi người dùng thay đổi từ khóa tìm kiếm--%>
-<%--    //     // Điều này giúp hiển thị kết quả tìm kiếm ngay lập tức.--%>
-<%--    //     ajaxRun(categoryValue, find, orderBy, ratingValue, firstPrice, secondPrice);--%>
-<%--    // });--%>
-
-<%--    // Hàm gọi AJAX--%>
-<%--    function ajaxCall(categoryValue, orderBy, ratingValue, firstPrice, secondPrice) {--%>
-<%--        console.log("ajax da chay")--%>
-<%--        $.ajax({--%>
-<%--            type: "POST",--%>
-<%--            url: "/listBooks?page-index=" + currentPage + "&per-page=" + limit + "&category=" + category + "&publisher=" + publisher + "&find=" + find + "&orderBy=" + orderBy + "&ratingValue=" + ratingValue + "&firstPrice=" + firstPrice + "&secondPrice=" + secondPrice,--%>
-<%--            dataType: 'json',--%>
-<%--            contentType: "application/json; charset=utf-8",--%>
-<%--            success: function (json) {--%>
-<%--                let data = "";--%>
-<%--                let obj = json;--%>
-<%--                for (let i = 0; i < obj.length; i++) {--%>
-<%--                    let val = obj[i];--%>
-<%--                    // onclick="return theFunction();"--%>
-<%--                    data += '<div class="grid-md-2-4">' +--%>
-<%--                        '<a href="/product-detail?id=' + val.bId + '" class="home-product-item">' +--%>
-<%--                        // hinh anh san pham--%>
-<%--                        '<a href="/product-detail?id="' + (val.image && val.image.sourceImg ? val.image.sourceImg : '../img/path_to_default_image.png') + ');"></div>' +--%>
-<%--                        // Tên sản phẩm--%>
-<%--                        '<h4 class="home-product-item__name">' + val.title + '</h4>' +--%>
-<%--                        // Giá sản phẩm--%>
-<%--                        '<div class="home-product-item__price">';--%>
-<%--                    // Hiển thị giá gốc và giá khuyến mãi--%>
-<%--                    if (val.promotionId == 0) {--%>
-<%--                        data += '<span class="home-product-item__price-current original-price">' + val.originalPrice + ' đ</span>';--%>
-<%--                    } else {--%>
-<%--                        let discountedPrice = val.originalPrice - (val.originalPrice * val.promotion.discount);--%>
-<%--                        data += '<span class="home-product-item__price-current unit-price">' + discountedPrice + ' đ</span>' +--%>
-<%--                            '<span class="home-product-item__price-old original-price">' + val.originalPrice + ' đ</span>';--%>
-<%--                    }--%>
-<%--                    data += '</div>' +--%>
-<%--                        // Hành động yêu thích--%>
-<%--                        '<div class="home-product-item__action">' +--%>
-<%--                        '<span class="home-product-item__like home-product-item__like--liked">' +--%>
-<%--                        '<i class="home-product-item__action-icon-empty fa-regular fa-heart"></i>' +--%>
-<%--                        '<i class="home-product-item__action-icon-fill fa-solid fa-heart"></i>' +--%>
-<%--                        '</span>' +--%>
-
-<%--                        // Đánh giá--%>
-<%--                        '<div class="home-product-item__rating">' +--%>
-<%--                        '<ul class="rating" data-mdb-toggle="rating" data-mdb-readonly="true" data-mdb-value="' + val.averageRating + '">' +--%>
-<%--                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +--%>
-<%--                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +--%>
-<%--                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +--%>
-<%--                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +--%>
-<%--                        '<li><i class="far fa-star fa-sm" style="color: gold;"></i></li>' +--%>
-<%--                        '</ul>' +--%>
-<%--                        '</div>' +--%>
-<%--                        '</div>' +--%>
-<%--                        '</a>' +--%>
-<%--                        '</div>';--%>
-<%--                }--%>
-<%--                $(".listBook").html(data);--%>
-<%--                reloadJsFile("${pageContext.request.contextPath}/css/mdb/js/mdb.min.js");--%>
-<%--            },--%>
-<%--            error: function (xhr, status, error) {--%>
-<%--                console.log(status, error);--%>
-<%--            }--%>
-<%--        });--%>
-<%--    };--%>
-<%--    // ajaxCall(category, publisher, orderBy, ratingValue, firstPrice, secondPrice);--%>
-
-<%--    function reloadJsFile(src) {--%>
-<%--        // Remove the existing script tag--%>
-<%--        $('script[src="' + src + '"]').remove();--%>
-
-<%--        // Create a new script element--%>
-<%--        var script = document.createElement('script');--%>
-<%--        script.type = 'text/javascript';--%>
-<%--        script.src = src;--%>
-
-<%--        // Append the new script element to the document head--%>
-<%--        document.head.appendChild(script);--%>
-<%--    }--%>
-<%--</script>--%>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const starInputs = document.querySelectorAll("input[name='rating']");
-        const starLabels = document.querySelectorAll(".category-inform label");
-
-        starLabels.forEach((label, index) => {
-            label.addEventListener("click", () => {
-                updateStars(index);
-            });
-        });
-
-        function updateStars(selectedIndex) {
-            starLabels.forEach((label, i) => {
-                if (i <= selectedIndex) {
-                    label.querySelector("i").style.color = "#ffc107"; // Vàng
-                } else {
-                    label.querySelector("i").style.color = "#ddd"; // Xám
-                }
-            });
-
-            starInputs[selectedIndex].checked = true;
-        }
-
-        const checkedInputIndex = Array.from(starInputs).findIndex((input) => input.checked);
-        if (checkedInputIndex !== -1) {
-            updateStars(checkedInputIndex);
-        }
-    });
 </script>
 </body>
 </html>

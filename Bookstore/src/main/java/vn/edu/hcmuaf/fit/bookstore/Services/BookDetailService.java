@@ -49,25 +49,25 @@ public class BookDetailService {
         switch (sort) {
             case "0":
                 System.out.println("Hàng mới nhất");
-                books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateASC(limit, offset, publisherId, categoryId
+                books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateDESC(limit, offset, publisherId, categoryId
                         , minPrice, maxPrice, totalRating,findWord));
                 break;
             case "1":
                 //Hàng cũ nhất
                 System.out.println("Hàng cũ nhất");
-                books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateDESC(limit, offset, publisherId, categoryId
+                books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateASC(limit, offset, publisherId, categoryId
                         , minPrice, maxPrice, totalRating,findWord));
                 break;
             case "2":
                 //Giá tăng dần
                 System.out.println("Giá tăng dần");
-                books = connect.withExtension(BookDao.class, handle -> handle.findByPriceDESC(limit, offset, publisherId, categoryId
+                books = connect.withExtension(BookDao.class, handle -> handle.findByPriceASC(limit, offset, publisherId, categoryId
                         , minPrice, maxPrice, totalRating,findWord));
                 break;
             case "3":
                 //Giá giảm dần
                 System.out.println("Giá giảm dần");
-                books = connect.withExtension(BookDao.class, handle -> handle.findByPriceASC(limit, offset, publisherId, categoryId
+                books = connect.withExtension(BookDao.class, handle -> handle.findByPriceDESC(limit, offset, publisherId, categoryId
                         , minPrice, maxPrice, totalRating,findWord));
                 break;
 
