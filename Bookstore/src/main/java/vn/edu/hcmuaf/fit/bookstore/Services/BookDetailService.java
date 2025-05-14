@@ -4,7 +4,6 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.dao.*;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
-import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +26,69 @@ public class BookDetailService {
                 .collect(Collectors.toList());
     }
 
-    public List<Book> listProductsTest(int limit, int offset, String keywword) {
-        List<Book> books = connect.withExtension(BookDao.class, handle -> handle.listProductTest(limit, offset, keywword));
-//        return books.stream().map(product -> mapOtherBean(product)).collect(Collectors.toList());
+    public List<Book> listProductsTest(int limit, int offset, String publisher, String category, String firstPrice, String secondPrice,
+                                       String rating, String sort, String findWord) {
+
+        Integer publisherId = (! "".equals(publisher)) ? Integer.parseInt(publisher) : null;
+        Integer categoryId =(! "".equals(category))? Integer.parseInt(publisher) : null;
+        Integer minPrice = (! "".equals(firstPrice)) ? Integer.parseInt(firstPrice) : null;
+        Integer maxPrice = (! "".equals(secondPrice))? Integer.parseInt(secondPrice) : null;
+        Integer totalRating = (! "".equals(rating))? Integer.parseInt(rating) : null;
+        System.out.println(
+                "limit: " + limit +
+                        "; offset: " + offset +
+                        "; publisher: " + publisher +
+                        "; category: " + category +
+                        "; firstPrice: " + firstPrice +
+                        "; secondPrice: " + secondPrice +
+                        "; rating: " + rating +
+                        "; sort: " + sort +
+                        "; findWord: " + findWord
+        );
+        List<Book> books = new ArrayList<>();
+        switch (sort) {
+            case "0":
+                System.out.println("Hàng mới nhất");
+                books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateASC(limit, offset, publisherId, categoryId
+                        , minPrice, maxPrice, totalRating,findWord));
+                break;
+            case "1":
+                //Hàng cũ nhất
+                System.out.println("Hàng cũ nhất");
+                books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateDESC(limit, offset, publisherId, categoryId
+                        , minPrice, maxPrice, totalRating,findWord));
+                break;
+            case "2":
+                //Giá tăng dần
+                System.out.println("Giá tăng dần");
+                books = connect.withExtension(BookDao.class, handle -> handle.findByPriceDESC(limit, offset, publisherId, categoryId
+                        , minPrice, maxPrice, totalRating,findWord));
+                break;
+            case "3":
+                //Giá giảm dần
+                System.out.println("Giá giảm dần");
+                books = connect.withExtension(BookDao.class, handle -> handle.findByPriceASC(limit, offset, publisherId, categoryId
+                        , minPrice, maxPrice, totalRating,findWord));
+                break;
+
+            case "4":
+                //Hàng gỉam giá
+                 System.out.println("Hàng gỉam giá");
+                books = connect.withExtension(BookDao.class, handle -> handle.listProductDiscount(limit, offset, publisherId, categoryId
+                        , minPrice, maxPrice, totalRating,findWord));
+                break;
+
+            default:
+                // Không sort
+                try {
+                    books = connect.withExtension(BookDao.class, handle -> handle.listProductFilter(limit, offset, publisherId, categoryId
+                            , minPrice, maxPrice, totalRating,findWord));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+        }
         return books.stream()
                 .map(book -> mapOtherBean(book))
                 .collect(Collectors.toList());
@@ -153,9 +212,9 @@ public class BookDetailService {
         if (stockView != null) {
             book.setSoldQuantity(stockView.getTotalSold());
             book.setStockQuantity(stockView.getStockRemaining());
-            System.out.println("Book ID: " + book.getbId()
-                    + ", Daban: " + book.getSoldQuantity()
-                    + ", Tonkho: " + book.getStockQuantity());
+//            System.out.println("Book ID: " + book.getbId()
+//                    + ", Daban: " + book.getSoldQuantity()
+//                    + ", Tonkho: " + book.getStockQuantity());
         } else {
             book.setSoldQuantity(0);
             book.setStockQuantity(0);
