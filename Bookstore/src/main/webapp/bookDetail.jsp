@@ -171,20 +171,20 @@
                         <div class="input-group mb-3 col-6" style="width: 170px;">
                             <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
                                     type="button" id="decrease"
-                                    ${book.stockQuantity == 0 ? 'disabled' : ''}
+                            ${book.stockQuantity == 0 ? 'disabled' : ''}
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-minus"></i>
                             </button>
 
                             <input type="text" id="quantity" class="form-control text-center border border-secondary"
                                    value="${book.stockQuantity == 0 ? 0 : 1}"
-                                    ${book.stockQuantity == 0 ? 'readonly' : ''}
+                            ${book.stockQuantity == 0 ? 'readonly' : ''}
                                    aria-label="Example text with button addon"
                                    aria-describedby="button-addon1"/>
 
                             <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
                                     type="button" id="increase"
-                                    ${book.stockQuantity == 0 ? 'disabled' : ''}
+                            ${book.stockQuantity == 0 ? 'disabled' : ''}
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-plus"></i>
                             </button>
@@ -340,28 +340,45 @@
                                          style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                                 </a>
                                 <div class="info">
-                                    <a href="book-detail" class="nav-link mb-1">
+                                    <a href="book-detail?id=${relatedBook.bId}" class="nav-link mb-1">
                                             ${relatedBook.title}
                                     </a>
+
                                     <div class="mb-3 text-danger d-flex align-items-center">
-                                        <!--giá đã giảm-->
-                                        <div class="d-flex align-items-center justify-content-center text-center">
-                                            <strong class="unit-price fw-semibold"><f:formatNumber
-                                                    value="${relatedBook.originalPrice}"/> </strong>
-                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                        </div>
 
-                                        <!--giá gốc-->
-                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                            <span class="original-price"><f:formatNumber
-                                                    value="${relatedBook.originalPrice}"/></span>
-                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                        </div>
+                                        <!-- Nếu có khuyến mãi -->
+                                        <c:if test="${not empty relatedBook.promotion}">
+                                            <!-- Giá đã giảm -->
+                                            <div class="d-flex align-items-center justify-content-center text-center">
+                                                <strong class="unit-price fw-semibold">
+                                                    <f:formatNumber value="${relatedBook.salePrice}"/>
+                                                </strong>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </div>
 
-                                        <!--Số % được giảm-->
-                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
-                                                ${relatedBook.promotion != null ? relatedBook.promotion.promotionName : 'Không giảm giá'}
-                                        </span>
+                                            <!-- Giá gốc gạch ngang -->
+                                            <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                                <span class="original-price">
+                                                    <f:formatNumber value="${relatedBook.originalPrice}"/>
+                                                </span>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </div>
+
+                                            <!-- Tên chương trình khuyến mãi -->
+                                            <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
+                                                    ${relatedBook.promotion.promotionName}
+                                            </span>
+                                        </c:if>
+
+                                        <!-- Nếu không có khuyến mãi -->
+                                        <c:if test="${empty relatedBook.promotion}">
+                                            <div class="d-flex align-items-center justify-content-center text-center">
+                                                <strong class="unit-price fw-semibold">
+                                                    <f:formatNumber value="${relatedBook.originalPrice}"/>
+                                                </strong>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </div>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
