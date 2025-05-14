@@ -156,33 +156,33 @@
 
                         <!-- Số lượng hàng tồn kho -->
                         <label class="pt-1 d-block col-3">
-                            ${book.stockQuantity}
+                            <span id="stock-quantity"> ${book.stockQuantity}</span>
                             sản phẩm có sẵn
                         </label>
                     </div>
 
                     <!-- Mua ngay -->
-                    <c:if test="${not empty userSession}">
+                    <c:if test="${not empty userSession and book.stockQuantity > 0}">
                         <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
                            style="background-color: red" onclick="addToCart()">
                             Mua ngay </a>
                     </c:if>
 
-                    <c:if test="${empty userSession}">
+                    <c:if test="${empty userSession or book.stockQuantity == 0}">
                         <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: red; pointer-events: none;" onclick="addToCart(${book.bId})">
+                           style="background-color: #b02a37; pointer-events: none;" onclick="addToCart(${book.bId})">
                             Mua ngay </a>
                     </c:if>
 
                     <!-- Thêm vào giỏ hàng -->
-                    <c:if test="${empty userSession}">
+                    <c:if test="${empty userSession and book.stockQuantity > 0}">
                         <button id="add-to-cart" class="btn btn-success border border-secondary py-2 disabled-btn"
                                 disabled>
                             <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
                         </button>
                     </c:if>
 
-                    <c:if test="${not empty userSession}">
+                    <c:if test="${not empty userSession or book.stockQuantity == 0}">
                         <button id="add-to-cart" class="btn btn-success border border-secondary py-2"
                                 onclick="addToCart(${book.bId})">
                             <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
@@ -199,9 +199,18 @@
                     </div>
 
                     <!-- Yêu thích -->
-                    <button id="favourite" class="btn btn-light border border-secondary py-2 px-3">
-                        <i class="fa-regular fa-heart fa-beat-fade"></i>
-                    </button>
+                    <c:if test="${empty userSession}">
+                        <button id="favourite" class="btn btn-success border border-secondary py-2 disabled-btn"
+                                disabled>
+                            <i class="fa-regular fa-heart fa-beat-fade"></i>
+                        </button>
+                    </c:if>
+
+                    <c:if test="${not empty userSession}">
+                        <button id="favourite" class="btn btn-light border border-secondary py-2 px-3">
+                            <i class="fa-regular fa-heart fa-beat-fade"></i>
+                        </button>
+                    </c:if>
                 </div>
             </main>
         </div>
@@ -470,7 +479,7 @@
     const decreaseButton = document.getElementById("decrease");
     const increaseButton = document.getElementById("increase");
     const quantityInput = document.getElementById("quantity");
-    const stockQuantity = 12;
+    const stockQuantity = parseInt(document.getElementById("stock-quantity").textContent);
 
     decreaseButton.addEventListener("click", function () {
         let currentValue = parseInt(quantityInput.value);
