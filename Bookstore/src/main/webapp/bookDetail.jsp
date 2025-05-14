@@ -97,12 +97,14 @@
 
                         <!-- Xếp hạng -->
                         <div id="average-rating" class="text-warning mb-1 me-2">
+                            <span id="average-rating-value" class="ms-1">
+                                <f:formatNumber value="${book.rating}" type="number" maxFractionDigits="1"/>
+                            </span>
                             <span class="star" data-value="1"><i class="fa fa-star"></i></span>
                             <span class="star" data-value="2"><i class="fa fa-star"></i></span>
                             <span class="star" data-value="3"><i class="fa fa-star"></i></span>
                             <span class="star" data-value="4"><i class="fa fa-star"></i></span>
                             <span class="star" data-value="5"><i class="fa fa-star"></i></span>
-                            <span id="average-rating-value" class="ms-1"> ${book.rating} </span>
                         </div>
 
                         <!-- Lượt mua -->
@@ -344,8 +346,11 @@
                                     <li class="my-4 row">
                                         <!-- Khách hàng -->
                                         <div class="comment-header col-2 d-flex align-items-start">
-                                            <img src="${review.getUser().getAvatar()}" alt="avatar" class="rounded-circle me-3"
-                                                 style="width: 50px; height: 50px;">
+                                            <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);"
+                                                 class="me-3">
+                                                <img src="${review.getUser().getAvatar()}" alt="avatar"
+                                                     style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                            </div>
                                             <div>
                                                 <div class="comment-date">${review.getReviewDate()}</div>
                                             </div>
@@ -353,13 +358,20 @@
 
                                         <!-- Rating và Comment -->
                                         <div class="comment-content col-10">
-                                            <div class="rating-box mt-2">
-                                                <div class="text-warning mb-1 me-2">
-                                                    <span>${review.getRating()}</span>
-                                                    <i class="fa fa-star"></i>
+                                            <div class="user-name text-info">
+                                                    ${review.getUser().getUsername()}
+                                            </div>
+                                            <div class="rating-box">
+                                                <div class="review-rating text-warning me-2">
+                                                    <span class="review-rating-value">${review.getRating()}</span>
+                                                    <span class="review-star" data-value="1"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="2"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="3"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="4"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="5"><i class="fa fa-star"></i></span>
                                                 </div>
                                             </div>
-                                            <div class="mt-2">
+                                            <div>
                                                     ${review.getComment()}
                                             </div>
                                         </div>
@@ -427,7 +439,15 @@
         const ratingValue = Math.round(parseFloat(ratingText)); // Làm tròn giá trị rating
         const stars = document.querySelectorAll("#average-rating .star");
         highlightStars(stars, ratingValue);
+
+        const ratingBoxes = document.querySelectorAll(".review-rating");
+        ratingBoxes.forEach(box => {
+            const reviewRatingValue = parseFloat(box.querySelector(".review-rating-value").innerText.trim());
+            const reviewStars = box.querySelectorAll(".review-star");
+            highlightStars(reviewStars, reviewRatingValue);
+        });
     });
+
     function highlightStars(stars, value) {
         stars.forEach((star) => {
             const starValue = parseInt(star.getAttribute("data-value"), 10);
