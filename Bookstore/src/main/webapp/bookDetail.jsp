@@ -116,20 +116,34 @@
 
                     <!-- Giá tiền -->
                     <div class="mb-3 text-danger ps-3 d-flex align-items-center">
-                        <!-- giá đã giảm -->
-                        <div class="h4 d-flex align-items-center justify-content-center text-center">
-                            <span class="unit-price"><f:formatNumber value="${book.salePrice}"/></span>
-                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </div>
 
-                        <!-- giá gốc -->
-                        <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
-                            <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
-                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </div>
+                        <!-- Nếu có khuyến mãi -->
+                        <c:if test="${not empty book.promotion}">
+                            <!-- Giá đã giảm -->
+                            <div class="h4 d-flex align-items-center justify-content-center text-center">
+                                <span class="unit-price"><f:formatNumber value="${book.salePrice}"/></span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
 
-                        <!-- Số % được giảm -->
-                        <span class="h5 small bg-danger text-white me-2 px-2 py-1 rounded ms-2">${book.promotion.promotionName}</span>
+                            <!-- Giá gốc gạch ngang -->
+                            <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
+                                <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
+
+                            <!-- Thông tin khuyến mãi -->
+                            <span class="h5 small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
+                                    ${book.promotion.promotionName}
+                            </span>
+                        </c:if>
+
+                        <!-- Nếu không có khuyến mãi: chỉ hiện giá gốc -->
+                        <c:if test="${empty book.promotion}">
+                            <div class="h4 d-flex align-items-center justify-content-center text-center">
+                                <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
+                        </c:if>
                     </div>
 
                     <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis">
