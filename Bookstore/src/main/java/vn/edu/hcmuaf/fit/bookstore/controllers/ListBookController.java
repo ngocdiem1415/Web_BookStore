@@ -32,8 +32,6 @@ public class ListBookController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String findword = request.getParameter("find");
-        request.setAttribute("findWord", findword);
         List<Category> categories = categoryService.listCategory();
         List<Publisher> publishers = publisherService.listPublisher();
         request.setAttribute("categories", categories);
