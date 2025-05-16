@@ -49,7 +49,7 @@ public class InvoiceService {
             temp.put(month, temp.getOrDefault(month, 0) + 1);
         }
         for (int i = 1; i <= 12; i++) {
-            if ( !temp.containsKey(i)) temp.put(i,0);
+            if (!temp.containsKey(i)) temp.put(i, 0);
         }
         System.out.println(temp.toString());
         return new ArrayList<>(temp.values());
@@ -260,6 +260,14 @@ public class InvoiceService {
         }
         invoice.setPayment(payment);
         return invoice;
+    }
+
+    public Invoice findLatestInvoiceByUser(int id) {
+        return connect.withExtension(InvoiceDao.class, handle -> handle.findLatestInvoiceByUser(id));
+    }
+
+    public int updateStatus(int invoiceId, String status) {
+        return connect.withExtension(InvoiceDao.class, handle -> handle.updateStatus(invoiceId, status));
     }
 
 }
