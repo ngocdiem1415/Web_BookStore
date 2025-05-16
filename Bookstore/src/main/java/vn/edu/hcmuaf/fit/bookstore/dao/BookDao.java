@@ -18,8 +18,15 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT)
     List<Book> listProduct(@Bind("limit") int limit, @Bind("offset") int offset);
 
-    @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_LIMIT_TEST)
-    List<Book> listProductTest(@Bind("limit") int limit, @Bind("offset") int offset, @Bind("title") String find);
+    @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_FILTER)
+    List<Book> listProductFilter(@Bind("limit") int limit,
+                                 @Bind("offset") int offset,
+                                 @Bind("p_id") Integer publisherId,
+                                 @Bind("category_id") Integer categoryId,
+                                 @Bind("firstPrice") Integer minPrice,
+                                 @Bind("secondPrice") Integer maxPrice
+                               , @Bind("rating") Integer totalRating,
+                                 @Bind("find") String findWord);
 
     @SqlQuery(QUERIES.BOOK.SELECT_LIST_NEW_BOOK)
     List<Book> newBooks(@Bind("limit") int limit);
@@ -30,27 +37,58 @@ public interface BookDao {
     @SqlQuery(QUERIES.BOOK.FIND_BY_TITLE)
     List<Book> findByName(@Bind("title") String title);
 
-    @SqlQuery(QUERIES.BOOK.SELECT_PRODUCT_PAGE)
-    List<Book> getProductsOnPage(@Bind("category_id") int category_id, @Bind("p_id") int p_id,
-                          @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
-                          @Bind("limit") int limit, @Bind("offset") int offset);
-
+    //Hàng cũ nhất
     @SqlQuery(QUERIES.BOOK.SELECT_BOOK_UPDATE_DESC)
-    List<Book> findByBookUpdateDESC(@Bind("category_id") int category_id, @Bind("p_id") int p_id,
-                              @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
-                                    @Bind("limit") int limit, @Bind("offset") int offset);
+    List<Book> findByBookUpdateDESC(@Bind("limit") int limit,
+                                    @Bind("offset") int offset,
+                                    @Bind("p_id") Integer publisherId,
+                                    @Bind("category_id") Integer categoryId,
+                                    @Bind("firstPrice") Integer minPrice,
+                                    @Bind("secondPrice") Integer maxPrice,
+                                    @Bind("rating") Integer totalRating,
+                                    @Bind("find") String findWord);
+
+    //Hàng mới nhất
     @SqlQuery(QUERIES.BOOK.SELECT_BOOK_UPDATE_ASC)
-    List<Book> findByBookUpdateASC(@Bind("category_id") int category_id, @Bind("p_id") int p_id,
-                             @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
-                                   @Bind("limit") int limit, @Bind("offset") int offset);
+    List<Book> findByBookUpdateASC(@Bind("limit") int limit,
+                                   @Bind("offset") int offset,
+                                   @Bind("p_id") Integer publisherId,
+                                   @Bind("category_id") Integer categoryId,
+                                   @Bind("firstPrice") Integer minPrice,
+                                   @Bind("secondPrice") Integer maxPrice,
+                                   @Bind("rating") Integer totalRating,
+                                   @Bind("find") String findWord);
+    //Giá giảm dần
     @SqlQuery(QUERIES.BOOK.SELECT_BOOK_PRICE_DESC)
-    List<Book> findByPriceDESC(@Bind("category_id") int category_id, @Bind("p_id") int p_id,
-                         @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
-                               @Bind("limit") int limit, @Bind("offset") int offset);
+    List<Book> findByPriceDESC(@Bind("limit") int limit,
+                               @Bind("offset") int offset,
+                               @Bind("p_id") Integer publisherId,
+                               @Bind("category_id") Integer categoryId,
+                               @Bind("firstPrice") Integer minPrice,
+                               @Bind("secondPrice") Integer maxPrice,
+                               @Bind("rating") Integer totalRating,
+                               @Bind("find") String findWord);
+    //Giá thấp nhất
     @SqlQuery(QUERIES.BOOK.SELECT_BOOK_PRICE_ASC)
-    List<Book> findByPriceASC(@Bind("category_id") int category_id, @Bind("p_id") int p_id,
-                        @Bind("find") String find,@Bind("firstPrice") int firstPrice, @Bind("secondPrice") int secondPrice ,
-                              @Bind("limit") int limit, @Bind("offset") int offset);
+    List<Book> findByPriceASC(@Bind("limit") int limit,
+                              @Bind("offset") int offset,
+                              @Bind("p_id") Integer publisherId,
+                              @Bind("category_id") Integer categoryId,
+                              @Bind("firstPrice") Integer minPrice,
+                              @Bind("secondPrice") Integer maxPrice,
+                              @Bind("rating") Integer totalRating,
+                              @Bind("find") String findWord);
+
+    @SqlQuery(QUERIES.BOOK.SELECT_ALL_BOOK_DISCOUNT)
+    List<Book> listProductDiscount(@Bind("limit") int limit,
+                                 @Bind("offset") int offset,
+                                 @Bind("p_id") Integer publisherId,
+                                 @Bind("category_id") Integer categoryId,
+                                 @Bind("firstPrice") Integer minPrice,
+                                 @Bind("secondPrice") Integer maxPrice,
+                                 @Bind("rating") Integer totalRating,
+                                 @Bind("find") String findWord);
+
     @SqlUpdate(QUERIES.BOOK.DELETE)
     boolean delete(@Bind("id") int id);
 //     void delete(@BindBean Book book);
