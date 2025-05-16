@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class BookDetailService {
     private static BookDetailService instance = null;
+    private static ReviewService reviewService = new ReviewService();
     Jdbi connect = JDBIConnector.getJdbi();
 
     public static BookDetailService getInstance() {
@@ -118,25 +119,12 @@ public class BookDetailService {
             System.err.println("Không tìm thấy Book với ID: " + id);
             return null;
         }
-
-//        Image image = connect.withExtension(ImageBookDao.class, handle -> handle.findImageThumbnailByBookId(id));
-//        List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(id));
-//        Publisher publisher = connect.withExtension(PublisherDao.class, handle -> handle.findById(book.getPublisherId()));
-//        Integer promoId = book.getPromotionId();
-//        if (promoId != null) {
-//            int pid = promoId;
-//            Promotion promotion = connect.withExtension(PromotionDao.class, handle -> handle.findById(pid));
-//            book.setPromotion(promotion);
-//        } else {
-//            book.setPromotionId(0);
-//        }
-//        book.setImage(image);
-//        book.setPublisher(publisher);
-//        book.setImageList(images);
-//        return book;
         List<Image> images = connect.withExtension(ImageBookDao.class, handle -> handle.findImageBookId(id));
         book.setImageList(images);
 
+        List<Review> reviews = reviewService.getReviewsByBookId(id);
+        book.setReviewList(reviews);
+//        System.out.println(reviews);
         return mapOtherBean(book);
     }
 

@@ -31,6 +31,7 @@ public class Book implements Serializable {
     private double salePrice;
     private double rating;
     private List<Image> imageList;
+    private List<Review> reviewList;
 
     public Book() {}
 
@@ -60,7 +61,7 @@ public class Book implements Serializable {
         this.rating = rating;
     }
 
-    public Book(int bId, String title, String author, int categoryId, int publisherId, Integer promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status, Image image, List<Image> imageList) {
+    public Book(int bId, String title, String author, int categoryId, int publisherId, Integer promotionId, Category category, Publisher publisher, Promotion promotion, int publishYear, String dimensions, double weight, int pageCount, String format, double originalPrice, String description, int soldQuantity, int stockQuantity, LocalDateTime create_at, LocalDateTime update_at, int status, Image image, List<Image> imageList, double rating, List<Review> reviewList) {
         this.bId = bId;
         this.title = title;
         this.author = author;
@@ -84,6 +85,8 @@ public class Book implements Serializable {
         this.status = status;
         this.image = image;
         this.imageList = imageList;
+        this.rating = rating;
+        this.reviewList = reviewList;
     }
 
     @Override
@@ -310,5 +313,14 @@ public class Book implements Serializable {
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
     }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
 }
 

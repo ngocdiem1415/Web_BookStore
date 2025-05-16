@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.beans;
 
 import com.google.gson.annotations.Expose;
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -9,8 +10,10 @@ import java.util.Date;
 public class Review implements Serializable {
     private int reviewId;
     private int invoiceId;
-    private int bookId;
-    private int userId;
+//    @ColumnName("b_id")
+    private int bId;
+//    @ColumnName("uid")
+    private int uId;
     public LocalDateTime reviewDate;
     private int rating;
     private String comment;
@@ -18,13 +21,14 @@ public class Review implements Serializable {
 
     public Review() {}
 
-    public Review(int userId, int invoiceId, int bookId, int rating, String comment, User user) {
-        this.userId = userId;
+    public Review(int reviewId, int invoiceId, int bId, int uId, LocalDateTime reviewDate, int rating, String comment, User user) {
+        this.reviewId = reviewId;
         this.invoiceId = invoiceId;
-        this.bookId = bookId;
+        this.bId = bId;
+        this.uId = uId;
+        this.reviewDate = reviewDate;
         this.rating = rating;
         this.comment = comment;
-        this.reviewDate = LocalDateTime.now();
         this.user = user;
     }
 
@@ -52,20 +56,20 @@ public class Review implements Serializable {
         this.invoiceId = invoiceId;
     }
 
-    public int getBookId() {
-        return bookId;
+    public int getBId() {
+        return bId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setBId(int bId) {
+        this.bId = bId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUId() {
+        return uId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUId(int uId) {
+        this.uId = uId;
     }
 
     public LocalDateTime getReviewDate() {
@@ -97,11 +101,12 @@ public class Review implements Serializable {
         return "Review{" +
                 "reviewId=" + reviewId +
                 ", invoiceId=" + invoiceId +
-                ", bookId=" + bookId +
-                ", userId=" + userId +
+                ", bId=" + bId +
+                ", uId=" + uId +
                 ", reviewDate=" + reviewDate +
                 ", rating=" + rating +
-                ", comment='" + comment + '\'' +
+                ", comment='" + comment +
+                ", user=" + user + '\'' +
                 '}';
     }
 }

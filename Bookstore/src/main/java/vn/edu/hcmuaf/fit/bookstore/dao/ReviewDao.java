@@ -44,4 +44,6 @@ public interface ReviewDao {
     @SqlQuery("SELECT * FROM reviews WHERE b_id = :b_id ORDER BY review_date DESC")
     Review getReviewsByBookIdCurrent(@Bind("b_id") int b_id);
 
+    @SqlQuery("SELECT * FROM reviews WHERE review_id = :reviewId")
+    Review getReviewById(@Bind("reviewId") int reviewId);
 }

@@ -27,7 +27,7 @@ public class ReviewService {
     public boolean addReview(Review review) {
         //Kiểm tra người dùng đã đánh giá sách trong đơn hàng đó chưa
         boolean alreadyReviewed = connect.withExtension(ReviewDao.class, handle ->
-                handle.hasReviewed(review.getUserId(), review.getBookId(), review.getInvoiceId()));
+                handle.hasReviewed(review.getUId(), review.getBId(), review.getInvoiceId()));
 
         if (alreadyReviewed) {
             return false; // Vi phạm ràng buộc
@@ -62,10 +62,18 @@ public class ReviewService {
      * @param bookId ID sản phẩm.
      * @return Danh sách các đánh giá.
      */
-    public List<Review> getReviewsForBook(int bookId) {
-        return connect.withExtension(ReviewDao.class, dao ->
-                dao.getReviewsByBookId(bookId)
-        );
+    public List<Review> getReviewsByBookId(int bookId) {
+//        return connect.withExtension(ReviewDao.class, dao ->
+//                dao.getReviewsByBookId(bookId)
+//        );
+        List<Review> reviews = connect.withExtension(ReviewDao.class, dao -> dao.getReviewsByBookId(bookId));
+        for (Review r : reviews) {
+            mapReview(r);
+            System.out.println(r);
+        }
+        System.out.println(reviews);
+        return reviews;
+
     }
 
 
@@ -81,8 +89,13 @@ public class ReviewService {
         );
     }
 
+    public Review getReviewById(int reviewId) {
+        Review review = connect.withExtension(ReviewDao.class, dao -> dao.getReviewById(reviewId));
+        return mapReview(review);
+    }
+
     public Review mapReview(Review review) {
-        User user = connect.withExtension(UserDao.class, handle -> handle.findById(review.getUserId()));
+        User user = connect.withExtension(UserDao.class, handle -> handle.findById(review.getUId()));
         review.setUser(user);
         return review;
     }

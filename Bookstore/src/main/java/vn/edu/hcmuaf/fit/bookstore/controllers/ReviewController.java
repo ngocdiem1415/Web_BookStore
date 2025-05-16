@@ -57,8 +57,8 @@ public class ReviewController extends HttpServlet {
             for (ReviewData reviewData : reviews) {
                 Review review = new Review();
                 review.setInvoiceId(invoiceId);
-                review.setBookId(reviewData.getBookId());
-                review.setUserId(userId);
+                review.setBId(reviewData.getBookId());
+                review.setUId(userId);
                 review.setReviewDate(LocalDateTime.now());
                 review.setRating(reviewData.getRating());
                 review.setComment(reviewData.getComment());

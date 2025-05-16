@@ -79,7 +79,8 @@
                     <c:forEach var="image" items="${book.imageList}">
                         <div class="item-thumb mx-2">
                             <img width="60" height="60" class="rounded-2" style="object-fit: cover; cursor: pointer"
-                                 src="${image.sourceImg}" alt="${book.title}" onclick="updateMainImage('${image.sourceImg}')" />
+                                 src="${image.sourceImg}" alt="${book.title}"
+                                 onclick="updateMainImage('${image.sourceImg}')"/>
                         </div>
                     </c:forEach>
                 </div>
@@ -96,12 +97,14 @@
 
                         <!-- Xếp hạng -->
                         <div id="average-rating" class="text-warning mb-1 me-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span id="average-rating-value" class="ms-1"> 5.0 </span>
+                            <span id="average-rating-value" class="ms-1">
+                                <f:formatNumber value="${book.rating}" type="number" maxFractionDigits="1"/>
+                            </span>
+                            <span class="star" data-value="1"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="2"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="3"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="4"><i class="fa fa-star"></i></span>
+                            <span class="star" data-value="5"><i class="fa fa-star"></i></span>
                         </div>
 
                         <!-- Lượt mua -->
@@ -113,20 +116,34 @@
 
                     <!-- Giá tiền -->
                     <div class="mb-3 text-danger ps-3 d-flex align-items-center">
-                        <!-- giá đã giảm -->
-                        <div class="h4 d-flex align-items-center justify-content-center text-center">
-                            <span class="unit-price"><f:formatNumber value="${book.salePrice}"/></span>
-                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </div>
 
-                        <!-- giá gốc -->
-                        <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
-                            <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
-                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </div>
+                        <!-- Nếu có khuyến mãi -->
+                        <c:if test="${not empty book.promotion}">
+                            <!-- Giá đã giảm -->
+                            <div class="h4 d-flex align-items-center justify-content-center text-center">
+                                <span class="unit-price"><f:formatNumber value="${book.salePrice}"/></span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
 
-                        <!-- Số % được giảm -->
-                        <span class="h5 small bg-danger text-white me-2 px-2 py-1 rounded ms-2">${book.promotion.promotionName}</span>
+                            <!-- Giá gốc gạch ngang -->
+                            <div class="d-flex align-items-center justify-content-center text-center h4 small text-muted text-decoration-line-through ms-2">
+                                <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
+
+                            <!-- Thông tin khuyến mãi -->
+                            <span class="h5 small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
+                                    ${book.promotion.promotionName}
+                            </span>
+                        </c:if>
+
+                        <!-- Nếu không có khuyến mãi: chỉ hiện giá gốc -->
+                        <c:if test="${empty book.promotion}">
+                            <div class="h4 d-flex align-items-center justify-content-center text-center">
+                                <span class="original-price"><f:formatNumber value="${book.originalPrice}"/></span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
+                        </c:if>
                     </div>
 
                     <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis">
@@ -137,49 +154,72 @@
                     <!-- Số lượng, Mua ngay, Thêm vào giỏ hàng -->
                     <div class="row mb-1 text-muted">
                         <label class="pt-1 d-block col-2">Số lượng</label>
+                        <%--                        <div class="input-group mb-3 col-6" style="width: 170px;">--%>
+                        <%--                            <button class="btn btn-white border border-secondary px-3" type="button" id="decrease"--%>
+                        <%--                                    data-mdb-ripple-color="dark">--%>
+                        <%--                                <i class="fas fa-minus"></i>--%>
+                        <%--                            </button>--%>
+                        <%--                            <input type="text" id="quantity" class="form-control text-center border border-secondary"--%>
+                        <%--                                   placeholder="1" value="1" aria-label="Example text with button addon"--%>
+                        <%--                                   aria-describedby="button-addon1"/>--%>
+                        <%--                            <button class="btn btn-white border border-secondary px-3" type="button" id="increase"--%>
+                        <%--                                    data-mdb-ripple-color="dark">--%>
+                        <%--                                <i class="fas fa-plus"></i>--%>
+                        <%--                            </button>--%>
+                        <%--                        </div>--%>
+                        <!-- Nếu hết hàng -->
                         <div class="input-group mb-3 col-6" style="width: 170px;">
-                            <button class="btn btn-white border border-secondary px-3" type="button" id="decrease"
+                            <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
+                                    type="button" id="decrease"
+                            ${book.stockQuantity == 0 ? 'disabled' : ''}
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-minus"></i>
                             </button>
+
                             <input type="text" id="quantity" class="form-control text-center border border-secondary"
-                                   placeholder="1" value="1" aria-label="Example text with button addon"
+                                   value="${book.stockQuantity == 0 ? 0 : 1}"
+                            ${book.stockQuantity == 0 ? 'readonly' : ''}
+                                   aria-label="Example text with button addon"
                                    aria-describedby="button-addon1"/>
-                            <button class="btn btn-white border border-secondary px-3" type="button" id="increase"
+
+                            <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
+                                    type="button" id="increase"
+                            ${book.stockQuantity == 0 ? 'disabled' : ''}
                                     data-mdb-ripple-color="dark">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
 
+
                         <!-- Số lượng hàng tồn kho -->
                         <label class="pt-1 d-block col-3">
-                            ${book.stockQuantity}
+                            <span id="stock-quantity"> ${book.stockQuantity}</span>
                             sản phẩm có sẵn
                         </label>
                     </div>
 
                     <!-- Mua ngay -->
-                    <c:if test="${not empty userSession}">
+                    <c:if test="${not empty userSession and book.stockQuantity > 0}">
                         <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
                            style="background-color: red" onclick="addToCart()">
                             Mua ngay </a>
                     </c:if>
 
-                    <c:if test="${empty userSession}">
+                    <c:if test="${empty userSession or book.stockQuantity == 0}">
                         <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: red; pointer-events: none;" onclick="addToCart(${book.bId})">
+                           style="background-color: #b02a37; pointer-events: none;" onclick="addToCart(${book.bId})">
                             Mua ngay </a>
                     </c:if>
 
                     <!-- Thêm vào giỏ hàng -->
-                    <c:if test="${empty userSession}">
+                    <c:if test="${empty userSession and book.stockQuantity > 0}">
                         <button id="add-to-cart" class="btn btn-success border border-secondary py-2 disabled-btn"
                                 disabled>
                             <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
                         </button>
                     </c:if>
 
-                    <c:if test="${not empty userSession}">
+                    <c:if test="${not empty userSession or book.stockQuantity == 0}">
                         <button id="add-to-cart" class="btn btn-success border border-secondary py-2"
                                 onclick="addToCart(${book.bId})">
                             <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
@@ -196,9 +236,18 @@
                     </div>
 
                     <!-- Yêu thích -->
-                    <button id="favourite" class="btn btn-light border border-secondary py-2 px-3">
-                        <i class="fa-regular fa-heart fa-beat-fade"></i>
-                    </button>
+                    <c:if test="${empty userSession}">
+                        <button id="favourite" class="btn btn-success border border-secondary py-2 disabled-btn"
+                                disabled>
+                            <i class="fa-regular fa-heart fa-beat-fade"></i>
+                        </button>
+                    </c:if>
+
+                    <c:if test="${not empty userSession}">
+                        <button id="favourite" class="btn btn-light border border-secondary py-2 px-3">
+                            <i class="fa-regular fa-heart fa-beat-fade"></i>
+                        </button>
+                    </c:if>
                 </div>
             </main>
         </div>
@@ -284,33 +333,52 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Sản phẩm liên quan</h5>
-                        <c:forEach var="relatedBook" items="${relatedBooks}" >
+                        <c:forEach var="relatedBook" items="${relatedBooks}">
                             <div class="d-flex mb-3">
                                 <a href="book-detail?id=${relatedBook.bId}" class="me-3">
                                     <img src="${relatedBook.image != null ? relatedBook.image.sourceImg : 'default-image.jpg'}"
                                          style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
                                 </a>
                                 <div class="info">
-                                    <a href="book-detail" class="nav-link mb-1">
-                                       ${relatedBook.title}
+                                    <a href="book-detail?id=${relatedBook.bId}" class="nav-link mb-1">
+                                            ${relatedBook.title}
                                     </a>
+
                                     <div class="mb-3 text-danger d-flex align-items-center">
-                                        <!--giá đã giảm-->
-                                        <div class="d-flex align-items-center justify-content-center text-center">
-                                            <strong class="unit-price fw-semibold"><f:formatNumber value="${relatedBook.originalPrice}"/> </strong>
-                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                        </div>
 
-                                        <!--giá gốc-->
-                                        <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
-                                            <span class="original-price"><f:formatNumber value="${relatedBook.originalPrice}"/></span>
-                                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                        </div>
+                                        <!-- Nếu có khuyến mãi -->
+                                        <c:if test="${not empty relatedBook.promotion}">
+                                            <!-- Giá đã giảm -->
+                                            <div class="d-flex align-items-center justify-content-center text-center">
+                                                <strong class="unit-price fw-semibold">
+                                                    <f:formatNumber value="${relatedBook.salePrice}"/>
+                                                </strong>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </div>
 
-                                        <!--Số % được giảm-->
-                                        <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
-                                                ${relatedBook.promotion != null ? relatedBook.promotion.promotionName : 'Không giảm giá'}
-                                        </span>
+                                            <!-- Giá gốc gạch ngang -->
+                                            <div class="d-flex align-items-center justify-content-center text-center small text-muted text-decoration-line-through ms-2">
+                                                <span class="original-price">
+                                                    <f:formatNumber value="${relatedBook.originalPrice}"/>
+                                                </span>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </div>
+
+                                            <!-- Tên chương trình khuyến mãi -->
+                                            <span class="small bg-danger text-white me-2 px-2 py-1 rounded ms-2">
+                                                    ${relatedBook.promotion.promotionName}
+                                            </span>
+                                        </c:if>
+
+                                        <!-- Nếu không có khuyến mãi -->
+                                        <c:if test="${empty relatedBook.promotion}">
+                                            <div class="d-flex align-items-center justify-content-center text-center">
+                                                <strong class="unit-price fw-semibold">
+                                                    <f:formatNumber value="${relatedBook.originalPrice}"/>
+                                                </strong>
+                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                            </div>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -334,37 +402,50 @@
                        style="font-weight: 500; font-size: 1.2rem; padding: 0; color: black">
                         ĐÁNH GIÁ SẢN PHẨM
                     </a>
-                    <c:if test="${review != null}">
-                        <ul class="comment-list">
-                        <li class="my-4 row">
-                            <!--Khách hàng-->
-                            <div class="comment-header col-2 d-flex align-items-start">
+                    <c:choose>
+                        <c:when test="${not empty book.getReviewList()}">
+                            <ul class="comment-list">
+                                <c:forEach var="review" items="${book.getReviewList()}">
+                                    <li class="my-4 row">
+                                        <!-- Khách hàng -->
+                                        <div class="comment-header col-2 d-flex align-items-start">
+                                            <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);"
+                                                 class="me-3">
+                                                <img src="${review.getUser().getAvatar()}" alt="avatar"
+                                                     style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                            </div>
+                                            <div>
+                                                <div class="comment-date">${review.getReviewDate()}</div>
+                                            </div>
+                                        </div>
 
-                                <img src="img/avatar.jpg" alt="avatar" class="rounded-circle me-3"
-                                     style="width: 50px; height: 50px;">
-                                <div>
-                                    <div class="comment-date">${review.reviewDate}</div>
-                                </div>
-                            </div>
-                            <!--                                rating-->
-                            <div class="comment-content col-10">
-                                <div class="rating-box mt-2">
-                                    <div class="text-warning mb-1 me-2">
-                                        <span>${review.rating}</span>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <!--   Đánh giá-->
-                                <div class="mt-2">
-                                    ${review.comment}
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    </c:if>
-                    <c:if test="${review == null}">
-                        <p>Không có đánh giá nào cho sách này.</p>
-                    </c:if>
+                                        <!-- Rating và Comment -->
+                                        <div class="comment-content col-10">
+                                            <div class="user-name text-info">
+                                                    ${review.getUser().getUsername()}
+                                            </div>
+                                            <div class="rating-box">
+                                                <div class="review-rating text-warning me-2">
+                                                    <span class="review-rating-value">${review.getRating()}</span>
+                                                    <span class="review-star" data-value="1"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="2"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="3"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="4"><i class="fa fa-star"></i></span>
+                                                    <span class="review-star" data-value="5"><i class="fa fa-star"></i></span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                    ${review.getComment()}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Không có đánh giá nào cho sách này.</p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
@@ -417,41 +498,32 @@
 <!--Script xếp hạng-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Lấy danh sách các phần tử nhận xét
-        const comments = document.querySelectorAll(".comment-list .rating-box .text-warning");
+        const ratingText = document.getElementById("average-rating-value").textContent.trim();
+        const ratingValue = Math.round(parseFloat(ratingText)); // Làm tròn giá trị rating
+        const stars = document.querySelectorAll("#average-rating .star");
+        highlightStars(stars, ratingValue);
 
-        // Nếu không có nhận xét, giữ nguyên giá trị mặc định
-        if (comments.length === 0) return;
-
-        let totalRating = 0;
-
-        // Tính tổng điểm xếp hạng
-        comments.forEach(comment => {
-            const stars = comment.querySelectorAll(".fa-star");
-            totalRating += stars.length; // Mỗi ngôi sao trong `.text-warning` là một điểm
+        const ratingBoxes = document.querySelectorAll(".review-rating");
+        ratingBoxes.forEach(box => {
+            const reviewRatingValue = parseFloat(box.querySelector(".review-rating-value").innerText.trim());
+            const reviewStars = box.querySelectorAll(".review-star");
+            highlightStars(reviewStars, reviewRatingValue);
         });
-
-        // Tính trung bình
-        const averageRating = totalRating / comments.length;
-
-        // Cập nhật số sao và giá trị trung bình hiển thị
-        const averageRatingElement = document.getElementById("average-rating");
-        const averageRatingValueElement = document.getElementById("average-rating-value");
-
-        // Làm tròn đến 1 chữ số thập phân
-        averageRatingValueElement.textContent = averageRating.toFixed(1);
-
-        // Cập nhật số sao hiển thị
-        averageRatingElement.innerHTML = '';
-        for (let i = 0; i < 5; i++) {
-            const star = document.createElement("i");
-            star.classList.add("fa", i < Math.round(averageRating) ? "fa-star" : "fa-star-o", "text-warning");
-            averageRatingElement.appendChild(star);
-        }
-
-        // Thêm lại phần điểm trung bình
-        averageRatingElement.appendChild(averageRatingValueElement);
     });
+
+    function highlightStars(stars, value) {
+        stars.forEach((star) => {
+            const starValue = parseInt(star.getAttribute("data-value"), 10);
+            const icon = star.querySelector("i");
+            if (starValue <= value) {
+                icon.style.color = "#ffcc00"; // Màu vàng khi được chọn
+                star.classList.add("selected");
+            } else {
+                icon.style.color = "#ccc"; // Màu xám khi không được chọn
+                star.classList.remove("selected");
+            }
+        });
+    }
 </script>
 <!--format tiền tệ-->
 <script src="js/FormatMoney.js"></script>
@@ -461,7 +533,7 @@
     const decreaseButton = document.getElementById("decrease");
     const increaseButton = document.getElementById("increase");
     const quantityInput = document.getElementById("quantity");
-    const stockQuantity = 12;
+    const stockQuantity = parseInt(document.getElementById("stock-quantity").textContent);
 
     decreaseButton.addEventListener("click", function () {
         let currentValue = parseInt(quantityInput.value);
