@@ -48,4 +48,14 @@
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
 
+    <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>com.vnpay.common.ajaxServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/payment-vnpay/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
