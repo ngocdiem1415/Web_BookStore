@@ -57,4 +57,11 @@ public interface InvoiceDao {
             "WHERE invoice_id = :invoiceId ")
     int update(@BindBean Invoice invoice); //Trả về trạng thái có update được hay không
 
+
+    @SqlQuery("Select * from invoices where uid = :id ORDER BY order_date DESC LIMIT 1")
+    Invoice findLatestInvoiceByUser(@Bind("id") int id);
+
+    @SqlUpdate("UPDATE invoices SET status = :status WHERE invoice_id = :invoiceId")
+    int updateStatus(@Bind("invoiceId") int invoiceId, @Bind("status") String status); //Trả về trạng thái có update được hay không
+
 }

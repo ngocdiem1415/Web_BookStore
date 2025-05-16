@@ -42,21 +42,21 @@ public class PaymentService {
     // Tính tổng số tiền thanh toán theo tháng từ bảng payments
     public List<Double> listPaymentInYear(int year) {
         List<Payment> listTotalAccount = connect.withExtension(PaymentDao.class, dao -> dao.listAccountInYear(year));
-        Map<Integer,Double> temp = new TreeMap<>(new Comparator<Integer>() {
+        Map<Integer, Double> temp = new TreeMap<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return o1-o2;
+                return o1 - o2;
             }
         });
-        for (Payment p:listTotalAccount ) {
+        for (Payment p : listTotalAccount) {
             int month = p.getPaymentDate().getMonthValue();
-            if ( !temp.containsKey(month)){
-                temp.put(month,p.getAmount());
+            if (!temp.containsKey(month)) {
+                temp.put(month, p.getAmount());
             }
-            temp.put(month, temp.get(month)+p.getAmount());
+            temp.put(month, temp.get(month) + p.getAmount());
         }
         for (int i = 1; i <= 12; i++) {
-            if ( !temp.containsKey(i)) temp.put(i,0.0);
+            if (!temp.containsKey(i)) temp.put(i, 0.0);
         }
         System.out.println(temp.toString());
         Collection<Double> values = temp.values();
@@ -93,5 +93,13 @@ public class PaymentService {
             throw new IllegalArgumentException("Payment cannot be null.");
         }
         return connect.withExtension(PaymentDao.class, dao -> dao.update(payment));
+    }
+
+    public int updatePaymentStatus(int invoiceId, String paymentStatus) {
+        try {
+            return connect.withExtension(PaymentDao.class, dao -> dao.updatePaymentStatus(invoiceId, paymentStatus));
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

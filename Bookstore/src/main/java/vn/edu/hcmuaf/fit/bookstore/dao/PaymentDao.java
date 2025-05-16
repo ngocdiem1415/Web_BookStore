@@ -33,4 +33,7 @@ public interface PaymentDao {
     @SqlQuery("SELECT * FROM payments WHERE payment_status = 'Completed' AND YEAR(payment_date) = :year")
     List<Payment> listAccountInYear(@Bind("year") int year);
 
+    @SqlUpdate("UPDATE payments SET payment_status = :paymentStatus WHERE invoice_id = :invoiceId")
+    int updatePaymentStatus(@Bind("invoiceId") int invoiceId, @Bind("paymentStatus") String paymentStatus);
+
 }

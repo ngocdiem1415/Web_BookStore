@@ -46,7 +46,7 @@
                         String baoloi = request.getAttribute("baoloi") == null ? "" : (String) request.getAttribute("baoloi");
                     %>
                     <div class="text-center">
-                        <span class="text-danger bg-danger" style="color: red"><%=baoloi%></span>
+                        <span class="text-danger" style="color: red"><%=baoloi%></span>
                     </div>
 
                     <div class="form-group form-check">
