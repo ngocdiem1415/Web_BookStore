@@ -1,4 +1,4 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.bookstore.beans.User" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 18/12/2024
@@ -134,19 +134,16 @@
 </div>
 
 <div class="payment-method bg-white border-top border rounded-2 mb-3">
-    <div class="row d-flex align-items-center my-2 mx-0 p-3">
-        <div class="col-4 h5"> Phương thức thanh toán</div>
-        <div class="col-8 d-flex justify-content-center">
-            <button type="button" class="btn payment-btn btn-outline-success me-2" id="cash-on-delivery">
-                Thanh toán khi nhận hàng
-            </button>
-
-            <!-- Nút Chuyển khoản ngân hàng -->
-            <button type="button" class="btn payment-btn btn-outline-success" id="bank-transfer">
-                Chuyển khoản ngân hàng
-            </button>
+        <div class="row d-flex align-items-center my-2 mx-0 p-3">
+            <div class="col-4 h5">Phương thức thanh toán</div>
+            <div class="col-8 d-flex justify-content-center">
+                <select class="form-select w-50" id="payment-method-select">
+                    <option value="1">Thanh toán khi nhận hàng (COD)</option>
+                    <option value="2">Chuyển khoản ngân hàng (VNPay)</option>
+                </select>
+            </div>
         </div>
-    </div>
+
 
     <div class="summary row border-top border-bottom m-0 p-3">
         <div class="col-7"></div>
@@ -498,45 +495,32 @@
 
     const buyNowButton = document.getElementById("buy-now");
     buyNowButton.addEventListener("click", function () {
-        // Thu thập dữ liệu người dùng từ form
         const recipientName = document.querySelector("input[name='shipping_full_name']").value;
         const recipientPhone = document.querySelector("input[name='shipping_phone']").value;
         const specificAddress = specificAddressInput.value;
-
         const shippingCity = citySelect.value;
         const shippingDistrict = districtSelect.value;
         const shippingWard = wardSelect.value;
 
-        // Kiểm tra dữ liệu đầu vào
         if (!recipientName || !recipientPhone || !specificAddress || !shippingCity || !shippingDistrict || !shippingWard) {
-            alert("Vui lòng điền đầy đủ thông tin: Họ tên, Số điện thoại, Địa chỉ chi tiết, Tỉnh/Thành, Quận/Huyện, Phường/Xã.");
+            alert("Vui lòng điền đầy đủ thông tin giao hàng.");
             return;
         }
 
-        <% Integer userId = (Integer) request.getAttribute("userId"); %>
-        var userId = <%= userId %>;
-        // Thu thập danh sách sản phẩm từ giỏ hàng
+        // Lấy payment method từ select
+        const paymentMethodValue = document.getElementById("payment-method-select").value;
+        let paymentMethod = (paymentMethodValue === "2") ? "BANK_TRANSFER" : "COD";
+
         const products = selectProducts.map(product => ({
             bId: product.bId,
-            // productId: product.productId,
             quantity: product.quantity,
             unitPrice: product.unitPrice
         }));
 
-        // Phí vận chuyển cố định
         const shippingFee = 15000;
-
-        // Tính tổng tiền
         const totalPrice = selectProducts.reduce((sum, product) => sum + (product.unitPrice * product.quantity), 0);
         const totalAmount = totalPrice + shippingFee;
 
-        // Thu thập phương thức thanh toán
-        let paymentMethod = 'COD'; // Phương thức mặc định (Thanh toán khi nhận hàng)
-        if (document.getElementById("bank-transfer").classList.contains("active")) {
-            paymentMethod = 'BANK_TRANSFER'; // Chuyển khoản ngân hàng
-        }
-
-        // Tạo đối tượng gửi dữ liệu
         const orderData = {
             recipientName: recipientName,
             recipientPhone: recipientPhone,
@@ -547,44 +531,44 @@
             paymentMethod: paymentMethod
         };
 
-        console.log("orderData: " + JSON.stringify(orderData, null, 2));
-
-        // Gửi yêu cầu AJAX để tạo đơn hàng mới
         $.ajax({
-            url: '/Bookstore/checkout', // URL endpoint của backend
+            url: '/Bookstore/checkout',
             type: 'POST',
-            contentType: 'application/json', // Loại nội dung là JSON
-            data: JSON.stringify(orderData), // Chuyển đổi đối tượng thành JSON
+            contentType: 'application/json',
+            data: JSON.stringify(orderData),
             success: function (response) {
-                // Nếu yêu cầu thành công, chuyển hướng đến trang đơn hàng
-                // const contextPath = window.location.pathname.split('/')[1];  // Lấy context path từ URL hiện tại
-                // window.location.href = '/Bookstore/invoice?action=list&userId=' + userId; // Chuyển hướng đến trang đơn hàng chờ xử lý
-                let removeCount = 0;
-                selectProducts.forEach(product => {
-                    removeProduct(product.bId, () => {
-                        removeCount++;
-                        if (removeCount === selectProducts.length) {
-                            // Sau khi xóa xong hết thì chuyển trang
-                            window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;
-                        }
+                const invoiceId = response.invoiceId;
+
+                if (paymentMethod === 'BANK_TRANSFER') {
+                    // ➡ Redirect sang VNPay
+                    window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
+                } else {
+                    // ➡ Với COD, xóa sản phẩm rồi chuyển sang trang hóa đơn
+                    let removeCount = 0;
+                    const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;
+                    selectProducts.forEach(product => {
+                        removeProduct(product.bId, () => {
+                            removeCount++;
+                            if (removeCount === selectProducts.length) {
+                                window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;
+                            }
+                        });
                     });
-                });
+                }
             },
             error: function (xhr) {
                 if (xhr.status === 400) {
                     const res = JSON.parse(xhr.responseText);
                     alert('❗ ' + res.error);
-                    window.location.href = '/Bookstore/cart'; // Quay lại giỏ hàng
+                    window.location.href = '/Bookstore/cart';
                 } else {
                     alert('❌ Đã xảy ra lỗi khi tạo đơn hàng!');
                 }
             }
-            // error: function (xhr, status, error) {
-            //     console.error('Error:', error);
-            //     alert('Đã xảy ra lỗi khi tạo đơn hàng!');
-            // }
         });
     });
+
+
 </script>
 
 </body>
