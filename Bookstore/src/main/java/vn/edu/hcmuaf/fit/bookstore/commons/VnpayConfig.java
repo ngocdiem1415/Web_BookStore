@@ -1,29 +1,28 @@
 package vn.edu.hcmuaf.fit.bookstore.commons;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class VnpayConfig {
-    private static Properties prop = new Properties();
+    private static final Properties properties = new Properties();
 
     static {
-        try {
-            prop.load(VnpayConfig.class.getClassLoader().getResourceAsStream("vnpay.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (InputStream input = VnpayConfig.class.getClassLoader().getResourceAsStream("db.properties")) {
+            if (input == null) {
+                System.out.println("Sorry, unable to find db.config");
+
+
+            }
+            // Load các thuộc tính từ file config.properties
+            properties.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
-    public static String getTmnCode() {
-        return prop.get("vnp_TmnCode").toString();
-    }
-
-    public static String getHashSecret() {
-        return prop.get("vnp_HashSecret").toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println("TMN Code: " + getTmnCode());
-        System.out.println("Hash Secret: " + getHashSecret());
-    }
+    public static final String TMNCODE = properties.getProperty("vnp_TmnCode");
+    public static final String HASH_SECRET = properties.getProperty("vnp_HashSecret");
+    public static final String VNP_URL = properties.getProperty("vnp_Url");
+    public static final String RETURN_URL = properties.getProperty("vnp_ReturnUrl");
 }
