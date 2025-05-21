@@ -60,7 +60,7 @@
                                         <div class=" main-card-title my-3">
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
-                                        <a href="EditProductController"
+                                        <a href="edit-product"
                                            class="btn btn-green my-4 border rounded addSlider">
                                             <i class="fa-solid fa-plus"></i>
                                             Thêm sản phẩm
@@ -103,7 +103,7 @@
                                                 </td>
                                                 <td>
                                                     <button class="edit-button col-6 btn px-0" style="color: #236844;"
-                                                            onclick="window.location.href='EditProductController?id=${p.bId}';"
+                                                            onclick="window.location.href='edit-product?id=${p.bId}';"
                                                             title="Chỉnh sửa">
                                                         <i class="fa-regular fa-pen-to-square fa-lg"></i>
                                                     </button>

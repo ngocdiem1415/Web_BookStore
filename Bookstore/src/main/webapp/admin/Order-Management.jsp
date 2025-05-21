@@ -77,9 +77,21 @@
                             <td>${order.getPayment().getPaymentStatus()}</td>
                             <td>${order.status}</td>
                             <td>
-                                <a href="Edit-Order.html" class="text-dec">
-                                    <i class="fa-regular fa-pen-to-square fa-lg"
-                                       style="color: #236844"></i>
+                                    <%--                                <a href="show-order?id=${order.invoiceId}">--%>
+                                    <%--                                    <button type="button" class="btn btn-view m-0 p-0">--%>
+                                    <%--                                        <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>--%>
+                                    <%--                                    </button>--%>
+                                    <%--                                </a>--%>
+                                <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                        onclick="window.location.href='show-order?id=${order.invoiceId}';"
+                                        title="Chỉnh sửa">
+                                    <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                </button>
+                                <a href="">
+                                    <button type="button" class="btn btn-edit m-0 p-0">
+                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                           style="color: #236844"></i>
+                                    </button>
                                 </a>
                             </td>
                         </tr>
@@ -89,25 +101,6 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <!--    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"-->
-    <!--         aria-hidden="true">-->
-    <!--        <div class="modal-dialog">-->
-    <!--            <div class="modal-content">-->
-    <!--                <div class="modal-header">-->
-    <!--                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa đơn hàng</h5>-->
-    <!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-    <!--                </div>-->
-    <!--                <div class="modal-body">-->
-    <!--                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.-->
-    <!--                </div>-->
-    <!--                <div class="modal-footer">-->
-    <!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>-->
-    <!--                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
 
 </section>
 

@@ -125,9 +125,6 @@
                         <td>${category.update_at}
                         </td>
                         <td>
-                          <button type="button" class="btn btn-view m-0 p-0">
-                            <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
-                          </button>
                           <a href="edit-category?id=${category.categoryId}">
                             <button type="button" class="btn btn-edit m-0 p-0">
                               <i class="fa-regular fa-pen-to-square fa-lg mx-2"
