@@ -11,7 +11,6 @@ public class QUERIES {
         public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 0 , :role)";
         public static final String FIND_BY_EMAIL = "select * from users where email = :email";
         public static final String CHANGE_PASSWORD = "update users set password = :password where uid = :uid";
-        public static final String DELETE = "delete from users where uid = :id";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
         public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
         public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";
@@ -19,6 +18,7 @@ public class QUERIES {
         public static final String UPDATE_EMAIL_VERIFIED_BY_EMAIL = "UPDATE users SET status = 1 WHERE email = :email";
         public static final String UPDATE_IMAGE_BY_ID = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email, avatar = :avatar WHERE uid = :id";
         public static final String UPDATE_ROLE = "UPDATE users SET role = :role WHERE uid = :uid";
+        public static final String CHANGE_STATUS = "UPDATE users SET status = 0 WHERE uid = :uid";
     }
 
 
@@ -196,7 +196,6 @@ public class QUERIES {
         public static final String DELETE = "delete from images where b_id = :id";
         public static final String INSERT = "INSERT INTO images (b_id, source_img, is_thumbnail) VALUES (:bookId, :sourceImg, :isThumbnail)";
         public static final String SELECT_ALL_IMAGE_BY_BOOKID = "select * from images where b_id = :id";
-
     }
 
     public class PROMOTION {
@@ -211,6 +210,7 @@ public class QUERIES {
         public static final String UPDATE_PROMOTIOn = "UPDATE promotions SET promotion_name = :promotionName, discount = :discount, start_date = :startDate, end_date = :endDate, is_Active = " +
                 "CASE WHEN :startDate <= NOW() AND :endDate >= NOW() THEN 1 ELSE 0 END WHERE promotion_id = :promotionId";
 
+        public static final String DELETE_PROMOTION = "DELETE FROM promotions WHERE promotion_id = :promotionId";
     }
 
     public class PUBLISHER {
@@ -220,6 +220,7 @@ public class QUERIES {
         public static final String DELETE = "delete from promotions where promotion_id = :id";
         public static final String INSERT_PUBLISHER = "INSERT INTO publishers (p_name, p_address, p_phone) VALUES (:publisherName, :address, :phone)";
         public static final String UPDATE_PUBLISHER = "UPDATE publishers SET p_name = :publisherName, p_address = :address, p_phone = :phone WHERE p_id = :p_id";
+        public static final String DELETE_PUBLISHER = "DELETE FROM publishers WHERE p_id = :p_id";
     }
 
 

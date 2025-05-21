@@ -85,38 +85,41 @@
                             </tr>
                             </thead>
                             <tbody style="font-weight: lighter">
-                            <c:forEach var="user" items="${users}">
-                                <tr>
+                                <c:forEach var="user" items="${users}">
+                                <tr data-id="${user.uid}">
                                     <th scope="row">${user.uid}</th>
-                                    <td><img src="../img/logo/avatar.jpg" height="50px" width="50px"/></td>
+                                    <td><img src="${user.avatar}" alt="avatar" height="50px" width="50px"/></td>
                                     <td>${user.username}</td>
                                     <td>${user.phone}</td>
                                     <td>${user.email}</td>
                                     <td>
                                         <form action="${pageContext.request.contextPath}/admin/upload-role" method="post" class="d-inline">
                                             <input type="hidden" name="uid" value="${user.uid}"/>
-                                            <select name="role" class="form-select form-select-sm"
-                                                    onchange="this.form.submit()">
-                                                <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>
-                                                    Admin
-                                                </option>
-                                                <option value="user" ${user.role == 'user' ? 'selected' : ''}>
-                                                    User
-                                                </option>
+                                            <select name="role" class="form-select form-select-sm" onchange="this.form.submit()">
+                                                <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
+                                                <option value="user" ${user.role == 'user' ? 'selected' : ''}>User</option>
                                             </select>
                                         </form>
                                     </td>
-                                    <td>hoạt động</td>
-                                    <td>
-                                        <a href="edit-user?id=${user.uid}" class="text-dec">
-                                            <i class="fa-regular fa-pen-to-square fa-lg"
-                                               style="color: #236844"></i>
-                                        </a>
-                                        <button type="button" class="btn" data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal">
-                                            <i class="fa-regular fa-trash-can fa-lg "
-                                               style="color: #ef5f5f"></i>
-                                        </button>
+                                    <td class="status-text">
+                                        <c:choose>
+                                            <c:when test="${user.status == 1}">
+                                                <span class="text-success">Hoạt động</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="text-danger">Vô hiệu hóa</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="edit-actions">
+                                        <c:if test="${user.status == 1}">
+                                            <a href="edit-user?id=${user.uid}" class="text-dec">
+                                                <i class="fa-regular fa-pen-to-square fa-lg" style="color: #236844"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-delete" data-id="${user.uid}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                                <i class="fa-regular fa-trash-can fa-lg" style="color: #ef5f5f"></i>
+                                            </button>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -145,7 +148,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
                 </div>
             </div>
         </div>
@@ -161,7 +164,6 @@
 <script src="../js/datatables.min.js"></script>
 
 <!--script-->
-
 <script>
     $(document).ready(function () {
         // Khởi tạo DataTable cho bảng với id 'orderTable'
@@ -187,7 +189,41 @@
     });
 
 </script>
+<%--ajax đẻ load lại không reload trang--%>
+<script>
+    let deleteUserId = null;
 
+    // Khi nhấn nút xóa (lưu id vào biến)
+    $(document).on('click', '.btn-delete', function () {
+        deleteUserId = $(this).data('id');
+    });
 
+    // Khi xác nhận xóa trong modal
+    $('#confirmDeleteBtn').on('click', function () {
+        if (deleteUserId) {
+            $.ajax({
+                url: '${pageContext.request.contextPath}/admin/disable',
+                method: 'POST',
+                data: { uid: deleteUserId },
+                success: function (response) {
+                    $('#confirmDeleteModal').modal('hide');
+
+                    const row = $('[data-id="' + deleteUserId + '"]').closest('tr');
+
+                    // Cập nhật trạng thái sang "Vô hiệu hóa"
+                    row.find('td.status-text').html('<span class="text-danger">Vô hiệu hóa</span>');
+
+                    // Ẩn nút sửa và xóa
+                    row.find('.edit-actions').remove();
+
+                    deleteUserId = null;
+                },
+                error: function (error) {
+                    console.error('Xóa thất bại. Vui lòng thử lại.', error);
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

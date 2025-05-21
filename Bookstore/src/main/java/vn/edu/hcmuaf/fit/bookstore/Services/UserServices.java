@@ -175,4 +175,15 @@ public class UserServices {
         }
     }
 
+    public void disabled(int id) {
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.disabled(id);
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
 }
