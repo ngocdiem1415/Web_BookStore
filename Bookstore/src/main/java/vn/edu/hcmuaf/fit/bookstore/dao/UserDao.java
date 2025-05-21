@@ -56,4 +56,7 @@ public interface UserDao {
 
     @SqlUpdate(QUERIES.USER.UPDATE_ROLE)
     void updateRole(@Bind("role") String role, @Bind("uid") int uid);
+
+    @SqlUpdate(QUERIES.USER.CHANGE_STATUS)
+    void disabled(@Bind("uid") int uid);
 }

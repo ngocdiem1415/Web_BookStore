@@ -14,32 +14,36 @@ public class PublisherService {
     Jdbi connect = JDBIConnector.getJdbi();
 
     public static PublisherService getInstance() {
-        if(instance == null) instance = new PublisherService();
+        if (instance == null) instance = new PublisherService();
         return instance;
     }
 
-    public List<Publisher> listPublisher(){
+    public List<Publisher> listPublisher() {
         return connect.withExtension(PublisherDao.class, handle -> handle.list());
     }
 
-    public Publisher getPublisherById(int id){
+    public Publisher getPublisherById(int id) {
         return connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
     }
 
-    public Publisher getPublisherByName(String name){
+    public Publisher getPublisherByName(String name) {
         return connect.withExtension(PublisherDao.class, handle -> handle.findByName(name));
     }
 
-    public void insertPublisher(String publisherName, String address, String phone){
+    public void insertPublisher(String publisherName, String address, String phone) {
         connect.useExtension(PublisherDao.class, handle -> handle.insert(publisherName, address, phone));
     }
 
-    public Publisher finPublisherById(int id){
+    public Publisher finPublisherById(int id) {
         return connect.withExtension(PublisherDao.class, handle -> handle.findById(id));
     }
 
-    public void updatePublisher(int id, String publisherName, String address, String phone){
+    public void updatePublisher(int id, String publisherName, String address, String phone) {
         connect.useExtension(PublisherDao.class, handle -> handle.update(id, publisherName, address, phone));
+    }
+
+    public void deletePublisher(int id) {
+        connect.useExtension(PublisherDao.class, handle -> handle.delete(id));
     }
 
 

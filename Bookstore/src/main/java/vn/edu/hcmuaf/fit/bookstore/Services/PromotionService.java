@@ -12,23 +12,27 @@ public class PromotionService {
     Jdbi connect = JDBIConnector.getJdbi();
 
     public static PromotionService getInstance() {
-        if(instance == null) instance = new PromotionService();
+        if (instance == null) instance = new PromotionService();
         return instance;
     }
 
-    public List<Promotion> listCategory(){
+    public List<Promotion> listCategory() {
         return connect.withExtension(PromotionDao.class, handle -> handle.list());
     }
 
-    public Promotion getPromotionById(int id){
+    public Promotion getPromotionById(int id) {
         return connect.withExtension(PromotionDao.class, handle -> handle.findById(id));
     }
 
-    public void insertpromotion(String promotionName, double discount, String startDate, String endDate){
+    public void insertpromotion(String promotionName, double discount, String startDate, String endDate) {
         connect.useExtension(PromotionDao.class, dao -> dao.insertpromotion(promotionName, discount, startDate, endDate));
     }
 
     public void updatePromotion(int promotionId, String promotionName, double discount, String startDate, String endDate) {
         connect.useExtension(PromotionDao.class, dao -> dao.updatePromotion(promotionId, promotionName, discount, startDate, endDate));
+    }
+
+    public void deletePromotion(int id) {
+        connect.useExtension(PromotionDao.class, dao -> dao.delete(id));
     }
 }
