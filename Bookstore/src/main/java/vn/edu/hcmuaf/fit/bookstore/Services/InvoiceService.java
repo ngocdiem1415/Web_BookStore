@@ -37,8 +37,9 @@ public class InvoiceService {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByDate().stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
-    public List<Integer> getListYear(){
-        List<Integer> listAllYear = connect.withExtension(InvoiceDao.class, InvoiceDao :: getListYear);
+
+    public List<Integer> getListYear() {
+        List<Integer> listAllYear = connect.withExtension(InvoiceDao.class, InvoiceDao::getListYear);
         Collections.sort(listAllYear);
         return listAllYear;
     }
@@ -47,7 +48,7 @@ public class InvoiceService {
         List<Invoice> listTotalInvoices = connect.withExtension(InvoiceDao.class, dao -> dao.findInvoicesInMonth(year));
         Map<Integer, Integer> temp = new TreeMap<>();
         for (Invoice i : listTotalInvoices) {
-            int month =i.getOrderDate().getMonthValue();
+            int month = i.getOrderDate().getMonthValue();
             temp.put(month, temp.getOrDefault(month, 0) + 1);
         }
         for (int i = 1; i <= 12; i++) {
@@ -185,7 +186,6 @@ public class InvoiceService {
         }
     }
 
-
     public void updatePaymentForInvoice(Invoice invoice) {
         PaymentService paymentService = PaymentService.getInstance();
         // Tính tổng tiền hàng từ InvoiceDetail
@@ -255,7 +255,7 @@ public class InvoiceService {
             System.out.println("Warning: No InvoiceDetails found for invoiceId: " + invoice.getInvoiceId());
         }
         double totalAmount = 0.0;
-        for (InvoiceDetail i: invoiceDetails ) {
+        for (InvoiceDetail i : invoiceDetails) {
             System.out.println(i.getQuantity() * i.getUnitPrice());
             totalAmount += (i.getQuantity() * i.getUnitPrice());
         }
