@@ -5,7 +5,7 @@
 
 package com.vnpay.common;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -98,7 +98,7 @@ public class VnpayReturn extends HttpServlet {
             // ✔ Giao dịch hợp lệ
             boolean success = "00".equals(request.getParameter("vnp_TransactionStatus"));
             if (success) {
-                paymentService.updatePaymentStatus(orderId, "Completed");
+                paymentService.updateStatus(orderId, "Completed");
             }
 
             // Truyền dữ liệu qua JSP
