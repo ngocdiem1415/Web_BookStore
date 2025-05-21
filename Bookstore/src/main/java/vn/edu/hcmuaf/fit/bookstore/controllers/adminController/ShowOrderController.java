@@ -29,11 +29,13 @@ public class ShowOrderController extends HttpServlet {
         int id = Integer.parseInt(orderID);
         Invoice order = invoiceService.findById(id);
         System.out.println(order.toString());
+        request.setAttribute("mode", "show");
         request.setAttribute("order", order);
-        request.getRequestDispatcher("Show-Order.jsp").forward(request, response);
+        request.getRequestDispatcher("Show-Edit-Order.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
+
 }

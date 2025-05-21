@@ -45,7 +45,8 @@
             </div>
             <div class="box-footer text-center">
                 <button type="submit" class="btn btn-success me-3">Lưu</button>
-                <button type="button" class="btn btn-danger">Hủy</button>
+                <button type="button" class="btn btn-danger"
+                        onclick="window.location.href='category';">Hủy</button>
             </div>
         </form>
     </div>

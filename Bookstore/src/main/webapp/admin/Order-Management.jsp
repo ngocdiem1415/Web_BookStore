@@ -77,22 +77,17 @@
                             <td>${order.getPayment().getPaymentStatus()}</td>
                             <td>${order.status}</td>
                             <td>
-                                    <%--                                <a href="show-order?id=${order.invoiceId}">--%>
-                                    <%--                                    <button type="button" class="btn btn-view m-0 p-0">--%>
-                                    <%--                                        <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>--%>
-                                    <%--                                    </button>--%>
-                                    <%--                                </a>--%>
-                                <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                <button class="show-button col-6 btn px-0" style="color: #236844;"
                                         onclick="window.location.href='show-order?id=${order.invoiceId}';"
-                                        title="Chỉnh sửa">
+                                        title="Xem">
                                     <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
                                 </button>
-                                <a href="">
-                                    <button type="button" class="btn btn-edit m-0 p-0">
-                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
-                                           style="color: #236844"></i>
-                                    </button>
-                                </a>
+                                <button class="edit-button col-6 btn px-0" style="color: #236844;"
+                                        onclick="window.location.href='edit-order?id=${order.invoiceId}';"
+                                        title="Chỉnh sửa">
+                                    <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                       style="color: #236844"></i>
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
