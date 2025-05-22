@@ -14,23 +14,27 @@ public class CategoryService {
     Jdbi connect = JDBIConnector.getJdbi();
 
     public static CategoryService getInstance() {
-        if(instance == null) instance = new CategoryService();
+        if (instance == null) instance = new CategoryService();
         return instance;
     }
 
-    public List<Category> listCategory(){
+    public List<Category> listCategory() {
         return connect.withExtension(CategoryDao.class, handle -> handle.list());
     }
 
-    public Category getCategoryById(int id){
+    public Category getCategoryById(int id) {
         return connect.withExtension(CategoryDao.class, handle -> handle.findById(id));
     }
 
-    public void insertCategory(String categoryName){
+    public void insertCategory(String categoryName) {
         connect.useExtension(CategoryDao.class, dao -> dao.insert(categoryName));
     }
 
-    public void updateCategory(int categoryid, String categoryName){
+    public void updateCategory(int categoryid, String categoryName) {
         connect.useExtension(CategoryDao.class, dao -> dao.update(categoryid, categoryName));
+    }
+
+    public void deleteCategory(int id) {
+        connect.useExtension(CategoryDao.class, dao -> dao.delete(id));
     }
 }

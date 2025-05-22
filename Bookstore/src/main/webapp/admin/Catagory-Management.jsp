@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="../css/Style.css">
   <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
   <link rel="stylesheet" href="css/Dashboard.css">
-
 </head>
 <body>
 
@@ -131,12 +130,14 @@
                                  style="color: #236844"></i>
                             </button>
                           </a>
-                          <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                  data-bs-target="#confirmDeleteModal">
-                            <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                               style="color: #ef5f5f"></i>
-                          </button>
-                        </td>
+                            <button type="button"
+                                    class="btn btn-delete m-0 p-0"
+                                    data-id="${category.categoryId}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#confirmDeleteModal">
+                                <i class="fa-regular fa-trash-can fa-lg mx-2" style="color: #ef5f5f"></i>
+                            </button>
+
                       </tr>
                     </c:forEach>
                     </tbody>
@@ -151,25 +152,39 @@
     </div>
   </div>
   <!-- Modal -->
-  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa danh mục</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa danh mục</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn" data-bs-dismiss="modal">Xóa</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
-        </div>
+    </div>
+</section>
+
+<!-- Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+  <div id="deleteToast" class="toast align-items-center text-white bg-success border-0" role="alert"
+       aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMessage">
+        Xóa thành công!
       </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+              aria-label="Close"></button>
     </div>
   </div>
-</section>
+</div>
 
 
 <!--all script files-->
@@ -177,7 +192,6 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/datatables.min.js"></script>
-
 <!--script-->
 <script>
   var myModalEl = document.getElementById('addCategory');
@@ -219,6 +233,56 @@
       $('#addCategory').modal('show');
     });
   });
+</script>
+
+<script>
+    $(document).ready(function () {
+        let deletedCategoryId = null;
+
+        // Khi nhấn nút xóa, lưu lại categoryId
+        $(document).on('click', '.btn-delete', function () {
+            deletedCategoryId = $(this).data('id');
+        });
+
+        // Khi nhấn xác nhận xóa trong modal
+        $('#confirmDeleteBtn').on('click', function () {
+            if (deletedCategoryId) {
+                $.ajax({
+                    url: '${pageContext.request.contextPath}/admin/delete-category', // Đường dẫn đúng Servlet
+                    method: 'POST',
+                    data: {category_id: deletedCategoryId},
+                    success: function () {
+                        // Đóng modal (data-bs-dismiss="modal" đã có)
+
+                        // Xóa dòng khỏi DataTable
+                        let table = $('#orderTable').DataTable();
+                        let row = $('button.btn-delete[data-id="' + deletedCategoryId + '"]').closest('tr');
+                        table.row(row).remove().draw();
+
+                        // Hiện toast thông báo thành công
+                        $('#toastMessage').text('Xóa danh mục thành công!');
+                        $('#deleteToast').removeClass('bg-danger').addClass('bg-success');
+                        let toast = new bootstrap.Toast(document.getElementById('deleteToast'));
+                        toast.show();
+
+                        deletedCategoryId = null;
+                    },
+                  error: function (xhr) {
+                    let msg = 'Xóa thất bại. Danh mục đang được sử dụng và không thể xóa!';
+                    if (xhr.status === 500 && xhr.responseText.includes('SQLIntegrityConstraintViolationException')) {
+                      msg = 'Không thể xóa danh mục vì đang được sử dụng ở các bản ghi khác!';
+                    }
+
+                    $('#toastMessage').text(msg);
+                    $('#deleteToast').removeClass('bg-success').addClass('bg-danger');
+                    let toast = new bootstrap.Toast(document.getElementById('deleteToast'));
+                    toast.show();
+                  }
+
+                });
+            }
+        });
+    });
 </script>
 
 </body>

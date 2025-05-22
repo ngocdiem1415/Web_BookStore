@@ -100,10 +100,9 @@
                               </button>
                             </a>
 
-                            <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-delete m-0 p-0" data-id="${publisher.p_id}" data-bs-toggle="modal"
                                     data-bs-target="#confirmDeleteModal">
-                              <i class="fa-regular fa-trash-can fa-lg mx-2 "
-                                 style="color: #ef5f5f"></i>
+                              <i class="fa-regular fa-trash-can fa-lg mx-2 " style="color: #ef5f5f"></i>
                             </button>
                           </td>
                         </tr>
@@ -134,7 +133,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn" data-bs-dismiss="modal">Xóa</button>
         </div>
       </div>
     </div>
@@ -193,7 +192,51 @@
       $('#addSupplier').modal('show');
     });
   });
+</script>
 
+<script>
+  let selectedPublisher = null;
+
+  // Khi nhấn nút xóa danh mục
+  $(document).on('click', '.btn-delete', function () {
+    selectedPublisher = $(this).data('id');
+  });
+
+  // Khi xác nhận xóa trong modal
+  $('#confirmDeleteBtn').on('click', function () {
+    if (selectedPublisher) {
+      $.ajax({
+        url: '${pageContext.request.contextPath}/admin/delete-publisher',
+        method: 'POST',
+        data: { publisherId: selectedPublisher },
+        success: function () {
+          // Ẩn modal sau khi xóa thành công
+          $('#confirmDeleteModal').modal('hide');
+
+          // Xóa dòng tương ứng khỏi bảng
+          const row = $('[data-id="' + selectedPublisher + '"]').closest('tr');
+          $('#orderTable').DataTable().row(row).remove().draw();
+
+          // Hiển thị toast thông báo thành công
+          $('#toastMessage').text('Xóa nhà xuất bản thành công!');
+          $('#deleteToast').removeClass('bg-danger').addClass('bg-success');
+
+          const toast = new bootstrap.Toast(document.getElementById('deleteToast'));
+          toast.show();
+
+          selectedPublisher = null;
+        },
+        error: function (xhr) {
+          const msg = xhr.responseText || 'Xóa thất bại. Vui lòng thử lại!';
+          $('#toastMessage').text(msg);
+          $('#deleteToast').removeClass('bg-success').addClass('bg-danger');
+
+          const toast = new bootstrap.Toast(document.getElementById('deleteToast'));
+          toast.show();
+        }
+      });
+    }
+  });
 </script>
 </body>
 </html>

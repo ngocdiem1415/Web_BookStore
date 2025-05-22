@@ -85,15 +85,16 @@
                                         </thead>
                                         <tbody style="font-weight: lighter">
                                         <c:forEach var="admin" items="${admins}">
-                                            <tr>
+                                            <tr data-id="${admin.uid}">
                                                 <th scope="row">${admin.uid}</th>
-                                                <td><img src="../img/Sample_User_Icon.png" height="50px" width="50px"/>
+                                                <td><img src="${admin.avatar}" alt="avatar" height="50px" width="50px"/>
                                                 </td>
                                                 <td>${admin.username}</td>
                                                 <td>${admin.phone}</td>
                                                 <td>${admin.email}</td>
                                                 <td>
-                                                    <form action="${pageContext.request.contextPath}/admin/upload-role" method="post" class="d-inline">
+                                                    <form action="${pageContext.request.contextPath}/admin/upload-role"
+                                                          method="post" class="d-inline">
                                                         <input type="hidden" name="uid" value="${admin.uid}"/>
                                                         <select name="role" class="form-select form-select-sm"
                                                                 onchange="this.form.submit()">
@@ -106,18 +107,29 @@
                                                         </select>
                                                     </form>
                                                 </td>
-
-                                                <td>hoạt động</td>
-                                                <td>
-                                                    <a href="edit-admin?id=${admin.uid}" class="text-dec">
-                                                        <i class="fa-regular fa-pen-to-square fa-lg"
-                                                           style="color: #236844"></i>
-                                                    </a>
-                                                    <button type="button" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#confirmDeleteModal">
-                                                        <i class="fa-regular fa-trash-can fa-lg "
-                                                           style="color: #ef5f5f"></i>
-                                                    </button>
+                                                <td class="status-text">
+                                                    <c:choose>
+                                                        <c:when test="${admin.status == 1}">
+                                                            <span class="text-success">Hoạt động</span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="text-danger">Vô hiệu hóa</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                <td class="edit-actions">
+                                                    <c:if test="${admin.status == 1}">
+                                                        <a href="edit-user?id=${admin.uid}" class="text-dec">
+                                                            <i class="fa-regular fa-pen-to-square fa-lg"
+                                                               style="color: #236844"></i>
+                                                        </a>
+                                                        <button type="button" class="btn btn-delete"
+                                                                data-id="${admin.uid}" data-bs-toggle="modal"
+                                                                data-bs-target="#confirmDeleteModal">
+                                                            <i class="fa-regular fa-trash-can fa-lg"
+                                                               style="color: #ef5f5f"></i>
+                                                        </button>
+                                                    </c:if>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -146,7 +158,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
                 </div>
             </div>
         </div>
@@ -183,5 +195,42 @@
         });
     });
 </script>
+
+<script>
+    let deleteUserId = null;
+
+    // Khi nhấn nút xóa (lưu id vào biến)
+    $(document).on('click', '.btn-delete', function () {
+        deleteUserId = $(this).data('id');
+    });
+
+    // Khi xác nhận xóa trong modal
+    $('#confirmDeleteBtn').on('click', function () {
+        if (deleteUserId) {
+            $.ajax({
+                url: '${pageContext.request.contextPath}/admin/disable',
+                method: 'POST',
+                data: {uid: deleteUserId},
+                success: function (response) {
+                    $('#confirmDeleteModal').modal('hide');
+
+                    const row = $('[data-id="' + deleteUserId + '"]').closest('tr');
+
+                    // Cập nhật trạng thái sang "Vô hiệu hóa"
+                    row.find('td.status-text').html('<span class="text-danger">Vô hiệu hóa</span>');
+
+                    // Ẩn nút sửa và xóa
+                    row.find('.edit-actions').remove();
+
+                    deleteUserId = null;
+                },
+                error: function (error) {
+                    console.error('Xóa thất bại. Vui lòng thử lại.', error);
+                }
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
