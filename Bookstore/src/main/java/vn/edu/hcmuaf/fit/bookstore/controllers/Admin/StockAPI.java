@@ -80,7 +80,7 @@ public class StockAPI extends HttpServlet {
         String idBook = json.getString("bookId");
         String quantityStr = json.getString("quantity");
         String dateStr = json.getString("stockDate");
-        System.out.println(id + " " + idBook +" "+ quantityStr +" "+ dateStr);
+        System.out.println(id + " " + idBook + " " + quantityStr + " " + dateStr);
 
         int stockId = 0;
         int quantity = 0;
@@ -96,12 +96,12 @@ public class StockAPI extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi dữ liệu: " + e.getMessage());
             return;
         }
-        Stock stock = new Stock(stockId,bId, quantity, updateDate);
+        Stock stock = new Stock(stockId, bId, quantity, updateDate);
         System.out.println(stock.toString());
 
-        int insert = stockServicestock.insertStock(stock);
+        int update = stockServicestock.updateStock(stock);
         PrintWriter out = response.getWriter();
-        if (insert == 1) {
+        if (update == 1) {
             out.write("{\"message\":\"Cập nhật thành công\"}");
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
@@ -111,4 +111,37 @@ public class StockAPI extends HttpServlet {
         out.flush();
         out.close();
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
+
+        BufferedReader reader = req.getReader();
+        String body = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        JSONObject json = new JSONObject(body);
+        String id = json.getString("stockId");
+
+        int stockId = 0;
+        try {
+            stockId = Integer.parseInt(id);
+        } catch (Exception e) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi dữ liệu: " + e.getMessage());
+            return;
+        }
+        System.out.println(stockId);
+
+        int delete = stockServicestock.delete(stockId);
+        PrintWriter out = resp.getWriter();
+        if (delete == 1) {
+            out.write("{\"message\":\"Cập nhật thành công\"}");
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            out.write("{\"message\":\"Cập nhật thất bại\"}");
+        }
+        out.flush();
+        out.close();
+    }
+
 }

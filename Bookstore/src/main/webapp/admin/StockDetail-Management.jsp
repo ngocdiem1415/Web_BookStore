@@ -98,10 +98,11 @@
                                                             data-bookTitle="${stock.getBook().getTitle()}"
                                                             data-quantity="${stock.quantity}"
                                                             data-date="${stock.stock_date}">
-                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2" style="color: #236844"></i>
+                                                        <i class="fa-regular fa-pen-to-square fa-lg mx-2"
+                                                           style="color: #236844"></i>
                                                     </button>
-                                                    <button type="button" class="btn  m-0 p-0" data-bs-toggle="modal"
-                                                            data-bs-target="#confirmDeleteModal">
+                                                    <button type="button" class="btn  m-0 p-0 openDeleteModal"
+                                                            data-id="${stock.stockId}">
                                                         <i class="fa-regular fa-trash-can fa-lg mx-2 "
                                                            style="color: #ef5f5f"></i>
                                                     </button>
@@ -196,15 +197,20 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa sản phẩm</h5>
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa phiếu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn có chắc chắn muốn xóa sản phẩm khỏi kho không? Thao tác này không thể hoàn tác.
+                    <!-- Hidden input để lưu stockId -->
+                    <input type="hidden" id="deleteStockId" name="stockId">
+                    <!-- Nội dung thông báo xác nhận xóa -->
+                    <div>
+                        Bạn có chắc chắn muốn xóa phiếu này khỏi kho không? Thao tác này không thể hoàn tác.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteStock()">Xóa</button>
                 </div>
             </div>
         </div>
@@ -281,6 +287,13 @@
         $('#editStockModal').modal('show');
     });
 
+    $(document).on('click', '.openDeleteModal', function () {
+        var stockId = $(this).data('id');
+        $('#deleteStockId').val(stockId);
+        // Hiển thị modal
+        $('#confirmDeleteModal').modal('show');
+    });
+
     function stockIn() {
         $.ajax({
             url: 'stock',
@@ -316,7 +329,7 @@
             }),
             success: function (response) {
                 console.log(response);
-                $('#stockIn').modal('hide');
+                $('#editStockModal').modal('hide');
                 $('#mess').html('<div class="alert alert-success" role="alert">Sản phẩm đã được chỉnh sửa!</div>');
                 location.reload();
             },
@@ -326,6 +339,28 @@
             }
         });
     }
+
+    function deleteStock() {
+        $.ajax({
+            url: 'stock',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                stockId: $('#deleteStockId').val()
+            }),
+            success: function (response) {
+                console.log(response);
+                $('#confirmDeleteModal').modal('hide');
+                $('#mess').html('<div class="alert alert-success" role="alert">Sản phẩm đã được xóa!</div>');
+                location.reload();
+            },
+            error: function (error) {
+                $('#mess').html('<div class="alert alert-danger" role="alert">Xóa thất bại!</div>');
+                console.error(error);
+            }
+        });
+    }
+
 </script>
 
 </body>

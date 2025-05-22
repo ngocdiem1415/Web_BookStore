@@ -56,12 +56,20 @@ public class StockService {
         return connect.withExtension(StockDao.class, dao -> dao.insertStock(stock));
     }
 
+    public int delete(int stock_id) {
+        try {
+            return connect.withExtension(StockDao.class, dao -> dao.delete(stock_id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public int updateStock(Stock stock) {
-        List<Stock> listStock = connect.withExtension(StockDao.class, dao -> dao.findByBookId(stock.getbId()));
-        int quantity = listStock.get(0).getQuantity();
-        System.out.println(listStock.toString());
+        Stock st = connect.withExtension(StockDao.class, dao -> dao.getStockById(stock.getStockId()));
+        int quantity = st.getQuantity();
         stock.setQuantity(stock.getQuantity() + quantity);
-        System.out.println(stock.toString());
+//        System.out.println(stock.toString());
         return connect.withExtension(StockDao.class, dao -> dao.updateStock(stock));
     }
 
