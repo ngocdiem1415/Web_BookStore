@@ -13,7 +13,7 @@ import java.util.List;
 public interface StockDao {
 
     //Lấy tất cả các lần nhập kho
-    @SqlQuery("select * from Stocks order by stock_date desc")
+    @SqlQuery("select * from Stocks")
     List<Stock> listAll();
 
     //Tìm các lần nhập kho theo id của sách
@@ -21,7 +21,7 @@ public interface StockDao {
     List<Stock> findByBookId(@Bind("bId") int bId);
 
     // Thêm bản ghi nhập kho mới
-    @SqlUpdate("INSERT INTO Stocks (b_id, quantity, stock_date) VALUES (:bId, :quantity, :create_at)")
+    @SqlUpdate("INSERT INTO Stocks (b_id, quantity, stock_date) VALUES (:bId, :quantity, CURRENT_TIMESTAMP)")
     int insertStock(@BindBean Stock stock);
 
     // Cập nhật số lượng nhập kho theo stock_id

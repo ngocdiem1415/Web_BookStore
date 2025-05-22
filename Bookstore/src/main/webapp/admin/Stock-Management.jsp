@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Quản lí danh mục</title>
+  <title>Quản lí kho</title>
 
   <!--  all css files-->
   <link rel="stylesheet" href="../css/boostrap/bootstrap.min.css">
@@ -40,7 +40,7 @@
             <li class="breadcrumb-item">
               <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
               <a href="#" class="text-dec" style="color: gray"> / </a>
-              <a href="category" class="text-dec" style="color: #f07c29">Quản lí danh mục</a>
+              <a href="stock-management" class="text-dec" style="color: #f07c29">Quản lí kho</a>
             </li>
           </ol>
         </div>
@@ -58,41 +58,41 @@
                 <th>
                   <div class="d-flex justify-content-between">
                     <div class=" main-card-title my-3">
-                      <h3>Quản lí danh mục</h3>
+                      <h3>Quản lí kho</h3>
                     </div>
                     <a href="add-category">
                       <button type="button" class="btn btn-green my-4 border rounded"
                               data-bs-toggle="modal"
-                              data-bs-target="#addCategory">
+                              data-bs-target="#addStock">
                         <i class="fa-solid fa-plus"></i>
-                        Thêm danh mục
+                        Nhập kho
                       </button>
                     </a>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="addCategory" tabindex="-1"
+                    <div class="modal fade" id="addStock" tabindex="-1"
                          aria-labelledby="staticBackdropLabel"
                          aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="catLabel">Thêm danh mục</h5>
+                            <h5 class="modal-title" id="catLabel">Nhập kho</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <div class="mb-3">
-                              <label for="idCat" class="labels">ID Danh mục</label>
+                              <label for="idStock" class="labels">Mã kho</label>
                               <fieldset disabled>
-                                <input id="idCat" type="text"
+                                <input id="idStock" type="text"
                                        class="form-control disabled" placeholder="ID"
                                        value="">
                               </fieldset>
                             </div>
                             <div class="mb-3">
-                              <label for="nameCat" class="labels">Tên danh mục</label>
-                              <input id="nameCat" type="text" class="form-control"
-                                     placeholder="Danh Mục" value="">
+                              <label for="nameBook" class="labels">Tên sách</label>
+                              <input id="nameBook" type="text" class="form-control"
+                                     placeholder="Tên sách" value="">
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -111,21 +111,22 @@
                   <table class="table" id="orderTable">
                     <thead>
                     <tr>
-                      <th scope="col">ID</th>
-                      <th>Tên danh mục</th>
-                      <th>Ngày cập nhật</th>
+                      <th scope="col">Mã kho</th>
+                      <th>Tên sách</th>
+                      <th>Số lượng</th>
+                      <th>Ngày nhập</th>
                       <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody style="font-weight: lighter">
-                    <c:forEach var="category" items="${categories}">
+                    <c:forEach var="stock" items="${stocks}">
                       <tr>
-                        <th scope="row">${category.categoryId}</th>
-                        <td>${category.category_name}</td>
-                        <td>${category.update_at}
-                        </td>
+                        <th scope="row">${stock.stockId}</th>
+                        <td>${stock.getBook().getTitle()}</td>
+                        <td>${stock.quantity}</td>
+                        <td>${stock.stock_date}</td>
                         <td>
-                          <a href="edit-category?id=${category.categoryId}">
+                          <a href="edit-category?id=${stock.stockId}">
                             <button type="button" class="btn btn-edit m-0 p-0">
                               <i class="fa-regular fa-pen-to-square fa-lg mx-2"
                                  style="color: #236844"></i>
@@ -156,11 +157,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa danh mục</h5>
+          <h5 class="modal-title" id="confirmDeleteModalLabel">Xóa sản phẩm</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Bạn có chắc chắn muốn xóa không? Thao tác này không thể hoàn tác.
+          Bạn có chắc chắn muốn xóa sản phẩm khỏi kho không? Thao tác này không thể hoàn tác.
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
@@ -180,7 +181,7 @@
 
 <!--script-->
 <script>
-  var myModalEl = document.getElementById('addCategory');
+  var myModalEl = document.getElementById('addStock');
   $(document).ready(function () {
     // Khởi tạo DataTable cho bảng với id 'orderTable'
     var table = $('#orderTable').DataTable({
@@ -215,8 +216,6 @@
       $('#idGenre').val('01').prop('disabled', true);
       $('#nameGenre').val('truyện tranh').prop('disabled', true);
 
-      // Mở modal chỉ để xem
-      $('#addCategory').modal('show');
     });
   });
 </script>

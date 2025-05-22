@@ -1,10 +1,31 @@
-package vn.edu.hcmuaf.fit.bookstore.controllers.adminController; import jakarta.servlet.*; 
+package vn.edu.hcmuaf.fit.bookstore.controllers.adminController;
+
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import java.io.IOException; 
-@WebServlet(name = "StockAdminController", value = "/StockAdminController") 
-public class StockAdminController extends HttpServlet { 
+import vn.edu.hcmuaf.fit.bookstore.Services.StockService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Stock;
 
-@Override protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { } 
-@Override protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { } 
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet(name = "StockAdminController", value = "/admin/stock-management")
+public class StockAdminController extends HttpServlet {
+    private StockService stockService;
+
+
+    public StockAdminController() {
+        this.stockService = StockService.getInstance();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Stock> stocks = stockService.getAllStockEntries();
+        request.setAttribute("stocks", stocks);
+        request.getRequestDispatcher("Stock-Management.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 }

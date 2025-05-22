@@ -74,6 +74,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="stock-management" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+              <i class="fas fa-clipboard-list"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí kho</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="admin-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
               <i class="fas fa-users-cog"></i>

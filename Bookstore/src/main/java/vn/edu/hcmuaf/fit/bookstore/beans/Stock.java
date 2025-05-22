@@ -8,13 +8,19 @@ public class Stock implements Serializable {
     private int bId;
     private Book book;
     private int quantity;
-    private LocalDateTime create_at;
+    private LocalDateTime stock_date;
 
     public Stock(int stockId, int bId, int quantity, LocalDateTime create_at) {
         this.stockId = stockId;
         this.bId = bId;
         this.quantity = quantity;
-        this.create_at = create_at;
+        this.stock_date = create_at;
+    }
+
+    public Stock(int stockId, int bId, int quantity) {
+        this.stockId = stockId;
+        this.bId = bId;
+        this.quantity = quantity;
     }
 
     public Stock(){}
@@ -51,12 +57,12 @@ public class Stock implements Serializable {
         this.quantity = quantity;
     }
 
-    public LocalDateTime getCreate_at() {
-        return create_at;
+    public LocalDateTime getStock_date() {
+        return stock_date;
     }
 
-    public void setCreate_at(LocalDateTime create_at) {
-        this.create_at = create_at;
+    public void setStock_date(LocalDateTime stock_date) {
+        this.stock_date = stock_date;
     }
 
     @Override
@@ -65,7 +71,7 @@ public class Stock implements Serializable {
                 "stockId=" + stockId +
                 ", bId=" + bId +
                 ", quantity=" + quantity +
-                ", create_at=" + create_at +
+                ", create_at=" + stock_date +
                 '}';
     }
 }
