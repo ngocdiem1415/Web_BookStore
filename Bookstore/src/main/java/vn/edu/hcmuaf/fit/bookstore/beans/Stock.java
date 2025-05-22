@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Stock implements Serializable {
     private int stockId;
     private int bId;
+    private Book book;
     private int quantity;
     private LocalDateTime create_at;
 
@@ -17,6 +18,14 @@ public class Stock implements Serializable {
     }
 
     public Stock(){}
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
     public int getStockId() {
         return stockId;
