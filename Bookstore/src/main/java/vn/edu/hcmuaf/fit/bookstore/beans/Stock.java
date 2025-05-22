@@ -23,6 +23,17 @@ public class Stock implements Serializable {
         this.quantity = quantity;
     }
 
+    public Stock(int bId, int quantity, LocalDateTime stock_date) {
+        this.bId = bId;
+        this.quantity = quantity;
+        this.stock_date = stock_date;
+    }
+
+    public Stock(int quantity, LocalDateTime stock_date) {
+        this.quantity = quantity;
+        this.stock_date = stock_date;
+    }
+
     public Stock(){}
 
     public Book getBook() {

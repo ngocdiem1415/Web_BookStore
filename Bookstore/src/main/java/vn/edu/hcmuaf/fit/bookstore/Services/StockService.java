@@ -7,8 +7,7 @@ import vn.edu.hcmuaf.fit.bookstore.dao.BookDao;
 import vn.edu.hcmuaf.fit.bookstore.dao.StockDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StockService {
@@ -25,6 +24,29 @@ public class StockService {
         return listStock.stream().map(stock -> mapOtherBean(stock)).collect(Collectors.toList());
     }
 
+    public List<Stock> getStock() {
+        List<Stock> listStock = connect.withExtension(StockDao.class, StockDao::listAll);
+
+        Map<Integer, Stock> groupedMap = new HashMap<>();
+        for (Stock stock : listStock) {
+            int bookId = stock.getbId();
+            if (groupedMap.containsKey(bookId)) {
+                Stock existing = groupedMap.get(bookId);
+                existing.setQuantity(existing.getQuantity() + stock.getQuantity());
+                if (stock.getStock_date().isAfter(existing.getStock_date())) {
+                    existing.setStock_date(stock.getStock_date());
+                }
+            } else {
+                groupedMap.put(bookId, stock);
+            }
+        }
+        List<Stock> result = new ArrayList<>();
+        for (Stock stock : groupedMap.values()) {
+            result.add(mapOtherBean(stock));
+        }
+        return result;
+    }
+
     public List<Stock> getStockEntriesByBookId(int bId) {
         List<Stock> listStock = connect.withExtension(StockDao.class, dao -> dao.findByBookId(bId));
         return listStock.stream().map(stock -> mapOtherBean(stock)).collect(Collectors.toList());
@@ -34,8 +56,13 @@ public class StockService {
         return connect.withExtension(StockDao.class, dao -> dao.insertStock(stock));
     }
 
-    public void updateStock(Stock stock) {
-        connect.useExtension(StockDao.class, dao -> dao.updateStock(stock));
+    public int updateStock(Stock stock) {
+        List<Stock> listStock = connect.withExtension(StockDao.class, dao -> dao.findByBookId(stock.getbId()));
+        int quantity = listStock.get(0).getQuantity();
+        System.out.println(listStock.toString());
+        stock.setQuantity(stock.getQuantity() + quantity);
+        System.out.println(stock.toString());
+        return connect.withExtension(StockDao.class, dao -> dao.updateStock(stock));
     }
 
     private Stock mapOtherBean(Stock stock) {

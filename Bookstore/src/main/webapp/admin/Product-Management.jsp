@@ -28,6 +28,7 @@
 
 <jsp:include page="Header-Dashboard.jsp"/>
 
+<div id="mess"></div>
 <section class="section">
     <div class="container-fluid mb-5">
         <div class="title-wrapper pt-3">
@@ -162,7 +163,7 @@
     });
 
     // Xử lý sự kiện click nút xóa
-    function deleteProduct(id,btn) {
+    function deleteProduct(id, btn) {
         if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
             $.ajax({
                 url: 'product?id=' + id,
@@ -172,6 +173,9 @@
                     let row = table.row($(btn).parents('tr'));
                     row.remove().draw();
                     $('#mess').html('<div class="alert alert-success" role="alert">Sản phẩm đã được xóa!</div>');
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
                 },
                 error: function (error) {
                     $('#mess').html('<div class="alert alert-danger" role="alert">Xóa thất bại!</div>');

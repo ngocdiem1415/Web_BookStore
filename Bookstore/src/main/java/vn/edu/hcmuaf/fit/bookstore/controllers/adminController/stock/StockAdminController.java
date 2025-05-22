@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.bookstore.controllers.adminController;
+package vn.edu.hcmuaf.fit.bookstore.controllers.adminController.stock;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -20,7 +20,7 @@ public class StockAdminController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Stock> stocks = stockService.getAllStockEntries();
+        List<Stock> stocks = stockService.getStock();
         request.setAttribute("stocks", stocks);
         request.getRequestDispatcher("Stock-Management.jsp").forward(request, response);
     }
