@@ -1,0 +1,31 @@
+package vn.edu.hcmuaf.fit.bookstore.controllers.adminController.stock;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.StockService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Stock;
+
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet(name = "StockAdminController", value = "/admin/stock-management")
+public class StockAdminController extends HttpServlet {
+    private StockService stockService;
+
+
+    public StockAdminController() {
+        this.stockService = StockService.getInstance();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Stock> stocks = stockService.getStock();
+        request.setAttribute("stocks", stocks);
+        request.getRequestDispatcher("Stock-Management.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+}

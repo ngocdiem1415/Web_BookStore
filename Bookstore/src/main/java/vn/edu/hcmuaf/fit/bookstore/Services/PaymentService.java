@@ -95,9 +95,17 @@ public class PaymentService {
         return connect.withExtension(PaymentDao.class, dao -> dao.update(payment));
     }
 
-    public int updatePaymentStatus(int invoiceId, String paymentStatus) {
+    public int updateStatus(int invoiceId, String paymentStatus) {
         try {
-            return connect.withExtension(PaymentDao.class, dao -> dao.updatePaymentStatus(invoiceId, paymentStatus));
+            return connect.withExtension(PaymentDao.class, dao -> dao.updateStatus(invoiceId,paymentStatus));
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int updateMethodAndStatus(int invoiceId, String paymentMethod, String paymentStatus) {
+        try {
+            return connect.withExtension(PaymentDao.class, dao -> dao.updateMethodAndStatus(invoiceId, paymentMethod, paymentStatus));
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }

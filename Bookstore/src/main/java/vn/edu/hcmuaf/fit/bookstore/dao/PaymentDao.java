@@ -34,6 +34,9 @@ public interface PaymentDao {
     List<Payment> listAccountInYear(@Bind("year") int year);
 
     @SqlUpdate("UPDATE payments SET payment_status = :paymentStatus WHERE invoice_id = :invoiceId")
-    int updatePaymentStatus(@Bind("invoiceId") int invoiceId, @Bind("paymentStatus") String paymentStatus);
+    int updateStatus(@Bind("invoiceId") int invoiceId, @Bind("paymentStatus") String paymentStatus);
+
+    @SqlUpdate("UPDATE payments SET payment_status = :paymentStatus, payment_method = :paymentMethod WHERE invoice_id = :invoiceId")
+    int updateMethodAndStatus(@Bind("invoiceId") int invoiceId, @Bind("paymentMethod") String paymentMethod, @Bind("paymentStatus") String paymentStatus);
 
 }

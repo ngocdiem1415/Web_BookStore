@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "ProductController", value = "/admin/product-management")
-public class ProductController extends HttpServlet {
+public class ProductManageController extends HttpServlet {
     BookDetailService bookDetailService;
 
-    public ProductController() {
+    public ProductManageController() {
         this.bookDetailService = BookDetailService.getInstance();
     }
 

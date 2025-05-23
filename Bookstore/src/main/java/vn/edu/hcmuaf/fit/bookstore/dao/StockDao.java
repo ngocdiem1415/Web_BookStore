@@ -13,6 +13,10 @@ import java.util.List;
 public interface StockDao {
 
     //Lấy tất cả các lần nhập kho
+    @SqlQuery("select * from Stocks where stock_id = :id")
+    Stock getStockById(@Bind("id") int stockId);
+
+    //Lấy tất cả các lần nhập kho
     @SqlQuery("select * from Stocks order by stock_date desc")
     List<Stock> listAll();
 
@@ -21,17 +25,20 @@ public interface StockDao {
     List<Stock> findByBookId(@Bind("bId") int bId);
 
     // Thêm bản ghi nhập kho mới
-    @SqlUpdate("INSERT INTO Stocks (b_id, quantity, stock_date) VALUES (:bId, :quantity, :create_at)")
+    @SqlUpdate("INSERT INTO Stocks (b_id, quantity, stock_date) VALUES (:bId, :quantity, :stock_date)")
     int insertStock(@BindBean Stock stock);
+
+    @SqlUpdate("DELETE FROM Stocks WHERE stock_id = :stock_id")
+    int delete(@Bind("stock_id") int stock_id);
 
     // Cập nhật số lượng nhập kho theo stock_id
     @SqlUpdate("""
-        UPDATE Stocks
-        SET quantity = :quantity,
-            stock_date = :create_at
-        WHERE stock_id = :stockId
-    """)
-    void updateStock(@BindBean Stock stock);
+                UPDATE Stocks
+                SET quantity = :quantity,
+                    stock_date = :stock_date
+                WHERE stock_id = :stockId
+            """)
+    int updateStock(@BindBean Stock stock);
 
 
 }

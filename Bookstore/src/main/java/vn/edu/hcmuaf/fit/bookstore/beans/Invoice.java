@@ -17,6 +17,7 @@ public class Invoice {
     private List<InvoiceDetail> listInvoiceDetails;
     private Payment payment;
     private boolean hasReviews;
+    private double totalAmount;
 
     public Invoice() {
     }
@@ -38,6 +39,14 @@ public class Invoice {
 
     public LocalDate getReviewDeadline() {
         return this.completionDate.toLocalDate().plusDays(7);  // Nếu completionDate là LocalDateTime
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public boolean isHasReviews() {
@@ -149,6 +158,9 @@ public class Invoice {
                 ", shippingFee=" + shippingFee +
                 ", completionDate=" + completionDate +
                 ", listInvoiceDetails=" + listInvoiceDetails +
+                ", payment=" + payment +
+                ", hasReviews=" + hasReviews +
+                ", totalAmount=" + totalAmount +
                 '}';
     }
 }

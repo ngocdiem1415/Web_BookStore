@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
+import com.mysql.cj.xdevapi.Collection;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.dao.*;
@@ -19,7 +20,8 @@ public class InvoiceService {
     }
 
     public List<Invoice> listAll() {
-        return connect.withExtension(InvoiceDao.class, InvoiceDao::listAll);
+        List<Invoice> listInvoices = connect.withExtension(InvoiceDao.class, InvoiceDao::listAll);
+        return listInvoices.stream().map(invoice -> mapInvoice(invoice)).collect(Collectors.toList());
     }
 
     public Invoice findById(int id) {
@@ -35,8 +37,9 @@ public class InvoiceService {
         return connect.withExtension(InvoiceDao.class, handle -> handle.findByDate().stream()
                 .map(this::mapInvoice).collect(Collectors.toList()));
     }
-    public List<Integer> getListYear(){
-        List<Integer> listAllYear = connect.withExtension(InvoiceDao.class, InvoiceDao :: getListYear);
+
+    public List<Integer> getListYear() {
+        List<Integer> listAllYear = connect.withExtension(InvoiceDao.class, InvoiceDao::getListYear);
         Collections.sort(listAllYear);
         return listAllYear;
     }
@@ -45,7 +48,7 @@ public class InvoiceService {
         List<Invoice> listTotalInvoices = connect.withExtension(InvoiceDao.class, dao -> dao.findInvoicesInMonth(year));
         Map<Integer, Integer> temp = new TreeMap<>();
         for (Invoice i : listTotalInvoices) {
-            int month =i.getOrderDate().getMonthValue();
+            int month = i.getOrderDate().getMonthValue();
             temp.put(month, temp.getOrDefault(month, 0) + 1);
         }
         for (int i = 1; i <= 12; i++) {
@@ -183,7 +186,6 @@ public class InvoiceService {
         }
     }
 
-
     public void updatePaymentForInvoice(Invoice invoice) {
         PaymentService paymentService = PaymentService.getInstance();
         // Tính tổng tiền hàng từ InvoiceDetail
@@ -245,13 +247,19 @@ public class InvoiceService {
             System.out.println("Warning: Attempted to map invoice details and payment for a null Invoice.");
             return null;
         }
-        System.out.println("Fetching invoice with invoiceId: " + invoice.getInvoiceId());
+//        System.out.println("Fetching invoice with invoiceId: " + invoice.getInvoiceId());
         List<InvoiceDetail> invoiceDetails = connect.withExtension(InvoiceDetailDao.class,
                 handle -> handle.findByInvoiceId(invoice.getInvoiceId()).stream()
                         .map(this::mapInvoiceDetail).collect(Collectors.toList()));
         if (invoiceDetails.isEmpty()) {
             System.out.println("Warning: No InvoiceDetails found for invoiceId: " + invoice.getInvoiceId());
         }
+        double totalAmount = 0.0;
+        for (InvoiceDetail i : invoiceDetails) {
+            System.out.println(i.getQuantity() * i.getUnitPrice());
+            totalAmount += (i.getQuantity() * i.getUnitPrice());
+        }
+        invoice.setTotalAmount(totalAmount);
         invoice.setListInvoiceDetails(invoiceDetails);
 
         Payment payment = connect.withExtension(PaymentDao.class, handle -> handle.findByInvoiceId(invoice.getInvoiceId()));

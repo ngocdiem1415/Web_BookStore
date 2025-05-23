@@ -38,23 +38,15 @@
                     </fieldset>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Danh Sách Thể Loại</label>
-                    <div class="form-group d-flex align-items-center">
-                        <fieldset disabled>
-                            <input id="idGenre" class="form-control me-2" placeholder="ID" style="width: 60px">
-                        </fieldset>
-                        <label class="nameGenre text-normal me-2" for="nameGenre">Tên thể loại</label>
-                        <input id="nameGenre" name="category" type="text" class="form-control me-2"
-                               style="width: 200px">
-                        <button class="btn btn-outline-primary">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
+                    <label class="nameGenre text-normal me-2" for="nameGenre">Tên thể loại</label>
+                    <input id="nameGenre" name="category" type="text" class="form-control me-2"
+                           style="width: 200px">
                 </div>
             </div>
             <div class="box-footer text-center">
                 <button type="submit" class="btn btn-success me-3">Lưu</button>
-                <button type="button" class="btn btn-danger">Hủy</button>
+                <button type="button" class="btn btn-danger"
+                        onclick="window.location.href='category';">Hủy</button>
             </div>
         </form>
     </div>
