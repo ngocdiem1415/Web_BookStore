@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers.cartController;
 
 import com.google.gson.Gson;
+import io.leangen.geantyref.TypeToken;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CheckoutController", value = "/checkout")
 public class CheckoutController extends HttpServlet {
@@ -30,6 +32,63 @@ public class CheckoutController extends HttpServlet {
             System.out.println("CheckoutController: redirect to login");
             return;
         }
+
+        //Lấy ra các sản phẩm đã được chọn trong cart để tiến hành tính toán tổng tiền
+        Gson gson = new Gson();
+        Object selectedProductsObj = session.getAttribute("selectedProducts");
+        List<Map<String, Object>> selectedProducts;
+
+        if (selectedProductsObj instanceof String) {
+            String selectedProductsJson = (String) selectedProductsObj;
+            selectedProducts = gson.fromJson(selectedProductsJson, new TypeToken<List<Map<String, Object>>>() {}.getType());
+        } else if (selectedProductsObj instanceof List) {
+            selectedProducts = (List<Map<String, Object>>) selectedProductsObj;
+        } else {
+            selectedProducts = new ArrayList<>();
+        }
+
+        if (selectedProducts == null || selectedProducts.isEmpty()) {
+            // Nếu không có sản phẩm nào, quay về trang cart
+            response.sendRedirect(request.getContextPath() + "/cart");
+            return;
+        }
+        // Tính tổng tiền hàng
+        double totalProductPrice = 0;
+        int countProduct =0;
+        for (Map<String, Object> product : selectedProducts) {
+            // Tính tổng tiền hàng
+            double totalPrice = 0;
+            Object rawTotal = product.get("totalPrice");
+            if (rawTotal instanceof Number) {
+                totalPrice = ((Number) rawTotal).doubleValue();
+            } else if (rawTotal instanceof String) {
+                totalPrice = Double.parseDouble((String) rawTotal);
+            }
+            totalProductPrice += totalPrice;
+
+            // tính tổng số sản phẩm
+            int quantity = 0;
+            Object rawQuantity = product.get("quantity");
+            if (rawQuantity instanceof Number) {
+                quantity = ((Number) rawQuantity).intValue();
+            } else if (rawQuantity instanceof String) {
+                quantity = Integer.parseInt((String) rawQuantity);
+            }
+            countProduct += quantity;
+        }
+
+        // Phí ship sẽ được lấy từ api giao hàng sau
+        double shippingFee = 15000;
+
+        // Tổng cộng
+        double totalAmount = totalProductPrice + shippingFee;
+
+        // Đưa vào request để truyền sang JSP
+        request.setAttribute("totalProductPrice", totalProductPrice);
+        request.setAttribute("shippingFee", shippingFee);
+        request.setAttribute("totalAmount", totalAmount);
+        request.setAttribute("countProduct", countProduct);
+
         int userId = ((User) session.getAttribute("userSession")).getUid();
         request.setAttribute("userId", userId);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");

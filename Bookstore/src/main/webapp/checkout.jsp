@@ -114,7 +114,8 @@
 
             <div class="col-2 d-flex justify-content-center align-items-center p-0 my-2 text-danger">
                 <div class="ship-price">
-                    <f:formatNumber value="15000"/>
+<%--                    <f:formatNumber value="15000"/>--%>
+
                 </div>
                 <i class="fa-solid fa-dong-sign fa-xs"></i>
             </div>
@@ -162,7 +163,7 @@
                 <span class="text-start">Tổng tiền phí vận chuyển</span>
                 <div class="text-end d-flex align-items-center">
                     <div class="ship-price">
-                        <f:formatNumber value="15000"/>
+<%--                        <f:formatNumber value="15000"/>--%>
                     </div>
                     <i class="fa-solid fa-dong-sign fa-xs"></i>
                 </div>
@@ -190,6 +191,27 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<%--Đổ dữ liệu phí ship, tổng tiền hàng, totalAmount, tổng số sản phẩm vào FE--%>
+<script>
+    // Lấy dữ liệu từ request attribute
+    const totalProductPrice = <%= request.getAttribute("totalProductPrice") %>;
+    const shippingFee = <%= request.getAttribute("shippingFee") %>;
+    const totalAmount = <%= request.getAttribute("totalAmount") %>;
+    const countProduct = <%= request.getAttribute("countProduct") %>;
+
+    // Định dạng số sang VND
+    const formattedTotal = totalProductPrice.toLocaleString('vi-VN');
+    const formattedShipping = shippingFee.toLocaleString('vi-VN');
+    const formattedTotalAmount = totalAmount.toLocaleString('vi-VN');
+
+    // Gán vào các phần tử HTML
+    document.querySelector(".total-price-all").textContent = formattedTotal;
+    document.querySelectorAll(".ship-price").forEach(el => el.textContent = formattedShipping);
+    document.querySelector(".total-with-shipping").textContent = formattedTotalAmount;
+    document.querySelector(".total-with-shipping2").textContent = formattedTotalAmount;
+    document.querySelector(".count").textContent = `Tổng số tiền (${countProduct} sản phẩm):`;
+</script>
 
 <script>
     var citis = document.getElementById("city");
