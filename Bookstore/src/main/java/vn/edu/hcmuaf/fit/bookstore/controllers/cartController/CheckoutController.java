@@ -76,7 +76,7 @@ public class CheckoutController extends HttpServlet {
 
             //Tạo thông tin thanh toán của đơn hàng
             Payment payment = new Payment();
-            payment.setAmount(orderData.getTotalAmount());
+            payment.setAmount(caculateTotalAmount(orderData.getProducts()) + orderData.getShippingFee()); //Shipping fee lát nữa sẽ được thây thế bằng api giao hàng
             payment.setPaymentDate(LocalDateTime.now());
             payment.setPaymentStatus("Pending");
             if (orderData.getPaymentMethod().equals("COD"))
@@ -110,6 +110,15 @@ public class CheckoutController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"error\": \"Có lỗi xảy ra khi xử lý đơn hàng.\"}");
         }
+    }
+
+    //Tính toán tổng tiền hàng (không bao gồm phí vận chuyển)
+    private double caculateTotalAmount(List<InvoiceDetail> products) {
+        double totalAmount = 0;
+        for (InvoiceDetail product : products) {
+            totalAmount += product.getQuantity() * product.getUnitPrice();
+        }
+        return totalAmount;
     }
 
 }

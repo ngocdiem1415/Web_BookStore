@@ -134,15 +134,15 @@
 </div>
 
 <div class="payment-method bg-white border-top border rounded-2 mb-3">
-        <div class="row d-flex align-items-center my-2 mx-0 p-3">
-            <div class="col-4 h5">Phương thức thanh toán</div>
-            <div class="col-8 d-flex justify-content-center">
-                <select class="form-select w-50" id="payment-method-select">
-                    <option value="1">Thanh toán khi nhận hàng (COD)</option>
-                    <option value="2">Chuyển khoản ngân hàng (VNPay)</option>
-                </select>
-            </div>
+    <div class="row d-flex align-items-center my-2 mx-0 p-3">
+        <div class="col-4 h5">Phương thức thanh toán</div>
+        <div class="col-8 d-flex justify-content-center">
+            <select class="form-select w-50" id="payment-method-select">
+                <option value="1">Thanh toán khi nhận hàng (COD)</option>
+                <option value="2">Chuyển khoản ngân hàng (VNPay)</option>
+            </select>
         </div>
+    </div>
 
 
     <div class="summary row border-top border-bottom m-0 p-3">
@@ -309,66 +309,66 @@
     }
 </script>
 
-<script>
-    function calculateTotals() {
-        const productRows = document.querySelectorAll('.product'); // Lấy danh sách các sản phẩm
-        let totalQuantity = 0;
-        let totalPrice = 0;
+<%--<script>--%>
+<%--    function calculateTotals() {--%>
+<%--        const productRows = document.querySelectorAll('.product'); // Lấy danh sách các sản phẩm--%>
+<%--        let totalQuantity = 0;--%>
+<%--        let totalPrice = 0;--%>
 
-        productRows.forEach((row) => {
-            const quantityElement = row.querySelector('.quantity');
-            const totalPriceElement = row.querySelector('.total-price');
+<%--        productRows.forEach((row) => {--%>
+<%--            const quantityElement = row.querySelector('.quantity');--%>
+<%--            const totalPriceElement = row.querySelector('.total-price');--%>
 
-            // Lấy giá trị số lượng
-            const quantity = parseInt(quantityElement.textContent.trim(), 10);
-            if (!isNaN(quantity)) {
-                totalQuantity += quantity;
-            }
+<%--            // Lấy giá trị số lượng--%>
+<%--            const quantity = parseInt(quantityElement.textContent.trim(), 10);--%>
+<%--            if (!isNaN(quantity)) {--%>
+<%--                totalQuantity += quantity;--%>
+<%--            }--%>
 
-            // Lấy giá trị tổng giá
-            const priceText = totalPriceElement.textContent.trim().replace(/[.,\s]/g, ''); // Loại bỏ dấu định dạng
-            const price = parseInt(priceText, 10);
-            if (!isNaN(price)) {
-                totalPrice += price;
-                console.log(totalPrice);
-            }
-        });
+<%--            // Lấy giá trị tổng giá--%>
+<%--            const priceText = totalPriceElement.textContent.trim().replace(/[.,\s]/g, ''); // Loại bỏ dấu định dạng--%>
+<%--            const price = parseInt(priceText, 10);--%>
+<%--            if (!isNaN(price)) {--%>
+<%--                totalPrice += price;--%>
+<%--                console.log(totalPrice);--%>
+<%--            }--%>
+<%--        });--%>
 
-        // Hiển thị tổng số lượng sản phẩm
-        const countElement = document.querySelector('.count');
-        if (countElement) {
-            countElement.textContent = "Tổng thanh toán (" + totalQuantity + " sản phẩm):";
-        }
+<%--        // Hiển thị tổng số lượng sản phẩm--%>
+<%--        const countElement = document.querySelector('.count');--%>
+<%--        if (countElement) {--%>
+<%--            countElement.textContent = "Tổng thanh toán (" + totalQuantity + " sản phẩm):";--%>
+<%--        }--%>
 
-        // Hiển thị tổng giá trị tiền bao gồm shipping
-        const totalWithShippingElement = document.querySelector('.total-with-shipping');
-        if (totalWithShippingElement) {
-            const shippingFee = 15000; // Giá vận chuyển cố định
-            const totalWithShipping = totalPrice + shippingFee;
-            console.log(totalPrice);
-            totalWithShippingElement.textContent = totalWithShipping.toLocaleString('vi-VN');
-        }
+<%--        // Hiển thị tổng giá trị tiền bao gồm shipping--%>
+<%--        const totalWithShippingElement = document.querySelector('.total-with-shipping');--%>
+<%--        if (totalWithShippingElement) {--%>
+<%--            const shippingFee = 15000; // Giá vận chuyển cố định--%>
+<%--            const totalWithShipping = totalPrice + shippingFee;--%>
+<%--            console.log(totalPrice);--%>
+<%--            totalWithShippingElement.textContent = totalWithShipping.toLocaleString('vi-VN');--%>
+<%--        }--%>
 
-        //Hiển thị tổng giá sản phẩm
-        const totalProductPrice = document.querySelector('.total-price-all');
-        if (totalProductPrice) {
-            totalProductPrice.textContent = totalPrice.toLocaleString('vi-VN');
-        }
+<%--        //Hiển thị tổng giá sản phẩm--%>
+<%--        const totalProductPrice = document.querySelector('.total-price-all');--%>
+<%--        if (totalProductPrice) {--%>
+<%--            totalProductPrice.textContent = totalPrice.toLocaleString('vi-VN');--%>
+<%--        }--%>
 
-        const totalWithShippingElement2 = document.querySelector('.total-with-shipping2');
-        if (totalWithShippingElement2) {
-            const shippingFee = 15000; // Giá vận chuyển cố định
-            const totalWithShipping = totalPrice + shippingFee;
-            console.log(totalPrice);
-            totalWithShippingElement2.textContent = totalWithShipping.toLocaleString('vi-VN');
-        }
-    }
+<%--        const totalWithShippingElement2 = document.querySelector('.total-with-shipping2');--%>
+<%--        if (totalWithShippingElement2) {--%>
+<%--            const shippingFee = 15000; // Giá vận chuyển cố định--%>
+<%--            const totalWithShipping = totalPrice + shippingFee;--%>
+<%--            console.log(totalPrice);--%>
+<%--            totalWithShippingElement2.textContent = totalWithShipping.toLocaleString('vi-VN');--%>
+<%--        }--%>
+<%--    }--%>
 
-    // Gọi hàm tính toán sau khi render danh sách sản phẩm
-    if (selectProducts && selectProducts.length > 0) {
-        calculateTotals();
-    }
-</script>
+<%--    // Gọi hàm tính toán sau khi render danh sách sản phẩm--%>
+<%--    if (selectProducts && selectProducts.length > 0) {--%>
+<%--        calculateTotals();--%>
+<%--    }--%>
+<%--</script>--%>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -384,10 +384,6 @@
             });
         });
     });
-    // function getSelectedPaymentMethod() {
-    //     const selectedButton = document.querySelector(".payment-btn.active");
-    //     return selectedButton ? selectedButton.textContent.trim() : null;
-    // }
 </script>
 
 <%-- Thu thập data để chuyển dữ liệu qua backend--%>
@@ -518,8 +514,9 @@
         }));
 
         const shippingFee = 15000;
-        const totalPrice = selectProducts.reduce((sum, product) => sum + (product.unitPrice * product.quantity), 0);
-        const totalAmount = totalPrice + shippingFee;
+
+        // const totalPrice = selectProducts.reduce((sum, product) => sum + (product.unitPrice * product.quantity), 0);
+        // const totalAmount = totalPrice + shippingFee;
 
         const orderData = {
             recipientName: recipientName,
@@ -527,7 +524,7 @@
             address: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
             products: products,
             shippingFee: shippingFee,
-            totalAmount: totalAmount,
+            // totalAmount: totalAmount,
             paymentMethod: paymentMethod
         };
 
@@ -539,22 +536,23 @@
             success: function (response) {
                 const invoiceId = response.invoiceId;
 
-                if (paymentMethod === 'BANK_TRANSFER') {
-                    // ➡ Redirect sang VNPay
-                    window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
-                } else {
-                    // ➡ Với COD, xóa sản phẩm rồi chuyển sang trang hóa đơn
-                    let removeCount = 0;
-                    const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;
-                    selectProducts.forEach(product => {
-                        removeProduct(product.bId, () => {
-                            removeCount++;
-                            if (removeCount === selectProducts.length) {
+                // ➡ Với COD, xóa sản phẩm rồi chuyển sang trang hóa đơn
+                let removeCount = 0;
+                const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;
+                selectProducts.forEach(product => {
+                    removeProduct(product.bId, () => {
+                        removeCount++;
+                        if (removeCount === selectProducts.length) {
+                            if (paymentMethod === 'COD')
                                 window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;
+                            else if (paymentMethod === 'BANK_TRANSFER') {
+                                // ➡ Redirect sang VNPay
+                                window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
                             }
-                        });
+                        }
                     });
-                }
+                });
+
             },
             error: function (xhr) {
                 if (xhr.status === 400) {
@@ -567,8 +565,6 @@
             }
         });
     });
-
-
 </script>
 
 </body>
