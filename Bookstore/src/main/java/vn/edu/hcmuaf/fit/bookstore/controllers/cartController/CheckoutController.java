@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
+import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.BufferedReader;
@@ -91,6 +92,10 @@ public class CheckoutController extends HttpServlet {
 
         int userId = ((User) session.getAttribute("userSession")).getUid();
         request.setAttribute("userId", userId);
+
+        //Token GHN
+        String token_ghn = QUERIES.MY_GHN_TOKEN;
+        request.setAttribute("token_ghn", token_ghn);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/checkout.jsp");
         dispatcher.forward(request, response);
     }
