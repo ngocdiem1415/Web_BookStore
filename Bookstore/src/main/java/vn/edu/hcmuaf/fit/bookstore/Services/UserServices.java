@@ -11,8 +11,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class UserServices {
-
+    private static UserServices instance = null;
     Jdbi conn = JDBIConnector.getJdbi();
+
+    public static UserServices getInstance() {
+        if (instance == null) instance = new UserServices();
+        return instance;
+    }
 
     public int getTotalUser() {
         return conn.withExtension(UserDao.class, dao -> dao.totaluser());

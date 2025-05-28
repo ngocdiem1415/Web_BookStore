@@ -2,6 +2,15 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 
 public class QUERIES {
 
+    public class LOG {
+        public static final String INSERT =
+                "INSERT INTO Logs (user_id, session_id, ip_address, level, resource, action, data_before, data_after, locked) " +
+                        "VALUES (:userId, :sessionId, :ipAddress, :level, :resource, :action, :dataBefore, :dataAfter, :locked)";
+
+
+
+    }
+
     public class USER {
         public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
         public static final String SELECT_ALL_USER = "select * from users where role = :role";
