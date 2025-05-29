@@ -21,7 +21,7 @@ public class LogoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         String sessionId = session.getId();
         String ip = request.getRemoteAddr();
         User user = (User) session.getAttribute("userSession");

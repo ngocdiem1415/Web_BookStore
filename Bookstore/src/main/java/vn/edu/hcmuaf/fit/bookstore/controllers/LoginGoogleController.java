@@ -73,7 +73,7 @@ public class LoginGoogleController extends HttpServlet {
             user.setPassword(UUID.randomUUID().toString());
             userService.insertByGoogle(user);
             Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
-                    false, "{}", "{\"username\": \"" + user.getUid() + "\"}");
+                    false, "{}", "{\"username\": \"" + user.getUsername() + "\"}");
             logService.insert(log);
             // Reset đếm thất bại
             LoginAttemptTracker.reset(sessionId);
