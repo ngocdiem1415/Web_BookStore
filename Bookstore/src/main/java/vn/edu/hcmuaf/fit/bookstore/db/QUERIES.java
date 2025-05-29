@@ -28,6 +28,7 @@ public class QUERIES {
         public static final String UPDATE_IMAGE_BY_ID = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email, avatar = :avatar WHERE uid = :id";
         public static final String UPDATE_ROLE = "UPDATE users SET role = :role WHERE uid = :uid";
         public static final String CHANGE_STATUS = "UPDATE users SET status = 0 WHERE uid = :uid";
+        public static final String CHECK_PASSWORD = "SELECT * from users where uid = :uid AND password = :password";
     }
 
 

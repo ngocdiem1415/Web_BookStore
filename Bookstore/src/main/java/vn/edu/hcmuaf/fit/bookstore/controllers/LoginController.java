@@ -40,12 +40,13 @@ public class LoginController extends HttpServlet {
         String baoloi = "";
 
         if (user == null) {
-            if ( LoginAttemptTracker.shouldLogLoginFail(sessionId)){
+            if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
                 Log log = new Log(null, sessionId, ip, LogLevel.WARNING, "login", "LOGIN_FAIL",
                         false, "{}", "{\"username\": \"" + username + "\"}");
                 logService.insert(log);
+                LoginAttemptTracker.getAttempts(sessionId);
             }
-
+            LoginAttemptTracker.getAttempts(sessionId);
             baoloi = "Sai tên đăng nhập hoặc mật khẩu";
             request.setAttribute("baoloi", baoloi);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
@@ -54,10 +55,13 @@ public class LoginController extends HttpServlet {
             baoloi = "Tài khoản chưa được kích hoạt";
             request.setAttribute("baoloi", baoloi);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
-
-            Log log = new Log(null, sessionId, ip, LogLevel.ALERT, "login", "LOGIN_INACTIVE",
-                    false, "{}", "{\"username\": \"" + username + "\"}");
-            logService.insert(log);
+            if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
+                Log log = new Log(null, sessionId, ip, LogLevel.ALERT, "login", "LOGIN_INACTIVE",
+                        false, "{}", "{\"username\": \"" + username + "\"}");
+                logService.insert(log);
+                LoginAttemptTracker.getAttempts(sessionId);
+            }
+            LoginAttemptTracker.getAttempts(sessionId);
         } else {
             session.setAttribute("userSession", user);
             session.setAttribute("role", user.getRole());
@@ -65,7 +69,6 @@ public class LoginController extends HttpServlet {
             Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
                     false, "{}", "{\"username\": \"" + username + "\"}");
             logService.insert(log);
-            // Reset đếm thất bại
             LoginAttemptTracker.reset(sessionId);
 
             if ("user".equals(user.getRole())) {

@@ -114,11 +114,6 @@ public class UserServices {
     }
 
 
-    public static void main(String[] args) {
-        UserServices userServices = new UserServices();
-        System.out.println(userServices.hashPassword("123"));
-    }
-
     public void updateUserRole(String username, String gender, String dob, String phone, String email, int id) {
         try {
             conn.useExtension(UserDao.class, handle -> {
@@ -191,4 +186,7 @@ public class UserServices {
         }
     }
 
+    public boolean checkPassword(int uid, String password) {
+        return conn.withExtension(UserDao.class, handle -> handle.checkPwd(uid,password));
+    }
 }
