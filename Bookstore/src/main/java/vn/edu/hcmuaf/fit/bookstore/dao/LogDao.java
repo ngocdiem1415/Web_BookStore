@@ -12,10 +12,12 @@ import java.util.List;
 
 @RegisterBeanMapper(Log.class)
 public interface LogDao {
-    @SqlQuery("SELECT * FROM LOG")
+    @SqlQuery(QUERIES.LOG.LISTLOG)
     List<Log> listLog();
 
     @SqlUpdate(QUERIES.LOG.INSERT)
     boolean insert(@BindBean Log log);
 
+    @SqlQuery(QUERIES.LOG.FIND_BY_ID)
+    Log findById(@Bind("logId") int id);
 }

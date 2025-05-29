@@ -1,9 +1,9 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 15/01/2025
-  Time: 5:35 CH
-  To change this template use File | Settings | File Templates.
+Created by IntelliJ IDEA.
+User: Admin
+Date: 15/01/2025
+Time: 5:35 CH
+To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../css/Style.css">
     <link rel="stylesheet" href="../fonts/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="stylesheet" href="css/Edit-Admin.css">
 
 </head>
 <body>
@@ -34,343 +35,111 @@
     <div class="container-fluid mb-5">
         <div class="title-wrapper pt-3">
             <div class="d-flex align-items-center">
-                <!-- end col -->
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb mx-4">
                         <li class="breadcrumb-item">
                             <a href="dashboard" class="text-dec" style="color: gray">Dashboard</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
-                            <a href="order-management" class="text-dec" style="color: gray">Quản lí đơn hàng</a>
+                            <a href="log-management" class="text-dec" style="color: gray">Quản lí log</a>
                             <a href="#" class="text-dec" style="color: gray"> / </a>
-                            <c:choose>
-                                <c:when test="${mode == 'show'}">
-                                    <a href="#" class="text-dec" style="color: #f07c29">Thông tin đơn hàng</a>
-                                </c:when>
-                                <c:when test="${mode == 'edit'}">
-                                    <a href="#" class="text-dec" style="color: #f07c29">Chỉnh sửa đơn hàng</a>
-                                </c:when>
-                            </c:choose>
+                            <a href="#" class="text-dec" style="color: #f07c29">Thông tin log</a>
                         </li>
                     </ol>
                 </div>
-                <!-- end col -->
             </div>
-            <!-- end row -->
         </div>
-        <div class="container-fluid main-content br-gray rounded">
-            <div class="row ">
-                <div class="mt-4 ">
-                    <div class="ID-Order">
-                        <h5> MÃ ĐƠN HÀNG: ${order.invoiceId}</h5>
-                        <span
-                                class="mx-2">|</span><span class="f4gWe1" aria-role="region" aria-live="polite"
-                                                           tabindex="0">${order.status}</span>
-                    </div>
-                </div>
-                <div class="card-body mt-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="col-lg-12">
-                                <form>
-                                    <div class="mb-4 ml-4">
-                                        <label for="store-name" class="form-label mx-2 ">ID khách hàng:</label>
-                                        <input type="text" id="store-name" class="form-control" value="${order.uid}"
-                                               readonly=""
-                                               fdprocessedid="z9i7i9">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-12">
-                                <form>
-                                    <div class="mb-4 ml-4">
-                                        <label for="owner-name" class="form-label mx-2"> Tên người mua:</label>
-                                        <input type="text" id="owner-name" class="form-control"
-                                               value="${order.recipientName}">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="mb-4 ml-4">
-                                    <label for="schedule-number" class="form-label mx-2">Số điện thoại:</label>
-                                    <input type="number" id="schedule-number" name="schedule-number"
-                                           class="form-control"
-                                           value="${order.recipientPhone}">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <form>
-                                    <div class="mb-4 ml-4">
-                                        <label for="schedule-email" class="form-label mx-2">Địa chỉ:</label>
-                                        <input type="email" id="schedule-email" name="schedule-email"
-                                               class="form-control"
-                                               value="${order.address}">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-1"></div>
-                        <div class="col-5 ">
-                            <form class="payment mr-4" id="payment-form">
-                                <div class="mb-3">
-                                    <label for="payment-method" class="form-label mx-2">Hình thức thanh toán:</label>
-                                    <c:choose>
-                                        <c:when test="${mode == 'show'}">
-                                            <<!-- Hình thức thanh toán -->
-                                            <select id="payment-method" name="paymentMethod" class="form-select" disabled>
-                                                <option value="1" ${order.payment.paymentMethod == 1 ? 'selected' : ''}>
-                                                    Tiền
-                                                    mặt
-                                                </option>
-                                                <option value="2" ${order.payment.paymentMethod == 2 ? 'selected' : ''}>
-                                                    Chuyển
-                                                    khoản
-                                                </option>
-                                            </select>
-                                        </c:when>
-                                        <c:when test="${mode == 'edit'}">
-                                            <!-- Hình thức thanh toán -->
-                                            <select id="payment-method" name="paymentMethod" class="form-select">
-                                                <option value="1" ${order.payment.paymentMethod == 1 ? 'selected' : ''}>
-                                                    Tiền mặt
-                                                </option>
-                                                <option value="2" ${order.payment.paymentMethod == 2 ? 'selected' : ''}>
-                                                    Chuyển khoản
-                                                </option>
-                                            </select>
-                                        </c:when>
-                                    </c:choose>
-                                </div>
-                                <div class="mb-3 mr-4">
-                                    <label for="owner-name" class="form-label"> Trạng thái thanh toán:</label>
-                                    <c:choose>
-                                        <c:when test="${mode == 'show'}">
-                                            <!-- Trạng thái thanh toán -->
-                                            <select id="payment-status" name="paymentStatus" class="form-select" disabled>
-                                                <c:choose>
-                                                    <c:when test="${order.payment.paymentStatus == 'Pending'}">
-                                                        <option value="Pending" selected>Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Completed'}">
-                                                        <option value="Pending" >Đang chờ xử lý</option>
-                                                        <option value="Completed" selected>Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Failed'}">
-                                                        <option value="Pending" >Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed" selected>Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Refunded'}">
-                                                        <option value="Pending" >Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded" selected>Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="Pending" selected>Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </select>
-                                        </c:when>
-                                        <c:when test="${mode == 'edit'}">
-                                            <!-- Trạng thái thanh toán -->
-                                            <select id="payment-status" name="paymentStatus" class="form-select">
-                                                <c:choose>
-                                                    <c:when test="${order.payment.paymentStatus == 'Pending'}">
-                                                        <option value="Pending" selected>Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Completed'}">
-                                                        <option value="Pending" >Đang chờ xử lý</option>
-                                                        <option value="Completed" selected>Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Failed'}">
-                                                        <option value="Pending" >Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed" selected>Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Refunded'}">
-                                                        <option value="Pending" >Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded" selected>Đã hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="Pending" selected>Đang chờ xử lý</option>
-                                                        <option value="Completed">Đã thanh toán thành công</option>
-                                                        <option value="Failed">Thanh toán thất bại</option>
-                                                        <option value="Refunded">Đã hoàn tiền</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </select>
-                                        </c:when>
-                                    </c:choose>
-                                </div>
-                                <div class="mb-3 mr-4">
-                                    <label for="owner-name" class="form-label"> Trạng thái đơn hàng:</label>
-                                    <c:choose>
-                                        <c:when test="${mode == 'show'}">
-                                            <select id="payment-status" class="form-select" disabled>
-                                                <c:choose>
-                                                    <c:when test="${order.payment.paymentStatus == 'Pending'}">
-                                                        <option value="Pending" selected>Đang vận chuyển</option>
-                                                        <option value="Completed">Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Completed'}">
-                                                        <option value="Pending">Đang vận chuyển</option>
-                                                        <option value="Completed" selected>Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Failed'}">
-                                                        <option value="Pending" selected>Đang vận chuyển</option>
-                                                        <option value="Completed">Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Refunded'}">
-                                                        <option value="Pending" selected>Đang vận chuyển</option>
-                                                        <option value="Completed">Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="Pending" selected>Đang xử lý</option>
-                                                        <option value="Shipping">Đang vận chuyển</option>
-                                                        <option value="Received">Đã nhận được hàng</option>
-                                                        <option value="Cancelled">Hủy đơn hàng</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </select>
-                                        </c:when>
-                                        <c:when test="${mode == 'edit'}">
-                                            <select id="invoice-status" class="form-select">
-                                                <c:choose>
-                                                    <c:when test="${order.payment.paymentStatus == 'Pending'}">
-                                                        <option value="Pending" selected>Đang vận chuyển</option>
-                                                        <option value="Completed">Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Completed'}">
-                                                        <option value="Pending">Đang vận chuyển</option>
-                                                        <option value="Completed" selected>Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Failed'}">
-                                                        <option value="Pending" selected>Đang vận chuyển</option>
-                                                        <option value="Completed">Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:when test="${order.payment.paymentStatus == 'Refunded'}">
-                                                        <option value="Pending" selected>Đang vận chuyển</option>
-                                                        <option value="Completed">Đã giao hàng</option>
-                                                        <option value="Failed">Hủy đơn hàng</option>
-                                                        <option value="Refunded">Hoàn tiền</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="Pending" selected>Đang xử lý</option>
-                                                        <option value="Shipping">Đang vận chuyển</option>
-                                                        <option value="Received">Đã nhận được hàng</option>
-                                                        <option value="Cancelled">Hủy đơn hàng</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </select>
-                                        </c:when>
-                                    </c:choose>
-                                </div>
-                            </form>
 
-                            <div class="row pb-3">
-                                <div class="col-6 fw-bold">Tổng tiền</div>
-                                <div class="col-6"><fmt:formatNumber
-                                        value="${not empty order.getPayment().getAmount() ? order.getPayment().getAmount() : 0}"
-                                        type="number"/></div>
-                            </div>
-                            <div class="row pb-3">
-                                <div class="col-6 fw-bold">Phí vận chuyển</div>
-                                <div class="col-6"><fmt:formatNumber
-                                        value="${not empty order.shippingFee ? order.shippingFee :0}"
-                                        type="number"/></div>
-                            </div>
-                            <div class="row pb-3">
-                                <div class="col-6 fw-bold">Thành tiền</div>
-                                <div class="col-6 "><fmt:formatNumber
-                                        value="${not empty order.totalAmount ? order.totalAmount: 0}"
-                                        type="number"/></div>
-                            </div>
+        <div class="edit-admin-container">
+            <div class="edit-admin-container-content">
+                <div style="display: contents">
+                    <div class="edit-admin-container-content-inner">
+                        <div class="edit-admin-container-content-inner-header">
+                            <h2 class="edit-user-container-content-inner-header-title">Chi Tiết Log</h2>
+                        </div>
+
+                        <div class="edit-admin-container-content-inner-body">
+                            <form>
+                                <div class="form-edit-admin-group">
+                                    <label for="logId">Log ID</label>
+                                    <input type="text" class="form-control" id="logId" value="${log.logId}" readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="userId">User ID</label>
+                                    <input type="text" class="form-control" id="userId" value="${log.userId}" readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="sessionId">Session ID</label>
+                                    <input type="text" class="form-control" id="sessionId" value="${log.sessionId}"
+                                           readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="ipAddress">IP Address</label>
+                                    <input type="text" class="form-control" id="ipAddress" value="${log.ipAddress}"
+                                           readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="level">Mức độ Log</label>
+                                    <input type="text" class="form-control" id="level" value="${log.level}" readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="resource">Tài nguyên</label>
+                                    <input type="text" class="form-control" id="resource" value="${log.resource}"
+                                           readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="action">Hành động</label>
+                                    <input type="text" class="form-control" id="action" value="${log.action}" readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="created_at">Thời gian</label>
+                                    <input type="text" class="form-control" id="created_at" value="${log.created_at}"
+                                           readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group">
+                                    <label for="locked">Đã khóa</label>
+                                    <input type="text" class="form-control" id="locked"
+                                           value="${log.locked ? 'Có' : 'Không'}" readonly>
+                                </div>
+
+                                <div class="form-edit-admin-group align-items-center row ">
+                                    <label for="dataBefore" class="col-2 col-form-label" style="white-space: nowrap;">Dữ liệu Trước</label>
+                                    <div class="col-8">
+                                        <textarea class="form-control" id="dataBefore" rows="4"
+                                                  readonly>${log.dataBefore}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-edit-admin-group align-items-center row">
+                                    <label for="dataAfter" class="col-2 col-form-label" style="white-space: nowrap;">Dữ liệu Sau</label>
+                                    <div class="col-8">
+                                    <textarea class="form-control" id="dataAfter" rows="4"
+                                              readonly>${log.dataAfter}</textarea>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="log-detail-actions d-flex justify-content-center">
+                            <button type="button" class="btn btn-danger my-4"
+                                    onclick="window.location.href='log-management';">
+                                <i class="fa-solid fa-times"></i> Quay lại
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="list-detail mt-4">
-                <div class="container-fluid">
-                    <table class="table" id="orderTable">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Số lượng</th>
-                            <th>Giá</th>
-                        </tr>
-                        <thead>
-                        <tbody>
-                        <c:forEach var="listOrder" items="${order.listInvoiceDetails}">
-                            <tr>
-                                <td>${listOrder.invoiceId}</td>
-                                <td>
-                                    <img src="${listOrder.book.getImage().getSourceImg()}"
-                                         alt="${listOrder.book.getTitle()}"
-                                         height="80px" width="70px"/>
-                                </td>
-                                <td>${listOrder.book.getTitle()}</td>
-                                <td><fmt:formatNumber
-                                        value="${not empty listOrder.book.getsalePrice() ? listOrder.book.getsalePrice() : listOrder.book.getOriginalPrice()}"
-                                        type="number"/> đ
-                                </td>
-                                <td>${listOrder.quantity}</td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="box-footer text-center">
-            <c:choose>
-                <c:when test="${mode == 'show'}">
-                    <button type="button" class="btn btn-danger"
-                            onclick="window.location.href='order-management';">Hủy
-                    </button>
-                </c:when>
-                <c:when test="${mode == 'edit'}">
-                    <button id="updateOrder" class="btn btn-success me-3">Lưu</button>
-                    <button type="button" class="btn btn-danger"
-                            onclick="window.location.href='order-management';">Hủy
-                    </button>
-                </c:when>
-            </c:choose>
         </div>
     </div>
 </section>
+
 
 <!--all script files-->
 <script src="../fonts/fontawesome-free-6.6.0-web/js/all.js"></script>

@@ -11,7 +11,7 @@ public class Log implements Serializable {
     private LogLevel level;
     private String resource;
     private String action;
-    private LocalDateTime createAt;
+    private LocalDateTime created_at;
     private boolean locked;
     private String dataBefore;
     private String dataAfter;
@@ -87,12 +87,12 @@ public class Log implements Serializable {
         this.action = action;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
     public boolean isLocked() {

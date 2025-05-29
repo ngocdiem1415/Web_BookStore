@@ -65,11 +65,6 @@
                                                 <i class="fa-solid fa-plus"></i>
                                                 Xem chi tiết
                                             </button>
-                                            <button type="button" class="btn btn-green my-4 border rounded"
-                                                    id="btnOpenStockInModal">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Nhập kho
-                                            </button>
                                         </div>
                                     </div>
                                 </th>

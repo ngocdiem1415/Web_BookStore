@@ -28,7 +28,7 @@
             <li class="nav-item">
                 <a href="user-management" class="text-dec">
             <span class="icon" style="font-size: 25px">
-              <i class="fas fa-users"></i>
+             <i class="fa-solid fa-user"></i>
             </span>
                     <span class="text" style="color: black; font-weight: bold">Quản lí tài khoản</span>
                 </a>
@@ -79,6 +79,14 @@
               <i class="fas fa-clipboard-list"></i>
             </span>
                     <span class="text" style="color: black; font-weight: bold">Quản lí kho</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="log-management" class="text-dec">
+            <span class="icon" style="font-size: 25px">
+                <i class="fa-solid fa-note-sticky"></i>
+            </span>
+                    <span class="text" style="color: black; font-weight: bold">Quản lí log</span>
                 </a>
             </li>
             <li class="nav-item">
