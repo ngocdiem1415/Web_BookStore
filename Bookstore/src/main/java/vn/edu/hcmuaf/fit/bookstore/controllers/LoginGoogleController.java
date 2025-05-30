@@ -8,7 +8,11 @@ import jakarta.servlet.annotation.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LoginStracked.LoginAttemptTracker;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.beans.API.GGLogin;
 import vn.edu.hcmuaf.fit.bookstore.filter.IconstantGG;
@@ -18,7 +22,13 @@ import java.util.UUID;
 
 @WebServlet(name = "LoginGoogleController", value = "/login-google")
 public class LoginGoogleController extends HttpServlet {
-    private UserServices userService = new UserServices();
+    private UserServices userService ;
+    private LogService logService;
+
+    public LoginGoogleController() {
+        this.logService = LogService.getInstance();
+        this.userService = UserServices.getInstance();
+    }
 
     public static String getToken(String code) throws IOException, ClientProtocolException {
         // call api to get Token
@@ -51,15 +61,24 @@ public class LoginGoogleController extends HttpServlet {
         String code = request.getParameter("code");
         String accessToken = getToken(code);
         GGLogin GGLogin = getUserInfo(accessToken);
+
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String ip = request.getRemoteAddr();
+
         User user = GGLogin.mapToUserGG();
         if (!userService.exists(user)) {
             user.setRole("user");
             user.setStatus(1);
             user.setPassword(UUID.randomUUID().toString());
             userService.insertByGoogle(user);
+            Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
+                    false, "{}", "{\"username\": \"" + user.getUsername() + "\"}");
+            logService.insert(log);
+            // Reset đếm thất bại
+            LoginAttemptTracker.reset(sessionId);
         }
         user = userService.findByUserName(user.getUsername());
-        HttpSession session = request.getSession();
         session.setAttribute("userSession", user);
         response.sendRedirect(request.getContextPath() + "/home");
 
