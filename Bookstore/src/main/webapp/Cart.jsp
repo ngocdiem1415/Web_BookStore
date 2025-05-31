@@ -63,7 +63,11 @@
                 <div class="product row m-2 py-3 border-bottom" data-product-id="${entry.value.book.bId}">
                     <div class="col-5 d-flex align-items-center">
                         <label class="me-4">
-                            <input type="checkbox" name="item" class="item-checkbox"/>
+                            <input type="checkbox"
+                                   name="item"
+                                   class="item-checkbox"
+                                   value="${entry.value.id}"
+                            />
                         </label>
 
                         <div class="d-flex align-items-center">
@@ -187,9 +191,12 @@
             </strong>
         </div>
         <div class="col-2 d-flex justify-content-center">
-            <button id="buy-button" class="MUA btn px-3" type="button">
-                Mua hàng
-            </button>
+            <form id="checkout-form" action="process-checkout" method="post">
+                <input type="hidden" id="selectedVariants" name="selectedVariants" value=""/>
+                <button id="buy-button" class="MUA btn px-3" type="submit">
+                    Mua hàng
+                </button>
+            </form>
         </div>
     </div>
 </div>
@@ -241,7 +248,7 @@
         const countElement = document.querySelector('.count');
         if (countElement) {
             const selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            countElement.textContent = 'Tổng thanh toán ('+selectedCount+' sản phẩm):';
+            countElement.textContent = 'Tổng thanh toán (' + selectedCount + ' sản phẩm):';
         }
     }
 
@@ -293,77 +300,91 @@
 
 <%--Chuyển các sản phẩm được checkbox từ cart sang checkout khi nhấn nút buy-now--%>
 <script>
-    $(document).ready(function () {
-        $("#buy-button").click(function () {
-            // Lấy tất cả các checkbox
-            const checkboxes = $('.item-checkbox');
-            const selectedProducts = [];
+    document.getElementById("checkout-form").addEventListener("submit", function (e) {
+        const selected = Array.from(document.querySelectorAll(".item-checkbox:checked"))
+            .map(cb => cb.value);
 
-            // Lấy danh sách sản phẩm được chọn
-            checkboxes.each(function () {
-                if ($(this).is(":checked")) {
-                    const productRow = $(this).closest('.product');
-                    if (productRow.length > 0) {
-                        const bId = productRow.data('product-id'); // Lấy productId
-                        const productImg = productRow.find('.img-thumbnail').attr('src');
-                        const productName = productRow.find('.product-name').text().trim();
-                        const quantity = parseInt(productRow.find('.quantity').val().trim());
-                        const unitPriceText = productRow.find('.unit-price').text();
-                        const totalPriceText = productRow.find('.total-price').text();
-                        const unitPrice = parseFloat(unitPriceText.replace(/[.,\s]/g, ''), 10);
-                        const totalPrice = parseFloat(totalPriceText.replace(/[.,\s]/g, ''), 10);
-
-                        // if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {
-                            selectedProducts.push({
-                                bId: bId,
-                                productImg: productImg,
-                                productName: productName,
-                                unitPrice: unitPrice,
-                                quantity: quantity,
-                                totalPrice: totalPrice
-                            });
-                        // }
-                    }
-                }
-            });
-            console.log(selectedProducts);
-
-            if (selectedProducts.length > 0) {
-                // Mã hóa danh sách sản phẩm thành JSON
-                // const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
-
-                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
-                // window.location.href = 'process-checkout?selectedProducts=' + encodedData;
-                // ------
-
-                //Mã hóa danh sách sản phẩm thành JSON
-                const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));
-                console.log(encodedData);
-                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON
-                window.location.href = 'process-checkout?selectedProducts=' + encodedData;
-
-                // //Gửi AJAX request đến ProcessCheckoutController
-                // $.ajax({
-                //     url: "/Bookstore/process-checkout", // Đường dẫn tới Servlet
-                //     method: "POST",
-                //     contentType: "application/json",
-                //     //data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),
-                //     data: encodedData,
-                //     success: function (response) {
-                //         console.log("Response:", response);
-                //         // Chuyển hướng tới trang thanh toán sau khi xử lý thành công
-                //         window.location.href = "/Bookstore/process-checkout";
-                //     },
-                //     error: function (xhr, status, error) {
-                //         console.error("Đã xảy ra lỗi:", error);
-                //         alert("Đã xảy ra lỗi khi chuyển sản phẩm sang trang thanh toán.");
-                //     }
-                // });
-            } else {
-                alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
-            }
-        });
+        if (selected.length === 0) {
+            e.preventDefault();
+            alert("Vui lòng chọn ít nhất một sản phẩm.");
+            return;
+        }
+        document.getElementById("selectedVariants").value = selected.join(",");
+        console.log(selected);
     });
 </script>
+<%--<script>--%>
+<%--    $(document).ready(function () {--%>
+<%--        $("#buy-button").click(function () {--%>
+<%--            // Lấy tất cả các checkbox--%>
+<%--            const checkboxes = $('.item-checkbox');--%>
+<%--            const selectedProducts = [];--%>
+
+<%--            // Lấy danh sách sản phẩm được chọn--%>
+<%--            checkboxes.each(function () {--%>
+<%--                if ($(this).is(":checked")) {--%>
+<%--                    const productRow = $(this).closest('.product');--%>
+<%--                    if (productRow.length > 0) {--%>
+<%--                        const bId = productRow.data('product-id'); // Lấy productId--%>
+<%--                        const productImg = productRow.find('.img-thumbnail').attr('src');--%>
+<%--                        const productName = productRow.find('.product-name').text().trim();--%>
+<%--                        const quantity = parseInt(productRow.find('.quantity').val().trim());--%>
+<%--                        const unitPriceText = productRow.find('.unit-price').text();--%>
+<%--                        const totalPriceText = productRow.find('.total-price').text();--%>
+<%--                        const unitPrice = parseFloat(unitPriceText.replace(/[.,\s]/g, ''), 10);--%>
+<%--                        const totalPrice = parseFloat(totalPriceText.replace(/[.,\s]/g, ''), 10);--%>
+
+<%--                        // if (!isNaN(unitPrice) && !isNaN(totalPrice) && productId && quantity > 0) {--%>
+<%--                        selectedProducts.push({--%>
+<%--                            bId: bId,--%>
+<%--                            productImg: productImg,--%>
+<%--                            productName: productName,--%>
+<%--                            unitPrice: unitPrice,--%>
+<%--                            quantity: quantity,--%>
+<%--                            totalPrice: totalPrice--%>
+<%--                        });--%>
+<%--                        // }--%>
+<%--                    }--%>
+<%--                }--%>
+<%--            });--%>
+<%--            console.log(selectedProducts);--%>
+
+<%--            if (selectedProducts.length > 0) {--%>
+<%--                // Mã hóa danh sách sản phẩm thành JSON--%>
+<%--                // const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));--%>
+
+<%--                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON--%>
+<%--                // window.location.href = 'process-checkout?selectedProducts=' + encodedData;--%>
+<%--                // --------%>
+
+<%--                //Mã hóa danh sách sản phẩm thành JSON--%>
+<%--                const encodedData = encodeURIComponent(JSON.stringify(selectedProducts));--%>
+<%--                console.log(encodedData);--%>
+<%--                // Gửi yêu cầu GET tới Servlet với dữ liệu JSON--%>
+<%--                window.location.href = 'process-checkout?selectedProducts=' + encodedData;--%>
+
+<%--                // //Gửi AJAX request đến ProcessCheckoutController--%>
+<%--                // $.ajax({--%>
+<%--                //     url: "/Bookstore/process-checkout", // Đường dẫn tới Servlet--%>
+<%--                //     method: "POST",--%>
+<%--                //     contentType: "application/json",--%>
+<%--                //     //data: JSON.stringify({action: "checkout", selectedProducts: selectedProducts}),--%>
+<%--                //     data: encodedData,--%>
+<%--                //     success: function (response) {--%>
+<%--                //         console.log("Response:", response);--%>
+<%--                //         // Chuyển hướng tới trang thanh toán sau khi xử lý thành công--%>
+<%--                //         window.location.href = "/Bookstore/process-checkout";--%>
+<%--                //     },--%>
+<%--                //     error: function (xhr, status, error) {--%>
+<%--                //         console.error("Đã xảy ra lỗi:", error);--%>
+<%--                //         alert("Đã xảy ra lỗi khi chuyển sản phẩm sang trang thanh toán.");--%>
+<%--                //     }--%>
+<%--                // });--%>
+<%--            } else {--%>
+<%--                alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>
