@@ -1,4 +1,6 @@
-package vn.edu.hcmuaf.fit.bookstore.beans;
+package vn.edu.hcmuaf.fit.bookstore.beans.Order;
+
+import vn.edu.hcmuaf.fit.bookstore.beans.InvoiceDetail;
 
 import java.util.List;
 
