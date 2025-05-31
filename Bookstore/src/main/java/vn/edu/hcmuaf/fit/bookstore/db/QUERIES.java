@@ -1,7 +1,6 @@
 package vn.edu.hcmuaf.fit.bookstore.db;
 
 public class QUERIES {
-    public static final String MY_GHN_TOKEN = "edc1e66b-37ba-11f0-b3c0-3e4220400e9c";
 
     public class USER {
         public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
