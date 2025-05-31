@@ -52,9 +52,15 @@
 <div class="container mt-3">
     <div class="address-box pb-4 px-4">
         <div class="title-address py-3">
-            <span class="header-text text-danger d-flex justify-content-start align-items-center">
-                <i class="fa-solid fa-location-dot"></i> <h5 class="ps-3 mb-0">Địa Chỉ Nhận Hàng</h5>
-            </span>
+            <div class="row align-items-center my-3">
+                <div class="col-11 d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot fa-lg" style="color: #dc3545;"></i>
+                    <span class="ps-3 text-danger h5 mb-0">Địa Chỉ Nhận Hàng</span>
+                </div>
+                <div class="col-1">
+                    <button id="save" class="btn btn-success w-100" style="background: #4B908E;">Lưu</button>
+                </div>
+            </div>
             <div class="row d-flex align-items-center my-3">
                 <div class="col-6 d-flex align-items-center">
                     <label for="customer_name"></label>
@@ -104,7 +110,59 @@
     <!--Product items-->
     <section class="cart-items bg-white border-top border">
         <%--        Lặp danh sách các sản phẩm được check box ở cart.jsp--%>
-        <div id="product-list"></div>
+        <div id="product-list">
+            <c:choose>
+                <c:when test="${empty selectedProducts}">
+                    <p>Không có sản phẩm nào được chọn để thanh toán</p>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="product" items="${selectedProducts}">
+                        <div class="product row m-2 py-3 border-bottom" data-product-id="${product.id}">
+                            <div class="col-6 d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="${product.book.image.sourceImg}" style="min-width: 80px; height: 80px;"
+                                         class="img-md img-thumbnail"/>
+                                    <div class="info">
+                                            ${product.book.title}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Đơn giá-->
+                            <div class="col-2 d-flex align-items-center justify-content-center text-center">
+                                <div class="d-flex align-items-center justify-content-center text-center ms-2">
+                                    <c:if test="${product.book.promotionId == 0}">
+                                    <span class="unit-price">
+                                        <f:formatNumber value="${product.book.originalPrice}"/>
+                                    </span>
+                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                    </c:if>
+                                    <c:if test="${product.book.promotionId != 0}">
+                                    <span class="unit-price">
+                                        <f:formatNumber value="${product.book.salePrice}"/>
+                                    </span>
+                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                    </c:if>
+                                </div>
+                            </div>
+
+                            <!-- Số lượng-->
+                            <div class="col-2 d-flex align-items-center justify-content-center text-center">
+                                <span class="quantity">${product.quantity}</span>
+                            </div>
+
+                            <!-- Tổng cộng-->
+                            <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
+                            <span class="total-price">
+                                <f:formatNumber value="${product.book.salePrice * product.quantity}"/>
+                            </span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </div>
 
         <div class="shipping row m-0">
             <div class="col-10 d-flex justify-content-end align-items-center p-0">
@@ -125,10 +183,12 @@
     <!--Tổng cộng-->
     <section class="row m-2 py-3">
         <div class="col-10 d-flex justify-content-end align-items-center">
-            <span class="count fw-bold">Tổng số tiền (0 sản phẩm):</span>
+            <span class="count fw-bold">Tổng số tiền (${shippingInfo.totalQuantity}):</span>
         </div>
         <div class="col-2 d-flex justify-content-center align-items-center text-danger">
-            <span class="total-with-shipping"></span>
+            <span class="total-with-shipping">
+                <f:formatNumber value="${shippingInfo.totalPrice}"/>
+            </span>
             <i class="fa-solid fa-dong-sign fa-xs"></i>
         </div>
     </section>
@@ -153,7 +213,9 @@
             <div class="d-flex justify-content-between p-2">
                 <span class="text-start">Tổng tiền hàng</span>
                 <div class="text-end d-flex align-items-center">
-                    <span class="total-price-all"></span>
+                    <span class="total-price-all">
+                        <f:formatNumber value="${shippingInfo.totalPrice}"/>
+                    </span>
                     <i class="fa-solid fa-dong-sign fa-xs"></i>
                 </div>
             </div>
@@ -174,7 +236,9 @@
             <div class="d-flex justify-content-between fw-bold p-2">
                 <span class="text-start">Tổng thanh toán</span>
                 <div class="text-end d-flex align-items-center text-danger h5">
-                    <strong class="total-with-shipping2"></strong>
+                    <strong class="total-with-shipping2">
+                        <f:formatNumber value="${shippingInfo.totalPrice}"/>
+                    </strong>
                     <i class="fa-solid fa-dong-sign fa-xs"></i>
                 </div>
             </div>
@@ -190,102 +254,8 @@
 <jsp:include page="footer.jsp"></jsp:include>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<%--Đổ dữ liệu phí ship, tổng tiền hàng, totalAmount, tổng số sản phẩm vào FE--%>
-<script>
-    // Lấy dữ liệu từ request attribute
-    const totalProductPrice = <%= request.getAttribute("totalProductPrice") %>;
-    const shippingFee = <%= request.getAttribute("shippingFee") %>;
-    const totalAmount = <%= request.getAttribute("totalAmount") %>;
-    const countProduct = <%= request.getAttribute("countProduct") %>;
-
-    // Định dạng số sang VND
-    const formattedTotal = totalProductPrice.toLocaleString('vi-VN');
-    const formattedShipping = shippingFee.toLocaleString('vi-VN');
-    const formattedTotalAmount = totalAmount.toLocaleString('vi-VN');
-
-    // Gán vào các phần tử HTML
-    document.querySelector(".total-price-all").textContent = formattedTotal;
-    document.querySelectorAll(".ship-price").forEach(el => el.textContent = formattedShipping);
-    document.querySelector(".total-with-shipping").textContent = formattedTotalAmount;
-    document.querySelector(".total-with-shipping2").textContent = formattedTotalAmount;
-    document.querySelector(".count").textContent = `Tổng số tiền (${countProduct} sản phẩm):`;
-</script>
-
-<%--//Chuyển từ file Json qua các đối tượng để đổ dữ liệu vô JSP--%>
-<script>
-
-    const products = <%= (String) session.getAttribute("selectedProducts")%>;
-    console.log(products);
-    let selectProducts = Array.isArray(products) ? products : JSON.parse(products);
-    // let selectProducts = JSON.parse(products);
-
-    console.log(selectProducts);
-
-    //Render ra HTML
-    const productContainer = document.getElementById("product-list");
-    if (selectProducts && selectProducts.length > 0) {
-        selectProducts.forEach((product, index) => {
-            console.log(product);
-            const tempContainer = document.createElement("div");
-            tempContainer.innerHTML = `
-                <div class="product row m-2 py-3 border-bottom" data-product-id="">
-                    <div class="col-6 d-flex align-items-center">
-                        <div class="d-flex align-items-center">
-                                <img src="" style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
-                            <div class="info">
-                                    Tên sản phẩm không có
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Đơn giá-->
-                    <div class="col-2 d-flex align-items-center justify-content-center text-center">
-                        <div class="d-flex align-items-center justify-content-center text-center ms-2">
-                            <span class="unit-price">N/A</span>
-                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </div>
-                    </div>
-
-                    <!-- Số lượng-->
-                    <div class="col-2 d-flex align-items-center justify-content-center text-center">
-                        <span class="quantity">0</span>
-                    </div>
-
-                    <!-- Tổng cộng-->
-                    <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
-                        <span class="total-price">N/A</span>
-                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                    </div>
-                </div>
-            `;
-
-            // Lấy phần tử vừa tạo
-            const productElement = tempContainer.firstElementChild;
-
-            // Gán giá trị động vào các phần tử con
-            productElement.setAttribute("data-product-id", product.bId);
-            productElement.querySelector(".img-thumbnail").src = product.productImg;
-            productElement.querySelector(".info").textContent = product.productName;
-
-            const formattedUnitPrice = product.unitPrice.toLocaleString('vi-VN');
-            const formattedTotalPrice = product.totalPrice.toLocaleString('vi-VN');
-
-            productElement.querySelector(".unit-price").textContent = formattedUnitPrice;
-            productElement.querySelector(".quantity").textContent = product.quantity;
-            productElement.querySelector(".total-price").textContent = formattedTotalPrice;
-
-            // Thêm vào DOM
-            productContainer.appendChild(productElement);
-
-        });
-    } else {
-        productContainer.innerHTML = "<p>Không có sản phẩm nào trong danh sách thanh toán.</p>";
-        alert("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi đặt hàng!");
-        window.location.href = '/Bookstore/cart';
-    }
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -309,7 +279,6 @@
     const districtSelect = document.getElementById("district");
     const wardSelect = document.getElementById("ward");
     const specificAddressInput = document.getElementById("specific_address");
-    const token_ghn = "<%= request.getAttribute("token_ghn") %>";
 
     const ghnData = {
         cities: [],
@@ -317,57 +286,89 @@
         wards: {}
     };
 
-    if (token_ghn && token_ghn !== "null") {
-        // Load Provinces
-        axios.get("https://online-gateway.ghn.vn/shiip/public-api/master-data/province", {
-            headers: {'token': token_ghn}
-        }).then(response => {
+    //Load data địa lí hành chính VN từ api GHN
+    // Load danh sách tỉnh (provinces) từ BE
+    axios.get("/Bookstore/api/ghn/provinces")
+        .then(response => {
+            // Giả định API BE trả về JSON có thuộc tính 'data' chứa danh sách tỉnh
             ghnData.cities = response.data.data;
             ghnData.cities.forEach(city => {
                 const option = new Option(city.ProvinceName, city.ProvinceID);
                 citySelect.appendChild(option);
             });
-        }).catch(err => console.error("Lỗi load tỉnh:", err));
+        })
+        .catch(err => console.error("Lỗi load tỉnh:", err));
 
-        citySelect.onchange = function () {
-            districtSelect.length = 1;
-            wardSelect.length = 1;
+    // Khi chọn tỉnh, load danh sách quận (districts)
+    citySelect.onchange = function () {
+        // Reset district và ward
+        districtSelect.length = 1;
+        wardSelect.length = 1;
+        const provinceId = parseInt(this.value);
+        if (!provinceId) return;
 
-            const provinceId = parseInt(this.value);
-            if (!provinceId) return;
-
-            axios.post("https://online-gateway.ghn.vn/shiip/public-api/master-data/district",
-                {province_id: provinceId},
-                {headers: {'token': token_ghn}}
-            ).then(response => {
+        axios.post("/Bookstore/api/ghn/districts", new URLSearchParams({province_id: provinceId}))
+            .then(response => {
                 ghnData.districts[provinceId] = response.data.data;
                 response.data.data.forEach(d => {
                     const option = new Option(d.DistrictName, d.DistrictID);
                     districtSelect.appendChild(option);
                 });
-            }).catch(err => console.error("Lỗi load quận:", err));
-        };
+            })
+            .catch(err => console.error("Lỗi load quận:", err));
+    };
 
-        districtSelect.onchange = function () {
-            wardSelect.length = 1;
+    // Khi chọn quận, load danh sách phường (wards)
+    districtSelect.onchange = function () {
+        // Reset ward
+        wardSelect.length = 1;
+        const districtId = parseInt(this.value);
+        if (!districtId) return;
 
-            const districtId = parseInt(this.value);
-            if (!districtId) return;
-
-            axios.post("https://online-gateway.ghn.vn/shiip/public-api/master-data/ward",
-                {district_id: districtId},
-                {headers: {'token': token_ghn}}
-            ).then(response => {
+        axios.post("/Bookstore/api/ghn/wards", new URLSearchParams({district_id: districtId}))
+            .then(response => {
                 ghnData.wards[districtId] = response.data.data;
                 response.data.data.forEach(w => {
                     const option = new Option(w.WardName, w.WardCode);
                     wardSelect.appendChild(option);
                 });
-            }).catch(err => console.error("Lỗi load phường:", err));
+            })
+            .catch(err => console.error("Lỗi load phường:", err));
+    };
+
+    //Tính phí vận chuyển khi bấm vào nút lưu
+    document.getElementById("save").addEventListener("click", function () {
+        const recipientName = document.querySelector("input[name='shipping_full_name']").value;
+        const recipientPhone = document.querySelector("input[name='shipping_phone']").value;
+        const specificAddress = specificAddressInput.value;
+        const shippingCity = citySelect.value;
+        const shippingDistrict = districtSelect.value;
+        const shippingWard = wardSelect.value;
+
+        if (!recipientName || !recipientPhone || !specificAddress || !shippingCity || !shippingDistrict || !shippingWard) {
+            alert("Vui lòng điền đầy đủ thông tin giao hàng.");
+            return;
+        }
+        const requestData = {
+            toDistrictId: parseInt(shippingCity),
+            toWardCode: shippingWard
         };
-    } else {
-        console.error("Token GHN không hợp lệ.");
-    }
+
+        $.ajax({
+            url: "/Bookstore/api/ghn/calculate-shipping",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(requestData),
+            success: function (response) {
+                const fee = response.fee;
+                $(".ship-price").text(fee.toLocaleString());
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi tính phí vận chuyển:", error);
+                alert("Không thể tính phí vận chuyển. Vui lòng thử lại.");
+            }
+        });
+    });
 
     // Tạo địa chỉ đầy đủ
     function getFullAddress_GHN(provinceId, districtId, wardCode, specificAddress) {
@@ -381,6 +382,56 @@
             (ward ? ward.WardName : '') + ', ' +
             (district ? district.DistrictName : '') + ', ' +
             (city ? city.ProvinceName : '');
+    }
+
+    //Tìm ra districtId và wardCode dựa vào địa chỉ có sẵn
+    function findLocationIdsFromAddress(address, ghnData) {
+        const normalize = (str) =>
+            str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+
+        const normalizedAddress = normalize(address);
+
+        let foundCity = null;
+        for (const city of ghnData.cities) {
+            if (normalizedAddress.includes(normalize(city.ProvinceName))) {
+                foundCity = city;
+                break;
+            }
+        }
+
+        if (!foundCity) {
+            console.warn("Không tìm thấy tỉnh/thành trong địa chỉ.");
+            return null;
+        }
+
+        const districts = ghnData.districts[foundCity.ProvinceID] || [];
+        let foundDistrict = null;
+        for (const district of districts) {
+            if (normalizedAddress.includes(normalize(district.DistrictName))) {
+                foundDistrict = district;
+                break;
+            }
+        }
+
+        if (!foundDistrict) {
+            console.warn("Không tìm thấy quận/huyện trong địa chỉ.");
+            return null;
+        }
+
+        const wards = ghnData.wards[foundDistrict.DistrictID] || [];
+        let foundWard = null;
+        for (const ward of wards) {
+            if (normalizedAddress.includes(normalize(ward.WardName))) {
+                foundWard = ward;
+                break;
+            }
+        }
+
+        return {
+            provinceId: foundCity.ProvinceID,
+            districtId: foundDistrict?.DistrictID,
+            wardCode: foundWard?.WardCode
+        };
     }
 
     //Xóa item trong cart khi đặt hàng thành công
@@ -419,21 +470,14 @@
         const paymentMethodValue = document.getElementById("payment-method-select").value;
         const paymentMethod = (paymentMethodValue === "2") ? "BANK_TRANSFER" : "COD";
 
-        const products = selectProducts.map(product => ({
-            bId: product.bId,
-            quantity: product.quantity,
-            unitPrice: product.unitPrice
-        }));
-
-        const shippingFee = 15000;
         const fullAddress = getFullAddress_GHN(shippingCity, shippingDistrict, shippingWard, specificAddress);
 
         const orderData = {
             recipientName: recipientName,
             recipientPhone: recipientPhone,
             address: fullAddress,
-            products: products,
-            shippingFee: shippingFee,
+            //products: products, //cái này cũng vậy
+            //shippingFee: shippingFee, //tạo hàm tính toán trong BE -> xử lý trong BE luôn
             paymentMethod: paymentMethod
         };
 
