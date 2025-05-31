@@ -11,24 +11,22 @@ public class ProcessCheckoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String selectedProductsJson = request.getParameter("selectedProducts");
+    }
 
-        if (selectedProductsJson != null && !selectedProductsJson.isEmpty()) {
-            // Lưu danh sách sản phẩm vào session
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String selected = request.getParameter("selectedVariants");
+
+        if (selected != null && !selected.equals("")) {
             HttpSession session = request.getSession();
-            session.setAttribute("selectedProducts", selectedProductsJson);
-            System.out.println("selectedProductsJson: " + selectedProductsJson);
-            // Chuyển hướng tới trang thanh toán (checkout.jsp)
-            response.sendRedirect(request.getContextPath() + "/checkout");
+            session.setAttribute("selectedVariants", selected);
+
+            response.sendRedirect(request.getContextPath() + "/checkout"); // Chuyển sang xử lý trang thanh toán
         } else {
             // Nếu không có sản phẩm nào được chọn, trả về thông báo lỗi
             response.setContentType("text/plain");
             response.getWriter().write("Không có sản phẩm nào được chọn để thanh toán.");
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

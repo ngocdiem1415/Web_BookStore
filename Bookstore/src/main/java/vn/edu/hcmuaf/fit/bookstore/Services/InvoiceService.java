@@ -277,7 +277,7 @@ public class InvoiceService {
     public int updateStatus(int invoiceId, String status) {
         return connect.withExtension(InvoiceDao.class, handle -> handle.updateStatus(invoiceId, status));
     }
-
+    
 }
 
     
