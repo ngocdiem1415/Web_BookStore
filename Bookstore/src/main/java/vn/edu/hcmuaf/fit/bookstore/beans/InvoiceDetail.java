@@ -12,6 +12,12 @@ public class InvoiceDetail {
     public InvoiceDetail() {
     }
 
+    public InvoiceDetail(int bId, int quantity, double unitPrice) {
+        this.bId = bId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
     // Constructor
     public InvoiceDetail(int invoiceId, int bId, int quantity, double unitPrice, Book book) {
         this.invoiceId = invoiceId;

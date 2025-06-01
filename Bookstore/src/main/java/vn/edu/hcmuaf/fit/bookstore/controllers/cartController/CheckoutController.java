@@ -11,6 +11,7 @@ import vn.edu.hcmuaf.fit.bookstore.Services.ShippingInfoService;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.beans.Cart.BookVariant;
 import vn.edu.hcmuaf.fit.bookstore.beans.Cart.Cart;
+import vn.edu.hcmuaf.fit.bookstore.beans.Order.OrderData;
 import vn.edu.hcmuaf.fit.bookstore.beans.Order.ShippingInfo;
 import vn.edu.hcmuaf.fit.bookstore.db.QUERIES;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
@@ -26,6 +27,7 @@ import java.util.Map;
 @WebServlet(name = "CheckoutController", value = "/checkout")
 public class CheckoutController extends HttpServlet {
     List<BookVariant> selectedProducts;
+    ShippingInfo info;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,18 +65,20 @@ public class CheckoutController extends HttpServlet {
             int userId = ((User) session.getAttribute("userSession")).getUid();
             request.setAttribute("userId", userId);
             //Tính toán các giá trị của đơn hàng
-            ShippingInfo info = ShippingInfoService.calculateShippingInfo(selectedProducts);
+            info = ShippingInfoService.calculateShippingInfo(selectedProducts);
             System.out.println("trong checkout controller: " + info);
             request.setAttribute("shippingInfo", info);
             session.setAttribute("shippingInfo", info);
             // Gửi danh sách qua checkout.jsp
             request.setAttribute("selectedProducts", selectedProducts);
+
+            //Truyền danh sách id của sản phẩm được chọn để tiến hành xóa sp trong cart
+            String jsonArray = new Gson().toJson(selectedIds);
+            request.setAttribute("selectedIds", jsonArray);
             request.getRequestDispatcher("/checkout.jsp").forward(request, response);
         } else {
             response.sendRedirect("/Bookstore/cart");
         }
-
-
 
     }
 
@@ -85,7 +89,7 @@ public class CheckoutController extends HttpServlet {
         HttpSession session = request.getSession(false);
         int userId = ((User) session.getAttribute("userSession")).getUid();
 
-        /**
+
         try {
             //Đọc JSON từ request
             BufferedReader reader = request.getReader();
@@ -94,7 +98,7 @@ public class CheckoutController extends HttpServlet {
             System.out.println("orderData: " + orderData);
 
             // Kiểm tra orderData không có sản phẩm
-            if (orderData == null || orderData.getProducts() == null || orderData.getProducts().isEmpty()) {
+            if (selectedProducts == null || selectedProducts.isEmpty()) {
                 // Trả JSON thông báo lỗi:
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -112,14 +116,21 @@ public class CheckoutController extends HttpServlet {
             invoice.setAddress(orderData.getAddress());
             invoice.setOrderDate(LocalDateTime.now());
             invoice.setStatus("Pending");
-            invoice.setShippingFee(orderData.getShippingFee());
+
+            int shippingFee = (Integer) session.getAttribute("latestShippingFee");
+            invoice.setShippingFee(shippingFee);
             //Tạo list invoiceDetail
-            invoice.setListInvoiceDetails(orderData.getProducts());
+            List<InvoiceDetail> listInvoiceDetails = new ArrayList<>();
+            for (BookVariant bv : selectedProducts) {
+                InvoiceDetail invoiceDetail = new InvoiceDetail(bv.getBook().getbId(), bv.getQuantity(), bv.getBook().getsalePrice());
+                listInvoiceDetails.add(invoiceDetail);
+            }
+            invoice.setListInvoiceDetails(listInvoiceDetails);
             System.out.println("List book in checkout: " + invoice.getListInvoiceDetails());
 
             //Tạo thông tin thanh toán của đơn hàng
             Payment payment = new Payment();
-            payment.setAmount(0); //Shipping fee lát nữa sẽ được thây thế bằng api giao hàng
+            payment.setAmount(shippingFee + info.getTotalPrice()); //Shipping fee lát nữa sẽ được thây thế bằng api giao hàng
             payment.setPaymentDate(LocalDateTime.now());
             payment.setPaymentStatus("Pending");
             if (orderData.getPaymentMethod().equals("COD"))
@@ -153,7 +164,7 @@ public class CheckoutController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"error\": \"Có lỗi xảy ra khi xử lý đơn hàng.\"}");
         }
-         */
+
     }
 
 }

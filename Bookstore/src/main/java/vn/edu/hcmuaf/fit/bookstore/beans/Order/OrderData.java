@@ -8,18 +8,12 @@ public class OrderData {
     private String recipientName;
     private String recipientPhone;
     private String address;
-    private List<InvoiceDetail> products;
-    private double shippingFee;
-//    private double totalAmount;
     private String paymentMethod;
 
-    public OrderData(String recipientName, String recipientPhone, String address, List<InvoiceDetail> products, double shippingFee, String paymentMethod) {
+    public OrderData(String recipientName, String recipientPhone,String address, String paymentMethod) {
         this.recipientName = recipientName;
         this.recipientPhone = recipientPhone;
         this.address = address;
-        this.products = products;
-        this.shippingFee = shippingFee;
-//        this.totalAmount = totalAmount;
         this.paymentMethod = paymentMethod;
     }
 
@@ -38,18 +32,6 @@ public class OrderData {
         return address;
     }
 
-    public List<InvoiceDetail> getProducts() {
-        return products;
-    }
-
-    public double getShippingFee() {
-        return shippingFee;
-    }
-
-//    public double getTotalAmount() {
-//        return totalAmount;
-//    }
-
     public String getPaymentMethod() {
         return paymentMethod;
     }
@@ -66,18 +48,6 @@ public class OrderData {
         this.address = address;
     }
 
-    public void setProducts(List<InvoiceDetail> products) {
-        this.products = products;
-    }
-
-    public void setShippingFee(double shippingFee) {
-        this.shippingFee = shippingFee;
-    }
-
-//    public void setTotalAmount(double totalAmount) {
-//        this.totalAmount = totalAmount;
-//    }
-
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
@@ -88,9 +58,6 @@ public class OrderData {
                 "recipientName='" + recipientName + '\'' +
                 ", recipientPhone='" + recipientPhone + '\'' +
                 ", address='" + address + '\'' +
-                ", products=" + products +
-                ", shippingFee=" + shippingFee +
-//                ", totalAmount=" + totalAmount +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 '}';
     }
