@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "ProcessCheckoutController", value = "/process-checkout")
 public class ProcessCheckoutController extends HttpServlet {
@@ -25,7 +26,10 @@ public class ProcessCheckoutController extends HttpServlet {
         } else {
             // Nếu không có sản phẩm nào được chọn, trả về thông báo lỗi
             response.setContentType("text/plain");
-            response.getWriter().write("Không có sản phẩm nào được chọn để thanh toán.");
+            PrintWriter out = response.getWriter();
+            out.write("Không có sản phẩm nào được chọn để thanh toán.");
+            out.flush();
+            out.close();
         }
 
     }

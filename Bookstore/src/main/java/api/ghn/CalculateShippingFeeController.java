@@ -28,8 +28,6 @@ public class CalculateShippingFeeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println(">>>> BAT DAU doPost");
-        response.setContentType("text/plain");
-        response.getWriter().write("CalculateShippingFeeController is working!");
         BufferedReader reader = request.getReader();
         StringBuilder sb = new StringBuilder();
         String line;
@@ -46,7 +44,7 @@ public class CalculateShippingFeeController extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("shippingInfo") == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin vận chuyển không tồn tại trong session");
-            System.out.println("Không tồn tại ShippingInfo tròn session");
+            System.out.println("Không tồn tại ShippingInfo trong session");
             return;
         }
 
@@ -87,7 +85,7 @@ public class CalculateShippingFeeController extends HttpServlet {
         result.put("fee", shippingFee);
         response.setContentType("application/json");
         response.getWriter().write(result.toString());
-
+        session.setAttribute("latestShippingFee", shippingFee);
     }
 
     private int getAvailableServiceId(int toDistrictId) {
@@ -108,6 +106,8 @@ public class CalculateShippingFeeController extends HttpServlet {
                 os.write(payload.toString().getBytes());
             }
 
+            System.out.println("Payload gui toi GHN (available-services): " + payload.toString());
+
             BufferedReader in = new BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
             String inputLine;
             StringBuilder response = new StringBuilder();
@@ -117,18 +117,24 @@ public class CalculateShippingFeeController extends HttpServlet {
             in.close();
 
             JSONObject jsonResponse = new JSONObject(response.toString());
-            JSONArray services = jsonResponse.getJSONArray("data");
-
-            // Chọn gói dịch vụ đường bộ hàng nhẹ (tuỳ thuộc GHN response)
-            for (int i = 0; i < services.length(); i++) {
-                JSONObject service = services.getJSONObject(i);
-                int serviceTypeId = service.getInt("service_type_id");
-                if (serviceTypeId == 2) {
-                    return service.getInt("service_id");
-                }
-            }
             System.out.println("GHN response: " + response.toString());
 
+//            JSONArray services = jsonResponse.getJSONArray("data");
+
+            // Chọn gói dịch vụ đường bộ hàng nhẹ (tuỳ thuộc GHN response)
+            if (jsonResponse.has("data") && jsonResponse.get("data") instanceof JSONArray) {
+                JSONArray services = jsonResponse.getJSONArray("data");
+                for (int i = 0; i < services.length(); i++) {
+                    JSONObject service = services.getJSONObject(i);
+                    int serviceTypeId = service.getInt("service_type_id");
+                    if (serviceTypeId == 2) {
+                        return service.getInt("service_id");
+                    }
+                }
+            } else {
+                System.err.println("❌ GHN API trả về data KHÔNG phải JSONArray:");
+                System.err.println(jsonResponse.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,9 +165,12 @@ public class CalculateShippingFeeController extends HttpServlet {
             payload.put("weight", weight);
             payload.put("width", width);
 
+            System.out.println("Payload gui toi GHN (available-services): " + payload.toString());
+
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(payload.toString().getBytes());
             }
+
 
             BufferedReader in = new BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
             String inputLine;
@@ -172,6 +181,7 @@ public class CalculateShippingFeeController extends HttpServlet {
             in.close();
 
             JSONObject jsonResponse = new JSONObject(response.toString());
+            System.out.println("GHN fee response: " + response.toString());
             if (jsonResponse.getInt("code") == 200) {
                 return jsonResponse.getJSONObject("data").getInt("total");
             }
