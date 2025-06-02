@@ -53,7 +53,7 @@ public class LoginGoogleController extends HttpServlet {
         GGLogin GGLogin = getUserInfo(accessToken);
         User user = GGLogin.mapToUserGG();
         if (!userService.exists(user)) {
-            user.setRole("user");
+//            user.setRole("user");
             user.setStatus(1);
             user.setPassword(UUID.randomUUID().toString());
             userService.insertByGoogle(user);
