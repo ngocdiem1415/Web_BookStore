@@ -23,7 +23,6 @@ import java.util.Map;
 public class ProfileController extends HttpServlet {
     UserServices userServices = new UserServices();
     RoleServices roleServices = RoleServices.getInstance();
-    UserServices userServices;
     LogService logService;
 
     public ProfileController() {

@@ -67,9 +67,7 @@ public class LoginController extends HttpServlet {
             }
             LoginAttemptTracker.getAttempts(sessionId);
         } else {
-            HttpSession session = request.getSession(true);
             session.setAttribute("userSession", user);
-
 
 
             // Lay danh sach cac resource_code ma user co permission = 3
@@ -83,15 +81,16 @@ public class LoginController extends HttpServlet {
             if (!userResources.isEmpty()) {
                 response.sendRedirect(request.getContextPath() + "/admin/dashboard");
             } else {
-            Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
-                    false, "{}", "{\"username\": \"" + username + "\"}");
-            logService.insert(log);
-            LoginAttemptTracker.reset(sessionId);
+                Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
+                        false, "{}", "{\"username\": \"" + username + "\"}");
+                logService.insert(log);
+                LoginAttemptTracker.reset(sessionId);
 
-            if ("user".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/home");
-            } else if ("admin".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/home");
+                if ("user".equals(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                } else if ("admin".equals(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                }
             }
         }
     }
