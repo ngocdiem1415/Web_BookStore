@@ -25,7 +25,7 @@ public class AddAdminController extends HttpServlet {
         String dob = request.getParameter("birthdate");
         String gender = request.getParameter("gender");
 
-        int result = userServices.register(username, gender, dob, phone, email, password, "admin");
+        int result = userServices.register(username, gender, dob, phone, email, password);
         if (result == 0) {
             request.setAttribute("baoloi", "Thêm người dùng thành công");
             request.getRequestDispatcher("Add-User.jsp").forward(request, response);
