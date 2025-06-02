@@ -269,203 +269,12 @@
 </script>
 
 <%-- Thu thập data để chuyển dữ liệu qua backend--%>
-<%--<script>--%>
-<%--    const citySelect = document.getElementById("city");--%>
-<%--    const districtSelect = document.getElementById("district");--%>
-<%--    const wardSelect = document.getElementById("ward");--%>
-<%--    const specificAddressInput = document.getElementById("specific_address");--%>
-<%--    // let isShippingSaved = false; //Kiểm tra người dùng có bấm cập nhật địa chỉ hay chưa--%>
-
-<%--    const ghnData = {--%>
-<%--        cities: [],--%>
-<%--        districts: {},--%>
-<%--        wards: {}--%>
-<%--    };--%>
-
-<%--    //Load data địa lí hành chính VN từ api GHN--%>
-<%--    // Load danh sách tỉnh (provinces) từ BE--%>
-<%--    axios.get("/Bookstore/api/ghn/provinces")--%>
-<%--        .then(response => {--%>
-<%--            // Giả định API BE trả về JSON có thuộc tính 'data' chứa danh sách tỉnh--%>
-<%--            ghnData.cities = response.data.data;--%>
-<%--            ghnData.cities.forEach(city => {--%>
-<%--                const option = new Option(city.ProvinceName, city.ProvinceID);--%>
-<%--                citySelect.appendChild(option);--%>
-<%--            });--%>
-<%--        })--%>
-<%--        .catch(err => console.error("Lỗi load tỉnh:", err));--%>
-
-<%--    // Khi chọn tỉnh, load danh sách quận (districts)--%>
-<%--    citySelect.onchange = function () {--%>
-<%--        // Reset district và ward--%>
-<%--        districtSelect.length = 1;--%>
-<%--        wardSelect.length = 1;--%>
-<%--        const provinceId = parseInt(this.value);--%>
-<%--        if (!provinceId) return;--%>
-
-<%--        axios.post("/Bookstore/api/ghn/districts", new URLSearchParams({province_id: provinceId}))--%>
-<%--            .then(response => {--%>
-<%--                ghnData.districts[provinceId] = response.data.data;--%>
-<%--                response.data.data.forEach(d => {--%>
-<%--                    const option = new Option(d.DistrictName, d.DistrictID);--%>
-<%--                    districtSelect.appendChild(option);--%>
-<%--                });--%>
-<%--            })--%>
-<%--            .catch(err => console.error("Lỗi load quận:", err));--%>
-<%--    };--%>
-
-<%--    // Khi chọn quận, load danh sách phường (wards)--%>
-<%--    districtSelect.onchange = function () {--%>
-<%--        // Reset ward--%>
-<%--        wardSelect.length = 1;--%>
-<%--        const districtId = parseInt(this.value);--%>
-<%--        if (!districtId) return;--%>
-
-<%--        axios.post("/Bookstore/api/ghn/wards", new URLSearchParams({district_id: districtId}))--%>
-<%--            .then(response => {--%>
-<%--                ghnData.wards[districtId] = response.data.data;--%>
-<%--                response.data.data.forEach(w => {--%>
-<%--                    const option = new Option(w.WardName, w.WardCode);--%>
-<%--                    wardSelect.appendChild(option);--%>
-<%--                });--%>
-<%--            })--%>
-<%--            .catch(err => console.error("Lỗi load phường:", err));--%>
-<%--    };--%>
-
-<%--    //Tính phí vận chuyển khi bấm vào nút lưu--%>
-<%--    document.getElementById("save").addEventListener("click", function () {--%>
-<%--        const recipientName = document.querySelector("input[name='shipping_full_name']").value;--%>
-<%--        const recipientPhone = document.querySelector("input[name='shipping_phone']").value;--%>
-<%--        const specificAddress = specificAddressInput.value;--%>
-<%--        const shippingCity = citySelect.value;--%>
-<%--        const shippingDistrict = districtSelect.value;--%>
-<%--        const shippingWard = wardSelect.value;--%>
-
-<%--        if (!recipientName || !recipientPhone || !specificAddress || !shippingCity || !shippingDistrict || !shippingWard) {--%>
-<%--            alert("Vui lòng điền đầy đủ thông tin giao hàng.");--%>
-<%--            return;--%>
-<%--        }--%>
-<%--        const requestData = {--%>
-<%--            toDistrictId: parseInt(shippingDistrict),--%>
-<%--            toWardCode: shippingWard--%>
-<%--        };--%>
-
-<%--        $.ajax({--%>
-<%--            url: "/Bookstore/api/ghn/calculate-shipping",--%>
-<%--            type: "POST",--%>
-<%--            contentType: "application/json",--%>
-<%--            data: JSON.stringify(requestData),--%>
-<%--            success: function (response) {--%>
-<%--                const fee = response.fee;--%>
-<%--                const totalWithShipping = ${shippingInfo.totalPrice} +fee;--%>
-<%--                $(".ship-price").text(fee.toLocaleString());--%>
-<%--                $(".total-with-shipping").text(totalWithShipping.toLocaleString());--%>
-<%--                // isShippingSaved = true; //Đánh dấu là đã lưu địa chỉ và tính phí--%>
-<%--                alert("Cập nhật địa chỉ và phí giao hàng thành công!");--%>
-<%--            },--%>
-<%--            error: function (xhr, status, error) {--%>
-<%--                console.error("Lỗi khi tính phí vận chuyển:", error);--%>
-<%--                alert("Không thể cập nhật địa chỉ và tính phí giao hàng. Vui lòng thử lại!");--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--    // Tạo địa chỉ đầy đủ--%>
-<%--    function getFullAddress_GHN(provinceId, districtId, wardCode, specificAddress) {--%>
-<%--        const city = ghnData.cities.find(c => c.ProvinceID == provinceId);--%>
-<%--        const districtList = ghnData.districts[provinceId] || [];--%>
-<%--        const district = districtList.find(d => d.DistrictID == districtId);--%>
-<%--        const wardList = ghnData.wards[districtId] || [];--%>
-<%--        const ward = wardList.find(w => w.WardCode == wardCode);--%>
-
-<%--        return specificAddress + ', ' +--%>
-<%--            (ward ? ward.WardName : '') + ', ' +--%>
-<%--            (district ? district.DistrictName : '') + ', ' +--%>
-<%--            (city ? city.ProvinceName : '');--%>
-<%--    }--%>
-
-<%--    //Xóa item trong cart khi đặt hàng thành công--%>
-<%--    function removeProduct(productKey, callback) {--%>
-<%--        $.ajax({--%>
-<%--            url: "remove-book-in-cart",--%>
-<%--            type: "GET",--%>
-<%--            data: {--%>
-<%--                productKey: productKey,--%>
-<%--            },--%>
-<%--            success: function (data) {--%>
-<%--                console.log("delete book" + productKey + "is success!");--%>
-<%--                if (callback) callback();--%>
-<%--            },--%>
-<%--            error: function (jqXHR, textStatus, errorThrown) {--%>
-<%--                console.error("Error during delete book:", textStatus, errorThrown);--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-
-<%--    const buyNowButton = document.getElementById("buy-now");--%>
-<%--    buyNowButton.addEventListener("click", function () {--%>
-<%--        // if (!isShippingSaved) {--%>
-<%--        //     alert("Vui lòng bấm nút Lưu để cập nhật địa chỉ và tính phí giao hàng trước khi đặt hàng.");--%>
-<%--        //     return;--%>
-<%--        // }--%>
-
-<%--        const recipientName = document.querySelector("input[name='shipping_full_name']").value;--%>
-<%--        const recipientPhone = document.querySelector("input[name='shipping_phone']").value;--%>
-<%--        const specificAddress = specificAddressInput.value;--%>
-<%--        const shippingCity = citySelect.value;--%>
-<%--        const shippingDistrict = districtSelect.value;--%>
-<%--        const shippingWard = wardSelect.value;--%>
-<%--        const paymentMethodValue = document.getElementById("payment-method-select").value;--%>
-<%--        const paymentMethod = (paymentMethodValue === "2") ? "BANK_TRANSFER" : "COD";--%>
-<%--        const fullAddress = getFullAddress_GHN(shippingCity, shippingDistrict, shippingWard, specificAddress);--%>
-
-<%--        const orderData = {--%>
-<%--            recipientName: recipientName,--%>
-<%--            recipientPhone: recipientPhone,--%>
-<%--            address: fullAddress,--%>
-<%--            paymentMethod: paymentMethod--%>
-<%--        };--%>
-
-<%--        $.ajax({--%>
-<%--            url: '/Bookstore/checkout',--%>
-<%--            type: 'POST',--%>
-<%--            contentType: 'application/json',--%>
-<%--            data: JSON.stringify(orderData),--%>
-<%--            success: function (response) {--%>
-<%--                const invoiceId = response.invoiceId;--%>
-<%--                const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;--%>
-<%--                let removeCount = 0;--%>
-<%--                ${selectedProducts}.forEach(product => {--%>
-<%--                    removeProduct(product.bId, () => {--%>
-<%--                        removeCount++;--%>
-<%--                        if (removeCount === ${selectedProducts.length}) {--%>
-<%--                            if (paymentMethod === 'COD') {--%>
-<%--                                window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;--%>
-<%--                            } else {--%>
-<%--                                window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;--%>
-<%--                            }--%>
-<%--                        }--%>
-<%--                    });--%>
-<%--                });--%>
-<%--            },--%>
-<%--            error: function (xhr) {--%>
-<%--                if (xhr.status === 400) {--%>
-<%--                    const res = JSON.parse(xhr.responseText);--%>
-<%--                    alert('❗ ' + res.error);--%>
-<%--                    window.location.href = '/Bookstore/cart';--%>
-<%--                } else {--%>
-<%--                    alert('❌ Đã xảy ra lỗi khi tạo đơn hàng!');--%>
-<%--                }--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
-
 <script>
     const citySelect = document.getElementById("city");
     const districtSelect = document.getElementById("district");
     const wardSelect = document.getElementById("ward");
     const specificAddressInput = document.getElementById("specific_address");
+    let isShippingSaved = false;
 
     const ghnData = {
         cities: [],
@@ -547,11 +356,11 @@
             contentType: "application/json",
             data: JSON.stringify(requestData),
             success: function (response) {
+                isShippingSaved = true; //Đánh dấu là đã lưu địa chỉ và tính phí
                 const fee = response.fee;
-                const totalWithShipping = ${shippingInfo.totalPrice} + fee;
+                const totalWithShipping = ${shippingInfo.totalPrice} +fee;
                 $(".ship-price").text(fee.toLocaleString());
                 $(".total-with-shipping").text(totalWithShipping.toLocaleString());
-                // isShippingSaved = true; //Đánh dấu là đã lưu địa chỉ và tính phí
                 alert("Cập nhật địa chỉ và phí giao hàng thành công!");
             },
             error: function (xhr, status, error) {
@@ -653,8 +462,8 @@
         const shippingDistrict = districtSelect.value;
         const shippingWard = wardSelect.value;
 
-        if (!recipientName || !recipientPhone || !specificAddress || !shippingCity || !shippingDistrict || !shippingWard) {
-            alert("Vui lòng điền đầy đủ thông tin giao hàng.");
+        if (!isShippingSaved) {
+            alert("Vui lòng bấm nút Lưu để cập nhật địa chỉ và tính phí giao hàng trước khi đặt hàng.");
             return;
         }
 
@@ -681,7 +490,7 @@
                 let removeCount = 0;
                 const selectedIds = <%= request.getAttribute("selectedIds") %>;
 
-                for (let i = 0; i< selectedIds.length; i++) {
+                for (let i = 0; i < selectedIds.length; i++) {
                     removeProduct(selectedIds[i], () => {
                         removeCount++;
                         if (removeCount === selectedIds.length) {
@@ -692,7 +501,8 @@
                             }
                         }
                     });
-                };
+                }
+                ;
             },
             error: function (xhr) {
                 if (xhr.status === 400) {
