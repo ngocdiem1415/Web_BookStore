@@ -25,5 +25,5 @@ public interface CategoryDao {
     void delete(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.CATEGORY.INSERT_CATEGORY)
-    void insert(@Bind("categoryName") String categoryName);
+    boolean insert(@Bind("categoryName") String categoryName);
 }

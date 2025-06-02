@@ -5,8 +5,13 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.cloudinary.json.JSONObject;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.StockService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.Stock;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
+import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,12 +21,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
+import static java.lang.System.out;
+
 @WebServlet(name = "StockAPI", value = "/admin/stock")
 public class StockAPI extends HttpServlet {
     private StockService stockServicestock;
+    private LogService logService;
 
     public StockAPI() {
         this.stockServicestock = StockService.getInstance();
+        this.logService = LogService.getInstance();
     }
 
     @Override
@@ -37,13 +46,18 @@ public class StockAPI extends HttpServlet {
         String quantityStr = request.getParameter("quantity");
         String dateStr = request.getParameter("stockDate");
 
+        HttpSession session = request.getSession(false);
+        String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
+        PrintWriter out = response.getWriter();
+
         int bId = 0;
         int quantity = 0;
         LocalDateTime updateDate = null;
         try {
             bId = Integer.parseInt(idBook);
             quantity = Integer.parseInt(quantityStr);
-            System.out.println("da chay toi day");
+            out.println("da chay toi day");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             updateDate = LocalDateTime.parse(dateStr, formatter);
         } catch (Exception e) {
@@ -51,15 +65,26 @@ public class StockAPI extends HttpServlet {
             return;
         }
         Stock stock = new Stock(bId, quantity, updateDate);
-        System.out.println(stock.toString());
+        out.println(stock.toString());
 
         int insert = stockServicestock.insertStock(stock);
-        PrintWriter out = response.getWriter();
         if (insert == 1) {
             out.write("{\"message\":\"Cập nhật thành công\"}");
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT,
+                    "stock-management",
+                    "UPDATE_STOCK_SUCCESS", false,
+                    "{\"book_id\": \"" + idBook + "\"}",
+                    "{\"book_id\": \"" + idBook + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.DANGER,
+                    "stock-management",
+                    "UPDATE_STOCK_FAIL", false,
+                    "{\"book_id\": \"" + idBook + "\"}",
+                    "{\"book_id\": \"" + idBook + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             out.write("{\"message\":\"Cập nhật thất bại\"}");
         }
         out.flush();
@@ -80,7 +105,12 @@ public class StockAPI extends HttpServlet {
         String idBook = json.getString("bookId");
         String quantityStr = json.getString("quantity");
         String dateStr = json.getString("stockDate");
-        System.out.println(id + " " + idBook + " " + quantityStr + " " + dateStr);
+        out.println(id + " " + idBook + " " + quantityStr + " " + dateStr);
+        PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession(false);
+        String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
 
         int stockId = 0;
         int quantity = 0;
@@ -97,15 +127,26 @@ public class StockAPI extends HttpServlet {
             return;
         }
         Stock stock = new Stock(stockId, bId, quantity, updateDate);
-        System.out.println(stock.toString());
+        out.println(stock.toString());
 
         int update = stockServicestock.updateStock(stock);
-        PrintWriter out = response.getWriter();
         if (update == 1) {
             out.write("{\"message\":\"Cập nhật thành công\"}");
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT,
+                    "stock-management",
+                    "UPDATE_STOCK_SUCCESS", false,
+                    "{\"stock_id\": \"" + stockId + "\"}",
+                    "{\"stock_id\": \"" + stockId + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.DANGER,
+                    "stock-management",
+                    "UPDATE_STOCK_FAIL", false,
+                    "{\"stock_id\": \"" + stockId + "\"}",
+                    "{\"stock_id\": \"" + stockId + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             out.write("{\"message\":\"Cập nhật thất bại\"}");
         }
         out.flush();
@@ -121,27 +162,51 @@ public class StockAPI extends HttpServlet {
         String body = reader.lines().collect(Collectors.joining(System.lineSeparator()));
         JSONObject json = new JSONObject(body);
         String id = json.getString("stockId");
+        PrintWriter out = resp.getWriter();
+
+        HttpSession session = req.getSession(false);
+        String ip = req.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
 
         int stockId = 0;
         try {
             stockId = Integer.parseInt(id);
+            int delete = stockServicestock.delete(stockId);
+            if (delete == 1) {
+                out.write("{\"message\":\"Cập nhật thành công\"}");
+                Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "stock-management",
+                        "DELETE_STOCK_SUCCESS", false,
+                        "{\"stock_id\": \"" + stockId + "\"}",
+                        "{\"stock_id\": \"" + stockId + "\", \"deleteBy\": \"" + admin.getUsername() + "\"}");
+                logService.insert(log);
+                resp.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                Log log = new Log(
+                        admin.getUid(),
+                        session.getId(),
+                        ip,
+                        LogLevel.DANGER,
+                        "stock-management",
+                        "UPDATE_STOCK_FAILED",
+                        true,
+                        "{\"stock_id\": \"" + stockId + "\"}",
+                        "{\"stock_id\": \"" + stockId + "\", \"deleteBy\": \"" + admin.getUsername() + "\"}");
+                logService.insert(log);
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                out.write("{\"message\":\"Cập nhật thất bại\"}");
+            }
         } catch (Exception e) {
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.WARNING,
+                    "stock-management",
+                    "DELETE_STOCK_FAIL", false,
+                    "{\"stock_id\": \"" + stockId + "\"}",
+                    "{\"error\": \"" + e.getMessage().replace("\"", "\\\""));
+            logService.insert(log);
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi dữ liệu: " + e.getMessage());
-            return;
+        } finally {
+            out.flush();
+            out.close();
         }
-        System.out.println(stockId);
-
-        int delete = stockServicestock.delete(stockId);
-        PrintWriter out = resp.getWriter();
-        if (delete == 1) {
-            out.write("{\"message\":\"Cập nhật thành công\"}");
-            resp.setStatus(HttpServletResponse.SC_OK);
-        } else {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            out.write("{\"message\":\"Cập nhật thất bại\"}");
-        }
-        out.flush();
-        out.close();
     }
 
 }

@@ -14,6 +14,14 @@ public class Promotion implements Serializable {
 
     public Promotion() {}
 
+    public Promotion(String promotionName, double discount, LocalDateTime startDate, LocalDateTime endDate, boolean isActive) {
+        this.promotionName = promotionName;
+        this.discount = discount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isActive = isActive;
+    }
+
     public Promotion(int promotionId, String promotionName, double discount, LocalDateTime startDate, LocalDateTime endDate, boolean isActive) {
         this.promotionId = promotionId;
         this.promotionName = promotionName;
