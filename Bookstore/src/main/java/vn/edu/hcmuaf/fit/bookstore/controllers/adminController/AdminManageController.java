@@ -16,8 +16,7 @@ public class AdminManageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<User> admins = userServices.list("admin");
-
+        List<User> admins = userServices.list(2, 1);
         request.setAttribute("admins", admins);
 
         request.getRequestDispatcher("Admin-Management.jsp").forward(request, response);
