@@ -54,7 +54,6 @@ public interface UserDao {
     void updateImageByID(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("avatar") String avatar, @Bind("id") int id);
 
     @SqlUpdate(QUERIES.USER.CHANGE_STATUS)
-    void updateStatus(@Bind("uid") int uid);
     void disabled(@Bind("uid") int uid);
 
     @SqlQuery(QUERIES.USER.CHECK_PASSWORD)

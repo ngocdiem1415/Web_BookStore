@@ -213,7 +213,7 @@ public class UserServices {
     public void disabled(int id) {
         try {
             conn.useExtension(UserDao.class, handle -> {
-                handle.updateStatus(id);
+                handle.disabled(id);
             });
         } catch (RuntimeException e) {
             e.printStackTrace();
