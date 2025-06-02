@@ -221,10 +221,6 @@
                                                         </div>
                                                         <div class="content-inner__right-inner-infor__price"
                                                              tabindex="0">
-                                                            <span class="right-inner-detail-link-content-price-text-old">
-                                                                <f:formatNumber value="${detail.book.originalPrice}"/>
-                                                                <i class="fa-solid fa-dong-sign fa-xs"></i>
-                                                            </span>
                                                             <span class="content-inner__right-inner-infor__price-text">
                                                                 <f:formatNumber value="${detail.unitPrice}"/>
                                                                 <i class="fa-solid fa-dong-sign fa-xs"></i>
@@ -322,56 +318,5 @@
         });
     });
 </script>
-<%--<script>--%>
-<%--    document.addEventListener("DOMContentLoaded", function () {--%>
-<%--        const reviewButton = document.querySelector(".stardust-button--primary"); // Nút "Đánh giá"--%>
-<%--        const overlay = document.getElementById("overlay"); // Overlay--%>
-<%--        const cancelButton = document.getElementById("cancel-overlay"); // Nút "Trở lại"--%>
-<%--        const submitButton = document.getElementById("submit-overlay"); // Nút "Hoàn thành"--%>
-
-<%--        // Hiển thị overlay khi nhấn "Đánh giá"--%>
-<%--        reviewButton.addEventListener("click", () => {--%>
-<%--            overlay.classList.remove("hidden"); // Hiện overlay--%>
-<%--        });--%>
-
-<%--        // Ẩn overlay khi nhấn "Trở lại"--%>
-<%--        cancelButton.addEventListener("click", () => {--%>
-<%--            overlay.classList.add("hidden"); // Ẩn overlay--%>
-<%--        });--%>
-
-<%--        // Xử lý khi nhấn "Hoàn thành"--%>
-<%--        submitButton.addEventListener("click", () => {--%>
-<%--            console.log("Đánh giá đã gửi thành công!"); // Thêm logic gửi đánh giá ở đây nếu cần--%>
-<%--            overlay.classList.add("hidden"); // Ẩn overlay--%>
-<%--        });--%>
-
-<%--        // Ẩn overlay khi nhấn ra ngoài overlay--%>
-<%--        overlay.addEventListener("click", (event) => {--%>
-<%--            if (event.target === overlay) {--%>
-<%--                overlay.classList.add("hidden");--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-
-
-<%--</script>--%>
-<%--<script>--%>
-<%--    document.getElementById("fileInput").addEventListener("change", function (event) {--%>
-<%--        const file = event.target.files[0];--%>
-<%--        if (file) {--%>
-<%--            const reader = new FileReader();--%>
-
-<%--            // Đọc file và gán vào phần hiển thị--%>
-<%--            reader.onload = function (e) {--%>
-<%--                const previewImage = document.getElementById("previewImage");--%>
-<%--                previewImage.src = e.target.result;--%>
-<%--            };--%>
-
-<%--            reader.readAsDataURL(file);--%>
-<%--        }--%>
-<%--    });--%>
-<%--</script>--%>
-
 </body>
 </html>
-

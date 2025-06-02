@@ -52,9 +52,15 @@
 <div class="container mt-3">
     <div class="address-box pb-4 px-4">
         <div class="title-address py-3">
-            <span class="header-text text-danger d-flex justify-content-start align-items-center">
-                <i class="fa-solid fa-location-dot"></i> <h5 class="ps-3 mb-0">Địa Chỉ Nhận Hàng</h5>
-            </span>
+            <div class="row align-items-center my-3">
+                <div class="col-11 d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot fa-lg" style="color: #dc3545;"></i>
+                    <span class="ps-3 text-danger h5 mb-0">Địa Chỉ Nhận Hàng</span>
+                </div>
+                <div class="col-1">
+                    <button id="save" class="btn btn-success w-100" style="background: #4B908E;">Lưu</button>
+                </div>
+            </div>
             <div class="row d-flex align-items-center my-3">
                 <div class="col-6 d-flex align-items-center">
                     <label for="customer_name"></label>
@@ -104,7 +110,59 @@
     <!--Product items-->
     <section class="cart-items bg-white border-top border">
         <%--        Lặp danh sách các sản phẩm được check box ở cart.jsp--%>
-        <div id="product-list"></div>
+        <div id="product-list">
+            <c:choose>
+                <c:when test="${empty selectedProducts}">
+                    <p>Không có sản phẩm nào được chọn để thanh toán</p>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="product" items="${selectedProducts}">
+                        <div class="product row m-2 py-3 border-bottom" data-product-id="${product.id}">
+                            <div class="col-6 d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="${product.book.image.sourceImg}" style="min-width: 80px; height: 80px;"
+                                         class="img-md img-thumbnail"/>
+                                    <div class="info">
+                                            ${product.book.title}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Đơn giá-->
+                            <div class="col-2 d-flex align-items-center justify-content-center text-center">
+                                <div class="d-flex align-items-center justify-content-center text-center ms-2">
+                                    <c:if test="${product.book.promotionId == 0}">
+                                    <span class="unit-price">
+                                        <f:formatNumber value="${product.book.originalPrice}"/>
+                                    </span>
+                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                    </c:if>
+                                    <c:if test="${product.book.promotionId != 0}">
+                                    <span class="unit-price">
+                                        <f:formatNumber value="${product.book.salePrice}"/>
+                                    </span>
+                                        <i class="fa-solid fa-dong-sign fa-xs"></i>
+                                    </c:if>
+                                </div>
+                            </div>
+
+                            <!-- Số lượng-->
+                            <div class="col-2 d-flex align-items-center justify-content-center text-center">
+                                <span class="quantity">${product.quantity}</span>
+                            </div>
+
+                            <!-- Tổng cộng-->
+                            <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
+                            <span class="total-price">
+                                <f:formatNumber value="${product.book.salePrice * product.quantity}"/>
+                            </span>
+                                <i class="fa-solid fa-dong-sign fa-xs"></i>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+        </div>
 
         <div class="shipping row m-0">
             <div class="col-10 d-flex justify-content-end align-items-center p-0">
@@ -113,9 +171,7 @@
             </div>
 
             <div class="col-2 d-flex justify-content-center align-items-center p-0 my-2 text-danger">
-                <div class="ship-price">
-                    <f:formatNumber value="15000"/>
-                </div>
+                <div class="ship-price">0</div>
                 <i class="fa-solid fa-dong-sign fa-xs"></i>
             </div>
         </div>
@@ -124,25 +180,27 @@
     <!--Tổng cộng-->
     <section class="row m-2 py-3">
         <div class="col-10 d-flex justify-content-end align-items-center">
-            <span class="count fw-bold">Tổng số tiền (0 sản phẩm):</span>
+            <span class="count fw-bold">Tổng số tiền (${shippingInfo.totalQuantity}):</span>
         </div>
         <div class="col-2 d-flex justify-content-center align-items-center text-danger">
-            <span class="total-with-shipping"></span>
+            <span class="total-with-shipping">
+                <f:formatNumber value="${shippingInfo.totalPrice}"/>
+            </span>
             <i class="fa-solid fa-dong-sign fa-xs"></i>
         </div>
     </section>
 </div>
 
 <div class="payment-method bg-white border-top border rounded-2 mb-3">
-        <div class="row d-flex align-items-center my-2 mx-0 p-3">
-            <div class="col-4 h5">Phương thức thanh toán</div>
-            <div class="col-8 d-flex justify-content-center">
-                <select class="form-select w-50" id="payment-method-select">
-                    <option value="1">Thanh toán khi nhận hàng (COD)</option>
-                    <option value="2">Chuyển khoản ngân hàng (VNPay)</option>
-                </select>
-            </div>
+    <div class="row d-flex align-items-center my-2 mx-0 p-3">
+        <div class="col-4 h5">Phương thức thanh toán</div>
+        <div class="col-8 d-flex justify-content-center">
+            <select class="form-select w-50" id="payment-method-select">
+                <option value="1">Thanh toán khi nhận hàng (COD)</option>
+                <option value="2">Chuyển khoản ngân hàng (VNPay)</option>
+            </select>
         </div>
+    </div>
 
 
     <div class="summary row border-top border-bottom m-0 p-3">
@@ -152,7 +210,9 @@
             <div class="d-flex justify-content-between p-2">
                 <span class="text-start">Tổng tiền hàng</span>
                 <div class="text-end d-flex align-items-center">
-                    <span class="total-price-all"></span>
+                    <span class="total-price-all">
+                        <f:formatNumber value="${shippingInfo.totalPrice}"/>
+                    </span>
                     <i class="fa-solid fa-dong-sign fa-xs"></i>
                 </div>
             </div>
@@ -161,9 +221,7 @@
             <div class="d-flex justify-content-between p-2">
                 <span class="text-start">Tổng tiền phí vận chuyển</span>
                 <div class="text-end d-flex align-items-center">
-                    <div class="ship-price">
-                        <f:formatNumber value="15000"/>
-                    </div>
+                    <div class="ship-price">0</div>
                     <i class="fa-solid fa-dong-sign fa-xs"></i>
                 </div>
 
@@ -173,7 +231,9 @@
             <div class="d-flex justify-content-between fw-bold p-2">
                 <span class="text-start">Tổng thanh toán</span>
                 <div class="text-end d-flex align-items-center text-danger h5">
-                    <strong class="total-with-shipping2"></strong>
+                    <strong class="total-with-shipping">
+                        <f:formatNumber value="${shippingInfo.totalPrice}"/>
+                    </strong>
                     <i class="fa-solid fa-dong-sign fa-xs"></i>
                 </div>
             </div>
@@ -189,186 +249,8 @@
 <jsp:include page="footer.jsp"></jsp:include>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    var citis = document.getElementById("city");
-    var districts = document.getElementById("district");
-    var wards = document.getElementById("ward");
-    var Parameter = {
-        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-        method: "GET",
-        responseType: "json",
-    };
-    var promise = axios(Parameter);
-    promise.then(function (result) {
-        renderCity(result.data);
-    });
-
-    function renderCity(data) {
-        for (const x of data) {
-            citis.options[citis.options.length] = new Option(x.Name, x.Id);
-        }
-        citis.onchange = function () {
-            district.length = 1;
-            ward.length = 1;
-            if (this.value != "") {
-                const result = data.filter(n => n.Id === this.value);
-
-                for (const k of result[0].Districts) {
-                    district.options[district.options.length] = new Option(k.Name, k.Id);
-                }
-            }
-        };
-        district.onchange = function () {
-            ward.length = 1;
-            const dataCity = data.filter((n) => n.Id === citis.value);
-            if (this.value != "") {
-                const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
-
-                for (const w of dataWards) {
-                    wards.options[wards.options.length] = new Option(w.Name, w.Id);
-                }
-            }
-        };
-    }
-
-</script>
-
-<%--//Chuyển từ file Json qua các đối tượng để đổ dữ liệu vô JSP--%>
-<script>
-
-    const products = <%= (String) session.getAttribute("selectedProducts")%>;
-    console.log(products);
-    let selectProducts = Array.isArray(products) ? products : JSON.parse(products);
-    // let selectProducts = JSON.parse(products);
-
-    console.log(selectProducts);
-
-    //Render ra HTML
-    const productContainer = document.getElementById("product-list");
-    if (selectProducts && selectProducts.length > 0) {
-        selectProducts.forEach((product, index) => {
-            console.log(product);
-            const tempContainer = document.createElement("div");
-            tempContainer.innerHTML = `
-                <div class="product row m-2 py-3 border-bottom" data-product-id="">
-                    <div class="col-6 d-flex align-items-center">
-                        <div class="d-flex align-items-center">
-                                <img src="" style="min-width: 80px; height: 80px;" class="img-md img-thumbnail"/>
-                            <div class="info">
-                                    Tên sản phẩm không có
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Đơn giá-->
-                    <div class="col-2 d-flex align-items-center justify-content-center text-center">
-                        <div class="d-flex align-items-center justify-content-center text-center ms-2">
-                            <span class="unit-price">N/A</span>
-                            <i class="fa-solid fa-dong-sign fa-xs"></i>
-                        </div>
-                    </div>
-
-                    <!-- Số lượng-->
-                    <div class="col-2 d-flex align-items-center justify-content-center text-center">
-                        <span class="quantity">0</span>
-                    </div>
-
-                    <!-- Tổng cộng-->
-                    <div class="col-2 d-flex align-items-center justify-content-center text-center text-danger">
-                        <span class="total-price">N/A</span>
-                        <i class="fa-solid fa-dong-sign fa-xs"></i>
-                    </div>
-                </div>
-            `;
-
-            // Lấy phần tử vừa tạo
-            const productElement = tempContainer.firstElementChild;
-
-            // Gán giá trị động vào các phần tử con
-            productElement.setAttribute("data-product-id", product.bId);
-            productElement.querySelector(".img-thumbnail").src = product.productImg;
-            productElement.querySelector(".info").textContent = product.productName;
-
-            const formattedUnitPrice = product.unitPrice.toLocaleString('vi-VN');
-            const formattedTotalPrice = product.totalPrice.toLocaleString('vi-VN');
-
-            productElement.querySelector(".unit-price").textContent = formattedUnitPrice;
-            productElement.querySelector(".quantity").textContent = product.quantity;
-            productElement.querySelector(".total-price").textContent = formattedTotalPrice;
-
-            // Thêm vào DOM
-            productContainer.appendChild(productElement);
-
-        });
-    } else {
-        productContainer.innerHTML = "<p>Không có sản phẩm nào trong danh sách thanh toán.</p>";
-        alert("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi đặt hàng!");
-        window.location.href = '/Bookstore/cart';
-    }
-</script>
-
-<script>
-    function calculateTotals() {
-        const productRows = document.querySelectorAll('.product'); // Lấy danh sách các sản phẩm
-        let totalQuantity = 0;
-        let totalPrice = 0;
-
-        productRows.forEach((row) => {
-            const quantityElement = row.querySelector('.quantity');
-            const totalPriceElement = row.querySelector('.total-price');
-
-            // Lấy giá trị số lượng
-            const quantity = parseInt(quantityElement.textContent.trim(), 10);
-            if (!isNaN(quantity)) {
-                totalQuantity += quantity;
-            }
-
-            // Lấy giá trị tổng giá
-            const priceText = totalPriceElement.textContent.trim().replace(/[.,\s]/g, ''); // Loại bỏ dấu định dạng
-            const price = parseInt(priceText, 10);
-            if (!isNaN(price)) {
-                totalPrice += price;
-                console.log(totalPrice);
-            }
-        });
-
-        // Hiển thị tổng số lượng sản phẩm
-        const countElement = document.querySelector('.count');
-        if (countElement) {
-            countElement.textContent = "Tổng thanh toán (" + totalQuantity + " sản phẩm):";
-        }
-
-        // Hiển thị tổng giá trị tiền bao gồm shipping
-        const totalWithShippingElement = document.querySelector('.total-with-shipping');
-        if (totalWithShippingElement) {
-            const shippingFee = 15000; // Giá vận chuyển cố định
-            const totalWithShipping = totalPrice + shippingFee;
-            console.log(totalPrice);
-            totalWithShippingElement.textContent = totalWithShipping.toLocaleString('vi-VN');
-        }
-
-        //Hiển thị tổng giá sản phẩm
-        const totalProductPrice = document.querySelector('.total-price-all');
-        if (totalProductPrice) {
-            totalProductPrice.textContent = totalPrice.toLocaleString('vi-VN');
-        }
-
-        const totalWithShippingElement2 = document.querySelector('.total-with-shipping2');
-        if (totalWithShippingElement2) {
-            const shippingFee = 15000; // Giá vận chuyển cố định
-            const totalWithShipping = totalPrice + shippingFee;
-            console.log(totalPrice);
-            totalWithShippingElement2.textContent = totalWithShipping.toLocaleString('vi-VN');
-        }
-    }
-
-    // Gọi hàm tính toán sau khi render danh sách sản phẩm
-    if (selectProducts && selectProducts.length > 0) {
-        calculateTotals();
-    }
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -384,10 +266,6 @@
             });
         });
     });
-    // function getSelectedPaymentMethod() {
-    //     const selectedButton = document.querySelector(".payment-btn.active");
-    //     return selectedButton ? selectedButton.textContent.trim() : null;
-    // }
 </script>
 
 <%-- Thu thập data để chuyển dữ liệu qua backend--%>
@@ -396,85 +274,167 @@
     const districtSelect = document.getElementById("district");
     const wardSelect = document.getElementById("ward");
     const specificAddressInput = document.getElementById("specific_address");
+    let isShippingSaved = false;
 
-    const url = "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json";
+    const ghnData = {
+        cities: [],
+        districts: {},
+        wards: {}
+    };
 
-    let locationData = [];
-    // Fetch data
-    axios.get(url)
+    //Load data địa lí hành chính VN từ api GHN
+    // Load danh sách tỉnh (provinces) từ BE
+    axios.get("/Bookstore/api/ghn/provinces")
         .then(response => {
-            locationData = response.data;
-            renderCity(locationData);
+            // Giả định API BE trả về JSON có thuộc tính 'data' chứa danh sách tỉnh
+            ghnData.cities = response.data.data;
+            ghnData.cities.forEach(city => {
+                const option = new Option(city.ProvinceName, city.ProvinceID);
+                citySelect.appendChild(option);
+            });
         })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            alert("Đã có lỗi khi tải dữ liệu địa lý hành chính.");
-        });
+        .catch(err => console.error("Lỗi load tỉnh:", err));
 
-    // Render cities to the city select dropdown
-    function renderCity(data) {
-        // Populate cities
-        data.forEach(city => {
-            const option = new Option(city.Name, city.Id);
-            citySelect.appendChild(option);
-        });
+    // Khi chọn tỉnh, load danh sách quận (districts)
+    citySelect.onchange = function () {
+        // Reset district và ward
+        districtSelect.length = 1;
+        wardSelect.length = 1;
+        const provinceId = parseInt(this.value);
+        if (!provinceId) return;
 
-        // Event handler for city selection
-        citySelect.onchange = function () {
-            districtSelect.length = 1; // Reset districts
-            wardSelect.length = 1; // Reset wards
-            if (this.value) {
-                const city = data.find(c => c.Id === this.value);
-                city.Districts.forEach(district => {
-                    const option = new Option(district.Name, district.Id);
+        axios.post("/Bookstore/api/ghn/districts", new URLSearchParams({province_id: provinceId}))
+            .then(response => {
+                ghnData.districts[provinceId] = response.data.data;
+                response.data.data.forEach(d => {
+                    const option = new Option(d.DistrictName, d.DistrictID);
                     districtSelect.appendChild(option);
                 });
-            }
-        };
+            })
+            .catch(err => console.error("Lỗi load quận:", err));
+    };
 
-        // Event handler for district selection
-        districtSelect.onchange = function () {
-            wardSelect.length = 1; // Reset wards
-            if (this.value) {
-                const city = data.find(c => c.Id === citySelect.value);
-                const district = city.Districts.find(d => d.Id === this.value);
-                district.Wards.forEach(ward => {
-                    const option = new Option(ward.Name, ward.Id);
+    // Khi chọn quận, load danh sách phường (wards)
+    districtSelect.onchange = function () {
+        // Reset ward
+        wardSelect.length = 1;
+        const districtId = parseInt(this.value);
+        if (!districtId) return;
+
+        axios.post("/Bookstore/api/ghn/wards", new URLSearchParams({district_id: districtId}))
+            .then(response => {
+                ghnData.wards[districtId] = response.data.data;
+                response.data.data.forEach(w => {
+                    const option = new Option(w.WardName, w.WardCode);
                     wardSelect.appendChild(option);
                 });
+            })
+            .catch(err => console.error("Lỗi load phường:", err));
+    };
+
+    //Tính phí vận chuyển khi bấm vào nút lưu
+    document.getElementById("save").addEventListener("click", function () {
+        const recipientName = document.querySelector("input[name='shipping_full_name']").value;
+        const recipientPhone = document.querySelector("input[name='shipping_phone']").value;
+        const specificAddress = specificAddressInput.value;
+        const shippingCity = citySelect.value;
+        const shippingDistrict = districtSelect.value;
+        const shippingWard = wardSelect.value;
+
+        if (!recipientName || !recipientPhone || !specificAddress || !shippingCity || !shippingDistrict || !shippingWard) {
+            alert("Vui lòng điền đầy đủ thông tin giao hàng.");
+            return;
+        }
+        const requestData = {
+            toDistrictId: parseInt(shippingDistrict),
+            toWardCode: shippingWard
+        };
+
+        $.ajax({
+            url: "/Bookstore/api/ghn/calculate-shipping",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(requestData),
+            success: function (response) {
+                isShippingSaved = true; //Đánh dấu là đã lưu địa chỉ và tính phí
+                const fee = response.fee;
+                const totalWithShipping = ${shippingInfo.totalPrice} +fee;
+                $(".ship-price").text(fee.toLocaleString());
+                $(".total-with-shipping").text(totalWithShipping.toLocaleString());
+                alert("Cập nhật địa chỉ và phí giao hàng thành công!");
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi tính phí vận chuyển:", error);
+                alert("Không thể tính phí vận chuyển. Vui lòng thử lại.");
             }
+        });
+    });
+
+    // Tạo địa chỉ đầy đủ
+    function getFullAddress_GHN(provinceId, districtId, wardCode, specificAddress) {
+        const city = ghnData.cities.find(c => c.ProvinceID == provinceId);
+        const districtList = ghnData.districts[provinceId] || [];
+        const district = districtList.find(d => d.DistrictID == districtId);
+        const wardList = ghnData.wards[districtId] || [];
+        const ward = wardList.find(w => w.WardCode == wardCode);
+
+        return specificAddress + ', ' +
+            (ward ? ward.WardName : '') + ', ' +
+            (district ? district.DistrictName : '') + ', ' +
+            (city ? city.ProvinceName : '');
+    }
+
+    //Tìm ra districtId và wardCode dựa vào địa chỉ có sẵn
+    function findLocationIdsFromAddress(address, ghnData) {
+        const normalize = (str) =>
+            str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+
+        const normalizedAddress = normalize(address);
+
+        let foundCity = null;
+        for (const city of ghnData.cities) {
+            if (normalizedAddress.includes(normalize(city.ProvinceName))) {
+                foundCity = city;
+                break;
+            }
+        }
+
+        if (!foundCity) {
+            console.warn("Không tìm thấy tỉnh/thành trong địa chỉ.");
+            return null;
+        }
+
+        const districts = ghnData.districts[foundCity.ProvinceID] || [];
+        let foundDistrict = null;
+        for (const district of districts) {
+            if (normalizedAddress.includes(normalize(district.DistrictName))) {
+                foundDistrict = district;
+                break;
+            }
+        }
+
+        if (!foundDistrict) {
+            console.warn("Không tìm thấy quận/huyện trong địa chỉ.");
+            return null;
+        }
+
+        const wards = ghnData.wards[foundDistrict.DistrictID] || [];
+        let foundWard = null;
+        for (const ward of wards) {
+            if (normalizedAddress.includes(normalize(ward.WardName))) {
+                foundWard = ward;
+                break;
+            }
+        }
+
+        return {
+            provinceId: foundCity.ProvinceID,
+            districtId: foundDistrict?.DistrictID,
+            wardCode: foundWard?.WardCode
         };
     }
 
-    // Function to build full address from selected data
-    function getFullAddress(cityId, districtId, wardId, specificAddress) {
-        const city = getCityById(cityId);
-        const district = city ? getDistrictById(city, districtId) : null;
-        const ward = district ? getWardById(district, wardId) : null;
-
-        const cityName = city ? city.Name : '';
-        const districtName = district ? district.Name : '';
-        const wardName = ward ? ward.Name : '';
-
-        return specificAddress + ', ' + wardName + ', ' + districtName + ', ' + cityName;
-    }
-
-    // Helper functions to find city, district, and ward by ID
-    function getCityById(cityId) {
-        // var option = citySelect.querySelector('option[value="' + cityId + '"]');
-        // return option ? {Name: option.textContent} : null;
-        return locationData.find(city => city.Id === cityId);
-    }
-
-
-    function getDistrictById(city, districtId) {
-        return city.Districts.find(district => district.Id === districtId);
-    }
-
-    function getWardById(district, wardId) {
-        return district.Wards.find(ward => ward.Id === wardId);
-    }
-
+    //Xóa item trong cart khi đặt hàng thành công
     function removeProduct(productKey, callback) {
         // let id = productKey;
         $.ajax({
@@ -502,32 +462,20 @@
         const shippingDistrict = districtSelect.value;
         const shippingWard = wardSelect.value;
 
-        if (!recipientName || !recipientPhone || !specificAddress || !shippingCity || !shippingDistrict || !shippingWard) {
-            alert("Vui lòng điền đầy đủ thông tin giao hàng.");
+        if (!isShippingSaved) {
+            alert("Vui lòng bấm nút Lưu để cập nhật địa chỉ và tính phí giao hàng trước khi đặt hàng.");
             return;
         }
 
-        // Lấy payment method từ select
         const paymentMethodValue = document.getElementById("payment-method-select").value;
-        let paymentMethod = (paymentMethodValue === "2") ? "BANK_TRANSFER" : "COD";
+        const paymentMethod = (paymentMethodValue === "2") ? "BANK_TRANSFER" : "COD";
 
-        const products = selectProducts.map(product => ({
-            bId: product.bId,
-            quantity: product.quantity,
-            unitPrice: product.unitPrice
-        }));
-
-        const shippingFee = 15000;
-        const totalPrice = selectProducts.reduce((sum, product) => sum + (product.unitPrice * product.quantity), 0);
-        const totalAmount = totalPrice + shippingFee;
+        const fullAddress = getFullAddress_GHN(shippingCity, shippingDistrict, shippingWard, specificAddress);
 
         const orderData = {
             recipientName: recipientName,
             recipientPhone: recipientPhone,
-            address: getFullAddress(shippingCity, shippingDistrict, shippingWard, specificAddress),
-            products: products,
-            shippingFee: shippingFee,
-            totalAmount: totalAmount,
+            address: fullAddress,
             paymentMethod: paymentMethod
         };
 
@@ -538,23 +486,23 @@
             data: JSON.stringify(orderData),
             success: function (response) {
                 const invoiceId = response.invoiceId;
+                const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;
+                let removeCount = 0;
+                const selectedIds = <%= request.getAttribute("selectedIds") %>;
 
-                if (paymentMethod === 'BANK_TRANSFER') {
-                    // ➡ Redirect sang VNPay
-                    window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
-                } else {
-                    // ➡ Với COD, xóa sản phẩm rồi chuyển sang trang hóa đơn
-                    let removeCount = 0;
-                    const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;
-                    selectProducts.forEach(product => {
-                        removeProduct(product.bId, () => {
-                            removeCount++;
-                            if (removeCount === selectProducts.length) {
+                for (let i = 0; i < selectedIds.length; i++) {
+                    removeProduct(selectedIds[i], () => {
+                        removeCount++;
+                        if (removeCount === selectedIds.length) {
+                            if (paymentMethod === 'COD') {
                                 window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;
+                            } else {
+                                window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
                             }
-                        });
+                        }
                     });
                 }
+                ;
             },
             error: function (xhr) {
                 if (xhr.status === 400) {
@@ -567,8 +515,6 @@
             }
         });
     });
-
-
 </script>
 
 </body>
