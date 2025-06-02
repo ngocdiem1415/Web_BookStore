@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.cloundinary.CloundinaryConfig;
@@ -14,12 +15,21 @@ import java.util.Date;
 @MultipartConfig
 public class ProfileController extends HttpServlet {
     UserServices userServices = new UserServices();
+    RoleServices roleServices = RoleServices.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Chuyển hướng tới trang thông tin cá nhân
+        HttpSession session = request.getSession(false);
+        int resourceId = roleServices.selectResourceByUserId(((User) session.getAttribute("userSession")).getUid());
+        if (session == null || session.getAttribute("userSession") == null) {
+            response.sendRedirect("login");
+            return;
+        }
+        User user = (User) session.getAttribute("userSession");
+        boolean isAdmin = roleServices.isAdmin(user.getUid(), resourceId);
+        request.setAttribute("isAdmin", isAdmin);
+        System.out.println("Profile: uid=" + user.getUid() + ", username=" + user.getUsername() + ", role=" + user.getRole() + ", isAdmin=" + isAdmin);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
-
     }
 
     @Override
@@ -47,6 +57,27 @@ public class ProfileController extends HttpServlet {
             return;
         }
 
+        if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            request.setAttribute("baoloi", "Email không hợp lệ");
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            return;
+        }
+        if (phone != null && !phone.matches("0\\d{9}")) {
+            request.setAttribute("baoloi", "Số điện thoại không hợp lệ (10 số, bắt đầu bằng 0)");
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            return;
+        }
+        if (gender == null || (!gender.equals("male") && !gender.equals("female") && !gender.equals("other"))) {
+            request.setAttribute("baoloi", "Giới tính không hợp lệ");
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            return;
+        }
+        if (dob != null && !dob.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            request.setAttribute("baoloi", "Ngày sinh không đúng định dạng YYYY-MM-DD");
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            return;
+        }
+
         // xu lý ảnh
         Part filePart = request.getPart("imageFile");
         String imageUrl = user.getAvatar(); // mặc định là ảnh cũ
@@ -67,8 +98,6 @@ public class ProfileController extends HttpServlet {
             userServices.updateImageByID(username, gender, dob, phone, email, imageUrl, id);
 
             // Cap nhat lai thong tin user trong session
-            user.setUsername(username);
-            user.setEmail(email);
             user.setUsername(username);
             user.setEmail(email);
             user.setPhone(phone);

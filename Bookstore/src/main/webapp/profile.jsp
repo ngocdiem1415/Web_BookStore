@@ -105,13 +105,13 @@
                                                         <div class="table__row-input-stardust-radio-group">
                                                             <select class="form-select" id="gender" name="gender"
                                                                     required>
-                                                                <option value="male" ${userSession.gender == male ? 'selected' : ''}>
+                                                                <option value="male" ${userSession.gender == 'male' ? 'selected' : ''}>
                                                                     Nam
                                                                 </option>
-                                                                <option value="female" ${userSession.gender == female ? 'selected' : ''}>
+                                                                <option value="female" ${userSession.getGender() == 'female' ? 'selected' : ''}>
                                                                     Nữ
                                                                 </option>
-                                                                <option value="other" ${userSession.gender == other ? 'selected' : ''}>
+                                                                <option value="other" ${userSession.getGender() == 'other' ? 'selected' : ''}>
                                                                     Khác
                                                                 </option>
                                                             </select>
