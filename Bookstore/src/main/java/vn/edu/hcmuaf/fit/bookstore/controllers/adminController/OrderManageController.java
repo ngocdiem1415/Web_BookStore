@@ -4,7 +4,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,15 +16,26 @@ import java.util.List;
 @WebServlet(name = "OrderController", value = "/admin/order-management")
 public class OrderManageController extends HttpServlet {
     InvoiceService invoiceService;
+    LogService logService;
 
     public OrderManageController() {
         this.invoiceService = InvoiceService.getInstance();
+        this.logService = LogService.getInstance();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Invoice> orders = invoiceService.listAll();
         request.setAttribute("orders", orders);
+
+        HttpSession session = request.getSession(false);
+        String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
+
+        Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.INFO, "order-management", "VIEW_ORDER",
+                false, "{}", "{\"admin\": \"" + admin.getUsername() + "\"}");
+        logService.insert(log);
+
         request.getRequestDispatcher("Order-Management.jsp").forward(request,response);
     }
 
