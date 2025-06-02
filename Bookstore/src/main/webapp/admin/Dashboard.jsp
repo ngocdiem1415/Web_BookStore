@@ -138,10 +138,11 @@
                                 <td>${order.getPayment().getPaymentStatus()}</td>
                                 <td>${order.status}</td>
                                 <td>
-                                    <a href="Edit-Order.html" class="text-dec">
-                                        <i class="fa-regular fa-pen-to-square fa-lg"
-                                           style="color: #236844"></i>
-                                    </a>
+                                    <button class="show-button col-6 btn px-0" style="color: #236844;"
+                                            onclick="window.location.href='show-order?id=${order.invoiceId}';"
+                                            title="Xem">
+                                        <i class="fa-regular fa-eye fa-lg mx-2" style="color: #f07c29;"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </c:forEach>

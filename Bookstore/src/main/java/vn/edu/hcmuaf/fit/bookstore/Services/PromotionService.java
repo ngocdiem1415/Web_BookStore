@@ -25,7 +25,7 @@ public class PromotionService {
     }
 
     public boolean insertpromotion(String promotionName, double discount, String startDate, String endDate) {
-        return connect.useExtension(PromotionDao.class, dao -> dao.insertpromotion(promotionName, discount, startDate, endDate));
+        return connect.withExtension(PromotionDao.class, dao -> dao.insertpromotion(promotionName, discount, startDate, endDate));
     }
 
     public void updatePromotion(int promotionId, String promotionName, double discount, String startDate, String endDate) {

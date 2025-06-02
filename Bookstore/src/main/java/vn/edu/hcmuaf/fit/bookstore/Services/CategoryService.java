@@ -27,7 +27,7 @@ public class CategoryService {
     }
 
     public boolean insertCategory(String categoryName) {
-        return connect.useExtension(CategoryDao.class, dao -> dao.insert(categoryName));
+        return connect.withExtension(CategoryDao.class, dao -> dao.insert(categoryName));
     }
 
     public void updateCategory(int categoryid, String categoryName) {

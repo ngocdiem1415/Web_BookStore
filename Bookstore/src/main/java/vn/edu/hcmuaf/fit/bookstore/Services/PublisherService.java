@@ -31,7 +31,7 @@ public class PublisherService {
     }
 
     public boolean insertPublisher(String publisherName, String address, String phone) {
-        return connect.useExtension(PublisherDao.class, handle -> handle.insert(publisherName, address, phone));
+        return connect.withExtension(PublisherDao.class, handle -> handle.insert(publisherName, address, phone));
     }
 
     public Publisher finPublisherById(int id) {
