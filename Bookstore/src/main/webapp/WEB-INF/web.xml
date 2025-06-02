@@ -58,4 +58,14 @@
         <url-pattern>/payment-vnpay/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CalculateShippingFeeController</servlet-name>
+        <servlet-class>api.ghn.CalculateShippingFeeController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CalculateShippingFeeController</servlet-name>
+        <url-pattern>/api/ghn/calculate-shipping</url-pattern>
+    </servlet-mapping>
+
 </web-app>
