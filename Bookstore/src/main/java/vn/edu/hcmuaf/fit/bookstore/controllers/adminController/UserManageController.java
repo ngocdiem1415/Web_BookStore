@@ -3,7 +3,10 @@ package vn.edu.hcmuaf.fit.bookstore.controllers.adminController;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
@@ -11,12 +14,26 @@ import java.util.List;
 
 @WebServlet(name = "UserController", value = "/admin/user-management")
 public class UserManageController extends HttpServlet {
-    UserServices userServices = new UserServices();
+    UserServices userServices;
+    LogService logService;
+
+    public UserManageController() {
+        this.userServices = UserServices.getInstance();
+        this.logService = LogService.getInstance();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = userServices.list(0, 1);
         request.setAttribute("users", users);
+
+        HttpSession session = request.getSession(false);
+        String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
+
+        Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.INFO, "user-management", "VIEW_USER",
+                false, "{}", "{\"admin\": \"" + admin.getUsername() + "\"}");
+        logService.insert(log);
         request.getRequestDispatcher("User-Management.jsp").forward(request, response);
     }
 

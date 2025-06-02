@@ -26,8 +26,8 @@ public class CategoryService {
         return connect.withExtension(CategoryDao.class, handle -> handle.findById(id));
     }
 
-    public void insertCategory(String categoryName) {
-        connect.useExtension(CategoryDao.class, dao -> dao.insert(categoryName));
+    public boolean insertCategory(String categoryName) {
+        return connect.withExtension(CategoryDao.class, dao -> dao.insert(categoryName));
     }
 
     public void updateCategory(int categoryid, String categoryName) {

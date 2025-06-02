@@ -3,14 +3,23 @@ package vn.edu.hcmuaf.fit.bookstore.controllers.adminController;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 
 @WebServlet(name = "EditAdminController", value = "/admin/edit-admin")
 public class EditAdminController extends HttpServlet {
-    UserServices userServices = new UserServices();
+    UserServices userServices;
+    LogService logService;
+
+    public EditAdminController() {
+        this.userServices = UserServices.getInstance();
+        this.logService = LogService.getInstance();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,11 +39,44 @@ public class EditAdminController extends HttpServlet {
         String gender = request.getParameter("gender");
         String dob = request.getParameter("birthdate");
 
-        // Cập nhật thông tin người dùng
-        userServices.updateUserRole(username, gender, dob, phone, email, userId);
+        HttpSession session = request.getSession(false);
+        String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
 
-        // Chuyển hướng sau khi cập nhật
-        response.sendRedirect("admin-management");
+        try {
+            userServices.updateUserRole(username, gender, dob, phone, email, userId);
+            Log log = new Log(
+                    admin.getUid(),
+                    session.getId(),
+                    ip,
+                    LogLevel.ALERT,
+                    "admin-management",
+                    "UPDATE_ADMIN_SUCCESS",
+                    false,
+                    "{\"userId\": " + userId + "}",
+                    "{\"username\": \"" + username + "\", \"updatedBy\": \"" + admin.getUsername() + "\"}"
+            );
+            logService.insert(log);
+            // Chuyển hướng sau khi cập nhật
+            response.sendRedirect("admin-management");
+        }catch (Exception e) {
+            Log log = new Log(
+                    admin.getUid(),
+                    session.getId(),
+                    ip,
+                    LogLevel.DANGER,
+                    "admin-management",
+                    "UPDATE_ADMIN_FAILED",
+                    true,
+                    "{\"userId\": " + userId + "}",
+                    "{\"username\": \"" + username + "\", \"updatedBy\": \"" + admin.getUsername() + "\"}"
+            );
+            logService.insert(log);
+
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("Lỗi khi cập nhật thông tin admin: " + e.getMessage());
+            e.printStackTrace();
+        }
 
     }
 }
