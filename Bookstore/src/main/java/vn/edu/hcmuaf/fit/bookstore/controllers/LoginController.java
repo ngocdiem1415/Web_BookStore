@@ -3,13 +3,22 @@ package vn.edu.hcmuaf.fit.bookstore.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LoginStracked.LoginAttemptTracker;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
+    private LogService logService;
+
+    public LoginController() {
+        this.logService = LogService.getInstance();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,21 +30,46 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
+        HttpSession session = request.getSession(true);
+        String sessionId = session.getId();
+        String ip = request.getRemoteAddr();
+
         UserServices userServices = new UserServices();
         User user = userServices.findByUsernameAndPassword(username, password);
         String baoloi = "";
+
         if (user == null) {
+            if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
+                Log log = new Log(null, sessionId, ip, LogLevel.WARNING, "login", "LOGIN_FAIL",
+                        false, "{}", "{\"username\": \"" + username + "\"}");
+                logService.insert(log);
+                LoginAttemptTracker.getAttempts(sessionId);
+            }
+            LoginAttemptTracker.getAttempts(sessionId);
             baoloi = "Sai tên đăng nhập hoặc mật khẩu";
             request.setAttribute("baoloi", baoloi);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
+
         } else if (user.getStatus() == 0) {
             baoloi = "Tài khoản chưa được kích hoạt";
             request.setAttribute("baoloi", baoloi);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
+            if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
+                Log log = new Log(null, sessionId, ip, LogLevel.ALERT, "login", "LOGIN_INACTIVE",
+                        false, "{}", "{\"username\": \"" + username + "\"}");
+                logService.insert(log);
+                LoginAttemptTracker.getAttempts(sessionId);
+            }
+            LoginAttemptTracker.getAttempts(sessionId);
         } else {
-            HttpSession session = request.getSession(true);
             session.setAttribute("userSession", user);
             session.setAttribute("role", user.getRole());
+
+            Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
+                    false, "{}", "{\"username\": \"" + username + "\"}");
+            logService.insert(log);
+            LoginAttemptTracker.reset(sessionId);
 
             if ("user".equals(user.getRole())) {
                 response.sendRedirect(request.getContextPath() + "/home");

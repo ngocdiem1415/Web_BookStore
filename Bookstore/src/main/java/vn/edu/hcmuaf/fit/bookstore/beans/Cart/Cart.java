@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class Cart implements Serializable {
     private  static final long serialVersionID = 1L;
-    private static Cart instance;
     private Map<String, BookVariant> listBook;
     private double totalPrice;
 
@@ -18,15 +17,9 @@ public class Cart implements Serializable {
         this.totalPrice = 0;
     }
 
-    public static Cart getInstance() {
-        if (instance == null) {
-            instance = new Cart();
-        }
-        return instance;
-    }
-
     //put book
     public void addBook (Book book , int quantity){
+        System.out.println("add sach");
         String productKey = generateProductKey(book.getbId());
         if ( listBook.containsKey(productKey)){
             updateProductQuantity(productKey, quantity);
@@ -34,7 +27,6 @@ public class Cart implements Serializable {
             BookVariant bookVariant = new BookVariant(Integer.parseInt(productKey),book);
             bookVariant.setQuantity(quantity);
             listBook.put(productKey,bookVariant);
-            System.out.println("add product: " + productKey);
             this.getTotalPrice();
             System.out.println("add product: " + productKey);
         }
@@ -50,10 +42,6 @@ public class Cart implements Serializable {
                 "listBook=" + listBook +
                 ", totalPrice=" + totalPrice +
                 '}';
-    }
-
-    public static void setInstance(Cart instance) {
-        Cart.instance = instance;
     }
 
     public Map<String, BookVariant> getListBook() {

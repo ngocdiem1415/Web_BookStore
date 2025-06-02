@@ -154,20 +154,6 @@
                     <!-- Số lượng, Mua ngay, Thêm vào giỏ hàng -->
                     <div class="row mb-1 text-muted">
                         <label class="pt-1 d-block col-2">Số lượng</label>
-                        <%--                        <div class="input-group mb-3 col-6" style="width: 170px;">--%>
-                        <%--                            <button class="btn btn-white border border-secondary px-3" type="button" id="decrease"--%>
-                        <%--                                    data-mdb-ripple-color="dark">--%>
-                        <%--                                <i class="fas fa-minus"></i>--%>
-                        <%--                            </button>--%>
-                        <%--                            <input type="text" id="quantity" class="form-control text-center border border-secondary"--%>
-                        <%--                                   placeholder="1" value="1" aria-label="Example text with button addon"--%>
-                        <%--                                   aria-describedby="button-addon1"/>--%>
-                        <%--                            <button class="btn btn-white border border-secondary px-3" type="button" id="increase"--%>
-                        <%--                                    data-mdb-ripple-color="dark">--%>
-                        <%--                                <i class="fas fa-plus"></i>--%>
-                        <%--                            </button>--%>
-                        <%--                        </div>--%>
-                        <!-- Nếu hết hàng -->
                         <div class="input-group mb-3 col-6" style="width: 170px;">
                             <button class="btn btn-white border border-secondary px-3 ${book.stockQuantity == 0 ? 'disabled-btn' : ''}"
                                     type="button" id="decrease"
@@ -200,14 +186,14 @@
 
                     <!-- Mua ngay -->
                     <c:if test="${not empty userSession and book.stockQuantity > 0}">
-                        <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: red" onclick="addToCart()">
+                        <a id="buy-now" class="btn btn-danger border border-secondary py-2 "
+                           style="background-color: red">
                             Mua ngay </a>
                     </c:if>
 
                     <c:if test="${empty userSession or book.stockQuantity == 0}">
-                        <a href="cart" id="buy-now" class="btn btn-danger border border-secondary py-2 "
-                           style="background-color: #b02a37; pointer-events: none;" onclick="addToCart(${book.bId})">
+                        <a class="btn btn-danger border border-secondary py-2 "
+                           style="background-color: #b02a37; pointer-events: none;">
                             Mua ngay </a>
                     </c:if>
 
@@ -252,8 +238,6 @@
             </main>
         </div>
     </section>
-
-
 </div>
 
 <!--Thông tin chi tiết-->
@@ -559,11 +543,8 @@
             quantityInput.value = stockQuantity; // Nếu vượt quá hàng tồn kho, đặt về số hàng tồn
         }
     });
-</script>
-<!--Script thêm vào giỏ hàng-->
-<script>
-    function addToCart() {
-        let id = '${book.bId}';
+
+    function addToCart(id,callback) {
         let quantity = $('#quantity').val();
         const cartNotifications = document.getElementById('cart-notification-success');
         const cartNotificatione = document.getElementById('cart-notification-error');
@@ -575,16 +556,28 @@
                 // Ẩn thông báo sau 2 giây
                 setTimeout(() => {
                     cartNotifications.style.display = 'none';
-                }, 2000);
+                    if (callback) callback();
+                }, 500);
             },
             error: function (data) {
-                cartNotifications.style.display = 'block';
+                cartNotificatione.style.display = 'block';
 
                 // Ẩn thông báo sau 2 giây
                 setTimeout(() => {
                     cartNotifications.style.display = 'none';
-                }, 2000);
+                }, 500);
             }
+        });
+    }
+    document.getElementById('buy-now').addEventListener('click', function(event) {
+        let id = '${book.bId}';
+        buyNowHandler(event, id);
+    });
+
+    function buyNowHandler(event, bookId) {
+        event.preventDefault();
+        addToCart(bookId, function() {
+            window.location.href = 'cart';
         });
     }
 </script>

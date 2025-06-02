@@ -3,8 +3,12 @@ package vn.edu.hcmuaf.fit.bookstore.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.beans.VerifyEmail;
 import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
 import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
@@ -14,9 +18,15 @@ import java.util.UUID;
 
 @WebServlet(name = "VerifyEmailController", value = "/verify")
 public class VerifyEmailController extends HttpServlet {
+    private LogService logService;
+    private VerifyEmailService verifyEmailService;
+    private UserServices userService;
 
-    private VerifyEmailService verifyEmailService = new VerifyEmailService();
-    private UserServices userService = new UserServices();
+    public VerifyEmailController() {
+        this.logService = LogService.getInstance();
+        this.userService = UserServices.getInstance();
+        this.verifyEmailService = new VerifyEmailService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,14 +36,14 @@ public class VerifyEmailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        String email = request.getParameter("email");
+
+        // Lấy ID người dùng từ session
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
 
         if ("sendcode".equals(action)) {
             // Lấy email người dùng gửi
-            String email = request.getParameter("email");
-
-            // Lấy ID người dùng từ session
-            HttpSession session = request.getSession();
-            Integer userId = (Integer) session.getAttribute("userId");
 
             if (userId != null) {
                 // Tạo mã xác nhận
@@ -48,9 +58,34 @@ public class VerifyEmailController extends HttpServlet {
 
                 // Chuyển đến trang nhập mã
                 request.setAttribute("email", email);
+                request.setAttribute("baoloi", "Xác nhận thành công! Bạn có thể đăng nhập.");
+                Log log = new Log(
+                        userId,
+                        session.getId(),
+                        request.getRemoteAddr(),
+                        LogLevel.INFO,
+                        "email",
+                        "SEND_VERIFY_CODE",
+                        true,
+                        "Email: " + email,
+                        null
+                );
+                logService.insert(log);
                 request.getRequestDispatcher("email_verify.jsp").forward(request, response);
             } else {
                 // Người dùng chưa đăng nhập, chuyển hướng đến trang login
+                Log log = new Log(
+                        0,
+                        session.getId(),
+                        request.getRemoteAddr(),
+                        LogLevel.ALERT,
+                        "email",
+                        "SEND_VERIFY_CODE_FAIL_NO_SESSION",
+                        false,
+                        "Email: " + email,
+                        null
+                );
+                logService.insert(log);
                 response.sendRedirect("login.jsp");
             }
 
@@ -67,11 +102,33 @@ public class VerifyEmailController extends HttpServlet {
 
                 // Xóa mã xác nhận sau khi sử dụng
                 verifyEmailService.selectVerifyEmailByCode(inputCode);
-
-                request.setAttribute("baoloi", "Xác nhận thành công! Bạn có thể đăng nhập.");
+                Log log = new Log(
+                        0,
+                        session.getId(),
+                        request.getRemoteAddr(),
+                        LogLevel.INFO,
+                        "email",
+                        "EMAIL_VERIFIED",
+                        true,
+                        "Email: " + mail,
+                        null
+                );
+                logService.insert(log);
                 request.getRequestDispatcher("success.jsp").forward(request, response);
             } else {
                 request.setAttribute("baoloi", "Mã xác nhận không đúng hoặc đã hết hạn. Vui lòng thử lại.");
+                Log log = new Log(
+                        0,
+                        session.getId(),
+                        request.getRemoteAddr(),
+                        LogLevel.WARNING,
+                        "email",
+                        "VERIFY_CODE_INVALID",
+                        false,
+                        "InputCode: " + inputCode,
+                        null
+                );
+                logService.insert(log);
                 request.getRequestDispatcher("email_verify.jsp").forward(request, response);
             }
         }
