@@ -13,8 +13,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class UserServices {
-
+    private static UserServices instance = null;
     Jdbi conn = JDBIConnector.getJdbi();
+
+    public static UserServices getInstance() {
+        if (instance == null) instance = new UserServices();
+        return instance;
+    }
 
     public int getTotalUser() {
         return conn.withExtension(UserDao.class, dao -> dao.totaluser());
@@ -129,11 +134,6 @@ public class UserServices {
     }
 
 
-    public static void main(String[] args) {
-        UserServices userServices = new UserServices();
-        System.out.println(userServices.hashPassword("123"));
-    }
-
     public void updateUserRole(String username, String gender, String dob, String phone, String email, int id) {
         try {
             conn.useExtension(UserDao.class, handle -> {
@@ -221,4 +221,7 @@ public class UserServices {
         }
     }
 
+    public boolean checkPassword(int uid, String password) {
+        return conn.withExtension(UserDao.class, handle -> handle.checkPwd(uid,password));
+    }
 }

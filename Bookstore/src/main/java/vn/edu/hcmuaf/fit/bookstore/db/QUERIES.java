@@ -2,6 +2,16 @@ package vn.edu.hcmuaf.fit.bookstore.db;
 
 public class QUERIES {
 
+    public class LOG {
+        public static final String INSERT =
+                "INSERT INTO Logs (user_id, session_id, ip_address, level, resource, action, data_before, data_after, locked) " +
+                        "VALUES (:userId, :sessionId, :ipAddress, :level, :resource, :action, :dataBefore, :dataAfter, :locked)";
+
+
+        public static final String LISTLOG = "SELECT * FROM Logs ORDER BY created_at DESC";
+        public static final String FIND_BY_ID = "SELECT * FROM Logs WHERE log_id = :logId";
+    }
+
     public class USER {
         public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
         public static final String SELECT_ALL_USER = "select u.uid, u.username, u.avatar, u.gender, u.dob, u.phone, u.email, u.password, u.status, r.permission as role, u.create_at, u.update_at from users u left join role r on r.uid = u.uid where r.resource_id = :resource_id and r.permission >= :permission";
@@ -18,6 +28,7 @@ public class QUERIES {
         public static final String UPDATE_EMAIL_VERIFIED_BY_EMAIL = "UPDATE users SET status = 1 WHERE email = :email";
         public static final String UPDATE_IMAGE_BY_ID = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email, avatar = :avatar WHERE uid = :id";
         public static final String CHANGE_STATUS = "UPDATE users SET status = 0 WHERE uid = :uid";
+        public static final String CHECK_PASSWORD = "SELECT * from users where uid = :uid AND password = :password";
     }
 
     public class ROLE {
@@ -46,8 +57,9 @@ public class QUERIES {
         public static final String INSERT =
                 "INSERT INTO books (title, author, category_id, p_id, publish_year, dimensions, weight, page_count, format, original_price, description, promotion_id,create_at, status) " +
                         "VALUES (:title, :author, :categoryId, :publisherId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId,CURRENT_TIMESTAMP, :status)";
-        public static final String SELECT_ALL_BOOK = "select * from books";
-        public static final String SELECT_ALL_BOOK_LIMIT = "select * from books limit :limit OFFSET :offset";
+        public static final String SELECT_ALL_BOOK = "select * from books ORDER BY created_at DESC";
+        public static final String SELECT_ALL_BOOK_LIMIT =
+                "SELECT * FROM books ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
         //        public static final String SELECT_ALL_BOOK_LIMIT_TEST =
 //                "SELECT * FROM books WHERE title LIKE CONCAT('%', :title, '%') LIMIT :limit OFFSET :offset";
         public static final String SELECT_ALL_BOOK_FILTER =
@@ -191,7 +203,7 @@ public class QUERIES {
 
 
     public class CATEGORY {
-        public static final String SELECT_ALL_CATEGORY = "select * from categories";
+        public static final String SELECT_ALL_CATEGORY = "select * from categories ORDER BY update_at DESC";
         public static final String FIND_BY_CATEGORYID = "select * from categories where category_id = :id";
         public static final String UPDATE = "UPDATE books SET  category_name = :categoryName,update_at = CURRENT_TIMESTAMP WHERE category_id = :Id";
         public static final String DELETE = "delete from categories where category_id = :id";
@@ -211,7 +223,7 @@ public class QUERIES {
     }
 
     public class PROMOTION {
-        public static final String SELECT_ALL_PROMOTION = "select * from promotions";
+        public static final String SELECT_ALL_PROMOTION = "select * from promotions ";
         public static final String FIND_BY_PROMOTIONID = "select * from promotions where promotion_id = :id";
         public static final String DELETE = "delete from promotions where promotion_id = :id";
         public static final String INSERT_PROMOTION =
@@ -226,7 +238,7 @@ public class QUERIES {
     }
 
     public class PUBLISHER {
-        public static final String SELECT_ALL_PUBLISHER = "select * from publishers";
+        public static final String SELECT_ALL_PUBLISHER = "select * from publishers ";
         public static final String FIND_BY_PUBLISHERID = "select * from publishers where p_id = :id";
         public static final String FIND_BY_PUBLISHERNAME = "select * from publishers where p_name = :name";
         public static final String DELETE = "delete from promotions where promotion_id = :id";

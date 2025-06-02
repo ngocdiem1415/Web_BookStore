@@ -1,22 +1,33 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
 
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LoginStracked.LoginAttemptTracker;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.VerifyEmail;
 import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
 import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "SignupController", value = "/signup")
 public class SignupController extends HttpServlet {
     private MailVerify mailVerify;
+    private UserServices userServices;
+    private LogService logService;
 
     public SignupController() {
         this.mailVerify = new MailVerify();
+        this.userServices = UserServices.getInstance();
+        this.logService = LogService.getInstance();
     }
 
     @Override
@@ -35,9 +46,14 @@ public class SignupController extends HttpServlet {
         String verifyCode = RandomCode.randomCode();
         String baoloi = "";
 
+        HttpSession session = request.getSession(true);
+        String sessionId = session.getId();
+        String ip = request.getRemoteAddr();
+
         // Kiểm tra giới tính hợp lệ
         if (gender == null || (!gender.equals("male") && !gender.equals("female") && !gender.equals("other"))) {
             request.setAttribute("baoloi", "Giới tính không hợp lệ");
+            logSignupFail(sessionId,ip,email);
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
             return;
         }
@@ -59,6 +75,14 @@ public class SignupController extends HttpServlet {
         int result = userServices.register(username, gender, dob, phone, email, password);
         if (result == 0) {
             int id = userServices.findByUserName(username).getUid();
+            Gson gson = new Gson();
+            Map<String, String> data = new HashMap<>();
+            data.put("username", username);
+            data.put("email", email);
+            Log log = new Log(id, sessionId, ip, LogLevel.INFO, "signup", "SIGNUP_SUCCESS",
+                    false, "{}", data.toString());
+            logService.insert(log);
+            LoginAttemptTracker.reset(sessionId);
 
             // luu token
             VerifyEmailService verifyEmailService = new VerifyEmailService();
@@ -70,13 +94,30 @@ public class SignupController extends HttpServlet {
             request.getRequestDispatcher("email_verify.jsp").forward(request, response);
 
         } else if (result == 1) {
+            logSignupFail(sessionId,ip,email);
             request.setAttribute("baoloi", "Username đã tồn tại");
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
         } else if (result == 2) {
+            logSignupFail(sessionId,ip,email);
             request.setAttribute("baoloi", "Email đã tồn tại");
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
         } else {
+            logSignupFail(sessionId,ip,email);
             response.sendRedirect("login");
         }
     }
+
+    private void logSignupFail(String sessionId, String ip, String email) {
+        if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
+            Gson gson = new Gson();
+            Map<String, String> data = new HashMap<>();
+            data.put("email", email);
+
+            Log log = new Log(null, sessionId, ip, LogLevel.WARNING, "signup", "SIGNUP_FAIL",
+                    false, "{}", gson.toJson(data));
+            logService.insert(log);
+        }
+        LoginAttemptTracker.getAttempts(sessionId);
+    }
+
 }

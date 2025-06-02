@@ -1,21 +1,35 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers;
 
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LoginStracked.LoginAttemptTracker;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.cloundinary.CloundinaryConfig;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "ProfileController", value = "/profile")
 @MultipartConfig
 public class ProfileController extends HttpServlet {
     UserServices userServices = new UserServices();
     RoleServices roleServices = RoleServices.getInstance();
+    UserServices userServices;
+    LogService logService;
+
+    public ProfileController() {
+        this.userServices = UserServices.getInstance();
+        this.logService = LogService.getInstance();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,6 +44,7 @@ public class ProfileController extends HttpServlet {
         request.setAttribute("isAdmin", isAdmin);
         System.out.println("Profile: uid=" + user.getUid() + ", username=" + user.getUsername() + ", role=" + user.getRole() + ", isAdmin=" + isAdmin);
         request.getRequestDispatcher("profile.jsp").forward(request, response);
+
     }
 
     @Override
@@ -37,6 +52,8 @@ public class ProfileController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String ip = request.getRemoteAddr();
         User user = (User) session.getAttribute("userSession");
 
         if (user == null) {
@@ -51,8 +68,24 @@ public class ProfileController extends HttpServlet {
         String gender = request.getParameter("gender");
         String dob = request.getParameter("birthdate");
 
+        // Log: dữ liệu trước cập nhật
+        Gson gson = new Gson();
+        Map<String, String> dataBefore = new HashMap<>();
+        dataBefore.put("username", user.getUsername());
+        dataBefore.put("email", user.getEmail());
+        dataBefore.put("phone", user.getPhone());
+        dataBefore.put("gender", user.getGender());
+        dataBefore.put("dob", user.getDob().toString());
+        dataBefore.put("avatar", user.getAvatar());
+
         if (username == null || email == null || username.trim().isEmpty() || email.trim().isEmpty()) {
             request.setAttribute("baoloi", "Tên đăng nhập và Email không được để trống");
+            Map<String, String> dataAfter = new HashMap<>();
+            dataAfter.put("usename", username);
+            dataAfter.put("email", email);
+            Log log = new Log(id, sessionId, ip, LogLevel.WARNING, "profile", "UPDATE_PROFILE_FAIL",
+                    false, gson.toJson(dataBefore), gson.toJson(dataAfter));
+            logService.insert(log);
             request.getRequestDispatcher("profile.jsp").forward(request, response);
             return;
         }
@@ -88,6 +121,9 @@ public class ProfileController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 request.setAttribute("baoloi", "Lỗi khi tải ảnh lên");
+                Log log = new Log(id, sessionId, ip, LogLevel.WARNING, "profile", "UPLOAD_IMAGE_FAIL",
+                        false, gson.toJson(dataBefore), "{}");
+                logService.insert(log);
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
                 return;
             }
@@ -100,33 +136,35 @@ public class ProfileController extends HttpServlet {
             // Cap nhat lai thong tin user trong session
             user.setUsername(username);
             user.setEmail(email);
+            user.setUsername(username);
+            user.setEmail(email);
             user.setPhone(phone);
             user.setGender(gender);
             user.setDob(dobDate);
             user.setAvatar(imageUrl);
             session.setAttribute("userSession", user);
 
+            Map<String, String> dataAfter = new HashMap<>();
+            dataAfter.put("username", username);
+            dataAfter.put("email", email);
+            dataAfter.put("phone", phone);
+            dataAfter.put("gender", gender);
+            dataAfter.put("dob", dob);
+            dataAfter.put("avatar", imageUrl);
+
+            Log log = new Log(id, sessionId, ip, LogLevel.INFO, "profile", "UPDATE_PROFILE_SUCCESS",
+                    false, gson.toJson(dataBefore), gson.toJson(dataAfter));
+            logService.insert(log);
+
             response.sendRedirect("profile");
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("baoloi", "Lỗi khi cập nhật thông tin");
+            Log log = new Log(id, sessionId, ip, LogLevel.WARNING, "profile", "UPDATE_PROFILE_FAIL",
+                    false, gson.toJson(dataBefore), "{}");
+            logService.insert(log);
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         }
 
-
-//        // Lấy các tham số từ form
-//        User user = (User) request.getSession().getAttribute("userSession");
-//        int id = user.getUid(); // Lấy UID từ đối tượng user
-//
-//
-//        String username = request.getParameter("username");  // Kiểm tra giá trị của username
-//        String email = request.getParameter("email");  // Kiểm tra giá trị của email
-//        String phone = request.getParameter("phone");
-//        String gender = request.getParameter("gender");
-//        String dob = request.getParameter("birthdate");
-//
-//        // Cập nhật thông tin người dùng
-//        userServices.updateUserRole(username, gender, dob, phone, email, id);
-//        response.sendRedirect("profile");
     }
 }

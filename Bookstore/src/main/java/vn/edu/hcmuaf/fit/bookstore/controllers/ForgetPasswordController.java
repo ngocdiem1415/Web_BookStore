@@ -3,8 +3,11 @@ package vn.edu.hcmuaf.fit.bookstore.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.VerifyEmailService;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.util.MailVerify;
 import vn.edu.hcmuaf.fit.bookstore.util.RandomCode;
@@ -16,11 +19,13 @@ public class ForgetPasswordController extends HttpServlet {
     private UserServices userServices;
     private VerifyEmailService verifyEmailService;
     private MailVerify mailVerify;
+    private LogService logService;
 
     public ForgetPasswordController() {
-        this.userServices = new UserServices();
+        this.userServices = UserServices.getInstance();
         this.verifyEmailService = new VerifyEmailService();
         this.mailVerify = new MailVerify();
+        this.logService = LogService.getInstance();
     }
 
     @Override
@@ -32,11 +37,24 @@ public class ForgetPasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
+        HttpSession session = request.getSession();
         User user = userServices.findByEmail(email);
         String baoloi = null;
         if (user == null) {
             baoloi = "Email không tồn tại";
             request.setAttribute("baoloi", baoloi);
+            Log log = new Log(
+                    0,
+                    session.getId(),
+                    request.getRemoteAddr(),
+                    LogLevel.WARNING,
+                    "email",
+                    "FORGOT_PASSWORD_EMAIL_NOT_FOUND",
+                    false,
+                    email,
+                    null
+            );
+            logService.insert(log);
             request.getRequestDispatcher("ForgetPassword.jsp").forward(request, response);
         } else {
             String subject = "BookStore - Reset mật khẩu";
@@ -79,6 +97,18 @@ public class ForgetPasswordController extends HttpServlet {
                     "</body>" +
                     "</html>";
             mailVerify.sendEmail(email, subject, content);
+            Log log = new Log(
+                    user.getUid(),
+                    session.getId(),
+                    request.getRemoteAddr(),
+                    LogLevel.INFO,
+                    "email",
+                    "FORGOT_PASSWORD_MAIL_SENT",
+                    true,
+                    email,
+                    null
+            );
+            logService.insert(log);
             response.sendRedirect(request.getContextPath() + "/login");
         }
     }

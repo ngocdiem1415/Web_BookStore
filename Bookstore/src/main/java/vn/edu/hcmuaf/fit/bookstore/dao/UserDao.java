@@ -55,4 +55,8 @@ public interface UserDao {
 
     @SqlUpdate(QUERIES.USER.CHANGE_STATUS)
     void updateStatus(@Bind("uid") int uid);
+    void disabled(@Bind("uid") int uid);
+
+    @SqlQuery(QUERIES.USER.CHECK_PASSWORD)
+    Boolean checkPwd(@Bind("uid") int uid, @Bind("password") String password);
 }
