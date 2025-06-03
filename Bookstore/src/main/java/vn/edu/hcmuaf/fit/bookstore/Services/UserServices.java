@@ -22,7 +22,11 @@ public class UserServices {
     }
 
     public int getTotalUser() {
-        return conn.withExtension(UserDao.class, dao -> dao.totaluser());
+        return conn.withExtension(UserDao.class, UserDao::totalUser);
+    }
+
+    public int getTotalUserInDay() {
+        return conn.withExtension(UserDao.class, UserDao::totalUserByDay);
     }
 
     // Dang ki

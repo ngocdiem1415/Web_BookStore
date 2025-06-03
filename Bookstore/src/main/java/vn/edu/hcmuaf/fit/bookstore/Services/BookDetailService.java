@@ -30,11 +30,11 @@ public class BookDetailService {
     public List<Book> listProductsTest(int limit, int offset, String publisher, String category, String firstPrice, String secondPrice,
                                        String rating, String sort, String findWord) {
 
-        Integer publisherId = (! "".equals(publisher)) ? Integer.parseInt(publisher) : null;
-        Integer categoryId =(! "".equals(category))? Integer.parseInt(publisher) : null;
-        Integer minPrice = (! "".equals(firstPrice)) ? Integer.parseInt(firstPrice) : null;
-        Integer maxPrice = (! "".equals(secondPrice))? Integer.parseInt(secondPrice) : null;
-        Integer totalRating = (! "".equals(rating))? Integer.parseInt(rating) : null;
+        Integer publisherId = (!"".equals(publisher)) ? Integer.parseInt(publisher) : null;
+        Integer categoryId = (!"".equals(category)) ? Integer.parseInt(publisher) : null;
+        Integer minPrice = (!"".equals(firstPrice)) ? Integer.parseInt(firstPrice) : null;
+        Integer maxPrice = (!"".equals(secondPrice)) ? Integer.parseInt(secondPrice) : null;
+        Integer totalRating = (!"".equals(rating)) ? Integer.parseInt(rating) : null;
         System.out.println(
                 "limit: " + limit +
                         "; offset: " + offset +
@@ -51,39 +51,39 @@ public class BookDetailService {
             case "0":
                 System.out.println("Hàng mới nhất");
                 books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateDESC(limit, offset, publisherId, categoryId
-                        , minPrice, maxPrice, totalRating,findWord));
+                        , minPrice, maxPrice, totalRating, findWord));
                 break;
             case "1":
                 //Hàng cũ nhất
                 System.out.println("Hàng cũ nhất");
                 books = connect.withExtension(BookDao.class, handle -> handle.findByBookUpdateASC(limit, offset, publisherId, categoryId
-                        , minPrice, maxPrice, totalRating,findWord));
+                        , minPrice, maxPrice, totalRating, findWord));
                 break;
             case "2":
                 //Giá tăng dần
                 System.out.println("Giá tăng dần");
                 books = connect.withExtension(BookDao.class, handle -> handle.findByPriceASC(limit, offset, publisherId, categoryId
-                        , minPrice, maxPrice, totalRating,findWord));
+                        , minPrice, maxPrice, totalRating, findWord));
                 break;
             case "3":
                 //Giá giảm dần
                 System.out.println("Giá giảm dần");
                 books = connect.withExtension(BookDao.class, handle -> handle.findByPriceDESC(limit, offset, publisherId, categoryId
-                        , minPrice, maxPrice, totalRating,findWord));
+                        , minPrice, maxPrice, totalRating, findWord));
                 break;
 
             case "4":
                 //Hàng gỉam giá
-                 System.out.println("Hàng gỉam giá");
+                System.out.println("Hàng gỉam giá");
                 books = connect.withExtension(BookDao.class, handle -> handle.listProductDiscount(limit, offset, publisherId, categoryId
-                        , minPrice, maxPrice, totalRating,findWord));
+                        , minPrice, maxPrice, totalRating, findWord));
                 break;
 
             default:
                 // Không sort
                 try {
                     books = connect.withExtension(BookDao.class, handle -> handle.listProductFilter(limit, offset, publisherId, categoryId
-                            , minPrice, maxPrice, totalRating,findWord));
+                            , minPrice, maxPrice, totalRating, findWord));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -242,7 +242,7 @@ public class BookDetailService {
 
     public Book updateProduct(Book product) {
         try {
-            connect.withExtension(BookDao.class, handle -> handle.updateBook(product));
+            boolean updateBook = connect.withExtension(BookDao.class, handle -> handle.updateBook(product));
             return findByName(product.getTitle()).get(0);
         } catch (Exception e) {
             System.err.println("Lỗi khi cập nhật sản phẩm: " + e.getMessage());
@@ -253,12 +253,17 @@ public class BookDetailService {
 
 
     public Book insertProduct(Book product) {
-        try {
-            connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
-            return findByName(product.getTitle()).get(0);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Lỗi khi chèn sản phẩm vào CSDL", e);
+        List<Book> exsit = connect.withExtension(BookDao.class, handle -> handle.findByName(product.getTitle()));
+        if (exsit.isEmpty()) {
+            try {
+                boolean success = connect.withExtension(BookDao.class, handle -> handle.insertBook(product));
+                return success ? findByName(product.getTitle()).get(0) : null;
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Lỗi khi chèn sản phẩm vào CSDL", e);
+            }
+        } else {
+            return null;
         }
     }
 

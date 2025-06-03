@@ -16,7 +16,7 @@ public class PromotionService {
         return instance;
     }
 
-    public List<Promotion> listCategory() {
+    public List<Promotion> listPromotion() {
         return connect.withExtension(PromotionDao.class, handle -> handle.list());
     }
 

@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.bookstore.controllers.adminController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -32,15 +31,15 @@ public class DashboardController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Invoice> orders = invoiceService.listOrderByDate();
         int totalBook = bookDetailService.totalBooks();
-        int totalNewOrder = orders.size();
-        int totalU = userServices.getTotalUser();
-        int totalPayment = paymentService.getTotalAcountInDay();
+        int totalNewOrderInDay = orders.size();
+        int totalUInDay = userServices.getTotalUserInDay();
+        int totalPaymentInDay = paymentService.getTotalAcountInDay();
 
         request.setAttribute("orders", orders);
         request.setAttribute("totalBook", totalBook);
-        request.setAttribute("totalNewOrder", totalNewOrder);
-        request.setAttribute("totalU", totalU);
-        request.setAttribute("totalPayment", totalPayment);
+        request.setAttribute("totalNewOrder", totalNewOrderInDay);
+        request.setAttribute("totalU", totalUInDay);
+        request.setAttribute("totalPayment", totalPaymentInDay);
 
         List<Integer> listYear = invoiceService.getListYear();
         request.setAttribute("listYear", listYear);

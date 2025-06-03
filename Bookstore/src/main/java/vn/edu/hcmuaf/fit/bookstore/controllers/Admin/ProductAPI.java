@@ -9,16 +9,10 @@ import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.cloundinary.CloundinaryConfig;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @WebServlet(name = "ProductAPI", value = "/admin/product")
 @MultipartConfig(
@@ -55,17 +49,16 @@ public class ProductAPI extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
-        System.out.println("da nhan duoc data");
+        System.out.println("da nhan duoc data de add");
         String title = request.getParameter("tenSanPham");
         String author = request.getParameter("Tacgia");
         String dimensions = request.getParameter("dimensions");
         String format = request.getParameter("format");
         String description = request.getParameter("description");
 
-
-        HttpSession session = request.getSession();
-        User admin = (User) session.getAttribute("admin");
+        HttpSession session = request.getSession(false);
         String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
 
         int publishYear = 0, pageCount = 0;
         double price = 0, weight = 0;
@@ -114,12 +107,12 @@ public class ProductAPI extends HttpServlet {
         book.setOriginalPrice(price);
         book.setDescription(description);
         book.setStatus(status);
-        int idNewBook = 0;
+        int idNewBook = 0;// bien tam
 
         System.out.println("bat dau insert");
         System.out.println(book.toString());
-        if (bookDetailService.findByName(title) == null) {
-            book = bookService.insertProduct(book);
+        book = bookService.insertProduct(book);
+        if (book != null) {
             Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "product-management",
                     "ADD_PRODUCT_SUCCESS", false, "{}", "{\"bookTitle\": \"" + title + "\", \"admin\": \"" + admin.getUsername() + "\"}");
             logService.insert(log);
@@ -149,11 +142,11 @@ public class ProductAPI extends HttpServlet {
         String originalName;
         Collection<Part> parts = request.getParts();
         for (Part part : parts) {
-            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
+            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 1) {
                 originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                 if (isValidImage(originalName)) {
                     try {
-                        String imageUrl = CloundinaryConfig.getUrl(part); // ✅ dùng đúng part hiện tại
+                        String imageUrl = CloundinaryConfig.getUrl(part); // dùng đúng part hiện tại
                         otherImageNames.add(imageUrl);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -177,10 +170,12 @@ public class ProductAPI extends HttpServlet {
         }
         System.out.println(listImage.toString());
 
-        book.setImage(listImage.get(0));
-        System.out.println("them anh thumbnail");
-        book.setImageList(listImage);
-        System.out.println(book.toString());
+        if (otherImageNames.size() > 0) {
+            book.setImage(listImage.get(0));
+            System.out.println("them anh thumbnail");
+            book.setImageList(listImage);
+            System.out.println(book.toString());
+        }
 
         try {
             PrintWriter printWriter = response.getWriter();
@@ -209,10 +204,9 @@ public class ProductAPI extends HttpServlet {
         String format = request.getParameter("format");
         String description = request.getParameter("description");
 
-
-        HttpSession session = request.getSession();
-        User admin = (User) session.getAttribute("admin");
+        HttpSession session = request.getSession(false);
         String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
 
         int publishYear = 0, pageCount = 0;
         double price = 0, weight = 0;
@@ -246,6 +240,7 @@ public class ProductAPI extends HttpServlet {
         }
 
         // Tạo đối tượng Book và gán các giá trị
+        book.setbId(idBook);
         book.setTitle(title);
         book.setAuthor(author);
         book.setCategoryId(category);
@@ -263,19 +258,32 @@ public class ProductAPI extends HttpServlet {
 
         System.out.println("bat dau update");
         book = bookService.updateProduct(book);
-        Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "product-management",
-                "UPDATE_PRODUCT_SUCCESS", false, "{}", "{\"bookId\": \"" + idBook + "\", \"admin\": \"" + admin.getUsername() + "\"}");
-        logService.insert(log);
-        System.out.println(book.toString());
+        try {
+            Map<String, String> dataAfter = new HashMap<>();
+            dataAfter.put("book_id", book.getTitle());
+            dataAfter.put("admin_id", admin.getUsername());
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "product-management",
+                    "UPDATE_PRODUCT_SUCCESS", false, "{}", new GsonUtil().toJSon(dataAfter)
+            );
+            logService.insert(log);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // xu lý ảnh
-        List<String> otherImageNames = new ArrayList<>();
-        Part anhTrungBay = request.getPart("anhTrungBay");
+        List<String> otherImageNames = new ArrayList<>(); // list anh khac
+        Collection<Part> parts = request.getParts();
+        boolean hasNewImage = false;
+        boolean hasThumbnail = false;
+        String thumbnailImage = null;
 
+        //xu li anh trung bay
+        Part anhTrungBay = request.getPart("anhTrungBay");
         if (anhTrungBay != null && anhTrungBay.getSize() > 0 && anhTrungBay.getSubmittedFileName() != null) {
             try {
-                String thumbNailImageNames = CloundinaryConfig.getUrl(anhTrungBay);
-                otherImageNames.add(thumbNailImageNames);
+                thumbnailImage = CloundinaryConfig.getUrl(anhTrungBay);
+                hasThumbnail = true;
+                System.out.println(hasThumbnail);
             } catch (Exception e) {
                 e.printStackTrace();
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải ảnh lên");
@@ -283,11 +291,11 @@ public class ProductAPI extends HttpServlet {
             }
         }
 
-        String originalName;
-        Collection<Part> parts = request.getParts();
+        //xu li anh khac
         for (Part part : parts) {
-            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
-                originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 1) {
+                hasNewImage = true;
+                String originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                 if (isValidImage(originalName)) {
                     try {
                         String imageUrl = CloundinaryConfig.getUrl(part); // dùng đúng part hiện tại
@@ -300,24 +308,32 @@ public class ProductAPI extends HttpServlet {
                 }
             }
         }
-        System.out.println(otherImageNames.toString());
-        System.out.println("them ds anh vao sach");
-        List<Image> listImage = new ArrayList<>();
-        imageService.delete(idBook);
-        for (int i = 0; i < otherImageNames.size(); i++) {
-            boolean isThumbnail = (i == 0);
-            Image image = new Image(idBook, otherImageNames.get(i), isThumbnail);
-            listImage.add(image);
-            System.out.println(image.toString());
-            Image savedImage = imageService.insertImage(image);
-            image.setImgId(savedImage.getImgId());
-        }
-        System.out.println(listImage.toString());
+        System.out.println(hasNewImage);
+        List<Image> updateListImage = new ArrayList<>();
+        if (hasNewImage || hasThumbnail) {
+            if (hasThumbnail) { // anh trinh bay moi
+                imageService.deleteImageThumbnail(idBook);
+                Image image = new Image(idBook, thumbnailImage, true);
+                Image savedImage = imageService.insertImage(image);
+                image.setImgId(savedImage.getImgId());
+                updateListImage = book.getImageList();
+                updateListImage.add(0,image);
+            }
 
-        book.setImage(listImage.get(0));
-        System.out.println("them anh thumbnail");
-        book.setImageList(listImage);
-        System.out.println(book.toString());
+            List<Image> listImages = new ArrayList<>();
+            if (hasNewImage) {
+                imageService.deleteImageOther(idBook);
+                for (String url : otherImageNames) {
+                    Image image = new Image(idBook, url, false);
+                    Image savedImage = imageService.insertImage(image);
+                    image.setImgId(savedImage.getImgId());
+                    listImages.add(image);
+                }
+                updateListImage = book.getImageList();
+                updateListImage.addAll(listImages);
+            }
+            book.setImageList(updateListImage);
+        }
 
         try {
             PrintWriter printWriter = response.getWriter();
