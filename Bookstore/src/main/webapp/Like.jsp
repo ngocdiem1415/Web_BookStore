@@ -42,7 +42,7 @@
                     <div class="container-product-content-inner__right-inner">
                         <!-- Phần sản phẩm yêu thích -->
                         <section>
-                            <a href="views/ProductDetail.jsp"
+                            <a href="${pageContext.request.contextPath}/book-detail?id=1"
                                class="container-product-content-inner__right-inner-link">
                                 <div class="container-product-content-inner">
                                     <div class="container-product-content-inner-infor">

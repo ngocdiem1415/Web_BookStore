@@ -54,6 +54,13 @@ public class QUERIES {
         public static final String DELETE_VERIFY_BY_EMAIL = "delete from password_reset_tokens where email = :email";
     }
 
+    public class WISHLIST {
+        public static final String INSERT = "INSERT INTO wish_lists (user_id, book_id) VALUES (:userId, :bookId)";
+        public static final String SELECT_ALL = "SELECT * FROM wishlist WHERE user_id = :userId";
+        public static final String DELETE = "DELETE FROM wishlist WHERE user_id = :userId AND book_id = :bookId";
+        public static final String CHECK_EXIST = "SELECT COUNT(*) FROM wishlist WHERE user_id = :userId AND book_id = :bookId";
+    }
+
     public class BOOK {
         public static final String INSERT =
                 "INSERT INTO books (title, author, category_id, p_id, publish_year, dimensions, weight, page_count, format, original_price, description, promotion_id,create_at, status) " +
