@@ -88,16 +88,16 @@
                                 <c:forEach var="user" items="${users}">
                                 <tr data-id="${user.uid}">
                                     <th scope="row">${user.uid}</th>
-                                    <td><img src="${user.avatar}" alt="avatar" height="50px" width="50px"/></td>
+                                    <td><img src="${user.avatar != null ? user.avatar : 'https://res.cloudinary.com/dh90ponfw/image/upload/v1736864014/defaultavatar.jpg'}" alt="avatar" height="50px" width="50px"/></td>
                                     <td>${user.username}</td>
                                     <td>${user.phone}</td>
                                     <td>${user.email}</td>
                                     <td>
-                                        <form action="${pageContext.request.contextPath}/admin/upload-role" method="post" class="d-inline">
+                                        <form action="${pageContext.request.contextPath}/admin/upload-role" method="POST" class="d-inline">
                                             <input type="hidden" name="uid" value="${user.uid}"/>
                                             <select name="role" class="form-select form-select-sm" onchange="this.form.submit()">
-                                                <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
-                                                <option value="user" ${user.role == 'user' ? 'selected' : ''}>User</option>
+                                                <option value="3" ${user.role >= 2 ? 'selected' : ''}>Admin</option>
+                                                <option value="1" ${user.role < 2 ? 'selected' : ''}>User</option>
                                             </select>
                                         </form>
                                     </td>
@@ -116,9 +116,11 @@
                                             <a href="edit-user?id=${user.uid}" class="text-dec">
                                                 <i class="fa-regular fa-pen-to-square fa-lg" style="color: #236844"></i>
                                             </a>
-                                            <button type="button" class="btn btn-delete" data-id="${user.uid}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
-                                                <i class="fa-regular fa-trash-can fa-lg" style="color: #ef5f5f"></i>
-                                            </button>
+                                            <c:if test="${user.role != 2}">
+                                                <button type="button" class="btn btn-delete" data-id="${user.uid}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                                    <i class="fa-regular fa-trash-can fa-lg" style="color: #ef5f5f"></i>
+                                                </button>
+                                            </c:if>
                                         </c:if>
                                     </td>
                                 </tr>

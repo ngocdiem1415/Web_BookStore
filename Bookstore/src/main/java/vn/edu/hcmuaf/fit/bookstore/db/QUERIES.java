@@ -14,25 +14,37 @@ public class QUERIES {
 
     public class USER {
         public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
+        public static final String SELECT_ALL_USER = "select u.uid, u.username, u.avatar, u.gender, u.dob, u.phone, u.email, u.password, u.status, r.permission as role, u.create_at, u.update_at from users u left join role r on r.uid = u.uid where r.resource_id = :resource_id and r.permission >= :permission";
         public static final String TOTAL_USER_BY_DAY = "SELECT COUNT(*) FROM users where DATE(create_at) = CURRENT_DATE";
-        public static final String SELECT_ALL_USER = "select * from users where role = :role";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
         public static final String FIND_BY_USERNAME = "select * from users where username = :username";
-        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status, role) values (:username, :gender, :dob, :phone, :email, :password, 0 , :role)";
+        public static final String REGISTER = "insert into users (username, gender, dob, phone, email, password, status) values (:username, :gender, :dob, :phone, :email, :password, 0)";
         public static final String FIND_BY_EMAIL = "select * from users where email = :email";
         public static final String CHANGE_PASSWORD = "update users set password = :password where uid = :uid";
         public static final String UPDATE_EMAIL_VERIFIED_BYID = "UPDATE users SET status = 1 WHERE uid = :uid";
         public static final String UPDATE_USER_ROLE = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email WHERE uid = :id";
-        public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status, role) values (:username, :gender, :phone, :email, :password, 1 , :role)";
+        public static final String INSERT_BY_GOOGLE = "insert into users (username, gender, phone, email, password, status) values (:username, :gender, :phone, :email, :password, 1 )";
         public static final String FIND_ALL = "select * from users";
         public static final String UPDATE_EMAIL_VERIFIED_BY_EMAIL = "UPDATE users SET status = 1 WHERE email = :email";
         public static final String UPDATE_IMAGE_BY_ID = "UPDATE users SET username = :username, gender = :gender, dob = :dob, phone = :phone, email = :email, avatar = :avatar WHERE uid = :id";
-        public static final String UPDATE_ROLE = "UPDATE users SET role = :role WHERE uid = :uid";
         public static final String CHANGE_STATUS = "UPDATE users SET status = 0 WHERE uid = :uid";
         public static final String CHECK_PASSWORD = "SELECT * from users where uid = :uid AND password = :password";
     }
 
+    public class ROLE {
+        public static final String INSERT_ROLE = "INSERT INTO role (uid ,resource_id, permission) VALUES (:uid, :resource_id, :permission)";
+        public static final String GET_PERMISSION = "SELECT permission FROM role WHERE uid = :uid AND resource_id =:resource_id";
+        public static final String GET_PERMISSION_BY_USER_ID = "SELECT permission FROM role WHERE uid = :uid";
+        public static final String UPDATE_ROLE = "UPDATE role SET permission = :permission WHERE uid = :uid AND resource_id = :resource_id";
+        public static final String SELECT_RESOURCE_BY_USER_ID = "SELECT resource_id FROM role WHERE uid = :uid";
+        public static final String SELECT_PERMISSION_BY_USER_ID = "SELECT permission FROM role WHERE uid = :uid AND resource_id = :resource_id";
+        public static final String SELECT_ROLE_ADMINS = "SELECT resource_code FROM role join resource on role.resource_id = resource.resource_id WHERE uid = :uid AND role.permission >=2";
+    }
+
+    public class PERMISSION {
+        public static final String GET_ALL_ROLES = "SELECT * FROM resource";
+    }
 
     public class VERIFY_EMAIL {
         public static final String INSERT_VERIFY_EMAIL = "insert into password_reset_tokens (email, token, created_at, expires_at) values (:email, :token, NOW(), :expiresAt)";
@@ -52,17 +64,17 @@ public class QUERIES {
         //        public static final String SELECT_ALL_BOOK_LIMIT_TEST =
 //                "SELECT * FROM books WHERE title LIKE CONCAT('%', :title, '%') LIMIT :limit OFFSET :offset";
         public static final String SELECT_ALL_BOOK_FILTER =
-               "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
-                       " FROM books b" +
-                       " LEFT JOIN reviews r on  r.b_id = b.b_id"+
-                       " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
-                       " AND (:p_id IS NULL OR b.p_id = :p_id)" +
-                       " AND (:category_id IS NULL OR b.category_id = :category_id)" +
-                       " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
-                       " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
-                       " GROUP BY b.b_id" +
-                       " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
-                       " LIMIT :limit OFFSET :offset";
+                "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
+                        " FROM books b" +
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id" +
+                        " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
+                        " AND (:p_id IS NULL OR b.p_id = :p_id)" +
+                        " AND (:category_id IS NULL OR b.category_id = :category_id)" +
+                        " AND (:firstPrice IS NULL OR b.original_price >= :firstPrice)" +
+                        " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
+                        " GROUP BY b.b_id" +
+                        " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
+                        " LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_LIST_NEW_BOOK = "select * from books where update_at < NOW()- INTERVAL 1 MONTH limit :limit ";
         public static final String FIND_BY_BID = "select * from books where b_id = :id";
@@ -76,7 +88,7 @@ public class QUERIES {
         public static final String SELECT_BOOK_UPDATE_DESC =
                 "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
                         " FROM books b" +
-                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id" +
                         " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
                         " AND (:p_id IS NULL OR b.p_id = :p_id)" +
                         " AND (:category_id IS NULL OR b.category_id = :category_id)" +
@@ -84,12 +96,12 @@ public class QUERIES {
                         " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
                         " GROUP BY b.b_id" +
                         " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
-                        " ORDER BY update_at DESC "+
+                        " ORDER BY update_at DESC " +
                         " LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_BOOK_UPDATE_ASC = "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
                 " FROM books b" +
-                " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                " LEFT JOIN reviews r on  r.b_id = b.b_id" +
                 " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
                 " AND (:p_id IS NULL OR b.p_id = :p_id)" +
                 " AND (:category_id IS NULL OR b.category_id = :category_id)" +
@@ -97,13 +109,13 @@ public class QUERIES {
                 " AND (:secondPrice IS NULL OR b.original_price <= :secondPrice)" +
                 " GROUP BY b.b_id" +
                 " HAVING (:rating IS NULL OR avg_rating >= :rating)" +
-                " ORDER BY update_at ASC "+
+                " ORDER BY update_at ASC " +
                 " LIMIT :limit OFFSET :offset";
 
         public static final String SELECT_BOOK_PRICE_DESC =
                 "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
                         " FROM books b" +
-                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id" +
                         " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
                         " AND (:p_id IS NULL OR b.p_id = :p_id)" +
                         " AND (:category_id IS NULL OR b.category_id = :category_id)" +
@@ -117,7 +129,7 @@ public class QUERIES {
         public static final String SELECT_BOOK_PRICE_ASC =
                 "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
                         " FROM books b" +
-                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id" +
                         " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
                         " AND (:p_id IS NULL OR b.p_id = :p_id)" +
                         " AND (:category_id IS NULL OR b.category_id = :category_id)" +
@@ -131,7 +143,7 @@ public class QUERIES {
         public static final String SELECT_ALL_BOOK_DISCOUNT =
                 "SELECT b.* ,COALESCE(AVG(rating), 0.0) as avg_rating" +
                         " FROM books b" +
-                        " LEFT JOIN reviews r on  r.b_id = b.b_id"+
+                        " LEFT JOIN reviews r on  r.b_id = b.b_id" +
                         " WHERE (:find IS NULL OR b.title LIKE CONCAT('%', :find, '%'))" +
                         " AND (:p_id IS NULL OR b.p_id = :p_id)" +
                         " AND (:category_id IS NULL OR b.category_id = :category_id)" +

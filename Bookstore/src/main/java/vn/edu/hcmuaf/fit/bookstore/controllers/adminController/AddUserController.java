@@ -38,6 +38,7 @@ public class AddUserController extends HttpServlet {
         String dob = request.getParameter("birthdate");
         String gender = request.getParameter("gender");
 
+        int result = userServices.register(username, gender, dob, phone, email, password);
         HttpSession session = request.getSession(false);
         String ip = request.getRemoteAddr();
         User admin = (User) session.getAttribute("userSession");
@@ -52,7 +53,6 @@ public class AddUserController extends HttpServlet {
         dataAfter.put("dob", dob);
         dataAfter.put("gender", gender);
 
-        int result = userServices.register(username, gender, dob, phone, email, password, "user");
         if (result == 0) {
             request.setAttribute("baoloi", "Thêm người dùng thành công");
             log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "user-management", "ADD_USER_SUCCESS",

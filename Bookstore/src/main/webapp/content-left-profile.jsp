@@ -21,7 +21,6 @@
 </head>
 <body>
 <div class="container-profile-content-inner__left">
-
     <div class="profile-info">
         <a href="" class="profile-info-logo">
             <div class="profile-info-avatar-img" style="border: none">
@@ -114,7 +113,7 @@
         </div>
 
         <!--Ve admin-->
-        <c:if test="${userSession.getRole() == 'admin'}">
+        <c:if test="${isAdmin}">
             <div class="stardust-dropdown">
                 <div class="stardust-dropdown__item-header">
                     <a href="admin/dashboard" class="stardust-dropdown__item-header-menu">
