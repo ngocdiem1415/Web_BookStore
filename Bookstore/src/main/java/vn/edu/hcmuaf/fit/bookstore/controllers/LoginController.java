@@ -40,58 +40,58 @@ public class LoginController extends HttpServlet {
 
         UserServices userServices = new UserServices();
         User user = userServices.findByUsernameAndPassword(username, password);
-        int resourceId = roleServices.selectResourceByUserId(user.getUid());
         String baoloi = "";
 
         if (user == null) {
+            // Đăng nhập thất bại
             if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
                 Log log = new Log(null, sessionId, ip, LogLevel.WARNING, "login", "LOGIN_FAIL",
                         false, "{}", "{\"username\": \"" + username + "\"}");
                 logService.insert(log);
-                LoginAttemptTracker.getAttempts(sessionId);
             }
-            LoginAttemptTracker.getAttempts(sessionId);
+            LoginAttemptTracker.getAttempts(sessionId); // tăng số lần
             baoloi = "Sai tên đăng nhập hoặc mật khẩu";
             request.setAttribute("baoloi", baoloi);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
+            return;
+        }
 
-        } else if (user.getStatus() == 0) {
-            baoloi = "Tài khoản chưa được kích hoạt";
-            request.setAttribute("baoloi", baoloi);
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        if (user.getStatus() == 0) {
+            // Tài khoản chưa kích hoạt
             if (LoginAttemptTracker.shouldLogLoginFail(sessionId)) {
                 Log log = new Log(null, sessionId, ip, LogLevel.ALERT, "login", "LOGIN_INACTIVE",
                         false, "{}", "{\"username\": \"" + username + "\"}");
                 logService.insert(log);
-                LoginAttemptTracker.getAttempts(sessionId);
             }
             LoginAttemptTracker.getAttempts(sessionId);
+            baoloi = "Tài khoản chưa được kích hoạt";
+            request.setAttribute("baoloi", baoloi);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            return;
+        }
+
+        // Đăng nhập thành công
+        session.setAttribute("userSession", user);
+
+        // Danh sách resource user được phân quyền (ví dụ: "USER_MGMT", "PRODUCT_MGMT",...)
+        List<String> userResources = roleServices.getAdminsResources(user.getUid());
+        session.setAttribute("userResources", userResources);
+
+        int permissions = roleServices.getPermissionByUserId(user.getUid());
+        session.setAttribute("permissions", permissions);
+
+        Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
+                false, "{}", "{\"username\": \"" + username + "\"}");
+        logService.insert(log);
+        LoginAttemptTracker.reset(sessionId);
+
+        if (!userResources.isEmpty()) {
+            // Nếu user có quyền admin → vào dashboard admin
+            response.sendRedirect(request.getContextPath() + "/admin/dashboard");
         } else {
-            session.setAttribute("userSession", user);
-
-
-            // Lay danh sach cac resource_code ma user co permission = 3
-            List<String> userResources = roleServices.getAdminsResources(user.getUid());
-            session.setAttribute("userResources", userResources);
-
-            int permissions = roleServices.getPermissionByUserId(user.getUid());
-            session.setAttribute("permissions", permissions);
-
-
-            if (!userResources.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + "/admin/dashboard");
-            } else {
-                Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
-                        false, "{}", "{\"username\": \"" + username + "\"}");
-                logService.insert(log);
-                LoginAttemptTracker.reset(sessionId);
-
-                if ("user".equals(user.getRole())) {
-                    response.sendRedirect(request.getContextPath() + "/home");
-                } else if ("admin".equals(user.getRole())) {
-                    response.sendRedirect(request.getContextPath() + "/home");
-                }
-            }
+            // Nếu không có quyền gì đặc biệt → vào home người dùng
+            response.sendRedirect(request.getContextPath() + "/home");
         }
     }
+
 }

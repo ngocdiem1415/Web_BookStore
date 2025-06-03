@@ -51,6 +51,7 @@ public class UserServices {
                 roleDao.insertRole(uid, 5, 0);
                 roleDao.insertRole(uid, 6, 0);
                 roleDao.insertRole(uid, 7, 0);
+                roleDao.insertRole(uid, 8, 0);
                 return null;
             });
             return 0;
