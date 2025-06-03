@@ -115,7 +115,6 @@ public class CheckoutController extends HttpServlet {
             invoice.setRecipientPhone(orderData.getRecipientPhone());
             invoice.setAddress(orderData.getAddress());
             invoice.setOrderDate(LocalDateTime.now());
-            invoice.setStatus("Pending");
 
             int shippingFee = (Integer) session.getAttribute("latestShippingFee");
             invoice.setShippingFee(shippingFee);
@@ -132,10 +131,16 @@ public class CheckoutController extends HttpServlet {
             Payment payment = new Payment();
             payment.setAmount(shippingFee + info.getTotalPrice()); //Shipping fee lát nữa sẽ được thây thế bằng api giao hàng
             payment.setPaymentDate(LocalDateTime.now());
-            payment.setPaymentStatus("Pending");
-            if (orderData.getPaymentMethod().equals("COD"))
+            if (orderData.getPaymentMethod().equals("COD")){
+                payment.setPaymentStatus("Pending");
+                invoice.setStatus("Pending");
                 payment.setPaymentMethod(1); //Thanh toán khi nhận hàng
-            else payment.setPaymentMethod(2); //Thanh toán bằng chuyển khoản ngân hàng (VNPay)
+            }
+            else {
+                payment.setPaymentStatus("Completed");
+                invoice.setStatus("Shipping");
+                payment.setPaymentMethod(2); //Thanh toán bằng chuyển khoản ngân hàng (VNPay)
+            }
 
             invoice.setPayment(payment);
             System.out.println("payment in checkout" + invoice.getPayment());
