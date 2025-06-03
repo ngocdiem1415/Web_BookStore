@@ -88,7 +88,7 @@
         <!--yeu thich-->
         <div class="stardust-dropdown">
             <div class="stardust-dropdown__item-header">
-                <a href="Like.jsp" class="stardust-dropdown__item-header-menu">
+                <a href="wishlist" class="stardust-dropdown__item-header-menu">
                     <div class="stardust-dropdown__item-header-account-img">
                         <img src="admin/img/Heart-icon.png"/></div>
                     <div class="stardust-dropdown__item-header-account-name">
