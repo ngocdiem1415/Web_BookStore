@@ -15,7 +15,10 @@ public interface UserDao {
     List<User> list(@Bind("permission") int permission, @Bind("resource_id") int resource_id);
 
     @SqlQuery(QUERIES.USER.TOTALUSER)
-    int totaluser();
+    int totalUser();
+
+    @SqlQuery(QUERIES.USER.TOTAL_USER_BY_DAY)
+    int totalUserByDay();
 
     @SqlQuery(QUERIES.USER.FIND_BY_ID)
     User findById(@Bind("id") int id);

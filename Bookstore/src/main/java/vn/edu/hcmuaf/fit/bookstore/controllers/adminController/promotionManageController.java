@@ -26,7 +26,7 @@ public class promotionManageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Promotion> promotions = promotionService.listCategory();
+        List<Promotion> promotions = promotionService.listPromotion();
 
         HttpSession session = request.getSession(false);
         String ip = request.getRemoteAddr();

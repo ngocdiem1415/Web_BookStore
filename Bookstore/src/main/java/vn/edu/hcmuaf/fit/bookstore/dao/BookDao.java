@@ -95,8 +95,6 @@ public interface BookDao {
 
     @SqlUpdate(QUERIES.BOOK.UPDATE)
     void update(@BindBean Book book);
-  
-
 
     @SqlQuery(QUERIES.BOOK.TOTALBOOK)
     int totalBooks();

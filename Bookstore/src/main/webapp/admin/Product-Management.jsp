@@ -61,7 +61,7 @@
                                         <div class=" main-card-title my-3">
                                             <h3>Quản lí sản phẩm</h3>
                                         </div>
-                                        <a href="edit-product"
+                                        <a href="add-product"
                                            class="btn btn-green my-4 border rounded addSlider">
                                             <i class="fa-solid fa-plus"></i>
                                             Thêm sản phẩm
