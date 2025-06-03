@@ -70,7 +70,7 @@ public class FbLoginController extends HttpServlet {
             UserServices userService = new UserServices();
 
             if (!userService.exists(user)) {
-                user.setRole("user");  // Hoặc default là "user"
+//                user.setRole("user");  // Hoặc default là "user"
                 user.setStatus(1);      // Kích hoạt tài khoản
                 user.setPassword(UUID.randomUUID().toString()); // Password ngẫu nhiên, vì dùng OAuth
                 userService.insertByGoogle(user); // Đổi tên cho đúng nghĩa

@@ -96,6 +96,7 @@ public class FbLogin {
         User user = new User();
         user.setEmail(this.email);
         user.setUsername(this.name);
+        user.setGender("other");
         if (this.pictureObject != null && this.pictureObject.getData() != null) {
             user.setAvatar(this.pictureObject.getData().getUrl());
         }

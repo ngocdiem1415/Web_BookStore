@@ -98,12 +98,8 @@
                                                         <input type="hidden" name="uid" value="${admin.uid}"/>
                                                         <select name="role" class="form-select form-select-sm"
                                                                 onchange="this.form.submit()">
-                                                            <option value="admin" ${admin.role == 'admin' ? 'selected' : ''}>
-                                                                Admin
-                                                            </option>
-                                                            <option value="user" ${admin.role == 'user' ? 'selected' : ''}>
-                                                                User
-                                                            </option>
+                                                            <option value="3" ${admin.role >= 3 ? 'selected' : ''}>Admin</option>
+                                                            <option value="1" ${admin.role < 3 ? 'selected' : ''}>User</option>
                                                         </select>
                                                     </form>
                                                 </td>
