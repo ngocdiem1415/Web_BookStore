@@ -292,19 +292,24 @@
                         <select class="form-select" id="promotion" name="promotion">
                             <c:choose>
                                 <c:when test="${not empty book}">
-                                    <option value="0" ${empty book.promotion ? 'selected' : ''}>Không giảm giá</option>
-                                    <option value="1" ${book.promotionId == 1 ? 'selected' : ''}>Giảm 10%</option>
-                                    <option value="2" ${book.promotionId == 2 ? 'selected' : ''}>Giảm 20%</option>
-                                    <option value="3" ${book.promotionId == 3 ? 'selected' : ''}>Giảm 25%</option>
-                                    <option value="4" ${book.promotionId == 4 ? 'selected' : ''}>Giảm 50%</option>
+                                    <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}">selected</c:if>>Không giảm giá</option>
+
+                                    <c:forEach var="promotion" items="${listPromotions}">
+<%--                                        <option value="${promotion.promotionId}" <c:if test="${promotion.promotionId == book.promotionId}">selected</c:if>>--%>
+<%--                                                ${promotion.promotionName}--%>
+<%--                                        </option>--%>
+                                        <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}"></c:if>>Không giảm giá</option>
+                                        <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}"></c:if>>Không giảm giá</option>
+                                        <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}"></c:if>>Không giảm giá</option>
+
+                                    </c:forEach>
                                 </c:when>
 
                                 <c:otherwise>
                                     <option value="0" selected>Không giảm giá</option>
-                                    <option value="1">Giảm 10%</option>
-                                    <option value="2">Giảm 20%</option>
-                                    <option value="3">Giảm 25%</option>
-                                    <option value="4">Giảm 50%</option>
+                                    <c:forEach var="promotion" items="${listPromotions}">
+                                        <option value="${promotion.id}">${promotion.promotionName}</option>
+                                    </c:forEach>
                                 </c:otherwise>
                             </c:choose>
                         </select>
