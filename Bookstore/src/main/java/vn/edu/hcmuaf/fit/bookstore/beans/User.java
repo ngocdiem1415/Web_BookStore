@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String password;
     private int status; // 1 là kích hoạt, 0 là không kích hoạt
-    private String role; // "user" hoặc "admin"
+    private int role; // 0: no access, 1: read, 2: write, 3: delete
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
     private int emailVerified;
@@ -22,7 +22,7 @@ public class User {
     public User(int id, String name, String picture, String gender, Object dob, String phone, String email, String password, int status, String user, Object createAt, Object updateAt) {
     }
 
-    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, String role, LocalDateTime createAt, LocalDateTime updateAt, int emailVerified) {
+    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, int role, LocalDateTime createAt, LocalDateTime updateAt, int emailVerified) {
         this.uid = uid;
         this.username = username;
         this.avatar = avatar;
@@ -46,7 +46,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status, String role, LocalDateTime createAt, LocalDateTime updateAt) {
+    public User(int uid, String username, String avatar, String gender, Date dob, String phone, String email, String password, int status,int role ,LocalDateTime createAt, LocalDateTime updateAt) {
         this.uid = uid;
         this.username = username;
         this.avatar = avatar;
@@ -73,7 +73,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", status=" + status +
-                ", role='" + role + '\'' +
+                ", role=" + role +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 '}';
@@ -151,11 +151,11 @@ public class User {
         this.status = status;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -188,12 +188,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return uid == user.uid && Objects.equals(username, user.username) && Objects.equals(avatar, user.avatar) && Objects.equals(gender, user.gender) && Objects.equals(dob, user.dob) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(createAt, user.createAt) && Objects.equals(updateAt, user.updateAt);
+        return uid == user.uid && Objects.equals(username, user.username) && Objects.equals(avatar, user.avatar) && Objects.equals(gender, user.gender) && Objects.equals(dob, user.dob) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(createAt, user.createAt) && Objects.equals(updateAt, user.updateAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uid, username, avatar, gender, dob, phone, email, password, status, role, createAt, updateAt);
+        return Objects.hash(uid, username, avatar, gender, dob, phone, email, password, status, createAt, updateAt);
     }
 }
 

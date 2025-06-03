@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.bookstore.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.LoginStracked.LoginAttemptTracker;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
@@ -11,9 +12,11 @@ import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
+    RoleServices roleServices = RoleServices.getInstance();
     private LogService logService;
 
     public LoginController() {
@@ -37,6 +40,7 @@ public class LoginController extends HttpServlet {
 
         UserServices userServices = new UserServices();
         User user = userServices.findByUsernameAndPassword(username, password);
+        int resourceId = roleServices.selectResourceByUserId(user.getUid());
         String baoloi = "";
 
         if (user == null) {
@@ -64,17 +68,29 @@ public class LoginController extends HttpServlet {
             LoginAttemptTracker.getAttempts(sessionId);
         } else {
             session.setAttribute("userSession", user);
-            session.setAttribute("role", user.getRole());
 
-            Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
-                    false, "{}", "{\"username\": \"" + username + "\"}");
-            logService.insert(log);
-            LoginAttemptTracker.reset(sessionId);
 
-            if ("user".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/home");
-            } else if ("admin".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/home");
+            // Lay danh sach cac resource_code ma user co permission = 3
+            List<String> userResources = roleServices.getAdminsResources(user.getUid());
+            session.setAttribute("userResources", userResources);
+
+            int permissions = roleServices.getPermissionByUserId(user.getUid());
+            session.setAttribute("permissions", permissions);
+
+
+            if (!userResources.isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+            } else {
+                Log log = new Log(user.getUid(), sessionId, ip, LogLevel.INFO, "login", "LOGIN_SUCCESS",
+                        false, "{}", "{\"username\": \"" + username + "\"}");
+                logService.insert(log);
+                LoginAttemptTracker.reset(sessionId);
+
+                if ("user".equals(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                } else if ("admin".equals(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                }
             }
         }
     }

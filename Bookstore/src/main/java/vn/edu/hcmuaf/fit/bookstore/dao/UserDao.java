@@ -11,9 +11,8 @@ import java.util.List;
 
 @RegisterBeanMapper(User.class)
 public interface UserDao {
-
     @SqlQuery(QUERIES.USER.SELECT_ALL_USER)
-    List<User> list(@Bind("role") String role);
+    List<User> list(@Bind("permission") int permission, @Bind("resource_id") int resource_id);
 
     @SqlQuery(QUERIES.USER.TOTALUSER)
     int totalUser();
@@ -28,7 +27,7 @@ public interface UserDao {
     User findByName(@Bind("username") String username);
 
     @SqlUpdate(QUERIES.USER.REGISTER)
-    void register(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password, @Bind("role") String role);
+    void register(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password);
 
     @SqlQuery(QUERIES.USER.FIND_BY_USERNAME_AND_PASSWORD)
     List<User> findByUserByIdAndPassword(@Bind("username") String username, @Bind("password") String password);
@@ -46,7 +45,7 @@ public interface UserDao {
     void updateUserRole(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("id") int id);
 
     @SqlUpdate(QUERIES.USER.INSERT_BY_GOOGLE)
-    void insertByGoogle(@Bind("username") String username, @Bind("gender") String gender, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password, @Bind("role") String role);
+    void insertByGoogle(@Bind("username") String username, @Bind("gender") String gender, @Bind("phone") String phone, @Bind("email") String email, @Bind("password") String password);
 
     @SqlQuery(QUERIES.USER.FIND_ALL)
     List<User> findAll();
@@ -56,9 +55,6 @@ public interface UserDao {
 
     @SqlUpdate(QUERIES.USER.UPDATE_IMAGE_BY_ID)
     void updateImageByID(@Bind("username") String username, @Bind("gender") String gender, @Bind("dob") String dob, @Bind("phone") String phone, @Bind("email") String email, @Bind("avatar") String avatar, @Bind("id") int id);
-
-    @SqlUpdate(QUERIES.USER.UPDATE_ROLE)
-    void updateRole(@Bind("role") String role, @Bind("uid") int uid);
 
     @SqlUpdate(QUERIES.USER.CHANGE_STATUS)
     void disabled(@Bind("uid") int uid);
