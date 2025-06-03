@@ -9,15 +9,15 @@ import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "EditProductController", value = "/admin/add-edit-product")
-public class AddEditProductController extends HttpServlet {
+@WebServlet(name = "EditProductController", value = "/admin/edit-product")
+public class EditProductController extends HttpServlet {
     BookDetailService bookDetailService;
     CategoryService categoryService;
     PublisherService publisherService;
     PromotionService promotionService;
     LogService logService;
 
-    public AddEditProductController() {
+    public EditProductController() {
         this.bookDetailService = BookDetailService.getInstance();
         this.logService = LogService.getInstance();
         this.publisherService = PublisherService.getInstance();
