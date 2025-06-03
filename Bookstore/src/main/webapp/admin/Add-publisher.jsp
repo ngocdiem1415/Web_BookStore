@@ -104,7 +104,8 @@
                         </button>
                         <button type="button"
                                 class="btn btn-danger cancel-supplier"
-                                data-bs-dismiss="modal">
+                                data-bs-dismiss="modal"
+                                onclick="window.location.href='publisher';">>
                             Hủy
                         </button>
                     </div>

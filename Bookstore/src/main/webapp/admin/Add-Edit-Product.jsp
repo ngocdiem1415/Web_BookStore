@@ -125,7 +125,8 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Mô tả sản phẩm</label>
                     <textarea class="form-control" id="description" name="description" rows="3"
-                              placeholder="Nhập mô tả sản phẩm" required>${empty book ? '' : book.description} </textarea>
+                              placeholder="Nhập mô tả sản phẩm"
+                              required>${empty book ? '' : book.description} </textarea>
                 </div>
 
                 <!-- Ảnh trưng bày -->
@@ -133,8 +134,10 @@
                     <label for="anhTrungBay" class="form-label">Ảnh trưng bày (chọn 1)</label>
                     <input type="file" class="form-control" id="anhTrungBay" name="anhTrungBay">
                     <div id="anhTrungBayPreview" class="image-container mt-2">
-                        <img id="previewImage" src="${empty book ? '' :book.image.sourceImg}" alt="Ảnh trưng bày"
-                             style="max-width: 200px; display: block;">
+                        <c:if test="${not empty book && not empty book.image}">
+                            <img id="previewImage" src="${book.image.sourceImg}" alt="Ảnh trưng bày"
+                                 style="max-width: 200px; display: block;">
+                        </c:if>
                     </div>
                 </div>
 
@@ -143,7 +146,7 @@
                     <label for="themAnhKhac" class="form-label">Thêm ảnh khác</label>
                     <input type="file" class="form-control" id="themAnhKhac" name="themAnhKhac" multiple>
                     <div id="themAnhKhacPreview" class="image-container mt-2">
-                        <c:if test="${not empty book.imageList}">
+                        <c:if test="${not empty book && not empty book.imageList}">
                             <c:forEach var="image" items="${book.imageList}" begin="1">
                                 <img src="${image.sourceImg}" alt="Ảnh khác" style="max-width: 200px; display: block;">
                             </c:forEach>
@@ -185,50 +188,18 @@
                         <select class="form-select" id="category" name="category">
                             <c:choose>
                                 <c:when test="${not empty book}">
-                                    <option value="1" ${book.categoryId == 1 ? 'selected' : ''}>Văn học</option>
-                                    <option value="2" ${book.categoryId == 2 ? 'selected' : ''}>Kinh tế</option>
-                                    <option value="3" ${book.categoryId == 3 ? 'selected' : ''}>Tâm lí học</option>
-                                    <option value="4" ${book.categoryId == 4 ? 'selected' : ''}>Sách thiếu nhi</option>
-                                    <option value="5" ${book.categoryId == 5 ? 'selected' : ''}>Tiểu sử - hồi kí
-                                    </option>
-                                    <option value="6" ${book.categoryId == 6 ? 'selected' : ''}>Sách giáo khoa</option>
-                                    <option value="7" ${book.categoryId == 7 ? 'selected' : ''}>Sách Hướng Nghiệp & Phát
-                                        Triển Bản Thân
-                                    </option>
-                                    <option value="8" ${book.categoryId == 8 ? 'selected' : ''}>Truyện ngắn</option>
-                                    <option value="9" ${book.categoryId == 9 ? 'selected' : ''}>Tiểu thuyết</option>
-                                    <option value="10" ${book.categoryId == 10 ? 'selected' : ''}>Tâm lí - Giáo dục
-                                    </option>
-                                    <option value="11" ${book.categoryId == 11 ? 'selected' : ''}>Tâm lí - Kỹ năng
-                                        sống
-                                    </option>
-                                    <option value="12" ${book.categoryId == 12 ? 'selected' : ''}>Sách Tiếng Việt
-                                    </option>
-                                    <option value="13" ${book.categoryId == 13 ? 'selected' : ''}>Sách Kiến Thức - Hội
-                                        Họa - Điện Ảnh
-                                    </option>
-                                    <option value="14" ${book.categoryId == 14 ? 'selected' : ''}>Truyện Tranh</option>
-                                    <option value="15" ${book.categoryId == 15 ? 'selected' : ''}>Sách Chuyên Ngành
-                                    </option>
-                                    <option value="16" ${book.categoryId == 16 ? 'selected' : ''}>Nuôi dạy con</option>
+                                    <c:forEach var="category" items="${listCategory}">
+                                        <option value="${category.categoryId}"
+                                                <c:if test="${category.categoryId == book.categoryId}">selected</c:if>>
+                                                ${category.category_name}
+                                        </option>
+                                    </c:forEach>
                                 </c:when>
+
                                 <c:otherwise>
-                                    <option value="1" selected>Văn học</option>
-                                    <option value="2">Kinh tế</option>
-                                    <option value="3">Tâm lí học</option>
-                                    <option value="4">Sách thiếu nhi</option>
-                                    <option value="5">Tiểu sử - hồi kí</option>
-                                    <option value="6">Sách giáo khoa</option>
-                                    <option value="7">Sách Hướng Nghiệp & Phát Triển Bản Thân</option>
-                                    <option value="8">Truyện ngắn</option>
-                                    <option value="9">Tiểu thuyết</option>
-                                    <option value="10">Tâm lí - Giáo dục</option>
-                                    <option value="11">Tâm lí - Kỹ năng sống</option>
-                                    <option value="12">Sách Tiếng Việt</option>
-                                    <option value="13">Sách Kiến Thức - Hội Họa - Điện Ảnh</option>
-                                    <option value="14">Truyện Tranh</option>
-                                    <option value="15">Sách Chuyên Ngành</option>
-                                    <option value="16">Nuôi dạy con</option>
+                                    <c:forEach var="category" items="${listCategory}">
+                                        <option value="${category.categoryId}">${category.category_name}</option>
+                                    </c:forEach>
                                 </c:otherwise>
                             </c:choose>
                         </select>
@@ -242,44 +213,18 @@
                         <select class="form-select" id="publisher" name="publisher">
                             <c:choose>
                                 <c:when test="${not empty book}">
-                                    <option value="1" ${book.publisherId == 1 ? 'selected' : ''}>NXB Trẻ</option>
-                                    <option value="2" ${book.publisherId == 2 ? 'selected' : ''}>NXB Giáo dục Việt Nam
-                                    </option>
-                                    <option value="3" ${book.publisherId == 3 ? 'selected' : ''}>NXB Kim Đồng</option>
-                                    <option value="4" ${book.publisherId == 4 ? 'selected' : ''}>NXB Hội Nhà văn
-                                    </option>
-                                    <option value="5" ${book.publisherId == 5 ? 'selected' : ''}>NXB Phương Nam</option>
-                                    <option value="6" ${book.publisherId == 6 ? 'selected' : ''}>NXB Thế Giới</option>
-                                    <option value="7" ${book.publisherId == 7 ? 'selected' : ''}>NXB Phụ Nữ</option>
-                                    <option value="8" ${book.publisherId == 8 ? 'selected' : ''}>NXB Dân Trí</option>
-                                    <option value="9" ${book.publisherId == 9 ? 'selected' : ''}>NXB Khoa Học - Xã Hội
-                                    </option>
-                                    <option value="10" ${book.publisherId == 10 ? 'selected' : ''}>NXB Tổng Hợp TP.
-                                        HCM
-                                    </option>
-                                    <option value="11" ${book.publisherId == 11 ? 'selected' : ''}>NXB Thanh Niên
-                                    </option>
-                                    <option value="12" ${book.publisherId == 12 ? 'selected' : ''}>NXB Công Thương
-                                    </option>
-                                    <option value="13" ${book.publisherId == 13 ? 'selected' : ''}>NXB Hà Nội</option>
-                                    <option value="14" ${book.publisherId == 14 ? 'selected' : ''}>NXB Văn Học</option>
+                                    <c:forEach var="publisher" items="${listPublisher}">
+                                        <option value="${publisher.p_id}"
+                                                <c:if test="${publisher.p_id == book.publisherId}">selected</c:if>>
+                                                ${publisher.p_name}
+                                        </option>
+                                    </c:forEach>
                                 </c:when>
 
                                 <c:otherwise>
-                                    <option value="1">NXB Trẻ</option>
-                                    <option value="2">NXB Giáo dục Việt Nam</option>
-                                    <option value="3">NXB Kim Đồng</option>
-                                    <option value="4">NXB Hội Nhà văn</option>
-                                    <option value="5">NXB Phương Nam</option>
-                                    <option value="6">NXB Thế Giới</option>
-                                    <option value="7">NXB Phụ Nữ</option>
-                                    <option value="8">NXB Dân Trí</option>
-                                    <option value="9">NXB Khoa Học - Xã Hội</option>
-                                    <option value="10">NXB Tổng Hợp TP. HCM</option>
-                                    <option value="11">NXB Thanh Niên</option>
-                                    <option value="12">NXB Công Thương</option>
-                                    <option value="13">NXB Hà Nội</option>
-                                    <option value="14">NXB Văn Học</option>
+                                    <c:forEach var="publisher" items="${listPublisher}">
+                                        <option value="${publisher.p_id}">${publisher.p_name}</option>
+                                    </c:forEach>
                                 </c:otherwise>
                             </c:choose>
                         </select>
@@ -292,23 +237,23 @@
                         <select class="form-select" id="promotion" name="promotion">
                             <c:choose>
                                 <c:when test="${not empty book}">
-                                    <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}">selected</c:if>>Không giảm giá</option>
+                                    <option value="0"
+                                            <c:if test="${empty book.promotionId || book.promotionId == 0}">selected</c:if>>
+                                        Không giảm giá
+                                    </option>
 
-                                    <c:forEach var="promotion" items="${listPromotions}">
-<%--                                        <option value="${promotion.promotionId}" <c:if test="${promotion.promotionId == book.promotionId}">selected</c:if>>--%>
-<%--                                                ${promotion.promotionName}--%>
-<%--                                        </option>--%>
-                                        <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}"></c:if>>Không giảm giá</option>
-                                        <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}"></c:if>>Không giảm giá</option>
-                                        <option value="0" <c:if test="${empty book.promotionId || book.promotionId == 0}"></c:if>>Không giảm giá</option>
-
+                                    <c:forEach var="promotion" items="${listPromotion}">
+                                        <option value="${promotion.promotionId}"
+                                                <c:if test="${promotion.promotionId == book.promotionId}">selected</c:if>>
+                                                ${promotion.promotionName}
+                                        </option>
                                     </c:forEach>
                                 </c:when>
 
                                 <c:otherwise>
                                     <option value="0" selected>Không giảm giá</option>
-                                    <c:forEach var="promotion" items="${listPromotions}">
-                                        <option value="${promotion.id}">${promotion.promotionName}</option>
+                                    <c:forEach var="promotion" items="${listPromotion}">
+                                        <option value="${promotion.promotionId}">${promotion.promotionName}</option>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
@@ -343,6 +288,7 @@
 
         if (productId === "") {
             addProduct(formData);
+            console.log("chay ham add");
         } else {
             updateProduct(formData, productId);
         }
@@ -363,8 +309,8 @@
                 window.location.href = "product-management"; // Điều hướng về trang quản lý sản phẩm
             },
             error: function (e) {
-                console.log("ERROR : ",e );
-                alert("Thêm thất bại! " );
+                console.log("ERROR : ", e);
+                alert("Thêm thất bại! ");
             }
         });
     }

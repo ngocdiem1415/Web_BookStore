@@ -14,6 +14,7 @@ public class QUERIES {
 
     public class USER {
         public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
+        public static final String TOTAL_USER_BY_DAY = "SELECT COUNT(*) FROM users where DATE(create_at) = CURRENT_DATE";
         public static final String SELECT_ALL_USER = "select * from users where role = :role";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
@@ -45,7 +46,7 @@ public class QUERIES {
         public static final String INSERT =
                 "INSERT INTO books (title, author, category_id, p_id, publish_year, dimensions, weight, page_count, format, original_price, description, promotion_id,create_at, status) " +
                         "VALUES (:title, :author, :categoryId, :publisherId, :publishYear, :dimensions, :weight, :pageCount, :format, :originalPrice, :description, :promotionId,CURRENT_TIMESTAMP, :status)";
-        public static final String SELECT_ALL_BOOK = "select * from books ORDER BY created_at DESC";
+        public static final String SELECT_ALL_BOOK = "select * from books";
         public static final String SELECT_ALL_BOOK_LIMIT =
                 "SELECT * FROM books ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
         //        public static final String SELECT_ALL_BOOK_LIMIT_TEST =
@@ -205,7 +206,8 @@ public class QUERIES {
         public static final String SELECT_ALL_IMAGE_THUMBNAIL_LIMIT = "select * from images where is_thumbnail = 1  limit :limit";
         public static final String FIND_IMAGE_THUMBNAIL_BY_ID = "select * from images where b_id = :id and is_thumbnail = 1";
         public static final String FIND_IMAGE_BY_SOURCE = "select * from images where source_img = :source";
-        public static final String DELETE = "delete from images where b_id = :id";
+        public static final String DELETE_IMAGE_OTHER = "delete from images where b_id = :id AND is_thumbnail = 0";
+        public static final String DELETE_IMAGE_THUMBNAIL = "delete from images where b_id = :id AND is_thumbnail = 1";
         public static final String INSERT = "INSERT INTO images (b_id, source_img, is_thumbnail) VALUES (:bookId, :sourceImg, :isThumbnail)";
         public static final String SELECT_ALL_IMAGE_BY_BOOKID = "select * from images where b_id = :id";
     }

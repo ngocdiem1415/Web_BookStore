@@ -28,8 +28,11 @@ public interface ImageBookDao {
     @SqlQuery(QUERIES.IMAGE.SELECT_ALL_IMAGE_BY_BOOKID)
     List<Image> findImageBookId(@Bind("id") int id);
 
-    @SqlUpdate(QUERIES.IMAGE.DELETE)
-    boolean delete(@Bind("id") int id);
+    @SqlUpdate(QUERIES.IMAGE.DELETE_IMAGE_OTHER)
+    boolean deleteImageOther(@Bind("id") int id);
+
+    @SqlUpdate(QUERIES.IMAGE.DELETE_IMAGE_THUMBNAIL)
+    boolean deleteImaneThumbnail(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.IMAGE.INSERT)
     boolean insertImage(@BindBean Image img);
