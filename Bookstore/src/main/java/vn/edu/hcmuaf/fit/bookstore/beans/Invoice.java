@@ -150,16 +150,15 @@ public class Invoice {
         return "Invoice{" +
                 "invoiceId=" + invoiceId +
                 ", uid=" + uid +
-                ", recipientName='" + recipientName + '\'' +
-                ", recipientPhone='" + recipientPhone + '\'' +
-                ", address='" + address + '\'' +
+                ", recipientName=" + recipientName  +
+                ", recipientPhone=" + recipientPhone  +
+                ", address=" + address +
                 ", orderDate=" + orderDate +
-                ", status='" + status + '\'' +
+                ", status='" + status +
                 ", shippingFee=" + shippingFee +
                 ", completionDate=" + completionDate +
                 ", listInvoiceDetails=" + listInvoiceDetails +
-                ", payment=" + payment +
-                ", hasReviews=" + hasReviews +
+                ", payment=" + payment.getPaymentMethod() +
                 ", totalAmount=" + totalAmount +
                 '}';
     }

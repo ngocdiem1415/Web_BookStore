@@ -6,6 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ShippingInfoService;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
@@ -19,15 +20,13 @@ import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @WebServlet(name = "CheckoutController", value = "/checkout")
 public class CheckoutController extends HttpServlet {
     List<BookVariant> selectedProducts;
     ShippingInfo info;
+    private LogService logService = LogService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -87,8 +86,9 @@ public class CheckoutController extends HttpServlet {
         System.out.println("CheckoutController: doPost() triggered");
 
         HttpSession session = request.getSession(false);
-        int userId = ((User) session.getAttribute("userSession")).getUid();
-
+        User user = (User) session.getAttribute("userSession");
+        int userId = user.getUid();
+        String ip = request.getRemoteAddr();
 
         try {
             //Đọc JSON từ request
@@ -147,6 +147,12 @@ public class CheckoutController extends HttpServlet {
             //Tạo hóa đơn
             InvoiceService invoiceService = new InvoiceService();
             int invoiceId = invoiceService.insert(invoice);
+
+            // Theem log
+                        Log log = new Log(user.getUid(), session.getId(), ip, LogLevel.INFO, "invoice", "CREATE_INVOICE",
+                    false, "", new GsonUtil().toJSon(invoice));
+            logService.insert(log);
+
 
             // Trả về phản hồi JSON
             response.setContentType("application/json");

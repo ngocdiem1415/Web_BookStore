@@ -98,9 +98,7 @@ public class Book implements Serializable {
                 ", categoryId=" + categoryId +
                 ", publisherId=" + publisherId +
                 ", promotionId=" + promotionId +
-                ", category=" + category +
                 ", publisher=" + publisher +
-                ", promotion=" + promotion +
                 ", publishYear=" + publishYear +
                 ", dimensions='" + dimensions + '\'' +
                 ", weight=" + weight +
@@ -112,7 +110,6 @@ public class Book implements Serializable {
                 ", create_at=" + create_at +
                 ", update_at=" + update_at +
                 ", status=" + status +
-                ", image=" + image +
                 ", rating=" + rating+
                 '}';
     }
