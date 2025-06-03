@@ -25,7 +25,7 @@ public interface PublisherDao {
     void delete(@Bind("id") int id);
 
     @SqlUpdate(QUERIES.PUBLISHER.INSERT_PUBLISHER)
-    void insert(@Bind("publisherName") String publisherName, @Bind("address") String address, @Bind("phone") String phone);
+    boolean insert(@Bind("publisherName") String publisherName, @Bind("address") String address, @Bind("phone") String phone);
 
     @SqlUpdate(QUERIES.PUBLISHER.UPDATE_PUBLISHER)
     void update(@Bind("p_id") int p_id, @Bind("publisherName") String publisherName, @Bind("address") String address, @Bind("phone") String phone);

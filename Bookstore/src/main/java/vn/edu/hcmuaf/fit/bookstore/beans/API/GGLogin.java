@@ -104,6 +104,7 @@ public class GGLogin {
             user.setEmailVerified(0);
         }
         user.setUsername(this.name);
+        user.setGender("other");
         return user;
     }
 }

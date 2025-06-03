@@ -1,11 +1,13 @@
 package vn.edu.hcmuaf.fit.bookstore.Services;
 
-import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.bookstore.beans.Role;
 import vn.edu.hcmuaf.fit.bookstore.beans.User;
+import vn.edu.hcmuaf.fit.bookstore.dao.RoleDao;
 import vn.edu.hcmuaf.fit.bookstore.dao.UserDao;
 import vn.edu.hcmuaf.fit.bookstore.db.JDBIConnector;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -24,9 +26,8 @@ public class UserServices {
     }
 
     // Dang ki
-    public int register(String username, String gender, String dob, String phone, String email, String password, String role) {
+    public int register(String username, String gender, String dob, String phone, String email, String password) {
         return conn.withExtension(UserDao.class, handle -> {
-            User user = null;
             if (handle.findByName(username) != null) {
                 return 1;
             }
@@ -34,7 +35,20 @@ public class UserServices {
                 return 2;
             }
             String hashedPassword = hashPassword(password);
-            handle.register(username, gender, dob, phone, email, hashedPassword, role);
+            handle.register(username, gender, dob, phone, email, hashedPassword);
+
+            User user = handle.findByName(username);
+            int uid = user.getUid();
+            conn.withExtension(RoleDao.class, roleDao -> {
+                roleDao.insertRole(uid, 2, 1);
+                roleDao.insertRole(uid, 3, 1);
+                roleDao.insertRole(uid, 1, 0);
+                roleDao.insertRole(uid, 4, 0);
+                roleDao.insertRole(uid, 5, 0);
+                roleDao.insertRole(uid, 6, 0);
+                roleDao.insertRole(uid, 7, 0);
+                return null;
+            });
             return 0;
         });
     }
@@ -76,9 +90,13 @@ public class UserServices {
     }
 
     public void updatePassword(int uid, String password) {
-        conn.useExtension(UserDao.class, handle -> {
-            handle.updatePassword(uid, hashPassword(password));
-        });
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updatePassword(uid, hashPassword(password));
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
     }
 
     public User findById(int id) {
@@ -109,8 +127,10 @@ public class UserServices {
         return password;
     }
 
-    public List<User> list(String role) {
-        return conn.withExtension(UserDao.class, handle -> handle.list(role));
+    public List<User> list(int permission, int resource_id) {
+        List<User> users = conn.withExtension(UserDao.class, handle -> handle.list(permission, resource_id));
+        System.out.println("UserServices: Đã lấy " + users.size() + " người dùng với permission=" + permission);
+        return users;
     }
 
 
@@ -126,15 +146,25 @@ public class UserServices {
     }
 
     public void changePassword(int uid, String password) {
-        conn.useExtension(UserDao.class, handle -> {
-            handle.updatePassword(uid, hashPassword(password));
-        });
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updatePassword(uid, hashPassword(password));
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     public void insertByGoogle(User user) {
-        conn.useExtension(UserDao.class, handle -> {
-            handle.insertByGoogle(user.getUsername(), user.getGender(), user.getPhone(), user.getEmail(), user.getPassword(), user.getRole());
-        });
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.insertByGoogle(user.getUsername(), user.getGender(), user.getPhone(), user.getEmail(), user.getPassword());
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean exists(User user) {
@@ -148,9 +178,14 @@ public class UserServices {
     }
 
     public void updateEmailVerifiedByEmail(String email) {
-        conn.useExtension(UserDao.class, handle -> {
-            handle.updateEmailVerifiedByEmail(email);
-        });
+        try {
+            conn.useExtension(UserDao.class, handle -> {
+                handle.updateEmailVerifiedByEmail(email);
+            });
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     public void updateImageByID(String username, String gender, String dob, String phone, String email, String avatar, int id) {
@@ -164,17 +199,17 @@ public class UserServices {
         }
     }
 
-    public void updateRole(String role, int uid) {
-        try {
-            conn.useExtension(UserDao.class, handle -> {
-                handle.updateRole(role, uid);
-            });
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
+//    public void updateRole(int permission, int uid) {
+//        try {
+//            conn.useExtension(UserDao.class, handle -> {
+//                handle.updateRole(role, uid);
+//            });
+//        } catch (RuntimeException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
     public void disabled(int id) {
         try {
             conn.useExtension(UserDao.class, handle -> {

@@ -43,9 +43,8 @@ public class SignupController extends HttpServlet {
         String gender = request.getParameter("gender");
         String phone = request.getParameter("phone");
         String dob = request.getParameter("birthdate");
-        String baoloi = "";
-        String type = "signup";
         String verifyCode = RandomCode.randomCode();
+        String baoloi = "";
 
         HttpSession session = request.getSession(true);
         String sessionId = session.getId();
@@ -58,8 +57,22 @@ public class SignupController extends HttpServlet {
             request.getRequestDispatcher("Signup.jsp").forward(request, response);
             return;
         }
+        // Kiểm tra định dạng email
+        if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            request.setAttribute("baoloi", "Email không hợp lệ");
+            request.getRequestDispatcher("Signup.jsp").forward(request, response);
+            return;
+        }
 
-        int result = userServices.register(username, gender, dob, phone, email, password, "user");
+        // Kiểm tra định dạng số điện thoại (10 số, bắt đầu bằng 0)
+        if (!phone.matches("0\\d{9}")) {
+            request.setAttribute("baoloi", "Số điện thoại không hợp lệ (phải có 10 số và bắt đầu bằng 0)");
+            request.getRequestDispatcher("Signup.jsp").forward(request, response);
+            return;
+        }
+
+        UserServices userServices = new UserServices();
+        int result = userServices.register(username, gender, dob, phone, email, password);
         if (result == 0) {
             int id = userServices.findByUserName(username).getUid();
             Gson gson = new Gson();

@@ -4,11 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.bookstore.Services.BookDetailService;
-import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
-import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
-import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
+import vn.edu.hcmuaf.fit.bookstore.Services.*;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
+import vn.edu.hcmuaf.fit.bookstore.beans.Log;
+import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,11 +19,13 @@ public class DashboardController extends HttpServlet {
     BookDetailService bookDetailService;
     UserServices userServices = new UserServices();
     PaymentService paymentService;
+    LogService logService;
 
     public DashboardController() {
         this.invoiceService = InvoiceService.getInstance();
         this.bookDetailService = BookDetailService.getInstance();
         this.paymentService = PaymentService.getInstance();
+        this.logService = LogService.getInstance();
     }
 
     @Override
@@ -42,6 +44,13 @@ public class DashboardController extends HttpServlet {
 
         List<Integer> listYear = invoiceService.getListYear();
         request.setAttribute("listYear", listYear);
+        HttpSession session = request.getSession(false);
+        String ip = request.getRemoteAddr();
+        User admin = (User) session.getAttribute("userSession");
+
+        Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.INFO, "dashboard", "VIEW_DASHBOARD",
+                false, "{}", "{\"admin\": \"" + admin.getUsername() + "\"}");
+        logService.insert(log);
         request.getRequestDispatcher("Dashboard.jsp").forward(request,response);
     }
 

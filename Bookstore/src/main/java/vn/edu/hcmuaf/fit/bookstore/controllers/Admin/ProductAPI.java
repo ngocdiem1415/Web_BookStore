@@ -33,6 +33,7 @@ public class ProductAPI extends HttpServlet {
     private PromotionService promotionService;
     private BookDetailService bookDetailService;
     private ImageService imageService;
+    private LogService logService;
 
     public ProductAPI() {
         this.bookService = BookDetailService.getInstance();
@@ -41,6 +42,7 @@ public class ProductAPI extends HttpServlet {
         this.promotionService = PromotionService.getInstance();
         this.bookDetailService = BookDetailService.getInstance();
         this.imageService = ImageService.getInstance();
+        this.logService = LogService.getInstance();
     }
 
     @Override
@@ -59,6 +61,11 @@ public class ProductAPI extends HttpServlet {
         String dimensions = request.getParameter("dimensions");
         String format = request.getParameter("format");
         String description = request.getParameter("description");
+
+
+        HttpSession session = request.getSession();
+        User admin = (User) session.getAttribute("admin");
+        String ip = request.getRemoteAddr();
 
         int publishYear = 0, pageCount = 0;
         double price = 0, weight = 0;
@@ -113,28 +120,17 @@ public class ProductAPI extends HttpServlet {
         System.out.println(book.toString());
         if (bookDetailService.findByName(title) == null) {
             book = bookService.insertProduct(book);
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "product-management",
+                    "ADD_PRODUCT_SUCCESS", false, "{}", "{\"bookTitle\": \"" + title + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             idNewBook = book.getbId();
         } else {
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.WARNING, "product-management",
+                    "ADD_PRODUCT_FAIL", false, "{}", "{\"bookTitle\": \"" + title + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             request.setAttribute("baoloi", "Sản phẩm đã tồn tại");
         }
 
-//        //xu li hinh anh
-
-//        String uploadPath = request.getServletContext().getRealPath("/img/uploadProducts");
-//        File uploadDir = new File(uploadPath);
-//        if (!uploadDir.exists()) uploadDir.mkdirs();
-////
-////        Part anhTrungBay = request.getPart("anhTrungBay");
-////        if (anhTrungBay != null && anhTrungBay.getSize() > 0) {
-////            String originalName = Paths.get(anhTrungBay.getSubmittedFileName()).getFileName().toString();
-////            String thumbNailImageNames = originalName.replaceAll("\\s+", "_");
-////            if (isValidImage(thumbNailImageNames)) {
-////                anhTrungBay.write(uploadPath + File.separator + thumbNailImageNames);
-////                System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + thumbNailImageNames);
-////                otherImageNames.add("/img/uploadProducts/" + thumbNailImageNames);
-////            }
-////        }
-//
         // xu lý ảnh
         List<String> otherImageNames = new ArrayList<>();
         Part anhTrungBay = request.getPart("anhTrungBay");
@@ -168,20 +164,7 @@ public class ProductAPI extends HttpServlet {
             }
         }
         System.out.println(otherImageNames.toString());
-////        String originalName;
-////        Collection<Part> parts = request.getParts();
-////        for (Part part : parts) {
-////            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
-////                originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-////                String fileName = originalName.replaceAll("\\s+", "_");
-////                if (isValidImage(fileName)) {
-////                    part.write(uploadPath + File.separator + fileName);
-////                    System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + fileName);
-////                    otherImageNames.add("/img/uploadProducts/" + fileName);
-////                }
-////            }
-////        }
-//
+
         System.out.println("them ds anh vao sach");
         List<Image> listImage = new ArrayList<>();
         for (int i = 0; i < otherImageNames.size(); i++) {
@@ -225,6 +208,11 @@ public class ProductAPI extends HttpServlet {
         String dimensions = request.getParameter("dimensions");
         String format = request.getParameter("format");
         String description = request.getParameter("description");
+
+
+        HttpSession session = request.getSession();
+        User admin = (User) session.getAttribute("admin");
+        String ip = request.getRemoteAddr();
 
         int publishYear = 0, pageCount = 0;
         double price = 0, weight = 0;
@@ -275,6 +263,9 @@ public class ProductAPI extends HttpServlet {
 
         System.out.println("bat dau update");
         book = bookService.updateProduct(book);
+        Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "product-management",
+                "UPDATE_PRODUCT_SUCCESS", false, "{}", "{\"bookId\": \"" + idBook + "\", \"admin\": \"" + admin.getUsername() + "\"}");
+        logService.insert(log);
         System.out.println(book.toString());
 
         // xu lý ảnh
@@ -299,7 +290,7 @@ public class ProductAPI extends HttpServlet {
                 originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                 if (isValidImage(originalName)) {
                     try {
-                        String imageUrl = CloundinaryConfig.getUrl(part); // ✅ dùng đúng part hiện tại
+                        String imageUrl = CloundinaryConfig.getUrl(part); // dùng đúng part hiện tại
                         otherImageNames.add(imageUrl);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -310,20 +301,6 @@ public class ProductAPI extends HttpServlet {
             }
         }
         System.out.println(otherImageNames.toString());
-////        String originalName;
-////        Collection<Part> parts = request.getParts();
-////        for (Part part : parts) {
-////            if ("themAnhKhac".equals(part.getName()) && part.getSize() > 0) {
-////                originalName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-////                String fileName = originalName.replaceAll("\\s+", "_");
-////                if (isValidImage(fileName)) {
-////                    part.write(uploadPath + File.separator + fileName);
-////                    System.out.println("Ảnh đã lưu vào: " + uploadPath + File.separator + fileName);
-////                    otherImageNames.add("/img/uploadProducts/" + fileName);
-////                }
-////            }
-////        }
-//
         System.out.println("them ds anh vao sach");
         List<Image> listImage = new ArrayList<>();
         imageService.delete(idBook);
@@ -359,12 +336,27 @@ public class ProductAPI extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         PrintWriter printWriter = resp.getWriter();
+
+        HttpSession session = req.getSession();
+        User admin = (User) session.getAttribute("admin");
+        String ip = req.getRemoteAddr();
+
         try {
             bookDetailService.delete(id);
             printWriter.println("Delete Done");
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.ALERT, "product-management",
+                    "DELETE_PRODUCT_SUCCESS", false, "{\"bookId\": \"" + id + "\"}",
+                    "{\"bookId\": \"" + id + "\", \"deleteBy\": \"" + admin.getUsername() + "\"}");
+            logService.insert(log);
             printWriter.close();
         } catch (Exception e) {
             resp.setStatus(400);
+            Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.DANGER,
+                    "product-management",
+                    "DELETE_PRODUCT_FAIL", false,
+                    "{\"bookId\": \"" + id + "\"}",
+                    "{\"error\": \"" + e.getMessage().replace("\"", "\\\""));
+            logService.insert(log);
             printWriter.println("Error");
             printWriter.close();
         }
