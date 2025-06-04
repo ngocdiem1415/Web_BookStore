@@ -284,7 +284,7 @@
 
     //Load data địa lí hành chính VN từ api GHN
     // Load danh sách tỉnh (provinces) từ BE
-    axios.get("/Bookstore/api/ghn/provinces")
+    axios.get("/api/ghn/provinces")
         .then(response => {
             // Giả định API BE trả về JSON có thuộc tính 'data' chứa danh sách tỉnh
             ghnData.cities = response.data.data;
@@ -303,7 +303,7 @@
         const provinceId = parseInt(this.value);
         if (!provinceId) return;
 
-        axios.post("/Bookstore/api/ghn/districts", new URLSearchParams({province_id: provinceId}))
+        axios.post("/api/ghn/districts", new URLSearchParams({province_id: provinceId}))
             .then(response => {
                 ghnData.districts[provinceId] = response.data.data;
                 response.data.data.forEach(d => {
@@ -321,7 +321,7 @@
         const districtId = parseInt(this.value);
         if (!districtId) return;
 
-        axios.post("/Bookstore/api/ghn/wards", new URLSearchParams({district_id: districtId}))
+        axios.post("/api/ghn/wards", new URLSearchParams({district_id: districtId}))
             .then(response => {
                 ghnData.wards[districtId] = response.data.data;
                 response.data.data.forEach(w => {
@@ -351,7 +351,7 @@
         };
 
         $.ajax({
-            url: "/Bookstore/api/ghn/calculate-shipping",
+            url: "/api/ghn/calculate-shipping",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(requestData),
@@ -480,7 +480,7 @@
         };
 
         $.ajax({
-            url: '/Bookstore/checkout',
+            url: '/checkout',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(orderData),
@@ -494,9 +494,9 @@
                         removeCount++;
                         if (removeCount === selectedIds.length) {
                             if (paymentMethod === 'COD') {
-                                window.location.href = '/Bookstore/invoice';
+                                window.location.href = '/invoice';
                             } else {
-                                window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
+                                window.location.href = '/payment-vnpay?invoiceId=' + invoiceId;
                             }
                         }
                     });
@@ -506,7 +506,7 @@
                 if (xhr.status === 400) {
                     const res = JSON.parse(xhr.responseText);
                     alert(res.error);
-                    window.location.href = '/Bookstore/cart';
+                    window.location.href = '/cart';
                 } else {
                     alert('Đã xảy ra lỗi khi tạo đơn hàng!');
                 }
