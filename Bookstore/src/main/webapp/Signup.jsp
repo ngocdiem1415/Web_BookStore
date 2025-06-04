@@ -45,6 +45,7 @@
                         <label for="password">Mật khẩu<span class="required">*</span></label>
                         <input type="password" name="password" id="password" class="form-control" onkeyup="checkPass()"
                                required>
+                        <p id="password-msg" class="text-danger"></p>
                     </div>
 
                     <div class="form-group">
@@ -90,7 +91,7 @@
 </div>
 
 <script>
-    document.getElementById("register-form").addEventListener("submit", function(event) {
+    document.getElementById("register-form").addEventListener("submit", function (event) {
         let birthdateInput = document.getElementById("birthdate").value;
         let birthdate = new Date(birthdateInput);
         let today = new Date();
@@ -116,25 +117,20 @@
 </script>
 
 <script>
-    document.getElementById("register-form").addEventListener("submit", function(event) {
-        let password = document.getElementById("password").value;
-        let phone = document.getElementById("tel").value;
+    function checkPass() {
+        const password = document.getElementById("password").value;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+        const message = document.getElementById("password-msg");
 
-        let phoneRegex = /^[0-9]{10}$/;
-        let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // Ít nhất 6 ký tự, gồm chữ và số
-
-        if (!phoneRegex.test(phone)) {
-            alert("Số điện thoại phải có đúng 10 chữ số!");
-            event.preventDefault();
-            return;
-        }
         if (!passwordRegex.test(password)) {
-            alert("Mật khẩu phải có ít nhất 6 ký tự, bao gồm cả chữ cái và số!");
-            event.preventDefault();
+            message.textContent = "Mật khẩu phải có ít nhất 6 ký tự, bao gồm cả chữ cái và số!";
+            message.style.color = "red";
+        } else {
+            message.textContent = "Mật khẩu hợp lệ!";
+            message.style.color = "green";
         }
-    });
+    }
 </script>
-
 
 
 </body>
