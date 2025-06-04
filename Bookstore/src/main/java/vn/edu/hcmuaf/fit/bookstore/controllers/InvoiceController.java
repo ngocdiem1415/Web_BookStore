@@ -13,6 +13,7 @@ import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
+import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
@@ -28,6 +29,7 @@ import java.util.Map;
 public class InvoiceController extends HttpServlet {
     HttpSession session; // Lấy session hiện tại, không tạo mới
     int userId;
+    private final RoleServices roleServices = RoleServices.getInstance();
     private final InvoiceService invoiceService = InvoiceService.getInstance();
     private final ReviewService reviewService = ReviewService.getInstance();
     private final LogService logService = LogService.getInstance();
@@ -63,6 +65,7 @@ public class InvoiceController extends HttpServlet {
                     default:
                         response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

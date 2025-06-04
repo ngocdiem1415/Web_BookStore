@@ -14,6 +14,10 @@ public interface UserDao {
     @SqlQuery(QUERIES.USER.SELECT_ALL_USER)
     List<User> list(@Bind("permission") int permission, @Bind("resource_id") int resource_id);
 
+
+    @SqlQuery(QUERIES.USER.SELECT_ALL_USER_PERISSION)
+    List<User> listUsers(@Bind("permission") int permission, @Bind("resource_id") int resource_id);
+
     @SqlQuery(QUERIES.USER.TOTALUSER)
     int totalUser();
 
@@ -60,5 +64,6 @@ public interface UserDao {
     void disabled(@Bind("uid") int uid);
 
     @SqlQuery(QUERIES.USER.CHECK_PASSWORD)
-    Boolean checkPwd(@Bind("uid") int uid, @Bind("password") String password);
+    User checkPwd(@Bind("uid") int uid, @Bind("password") String password);
+
 }

@@ -13,7 +13,7 @@
 <!--curtain menu-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-        <a href="admin/dashboard">
+        <a href="dashboard">
             <img src="../img/logo/new_logo.png" height="200px" width="200px"/>
         </a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

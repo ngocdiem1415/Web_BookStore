@@ -78,7 +78,7 @@
                                             <th>Tên người dùng</th>
                                             <th>SDT</th>
                                             <th>Email</th>
-                                            <th>Role</th>
+                                            <th>Danh sách quyền</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -92,16 +92,35 @@
                                                 <td>${admin.username}</td>
                                                 <td>${admin.phone}</td>
                                                 <td>${admin.email}</td>
+<%--                                                <td>--%>
+<%--                                                    <form action="${pageContext.request.contextPath}/admin/upload-role"--%>
+<%--                                                          method="post" class="d-inline">--%>
+<%--                                                        <input type="hidden" name="uid" value="${admin.uid}"/>--%>
+<%--                                                        <select name="role" class="form-select form-select-sm"--%>
+<%--                                                                onchange="this.form.submit()">--%>
+<%--                                                            <option value="3" ${admin.role >= 3 ? 'selected' : ''}>--%>
+<%--                                                                Admin--%>
+<%--                                                            </option>--%>
+<%--                                                            <option value="1" ${admin.role < 3 ? 'selected' : ''}>User--%>
+<%--                                                            </option>--%>
+<%--                                                        </select>--%>
+<%--                                                    </form>--%>
+<%--                                                </td>--%>
                                                 <td>
-                                                    <form action="${pageContext.request.contextPath}/admin/upload-role"
-                                                          method="post" class="d-inline">
-                                                        <input type="hidden" name="uid" value="${admin.uid}"/>
-                                                        <select name="role" class="form-select form-select-sm"
-                                                                onchange="this.form.submit()">
-                                                            <option value="3" ${admin.role >= 3 ? 'selected' : ''}>Admin</option>
-                                                            <option value="1" ${admin.role < 3 ? 'selected' : ''}>User</option>
-                                                        </select>
-                                                    </form>
+                                                    <c:forEach var="role" items="${userRoles[admin.uid]}">
+                                                        <form method="post" action="${pageContext.request.contextPath}/admin/remove-role" style="display: inline;">
+                                                            <input type="hidden" name="uid" value="${admin.uid}"/>
+                                                            <input type="hidden" name="resource" value="${role}"/>
+                                                            <span class="badge bg-success me-1">${role}
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-close btn-close-white ms-2 p-0"
+                                                                        style="font-size: 0.6rem; vertical-align: middle;"
+                                                                        title="Xóa quyền này"
+                                                                        onclick="return confirm('Xác nhận xóa quyền ${role}?')">
+                                                                </button>
+                                                            </span>
+                                                        </form>
+                                                    </c:forEach>
                                                 </td>
                                                 <td class="status-text">
                                                     <c:choose>
