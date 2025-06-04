@@ -108,9 +108,6 @@
                                                         <input type="password" placeholder="Nhập mật khẩu mới"
                                                                class="table__row-input__field-text" name="new-password">
                                                     </div>
-                                                    <% if (baoloi != null) { %>
-                                                    <div class="alert alert-danger"><%= baoloi %></div>
-                                                    <% } %>
                                                 </td>
                                             </tr>
 
@@ -124,6 +121,9 @@
                                                         <input type="password" placeholder="Nhập lại mật khẩu mới"
                                                                class="table__row-input__field-text" name="re-password">
                                                     </div>
+                                                    <% if (baoloi != null) { %>
+                                                    <div class="alert alert-danger"><%= baoloi %></div>
+                                                    <% } %>
                                                 </td>
                                             </tr>
 
