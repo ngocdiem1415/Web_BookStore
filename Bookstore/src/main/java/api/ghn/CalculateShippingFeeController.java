@@ -27,7 +27,6 @@ public class CalculateShippingFeeController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(">>>> BAT DAU doPost");
         BufferedReader reader = request.getReader();
         StringBuilder sb = new StringBuilder();
         String line;
@@ -44,7 +43,6 @@ public class CalculateShippingFeeController extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("shippingInfo") == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thông tin vận chuyển không tồn tại trong session");
-            System.out.println("Không tồn tại ShippingInfo trong session");
             return;
         }
 
@@ -61,14 +59,11 @@ public class CalculateShippingFeeController extends HttpServlet {
         int height = info.getHeight();
         int insuranceValue = info.getTotalPrice();
 
-        System.out.println("Trong tinh phi ship: "+ FROM_DISTRICT_ID + " "+ FROM_WARD_CODE +" " +toDistrictId + " " + toWardCode
-                + " " +info);
 
         // Gọi API GHN để lấy service_id từ available-services
         int serviceId = getAvailableServiceId(toDistrictId);
         if (serviceId == -1) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Không lấy được gói dịch vụ GHN");
-            System.out.println("Không lấy được gói dịch vụ");
             return;
         }
 
@@ -76,7 +71,6 @@ public class CalculateShippingFeeController extends HttpServlet {
         int shippingFee = calculateFee(serviceId, toDistrictId, toWardCode, weight, length, width, height, insuranceValue);
         if (shippingFee == -1) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Không tính được phí vận chuyển");
-            System.out.println("Không tính được phí vận chuyển");
             return;
         }
 
@@ -106,7 +100,6 @@ public class CalculateShippingFeeController extends HttpServlet {
                 os.write(payload.toString().getBytes());
             }
 
-            System.out.println("Payload gui toi GHN (available-services): " + payload.toString());
 
             BufferedReader in = new BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
             String inputLine;
@@ -117,9 +110,6 @@ public class CalculateShippingFeeController extends HttpServlet {
             in.close();
 
             JSONObject jsonResponse = new JSONObject(response.toString());
-            System.out.println("GHN response: " + response.toString());
-
-//            JSONArray services = jsonResponse.getJSONArray("data");
 
             // Chọn gói dịch vụ đường bộ hàng nhẹ (tuỳ thuộc GHN response)
             if (jsonResponse.has("data") && jsonResponse.get("data") instanceof JSONArray) {
@@ -132,7 +122,7 @@ public class CalculateShippingFeeController extends HttpServlet {
                     }
                 }
             } else {
-                System.err.println("❌ GHN API trả về data KHÔNG phải JSONArray:");
+                System.err.println("GHN API trả về data KHÔNG phải JSONArray:");
                 System.err.println(jsonResponse.toString());
             }
         } catch (Exception e) {
@@ -165,7 +155,6 @@ public class CalculateShippingFeeController extends HttpServlet {
             payload.put("weight", weight);
             payload.put("width", width);
 
-            System.out.println("Payload gui toi GHN (available-services): " + payload.toString());
 
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(payload.toString().getBytes());

@@ -13,7 +13,6 @@ public class UpdateQuantityController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productKey = request.getParameter("productKey");
-        System.out.println(productKey);
         String quantity = request.getParameter("quantity");
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
@@ -22,7 +21,7 @@ public class UpdateQuantityController extends HttpServlet {
             session.setAttribute("cart", cart);
         }
 
-        response.sendRedirect("/Bookstore/cart");
+        response.sendRedirect("/cart");
     }
 
     @Override

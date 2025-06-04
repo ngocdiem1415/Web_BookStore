@@ -25,7 +25,6 @@ public class APIGHNConfig {
     }
 
     public static int getShopId() {
-        System.out.println(properties.getProperty("shop_id"));
         return Integer.parseInt(properties.getProperty("shop_id"));
     }
 

@@ -10,10 +10,12 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
 import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
+import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,46 +32,44 @@ public class InvoiceController extends HttpServlet {
     private final RoleServices roleServices = RoleServices.getInstance();
     private final InvoiceService invoiceService = InvoiceService.getInstance();
     private final ReviewService reviewService = ReviewService.getInstance();
+    private final LogService logService = LogService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
+        try {
+            session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
+            request.setAttribute("today", java.time.LocalDate.now());
+            // Kiểm tra session và user login
+            if (session == null || session.getAttribute("userSession") == null) {
+                // Nếu chưa đăng nhập, chuyển hướng đến trang login
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            } else {
+                userId = ((User) session.getAttribute("userSession")).getUid();
+                String action = request.getParameter("action");
+                if (action == null) action = "list";
 
-        int resourceId = roleServices.selectResourceByUserId(((User) session.getAttribute("userSession")).getUid());
-        if (session == null || session.getAttribute("userSession") == null) {
-            response.sendRedirect("login");
-            return;
-        }
-        User user = (User) session.getAttribute("userSession");
-        boolean isAdmin = roleServices.isAdmin(user.getUid(), resourceId);
-        request.setAttribute("isAdmin", isAdmin);
-        request.setAttribute("today", java.time.LocalDate.now());
-        // Kiểm tra session và user login
-        if (session == null || session.getAttribute("userSession") == null) {
-            // Nếu chưa đăng nhập, chuyển hướng đến trang login
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        } else {
-            userId = ((User) session.getAttribute("userSession")).getUid();
-            String action = request.getParameter("action");
-            if (action == null) action = "list";
+                switch (action) {
+                    case "list":
+                        listInvoices(request, response);
+                        break;
+                    case "detail":
+                        detailInvoice(request, response);
+                        break;
+                    case "filterByStatus":
+                        filterInvoicesByStatus(request, response);
+                        break;
+                    case "search":
+                        searchInvoicesByBookTitle(request, response);
+                        break;
+                    default:
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                }
 
-            switch (action) {
-                case "list":
-                    listInvoices(request, response);
-                    break;
-                case "detail":
-                    detailInvoice(request, response);
-                    break;
-                case "filterByStatus":
-                    filterInvoicesByStatus(request, response);
-                    break;
-                case "search":
-                    searchInvoicesByBookTitle(request, response);
-                    break;
-                default:
-                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Có lỗi xảy ra trong quá trình xử lý yêu cầu.");
         }
     }
 
@@ -88,13 +88,8 @@ public class InvoiceController extends HttpServlet {
     }
 
     private void filterInvoicesByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
         String status = request.getParameter("status");
         List<Invoice> invoices = invoiceService.findByStatus(userId, status);
-        for (Invoice invoice : invoices) {
-            boolean hasReviews = reviewService.hasReviewedInvoice(invoice.getUid(), invoice.getInvoiceId());
-            invoice.setHasReviews(hasReviews);
-        }
         request.setAttribute("invoices", invoices);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
         dispatcher.forward(request, response);
@@ -103,7 +98,6 @@ public class InvoiceController extends HttpServlet {
     private void detailInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         Invoice invoice = invoiceService.findById(id);
-        System.out.println(invoice);
         if (invoice == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -144,29 +138,33 @@ public class InvoiceController extends HttpServlet {
 
     private void cancelInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        String ip = request.getRemoteAddr();
         Invoice invoice = invoiceService.findById(id);
+        String dataBefore = new GsonUtil().toJSon(invoice);
         Payment payment = invoice.getPayment();
         PaymentService paymentService = PaymentService.getInstance();
-        System.out.println("Hủy đơn hàng có phương thức thanh toán là: " + payment.getPaymentMethod());
 
-        System.out.println(invoice);
         if (invoice == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
         try {
             // Thực hiện hủy đơn hàng và hủy thanh toán
-            System.out.println("Hủy đơn hàng có phương thức thanh toán là: " + payment.getPaymentMethod());
-//            if (payment.getPaymentMethod() == 1)
-//                payment.setPaymentStatus("Failed");
-//            else
-            payment.setPaymentStatus("Refunded");
+            if (payment.getPaymentStatus().equals("Pending") || payment.getPaymentStatus().equals("Failed"))
+                payment.setPaymentStatus("Failed");
+            else
+                payment.setPaymentStatus("Refunded");
             int reCancelPayment = paymentService.update(payment);
             int result = invoiceService.cancelInvoice(invoice);
 
             if (result > 0 && reCancelPayment > 0) {
+                // Thêm log
+                String dataAfter = new GsonUtil().toJSon(invoiceService.findById(id));
+                Log log = new Log(userId, session.getId(), ip, LogLevel.WARNING, "invoice", "CANCEL_INVOICE",
+                        false, dataBefore, dataAfter);
+                logService.insert(log);
                 // Chuyển hướng sau khi hủy thành công
-                response.sendRedirect("invoice?action=filterByStatus&status=cancelled&userId=" + userId);
+                response.sendRedirect("invoice?action=filterByStatus&status=cancelled");
             } else {
                 throw new RuntimeException("Hủy đơn hàng thất bại.");
             }

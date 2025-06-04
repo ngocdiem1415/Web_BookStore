@@ -241,7 +241,7 @@
 
     function fetchProducts(page, maxItems, findWord) {
         $.ajax({
-            url: '/Bookstore/filter',
+            url: '/filter',
             method: 'GET',
             dataType: 'json',
             data: $("#filter-form").serialize() + "&page=" + page + "&maxItems=" + maxItems + "&find=" + findWord,

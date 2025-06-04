@@ -34,16 +34,16 @@ public class RemoveBookController extends HttpServlet {
 
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart != null) {
+//            Map<String, String> dataBefore = new HashMap<>();
+//            dataBefore.put("username", user.getUsername());
+            String dataBefore = new GsonUtil().toJSon(cart);
             cart.removeProduct(productKey);
             session.setAttribute("cart", cart);
             Gson gson = new Gson();
-            Map<String, String> dataBefore = new HashMap<>();
-            dataBefore.put("username", user.getUsername());
-            dataBefore.put("cart", new GsonUtil().toJSon(cart));
 
-            Map<String, String> dataAfter = new HashMap<>();
-            dataAfter.put("username", user.getUsername());
-            dataAfter.put("cart", new GsonUtil().toJSon(cart));
+//            Map<String, String> dataAfter = new HashMap<>();
+//            dataAfter.put("username", user.getUsername());
+            String dataAfter= new GsonUtil().toJSon(cart);
 
             Log log = new Log(
                     user.getUid(),
@@ -53,8 +53,8 @@ public class RemoveBookController extends HttpServlet {
                     "cart",
                     "REMOVE_BOOK_IN_CART",
                     false,
-                    new GsonUtil().toJSon(cart),
-                    new GsonUtil().toJSon(cart)
+                    dataBefore,
+                    dataAfter
             );
             logService.insert(log);
         }
