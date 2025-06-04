@@ -69,7 +69,7 @@ public class Cart implements Serializable {
         BookVariant product = listBook.get(productKey);
         System.out.println("update product: " + i);
         if (product != null) {
-            if ( product.getQuantity() + i > 0){
+            if ( (product.getQuantity() + i > 0) && (product.getQuantity() + i <= product.getBook().getStockQuantity())){
             product.setQuantity(product.getQuantity()+ i);
             System.out.println("update product: " + product.getQuantity());
             getTotalPrice();}

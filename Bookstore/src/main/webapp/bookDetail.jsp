@@ -192,22 +192,22 @@
                     </c:if>
 
                     <c:if test="${empty userSession or book.stockQuantity == 0}">
-                        <a class="btn btn-danger border border-secondary py-2 "
+                        <a class="btn btn-danger border border-secondary py-2 disabled"
                            style="background-color: #b02a37; pointer-events: none;">
                             Mua ngay </a>
                     </c:if>
 
                     <!-- Thêm vào giỏ hàng -->
-                    <c:if test="${empty userSession and book.stockQuantity > 0}">
-                        <button id="add-to-cart" class="btn btn-success border border-secondary py-2 disabled-btn"
-                                disabled>
+                    <c:if test="${not empty userSession and book.stockQuantity > 0}">
+                        <button id="add-to-cart" class="btn btn-success border border-secondary py-2"
+                                onclick="addToCart(${book.bId})">
                             <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
                         </button>
                     </c:if>
 
-                    <c:if test="${not empty userSession or book.stockQuantity == 0}">
-                        <button id="add-to-cart" class="btn btn-success border border-secondary py-2"
-                                onclick="addToCart(${book.bId})">
+                    <c:if test="${empty userSession or book.stockQuantity == 0}">
+                        <button id="add-to-cart" class="btn btn-success border border-secondary py-2 disabled"
+                                style="pointer-events: none;">
                             <i class="me-1 fa fa-shopping-basket"></i> Thêm vào giỏ hàng
                         </button>
                     </c:if>

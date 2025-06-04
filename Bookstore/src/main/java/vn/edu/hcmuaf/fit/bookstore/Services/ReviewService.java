@@ -27,7 +27,7 @@ public class ReviewService {
     public boolean addReview(Review review) {
         //Kiểm tra người dùng đã đánh giá sách trong đơn hàng đó chưa
         boolean alreadyReviewed = connect.withExtension(ReviewDao.class, handle ->
-                handle.hasReviewed(review.getUId(), review.getBId(), review.getInvoiceId()));
+                handle.hasReviewed(review.getuId(), review.getbId(), review.getInvoiceId()));
 
         if (alreadyReviewed) {
             return false; // Vi phạm ràng buộc
@@ -95,7 +95,7 @@ public class ReviewService {
     }
 
     public Review mapReview(Review review) {
-        User user = connect.withExtension(UserDao.class, handle -> handle.findById(review.getUId()));
+        User user = connect.withExtension(UserDao.class, handle -> handle.findById(review.getuId()));
         review.setUser(user);
         return review;
     }

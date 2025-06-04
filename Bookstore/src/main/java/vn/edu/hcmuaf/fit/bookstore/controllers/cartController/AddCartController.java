@@ -54,10 +54,11 @@ public class AddCartController extends HttpServlet {
                     System.out.println("da tao cart");
                 }
                 System.out.println("dataBefore");
-                Map<String, String> dataBefore = new HashMap<>();
-                dataBefore.put("username", user.getUsername());
+//                Map<String, String> dataBefore = new HashMap<>();
+//                dataBefore.put("username", user.getUsername());
+                String dataBefore ="";
                 try {
-                    dataBefore.put("cart", new GsonUtil().toJSon(cart));
+                    dataBefore = new GsonUtil().toJSon(cart);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -65,12 +66,12 @@ public class AddCartController extends HttpServlet {
                 //them book moi
                 cart.addBook(book, quantity);
                 System.out.println("da add duoc book");
-                Map<String, String> dataAfter = new HashMap<>();
-                dataAfter.put("username", user.getUsername());
-                dataAfter.put("cart", new GsonUtil().toJSon(cart));
+//                Map<String, String> dataAfter = new HashMap<>();
+//                dataAfter.put("username", user.getUsername());
+                String dataAfter = new GsonUtil().toJSon(cart);
 
                 Log log = new Log(user.getUid(), session.getId(), ip, LogLevel.INFO, "cart", "ADD_BOOK_IN_CART",
-                        false, new GsonUtil().toJSon(cart), new GsonUtil().toJSon(cart));
+                        false, dataBefore, dataAfter);
                 logService.insert(log);
 
                 session.setAttribute("cart", cart);
