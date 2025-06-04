@@ -132,9 +132,13 @@ public class UserServices {
         return password;
     }
 
-    public List<User> list(int permission, int resource_id) {
+    public List<User> listUsers(int permission, int resource_id) {
+        List<User> users = conn.withExtension(UserDao.class, handle -> handle.listUsers(permission, resource_id));
+        return users;
+    }
+
+    public List<User> listAdmins(int permission, int resource_id) {
         List<User> users = conn.withExtension(UserDao.class, handle -> handle.list(permission, resource_id));
-        System.out.println("UserServices: Đã lấy " + users.size() + " người dùng với permission=" + permission);
         return users;
     }
 
@@ -204,7 +208,7 @@ public class UserServices {
         }
     }
 
-//    public void updateRole(int permission, int uid) {
+    //    public void updateRole(int permission, int uid) {
 //        try {
 //            conn.useExtension(UserDao.class, handle -> {
 //                handle.updateRole(role, uid);
@@ -227,6 +231,10 @@ public class UserServices {
     }
 
     public boolean checkPassword(int uid, String password) {
-        return conn.withExtension(UserDao.class, handle -> handle.checkPwd(uid,password));
+        return conn.withExtension(UserDao.class, handle -> {
+            User user = handle.checkPwd(uid, hashPassword(password));
+            return user != null;
+        });
     }
+
 }

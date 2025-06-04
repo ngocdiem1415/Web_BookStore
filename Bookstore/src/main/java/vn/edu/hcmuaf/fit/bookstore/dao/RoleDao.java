@@ -18,6 +18,9 @@ public interface RoleDao {
     @SqlUpdate(QUERIES.ROLE.INSERT_ROLE)
     void insertRole(@Bind("uid") int uid, @Bind("resource_id") int resource_id, @Bind("permission") int permission);
 
+    @SqlUpdate(QUERIES.ROLE.INSERT_ROLE)
+    void insertRoleResourceName(@Bind("uid") int uid, @Bind("resource_code") String resource_code, @Bind("permission") int permission);
+
     @SqlQuery(QUERIES.ROLE.GET_PERMISSION)
     Integer getPermission(@Bind("uid") int uid, @Bind("resource_id") int resource_id);
 
@@ -35,4 +38,20 @@ public interface RoleDao {
 
     @SqlQuery(QUERIES.ROLE.SELECT_ROLE_ADMINS)
     List<String> getAdminsResources(@Bind("uid") int uid);
+
+    @SqlUpdate(QUERIES.ROLE.DELETE_RESOURCE)
+    void removeUserResource(@Bind("uid") int uid, @Bind("resource") String resourceCode);
+
+    @SqlUpdate(QUERIES.ROLE.RESET_USER_ROLE)
+    void resetUserRole(@Bind("uid") int uid, @Bind("resource") String resourceCode);
+
+    @SqlQuery(QUERIES.ROLE.SELECT_ROLE_ADMINS)
+    List<String> getAccessibleResourcesByUid(@Bind("uid") int uid);
+
+    @SqlQuery(QUERIES.ROLE.SELECT_ROLE_ADMINS)
+    List<String> getRolesOfUser(@Bind("uid") int uid);
+
+    @SqlUpdate(QUERIES.ROLE.DELETE_ALL_RESOURCES_BY_UID)
+    void deleteAllResourcesByUid(@Bind("uid") int uid);
+
 }
