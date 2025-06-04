@@ -28,36 +28,42 @@ public class InvoiceController extends HttpServlet {
     int userId;
     private final InvoiceService invoiceService = InvoiceService.getInstance();
     private final ReviewService reviewService = ReviewService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
-        request.setAttribute("today", java.time.LocalDate.now());
-        // Kiểm tra session và user login
-        if (session == null || session.getAttribute("userSession") == null) {
-            // Nếu chưa đăng nhập, chuyển hướng đến trang login
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        } else {
-            userId = ((User) session.getAttribute("userSession")).getUid();
-            String action = request.getParameter("action");
-            if (action == null) action = "list";
+        try {
+            session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
+            request.setAttribute("today", java.time.LocalDate.now());
+            // Kiểm tra session và user login
+            if (session == null || session.getAttribute("userSession") == null) {
+                // Nếu chưa đăng nhập, chuyển hướng đến trang login
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            } else {
+                userId = ((User) session.getAttribute("userSession")).getUid();
+                String action = request.getParameter("action");
+                if (action == null) action = "list";
 
-            switch (action) {
-                case "list":
-                    listInvoices(request, response);
-                    break;
-                case "detail":
-                    detailInvoice(request, response);
-                    break;
-                case "filterByStatus":
-                    filterInvoicesByStatus(request, response);
-                    break;
-                case "search":
-                    searchInvoicesByBookTitle(request, response);
-                    break;
-                default:
-                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                switch (action) {
+                    case "list":
+                        listInvoices(request, response);
+                        break;
+                    case "detail":
+                        detailInvoice(request, response);
+                        break;
+                    case "filterByStatus":
+                        filterInvoicesByStatus(request, response);
+                        break;
+                    case "search":
+                        searchInvoicesByBookTitle(request, response);
+                        break;
+                    default:
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Có lỗi xảy ra trong quá trình xử lý yêu cầu.");
         }
     }
 
@@ -76,13 +82,8 @@ public class InvoiceController extends HttpServlet {
     }
 
     private void filterInvoicesByStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
         String status = request.getParameter("status");
         List<Invoice> invoices = invoiceService.findByStatus(userId, status);
-        for (Invoice invoice : invoices) {
-            boolean hasReviews = reviewService.hasReviewedInvoice(invoice.getUid(), invoice.getInvoiceId());
-            invoice.setHasReviews(hasReviews);
-        }
         request.setAttribute("invoices", invoices);
         RequestDispatcher dispatcher = request.getRequestDispatcher("purchaseOrder.jsp");
         dispatcher.forward(request, response);
@@ -122,7 +123,7 @@ public class InvoiceController extends HttpServlet {
         }
         switch (action) {
             case "cancel":
-                cancelInvoice(request,response);
+                cancelInvoice(request, response);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -154,7 +155,7 @@ public class InvoiceController extends HttpServlet {
 
             if (result > 0 && reCancelPayment > 0) {
                 // Chuyển hướng sau khi hủy thành công
-                response.sendRedirect("invoice?action=filterByStatus&status=cancelled&userId=" + userId);
+                response.sendRedirect("invoice?action=filterByStatus&status=cancelled");
             } else {
                 throw new RuntimeException("Hủy đơn hàng thất bại.");
             }

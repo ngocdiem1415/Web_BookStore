@@ -19,6 +19,7 @@ import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -84,6 +85,7 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("CheckoutController: doPost() triggered");
+        PrintWriter out = response.getWriter();
 
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("userSession");
@@ -98,11 +100,10 @@ public class CheckoutController extends HttpServlet {
 
             // Kiểm tra orderData không có sản phẩm
             if (selectedProducts == null || selectedProducts.isEmpty()) {
-                // Trả JSON thông báo lỗi:
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write("{\"error\": \"Không có sản phẩm nào để mua. Vui lòng kiểm tra lại giỏ hàng.\"}");
-                response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
 
@@ -154,8 +155,9 @@ public class CheckoutController extends HttpServlet {
             // Trả về phản hồi JSON
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{\"message\": \"Invoice created successfully!\", \"invoiceId\": " + invoiceId + "}");
-            System.out.println("✅ orderData received: " + orderData);
+            out.write("{\"message\": \"Invoice created successfully!\", \"invoiceId\": " + invoiceId + "}");
+            out.close();
+            out.flush();
         } catch (IllegalStateException e) {
             // Lỗi vượt số lượng sản phẩm trong kho
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
@@ -163,14 +165,18 @@ public class CheckoutController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             Gson gson = new Gson();
             String jsonError = gson.toJson(Collections.singletonMap("error", e.getMessage()));
-            response.getWriter().write(jsonError);
+            out.write(jsonError);
+            out.close();
+            out.flush();
             System.out.println("Loi vuot qua ton kho: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 500
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{\"error\": \"Có lỗi xảy ra khi xử lý đơn hàng.\"}");
+            out.write("{\"error\": \"Có lỗi xảy ra khi xử lý đơn hàng.\"}");
+            out.close();
+            out.flush();
         }
 
     }

@@ -486,7 +486,6 @@
             data: JSON.stringify(orderData),
             success: function (response) {
                 const invoiceId = response.invoiceId;
-                const userId = <%= ((User) session.getAttribute("userSession")).getUid() %>;
                 let removeCount = 0;
                 const selectedIds = <%= request.getAttribute("selectedIds") %>;
 
@@ -495,22 +494,21 @@
                         removeCount++;
                         if (removeCount === selectedIds.length) {
                             if (paymentMethod === 'COD') {
-                                window.location.href = '/Bookstore/invoice?action=list&userId=' + userId;
+                                window.location.href = '/Bookstore/invoice';
                             } else {
                                 window.location.href = '/Bookstore/payment-vnpay?invoiceId=' + invoiceId;
                             }
                         }
                     });
                 }
-                ;
             },
             error: function (xhr) {
                 if (xhr.status === 400) {
                     const res = JSON.parse(xhr.responseText);
-                    alert('❗ ' + res.error);
+                    alert(res.error);
                     window.location.href = '/Bookstore/cart';
                 } else {
-                    alert('❌ Đã xảy ra lỗi khi tạo đơn hàng!');
+                    alert('Đã xảy ra lỗi khi tạo đơn hàng!');
                 }
             }
         });
