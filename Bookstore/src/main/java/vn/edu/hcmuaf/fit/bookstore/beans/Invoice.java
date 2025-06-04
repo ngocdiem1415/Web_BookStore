@@ -157,7 +157,7 @@ public class Invoice {
                 ", status='" + status +
                 ", shippingFee=" + shippingFee +
                 ", completionDate=" + completionDate +
-                ", listInvoiceDetails=" + listInvoiceDetails +
+//                ", listInvoiceDetails=" + listInvoiceDetails +
                 ", payment=" + payment.getPaymentMethod() +
                 ", totalAmount=" + totalAmount +
                 '}';

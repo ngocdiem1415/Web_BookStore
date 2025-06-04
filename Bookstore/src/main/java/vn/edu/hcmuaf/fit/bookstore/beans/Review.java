@@ -99,7 +99,6 @@ public class Review implements Serializable {
     @Override
     public String toString() {
         return "Review{" +
-                "reviewId=" + reviewId +
                 ", invoiceId=" + invoiceId +
                 ", bId=" + bId +
                 ", uId=" + uId +

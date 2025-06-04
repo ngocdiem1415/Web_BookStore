@@ -146,8 +146,8 @@ public class CheckoutController extends HttpServlet {
             InvoiceService invoiceService = new InvoiceService();
             int invoiceId = invoiceService.insert(invoice);
 
-            // Theem log
-                        Log log = new Log(user.getUid(), session.getId(), ip, LogLevel.INFO, "invoice", "CREATE_INVOICE",
+            // Thêm log
+            Log log = new Log(user.getUid(), session.getId(), ip, LogLevel.INFO, "invoice", "CREATE_INVOICE",
                     false, "", new GsonUtil().toJSon(invoice));
             logService.insert(log);
 

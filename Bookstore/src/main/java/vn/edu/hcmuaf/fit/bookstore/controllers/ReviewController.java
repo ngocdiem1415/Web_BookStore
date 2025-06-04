@@ -5,10 +5,9 @@ import io.leangen.geantyref.TypeToken;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
-import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
-import vn.edu.hcmuaf.fit.bookstore.beans.Review;
-import vn.edu.hcmuaf.fit.bookstore.beans.User;
+import vn.edu.hcmuaf.fit.bookstore.beans.*;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.*;
@@ -23,6 +22,7 @@ public class ReviewController extends HttpServlet {
     @Serial
     private static final long serialVersionUID = 1L;
     private final ReviewService reviewService = ReviewService.getInstance();
+    private final LogService logService = LogService.getInstance();
     int userId;
 
     @Override
@@ -63,6 +63,7 @@ public class ReviewController extends HttpServlet {
     private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
+            String ip = request.getRemoteAddr();
 
             BufferedReader reader = request.getReader();
             GsonUtil gsonUtil = new GsonUtil();
@@ -81,7 +82,6 @@ public class ReviewController extends HttpServlet {
                 review.setRating(reviewData.getRating());
                 review.setComment(reviewData.getComment());
 
-                ReviewService reviewService = new ReviewService();
                 boolean success = reviewService.addReview(review);
                 System.out.println("đã thêm review id:" + review.getReviewId());
                 if (!success) {
@@ -89,6 +89,12 @@ public class ReviewController extends HttpServlet {
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                     System.out.println("Không thể thêm review cho bookId: " + reviewData.getBookId());
                     break;
+                }
+                else{
+                    // Thêm log
+                    Log log = new Log(userId, session.getId(), ip, LogLevel.INFO, "review", "INSERT_REVIEW",
+                            false, "", new GsonUtil().toJSon(review));
+                    logService.insert(log);
                 }
 
             }
