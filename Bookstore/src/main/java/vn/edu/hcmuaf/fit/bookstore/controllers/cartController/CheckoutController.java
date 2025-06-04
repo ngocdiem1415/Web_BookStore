@@ -95,7 +95,6 @@ public class CheckoutController extends HttpServlet {
             BufferedReader reader = request.getReader();
             GsonUtil gsonUtil = new GsonUtil();
             OrderData orderData = gsonUtil.getGson().fromJson(reader, OrderData.class);
-            System.out.println("orderData: " + orderData);
 
             // Kiểm tra orderData không có sản phẩm
             if (selectedProducts == null || selectedProducts.isEmpty()) {
@@ -103,7 +102,6 @@ public class CheckoutController extends HttpServlet {
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write("{\"error\": \"Không có sản phẩm nào để mua. Vui lòng kiểm tra lại giỏ hàng.\"}");
-                System.out.println("❗ Không có sản phẩm trong orderData.");
                 response.sendRedirect(request.getContextPath() + "/cart");
                 return;
             }
@@ -131,14 +129,13 @@ public class CheckoutController extends HttpServlet {
             Payment payment = new Payment();
             payment.setAmount(shippingFee + info.getTotalPrice()); //Shipping fee lát nữa sẽ được thây thế bằng api giao hàng
             payment.setPaymentDate(LocalDateTime.now());
+            payment.setPaymentStatus("Pending");
+            invoice.setStatus("Pending");
+
             if (orderData.getPaymentMethod().equals("COD")){
-                payment.setPaymentStatus("Pending");
-                invoice.setStatus("Pending");
                 payment.setPaymentMethod(1); //Thanh toán khi nhận hàng
             }
             else {
-                payment.setPaymentStatus("Completed");
-                invoice.setStatus("Shipping");
                 payment.setPaymentMethod(2); //Thanh toán bằng chuyển khoản ngân hàng (VNPay)
             }
 
@@ -167,7 +164,7 @@ public class CheckoutController extends HttpServlet {
             Gson gson = new Gson();
             String jsonError = gson.toJson(Collections.singletonMap("error", e.getMessage()));
             response.getWriter().write(jsonError);
-            System.out.println("❌ Loi vuot qua ton kho: " + e.getMessage());
+            System.out.println("Loi vuot qua ton kho: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 500

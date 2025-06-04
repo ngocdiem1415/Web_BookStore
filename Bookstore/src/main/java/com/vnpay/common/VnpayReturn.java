@@ -85,6 +85,7 @@ public class VnpayReturn extends HttpServlet {
         }
 
         PaymentService paymentService = new PaymentService();
+        InvoiceService invoiceService = new InvoiceService();
 
         String vnp_SecureHash = request.getParameter("vnp_SecureHash");
         fields.remove("vnp_SecureHashType");
@@ -99,7 +100,12 @@ public class VnpayReturn extends HttpServlet {
             boolean success = "00".equals(request.getParameter("vnp_TransactionStatus"));
             if (success) {
                 paymentService.updateStatus(orderId, "Completed");
+                invoiceService.updateStatus(orderId, "Shipping");
+            } else{
+                paymentService.updateStatus(orderId, "Failed");
+                invoiceService.updateStatus(orderId, "Cancelled");
             }
+
 
             // Truyền dữ liệu qua JSP
             request.setAttribute("success", success);
