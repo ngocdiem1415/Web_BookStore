@@ -78,12 +78,13 @@ tasks.withType(Test) {
 
 apply plugin: 'org.hidetake.ssh'
 remotes {
-    host {
-        host = '192.168.0.121'
-        user = 'root'
-        password = 'ngocdiem'
+    droplet {
+        host = '159.223.92.254'     // IP của Droplet
+        user = 'root'               // hoặc 'ubuntu' tùy hệ điều hành
+        password = 'ROOT&123a'
     }
 }
+
 ssh.settings {
     knownHosts = allowAnyHosts
 }
