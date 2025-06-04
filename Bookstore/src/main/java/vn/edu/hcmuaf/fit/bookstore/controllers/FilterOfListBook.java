@@ -45,7 +45,7 @@ public class FilterOfListBook extends HttpServlet {
         String sort = request.getParameter("sort");
         String pageStr = request.getParameter("page");
         String findWord = request.getParameter("find");
-//        System.out.println(publisher+";"+category+";"+firstPrice+";"+secondPrice+";"+rating+";"+sort+";"+findWord+";"+pageStr);
+        System.out.println(publisher+";"+category+";"+firstPrice+";"+secondPrice+";"+rating+";"+sort+";"+findWord+";"+pageStr);
         try {
             // Lấy số trang và số lượng sản phẩm mỗi trang từ tham số request
             int page = Integer.parseInt(request.getParameter("page"));
@@ -59,7 +59,7 @@ public class FilterOfListBook extends HttpServlet {
             int totalItems = bookDetailService.totalBooks();  // Tổng số sản phẩm trong cơ sở dữ liệu
             int totalItemsOnPage = productList.size();
             System.out.println(offset + maxItems);
-            if (findWord != null && !findWord.trim().isEmpty()) {
+            if (findWord != null ) {
                 Map<String, String> dataBefore = new HashMap<>();
                 dataBefore.put("publisher", publisher);
                 dataBefore.put("category", category);
