@@ -67,11 +67,56 @@ public class RoleServices {
 
     public List<String> getAdminsResources(int uid) {
         return conn.withExtension(RoleDao.class, dao -> dao.getAdminsResources(uid));
-
     }
 
     public List<Permission> findAll() {
         return conn.withExtension(PermissionDao.class, handle -> handle.getAllRoles());
     }
 
+    public void removeUserResource(int uid, String resource) {
+        conn.withExtension(RoleDao.class, dao -> {
+            dao.removeUserResource(uid, resource);
+            return null;
+        });
+    }
+
+    //    public void updateUserResource(int uid, String resourceCode, int permission) {
+//        conn.withExtension(RoleDao.class, dao -> {
+//            dao.updateUserResource(uid, resourceCode, permission);
+//            return null;
+//        });
+//    }
+//
+    public List<String> getRolesOfUser(int uid) {
+        return conn.withExtension(RoleDao.class, dao -> dao.getRolesOfUser(uid));
+    }
+
+    public void resetUserRole(int uid, String resourceCode) {
+        conn.withExtension(RoleDao.class, dao -> {
+            dao.resetUserRole(uid, resourceCode);
+            return null;
+        });
+    }
+
+    public void resetUserPermissionAndRefreshSession(int uid, String resourceCode) {
+        conn.withExtension(RoleDao.class, dao -> {
+            dao.resetUserRole(uid, resourceCode);
+            return null;
+        });
+    }
+
+    public List<String> getResourceNames() {
+        return conn.withExtension(PermissionDao.class, dao -> dao.resourceNames());
+    }
+
+    public void deleteAllResourcesByUid(int uid) {
+        conn.withExtension(RoleDao.class, dao -> {
+            dao.deleteAllResourcesByUid(uid);
+            return null;
+        });
+    }
+
+    public Integer getAccessibleResourcesByUid(String resourceCode) {
+        return conn.withExtension(PermissionDao.class, dao -> dao.getResourceById(resourceCode));
+    }
 }

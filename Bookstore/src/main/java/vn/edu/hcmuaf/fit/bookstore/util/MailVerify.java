@@ -55,20 +55,33 @@ public class MailVerify {
     public void sendEmail(String to, String subject, String content) {
         // properties : khai bao cac thuoc tinh
         Properties pros = new Properties();
-        pros.put("mail.smtp.host", "smtp.gmail.com"); // SMTP HOST
-        pros.put("mail.smtp.port", "587"); // TLS 587 SSL 465
+//        pros.put("mail.smtp.host", "smtp.gmail.com"); // SMTP HOST
+//        pros.put("mail.smtp.port", "587"); // TLS 587 SSL 465
+//        pros.put("mail.smtp.auth", "true");
+//        pros.put("mail.smtp.starttls.enable", "true");
+
         pros.put("mail.smtp.auth", "true");
         pros.put("mail.smtp.starttls.enable", "true");
+        pros.put("mail.smtp.host", "smtp.gmail.com");
+        pros.put("mail.smtp.port", "587");
+        pros.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        pros.put("mail.smtp.ssl.connectiontimeout", "5000");
+        pros.put("mail.smtp.timeout", "5000");
+        pros.put("mail.smtp.writetimeout", "5000");
 
         // create Authentication
-        Authenticator auth = new Authenticator() {
+//        Authenticator auth = new Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(fromEmail, password);
+//            }
+//        };
+        Session session = Session.getInstance(pros, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromEmail, password);
+                return new PasswordAuthentication(username, password);
             }
-        };
-
-        Session session = Session.getInstance(pros, auth);
+        });
 
         // Tao 1 tin nhan
         Message msg = new MimeMessage(session);
