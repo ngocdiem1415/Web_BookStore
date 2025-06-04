@@ -16,6 +16,7 @@ public class QUERIES {
         public static final String TOTALUSER = "SELECT COUNT(*) FROM users";
         public static final String TOTAL_USER_BY_DAY = "SELECT COUNT(*) FROM users where DATE(create_at) = CURRENT_DATE";
         public static final String SELECT_ALL_USER = "select u.uid, u.username, u.avatar, u.gender, u.dob, u.phone, u.email, u.password, u.status, r.permission as role, u.create_at, u.update_at from users u left join role r on r.uid = u.uid where r.resource_id = :resource_id and r.permission >= :permission";
+        public static final String SELECT_ALL_USER_PERISSION = "select u.uid, u.username, u.avatar, u.gender, u.dob, u.phone, u.email, u.password, u.status, r.permission as role, u.create_at, u.update_at from users u left join role r on r.uid = u.uid where r.resource_id = :resource_id and r.permission = :permission";
         public static final String FIND_BY_USERNAME_AND_PASSWORD = "select * from users where username = :username and password = :password";
         public static final String FIND_BY_ID = "select * from users where uid = :id";
         public static final String FIND_BY_USERNAME = "select * from users where username = :username";
@@ -40,10 +41,18 @@ public class QUERIES {
         public static final String SELECT_RESOURCE_BY_USER_ID = "SELECT resource_id FROM role WHERE uid = :uid";
         public static final String SELECT_PERMISSION_BY_USER_ID = "SELECT permission FROM role WHERE uid = :uid AND resource_id = :resource_id";
         public static final String SELECT_ROLE_ADMINS = "SELECT resource_code FROM role join resource on role.resource_id = resource.resource_id WHERE uid = :uid AND role.permission >=2";
+        public static final String DELETE_RESOURCE = "DELETE FROM role WHERE uid = :uid AND resource_id = (SELECT resource_id FROM resource WHERE resource_code = :resource)";
+        public static final String RESET_USER_ROLE = "UPDATE role r join resource res on r.resource_id = res.resource_id SET r.permission = 0 WHERE r.uid = :uid AND res.resource_code = :resource";
+        public static final String DELETE_ALL_RESOURCES_BY_UID = "DELETE FROM role WHERE uid = :uid";
+        public static final String INSERT_ROLE_PERMISSION = "INSERT INTO role(uid, resource_id) VALUES (:uid, (SELECT resource_id FROM resource WHERE resource_code = :resource))";
+
     }
 
     public class PERMISSION {
         public static final String GET_ALL_ROLES = "SELECT * FROM resource";
+        public static final String GET_RESOURCE_NAME_BY_ID = "SELECT resource_code FROM resource left join role on resource.resource_id = role.resource_id WHERE role.uid = :uid";
+        public static final String GET_RESOURCE_NAME = "SELECT resource_code from resource";
+        public static final String GET_RESOURCE = "SELECT resource_id FROM resource WHERE resource_code = :resourceCode;";
     }
 
     public class VERIFY_EMAIL {
