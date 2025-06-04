@@ -95,7 +95,6 @@ public class InvoiceController extends HttpServlet {
     private void detailInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         Invoice invoice = invoiceService.findById(id);
-        System.out.println(invoice);
         if (invoice == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
@@ -141,16 +140,13 @@ public class InvoiceController extends HttpServlet {
         String dataBefore = new GsonUtil().toJSon(invoice);
         Payment payment = invoice.getPayment();
         PaymentService paymentService = PaymentService.getInstance();
-        System.out.println("Hủy đơn hàng có phương thức thanh toán là: " + payment.getPaymentMethod());
 
-        System.out.println(invoice);
         if (invoice == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
         try {
             // Thực hiện hủy đơn hàng và hủy thanh toán
-            System.out.println("Hủy đơn hàng có phương thức thanh toán là: " + payment.getPaymentMethod());
             if (payment.getPaymentStatus().equals("Pending") || payment.getPaymentStatus().equals("Failed"))
                 payment.setPaymentStatus("Failed");
             else

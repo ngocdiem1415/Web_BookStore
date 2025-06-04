@@ -37,7 +37,6 @@ public class CheckoutController extends HttpServlet {
         if (session == null || session.getAttribute("userSession") == null) {
             // Nếu chưa đăng nhập, chuyển hướng đến trang login
             response.sendRedirect(request.getContextPath() + "/login");
-            System.out.println("CheckoutController: redirect to login");
             return;
         }
 
@@ -77,7 +76,7 @@ public class CheckoutController extends HttpServlet {
             request.setAttribute("selectedIds", jsonArray);
             request.getRequestDispatcher("/checkout.jsp").forward(request, response);
         } else {
-            response.sendRedirect("/Bookstore/cart");
+            response.sendRedirect("/cart");
         }
 
     }
@@ -124,7 +123,6 @@ public class CheckoutController extends HttpServlet {
                 listInvoiceDetails.add(invoiceDetail);
             }
             invoice.setListInvoiceDetails(listInvoiceDetails);
-            System.out.println("List book in checkout: " + invoice.getListInvoiceDetails());
 
             //Tạo thông tin thanh toán của đơn hàng
             Payment payment = new Payment();
@@ -141,7 +139,6 @@ public class CheckoutController extends HttpServlet {
             }
 
             invoice.setPayment(payment);
-            System.out.println("payment in checkout" + invoice.getPayment());
             //Tạo hóa đơn
             InvoiceService invoiceService = new InvoiceService();
             int invoiceId = invoiceService.insert(invoice);
@@ -168,7 +165,6 @@ public class CheckoutController extends HttpServlet {
             out.write(jsonError);
             out.close();
             out.flush();
-            System.out.println("Loi vuot qua ton kho: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 500
