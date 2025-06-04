@@ -39,8 +39,8 @@
                             </div>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="http://localhost:8080/Bookstore/home">Trang bán hàng</a></li>
-                            <li><a class="dropdown-item" href="http://localhost:8080/Bookstore/logout">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="http://rimberio.id.vn:8080/bookstore/home">Trang bán hàng</a></li>
+                            <li><a class="dropdown-item" href="http://rimberio.id.vn:8080/bookstore/logout">Đăng xuất</a></li>
                         </ul>
                     </div>
                     <!-- profile end -->
