@@ -1,0 +1,132 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+    id "org.hidetake.ssh" version "2.11.2"
+    id 'war'
+}
+
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.2"
+
+    implementation 'mysql:mysql-connector-java:8.0.30'
+
+    implementation 'org.jdbi:jdbi3-core:3.34.0'
+    implementation 'org.jdbi:jdbi3-sqlobject:3.34.0'
+
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.1'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+
+    implementation 'com.sun.mail:jakarta.mail:1.6.7'
+    // implementation 'javax.mail:mail:1.4.7' // có thể bỏ
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
+
+    implementation 'com.cloudinary:cloudinary-http44:1.39.0'
+
+    implementation 'commons-io:commons-io:2.18.0'
+    implementation 'commons-fileupload:commons-fileupload:1.5'
+
+    implementation 'commons-codec:commons-codec:1.15'
+}
+
+group = 'vn.edu.hcmuaf.fit'
+version = '1.0-SNAPSHOT'
+description = 'Bookstore'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+apply plugin: 'org.hidetake.ssh'
+remotes {
+    host {
+        host = '192.168.0.121'
+        user = 'root'
+        password = 'ngocdiem'
+    }
+}
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+
+tasks.register("docker_app_start"){
+    doLast {
+        println 'begin docker_app_start'
+        ssh.run {
+            session(remotes.host) {
+                execute 'docker stop tomcat10', ignoreError: true
+                execute 'docker run -it --rm -d ' +
+                        '--name tomcat10 ' +
+                        '-v /usr/deploy:/usr/local/tomcat/webapps ' +
+                        '-p 80:8080 ' +
+                        'tomcat:10.1.31'
+            }
+        }
+    }
+}
+tasks.register("docker_upload_file_to_server") {
+    doLast {
+        println 'begin docker_upload_file_to_server'
+        ssh.run {
+            session(remotes.host) {
+                // Tạo thư mục nếu chưa có
+                execute 'mkdir -p /usr/deploy'
+
+                // Xóa file/directory cũ nếu có
+                remove '/usr/deploy/Bookstore-1.0-SNAPSHOT.war'
+                remove '/usr/deploy/Bookstore/'
+
+                // Upload WAR mới
+                put from: "${project.projectDir}/build/libs/Bookstore-1.0-SNAPSHOT.war",
+                        into: "/usr/deploy/Bookstore.war"
+            }
+        }
+    }
+}
+
+tasks.register("docker_deploy") {
+    docker_deploy.dependsOn docker_app_start
+    docker_deploy.dependsOn docker_upload_file_to_server
+    docker_deploy.dependsOn build
+    tasks.getByName('docker_app_start').mustRunAfter docker_upload_file_to_server
+}
+
