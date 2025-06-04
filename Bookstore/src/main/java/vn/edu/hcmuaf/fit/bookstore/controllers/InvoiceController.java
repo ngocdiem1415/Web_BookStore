@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.InvoiceService;
 import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
+import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.*;
 
 import java.io.BufferedReader;
@@ -26,11 +27,22 @@ import java.util.Map;
 public class InvoiceController extends HttpServlet {
     HttpSession session; // Lấy session hiện tại, không tạo mới
     int userId;
+    private final RoleServices roleServices = RoleServices.getInstance();
     private final InvoiceService invoiceService = InvoiceService.getInstance();
     private final ReviewService reviewService = ReviewService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
+
+        int resourceId = roleServices.selectResourceByUserId(((User) session.getAttribute("userSession")).getUid());
+        if (session == null || session.getAttribute("userSession") == null) {
+            response.sendRedirect("login");
+            return;
+        }
+        User user = (User) session.getAttribute("userSession");
+        boolean isAdmin = roleServices.isAdmin(user.getUid(), resourceId);
+        request.setAttribute("isAdmin", isAdmin);
         request.setAttribute("today", java.time.LocalDate.now());
         // Kiểm tra session và user login
         if (session == null || session.getAttribute("userSession") == null) {
@@ -122,7 +134,7 @@ public class InvoiceController extends HttpServlet {
         }
         switch (action) {
             case "cancel":
-                cancelInvoice(request,response);
+                cancelInvoice(request, response);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);

@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.LogService;
+import vn.edu.hcmuaf.fit.bookstore.Services.RoleServices;
 import vn.edu.hcmuaf.fit.bookstore.Services.UserServices;
 import vn.edu.hcmuaf.fit.bookstore.beans.Log;
 import vn.edu.hcmuaf.fit.bookstore.beans.LogLevel;
@@ -16,6 +17,7 @@ import java.util.List;
 public class UserManageController extends HttpServlet {
     UserServices userServices;
     LogService logService;
+    RoleServices roleServices = RoleServices.getInstance();
 
     public UserManageController() {
         this.userServices = UserServices.getInstance();
@@ -24,12 +26,15 @@ public class UserManageController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> users = userServices.list(0, 1);
+        List<User> users = userServices.listUsers(0, 1);
         request.setAttribute("users", users);
 
         HttpSession session = request.getSession(false);
         String ip = request.getRemoteAddr();
         User admin = (User) session.getAttribute("userSession");
+
+        List<String> allRoles = roleServices.getResourceNames();
+        request.setAttribute("allRoles", allRoles);
 
         Log log = new Log(admin.getUid(), session.getId(), ip, LogLevel.INFO, "user-management", "VIEW_USER",
                 false, "{}", "{\"admin\": \"" + admin.getUsername() + "\"}");
