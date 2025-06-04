@@ -53,31 +53,31 @@
                     <%--Danh sách các trạng thái của đơn hàng--%>
                     <div class="container-product-content-inner__right-inner">
                         <section class="container-product-content-inner__right-inner-list" aria-label="tablist">
-                            <a href="<c:url value="/invoice?action=list&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=list"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Tất cả">
                                 <span class="right-inner-item-text">Tất cả</span>
                             </a>
 
-                            <a href="<c:url value="/invoice?action=filterByStatus&status=pending&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=filterByStatus&status=pending"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Chờ thanh toán">
                                 <span class="right-inner-item-text">Chờ thanh toán</span>
                             </a>
 
-                            <a href="<c:url value="/invoice?action=filterByStatus&status=shipping&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=filterByStatus&status=shipping"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Chờ giao hàng">
                                 <span class="right-inner-item-text">Chờ giao hàng</span>
                             </a>
 
-                            <a href="<c:url value="/invoice?action=filterByStatus&status=completed&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=filterByStatus&status=completed"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Hoàn thành">
                                 <span class="right-inner-item-text">Hoàn thành</span>
                             </a>
 
-                            <a href="<c:url value="/invoice?action=filterByStatus&status=Cancelled&userId=${userSession.getUid()}"/>"
+                            <a href="<c:url value="/invoice?action=filterByStatus&status=cancelled"/>"
                                class="container-product-content-inner__right-inner-item"
                                title="Đã hủy">
                                 <span class="right-inner-item-text">Đã hủy</span>
@@ -108,7 +108,6 @@
 
                                     <!-- Input ẩn khác -->
                                     <input type="hidden" name="action" value="search">
-                                    <input type="hidden" name="userId" value="${userSession.getUid()}">
                                 </div>
                             </form>
                         </div>
@@ -538,7 +537,7 @@
                         // Gửi yêu cầu AJAX để lưu đánh giá
                         $.ajax({
                             // fix thêm chỗ truyền tham số invoiceId và userId
-                            url: '/Bookstore/submitReview?&action=' +'review' + '&invoiceId=' + invoiceId + '&userId=' + userId, // URL backend để xử lý việc lưu đánh giá
+                            url: '/Bookstore/submitReview?&action=' +'review' + '&invoiceId=' + invoiceId, // URL backend để xử lý việc lưu đánh giá
                             type: 'POST',
                             contentType: 'application/json',
                             data: JSON.stringify(reviews),

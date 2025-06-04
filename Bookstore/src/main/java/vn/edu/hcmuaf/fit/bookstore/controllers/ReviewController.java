@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.bookstore.Services.ReviewService;
 import vn.edu.hcmuaf.fit.bookstore.beans.Invoice;
 import vn.edu.hcmuaf.fit.bookstore.beans.Review;
+import vn.edu.hcmuaf.fit.bookstore.beans.User;
 import vn.edu.hcmuaf.fit.bookstore.util.GsonUtil;
 
 import java.io.*;
@@ -18,32 +19,49 @@ import java.util.List;
 
 @WebServlet(name = "ReviewController", value = "/submitReview")
 public class ReviewController extends HttpServlet {
+    HttpSession session;
     @Serial
     private static final long serialVersionUID = 1L;
     private final ReviewService reviewService = ReviewService.getInstance();
+    int userId;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
     @Override
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        } else {
-            if ("review".equals(action)) {
-                saveReviews(request, response);
-                System.out.println(action);
+        try {
+            session = request.getSession(false);  // Lấy session hiện tại, không tạo mới
+            request.setAttribute("today", java.time.LocalDate.now());
+            // Kiểm tra session và user login
+            if (session == null || session.getAttribute("userSession") == null) {
+                // Nếu chưa đăng nhập, chuyển hướng đến trang login
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
             } else {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                userId = ((User) session.getAttribute("userSession")).getUid();
+                String action = request.getParameter("action");
+                if (action == null) {
+                    action = "";
+                } else {
+                    if ("review".equals(action)) {
+                        saveReviews(request, response);
+                        System.out.println(action);
+                    } else {
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    }
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi khi hủy đơn hàng.");
         }
     }
 
     private void saveReviews(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            int userId = Integer.parseInt(request.getParameter("userId"));
             int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
 
             BufferedReader reader = request.getReader();
@@ -57,18 +75,19 @@ public class ReviewController extends HttpServlet {
             for (ReviewData reviewData : reviews) {
                 Review review = new Review();
                 review.setInvoiceId(invoiceId);
-                review.setBId(reviewData.getBookId());
-                review.setUId(userId);
+                review.setbId(reviewData.getBookId());
+                review.setuId(userId);
                 review.setReviewDate(LocalDateTime.now());
                 review.setRating(reviewData.getRating());
                 review.setComment(reviewData.getComment());
 
                 ReviewService reviewService = new ReviewService();
                 boolean success = reviewService.addReview(review);
+                System.out.println("đã thêm review id:" + review.getReviewId());
                 if (!success) {
                     allSuccess = false;
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                    System.out.println("❌ Không thể thêm review cho bookId: " + reviewData.getBookId());
+                    System.out.println("Không thể thêm review cho bookId: " + reviewData.getBookId());
                     break;
                 }
 
@@ -82,7 +101,7 @@ public class ReviewController extends HttpServlet {
             out.flush();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("❌ Lỗi khi đọc JSON từ request: " + e.getMessage());
+            System.out.println("Lỗi khi đọc JSON từ request: " + e.getMessage());
         }
 
     }

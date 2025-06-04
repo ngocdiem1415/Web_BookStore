@@ -10,9 +10,9 @@ import java.util.Date;
 public class Review implements Serializable {
     private int reviewId;
     private int invoiceId;
-//    @ColumnName("b_id")
+    @ColumnName("b_id")
     private int bId;
-//    @ColumnName("uid")
+    @ColumnName("uid")
     private int uId;
     public LocalDateTime reviewDate;
     private int rating;
@@ -32,14 +32,6 @@ public class Review implements Serializable {
         this.user = user;
     }
 
-    public User getUser(){
-        return user;
-    }
-
-    public void setUser(User user){
-        this.user = user;
-    }
-
     public int getReviewId() {
         return reviewId;
     }
@@ -56,19 +48,19 @@ public class Review implements Serializable {
         this.invoiceId = invoiceId;
     }
 
-    public int getBId() {
+    public int getbId() {
         return bId;
     }
 
-    public void setBId(int bId) {
+    public void setbId(int bId) {
         this.bId = bId;
     }
 
-    public int getUId() {
+    public int getuId() {
         return uId;
     }
 
-    public void setUId(int uId) {
+    public void setuId(int uId) {
         this.uId = uId;
     }
 
@@ -94,6 +86,14 @@ public class Review implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
