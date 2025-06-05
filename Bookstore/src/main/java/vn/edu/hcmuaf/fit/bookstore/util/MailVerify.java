@@ -16,7 +16,7 @@ public class MailVerify {
     //sajy blen qiil oxoz: password
     private final static String fromEmail = "shadow05.rx@gmail.com"; //requires valid gmail id
     private final static String username = "shadow05.rx@gmail.com";
-    private final static String password = "sajyblenqiiloxoz"; // correct password for gmail id
+    private final static String password = "solveiqewzogckvn"; // correct password for gmail id
 
     public void sendVerificationCode(String toEmail, String code) {
         String subject = "Xác minh tài khoản";

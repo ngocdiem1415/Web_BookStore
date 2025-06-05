@@ -23,7 +23,7 @@ public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     //    public static String vnp_ReturnUrl = "http://localhost:8080/vn_pay/vnpayReturn";
-    public static String vnp_ReturnUrl = "https://rimberio.id.vn/vnpay_return";
+    public static String vnp_ReturnUrl = "http://rimberio.id.vn:8080/Bookstore/vnpay_return";
     public static String vnp_TmnCode = "0ZEMNQM6";
     public static String secretKey = "TVXGEX9UQ73FG98APATY4EYJYD2O9AOG";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

@@ -4,6 +4,7 @@
  */
 
 package com.vnpay.common;
+
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
@@ -16,23 +17,26 @@ import vn.edu.hcmuaf.fit.bookstore.Services.PaymentService;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
- *
  * @author HP
  */
 @WebServlet(name = "VnpayReturn", urlPatterns = {"/vnpay_return"})
 public class VnpayReturn extends HttpServlet {
     InvoiceService invoiceService = new InvoiceService();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
+     *
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
 //    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
@@ -76,7 +80,7 @@ public class VnpayReturn extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Map fields = new HashMap();
-        for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
+        for (Enumeration params = request.getParameterNames(); params.hasMoreElements(); ) {
             String fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
             String fieldValue = URLEncoder.encode(request.getParameter(fieldName), StandardCharsets.US_ASCII.toString());
             if ((fieldValue != null) && (fieldValue.length() > 0)) {
@@ -101,7 +105,7 @@ public class VnpayReturn extends HttpServlet {
             if (success) {
                 paymentService.updateStatus(orderId, "Completed");
                 invoiceService.updateStatus(orderId, "Shipping");
-            } else{
+            } else {
                 paymentService.updateStatus(orderId, "Failed");
                 invoiceService.updateStatus(orderId, "Cancelled");
             }
@@ -115,6 +119,21 @@ public class VnpayReturn extends HttpServlet {
             request.setAttribute("transactionNo", request.getParameter("vnp_TransactionNo"));
             request.setAttribute("payDate", request.getParameter("vnp_PayDate"));
 
+            String payDate = request.getParameter("vnp_PayDate");
+            if (payDate != null) {
+                SimpleDateFormat vnpayFormatter = new SimpleDateFormat("yyyyMMddHHmmss");
+                vnpayFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+                SimpleDateFormat displayFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                displayFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+                try {
+                    java.util.Date vnpayDate = vnpayFormatter.parse(payDate);
+                    payDate = displayFormatter.format(vnpayDate);
+                } catch (Exception e) {
+                    // Giữ nguyên định dạng gốc nếu parse thất bại
+                }
+            }
+            request.setAttribute("payDate", payDate);
+
             request.getRequestDispatcher("vnpay_return.jsp").forward(request, response);
         } else {
             response.getWriter().println("Giao dịch không hợp lệ (invalid signature)");
@@ -122,12 +141,14 @@ public class VnpayReturn extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
+     *
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -137,10 +158,11 @@ public class VnpayReturn extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
+     *
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -150,6 +172,7 @@ public class VnpayReturn extends HttpServlet {
 
     /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

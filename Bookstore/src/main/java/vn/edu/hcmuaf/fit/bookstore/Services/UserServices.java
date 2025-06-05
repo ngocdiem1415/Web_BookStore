@@ -169,12 +169,28 @@ public class UserServices {
         try {
             conn.useExtension(UserDao.class, handle -> {
                 handle.insertByGoogle(user.getUsername(), user.getGender(), user.getPhone(), user.getEmail(), user.getPassword());
+
+                User insertedUser = handle.findByEmail(user.getEmail()); // Giả sử email là unique
+                int uid = insertedUser.getUid();
+
+                conn.withExtension(RoleDao.class, roleDao -> {
+                    roleDao.insertRole(uid, 2, 1);
+                    roleDao.insertRole(uid, 3, 1);
+                    roleDao.insertRole(uid, 1, 0);
+                    roleDao.insertRole(uid, 4, 0);
+                    roleDao.insertRole(uid, 5, 0);
+                    roleDao.insertRole(uid, 6, 0);
+                    roleDao.insertRole(uid, 7, 0);
+                    roleDao.insertRole(uid, 8, 0);
+                    return null;
+                });
             });
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
+
 
     public boolean exists(User user) {
         List<User> users = conn.withExtension(UserDao.class, handle -> handle.findAll());
