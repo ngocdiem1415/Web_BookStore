@@ -296,7 +296,7 @@
 
     function stockIn() {
         $.ajax({
-            url: 'stock',
+            url: 'stock-detail',
             type: 'POST',
             data: {
                 bookId: $('#bookSelect').val(),
@@ -318,7 +318,7 @@
 
     function updateStock() {
         $.ajax({
-            url: 'stock',
+            url: 'stock-detail',
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -342,7 +342,7 @@
 
     function deleteStock() {
         $.ajax({
-            url: 'stock',
+            url: 'stock-detail',
             type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify({

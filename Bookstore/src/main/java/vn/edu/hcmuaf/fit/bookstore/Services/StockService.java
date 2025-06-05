@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class StockService {
     private static StockService instance = null;
+    private static BookDetailService bookDetailService = BookDetailService.getInstance();
     Jdbi connect = JDBIConnector.getJdbi();
 
     public static StockService getInstance() {
@@ -24,32 +25,39 @@ public class StockService {
         return listStock.stream().map(stock -> mapOtherBean(stock)).collect(Collectors.toList());
     }
 
+    //    public List<Stock> getStock() {
+//        List<Stock> listStock = connect.withExtension(StockDao.class, StockDao::listAll);
+//
+//        Map<Integer, Stock> groupedMap = new HashMap<>();
+//        for (Stock stock : listStock) {
+//            int bookId = stock.getbId();
+//            if (groupedMap.containsKey(bookId)) {
+//                Stock existing = groupedMap.get(bookId);
+//                existing.setQuantity(existing.getQuantity() + stock.getQuantity());
+//                if (stock.getStock_date().isAfter(existing.getStock_date())) {
+//                    existing.setStock_date(stock.getStock_date());
+//                }
+//            } else {
+//                groupedMap.put(bookId, stock);
+//            }
+//        }
+//        List<Stock> result = new ArrayList<>();
+//        for (Stock stock : groupedMap.values()) {
+//            Book temp = getBookEntriesByBookId(stock.getbId());
+//            stock.setBook(temp);
+//            result.add(mapOtherBean(stock));
+//        }
+//        return result;
+//    }
     public List<Stock> getStock() {
         List<Stock> listStock = connect.withExtension(StockDao.class, StockDao::listAll);
-
-        Map<Integer, Stock> groupedMap = new HashMap<>();
-        for (Stock stock : listStock) {
-            int bookId = stock.getbId();
-            if (groupedMap.containsKey(bookId)) {
-                Stock existing = groupedMap.get(bookId);
-                existing.setQuantity(existing.getQuantity() + stock.getQuantity());
-                if (stock.getStock_date().isAfter(existing.getStock_date())) {
-                    existing.setStock_date(stock.getStock_date());
-                }
-            } else {
-                groupedMap.put(bookId, stock);
-            }
-        }
-        List<Stock> result = new ArrayList<>();
-        for (Stock stock : groupedMap.values()) {
-            result.add(mapOtherBean(stock));
-        }
-        return result;
+        listStock.forEach(this::mapOtherBean);
+        return listStock;
     }
 
-    public List<Stock> getStockEntriesByBookId(int bId) {
-        List<Stock> listStock = connect.withExtension(StockDao.class, dao -> dao.findByBookId(bId));
-        return listStock.stream().map(stock -> mapOtherBean(stock)).collect(Collectors.toList());
+    public Book getBookEntriesByBookId(int bId) {
+        Book book = connect.withExtension(BookDetailService.class, dao -> dao.findById(bId));
+        return book;
     }
 
     public int insertStock(Stock stock) {
@@ -78,11 +86,11 @@ public class StockService {
             System.out.println("Stock is null");
             return new Stock();
         }
-        if (stock.getbId() == 0 ) {
+        if (stock.getbId() == 0) {
             System.out.println("Stock has no book ID");
             return stock;
         }
-        Book book = connect.withExtension(BookDao.class, dao -> dao.findById(stock.getbId()));
+        Book book = bookDetailService.findById(stock.getbId());
         stock.setBook(book);
         return stock;
     }

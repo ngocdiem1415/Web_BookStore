@@ -27,6 +27,9 @@ public class StockAdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Stock> stocks = stockService.getStock();
         request.setAttribute("stocks", stocks);
+        for (Stock stock : stocks) {
+            System.out.println(stock.getBook().toString());
+        }
 
         HttpSession session = request.getSession(false);
         String ip = request.getRemoteAddr();

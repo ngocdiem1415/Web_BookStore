@@ -76,7 +76,7 @@ public class CheckoutController extends HttpServlet {
             request.setAttribute("selectedIds", jsonArray);
             request.getRequestDispatcher("/checkout.jsp").forward(request, response);
         } else {
-            response.sendRedirect("/cart");
+            response.sendRedirect("cart");
         }
 
     }

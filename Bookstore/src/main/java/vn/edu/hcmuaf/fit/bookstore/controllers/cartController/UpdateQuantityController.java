@@ -21,7 +21,7 @@ public class UpdateQuantityController extends HttpServlet {
             session.setAttribute("cart", cart);
         }
 
-        response.sendRedirect("/cart");
+        response.sendRedirect("cart");
     }
 
     @Override

@@ -537,7 +537,7 @@
                         // Gửi yêu cầu AJAX để lưu đánh giá
                         $.ajax({
                             // fix thêm chỗ truyền tham số invoiceId và userId
-                            url: '/submitReview?&action=' +'review' + '&invoiceId=' + invoiceId, // URL backend để xử lý việc lưu đánh giá
+                            url: 'submitReview?&action=' +'review' + '&invoiceId=' + invoiceId, // URL backend để xử lý việc lưu đánh giá
                             type: 'POST',
                             contentType: 'application/json',
                             data: JSON.stringify(reviews),

@@ -32,7 +32,7 @@
             <!-- SEARCH BAR -->
             <div class="col-md-7">
                 <div class="header-search">
-                    <form class="d-flex mt-2" id="searchForm" action="/listBook" method="get">
+                    <form class="d-flex mt-2" id="searchForm" action="listBook" method="get">
                         <input class="input flex-grow-1" type="text" name="find" id="searchInput" placeholder="Tìm sách...">
                         <button class="search-btn" type="submit">Search</button>
                     </form>

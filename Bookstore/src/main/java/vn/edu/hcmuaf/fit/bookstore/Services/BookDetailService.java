@@ -209,6 +209,7 @@ public class BookDetailService {
 //                    + ", Daban: " + book.getSoldQuantity()
 //                    + ", Tonkho: " + book.getStockQuantity());
         } else {
+            System.out.println("Stock view is null");
             book.setSoldQuantity(0);
             book.setStockQuantity(0);
         }

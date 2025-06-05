@@ -97,8 +97,7 @@ public class InvoiceService {
 
                         if (detail.getQuantity() > remaining) {
                             throw new IllegalStateException(
-                                    "Sach \"" + book.getTitle() + "\" chi con " + remaining + " cuon, khong the dat " + detail.getQuantity()
-                            );
+                                    "Sach \"" + book.getTitle() + "\" chi con " + remaining + " cuon, khong the dat hang!");
                         }
 
                         detail.setInvoiceId(invoiceId); //

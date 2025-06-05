@@ -85,7 +85,7 @@
                                         <c:forEach var="stock" items="${stocks}">
                                             <tr>
                                                 <th scope="row">${stock.getBook().getTitle()}</th>
-                                                <td>${stock.quantity}</td>
+                                                <td>${stock.getBook().getStockQuantity()}</td>
                                                 <td>${stock.stock_date}</td>
                                             </tr>
                                         </c:forEach>
